@@ -428,7 +428,7 @@ class Motor {
       tg.putImageData(img, 0, 0);
       const x = 4 + (i % cols) * (W + 4), y = 4 + Math.floor(i / cols) * (H + leg + 4);
       g.drawImage(tmp, x, y);
-      desenharTexto(g, `CENA ${c.numero} - ${c.duracao.toFixed(1)}S - ${c.fundo}${c.narracao ? '' : ' - SEM NARRACAO'}`, x + 1, y + H + 1, c.narracao ? '#e0e0e0' : '#ff8060');
+      desenharTexto(g, `CENA ${c.numero} - ${c.duracao.toFixed(1)}S - ${c.fundo || c.vista || 'lateral'}${c.narracao ? '' : ' - SEM NARRACAO'}`, x + 1, y + H + 1, c.narracao ? '#e0e0e0' : '#ff8060');
     });
     this.rascunho = rasc;
     return cv.toDataURL('image/png');

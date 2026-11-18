@@ -1,0 +1,4 @@
+Opcional: sprites PNG só deste projeto (fundo transparente).
+Para usar em todos os projetos, coloque em biblioteca/sprites/.
+Use no roteiro: { "sprite": "arquivo:meu-sprite.png", "quadros": 4, "fps": 8 }
+Quadros lado a lado na horizontal.

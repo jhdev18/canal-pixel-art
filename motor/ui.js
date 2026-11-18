@@ -113,7 +113,7 @@ export class UI {
     if (t < ini || t > ini + dur) return;
     const p = clamp((t - ini) / 0.45);
     const alpha = clamp((ini + dur - t) / 0.3);
-    const esc = cena.tituloEscala ?? (W >= 320 ? 2 : 1);
+    const esc = cena.tituloEscala ?? (Math.max(W, H) >= 320 ? 2 : 1);
     const linhas = quebrarLinhas(cena.titulo, W - 20, esc);
     const altLinha = 11 * esc;
     const blocoAlt = linhas.length * altLinha + (cena.subtitulo ? 14 : 0);

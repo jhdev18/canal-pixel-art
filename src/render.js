@@ -69,19 +69,38 @@ async function carregarSom(dir, ff, nome, cache, avisos) {
   return dados;
 }
 
+// Versão vertical (Shorts): troca a resolução e aplica os ajustes "vertical" de cada cena
+// (ex.: enquadramento mais fechado), mantendo a mesma história e a mesma narração.
+function paraVertical(roteiro) {
+  const r = JSON.parse(JSON.stringify(roteiro));
+  const [w, h] = r.resolucao || [320, 180];
+  r.resolucao = r.resolucaoVertical || (w > h ? [h, w] : [w, h]);
+  for (const c of r.cenas || []) {
+    const v = c.vertical || {};
+    for (const [k, val] of Object.entries(v)) {
+      if (val && typeof val === 'object' && !Array.isArray(val) && c[k] && typeof c[k] === 'object' && !Array.isArray(c[k])) c[k] = { ...c[k], ...val };
+      else c[k] = val;
+    }
+    delete c.vertical;
+  }
+  return r;
+}
+
 export async function renderizar(nome, modo, opc = {}) {
   const t0 = Date.now();
   const cfg = carregarConfig();
   const ff = cfg.ffmpeg;
   const ffVersao = verificarFfmpeg(ff);
   const dir = caminhoProjeto(nome);
-  const bruto = lerRoteiro(dir);
+  const vertical = opc.formato === 'vertical';
+  const bruto = vertical ? paraVertical(lerRoteiro(dir)) : lerRoteiro(dir);
+  const sufixo = vertical ? '-shorts' : '';
   const m = { ...cfg[modo], ...opc };
   const fps = Number(m.fps);
   const lado = Math.min(...(bruto.resolucao || [320, 180]));
   m.escala = Number(m.escala) || Math.max(1, Math.floor((m.resolucao || 1080) / lado));
 
-  console.log(`\n▶ ${modo === 'final' ? 'VERSÃO FINAL' : 'RASCUNHO'} — ${bruto.titulo || nome}`);
+  console.log(`\n▶ ${modo === 'final' ? 'VERSÃO FINAL' : 'RASCUNHO'} ${vertical ? '(VERTICAL / SHORTS)' : '(NORMAL)'} — ${bruto.titulo || nome}`);
   const narr = await encontrarNarracoes(dir, bruto, ff);
   const roteiro = resolverRoteiro(bruto, narr.mapa, { fps });
   const avisos = validar(roteiro);
@@ -96,8 +115,9 @@ export async function renderizar(nome, modo, opc = {}) {
 
   const saidaDir = path.join(dir, 'saida');
   fs.mkdirSync(saidaDir, { recursive: true });
-  const videoTmp = path.join(saidaDir, `.${modo}-video.mp4`);
-  const saidaFinal = path.join(saidaDir, `${modo}.mp4`);
+  const videoTmp = path.join(saidaDir, `.${modo}${sufixo}-video.mp4`);
+  const saidaFinal = path.join(saidaDir, `${modo}${sufixo}.mp4`);
+  if (vertical && roteiro.duracaoTotal > 180) avisos.push(`A versão Shorts tem ${roteiro.duracaoTotal.toFixed(0)}s; o YouTube aceita Shorts de até 3 minutos.`);
 
   const servidor = await iniciarServidor({ projetoDir: dir });
   let motor;
@@ -127,7 +147,7 @@ export async function renderizar(nome, modo, opc = {}) {
 
     if (modo === 'rascunho') {
       const png = await motor.page.evaluate(() => window.motor.storyboard());
-      fs.writeFileSync(path.join(saidaDir, 'storyboard.png'), Buffer.from(png.split(',')[1], 'base64'));
+      fs.writeFileSync(path.join(saidaDir, `storyboard${sufixo}.png`), Buffer.from(png.split(',')[1], 'base64'));
     }
   } finally {
     await motor?.browser.close().catch(() => {});
@@ -152,7 +172,7 @@ export async function renderizar(nome, modo, opc = {}) {
     fs.renameSync(videoTmp, saidaFinal);
   } else {
     const { L, R } = mixar({ duracao: roteiro.duracaoTotal, narracoes, eventos, ambientes, cfg: cfg.audio });
-    const wav = path.join(saidaDir, `${modo}-audio.wav`);
+    const wav = path.join(saidaDir, `${modo}${sufixo}-audio.wav`);
     escreverWav(wav, L, R);
     const af = modo === 'final' && cfg.audio.normalizar ? ['-af', `loudnorm=I=${cfg.audio.lufs}:TP=-1.5:LRA=11`] : [];
     await executar(ff, ['-i', videoTmp, '-i', wav, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', ...af, '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-shortest', saidaFinal]);
@@ -160,6 +180,6 @@ export async function renderizar(nome, modo, opc = {}) {
   }
 
   console.log(`\n✔ Pronto em ${fmt((Date.now() - t0) / 1000)}: ${saidaFinal}`);
-  if (modo === 'rascunho') console.log(`  Storyboard: ${path.join(saidaDir, 'storyboard.png')}\n  Gostou? Gere a versão final: npm run final -- ${nome}`);
+  if (modo === 'rascunho') console.log(`  Storyboard: ${path.join(saidaDir, `storyboard${sufixo}.png`)}\n  Gostou? Gere a versão final (normal + Shorts): npm run final -- ${nome}`);
   return saidaFinal;
 }

@@ -51,7 +51,7 @@ Use sempre pelos nomes da biblioteca (`"personagem": "menina-capa"`) — veja `n
 | Formato | Como | Resultado |
 |---|---|---|
 | **Horizontal 16:9** (YouTube) | `"resolucao": [320, 180]` (padrão) | 1920×1080 |
-| **Vertical 9:16** (Shorts, Reels, TikTok) | `"resolucao": [180, 320]` | 1080×1920 — modelo `vertical-shorts` |
+| **Vertical 9:16** (Shorts, Reels, TikTok) | gerado junto no `npm run final` a partir do mesmo roteiro (ajuste o enquadramento com `"vertical"` em cada cena) — ou um roteiro só vertical com `"resolucao": [180, 320]` | 1080×1920 |
 | **Pixels maiores** | `"resolucao": [240, 135]` | 1920×1080 com cada pixel 8× (mais "retrô") |
 | **60 fps** | `npm run final -- meu-video --fps 60` | movimento mais suave |
 
@@ -63,7 +63,7 @@ Use sempre pelos nomes da biblioteca (`"personagem": "menina-capa"`) — veja `n
 |---|---|---|---|
 | **Prévia** | `npm run previa -- meu-video` | ajustar posições e tempos em tempo real | navegador, sem áudio |
 | **Rascunho** | `npm run rascunho -- meu-video` | conferir a história e o tempo da narração | 960×540, 15 fps, só narração, `storyboard.png` |
-| **Final** | `npm run final -- meu-video` | publicar | 1080p, 30 fps, efeitos visuais, efeitos sonoros, ambiente, narração, −14 LUFS |
+| **Final** | `npm run final -- meu-video` | publicar | **duas versões**: `final.mp4` (16:9, vídeo longo) e `final-shorts.mp4` (9:16, Shorts), com efeitos, sons, narração, −14 LUFS |
 
 ---
 

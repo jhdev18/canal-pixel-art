@@ -45,7 +45,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     // Câmera padrão: chão a ~80% da altura da tela (funciona em 16:9 e 9:16).
     const camPadrao = cena.vista === 'diagonal' ? { x: 0, y: 2.2, zoom: 1 }
       : cena.vista === 'avenida' ? { x: 0.6, y: 2.6, z: 11, zoom: 1 }
-      : { x: 0, y: Math.round(res[1] * 0.3) / 16, zoom: 1 };
+      : { x: 0, y: Math.round(res[1] * 0.3) / 16 / (cena.camera?.zoom ?? 1), zoom: 1 };   // chão a ~80% da altura, considerando o zoom
     cena.camera = { ...camPadrao, ...(cena.camera || {}) };
     cena.narracaoInicio = cena.narracaoInicio ?? 0.3;
     const narr = narracoes.get(indice);

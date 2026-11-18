@@ -1,0 +1,2 @@
+Opcional: coloque aqui um arquivo com o nome de um efeito (ex.: moeda.wav, explosao.mp3)
+para substituir o efeito gerado automaticamente. Veja os nomes com: npm run lista

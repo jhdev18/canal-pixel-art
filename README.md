@@ -14,7 +14,7 @@ O fluxo tem duas etapas:
 | Etapa | Comando | O que sai |
 |---|---|---|
 | 1. Rascunho | `npm run rascunho -- meu-video` | `rascunho.mp4` (960×540, 15 fps, só narração, marca d'água com cena e tempo) + `storyboard.png` (uma miniatura por cena) |
-| 2. Final | `npm run final -- meu-video` | `final.mp4` (1920×1080, 30 fps, efeitos visuais + efeitos sonoros + ambiente + narração, áudio normalizado para -14 LUFS) |
+| 2. Final | `npm run final -- meu-video` | **duas versões**: `final.mp4` (1920×1080, vídeo longo) e `final-shorts.mp4` (1080×1920, Shorts) — 30 fps, efeitos visuais + efeitos sonoros + ambiente + narração, áudio normalizado para -14 LUFS |
 
 ---
 
@@ -97,7 +97,12 @@ Outros comandos:
 | `npm run sfx` | Exporta todos os efeitos sonoros para `biblioteca/sfx/_gerados/` (para ouvir) |
 | `npm run gpu` | Diagnóstico de GPU e NVENC |
 
-Opções: `--fps 60`, `--crt` (linhas de varredura de TV antiga), `--escala 4`.
+Opções: `--fps 60`, `--crt` (linhas de varredura de TV antiga), `--escala 4`, `--formato normal|vertical|ambos`
+(o rascunho sai no formato normal; o final gera os dois — use `--formato normal` para gerar só o vídeo longo).
+
+**Ajustes só para o Shorts:** cada cena pode ter um bloco `"vertical"` com o que muda no formato 9:16 — normalmente o
+enquadramento: `"vertical": { "camera": { "x": -1, "zoom": 2 }, "cameraFim": { "x": 1 } }`. Na vista diagonal, use
+`"camera": { "z": -2.75 }` para a câmera mirar a calçada da frente. Veja `projetos/episodio-01`.
 Exemplo: `npm run final -- meu-video --fps 60`.
 
 Há um projeto completo de exemplo em `projetos/exemplo` (`npm run rascunho -- exemplo`).

@@ -203,7 +203,8 @@ Gerador de vídeos pixel art (Three.js + GPU)
   npm run sprites                   gera sprites-disponiveis.png
   npm run lista [-- projeto]        lista fundos, sprites, sons e a biblioteca (personagens, cenários)
 
-Opções: --fps 60   --escala 4   --crt   (ex.: npm run final -- meu-video --fps 60)
+Opções: --fps 60   --escala 4   --crt   --formato normal|vertical|ambos
+  (o rascunho sai no formato normal; o final gera normal + Shorts. Ex.: npm run final -- meu-video --formato normal)
 `;
 
 try {
@@ -213,8 +214,20 @@ try {
   if (flags.crt) opc.crt = true;
   switch (cmd) {
     case 'novo': await novo(pos[0]); break;
-    case 'rascunho': await renderizar(pos[0], 'rascunho', opc); break;
-    case 'final': await renderizar(pos[0], 'final', opc); break;
+    case 'rascunho': {   // padrão: só o formato normal (16:9)
+      const f = flags.formato || 'normal';
+      if (f !== 'vertical') await renderizar(pos[0], 'rascunho', { ...opc, formato: 'normal' });
+      if (f === 'vertical' || f === 'ambos') await renderizar(pos[0], 'rascunho', { ...opc, formato: 'vertical' });
+      break;
+    }
+    case 'final': {      // padrão: as duas versões — normal (vídeo longo) e vertical (Shorts)
+      const f = flags.formato || 'ambos';
+      const feitos = [];
+      if (f !== 'vertical') feitos.push(await renderizar(pos[0], 'final', { ...opc, formato: 'normal' }));
+      if (f !== 'normal') feitos.push(await renderizar(pos[0], 'final', { ...opc, formato: 'vertical' }));
+      if (feitos.length > 1) console.log(`\n✔ Versões finais:\n  • Vídeo longo (16:9): ${feitos[0]}\n  • Shorts (9:16):     ${feitos[1]}`);
+      break;
+    }
     case 'previa': await previa(pos[0]); break;
     case 'gpu': await gpu(); break;
     case 'sfx': sfx(); break;
