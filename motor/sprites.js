@@ -332,6 +332,7 @@ export function obterSprite(nome, opcoes = {}) {
   const s = fab({ semente: opcoes.semente ?? 1, cores: opcoes.cores });
   s.nome = nome;
   s.quadros = s.quadros.map((q) => q.paraCanvas());
+  if (s.brilho) s.brilho = s.brilho.map((q) => (q.paraCanvas ? q.paraCanvas() : q)); // camada que brilha sem depender da luz
   return s;
 }
 

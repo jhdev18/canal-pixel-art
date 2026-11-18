@@ -151,6 +151,15 @@ class Motor {
       malha.renderOrder = ordemPorZ(z) + 2 + i * 2;
       cena.add(malha);
       const obj = { def: el, sprite, texturas, malha, mat, h: h * esc, esc, realce: el.realce ?? realce };
+      // Camada de brilho: pixels que emitem luz (lanterna, olhos, telas) ficam fora da iluminação.
+      if (sprite.brilho) {
+        if (!sprite._texBrilho) sprite._texBrilho = sprite.brilho.map(texturaCanvas);
+        const mb = new THREE.MeshBasicMaterial({ map: sprite._texBrilho[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
+        const brilho = new THREE.Mesh(geo, mb);
+        brilho.renderOrder = malha.renderOrder + 1;
+        cena.add(brilho);
+        obj.brilho = { malha: brilho, mat: mb, texturas: sprite._texBrilho };
+      }
       if (sprite.sombra && el.sombra !== false) {
         const p = new Pix(Math.max(6, texturas[0].image.width - 4), 4);
         p.elipse(p.w / 2, 2, p.w / 2, 2, '#000000');
@@ -250,6 +259,7 @@ class Motor {
       const vis = st.visivel && st.alpha > 0.01 && st.escala > 0.01;
       e.malha.visible = vis;
       if (e.sombra) e.sombra.visible = vis;
+      if (e.brilho) e.brilho.malha.visible = vis;
       if (e.luz) e.luz.L.visible = vis;
       if (!vis) continue;
       const anim = e.sprite.anims[st.anim] || e.sprite.anims.parado;
@@ -266,6 +276,11 @@ class Motor {
       const s = e.esc * st.escala;
       e.malha.scale.set(st.virado * s, s, 1);
       e.mat.opacity = st.alpha;
+      if (e.brilho) {
+        e.brilho.mat.map = e.brilho.texturas[q] || e.brilho.texturas[0];
+        e.brilho.malha.position.copy(e.malha.position); e.brilho.malha.scale.copy(e.malha.scale);
+        e.brilho.mat.opacity = st.alpha;
+      }
       e.mat.emissive.setRGB(e.realce + st.vermelho * 0.9, e.realce * (1 - st.vermelho), e.realce * (1 - st.vermelho));
       if (e.sombra) {
         const enc = Math.max(0.4, 1 - st.alturaPulo * 0.25);
