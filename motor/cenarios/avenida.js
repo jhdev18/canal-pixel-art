@@ -26,11 +26,11 @@ float linha(float coord, float passo, float px) {
   float d = abs(fract(coord / passo + 0.5) - 0.5) * passo;
   return step(d, px * 0.5);
 }
-// neblina em faixas (pixel art), dithering só na borda
+// neblina em faixas (pixel art), borda reta
 vec3 neblina(vec3 c) {
   float d = length(vMundo - cameraPosition);
   float f = clamp((d - uNeblinaDist.x) / (uNeblinaDist.y - uNeblinaDist.x), 0.0, 1.0);
-  f = clamp(floor(f * 4.0 + 0.5 + (bayer4(gl_FragCoord.xy) - 0.5) * 0.35), 0.0, 4.0) / 4.0;
+  f = clamp(floor(f * 4.0 + 0.5), 0.0, 4.0) / 4.0;              // faixas com borda reta
   return mix(c, uNeblina, f);
 }
 vec3 iluminar(vec3 cor, float fator) {
@@ -41,7 +41,7 @@ vec3 iluminar(vec3 cor, float fator) {
     nivel += max(0.0, 1.0 - d / 4.0) * uLuzes[i].w;
   }
   nivel = min(nivel, 1.0);
-  float q = clamp(floor(nivel * 3.0 + 0.5 + (bayer4(gl_FragCoord.xy) - 0.5) * 0.35), 0.0, 3.0) / 3.0;
+  float q = clamp(floor(nivel * 3.0 + 0.5), 0.0, 3.0) / 3.0;       // faixas de luz com borda reta (sem pontilhado)
   return neblina(cor * fator * (uAmb + q * uCorLuz * 0.6));
 }`;
 

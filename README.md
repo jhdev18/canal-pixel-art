@@ -302,13 +302,14 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 ```jsonc
 { "vista": "avenida",
   "avenida": { "periodo": "noite", "carros": true, "comprimento": 80, "faixaPedestre": -12 },
-  "camera": { "z": 11.5 }, "cameraFim": { "z": 9.5 },     // a câmera avança pela avenida
+  "seguir": "menina",                                     // a câmera só se move quando ela se move
   "elementos": [ { "id": "menina", "personagem": "menina-capa", "x": 1.2, "z": 3.4 } ] }
 ```
 
 A avenida é desenhada pixel a pixel na GPU (shaders): linhas sempre com 1 pixel e detalhe que se
 simplifica com a distância, sem texturas esticadas pela perspectiva. `"periodo": "dia"` também funciona nas duas. Na `diagonal` a câmera usa `x` (ao longo da rua), `y` (altura do
-enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na avenida) e `zoom`.
+enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na avenida) e `zoom`. Na `avenida` a câmera fica **parada**:
+`cameraFim` e ações de câmera são ignorados, e ela só acompanha o protagonista (`seguir`) enquanto ele se move.
 
 ### Fundos
 

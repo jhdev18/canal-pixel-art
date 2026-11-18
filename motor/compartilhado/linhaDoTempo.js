@@ -158,6 +158,19 @@ function camBase(cena) {
 // Estado da câmera (sem tremor) no tempo t.
 export function estadoCamera(cena, t) {
   const base = camBase(cena);
+  // Vista avenida: a câmera fica parada e só se move junto com o protagonista ("seguir"),
+  // acompanhando o deslocamento dele a partir do início da cena.
+  if (cena.vista === 'avenida') {
+    const cam = { ...base };
+    const el = cena.seguir && elementoPorId(cena, cena.seguir);
+    if (el) {
+      const x0 = estadoElemento(cena, el, 0).x;
+      let soma = 0; const N = 10;
+      for (let i = 0; i < N; i++) soma += estadoElemento(cena, el, Math.max(0, t - (i / N) * 0.6)).x;
+      cam.x = base.x + (soma / N - x0);
+    }
+    return cam;
+  }
   let cam = { ...base };
   if (cena.cameraFim) {
     const fim = { ...base, ...cena.cameraFim };
