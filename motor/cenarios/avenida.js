@@ -65,7 +65,14 @@ void main() {
     float s = exp2(ceil(log2(max(px, 1.0 / 32.0))));   // grão do asfalto ~1 pixel em qualquer distância
     float n = uEstavel > 0.5 ? 1.0 : hash(floor(p / s));
     if (n < 0.08) c = vec3(0.27, 0.275, 0.35); else if (n < 0.14) c = vec3(0.165, 0.165, 0.215);
-    if (ax < 0.07 + px * (uEstavel > 0.5 ? 1.0 : 0.5) && fract(p.y / 2.0) < 0.55) c = vec3(0.9, 0.74, 0.24);            // faixa central
+    // faixa central: largura real (encolhe com a distância). Quando o tracejado ficaria pequeno
+    // demais para ler, vira uma linha fina contínua e discreta.
+    float periodoPx = 2.0 / px;
+    if (periodoPx > 7.0) {
+      if (ax < max(0.06, px * 0.5) && fract(p.y / 2.0) < 0.55) c = vec3(0.9, 0.74, 0.24);
+    } else if (periodoPx > 2.5) {
+      if (ax < px * 0.5) c = mix(c, vec3(0.9, 0.74, 0.24), 0.45);
+    }
     if (p.y > uFaixa.x && p.y < uFaixa.y && fract((p.x + 3.0) * 1.0) < 0.5) c = vec3(0.88, 0.88, 0.92);
   } else if (ax < 3.3) {
     c = ax < 3.15 ? vec3(0.71, 0.72, 0.77) : vec3(0.6, 0.61, 0.67);

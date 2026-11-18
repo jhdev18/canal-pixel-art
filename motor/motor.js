@@ -26,6 +26,24 @@ function texturaCanvas(canvas) {
   return t;
 }
 
+// Quantas linhas transparentes existem embaixo do desenho (o menor valor entre os quadros).
+function linhasVaziasEmbaixo(texturas) {
+  let menor = Infinity;
+  for (const t of texturas) {
+    const c = t.image, g = c.getContext('2d');
+    const d = g.getImageData(0, 0, c.width, c.height).data;
+    let vazio = 0;
+    for (let y = c.height - 1; y >= 0; y--) {
+      let tem = false;
+      for (let x = 0; x < c.width; x++) if (d[(y * c.width + x) * 4 + 3] > 0) { tem = true; break; }
+      if (tem) break;
+      vazio++;
+    }
+    menor = Math.min(menor, vazio);
+  }
+  return Number.isFinite(menor) ? menor : 0;
+}
+
 function paraBase64(u8) {
   let s = '';
   for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
@@ -135,7 +153,9 @@ class Motor {
       const { sprite, texturas } = this.sprite(el, c);
       const esc = el.escala ?? 1;
       const w = texturas[0].image.width / PPU, h = texturas[0].image.height / PPU;
-      const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2, 0);
+      // Apoia o sprite pela linha mais baixa que tem desenho (os pés tocam o chão de verdade).
+      const vazio = sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas));
+      const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2 - vazio / PPU, 0);
       const mat = new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
       malha.renderOrder = vista.ordemInicial(el, i);
@@ -259,9 +279,19 @@ class Motor {
       const anim = e.sprite.anims[st.anim] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
-      const q = anim.q[Math.floor(tAnim * fps) % anim.q.length] ?? 0;
+      let idx = Math.floor(tAnim * fps);
+      // Com 'passada' definida, os passos seguem a distância percorrida: sem pés escorregando.
+      if (anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) {
+        const a = c.acoes.find((ac) => ac.alvo === e.def.id && (ac.tipo === 'andar' || ac.tipo === 'correr') && t >= ac.inicio && t < ac.inicio + ac.duracao);
+        if (a) {
+          const x0 = estadoElemento(c, e.def, a.inicio).x;
+          idx = Math.floor((Math.abs(st.x - x0) * PPU / (anim.passada * e.esc)) * anim.q.length);
+        }
+      }
+      const q = anim.q[((idx % anim.q.length) + anim.q.length) % anim.q.length] ?? 0;
       let bob = 0;
-      if (e.sprite.personagem && (st.anim === 'andando' || st.anim === 'correndo')) bob = Math.floor(tAnim * fps) % 2 ? 1 / PPU : 0;
+      // balanço genérico só para sprites simples (os detalhados já sobem e descem nos próprios quadros)
+      if (e.sprite.personagem && !anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) bob = idx % 2 ? 1 / PPU : 0;
       if (e.sprite.flutua && e.def.flutuar !== false && st.anim === 'parado') bob = Math.round(Math.sin(tAnim * 3) * 1.5) / PPU;
       if (e.sprite.voa) bob = Math.round(Math.sin(tAnim * 4) * 3) / PPU;
       e.mat.map = e.mat.emissiveMap = e.texturas[q] || e.texturas[0];

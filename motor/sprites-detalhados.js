@@ -102,8 +102,8 @@ function meninaV2() {
     quadros,
     anims: {
       parado: { q: [0, 0, 2, 2, 0, 0, 2, 2, 1, 2], fps: 4 },
-      andando: { q: [3, 4, 5, 6], fps: 7 },
-      correndo: { q: [7, 8, 9, 10, 11, 12], fps: 13 },
+      andando: { q: [3, 4, 5, 6], fps: 7, passada: 14 },     // passada = pixels percorridos por ciclo
+      correndo: { q: [7, 8, 9, 10, 11, 12], fps: 13, passada: 24 },
       pulando: { q: [9], fps: 1 },
     },
     sombra: true, personagem: true,
@@ -186,8 +186,8 @@ function roboV2() {
     quadros: [...q, ...andar, ...correr],
     anims: {
       parado: { q: [0, 3, 0, 3, 2, 0, 2, 0, 3, 1], fps: 4 },
-      andando: { q: [4, 5, 6, 7], fps: 6 },
-      correndo: { q: [8, 9, 10, 11, 12, 13], fps: 12 },
+      andando: { q: [4, 5, 6, 7], fps: 6, passada: 12 },
+      correndo: { q: [8, 9, 10, 11, 12, 13], fps: 12, passada: 20 },
       pulando: { q: [10], fps: 1 },
     },
     sombra: true, personagem: true,
