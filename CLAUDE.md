@@ -12,7 +12,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
    Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
 4. **Narração por um narrador em terceira pessoa**, em **um único áudio**
    (`projetos/<ep>/narracao/narracao-completa.mp3`), com legenda automática do texto do narrador.
-5. **Câmera nunca gira** para os lados (pixels precisam ficar alinhados à tela).
+5. **Câmera nunca gira** para os lados (pixels precisam ficar alinhados à tela) — esta regra vale
+   para vídeos novos que usem uma vista **diferente de lateral e diagonal**.
 6. Personagens e cenários são **originais** (estilo inspirado em Undertale/Deltarune, sem copiar).
 7. Usar Three.js para tudo que for visual (os assets precisam funcionar no motor).
 8. Economizar tokens: respostas objetivas, evitar abrir imagens sem necessidade.
