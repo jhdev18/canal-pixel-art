@@ -82,5 +82,38 @@
     "ambiente": false,
     "transicao": "pixelizar",
     "camera": { "x": 0, "y": 1.6 }
+  },
+
+  // ---- Cidade (vista lateral, de dia). Os prédios ficam em z = -1.2, atrás dos personagens.
+  "escola": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [ { "id": "escola", "sprite": "escola", "x": -4.6, "z": -1.2 }, { "id": "banco", "sprite": "banco-praca", "x": 2.4, "z": -0.4 } ]
+  },
+  "delegacia": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [ { "id": "delegacia", "sprite": "delegacia", "x": -2, "z": -1.2 }, { "id": "viatura", "sprite": "carro-policia", "x": 5.2, "z": -0.3 }, { "id": "hidrante", "sprite": "hidrante", "x": 2.6, "z": -0.2 } ]
+  },
+  "padaria": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [ { "id": "padaria", "sprite": "padaria", "x": 0, "z": -1.2 }, { "id": "banco", "sprite": "banco-praca", "x": 6, "z": -0.4 } ]
+  },
+  "mercado": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [ { "id": "mercado", "sprite": "mercado", "x": -1, "z": -1.2 }, { "id": "ponto", "sprite": "ponto-onibus", "x": 7, "z": -0.5 } ]
+  },
+  "farmacia": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [ { "id": "farmacia", "sprite": "farmacia", "x": 0, "z": -1.2 }, { "id": "hidrante", "sprite": "hidrante", "x": 4, "z": -0.2 } ]
+  },
+  // ---- Cidade (vista diagonal): rua com os estabelecimentos, da esquerda para a direita
+  "rua-comercial": {
+    "vista": "diagonal",
+    "rua": { "periodo": "dia", "faixaPedestre": -3,
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
+  },
+  "rua-comercial-noite": {
+    "vista": "diagonal",
+    "rua": { "periodo": "noite", "faixaPedestre": -3,
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
   }
 }

@@ -6,6 +6,18 @@ import { rng, PIXELS_POR_UNIDADE } from './compartilhado/util.js';
 const K = '#1a1c2c';
 
 export const PRESETS = {
+  'cidade-dia': {
+    ceu: { cores: ['#4a8ad8', '#62a2e4', '#80baee', '#a4d0f4'] },
+    sol: { x: 0.82, y: 0.16, r: 10, cor: '#fffbe0', halo: '#fff4c0' },
+    camadas: [
+      { tipo: 'nuvens', z: -140, acima: 100, cores: ['#ffffff', '#d4e6f6'], quantidade: 6, deriva: 2 },
+      { tipo: 'predios', z: -90, acima: 76, cor: '#a8c0dc', janela: '#c8d8ec', densidade: 0.18 },
+      { tipo: 'predios', z: -45, acima: 58, cor: '#8aa2c0', janela: '#b0c4dc', densidade: 0.2 },
+      { tipo: 'arvores', z: -14, acima: 22, cor: '#4a8a54', clara: '#5a9a62', estilo: 'redonda', iluminada: true },
+    ],
+    chao: { estilo: 'rua', topo: ['#b0b2c0', '#9496a6', '#6a6c7c'], terra: ['#4a4c5a', '#3e404c', '#32343e'] },
+    ambiente: ['#ffffff', 1.0],
+  },
   preto: { ceu: { cores: ['#000000'] }, camadas: [], chao: null, ambiente: ['#ffffff', 1.0] },
   'floresta-dia': {
     ceu: { cores: ['#3b7dd8', '#5fa8ea', '#9fd4f5', '#cdeefa'] },

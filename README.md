@@ -175,7 +175,20 @@ A biblioteca já vem com personagens (`protagonista`, `companheira`, `anciao`, `
 inimigos brancos `cone-agressivo` e `bueiro-olhos`. `menina-capa` e `robo-semaforo` são as versões
 **detalhadas** (28×44 px, contorno colorido, sombreamento em 3 tons, respiração e piscar de frente, andar de lado
 em 4 quadros e correr em 6). As versões antigas, mais simples, ficaram como `menina-capa-antigo` e
-`robo-semaforo-antigo`. Use com os cenários `cidade-rpg`, `cidade-rpg-chuva`
+`robo-semaforo-antigo`.
+
+**Moradores da cidade** (detalhados, andar e correr): `policial`, `prefeito`, `aluno`, `aluna`, `professora`,
+`padeiro`, `caixa`. **Estabelecimentos** (vista lateral): `escola`, `delegacia`, `padaria`, `mercado`, `farmacia`,
+mais `carro-policia`, `banco-praca`, `ponto-onibus` e `hidrante`; fundo `cidade-dia`. Cenários prontos na biblioteca:
+`escola`, `delegacia`, `padaria`, `mercado`, `farmacia` (lateral) e `rua-comercial` / `rua-comercial-noite`
+(diagonal com os estabelecimentos).
+
+Na vista diagonal dá para escolher os prédios da rua, da esquerda para a direita:
+
+```json
+"rua": { "periodo": "dia", "predios": [ { "tipo": "padaria", "largura": 4 }, { "tipo": "comum" }, { "tipo": "escola", "largura": 6 } ] }
+```
+Tipos: `escola`, `delegacia`, `padaria`, `mercado`, `farmacia` e `comum` (prédio residencial aleatório). Use com os cenários `cidade-rpg`, `cidade-rpg-chuva`
 (câmera com zoom 2×) e `batalha` (fundo preto):
 
 ```json

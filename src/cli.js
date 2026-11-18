@@ -166,6 +166,8 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              fantasma-metro, coruja-banca, cone-agressivo, bueiro-olhos
              (menina-capa e robo-semaforo são detalhados: 28x44, andar de lado e correr)
              antigos: menina-capa-antigo, robo-semaforo-antigo
+             moradores: policial, prefeito, aluno, aluna, professora, padeiro, caixa
+             cidade: escola, delegacia, padaria, mercado, farmacia, carro-policia, banco-praca, ponto-onibus, hidrante
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
 CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum
@@ -179,7 +181,7 @@ AMBIENTES:   ${AMBIENTES.join(', ')}
   const proj = pos[0] ? caminhoProjeto(pos[0]) : null;
   const lib = carregarBiblioteca(proj);
   const fmtP = (k, p) => `  ${k.padEnd(14)} ${p.sprite}${p.voz ? `  (voz ${p.voz})` : ''}`;
-  const fmtC = (k, c) => `  ${k.padEnd(14)} ${c.fundo || '?'}${c.clima ? ` + ${c.clima}` : ''}: ${(c.elementos || []).map((e) => e.id).join(', ')}`;
+  const fmtC = (k, c) => `  ${k.padEnd(14)} ${c.fundo || (c.vista ? 'vista ' + c.vista : '?')}${c.clima ? ` + ${c.clima}` : ''}: ${(c.elementos || []).map((e) => e.id).join(', ')}`;
   console.log(`BIBLIOTECA (${PASTA_BIBLIOTECA})${proj ? ` + projeto ${pos[0]}` : ''}
 PERSONAGENS ("personagem": "nome"):
 ${Object.entries(lib.personagens).map(([k, p]) => fmtP(k, p)).join('\n') || '  (nenhum)'}

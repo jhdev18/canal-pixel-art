@@ -37,6 +37,7 @@ Cada cena do roteiro escolhe a sua forma, então dá para misturar várias no me
 | Estilo | Sprites | Visual | Quando usar |
 |---|---|---|---|
 | **Detalhado** (padrão para os principais) | `menina-capa`, `robo-semaforo` | 28×44 px, contorno colorido, 3 tons, respiração e piscar. Na **avenida**: andar e correr com 8 quadros e pé cravado no chão; na **lateral** e na **diagonal**: caminhada clássica (4 quadros andando, 6 correndo) | protagonistas |
+| **Moradores** (detalhados) | `policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa` | mesmo padrão dos detalhados | histórias na cidade (cenários `escola`, `delegacia`, `padaria`, `mercado`, `farmacia`, `rua-comercial`) |
 | **RPG indie** | `pombo-fofoqueiro`, `lixeira-timida`, `cao-guarda`, `fantasma-metro`, `coruja-banca`, `cone-agressivo`, `bueiro-olhos` | de frente, contorno grosso, olhos que piscam | coadjuvantes, cidade, batalha |
 | **Simples (antigo)** | `heroi`, `amiga`, `velho`, `mago`, `slime`... `menina-capa-antigo`, `robo-semaforo-antigo` | 16 px, estilo plataforma | figurantes, cenas de paisagem |
 | **Seu PNG** | `"sprite": "arquivo:nome.png"` | o seu desenho | personagens próprios do canal |

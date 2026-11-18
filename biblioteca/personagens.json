@@ -32,5 +32,14 @@
   "fantasma-metro":   { "sprite": "fantasma-metro", "voz": 1.4, "y": 0.4 },
   "coruja-banca":     { "sprite": "coruja-banca", "voz": 0.6 },
   "cone-agressivo":   { "sprite": "cone-agressivo", "voz": 0.8, "escala": 2 },
-  "bueiro-olhos":     { "sprite": "bueiro-olhos", "voz": 0.5, "escala": 2 }
+  "bueiro-olhos":     { "sprite": "bueiro-olhos", "voz": 0.5, "escala": 2 },
+
+  // ---- Moradores da cidade (detalhados 28x44, andar e correr)
+  "policial":   { "sprite": "policial", "voz": 0.9 },
+  "prefeito":   { "sprite": "prefeito", "voz": 0.7 },
+  "aluno":      { "sprite": "aluno", "voz": 1.4 },
+  "aluna":      { "sprite": "aluna", "voz": 1.5 },
+  "professora": { "sprite": "professora", "voz": 1.15 },
+  "padeiro":    { "sprite": "padeiro", "voz": 0.85 },
+  "caixa":      { "sprite": "caixa", "voz": 1.1 }
 }

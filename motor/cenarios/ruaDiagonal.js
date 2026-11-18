@@ -4,6 +4,25 @@
 // em faixas com dithering, como numa pixel art pintada à mão.
 import { bayer, hexParaRgb } from '../pixel.js';
 import { rng } from '../compartilhado/util.js';
+import { desenharTexto, larguraTexto } from '../fonte.js';
+
+// Texto em pixel art como máscara (para escrever letreiros nas fachadas inclinadas).
+function mascaraTexto(texto) {
+  const w = larguraTexto(texto) + 2, h = 10;
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d'); desenharTexto(g, texto, 1, 0, '#fff');
+  const d = g.getImageData(0, 0, w, h).data;
+  return { w, h, tem: (x, y) => x >= 0 && y >= 0 && x < w && y < h && d[(y * w + x) * 4 + 3] > 0 };
+}
+
+// Estabelecimentos: cores, letreiro e térreo próprios.
+const ESTAB = {
+  escola: { pal: ['#e8d8b0', '#d8c498', '#a8946c', '#5a4a30'], tipo: 'reboco', placa: ['#2a5aa8', '#ffffff'], texto: 'ESCOLA', toldo: null, alt: 100, porta: 'vidro-dupla', base: '#a85a44' },
+  delegacia: { pal: ['#e8ecf4', '#d0d6e4', '#9aa2b8', '#3a4258'], tipo: 'reboco', placa: ['#1e2a58', '#ffffff'], texto: 'POLÍCIA', toldo: null, alt: 76, porta: 'vidro-dupla', base: '#2e3c66', sirene: true, grade: true },
+  padaria: { pal: ['#f0e0c0', '#e0ccaa', '#b09a78', '#5a4a30'], tipo: 'reboco', placa: ['#6a3a1e', '#ffe8a0'], texto: 'PADARIA', toldo: ['#f4f0e8', '#c83c4c'], alt: 76, vitrine: 'paes', base: '#8a5a3a' },
+  mercado: { pal: ['#e8f0e0', '#d4e0c8', '#a8b89c', '#4a5a40'], tipo: 'reboco', placa: ['#2e8a4a', '#ffffff'], texto: 'MERCADO', toldo: ['#f0f0e0', '#2e8a4a'], alt: 76, vitrine: 'frutas', caixotes: true },
+  farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 76, cruz: true },
+};
 
 // i atravessa a rua (cresce para baixo/direita); j vai ao longo dela (cresce para baixo/esquerda).
 // Faixas em i:  [-3.2,0] prédios | 0..1.5 calçada | 1.5..1.8 meio-fio | 1.8..5.2 asfalto
@@ -106,11 +125,25 @@ export function gerarRuaDiagonal(opc = {}) {
   // ---------- prédios (da esquerda/fundo para a direita/frente: j crescente) ----------
   const tipos = Object.keys(PALETAS);
   const predios = [];
+  // opc.predios: lista ao longo da rua (da esquerda/fundo para a direita/frente), ex.:
+  //   [{ "tipo": "padaria", "largura": 4 }, { "tipo": "comum" }, { "tipo": "escola", "largura": 6 }]
+  // Prédios "comuns" preenchem o resto. 'em' (x ao longo da rua) posiciona um prédio específico.
+  // a lista do roteiro é lida da esquerda para a direita na tela; a geração anda no sentido contrário
+  const pedidos = (opc.predios || []).map((p) => ({ ...p })).reverse();
   for (let j = J0 - 1, n = 0; j < J1; n++) {
-    const larg = 3 + Math.floor(r() * 3), alt = 76 + Math.floor(r() * 3) * 24;
-    const t = tipos[Math.floor(r() * tipos.length)];
-    predios.push({ j0: j, j1: Math.min(J1 + 1, j + larg), h: alt, tipo: t, pal: PALETAS[t][Math.floor(r() * PALETAS[t].length)], toldo: TOLDOS[n % TOLDOS.length], s: Math.floor(r() * 1e6) });
-    j += larg;
+    // um pedido com 'em' começa na posição x pedida (j = -x)
+    let ped = pedidos.find((p) => p.em != null && !p.usado && -p.em - (p.largura ?? 5) / 2 <= j + 0.01);
+    if (!ped && pedidos.some((p) => p.em == null && !p.usado)) ped = pedidos.find((p) => p.em == null && !p.usado);
+    const e = ped && ESTAB[ped.tipo];
+    const larg = ped ? (ped.largura ?? (e ? (ped.tipo === 'escola' || ped.tipo === 'mercado' ? 6 : 4) : 4)) : 3 + Math.floor(r() * 3);
+    const proximoEm = pedidos.filter((p) => p.em != null && !p.usado && p !== ped).map((p) => -p.em - (p.largura ?? 5) / 2).filter((v) => v > j).sort((a, b) => a - b)[0];
+    const largFinal = !ped && proximoEm != null ? Math.max(1, Math.min(larg, proximoEm - j)) : larg;
+    if (ped) ped.usado = true;
+    const t = e ? e.tipo : tipos[Math.floor(r() * tipos.length)];
+    const alt = e ? e.alt : 76 + Math.floor(r() * 3) * 24;
+    predios.push({ j0: j, j1: Math.min(J1 + 1, j + largFinal), h: alt, tipo: t, estab: e ? ped.tipo : null, e,
+      pal: e ? e.pal : PALETAS[t][Math.floor(r() * PALETAS[t].length)], toldo: e ? e.toldo : TOLDOS[n % TOLDOS.length], s: Math.floor(r() * 1e6) });
+    j += largFinal;
   }
   const lojas = [];
   for (const P of predios) {
@@ -120,11 +153,48 @@ export function gerarRuaDiagonal(opc = {}) {
       if (u < 2 || u > larg - 3) return pal[2];                                   // pilastras
       if (P.tipo === 'tijolo') return (t % 4 === 0 || (u + (Math.floor(t / 4) % 2) * 4) % 8 === 0) ? pal[1] : pal[0];
       if (P.tipo === 'painel') return u % 12 === 0 || t % 24 === 0 ? pal[2] : pal[0];
+      if (P.tipo === 'azulejo') return u % 6 === 0 || t % 6 === 0 ? pal[1] : pal[0];
       return rw() < 0.04 ? pal[1] : pal[0];
     };
+    const E = P.e, masc = E ? mascaraTexto(E.texto) : null;
     prisma(-3.2, 0, P.j0, P.j1, 0, P.h, {
       frente: (x, y, u, t, larg, s) => {
         let c = parede(u, t, larg), tp = 1;
+        if (E) {
+          const meio = Math.floor(larg / 2);
+          if (E.base && t < 12 && t >= 2) c = (t % 4 === 0 || (u + (Math.floor(t / 4) % 2) * 4) % 8 === 0) ? '#6a3a2e' : E.base;
+          // letreiro grande com o nome (acima do térreo)
+          const lw = masc.w + 6, lx = meio - Math.floor(lw / 2), ly0 = 30, lh = 12;
+          if (u >= lx && u < lx + lw && t >= ly0 && t < ly0 + lh) {
+            const borda = u === lx || u === lx + lw - 1 || t === ly0 || t === ly0 + lh - 1;
+            const mx = (lx + lw - 1 - u) - 2, my = ly0 + lh - 2 - t;   // u cresce para a esquerda na fachada: inverte para ler certo
+            c = borda ? E.pal[3] : (masc.tem(mx, my) ? E.placa[1] : E.placa[0]);
+            if (!borda && masc.tem(mx, my) && noite) tp = 2;
+            pintar(x, y, c, 0, s, t, tp, 1); return;
+          }
+          if (E.cruz && u >= lx - 14 && u < lx - 4 && t >= 28 && t < 40) {
+            const cx = u - (lx - 14), cy = t - 28;
+            if ((cx >= 3 && cx < 7) || (cy >= 4 && cy < 8)) { pintar(x, y, '#3ae070', 0, s, t, noite ? 2 : 1, 1); return; }
+          }
+          if (E.sirene && t >= P.h - 2) { /* sirene fica no telhado */ }
+          if (t < 27 && t >= 4 && E.porta === 'vidro-dupla' && Math.abs(u - meio) < 10 && t < 22) {
+            const borda = Math.abs(u - meio) === 9 || u === meio || t === 21;
+            pintar(x, y, borda ? '#2a2638' : (t > 14 ? '#a8c8e0' : '#6a8aa8'), 0, s, t, 1, 1); return;
+          }
+          if (E.vitrine === 'paes' && t >= 4 && t < 19 && u >= 18 && u < larg - 5) {
+            const borda = u === 18 || u === larg - 6 || t === 4 || t === 18;
+            let cc = borda ? '#3a2416' : (t > 12 ? '#fff2d0' : '#ffd890');
+            if (!borda && (t === 7 || t === 8 || t === 12 || t === 13) && (u % 7) > 1 && (u % 7) < 6) cc = (u % 7 === 3) ? '#a86a30' : '#d08a40';
+            pintar(x, y, cc, 0, s, t, !borda && noite ? 2 : 1, 1); return;
+          }
+          if (E.vitrine === 'frutas' && t >= 4 && t < 19 && u >= 18 && u < larg - 5) {
+            const borda = u === 18 || u === larg - 6 || t === 4 || t === 18;
+            const fr = ['#e83a3a', '#f0a030', '#f0e040', '#5ac84a'][Math.floor(u / 6) % 4];
+            pintar(x, y, borda ? '#2a3a2a' : (t < 9 ? fr : (t > 13 ? '#d8f0f8' : '#a8d0e0')), 0, s, t, !borda && noite && t >= 9 ? 2 : 1, 1); return;
+          }
+          if (E.grade && t >= 38 && (u % 3 === 0)) { const ty = (t - 38) % 24; if (ty >= 7 && ty < 17) { pintar(x, y, '#3a3a4a', 0, s, t, 1, 1); return; } }
+          if (!E.toldo && t >= 20 && t < 26) { pintar(x, y, t === 20 ? E.pal[3] : E.pal[2], 0, s, t, 1, 1); return; }   // marquise lisa
+        }
         const meio = Math.floor(larg / 2);
         if (t < 2) c = pal[3];                                                     // rodapé
         if (t >= P.h - 6 && t < P.h - 2) c = pal[0] === c ? '#d8d0c0' : '#c8c0b0';   // cornija
@@ -144,7 +214,7 @@ export function gerarRuaDiagonal(opc = {}) {
             if (t === 20) c = '#2a2026';
             if (t === 25) c = '#ffffff';
           }
-        } else if (t >= 28 && t < 35 && u > meio - 11 && u < meio + 11) {          // letreiro
+        } else if (!E && t >= 28 && t < 35 && u > meio - 11 && u < meio + 11) {          // letreiro
           const borda = u === meio - 10 || u === meio + 10 || t === 28 || t === 34;
           c = borda ? pal[3] : ((t === 31 && (u % 3 !== 0)) ? (noite ? '#ffe890' : '#f0e0b0') : '#2a2a3a');
           if (!borda && t === 31 && u % 3 !== 0 && noite) tp = 2;
@@ -176,6 +246,24 @@ export function gerarRuaDiagonal(opc = {}) {
       },
       topo: (x, y, i, j, d) => pintar(x, y, d < 0.12 ? '#7a7a8a' : d < 0.2 ? '#2e2e3a' : (bayer(x, y) < 0.12 ? '#4c4c5a' : '#40404e'), i, j, P.h, 1, 1.15),
     });
+    if (E?.sirene) {
+      const cj = (P.j0 + P.j1) / 2 - 0.4;
+      prisma(-0.7, -0.2, cj, cj + 0.8, P.h, 6, {
+        frente: (x, y, u, t) => pintar(x, y, u < 6 ? '#3a6aff' : '#ff3a3a', -0.2, cj, P.h + t, noite ? 2 : 1, 1),
+        lado: (x, y, u, t, s) => pintar(x, y, '#2a2a3a', s, cj + 0.8, P.h + t, 1, 0.8),
+        topo: (x, y, i, j) => pintar(x, y, '#4a4a5a', i, j, P.h + 6, 1, 1),
+      });
+    }
+    if (E?.caixotes) {
+      for (let k = 0; k < 3; k++) {
+        const cj = P.j0 + 0.6 + k * 1.3, fr = ['#e83a3a', '#f0a030', '#5ac84a'][k];
+        prisma(0.15, 0.75, cj, cj + 1.0, 0, 7, {
+          frente: (x, y, u, t) => pintar(x, y, t === 4 ? '#6a4a1a' : '#a0702a', 0.75, cj, t, 1, 1),
+          lado: (x, y, u, t, s) => pintar(x, y, '#7a5220', s, cj + 1.0, t, 1, 0.8),
+          topo: (x, y, i, j) => pintar(x, y, (Math.floor(i * 9) + Math.floor(j * 9)) % 2 ? fr : '#2a1a10', i, j, 7, 1, 1.1),
+        });
+      }
+    }
     // ar-condicionado no telhado
     const ci = -2.2 + rw() * 0.8, cj = P.j0 + 0.8 + rw() * Math.max(0.2, P.j1 - P.j0 - 2.2);
     prisma(ci, ci + 0.9, cj, cj + 0.7, P.h, 7, {
