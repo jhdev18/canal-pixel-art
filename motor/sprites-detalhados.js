@@ -96,14 +96,14 @@ function meninaLado(t, { correr = false } = {}) {
 function meninaV2() {
   const q = [meninaFrente(), meninaFrente({ piscar: true }), meninaFrente({ resp: 1 })];
   const andar = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => meninaLado(i / 8));
-  const correr = [0, 1, 2, 3, 4, 5].map((i) => meninaLado(i / 6, { correr: true }));
+  const correr = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => meninaLado(i / 8, { correr: true }));
   const quadros = [...q, ...andar, ...correr];
   return {
     quadros,
     anims: {
       parado: { q: [0, 0, 2, 2, 0, 0, 2, 2, 1, 2], fps: 4 },
       andando: { q: [3, 4, 5, 6, 7, 8, 9, 10], fps: 14, passada: 14 },     // passada = pixels percorridos por ciclo
-      correndo: { q: [11, 12, 13, 14, 15, 16], fps: 13, passada: 24 },
+      correndo: { q: [11, 12, 13, 14, 15, 16, 17, 18], fps: 18, passada: 24 },
       pulando: { q: [13], fps: 1 },
     },
     sombra: true, personagem: true,
@@ -181,13 +181,13 @@ function roboLado(t, { correr = false } = {}) {
 function roboV2() {
   const q = [roboFrente(), roboFrente({ piscar: true }), roboFrente({ aceno: 2 }), roboFrente({ resp: 1 })];
   const andar = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => roboLado(i / 8));
-  const correr = [0, 1, 2, 3, 4, 5].map((i) => roboLado(i / 6, { correr: true }));
+  const correr = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => roboLado(i / 8, { correr: true }));
   return {
     quadros: [...q, ...andar, ...correr],
     anims: {
       parado: { q: [0, 3, 0, 3, 2, 0, 2, 0, 3, 1], fps: 4 },
       andando: { q: [4, 5, 6, 7, 8, 9, 10, 11], fps: 12, passada: 12 },
-      correndo: { q: [12, 13, 14, 15, 16, 17], fps: 12, passada: 20 },
+      correndo: { q: [12, 13, 14, 15, 16, 17, 18, 19], fps: 16, passada: 20 },
       pulando: { q: [14], fps: 1 },
     },
     sombra: true, personagem: true,
