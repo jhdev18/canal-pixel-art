@@ -21,7 +21,8 @@ export function iniciarServidor({ projetoDir = null, rotas = {}, porta = 0 } = {
     ['/vendor/three/', path.join(RAIZ, 'node_modules', 'three', 'build')],
     ['/vendor/three-addons/', path.join(RAIZ, 'node_modules', 'three', 'examples', 'jsm')],
   ];
-  if (projetoDir) mapas.push(['/projeto/', projetoDir]);
+  if (projetoDir) mapas.push(['/projeto/', projetoDir], ['/sprites/', path.join(projetoDir, 'sprites')]);
+  mapas.push(['/sprites/', path.join(RAIZ, 'biblioteca', 'sprites')]); // projeto primeiro, depois a biblioteca
 
   const servidor = http.createServer((req, res) => {
     const url = decodeURIComponent(req.url.split('?')[0]);
@@ -34,7 +35,7 @@ export function iniciarServidor({ projetoDir = null, rotas = {}, porta = 0 } = {
     for (const [prefixo, base] of mapas) {
       if (!url.startsWith(prefixo)) continue;
       const arquivo = path.join(base, url.slice(prefixo.length));
-      if (!dentro(base, arquivo) || !fs.existsSync(arquivo) || fs.statSync(arquivo).isDirectory()) break;
+      if (!dentro(base, arquivo) || !fs.existsSync(arquivo) || fs.statSync(arquivo).isDirectory()) continue;
       res.writeHead(200, { 'Content-Type': TIPOS[path.extname(arquivo)] || 'application/octet-stream', 'Cache-Control': 'no-store' });
       return fs.createReadStream(arquivo).pipe(res);
     }

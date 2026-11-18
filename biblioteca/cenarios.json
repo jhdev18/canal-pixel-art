@@ -1,0 +1,59 @@
+{
+  // Cenários reutilizáveis: fundo + elementos fixos (+ clima, câmera, ações...).
+  // Na cena:  { "cenario": "acampamento", "elementos": [ ...personagens... ], "acoes": [...] }
+  // - Elemento da cena com o mesmo "id" de um do cenário ajusta aquele elemento.
+  // - "remover": ["fogo"] tira elementos do cenário só naquela cena.
+  // - Campos da cena (fundo, clima, transicao, camera...) vencem os do cenário.
+
+  "acampamento": {
+    "fundo": "floresta-noite",
+    "elementos": [
+      { "id": "fogo", "sprite": "fogueira", "x": 0.2, "z": 0.2 },
+      { "id": "pinheiro1", "sprite": "pinheiro", "x": -7, "z": -2 },
+      { "id": "pinheiro2", "sprite": "pinheiro", "x": 6.5, "z": -2.5, "semente": 3 },
+      { "id": "pedra", "sprite": "pedra", "x": -4.5, "z": 0.3 }
+    ]
+  },
+  "vila": {
+    "fundo": "floresta-dia",
+    "elementos": [
+      { "id": "casa1", "sprite": "casa", "x": -5.5, "z": -2 },
+      { "id": "casa2", "sprite": "casa", "x": 5.5, "z": -3, "cores": { "telhado": ["#2a4a7a", "#3a5aa8", "#5a7ac8"] } },
+      { "id": "arvore", "sprite": "arvore", "x": 1.5, "z": -2.5, "semente": 4 },
+      { "id": "placa", "sprite": "placa", "x": -2, "z": -0.3 }
+    ]
+  },
+  "vila-noite": {
+    "fundo": "floresta-noite",
+    "clima": "nenhum",
+    "elementos": [
+      { "id": "casa1", "sprite": "casa-noite", "x": -5.5, "z": -2 },
+      { "id": "casa2", "sprite": "casa-noite", "x": 5.5, "z": -3 },
+      { "id": "poste", "sprite": "poste", "x": 1.5, "z": -0.6 }
+    ]
+  },
+  "masmorra": {
+    "fundo": "caverna",
+    "elementos": [
+      { "id": "tocha1", "sprite": "tocha", "x": -4, "y": 1.6, "z": -1 },
+      { "id": "tocha2", "sprite": "tocha", "x": 4, "y": 1.6, "z": -1 },
+      { "id": "bau", "sprite": "bau", "x": 7 }
+    ]
+  },
+  "rua-chuvosa": {
+    "fundo": "cidade-noite",
+    "clima": "chuva",
+    "elementos": [
+      { "id": "poste1", "sprite": "poste", "x": -3, "z": -0.6 },
+      { "id": "poste2", "sprite": "poste", "x": 5, "z": -0.6 }
+    ]
+  },
+  "oasis": {
+    "fundo": "deserto",
+    "elementos": [
+      { "id": "cacto1", "sprite": "cacto", "x": -5, "z": -1 },
+      { "id": "cacto2", "sprite": "cacto", "x": 6, "z": -2, "escala": 1 },
+      { "id": "pedra", "sprite": "pedra", "x": 2.5, "z": 0.2 }
+    ]
+  }
+}

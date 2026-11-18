@@ -13,7 +13,7 @@
       "camera": { "x": 0 },
       "cameraFim": { "x": 3 },
       "elementos": [
-        { "id": "heroi", "sprite": "heroi", "x": -9 },
+        { "id": "heroi", "personagem": "protagonista", "x": -9 },
         { "id": "moeda", "sprite": "moeda", "x": 5, "y": 0.4 },
         { "id": "a1", "sprite": "arvore", "x": -6, "z": -2, "semente": 2 },
         { "id": "a2", "sprite": "arvore", "x": 9, "z": -2.5, "semente": 5 },
@@ -28,16 +28,14 @@
       ]
     },
     {
-      "fundo": "floresta-noite",
+      "cenario": "acampamento",       // da biblioteca: fogueira, pinheiros e pedra
       "duracao": 7,
       "transicao": "iris",
       "legenda": "Naquela noite, perto da fogueira...",
       "elementos": [
-        { "id": "heroi", "sprite": "heroi", "x": -2 },
-        { "id": "amiga", "sprite": "amiga", "x": 2.4, "virado": "esquerda", "voz": 1.25 },
-        { "id": "fogo", "sprite": "fogueira", "x": 0.2, "z": 0.2 },
-        { "id": "p1", "sprite": "pinheiro", "x": -7, "z": -2 },
-        { "id": "p2", "sprite": "pinheiro", "x": 6.5, "z": -2.5 }
+        { "id": "heroi", "personagem": "protagonista", "x": -2 },
+        { "id": "amiga", "personagem": "companheira", "x": 2.4, "virado": "esquerda" },
+        { "id": "pedra", "x": -5 }    // ajusta a pedra do cenário
       ],
       "acoes": [
         { "tipo": "falar", "alvo": "heroi", "texto": "Olha o que eu achei!", "inicio": 0.8 },
@@ -46,17 +44,15 @@
       ]
     },
     {
-      "fundo": "caverna",
+      "cenario": "masmorra",
       "duracao": 8,
       "transicao": "dither",
       "seguir": "heroi",
       "elementos": [
-        { "id": "heroi", "sprite": "heroi", "x": -6 },
-        { "id": "t1", "sprite": "tocha", "x": -4, "y": 1.6, "z": -1 },
-        { "id": "t2", "sprite": "tocha", "x": 5, "y": 1.6, "z": -1 },
+        { "id": "heroi", "personagem": "protagonista", "x": -6 },
         { "id": "bat", "sprite": "morcego", "x": 6, "y": 3.5, "z": -0.5 },
-        { "id": "slime", "sprite": "slime", "x": 4, "virado": "esquerda" },
-        { "id": "bau", "sprite": "bau", "x": 7.5 }
+        { "id": "slime", "personagem": "monstro", "x": 4, "virado": "esquerda" },
+        { "id": "bau", "x": 7.5 }
       ],
       "acoes": [
         { "tipo": "andar", "alvo": "heroi", "para": -1, "inicio": 0.3, "duracao": 2 },
@@ -71,18 +67,15 @@
       ]
     },
     {
-      "fundo": "cidade-noite",
-      "clima": "chuva",
+      "cenario": "rua-chuvosa",
       "duracao": 6,
       "transicao": "pixelizar",
       "legenda": "Ninguém sabia de onde aquela moeda tinha vindo.",
       "camera": { "x": -2 },
       "cameraFim": { "x": 2 },
       "elementos": [
-        { "id": "heroi", "sprite": "heroi", "x": -7 },
-        { "id": "poste1", "sprite": "poste", "x": -3, "z": -0.6 },
-        { "id": "poste2", "sprite": "poste", "x": 5, "z": -0.6 },
-        { "id": "mago", "sprite": "mago", "x": 4, "virado": "esquerda", "oculto": true }
+        { "id": "heroi", "personagem": "protagonista", "x": -7 },
+        { "id": "mago", "personagem": "mestre", "x": 4, "virado": "esquerda", "oculto": true }
       ],
       "acoes": [
         { "tipo": "correr", "alvo": "heroi", "para": 1.5, "inicio": 0.3, "duracao": 2.2 },
@@ -98,8 +91,8 @@
       "titulo": "CONTINUA...",
       "tituloInicio": 1.5,
       "elementos": [
-        { "id": "heroi", "sprite": "heroi", "x": -1 },
-        { "id": "amiga", "sprite": "amiga", "x": 1, "virado": "esquerda" },
+        { "id": "heroi", "personagem": "protagonista", "x": -1 },
+        { "id": "amiga", "personagem": "companheira", "x": 1, "virado": "esquerda" },
         { "id": "casa", "sprite": "casa", "x": 6, "z": -2 }
       ],
       "acoes": [

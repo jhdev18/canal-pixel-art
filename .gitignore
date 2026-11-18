@@ -1,6 +1,6 @@
 node_modules/
 projetos/*/saida/
-sfx/_gerados/
+biblioteca/sfx/_gerados/
 *.log
 .DS_Store
 Thumbs.db

@@ -57,8 +57,8 @@ Cria `projetos/meu-video/`:
 projetos/meu-video/
 ├── roteiro.json      ← o roteiro do vídeo
 ├── narracao/         ← os áudios do ElevenLabs (01.mp3, 02.mp3, ...)
-├── sfx/              ← (opcional) seus efeitos para substituir os gerados
-├── sprites/          ← (opcional) seus sprites PNG
+├── sfx/              ← (opcional) efeitos só deste projeto
+├── sprites/          ← (opcional) sprites PNG só deste projeto
 └── saida/            ← rascunho.mp4, storyboard.png, final.mp4
 ```
 
@@ -92,15 +92,81 @@ Outros comandos:
 | Comando | Para quê |
 |---|---|
 | `npm run previa -- meu-video` | Prévia em tempo real no navegador (sem áudio); recarrega quando o `roteiro.json` muda |
-| `npm run lista` | Lista fundos, sprites, ações, efeitos sonoros, paletas... |
+| `npm run lista` | Lista fundos, sprites, ações, efeitos sonoros, paletas e a biblioteca |
 | `npm run sprites` | Gera `sprites-disponiveis.png` com todos os sprites |
-| `npm run sfx` | Exporta todos os efeitos sonoros para `sfx/_gerados/` (para ouvir) |
+| `npm run sfx` | Exporta todos os efeitos sonoros para `biblioteca/sfx/_gerados/` (para ouvir) |
 | `npm run gpu` | Diagnóstico de GPU e NVENC |
 
 Opções: `--fps 60`, `--crt` (linhas de varredura de TV antiga), `--escala 4`.
 Exemplo: `npm run final -- meu-video --fps 60`.
 
 Há um projeto completo de exemplo em `projetos/exemplo` (`npm run rascunho -- exemplo`).
+
+---
+
+## Biblioteca de assets reutilizáveis (`biblioteca/`)
+
+Tudo o que se repete entre vídeos do canal fica em `biblioteca/`, compartilhado por todos os projetos:
+
+```
+biblioteca/
+├── personagens.json   ← personagens do canal (definidos uma vez)
+├── cenarios.json      ← lugares que se repetem (fundo + objetos fixos)
+├── sprites/           ← seus PNGs
+└── sfx/               ← seus efeitos sonoros (substituem os gerados com o mesmo nome)
+```
+
+**Personagens** — em `biblioteca/personagens.json`:
+
+```jsonc
+{
+  "joao":  { "sprite": "arquivo:joao.png", "quadros": 4, "fps": 8, "sombra": true,
+             "animacoes": { "parado": [0], "andando": [1, 2, 3, 2] }, "voz": 1.1 },
+  "vilao": { "sprite": "pessoa", "voz": 0.65, "cores": { "h": "#1a1a22", "r": "#4a2a6a" } }
+}
+```
+
+Na cena, só o que muda:
+
+```json
+{ "id": "joao", "personagem": "joao", "x": -2, "virado": "esquerda" }
+```
+
+**Cenários** — em `biblioteca/cenarios.json` (fundo, clima, elementos, ações, sons, câmera):
+
+```json
+{ "acampamento": { "fundo": "floresta-noite",
+    "elementos": [ { "id": "fogo", "sprite": "fogueira", "x": 0 }, { "id": "pinheiro", "sprite": "pinheiro", "x": -7, "z": -2 } ] } }
+```
+
+Na cena:
+
+```jsonc
+{
+  "cenario": "acampamento",
+  "remover": ["pinheiro"],                  // tira elementos do cenário só nesta cena
+  "elementos": [
+    { "id": "fogo", "x": 1.5 },             // mesmo id = ajusta o elemento do cenário
+    { "id": "joao", "personagem": "joao", "x": -2 }
+  ],
+  "acoes": [ { "tipo": "falar", "alvo": "joao", "texto": "Que frio!", "inicio": 1 } ]
+}
+```
+
+Campos da cena vencem os do cenário; as ações e os sons do cenário são somados aos da cena.
+
+**Prioridade** (o primeiro que existir vence):
+
+| Asset | Ordem de busca |
+|---|---|
+| Sprites PNG | `projetos/<nome>/sprites/` → `biblioteca/sprites/` |
+| Efeitos sonoros | `projetos/<nome>/sfx/` → `biblioteca/sfx/` |
+| Personagens / cenários | `projetos/<nome>/personagens.json` / `cenarios.json` (opcionais) → `biblioteca/` |
+
+A biblioteca já vem com personagens (`protagonista`, `companheira`, `anciao`, `crianca`, `guarda`,
+`mestre`, `vilao`, `mascote`, `monstro`) e cenários (`acampamento`, `vila`, `vila-noite`, `masmorra`,
+`rua-chuvosa`, `oasis`). Veja tudo com `npm run lista` (ou `npm run lista -- meu-video` para incluir
+os do projeto). O projeto `exemplo` usa a biblioteca.
 
 ---
 
@@ -148,7 +214,8 @@ Comentários com `//` são permitidos.
 
 | Campo | Descrição |
 |---|---|
-| `sprite` | Nome de um sprite pronto (veja `npm run sprites`) ou `arquivo:nome.png` da pasta `sprites/` |
+| `sprite` | Nome de um sprite pronto (veja `npm run sprites`) ou `arquivo:nome.png` (de `sprites/` do projeto ou `biblioteca/sprites/`) |
+| `personagem` | Usa um personagem da biblioteca (os outros campos ajustam) |
 | `x`, `y`, `z` | Posição |
 | `escala` | Tamanho (use inteiros: 1, 2, 3 para manter o pixel perfeito) |
 | `virado` | `"esquerda"` ou `"direita"` |
@@ -197,8 +264,8 @@ Ambientes (em loop, escolhidos pelo fundo/clima automaticamente):
 Na cena: `"ambiente": ["chuva", ["vento", 0.3]]` ou `"ambiente": false`.
 
 **Quer usar seus próprios efeitos** (do ElevenLabs Sound Effects, por exemplo)? Salve com o mesmo
-nome em `projetos/meu-video/sfx/` (só nesse projeto) ou em `sfx/` na raiz (todos os projetos):
-`sfx/explosao.mp3`, `sfx/moeda.wav`... Pode inventar nomes novos e usar com `{ "tipo": "som", "som": "meu-efeito" }`.
+nome em `projetos/meu-video/sfx/` (só nesse projeto) ou em `biblioteca/sfx/` (todos os projetos):
+`biblioteca/sfx/explosao.mp3`, `biblioteca/sfx/moeda.wav`... Pode inventar nomes novos e usar com `{ "tipo": "som", "som": "meu-efeito" }`.
 
 ### Fundos
 

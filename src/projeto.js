@@ -4,6 +4,7 @@ import path from 'node:path';
 import { RAIZ } from './config.js';
 import { decodificarAudio } from './ffmpeg.js';
 import { SR } from './audio/sintetizador.js';
+import { lerJsonFlexivel, aplicarBiblioteca, carregarBiblioteca, PASTA_BIBLIOTECA } from './biblioteca.js';
 
 export const PASTA_NARRACAO = 'narracao';
 export const EXT_AUDIO = ['.mp3', '.wav', '.m4a', '.ogg', '.flac', '.aac', '.opus', '.webm'];
@@ -17,26 +18,10 @@ export function caminhoProjeto(nome) {
   return dir;
 }
 
-// JSON com comentários // permitidos (fora de strings).
+// Lê o roteiro.json (comentários // permitidos) e expande "cenario"/"personagem" da biblioteca.
 export function lerRoteiro(dir) {
-  const arq = path.join(dir, 'roteiro.json');
-  const texto = fs.readFileSync(arq, 'utf8').replace(/^﻿/, '');
-  const semComentarios = texto.split('\n').map((l) => {
-    let dentro = false;
-    for (let i = 0; i < l.length; i++) {
-      if (l[i] === '"' && l[i - 1] !== '\\') dentro = !dentro;
-      if (!dentro && l[i] === '/' && l[i + 1] === '/') return l.slice(0, i);
-    }
-    return l;
-  }).join('\n');
-  try {
-    return JSON.parse(semComentarios.replace(/,(\s*[\]}])/g, '$1'));
-  } catch (e) {
-    const m = /position (\d+)/.exec(e.message);
-    let onde = '';
-    if (m) { const linha = semComentarios.slice(0, Number(m[1])).split('\n').length; onde = ` (perto da linha ${linha})`; }
-    throw new Error(`Erro no roteiro.json${onde}: ${e.message}`);
-  }
+  const bruto = lerJsonFlexivel(path.join(dir, 'roteiro.json'));
+  return aplicarBiblioteca(bruto, carregarBiblioteca(dir));
 }
 
 // Arquivos de narração: narracao/01.mp3, narracao/cena02.mp3, narracao/cena-3.wav ...
@@ -67,9 +52,9 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
   return { mapa, ignorados: [...ignorados], pasta };
 }
 
-// Efeito sonoro personalizado: projeto/sfx/<nome>.* tem prioridade, depois sfx/<nome>.* na raiz.
+// Efeito sonoro personalizado: projeto/sfx/ > biblioteca/sfx/ > sfx/ (raiz).
 export function sfxPersonalizado(dir, nome) {
-  for (const base of [path.join(dir, 'sfx'), path.join(RAIZ, 'sfx')]) {
+  for (const base of [path.join(dir, 'sfx'), path.join(PASTA_BIBLIOTECA, 'sfx'), path.join(RAIZ, 'sfx')]) {
     for (const ext of EXT_AUDIO) {
       const f = path.join(base, nome + ext);
       if (fs.existsSync(f)) return f;

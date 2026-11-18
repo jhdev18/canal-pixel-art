@@ -11,6 +11,7 @@ import { verificarFfmpeg, detectarEncoder } from './ffmpeg.js';
 import { abrirNavegador, ehSoftware } from './navegador.js';
 import { gerarSom, NOMES_SONS, AMBIENTES } from './audio/sintetizador.js';
 import { escreverWavMono } from './audio/mixer.js';
+import { carregarBiblioteca, listarSpritesBiblioteca, PASTA_BIBLIOTECA } from './biblioteca.js';
 
 const [cmd, ...resto] = process.argv.slice(2);
 const flags = {}, pos = [];
@@ -51,16 +52,16 @@ const ROTEIRO_NOVO = (titulo) => ({
     {
       fundo: 'floresta-dia', duracao: 5, titulo, subtitulo: 'Episódio 1',
       elementos: [
-        { id: 'heroi', sprite: 'heroi', x: -3 },
+        { id: 'heroi', personagem: 'protagonista', x: -3 },
         { id: 'arvore', sprite: 'arvore', x: 4, z: -1.5 },
       ],
       acoes: [{ tipo: 'andar', alvo: 'heroi', para: 0, inicio: 1, duracao: 2 }],
     },
     {
-      fundo: 'floresta-noite', duracao: 5, legenda: 'Escreva aqui a legenda da cena 2.',
+      cenario: 'acampamento', duracao: 5, legenda: 'Escreva aqui a legenda da cena 2.',
       elementos: [
-        { id: 'heroi', sprite: 'heroi', x: -1 },
-        { id: 'fogo', sprite: 'fogueira', x: 1.5 },
+        { id: 'heroi', personagem: 'protagonista', x: -2 },
+        { id: 'amiga', personagem: 'companheira', x: 2.4, virado: 'esquerda' },
       ],
       acoes: [{ tipo: 'falar', alvo: 'heroi', texto: 'Que noite fria...', inicio: 1 }],
     },
@@ -75,7 +76,7 @@ async function novo(nome) {
   fs.writeFileSync(path.join(dir, 'roteiro.json'), JSON.stringify(ROTEIRO_NOVO(nome.replace(/[-_]/g, ' ').toUpperCase()), null, 2));
   fs.writeFileSync(path.join(dir, PASTA_NARRACAO, 'LEIA-ME.txt'), LEIA_ME_NARRACAO);
   fs.writeFileSync(path.join(dir, 'sfx', 'LEIA-ME.txt'), 'Opcional: coloque aqui um arquivo com o nome de um efeito (ex.: moeda.wav, explosao.mp3)\npara substituir o efeito gerado automaticamente. Veja os nomes com: npm run lista\n');
-  fs.writeFileSync(path.join(dir, 'sprites', 'LEIA-ME.txt'), 'Opcional: seus próprios sprites PNG (fundo transparente).\nUse no roteiro: { "sprite": "arquivo:meu-sprite.png", "quadros": 4, "fps": 8 }\nQuadros lado a lado na horizontal.\n');
+  fs.writeFileSync(path.join(dir, 'sprites', 'LEIA-ME.txt'), 'Opcional: sprites PNG só deste projeto (fundo transparente).\nPara usar em todos os projetos, coloque em biblioteca/sprites/.\nUse no roteiro: { "sprite": "arquivo:meu-sprite.png", "quadros": 4, "fps": 8 }\nQuadros lado a lado na horizontal.\n');
   console.log(`✔ Projeto criado: ${dir}\n  1. Edite roteiro.json\n  2. Coloque as narrações em ${path.join(dir, PASTA_NARRACAO)} (01.mp3, 02.mp3...)\n  3. npm run rascunho -- ${nome}\n  4. npm run final -- ${nome}`);
 }
 
@@ -89,7 +90,11 @@ async function previa(nome) {
     return resolverRoteiro(bruto, narr.mapa, { fps: 60 });
   };
   let atual = await montar();
-  fs.watch(path.join(dir, 'roteiro.json'), async () => { try { atual = await montar(); console.log('  roteiro recarregado (atualize a página)'); } catch (e) { console.error('  ', e.message); } });
+  const recarregar = async () => { try { atual = await montar(); console.log('  roteiro recarregado (atualize a página)'); } catch (e) { console.error('  ', e.message); } };
+  for (const arq of [path.join(dir, 'roteiro.json'), path.join(dir, 'personagens.json'), path.join(dir, 'cenarios.json'),
+    path.join(PASTA_BIBLIOTECA, 'personagens.json'), path.join(PASTA_BIBLIOTECA, 'cenarios.json')]) {
+    if (fs.existsSync(arq)) fs.watch(arq, recarregar);
+  }
   const s = await iniciarServidor({ projetoDir: dir, porta, rotas: { '/api/roteiro': () => atual } });
   console.log(`\n▶ Prévia em tempo real (sem áudio): ${s.url}/motor/index.html?previa=1${flags.rascunho ? '&modo=rascunho' : ''}\n  Abra no Chrome/Edge. Ctrl+C para sair.`);
 }
@@ -120,10 +125,10 @@ async function gpu() {
 }
 
 function sfx() {
-  const dir = path.join(RAIZ, 'sfx', '_gerados');
+  const dir = path.join(PASTA_BIBLIOTECA, 'sfx', '_gerados');
   fs.mkdirSync(dir, { recursive: true });
   for (const n of NOMES_SONS) escreverWavMono(path.join(dir, `${n}.wav`), gerarSom(n));
-  console.log(`✔ ${NOMES_SONS.length} efeitos exportados para ${dir}\n  Para trocar um efeito, coloque o seu arquivo com o mesmo nome em sfx/ (ex.: sfx/moeda.wav).`);
+  console.log(`✔ ${NOMES_SONS.length} efeitos exportados para ${dir}\n  Para trocar um efeito, coloque o seu arquivo com o mesmo nome em biblioteca/sfx/ (ex.: biblioteca/sfx/moeda.wav).`);
 }
 
 async function sprites() {
@@ -147,7 +152,7 @@ FUNDOS:      ${fundos.join(', ')}
 SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, slime, morcego,
              moeda, coracao, estrela, gema, bau, chave, arvore, pinheiro, pinheiro-neve, arbusto,
              pedra, casa, casa-noite, nuvem, cacto, poste, placa, fogueira, tocha
-             (ou "arquivo:meu.png" da pasta sprites/ do projeto)
+             (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
 CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum
 TRANSIÇÕES:  dither, fade, iris, pixelizar, corte
@@ -155,6 +160,17 @@ PALETAS:     nenhuma (padrão), posterizar, retro32, verde4, sepia, noir, quente
 EMOÇÕES:     !, ?, coracao, ..., zzz
 EFEITOS:     ${NOMES_SONS.filter((n) => !AMBIENTES.includes(n)).join(', ')}
 AMBIENTES:   ${AMBIENTES.join(', ')}
+`);
+  const proj = pos[0] ? caminhoProjeto(pos[0]) : null;
+  const lib = carregarBiblioteca(proj);
+  const fmtP = (k, p) => `  ${k.padEnd(14)} ${p.sprite}${p.voz ? `  (voz ${p.voz})` : ''}`;
+  const fmtC = (k, c) => `  ${k.padEnd(14)} ${c.fundo || '?'}${c.clima ? ` + ${c.clima}` : ''}: ${(c.elementos || []).map((e) => e.id).join(', ')}`;
+  console.log(`BIBLIOTECA (${PASTA_BIBLIOTECA})${proj ? ` + projeto ${pos[0]}` : ''}
+PERSONAGENS ("personagem": "nome"):
+${Object.entries(lib.personagens).map(([k, p]) => fmtP(k, p)).join('\n') || '  (nenhum)'}
+CENÁRIOS ("cenario": "nome"):
+${Object.entries(lib.cenarios).map(([k, c]) => fmtC(k, c)).join('\n') || '  (nenhum)'}
+SPRITES PNG: ${listarSpritesBiblioteca().join(', ') || '(nenhum em biblioteca/sprites/)'}
 `);
 }
 
@@ -168,7 +184,7 @@ Gerador de vídeos pixel art (Three.js + GPU)
   npm run gpu                       verifica GPU (WebGL) e NVENC
   npm run sfx                       exporta os efeitos sonoros para sfx/_gerados
   npm run sprites                   gera sprites-disponiveis.png
-  npm run lista                     lista fundos, sprites, ações, sons...
+  npm run lista [-- projeto]        lista fundos, sprites, sons e a biblioteca (personagens, cenários)
 
 Opções: --fps 60   --escala 4   --crt   (ex.: npm run final -- meu-video --fps 60)
 `;

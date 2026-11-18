@@ -87,10 +87,10 @@ class Motor {
         const chave = this.chaveSprite(el);
         if (this.cacheSprites.has(chave)) continue;
         try {
-          const s = await spriteDeArquivo(`/projeto/sprites/${encodeURIComponent(nome)}`, el);
+          const s = await spriteDeArquivo(`/sprites/${encodeURIComponent(nome)}`, el);
           this.cacheSprites.set(chave, { sprite: s, texturas: s.quadros.map(texturaCanvas) });
         } catch (e) {
-          this.avisos.push(`Sprite "${nome}" não encontrado em sprites/ (cena ${c.numero}).`);
+          this.avisos.push(`Sprite "${nome}" não encontrado em sprites/ do projeto nem em biblioteca/sprites/ (cena ${c.numero}).`);
         }
       }
     }
