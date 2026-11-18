@@ -18,5 +18,17 @@
     "cores": { "h": "#1a1a22", "H": "#2a2a36", "r": "#4a2a6a", "R": "#2e1a46", "b": "#1e1e28", "B": "#121218" }
   },
   "mascote":      { "sprite": "slime", "voz": 1.7, "cores": { "g": "#5aa8f0", "l": "#b8e0ff", "G": "#2e64a8" } },
-  "monstro":      { "sprite": "slime", "voz": 0.6 }
+  "monstro":      { "sprite": "slime", "voz": 0.6 },
+
+  // ---- Estilo RPG indie (vista de frente, contorno grosso). Ficam melhor com "zoom": 2 na câmera
+  //      ou usando o cenário "cidade-rpg" / "batalha".
+  "menina-capa":      { "sprite": "menina-capa", "voz": 1.2 },
+  "robo-semaforo":    { "sprite": "robo-semaforo", "voz": 0.7 },
+  "pombo-fofoqueiro": { "sprite": "pombo-fofoqueiro", "voz": 1.6 },
+  "lixeira-timida":   { "sprite": "lixeira-timida", "voz": 1.2 },
+  "cao-guarda":       { "sprite": "cao-guarda", "voz": 0.9 },
+  "fantasma-metro":   { "sprite": "fantasma-metro", "voz": 1.4, "y": 0.4 },
+  "coruja-banca":     { "sprite": "coruja-banca", "voz": 0.6 },
+  "cone-agressivo":   { "sprite": "cone-agressivo", "voz": 0.8, "escala": 2 },
+  "bueiro-olhos":     { "sprite": "bueiro-olhos", "voz": 0.5, "escala": 2 }
 }

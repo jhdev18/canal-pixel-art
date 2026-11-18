@@ -55,5 +55,32 @@
       { "id": "cacto2", "sprite": "cacto", "x": 6, "z": -2, "escala": 1 },
       { "id": "pedra", "sprite": "pedra", "x": 2.5, "z": 0.2 }
     ]
+  },
+
+  // ---- Estilo RPG indie
+  "cidade-rpg": {
+    "fundo": "cidade-noite",
+    "clima": "nenhum",
+    "camera": { "x": 0, "y": 2.2, "zoom": 2 },
+    "elementos": [
+      { "id": "poste1", "sprite": "poste", "x": -3.5, "z": -0.6 },
+      { "id": "poste2", "sprite": "poste", "x": 3.5, "z": -0.6 }
+    ]
+  },
+  "cidade-rpg-chuva": {
+    "fundo": "cidade-noite",
+    "clima": "chuva",
+    "camera": { "x": 0, "y": 2.2, "zoom": 2 },
+    "elementos": [
+      { "id": "poste1", "sprite": "poste", "x": -3.5, "z": -0.6 },
+      { "id": "poste2", "sprite": "poste", "x": 3.5, "z": -0.6 }
+    ]
+  },
+  "batalha": {
+    "fundo": "preto",
+    "clima": "nenhum",
+    "ambiente": false,
+    "transicao": "pixelizar",
+    "camera": { "x": 0, "y": 1.6 }
   }
 }

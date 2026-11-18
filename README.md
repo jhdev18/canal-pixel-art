@@ -165,7 +165,19 @@ Campos da cena vencem os do cenário; as ações e os sons do cenário são soma
 
 A biblioteca já vem com personagens (`protagonista`, `companheira`, `anciao`, `crianca`, `guarda`,
 `mestre`, `vilao`, `mascote`, `monstro`) e cenários (`acampamento`, `vila`, `vila-noite`, `masmorra`,
-`rua-chuvosa`, `oasis`). Veja tudo com `npm run lista` (ou `npm run lista -- meu-video` para incluir
+`rua-chuvosa`, `oasis`).
+
+**Estilo RPG indie** (personagens originais de frente, contorno grosso, olhos que piscam): `menina-capa`,
+`robo-semaforo`, `pombo-fofoqueiro`, `lixeira-timida`, `cao-guarda`, `fantasma-metro`, `coruja-banca` e os
+inimigos brancos `cone-agressivo` e `bueiro-olhos`. Use com os cenários `cidade-rpg`, `cidade-rpg-chuva`
+(câmera com zoom 2×) e `batalha` (fundo preto):
+
+```json
+{ "cenario": "cidade-rpg-chuva",
+  "elementos": [ { "id": "menina", "personagem": "menina-capa", "x": -2 },
+                 { "id": "robo", "personagem": "robo-semaforo", "x": 1.5 } ],
+  "acoes": [ { "tipo": "falar", "alvo": "robo", "texto": "* Pode atravessar.", "inicio": 1 } ] }
+``` Veja tudo com `npm run lista` (ou `npm run lista -- meu-video` para incluir
 os do projeto). O projeto `exemplo` usa a biblioteca.
 
 ---
@@ -269,8 +281,8 @@ nome em `projetos/meu-video/sfx/` (só nesse projeto) ou em `biblioteca/sfx/` (t
 
 ### Fundos
 
-`floresta-dia`, `floresta-noite`, `por-do-sol`, `caverna`, `deserto`, `espaco`, `cidade-noite`, `neve`.
-Todos são procedurais, em camadas de profundidade (montanhas, colinas, árvores, prédios...), então
+`floresta-dia`, `floresta-noite`, `por-do-sol`, `caverna`, `deserto`, `espaco`, `cidade-noite`, `neve`,
+`preto` (sem chão, para telas de batalha). Todos são procedurais, em camadas de profundidade (montanhas, colinas, árvores, prédios...), então
 o movimento de câmera gera paralaxe real.
 
 ---
