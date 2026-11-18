@@ -319,6 +319,12 @@ const FABRICAS = {
 
 export const NOMES_SPRITES = Object.keys(FABRICAS);
 
+// Permite que outros módulos (ex.: sprites-rpg.js) adicionem sprites ao catálogo.
+export function registrarSprites(fabricas) {
+  Object.assign(FABRICAS, fabricas);
+  for (const n of Object.keys(fabricas)) if (!NOMES_SPRITES.includes(n)) NOMES_SPRITES.push(n);
+}
+
 // Recolore pixels de cores específicas (para variações de 'cores' em sprites prontos).
 export function obterSprite(nome, opcoes = {}) {
   const fab = FABRICAS[nome];

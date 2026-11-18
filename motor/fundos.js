@@ -6,6 +6,7 @@ import { rng, PIXELS_POR_UNIDADE } from './compartilhado/util.js';
 const K = '#1a1c2c';
 
 export const PRESETS = {
+  preto: { ceu: { cores: ['#000000'] }, camadas: [], chao: null, ambiente: ['#ffffff', 1.0] },
   'floresta-dia': {
     ceu: { cores: ['#3b7dd8', '#5fa8ea', '#9fd4f5', '#cdeefa'] },
     camadas: [
@@ -359,12 +360,14 @@ export function criarFundo(nome, ctx, extra = {}) {
   }
 
   // Chão
-  const chaoCfg = { ...preset.chao, ...(extra.chao || {}) };
+  const chaoCfg = preset.chao && { ...preset.chao, ...(extra.chao || {}) };
   const zChao = -0.5;
+  if (chaoCfg) {
   const pixChao = texturaChao(chaoCfg.estilo, chaoCfg, s++);
   const ppuChao = PIXELS_POR_UNIDADE * ctx.D / (ctx.D - zChao);
   const chao = planoCamada(ctx, { z: zChao, larguraPeriodo: 64, alturaPx: pixChao.h, topoMundo: CHAO_TOPO + 3 / ppuChao, pix: pixChao, iluminada: true });
   objetos.push(chao);
+  }
 
   if (preset.primeiroPlano && extra.primeiroPlano !== false) {
     const zf = 4;

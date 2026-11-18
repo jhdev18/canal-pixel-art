@@ -52,7 +52,8 @@ void main() {
         float r = i % 2 == 0 ? 1.0 : 2.0;
         vec3 s = amostra(px + floor(vec2(cos(a), sin(a)) * r + 0.5));
         float l = dot(s, vec3(0.299, 0.587, 0.114));
-        b += s * smoothstep(0.78, 1.0, l) * (s.r + 0.2 > s.b ? 1.0 : 0.3);
+        float sat = max(s.r, max(s.g, s.b)) - min(s.r, min(s.g, s.b));
+        b += s * smoothstep(0.75, 1.0, l) * smoothstep(0.15, 0.35, sat); // só luzes coloridas (não sprites brancos)
       }
       c += b * uBloom / 12.0;
     }

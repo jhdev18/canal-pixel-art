@@ -2,6 +2,7 @@
 // Exposto como window.motor para o orquestrador em Node (Playwright).
 import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
+import './sprites-rpg.js';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
@@ -10,7 +11,7 @@ import { Pix } from './pixel.js';
 import { desenharTexto } from './fonte.js';
 import { distanciaCamera, FOV, PIXELS_POR_UNIDADE as PPU } from './compartilhado/util.js';
 import { cenaNoTempo, estadoCamera, estadoElemento, efeitosTela, elementoPorId } from './compartilhado/linhaDoTempo.js';
-import { ruido1 } from './compartilhado/util.js';
+import { ruido1, hashTexto } from './compartilhado/util.js';
 
 THREE.ColorManagement.enabled = false;
 
@@ -253,7 +254,7 @@ class Motor {
       if (!vis) continue;
       const anim = e.sprite.anims[st.anim] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
-      const tAnim = t + (e.def.fase ?? 0);
+      const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       const q = anim.q[Math.floor(tAnim * fps) % anim.q.length] ?? 0;
       let bob = 0;
       if (e.sprite.personagem && (st.anim === 'andando' || st.anim === 'correndo')) bob = Math.floor(tAnim * fps) % 2 ? 1 / PPU : 0;
