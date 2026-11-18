@@ -11,6 +11,23 @@ export const DURACAO_PADRAO = {
 
 export const TRANSICAO_DURACAO = 0.45;
 const NARRACAO_FOLGA = 0.6;
+const SEG_POR_LETRA = 0.065;   // estimativa da fala quando ainda não há áudio
+
+// Divide o texto da narração em blocos curtos de legenda (frases; frases longas quebram na vírgula).
+function blocosLegenda(texto, max = 64) {
+  const frases = texto.match(/[^.!?…]+(?:\.\.\.|[.!?…]+)?/g)?.map((f) => f.trim()).filter(Boolean) || [texto];
+  const blocos = [];
+  for (const f of frases) {
+    if (f.length <= max) { blocos.push(f); continue; }
+    let atual = '';
+    for (const parte of f.split(/(?<=,)\s+/)) {
+      if (atual && (atual + ' ' + parte).length > max) { blocos.push(atual); atual = parte; }
+      else atual = atual ? atual + ' ' + parte : parte;
+    }
+    if (atual) blocos.push(atual);
+  }
+  return blocos;
+}
 
 function duracaoFala(texto) {
   return 1.2 + texto.length * 0.05;
@@ -53,6 +70,15 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };
       dur = Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
+    }
+    // Legenda do narrador: blocos distribuídos pela duração da fala (real, ou estimada sem áudio).
+    if (cena.narracaoTexto && roteiro.legendasNarracao !== false && cena.legendaNarracao !== false) {
+      const falaDur = narr ? narr.duracao : cena.narracaoTexto.length * SEG_POR_LETRA;
+      if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + NARRACAO_FOLGA);
+      const blocos = blocosLegenda(cena.narracaoTexto);
+      const total = blocos.reduce((s, b) => s + b.length, 0) || 1;
+      let t0 = cena.narracaoInicio;
+      cena.legendasNarracao = blocos.map((b) => { const d = falaDur * (b.length / total); const r = { texto: b, ini: t0, fim: t0 + d }; t0 += d; return r; });
     }
     const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
     if (cena.duracao == null) dur = Math.max(dur, fimAcoes + 0.5);

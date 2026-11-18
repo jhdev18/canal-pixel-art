@@ -7,16 +7,26 @@
   "narrador": "Narrador",
   "resolucao": [320, 180],
   "cenas": [
-    { // 01 — abertura: a cidade calma
+    { // 01 — abertura: panorâmica pela cidade calma
       "narracaoTexto": "Esta é a Bia. E esta é Vila Serena... a cidade mais calma do mundo.",
-      "cenario": "rua-comercial", "duracao": 7, "transicao": "fade", "seguir": "bia",
+      "cenario": "rua-comercial", "duracao": 11, "transicao": "fade",
+      "camera": { "x": -4, "z": 2.2, "y": 2.4 }, "cameraFim": { "x": 11 },
       "titulo": "NADA ACONTECE EM VILA SERENA", "subtitulo": "EPISÓDIO 1", "tituloInicio": 0.6, "tituloDuracao": 3.6,
       "elementos": [
-        { "id": "bia", "personagem": "menina-capa", "x": -9, "z": 0 },
-        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": -2, "z": 5.4 },
-        { "id": "caixa", "personagem": "caixa", "x": 4, "z": 5.2, "virado": "esquerda" } ],
-      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -1, "inicio": 0.4, "duracao": 5.5 } ],
-      "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
+        { "id": "bia", "personagem": "menina-capa", "x": -9, "z": 4.8 },
+        { "id": "padeiro", "personagem": "padeiro", "x": 0.6, "z": 5.7, "virado": "esquerda" },
+        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": 2.6, "z": 5.5 },
+        { "id": "prof", "personagem": "professora", "x": 4.6, "z": 5.7 },
+        { "id": "aluno", "personagem": "aluno", "x": 6.2, "z": 5.6, "virado": "esquerda" },
+        { "id": "policial", "personagem": "policial", "x": 10.4, "z": 5.7 },
+        { "id": "prefeito", "personagem": "prefeito", "x": 11.8, "z": 5.7, "virado": "esquerda" },
+        { "id": "caixa", "personagem": "caixa", "x": 16.2, "z": 5.7 },
+        { "id": "aluna", "personagem": "aluna", "x": 15, "z": 0.6, "virado": "esquerda" } ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": 9, "inicio": 0.4, "duracao": 10 },
+        { "tipo": "andar", "alvo": "aluna", "para": 3, "inicio": 2.5, "duracao": 7.5 },
+        { "tipo": "emocao", "alvo": "policial", "icone": "zzz", "inicio": 5.5, "duracao": 2.5 } ],
+      "vertical": { "camera": { "x": -7, "z": 1.2, "y": 2.4 }, "cameraFim": { "x": 8 } }
     },
     { // 02 — padaria
       "narracaoTexto": "Em Vila Serena, a grande notícia do dia era o pão saindo do forno.",
@@ -103,7 +113,6 @@
       "fundo": "preto", "duracao": 7, "transicao": "pixelizar", "ambiente": false,
       "camera": { "zoom": 2, "y": 2.2 }, "tituloPosicao": 0.2,
       "titulo": "E AGORA?", "subtitulo": "1 = VERIFICAR   2 = FICAR EM CASA", "tituloInicio": 0.6, "tituloDuracao": 6,
-      "legenda": "COMENTE 1 OU 2 - VOCÊ DECIDE O PRÓXIMO EPISÓDIO!", "legendaInicio": 1.6,
       "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 0 } ],
       "acoes": [ { "tipo": "emocao", "alvo": "bia", "icone": "?", "inicio": 1.2 } ],
       "vertical": { "camera": { "zoom": 3, "y": 2.4 }, "tituloPosicao": 0.16 }

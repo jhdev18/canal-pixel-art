@@ -2,12 +2,13 @@
 
 **Narração:** um narrador (terceira pessoa), contando a história da Bia — um único áudio.
 **Formatos:** vídeo longo (16:9) e Shorts (9:16). **Vistas:** lateral e diagonal.
+**Legendas:** o texto do narrador aparece como legenda, sincronizado com a fala.
 **Personagens:** Bia (`menina-capa`), seu Tonho (padeiro), policial, prefeito, professora, aluno, aluna, caixa, pombo.
 
 ---
 
 ### Cena 1 — Rua comercial, de dia (diagonal)
-- **Na tela:** título "NADA ACONTECE EM VILA SERENA — EPISÓDIO 1". A Bia caminha pela calçada; o pombo e a caixa do mercado ao fundo.
+- **Na tela:** panorâmica pela rua comercial — padaria, escola, delegacia e mercado, com o padeiro, a professora, o aluno, o policial cochilando, o prefeito e a caixa na frente de cada lugar. O título "NADA ACONTECE EM VILA SERENA — EPISÓDIO 1" aparece enquanto a Bia entra caminhando pela calçada.
 - **Narrador:** "Esta é a Bia. E esta é Vila Serena... a cidade mais calma do mundo."
 
 ### Cena 2 — Padaria (lateral)

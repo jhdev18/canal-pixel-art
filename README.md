@@ -69,6 +69,10 @@ projetos/meu-video/
 cenas) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o gerador corta o
 áudio nas pausas, um trecho por cena, e ajusta a duração de cada cena. Deixe uma pausa clara entre as falas.
 
+**Legenda do narrador:** o texto de `"narracaoTexto"` aparece automaticamente como legenda na parte de baixo,
+em frases curtas sincronizadas com a fala (pela duração real do áudio, ou estimada antes de gravar). Para desligar:
+`"legendasNarracao": false` no roteiro, ou `"legendaNarracao": false` numa cena.
+
 **Opção 2 — um arquivo por cena:**
 
 Gere **um áudio por cena** e salve na pasta `narracao/` com o **número da cena** no nome:

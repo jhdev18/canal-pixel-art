@@ -40,7 +40,11 @@ export class UI {
       if (a.tipo === 'falar') this.balao(a, t, cabeca(a.alvo, t));
       if (a.tipo === 'emocao') this.emocao(a, t, cabeca(a.alvo, t));
     }
-    if (cena.legenda) this.legenda(cena, t);
+    if (cena.legendasNarracao) {
+      const b = cena.legendasNarracao.find((l) => t >= l.ini && t < l.fim + 0.12);
+      if (b) this.legendaTexto(b.texto, b.ini, b.fim + 0.12, t);
+      else if (cena.legenda) this.legenda(cena, t);
+    } else if (cena.legenda) this.legenda(cena, t);
     if (cena.titulo) this.titulo(cena, t);
     if (rascunho && info) {
       const txt = normalizar(info);
@@ -91,11 +95,15 @@ export class UI {
   }
 
   legenda(cena, t) {
+    this.legendaTexto(cena.legenda, cena.legendaInicio ?? 0.2, cena.legendaFim ?? cena.duracao - 0.3, t, 0.2);
+  }
+
+  // Caixa de legenda na parte de baixo (usada pela legenda fixa e pela do narrador).
+  legendaTexto(texto, ini, fim, t, entrada = 0.06) {
     const { ctx, W, H } = this;
-    const linhas = quebrarLinhas(cena.legenda, W - 28);
-    const ini = cena.legendaInicio ?? 0.2, fim = cena.legendaFim ?? cena.duracao - 0.3;
+    const linhas = quebrarLinhas(texto, W - 28);
     if (t < ini || t > fim) return;
-    const alpha = clamp(Math.min((t - ini) / 0.2, (fim - t) / 0.2));
+    const alpha = clamp(Math.min((t - ini) / entrada, (fim - t) / entrada));
     const alt = linhas.length * LINHA + 4;
     const y0 = H - alt - 4;
     ctx.globalAlpha = 0.7 * alpha; ctx.fillStyle = '#0a0a14';
