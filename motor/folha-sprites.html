@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8"><title>Sprites</title>
+<style>body{background:#888;margin:0}canvas{image-rendering:pixelated}</style>
+<canvas id="c"></canvas>
+<script type="module">
+import { obterSprite, NOMES_SPRITES } from './sprites.js';
+import { desenharTexto } from './fonte.js';
+const c = document.getElementById('c'); const E = 4;
+const sprites = NOMES_SPRITES.map(n => [n, obterSprite(n)]);
+let W = 0, H = 0; const linhas = [];
+for (const [n, s] of sprites) { const w = s.quadros.reduce((a,q)=>a+q.width+4,0); const h = Math.max(...s.quadros.map(q=>q.height)); linhas.push([n,s,h]); W=Math.max(W,w+60); H+=h+12; }
+c.width = W*E; c.height = (H+60)*E; const ctx = c.getContext('2d'); ctx.imageSmoothingEnabled=false; ctx.scale(E,E);
+let y = 4;
+for (const [n,s,h] of linhas) { desenharTexto(ctx, n, 2, y, '#fff'); let x = 60; for (const q of s.quadros) { ctx.drawImage(q, x, y); x += q.width+4; } y += h+12; }
+desenharTexto(ctx, 'ÁÉÍÓÚ ÃÕ ÇÂÊÔ À 0123456789 .,!?:;-+()/%', 2, y, '#fff');
+desenharTexto(ctx, 'A ligeira raposa marrom: ação, coração!', 2, y+12, '#ff0');
+window.pronto = true;
+</script>

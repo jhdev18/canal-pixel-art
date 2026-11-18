@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Pixel Art Vídeo — Motor</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; background: #0b0a14; color: #ddd; font: 14px monospace; }
+  body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; gap: 8px; }
+  canvas { image-rendering: pixelated; max-width: 100vw; }
+  #ajuda { opacity: .6 }
+</style>
+<script type="importmap">
+{ "imports": { "three": "/vendor/three/three.module.js" } }
+</script>
+</head>
+<body>
+<script type="module">
+  import './motor.js';
+  const p = new URLSearchParams(location.search);
+  if (p.has('previa')) {
+    const roteiro = await (await fetch('/api/roteiro')).json();
+    const info = await window.motor.iniciar(roteiro, { modo: p.get('modo') || 'final', larguraTela: Math.min(innerWidth, roteiro.resolucao[0] * 4) });
+    info.avisos.forEach((a) => console.warn(a));
+    const d = document.createElement('div'); d.id = 'ajuda';
+    d.textContent = `${roteiro.titulo} — ${roteiro.duracaoTotal.toFixed(1)}s — GPU: ${info.gpu.renderizador} — [espaço] pausa, [←/→] 5s, [Home] início (sem áudio)`;
+    document.body.appendChild(d);
+    window.motor.tocar(Number(p.get('t') || 0));
+  }
+</script>
+</body>
+</html>

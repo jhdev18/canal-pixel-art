@@ -1,0 +1,111 @@
+{
+  // Exemplo completo. Comentários com // são permitidos.
+  "titulo": "A Moeda Perdida",
+  "resolucao": [320, 180],
+  "paleta": "nenhuma",
+  "cenas": [
+    {
+      "fundo": "floresta-dia",
+      "duracao": 7,
+      "transicao": "fade",
+      "titulo": "A MOEDA PERDIDA",
+      "subtitulo": "UMA HISTÓRIA EM PIXELS",
+      "camera": { "x": 0 },
+      "cameraFim": { "x": 3 },
+      "elementos": [
+        { "id": "heroi", "sprite": "heroi", "x": -9 },
+        { "id": "moeda", "sprite": "moeda", "x": 5, "y": 0.4 },
+        { "id": "a1", "sprite": "arvore", "x": -6, "z": -2, "semente": 2 },
+        { "id": "a2", "sprite": "arvore", "x": 9, "z": -2.5, "semente": 5 },
+        { "id": "ar", "sprite": "arbusto", "x": 1, "z": -0.8 },
+        { "id": "pedra", "sprite": "pedra", "x": -2.5, "z": 0.3 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "heroi", "para": 1, "inicio": 3.2, "duracao": 1.8 },
+        { "tipo": "emocao", "alvo": "heroi", "icone": "!", "inicio": 5.0 },
+        { "tipo": "pular", "alvo": "heroi", "para": 4.6, "inicio": 5.6, "duracao": 0.6 },
+        { "tipo": "coletar", "alvo": "moeda", "inicio": 6.0 }
+      ]
+    },
+    {
+      "fundo": "floresta-noite",
+      "duracao": 7,
+      "transicao": "iris",
+      "legenda": "Naquela noite, perto da fogueira...",
+      "elementos": [
+        { "id": "heroi", "sprite": "heroi", "x": -2 },
+        { "id": "amiga", "sprite": "amiga", "x": 2.4, "virado": "esquerda", "voz": 1.25 },
+        { "id": "fogo", "sprite": "fogueira", "x": 0.2, "z": 0.2 },
+        { "id": "p1", "sprite": "pinheiro", "x": -7, "z": -2 },
+        { "id": "p2", "sprite": "pinheiro", "x": 6.5, "z": -2.5 }
+      ],
+      "acoes": [
+        { "tipo": "falar", "alvo": "heroi", "texto": "Olha o que eu achei!", "inicio": 0.8 },
+        { "tipo": "emocao", "alvo": "amiga", "icone": "coracao", "inicio": 3.2 },
+        { "tipo": "falar", "alvo": "amiga", "texto": "Uma moeda antiga? Ela brilha!", "inicio": 4.2 }
+      ]
+    },
+    {
+      "fundo": "caverna",
+      "duracao": 8,
+      "transicao": "dither",
+      "seguir": "heroi",
+      "elementos": [
+        { "id": "heroi", "sprite": "heroi", "x": -6 },
+        { "id": "t1", "sprite": "tocha", "x": -4, "y": 1.6, "z": -1 },
+        { "id": "t2", "sprite": "tocha", "x": 5, "y": 1.6, "z": -1 },
+        { "id": "bat", "sprite": "morcego", "x": 6, "y": 3.5, "z": -0.5 },
+        { "id": "slime", "sprite": "slime", "x": 4, "virado": "esquerda" },
+        { "id": "bau", "sprite": "bau", "x": 7.5 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "heroi", "para": -1, "inicio": 0.3, "duracao": 2 },
+        { "tipo": "mover", "alvo": "bat", "para": [-3, 4], "inicio": 0.5, "duracao": 2.5 },
+        { "tipo": "aparecer", "alvo": "slime", "inicio": 2.6 },
+        { "tipo": "emocao", "alvo": "heroi", "icone": "?", "inicio": 3.0 },
+        { "tipo": "andar", "alvo": "slime", "para": 1.5, "inicio": 3.4, "duracao": 1 },
+        { "tipo": "piscar", "alvo": "heroi", "inicio": 4.4 },
+        { "tipo": "explosao", "alvo": "slime", "inicio": 5.2 },
+        { "tipo": "sumir", "alvo": "slime", "inicio": 5.2, "duracao": 0.1, "som": null },
+        { "tipo": "correr", "alvo": "heroi", "para": 6.2, "inicio": 6.0, "duracao": 1.2 }
+      ]
+    },
+    {
+      "fundo": "cidade-noite",
+      "clima": "chuva",
+      "duracao": 6,
+      "transicao": "pixelizar",
+      "legenda": "Ninguém sabia de onde aquela moeda tinha vindo.",
+      "camera": { "x": -2 },
+      "cameraFim": { "x": 2 },
+      "elementos": [
+        { "id": "heroi", "sprite": "heroi", "x": -7 },
+        { "id": "poste1", "sprite": "poste", "x": -3, "z": -0.6 },
+        { "id": "poste2", "sprite": "poste", "x": 5, "z": -0.6 },
+        { "id": "mago", "sprite": "mago", "x": 4, "virado": "esquerda", "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "correr", "alvo": "heroi", "para": 1.5, "inicio": 0.3, "duracao": 2.2 },
+        { "tipo": "magia", "alvo": "mago", "inicio": 2.8 },
+        { "tipo": "aparecer", "alvo": "mago", "inicio": 2.9, "som": null },
+        { "tipo": "falar", "alvo": "mago", "texto": "Essa moeda é minha.", "inicio": 3.6 }
+      ]
+    },
+    {
+      "fundo": "por-do-sol",
+      "duracao": 5,
+      "transicao": "fade",
+      "titulo": "CONTINUA...",
+      "tituloInicio": 1.5,
+      "elementos": [
+        { "id": "heroi", "sprite": "heroi", "x": -1 },
+        { "id": "amiga", "sprite": "amiga", "x": 1, "virado": "esquerda" },
+        { "id": "casa", "sprite": "casa", "x": 6, "z": -2 }
+      ],
+      "acoes": [
+        { "tipo": "pular", "alvo": "heroi", "inicio": 0.6 },
+        { "tipo": "pular", "alvo": "amiga", "inicio": 0.8 }
+      ]
+    }
+  ]
+}

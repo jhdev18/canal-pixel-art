@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "playwright": "^1.63.0",
+    "three": "^0.187.0"
+  },
+  "name": "canal-pixel-art",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Gerador de vídeos pixel art com Three.js (render local na GPU + FFmpeg/NVENC)",
+  "scripts": {
+    "novo": "node src/cli.js novo",
+    "rascunho": "node src/cli.js rascunho",
+    "final": "node src/cli.js final",
+    "previa": "node src/cli.js previa",
+    "gpu": "node src/cli.js gpu",
+    "sfx": "node src/cli.js sfx",
+    "sprites": "node src/cli.js sprites",
+    "lista": "node src/cli.js lista"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

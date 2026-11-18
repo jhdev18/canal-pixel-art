@@ -1,0 +1,26 @@
+{
+  "ffmpeg": "ffmpeg",
+  "encoder": "auto",
+  "navegador": "auto",
+  "caminhoNavegador": "",
+  "mostrarJanela": false,
+  "permitirRenderizacaoCPU": false,
+  "rascunho": {
+    "fps": 15,
+    "resolucao": 540
+  },
+  "final": {
+    "fps": 30,
+    "resolucao": 1080,
+    "qualidade": 18,
+    "crt": false
+  },
+  "audio": {
+    "volumeNarracao": 1.0,
+    "volumeEfeitos": 0.7,
+    "volumeAmbiente": 0.35,
+    "abaixarEfeitosNaNarracao": 0.45,
+    "normalizar": true,
+    "lufs": -14
+  }
+}
