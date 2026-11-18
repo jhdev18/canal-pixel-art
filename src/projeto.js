@@ -32,7 +32,8 @@ export function lerRoteiro(dir) {
 // um para cada cena que tem "narracaoTexto" no roteiro (ou todas, se nenhuma tiver).
 export const NOME_NARRACAO_UNICA = /^(narracao[-_ ]?completa|narracao|completa)$/i;
 
-function dividirPorPausas(dados, partes) {
+// pesos: tamanho do texto de cada cena (para saber quanto cada trecho deve durar).
+function dividirPorPausas(dados, partes, pesos = null) {
   const QUADRO = Math.round(SR * 0.01);                           // janelas de 10 ms
   const n = Math.floor(dados.length / QUADRO);
   const rms = new Float32Array(n);
@@ -45,25 +46,48 @@ function dividirPorPausas(dados, partes) {
   const p95 = ordenado[Math.floor(n * 0.95)] || 0;
   const limiar = Math.max(0.004, p95 * 0.06);
   const silencio = (i) => rms[i] < limiar;
-  // pausas = trechos de silêncio de pelo menos 0,25 s (fora do começo e do fim)
+  // pausas = trechos de silêncio de pelo menos 0,2 s (fora do começo e do fim)
   let ini = 0; while (ini < n && silencio(ini)) ini++;
   let fim = n - 1; while (fim > ini && silencio(fim)) fim--;
   const pausas = [];
   for (let i = ini; i <= fim; i++) {
     if (!silencio(i)) continue;
     let j = i; while (j <= fim && silencio(j)) j++;
-    if (j - i >= 25) pausas.push({ a: i, b: j, dur: (j - i) / 100 });
+    if (j - i >= 20) pausas.push({ a: i, b: j, dur: (j - i) / 100, meio: (i + j) / 2 });
     i = j;
   }
   if (pausas.length < partes - 1) {
     return { erro: `encontrei ${pausas.length + 1} trecho(s) separado(s) por pausas, mas o roteiro tem ${partes} cenas com narração. Deixe uma pausa clara (meio segundo ou mais) entre as falas de cada cena.` };
   }
-  const cortes = [...pausas].sort((x, y) => y.dur - x.dur).slice(0, partes - 1).sort((x, y) => x.a - y.a);
+  // Escolha dos cortes: programação dinâmica que combina (1) trechos com duração proporcional ao texto
+  // de cada cena e (2) preferência por pausas longas. Assim uma pausa no meio de uma frase não engana.
+  const K = partes, P = pausas.length;
+  const w = pesos && pesos.length === K ? pesos : Array(K).fill(1);
+  const somaW = w.reduce((x, y) => x + y, 0) || 1;
+  const fala = (fim - ini) / 100 - 0.3 * (K - 1);                  // tempo de fala aproximado
+  const esperado = w.map((v) => Math.max(0.4, (fala * v) / somaW));
+  const pos = [ini / 100, ...pausas.map((p) => p.meio / 100), (fim + 1) / 100];  // índices 0..P+1
+  const custoTrecho = (k, a, b) => { const d = pos[b] - pos[a]; const e = esperado[k]; return ((d - e) * (d - e)) / e; };
+  const bonus = (pi) => -1.2 * Math.min(1.5, pausas[pi - 1].dur);   // pausas longas são cortes mais prováveis
+  const INF = 1e18;
+  const dp = Array.from({ length: K }, () => new Float64Array(P + 2).fill(INF));
+  const de = Array.from({ length: K }, () => new Int32Array(P + 2).fill(-1));
+  for (let b = 1; b <= P; b++) dp[0][b] = custoTrecho(0, 0, b) + bonus(b);
+  for (let k = 1; k < K - 1; k++) for (let b = k + 1; b <= P; b++) for (let a = k; a < b; a++) {
+    const c = dp[k - 1][a] + custoTrecho(k, a, b) + bonus(b);
+    if (c < dp[k][b]) { dp[k][b] = c; de[k][b] = a; }
+  }
+  let melhor = INF, ult = -1;
+  if (K === 1) ult = 0;
+  else for (let a = K - 1; a <= P; a++) { const c = dp[K - 2][a] + custoTrecho(K - 1, a, P + 1); if (c < melhor) { melhor = c; ult = a; } }
+  const cortesIdx = [];
+  for (let k = K - 2, a = ult; k >= 0; k--) { cortesIdx.unshift(a); a = de[k][a]; }
+  const cortes = cortesIdx.map((i) => pausas[i - 1]);
   const trechos = [];
   let inicio = ini;
   for (const c of [...cortes, { a: fim + 1, b: fim + 1 }]) {
-    const a = Math.max(0, inicio - 5), b = Math.min(n, c.a + 5);       // 50 ms de folga
-    trechos.push({ dados: dados.slice(a * QUADRO, b * QUADRO), de: a / 100, ate: b / 100 });
+    const a = Math.max(0, inicio - 5), b2 = Math.min(n, c.a + 5);       // 50 ms de folga
+    trechos.push({ dados: dados.slice(a * QUADRO, b2 * QUADRO), de: a / 100, ate: b2 / 100 });
     inicio = c.b;
   }
   return { trechos, pausas: cortes.map((c) => c.dur) };
@@ -79,7 +103,7 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
     let alvo = cenas.map((c, i) => (c.narracaoTexto ? i : -1)).filter((i) => i >= 0);
     if (!alvo.length) alvo = cenas.map((c, i) => i).filter((i) => cenas[i].narracao !== false);
     const dados = await decodificarAudio(ff, path.join(pasta, unico));
-    const r = dividirPorPausas(dados, alvo.length);
+    const r = dividirPorPausas(dados, alvo.length, alvo.map((i) => (cenas[i].narracaoTexto || 'x').length));
     if (r.erro) throw new Error(`Narração única (${unico}): ${r.erro}`);
     r.trechos.forEach((t, k) => mapa.set(alvo[k], { arquivo: `${unico} [${t.de.toFixed(1)}s–${t.ate.toFixed(1)}s]`, duracao: t.dados.length / SR, dados: t.dados }));
     return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length };

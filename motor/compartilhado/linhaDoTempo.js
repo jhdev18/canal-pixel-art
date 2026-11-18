@@ -9,7 +9,7 @@ export const DURACAO_PADRAO = {
   piscar: 0.8, camera: 1.5, magia: 1, som: 0,
 };
 
-export const TRANSICAO_DURACAO = 0.45;
+export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
 const NARRACAO_FOLGA = 0.6;
 const SEG_POR_LETRA = 0.065;   // estimativa da fala quando ainda não há áudio
 
@@ -86,6 +86,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     cena.duracao = Math.ceil(dur * fps) / fps;
     cena.inicio = inicio;
     cena.transicao = cena.transicao || (indice === 0 ? 'fade' : 'dither');
+    cena.transicaoDuracao = cena.transicaoDuracao ?? roteiro.transicaoDuracao ?? TRANSICAO_DURACAO;
     inicio += cena.duracao;
     return cena;
   });
@@ -255,7 +256,7 @@ export function efeitosTela(cena, t) {
   const tremorY = Math.round(ruido1(t * 41, 2) * amp);
 
   let fade = 0, tipo = 'corte';
-  const d = TRANSICAO_DURACAO;
+  const d = cena.transicaoDuracao ?? TRANSICAO_DURACAO;
   if (cena.transicao !== 'corte' && t < d) { fade = 1 - t / d; tipo = cena.transicao; }
   const resto = cena.duracao - t;
   if (cena.transicaoSaida !== 'corte' && resto < d) {

@@ -69,6 +69,12 @@ projetos/meu-video/
 cenas) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o gerador corta o
 áudio nas pausas, um trecho por cena, e ajusta a duração de cada cena. Deixe uma pausa clara entre as falas.
 
+**Conferir os cortes sem renderizar:** `npm run narracao -- meu-video --verificar` mostra de que segundo a que
+segundo vai a fala de cada cena (e salva em `narracao/CORTES.txt`). O corte leva em conta o tamanho do texto de
+cada cena, então uma pausa no meio de uma frase (reticências) não desloca as falas.
+
+**Transições:** duram 0,2 s por padrão; mude com `"transicaoDuracao": 0.4` no roteiro ou numa cena.
+
 **Legenda do narrador:** o texto de `"narracaoTexto"` aparece automaticamente como legenda na parte de baixo,
 em frases curtas sincronizadas com a fala (pela duração real do áudio, ou estimada antes de gravar). Para desligar:
 `"legendasNarracao": false` no roteiro, ou `"legendaNarracao": false` numa cena.

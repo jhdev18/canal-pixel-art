@@ -135,7 +135,25 @@ async function gpu() {
 }
 
 // Monta os textos da narração (campo "narracaoTexto" de cada cena) para colar no ElevenLabs.
+async function verificarNarracao(nome) {
+  const cfg = carregarConfig();
+  const dir = caminhoProjeto(nome);
+  const r = lerRoteiro(dir);
+  const n = await encontrarNarracoes(dir, r, cfg.ffmpeg);
+  if (!n.mapa.size) throw new Error(`Nenhum áudio de narração em ${n.pasta} (nome esperado: narracao-completa.mp3).`);
+  console.log(n.unico ? `\n▶ ${n.unico} → ${n.trechos} trechos` : `\n▶ Narração por cena (${n.mapa.size} arquivos)`);
+  const linhas = [];
+  for (const [i, v] of [...n.mapa.entries()].sort((a, b) => a[0] - b[0])) {
+    const txt = r.cenas[i].narracaoTexto || '';
+    const l = `  Cena ${String(i + 1).padStart(2)}  ${v.arquivo.replace(/^.*\[/, '[').padEnd(18)} ${v.duracao.toFixed(1).padStart(5)}s  ${txt.slice(0, 70)}`;
+    console.log(l); linhas.push(l);
+  }
+  fs.writeFileSync(path.join(n.pasta, 'CORTES.txt'), linhas.join('\n') + '\n');
+  console.log('\n  Confira se cada fala caiu na cena certa. (Também salvo em narracao/CORTES.txt)');
+}
+
 function narracao(nome) {
+  if (flags.verificar) return verificarNarracao(nome);
   const dir = caminhoProjeto(nome);
   const r = lerRoteiro(dir);
   const falas = (r.cenas || []).map((c, i) => ({ n: i + 1, texto: c.narracaoTexto })).filter((f) => f.texto);
@@ -255,7 +273,7 @@ try {
     }
     case 'previa': await previa(pos[0]); break;
     case 'gpu': await gpu(); break;
-    case 'narracao': narracao(pos[0]); break;
+    case 'narracao': await narracao(pos[0]); break;
     case 'sfx': sfx(); break;
     case 'sprites': await sprites(); break;
     case 'lista': await lista(); break;
