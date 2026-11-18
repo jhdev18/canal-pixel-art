@@ -159,7 +159,11 @@ class Motor {
       // (só nas vistas que pedem; a lateral e a diagonal mantêm o apoio de antes)
       const vazio = vista.apoiarPeloPe ? (sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas))) : 0;
       const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2 - vazio / PPU, 0);
-      const mat = new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
+      // 'semLuz' (sprite ou elemento): não recebe luz da cena — ex.: uma sombra continua preta perto do fogo
+      const semLuz = el.semLuz ?? sprite.semLuz;
+      const mat = semLuz
+        ? new THREE.MeshBasicMaterial({ map: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide })
+        : new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
       malha.renderOrder = vista.ordemInicial(el, i);
       cena.add(malha);
@@ -306,7 +310,7 @@ class Motor {
       if (e.sprite.personagem && !anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) bob = idx % 2 ? 1 / PPU : 0;
       if (e.sprite.flutua && e.def.flutuar !== false && st.anim === 'parado') bob = Math.round(Math.sin(tAnim * 3) * 1.5) / PPU;
       if (e.sprite.voa) bob = Math.round(Math.sin(tAnim * 4) * 3) / PPU;
-      e.mat.map = e.mat.emissiveMap = e.texturas[q] || e.texturas[0];
+      e.mat.map = e.texturas[q] || e.texturas[0]; if ('emissiveMap' in e.mat) e.mat.emissiveMap = e.mat.map;
       vista.posicionar(e, st, bob);
       const s = e.esc * st.escala;
       e.malha.scale.set(st.virado * s, s, 1);
@@ -317,7 +321,8 @@ class Motor {
         e.brilho.malha.quaternion.copy(e.malha.quaternion); e.brilho.malha.renderOrder = e.malha.renderOrder + 1;
         e.brilho.mat.opacity = st.alpha;
       }
-      e.mat.emissive.setRGB(e.realce + st.vermelho * 0.9, e.realce * (1 - st.vermelho), e.realce * (1 - st.vermelho));
+      if (e.mat.emissive) e.mat.emissive.setRGB(e.realce + st.vermelho * 0.9, e.realce * (1 - st.vermelho), e.realce * (1 - st.vermelho));
+      else e.mat.color.setRGB(1, 1 - st.vermelho * 0.6, 1 - st.vermelho * 0.6);
       if (e.sombra) {
         const enc = Math.max(0.4, 1 - st.alturaPulo * 0.25);
         vista.posicionarSombra(e, st);
