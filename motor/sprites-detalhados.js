@@ -55,13 +55,14 @@ function meninaFrente({ resp = 0, piscar = false, passo = 0 } = {}) {
   return b.render();
 }
 
-function meninaLado(t, { correr = false } = {}) {
+function meninaLado(t, { correr = false, classico = false } = {}) {
   const b = new Boneco(W, H);
   const C = b.material(PAL_MENINA.capa, { sombraLarga: true }), B = b.material(PAL_MENINA.bota), S = b.material(PAL_MENINA.pele);
   const Hh = b.material(PAL_MENINA.cabelo), M = b.material(PAL_MENINA.meia), U = b.material(PAL_MENINA.guarda);
   const g = passada(t, correr ? { passo: 6, levanta: 4 } : { passo: 3.6, levanta: 2.2 });
   const incl = correr ? 2.5 : 0;           // inclinação para frente
-  const pulo = correr ? Math.round(Math.abs(Math.cos(t * Math.PI * 2)) * 1.5) : Math.round(Math.abs(Math.cos(t * Math.PI * 2)));
+  const onda = classico ? Math.sin : Math.cos;   // clássico = balanço usado nas vistas lateral e diagonal
+  const pulo = correr ? Math.round(Math.abs(onda(t * Math.PI * 2)) * 1.5) : Math.round(Math.abs(onda(t * Math.PI * 2)));
   const y0 = -pulo;
   // pernas: saem abaixo da barra da capa; a de trás é mais escura (profundidade)
   const Mb = b.material(['#36428a', '#222a5c', '#161c40', '#0e1024']), Bb = b.material(['#b02c34', '#8a2030', '#64162a', '#3a0c18']);
@@ -97,7 +98,9 @@ function meninaV2() {
   const q = [meninaFrente(), meninaFrente({ piscar: true }), meninaFrente({ resp: 1 })];
   const andar = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => meninaLado(i / 8));
   const correr = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => meninaLado(i / 8, { correr: true }));
-  const quadros = [...q, ...andar, ...correr];
+  const andarC = [0, 0.25, 0.5, 0.75].map((t) => meninaLado(t, { classico: true }));
+  const correrC = [0, 1, 2, 3, 4, 5].map((i) => meninaLado(i / 6, { correr: true, classico: true }));
+  const quadros = [...q, ...andar, ...correr, ...andarC, ...correrC];
   return {
     quadros,
     anims: {
@@ -105,6 +108,12 @@ function meninaV2() {
       andando: { q: [3, 4, 5, 6, 7, 8, 9, 10], fps: 14, passada: 14 },     // passada = pixels percorridos por ciclo
       correndo: { q: [11, 12, 13, 14, 15, 16, 17, 18], fps: 18, passada: 24 },
       pulando: { q: [13], fps: 1 },
+    },
+    // vistas lateral e diagonal: caminhada clássica (ritmo fixo, corpo contínuo)
+    animsClassicas: {
+      andando: { q: [19, 20, 21, 22], fps: 7 },
+      correndo: { q: [23, 24, 25, 26, 27, 28], fps: 13 },
+      pulando: { q: [25], fps: 1 },
     },
     sombra: true, personagem: true,
   };
@@ -157,12 +166,12 @@ function roboFrente({ piscar = false, aceno = 0, resp = 0 } = {}) {
   return b.render();
 }
 
-function roboLado(t, { correr = false } = {}) {
+function roboLado(t, { correr = false, classico = false } = {}) {
   const b = new Boneco(W, H);
   const X = b.material(PAL_ROBO.caixa, { sombraLarga: true }), Mt = b.material(PAL_ROBO.metal), V = b.material(PAL_ROBO.viseira);
   const R = b.material(PAL_ROBO.verm), A = b.material(PAL_ROBO.ambar), G = b.material(PAL_ROBO.verde, { borda: false });
   const g = passada(t, correr ? { passo: 5, levanta: 3.5, quadril: [13, 34] } : { passo: 3, levanta: 2, quadril: [13, 34] });
-  const incl = correr ? 2 : 0, y0 = -Math.round(Math.abs(Math.cos(t * Math.PI * 2)) * (correr ? 1.5 : 1));
+  const incl = correr ? 2 : 0, y0 = -Math.round(Math.abs((classico ? Math.sin : Math.cos)(t * Math.PI * 2)) * (correr ? 1.5 : 1));
   const perna = (pe) => { b.traco(13, 34 + y0, pe.x, pe.y - 2, 1, Mt); b.poli([[pe.x - 3, pe.y - 2.5], [pe.x + 3, pe.y - 2.5], [pe.x + 3.5, pe.y], [pe.x - 3, pe.y]], Mt); };
   perna(g.tras);
   b.traco(13 + incl, 18 + y0, 13 + incl - g.braco * 3, 27 + y0, 0.9, Mt);
@@ -183,12 +192,19 @@ function roboV2() {
   const andar = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => roboLado(i / 8));
   const correr = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => roboLado(i / 8, { correr: true }));
   return {
-    quadros: [...q, ...andar, ...correr],
+    quadros: [...q, ...andar, ...correr,
+      ...[0, 0.25, 0.5, 0.75].map((t) => roboLado(t, { classico: true })),
+      ...[0, 1, 2, 3, 4, 5].map((i) => roboLado(i / 6, { correr: true, classico: true }))],
     anims: {
       parado: { q: [0, 3, 0, 3, 2, 0, 2, 0, 3, 1], fps: 4 },
       andando: { q: [4, 5, 6, 7, 8, 9, 10, 11], fps: 12, passada: 12 },
       correndo: { q: [12, 13, 14, 15, 16, 17, 18, 19], fps: 16, passada: 20 },
       pulando: { q: [14], fps: 1 },
+    },
+    animsClassicas: {
+      andando: { q: [20, 21, 22, 23], fps: 6 },
+      correndo: { q: [24, 25, 26, 27, 28, 29], fps: 12 },
+      pulando: { q: [26], fps: 1 },
     },
     sombra: true, personagem: true,
     luz: { cor: '#60ff80', intensidade: 0.9, alcance: 3, dy: 1, dz: 0.6 },

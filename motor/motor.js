@@ -154,7 +154,8 @@ class Motor {
       const esc = el.escala ?? 1;
       const w = texturas[0].image.width / PPU, h = texturas[0].image.height / PPU;
       // Apoia o sprite pela linha mais baixa que tem desenho (os pés tocam o chão de verdade).
-      const vazio = sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas));
+      // (só nas vistas que pedem; a lateral e a diagonal mantêm o apoio de antes)
+      const vazio = vista.apoiarPeloPe ? (sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas))) : 0;
       const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2 - vazio / PPU, 0);
       const mat = new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
@@ -276,7 +277,10 @@ class Motor {
       if (e.brilho) e.brilho.malha.visible = vis;
       if (e.luz) e.luz.L.visible = vis;
       if (!vis) continue;
-      const anim = e.sprite.anims[st.anim] || e.sprite.anims.parado;
+      // A caminhada nova (passada sincronizada) só vale nas vistas que pedem (avenida);
+      // nas outras o sprite usa a caminhada clássica, se tiver.
+      const conjunto = !vista.caminhadaSincronizada && e.sprite.animsClassicas?.[st.anim] ? e.sprite.animsClassicas : e.sprite.anims;
+      const anim = conjunto[st.anim] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);

@@ -175,6 +175,7 @@ function vistaAvenida(c, motor) {
   cena.add(ceu);
   return {
     cena, camera, ambiente: av.ambiente, climaPadrao: null, sombraDeitada: true,
+    caminhadaSincronizada: true, apoiarPeloPe: true,   // caminhada nova só na avenida
     atualizar: (t) => av.atualizar(t),
     liberar: () => { av.liberar(); ceu.userData.textura.dispose(); },
     ordemInicial: () => 0,
