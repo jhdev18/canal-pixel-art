@@ -6,7 +6,7 @@
 import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { gerarRuaDiagonal, FAIXA } from './cenarios/ruaDiagonal.js';
-import { gerarAvenida } from './cenarios/avenida.js';
+import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
 import { estadoCamera } from './compartilhado/linhaDoTempo.js';
 import { obterSprite } from './sprites.js';
 import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
@@ -50,7 +50,17 @@ function vistaLateral(c, motor) {
   fundo.objetos.forEach((o) => cena.add(o));
   return {
     cena, camera, ambiente: fundo.ambiente, climaPadrao: fundo.clima,
-    atualizar: (t) => fundo.atualizar(t),
+    atualizar(t) {
+      fundo.atualizar(t);
+      // Paralaxe sem "arrastar" pixels: cada camada anda sempre um número inteiro de pixels na tela.
+      const cx = camera.position.x;
+      for (const o of fundo.objetos) {
+        const ppu = o.userData?.ppu;
+        if (!ppu) continue;
+        if (o.userData.x0 == null) o.userData.x0 = o.position.x;
+        o.position.x = cx + Math.round((o.userData.x0 - cx) * ppu) / ppu;
+      }
+    },
     liberar: () => fundo.ceu.textura.dispose(),
     ordemInicial: (el, i) => ordemPorZ(el.z ?? 0) + 2 + i * 2,
     paraMundo: (el, st, dy = 0) => new THREE.Vector3(snap(st.x), snap(st.y) + dy, el.z ?? 0),
@@ -143,23 +153,39 @@ function vistaAvenida(c, motor) {
     m.position.set(p.x, 0, p.z); cena.add(m); decor.push(m);
     if (av.noite) { const L = new THREE.PointLight('#ffe0a0', 1.6 * Math.PI, 7, 1); L.position.set(p.x, 2.5, p.z + 0.4); cena.add(L); }
   }
+  // A câmera 3D fica parada na posição base. Para acompanhar o protagonista, o ENQUADRAMENTO
+  // desliza em pixels inteiros (setViewOffset): o cenário se move idêntico, sem pixels "tremendo".
+  const base = c.camera;
+  const FOLGA = 4;                                    // largura virtual = (1 + 2*FOLGA) telas
+  const LARG = W * (1 + 2 * FOLGA);
+  const focal = () => (H / 2) / Math.tan((camera.fov * Math.PI) / 360);
+  const ppuEm = (z) => focal() / Math.max(0.6, (base.z ?? 11) - z);   // pixels por unidade nessa profundidade
+  const zRef = () => { const el = c.seguir && c.elementos.find((e) => e.id === c.seguir); return el?.z ?? 3; };
+  const presoX = (x, z) => { const k = ppuEm(z); return base.x + Math.round((x - base.x) * k) / k; };
+  const presoY = (y, z) => { const k = ppuEm(z); return Math.round(y * k) / k; };
+  camera.fov = 52 / (base.zoom ?? 1);
+  camera.aspect = LARG / H;
+  camera.position.set(base.x, base.y, base.z ?? 11);
+  camera.lookAt(base.x, base.y - 1.2, (base.z ?? 11) - 12);
+  for (const d of decor) d.quaternion.copy(camera.quaternion);
+  camera.updateMatrixWorld();
+  const ceu = ceuAvenida(camera, { larg: LARG, alt: Math.ceil(H * 1.15), focal: focal(), noite: av.noite, semente: (op.semente ?? c.numero * 13) + 1 });
+  cena.add(ceu);
   return {
     cena, camera, ambiente: av.ambiente, climaPadrao: null, sombraDeitada: true,
     atualizar: (t) => av.atualizar(t),
-    liberar: () => av.liberar(),
+    liberar: () => { av.liberar(); ceu.userData.textura.dispose(); },
     ordemInicial: () => 0,
-    paraMundo: (el, st, dy = 0) => new THREE.Vector3(st.x, st.y + dy, el.z ?? 3),
+    paraMundo: (el, st, dy = 0) => { const z = el.z ?? 3; return new THREE.Vector3(presoX(st.x, z), presoY(st.y + dy, z), z); },
     posicionar(e, st, bob) {
-      e.malha.position.set(st.x, st.y + bob, e.def.z ?? 3);
+      const z = e.def.z ?? 3;
+      e.malha.position.set(presoX(st.x, z), presoY(st.y + bob, z), z);   // preso à grade de pixels
       e.malha.quaternion.copy(camera.quaternion);       // sprites sempre de frente para a câmera
     },
-    posicionarSombra(e, st) { e.sombra.position.set(st.x, 0.02, e.def.z ?? 3); },
+    posicionarSombra(e, st) { const z = e.def.z ?? 3; e.sombra.position.set(presoX(st.x, z), 0.02, z); },
     atualizarCamera(cam, ef) {
-      const z = cam.z ?? 11;
-      camera.position.set(cam.x + ef.tremorX / PPU, cam.y + ef.tremorY / PPU, z);
-      camera.lookAt(cam.x + ef.tremorX / PPU, cam.y - 1.2 + ef.tremorY / PPU, z - 12);
-      camera.fov = 52 / cam.zoom;
-      for (const d of decor) d.quaternion.copy(camera.quaternion);
+      const dx = Math.round((cam.x - base.x) * ppuEm(zRef())) + ef.tremorX;
+      camera.setViewOffset(LARG, H, W * FOLGA + dx, -ef.tremorY, W, H);
     },
   };
 }
