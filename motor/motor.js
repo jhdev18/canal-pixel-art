@@ -285,7 +285,13 @@ class Motor {
         const a = c.acoes.find((ac) => ac.alvo === e.def.id && (ac.tipo === 'andar' || ac.tipo === 'correr') && t >= ac.inicio && t < ac.inicio + ac.duracao);
         if (a) {
           const x0 = estadoElemento(c, e.def, a.inicio).x;
-          idx = Math.floor((Math.abs(st.x - x0) * PPU / (anim.passada * e.esc)) * anim.q.length);
+          const passoQuadro = (anim.passada * e.esc) / anim.q.length / PPU;   // avanço por quadro (mundo)
+          const n = Math.floor(Math.abs(st.x - x0) / passoQuadro);
+          idx = n;
+          // o corpo avança em degraus, junto com a troca de quadro: o pé apoiado não patina
+          if (Math.abs(st.x - x0) < Math.abs(a.duracao ? estadoElemento(c, e.def, a.inicio + a.duracao).x - x0 : 0) - 1e-6) {
+            st.x = x0 + Math.sign(st.x - x0) * n * passoQuadro;
+          }
         }
       }
       const q = anim.q[((idx % anim.q.length) + anim.q.length) % anim.q.length] ?? 0;
