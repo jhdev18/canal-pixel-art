@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { gerarRuaDiagonal, FAIXA } from './cenarios/ruaDiagonal.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
-import { estadoCamera } from './compartilhado/linhaDoTempo.js';
+import { estadoCamera, estadoElemento } from './compartilhado/linhaDoTempo.js';
 import { obterSprite } from './sprites.js';
 import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
 
@@ -73,6 +73,28 @@ function vistaLateral(c, motor) {
   };
 }
 
+// Céu da vista diagonal: faixas de cor com dithering na transição (e estrelas à noite).
+function ceuDiagonal(W, H, noite) {
+  const cores = noite ? ['#05061a', '#0a0c26', '#141638', '#22204a'] : ['#4a8ad8', '#62a2e4', '#80baee', '#a4d0f4'];
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d');
+  const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  for (let y = 0; y < H; y++) {
+    const f = (y / H) * (cores.length - 1), i = Math.min(cores.length - 1, Math.floor(f)), fr = f - i;
+    for (let x = 0; x < W; x++) {
+      const lim = (BAYER[(y & 3) * 4 + (x & 3)] + 0.5) / 16;
+      g.fillStyle = fr > 0.65 && (fr - 0.65) / 0.35 > lim ? cores[Math.min(cores.length - 1, i + 1)] : cores[i];
+      g.fillRect(x, y, 1, 1);
+    }
+  }
+  if (noite) {
+    let sem = 7;
+    const rnd = () => ((sem = (sem * 16807) % 2147483647) / 2147483647);
+    for (let k = 0; k < (W * H) / 300; k++) { g.fillStyle = rnd() > 0.7 ? '#ffffff' : '#8890c0'; g.fillRect(Math.floor(rnd() * W), Math.floor(rnd() * H * 0.7), 1, 1); }
+  }
+  return tex(cv);
+}
+
 // ---------------------------------------------------------------- diagonal
 // Coordenadas dos elementos: x = posição AO LONGO da rua (cresce para a direita/cima);
 // z = distância a partir da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua,
@@ -80,14 +102,23 @@ function vistaLateral(c, motor) {
 function vistaDiagonal(c, motor) {
   const { W, H } = motor;
   const op = c.rua || {};
-  const rua = gerarRuaDiagonal({ ...op, semente: op.semente ?? c.semente ?? c.numero * 13 });
+  // Comprimento da rua calculado pelo caminho da câmera e dos personagens (com folga),
+  // para a câmera nunca chegar ao fim do desenho.
+  let alcance = 0;
+  for (let t = 0; t <= c.duracao; t += 0.25) {
+    alcance = Math.max(alcance, Math.abs(estadoCamera(c, t).x));
+    for (const el of c.elementos) alcance = Math.max(alcance, Math.abs(estadoElemento(c, el, t).x));
+  }
+  const comprimento = Math.max(op.comprimento ?? 44, Math.ceil(2 * (alcance + 20)));
+  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13 });
   const cena = new THREE.Scene();
-  cena.background = new THREE.Color(rua.noite ? '#0c0c22' : '#9ac8ec');
+  // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
+  cena.background = ceuDiagonal(W, H, rua.noite);
   const cv = document.createElement('canvas'); cv.width = rua.W; cv.height = rua.H;
   cv.getContext('2d').putImageData(new ImageData(rua.imagem, rua.W, rua.H), 0, 0);
   const texMundo = tex(cv);
   // O chão e os prédios já vêm iluminados (luz pintada pixel a pixel): material sem iluminação.
-  const plano = new THREE.Mesh(new THREE.PlaneGeometry(rua.W / PPU, rua.H / PPU), new THREE.MeshBasicMaterial({ map: texMundo }));
+  const plano = new THREE.Mesh(new THREE.PlaneGeometry(rua.W / PPU, rua.H / PPU), new THREE.MeshBasicMaterial({ map: texMundo, transparent: true, alphaTest: 0.5 }));
   plano.position.set(rua.W / PPU / 2, rua.H / PPU / 2, 0);
   cena.add(plano);
 
@@ -114,7 +145,7 @@ function vistaDiagonal(c, motor) {
     ambiente: rua.noite ? ['#9aa0d0', 0.78] : ['#ffffff', 1.0],
     climaPadrao: null,
     atualizar: () => {},
-    liberar: () => { texMundo.dispose(); },
+    liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); },
     ordemInicial: (el) => ordem(iDe(el), -(el.x ?? 0)),
     paraMundo: (el, st, dy = 0) => ponto(iDe(el), -st.x, snap(st.y) + dy),
     posicionar(e, st, bob) {

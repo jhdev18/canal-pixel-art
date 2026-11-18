@@ -41,7 +41,7 @@ export function gerarRuaDiagonal(opc = {}) {
   const comp = opc.comprimento ?? 44;
   const noite = (opc.periodo ?? 'noite') === 'noite';
   const semente = opc.semente ?? 7;
-  const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 16, HMAX = 150;
+  const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 24, HMAX = 150;   // I1 largo: o canteiro vai até a borda
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 8);
   const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
@@ -66,7 +66,7 @@ export function gerarRuaDiagonal(opc = {}) {
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const X = (x - OX) / 16, Y = (y - OY) / 8;
     const i = (Y + X) / 2, j = (Y - X) / 2;
-    if (i < I0 || i > I1 || j < J0 || j > J1) continue;
+    if (i < I0 || i > I1 || j < J0 - 2 || j > J1 + 2) continue;
     let c;
     const calcada = (i >= 0 && i < 1.5) || (i > 5.5 && i < 7);
     if (i < 0) c = '#2a2a34';
@@ -129,22 +129,26 @@ export function gerarRuaDiagonal(opc = {}) {
   //   [{ "tipo": "padaria", "largura": 4 }, { "tipo": "comum" }, { "tipo": "escola", "largura": 6 }]
   // Prédios "comuns" preenchem o resto. 'em' (x ao longo da rua) posiciona um prédio específico.
   // a lista do roteiro é lida da esquerda para a direita na tela; a geração anda no sentido contrário
+  // A lista do roteiro é lida da esquerda para a direita na tela; a geração anda no sentido contrário (j crescente).
+  // Os estabelecimentos ficam sempre na mesma posição (o primeiro gerado começa em j = ancora), qualquer que
+  // seja o comprimento da rua; prédios comuns preenchem o resto dos dois lados.
   const pedidos = (opc.predios || []).map((p) => ({ ...p })).reverse();
-  for (let j = J0 - 1, n = 0; j < J1; n++) {
-    // um pedido com 'em' começa na posição x pedida (j = -x)
-    let ped = pedidos.find((p) => p.em != null && !p.usado && -p.em - (p.largura ?? 5) / 2 <= j + 0.01);
-    if (!ped && pedidos.some((p) => p.em == null && !p.usado)) ped = pedidos.find((p) => p.em == null && !p.usado);
+  const ancora = opc.ancoraPredios ?? -23;
+  const largDe = (ped) => ped.largura ?? (ESTAB[ped.tipo] ? (ped.tipo === 'escola' || ped.tipo === 'mercado' ? 6 : 4) : 4);
+  const segs = [];
+  let j = Math.min(J0 - 1, pedidos.length ? ancora : J0 - 1);
+  if (pedidos.length) {
+    while (j < ancora - 0.01) { const w = Math.min(3 + Math.floor(r() * 3), ancora - j); segs.push({ j, w, ped: null }); j += w; }
+    for (const ped of pedidos) { const w = largDe(ped); segs.push({ j, w, ped }); j += w; }
+  }
+  while (j < J1 + 1) { const w = 3 + Math.floor(r() * 3); segs.push({ j, w, ped: null }); j += w; }
+  segs.forEach(({ j: j0, w, ped }, n) => {
     const e = ped && ESTAB[ped.tipo];
-    const larg = ped ? (ped.largura ?? (e ? (ped.tipo === 'escola' || ped.tipo === 'mercado' ? 6 : 4) : 4)) : 3 + Math.floor(r() * 3);
-    const proximoEm = pedidos.filter((p) => p.em != null && !p.usado && p !== ped).map((p) => -p.em - (p.largura ?? 5) / 2).filter((v) => v > j).sort((a, b) => a - b)[0];
-    const largFinal = !ped && proximoEm != null ? Math.max(1, Math.min(larg, proximoEm - j)) : larg;
-    if (ped) ped.usado = true;
     const t = e ? e.tipo : tipos[Math.floor(r() * tipos.length)];
     const alt = e ? e.alt : 76 + Math.floor(r() * 3) * 24;
-    predios.push({ j0: j, j1: Math.min(J1 + 1, j + largFinal), h: alt, tipo: t, estab: e ? ped.tipo : null, e,
+    predios.push({ j0, j1: j0 + w, h: alt, tipo: t, estab: e ? ped.tipo : null, e,
       pal: e ? e.pal : PALETAS[t][Math.floor(r() * PALETAS[t].length)], toldo: e ? e.toldo : TOLDOS[n % TOLDOS.length], s: Math.floor(r() * 1e6) });
-    j += largFinal;
-  }
+  });
   const lojas = [];
   for (const P of predios) {
     const rw = rng(P.s), pal = P.pal;
