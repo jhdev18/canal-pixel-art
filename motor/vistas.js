@@ -146,7 +146,7 @@ function vistaAvenida(c, motor) {
   return {
     cena, camera, ambiente: av.ambiente, climaPadrao: null, sombraDeitada: true,
     atualizar: (t) => av.atualizar(t),
-    liberar: () => {},
+    liberar: () => av.liberar(),
     ordemInicial: () => 0,
     paraMundo: (el, st, dy = 0) => new THREE.Vector3(st.x, st.y + dy, el.z ?? 3),
     posicionar(e, st, bob) {
