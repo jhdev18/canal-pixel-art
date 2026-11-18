@@ -1,24 +1,24 @@
-Oi, eu sou a Bia. E essa é Vila Serena... a cidade mais calma do mundo.
+Esta é a Bia. E esta é Vila Serena... a cidade mais calma do mundo.
 
 <break time="1.0s" />
 
-Aqui, a grande notícia do dia é o pão saindo do forno.
+Em Vila Serena, a grande notícia do dia era o pão saindo do forno.
 
 <break time="1.0s" />
 
-Até a polícia tem tempo de sobra. E o prefeito adora isso.
+Até a polícia tinha tempo de sobra. E o prefeito adorava isso.
 
 <break time="1.0s" />
 
-As crianças correm pra escola... e é isso. É sempre isso.
+As crianças corriam para a escola... e era só isso. Era sempre isso.
 
 <break time="1.0s" />
 
-Sério... eu não aguento mais tanta calmaria.
+A Bia já não aguentava mais tanta calmaria.
 
 <break time="1.0s" />
 
-Naquela tarde, eu fiz um pedido.
+Naquela tarde, ela fez um pedido.
 
 <break time="1.0s" />
 
@@ -26,8 +26,8 @@ E naquela mesma noite... algo aconteceu.
 
 <break time="1.0s" />
 
-Uma luz estranha piscou dentro da escola. Uma escola que devia estar vazia.
+Uma luz estranha piscou dentro da escola. Uma escola que deveria estar vazia.
 
 <break time="1.0s" />
 
-E agora? Eu vou lá ver o que é? Comenta 1 pra eu verificar, ou 2 pra eu ficar em casa. Você decide o próximo episódio!
+E agora? A Bia deve ir verificar? Comente 1 para ela verificar, ou 2 para ela ficar em casa. Você decide o próximo episódio!

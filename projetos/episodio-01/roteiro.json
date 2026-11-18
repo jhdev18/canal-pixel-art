@@ -1,14 +1,14 @@
 {
   // EPISÓDIO 1 — "Nada acontece em Vila Serena"
-  // Narração: UM único áudio narrado pela Bia (narracao/narracao-completa.mp3), cortado nas pausas.
+  // Narração: UM único áudio com a voz de um NARRADOR (narracao/narracao-completa.mp3), cortado nas pausas.
   // O texto de cada cena está em "narracaoTexto"; npm run narracao -- episodio-01 monta o texto completo.
   // "vertical": ajustes usados só na versão Shorts (9:16).
   "titulo": "Nada acontece em Vila Serena",
-  "narrador": "Bia (a protagonista)",
+  "narrador": "Narrador",
   "resolucao": [320, 180],
   "cenas": [
     { // 01 — abertura: a cidade calma
-      "narracaoTexto": "Oi, eu sou a Bia. E essa é Vila Serena... a cidade mais calma do mundo.",
+      "narracaoTexto": "Esta é a Bia. E esta é Vila Serena... a cidade mais calma do mundo.",
       "cenario": "rua-comercial", "duracao": 7, "transicao": "fade", "seguir": "bia",
       "titulo": "NADA ACONTECE EM VILA SERENA", "subtitulo": "EPISÓDIO 1", "tituloInicio": 0.6, "tituloDuracao": 3.6,
       "elementos": [
@@ -19,7 +19,7 @@
       "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 02 — padaria
-      "narracaoTexto": "Aqui, a grande notícia do dia é o pão saindo do forno.",
+      "narracaoTexto": "Em Vila Serena, a grande notícia do dia era o pão saindo do forno.",
       "cenario": "padaria", "duracao": 7, "transicao": "dither",
       "elementos": [
         { "id": "bia", "personagem": "menina-capa", "x": -1.8 },
@@ -31,7 +31,7 @@
       "vertical": { "camera": { "x": -0.2, "zoom": 2 } }
     },
     { // 03 — delegacia: até a polícia está à toa
-      "narracaoTexto": "Até a polícia tem tempo de sobra. E o prefeito adora isso.",
+      "narracaoTexto": "Até a polícia tinha tempo de sobra. E o prefeito adorava isso.",
       "cenario": "delegacia", "duracao": 7, "transicao": "dither",
       "elementos": [
         { "id": "policial", "personagem": "policial", "x": -1.2 },
@@ -44,7 +44,7 @@
       "vertical": { "camera": { "x": -1.4, "zoom": 2 } }
     },
     { // 04 — escola
-      "narracaoTexto": "As crianças correm pra escola... e é isso. É sempre isso.",
+      "narracaoTexto": "As crianças corriam para a escola... e era só isso. Era sempre isso.",
       "cenario": "escola", "duracao": 7, "transicao": "dither",
       "elementos": [
         { "id": "prof", "personagem": "professora", "x": -2.8 },
@@ -59,7 +59,7 @@
       "vertical": { "camera": { "x": -1.6, "zoom": 2 }, "cameraFim": { "x": 0.9 } }
     },
     { // 05 — Bia reclama
-      "narracaoTexto": "Sério... eu não aguento mais tanta calmaria.",
+      "narracaoTexto": "A Bia já não aguentava mais tanta calmaria.",
       "cenario": "rua-comercial", "duracao": 6, "transicao": "fade", "seguir": "bia",
       "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 1, "z": 0 } ],
       "acoes": [
@@ -68,7 +68,7 @@
       "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 06 — o pedido ao pôr do sol
-      "narracaoTexto": "Naquela tarde, eu fiz um pedido.",
+      "narracaoTexto": "Naquela tarde, ela fez um pedido.",
       "fundo": "por-do-sol", "duracao": 6, "transicao": "dither",
       "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 0 }, { "id": "casa", "sprite": "casa", "x": 5, "z": -2 } ],
       "acoes": [ { "tipo": "falar", "alvo": "bia", "texto": "* Eu só queria UMA aventura...", "inicio": 1.6 } ],
@@ -87,7 +87,7 @@
       "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 08 — a luz na escola
-      "narracaoTexto": "Uma luz estranha piscou dentro da escola. Uma escola que devia estar vazia.",
+      "narracaoTexto": "Uma luz estranha piscou dentro da escola. Uma escola que deveria estar vazia.",
       "cenario": "escola", "fundo": "cidade-noite", "realce": 0.25, "duracao": 6, "transicao": "corte",
       "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 1.4, "virado": "esquerda" } ],
       "acoes": [
@@ -99,7 +99,7 @@
       "vertical": { "camera": { "x": -3.0, "zoom": 2 }, "cameraFim": { "x": 0.6 } }
     },
     { // 09 — o público decide
-      "narracaoTexto": "E agora? Eu vou lá ver o que é? Comenta 1 pra eu verificar, ou 2 pra eu ficar em casa. Você decide o próximo episódio!",
+      "narracaoTexto": "E agora? A Bia deve ir verificar? Comente 1 para ela verificar, ou 2 para ela ficar em casa. Você decide o próximo episódio!",
       "fundo": "preto", "duracao": 7, "transicao": "pixelizar", "ambiente": false,
       "camera": { "zoom": 2, "y": 2.2 }, "tituloPosicao": 0.2,
       "titulo": "E AGORA?", "subtitulo": "1 = VERIFICAR   2 = FICAR EM CASA", "tituloInicio": 0.6, "tituloDuracao": 6,
