@@ -134,6 +134,30 @@ async function gpu() {
   await s.fechar();
 }
 
+// Monta os textos da narração (campo "narracaoTexto" de cada cena) para colar no ElevenLabs.
+function narracao(nome) {
+  const dir = caminhoProjeto(nome);
+  const r = lerRoteiro(dir);
+  const falas = (r.cenas || []).map((c, i) => ({ n: i + 1, texto: c.narracaoTexto })).filter((f) => f.texto);
+  if (!falas.length) throw new Error('Nenhuma cena tem "narracaoTexto" no roteiro.');
+  const pasta = path.join(dir, PASTA_NARRACAO);
+  fs.mkdirSync(pasta, { recursive: true });
+  const pausa = '\n\n<break time="1.0s" />\n\n';
+  fs.writeFileSync(path.join(pasta, 'TEXTO-COMPLETO.txt'), falas.map((f) => f.texto).join(pausa) + '\n');
+  const narrador = r.narrador ? ` (narrado por ${r.narrador})` : '';
+  const md = [`# Narração — ${r.titulo || nome}${narrador}`, '',
+    'Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como',
+    '**`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac).', '',
+    'O gerador corta o áudio nas pausas: deixe uma pausa clara (meio segundo ou mais) entre as falas de cada cena.',
+    'O texto já vem com `<break time="1.0s" />` entre as cenas — no ElevenLabs essa marcação cria a pausa (se a voz',
+    'ignorar a marcação, apague-a e deixe só a linha em branco, ou gere com reticências no fim de cada fala).', '',
+    `São **${falas.length} falas** (uma por cena com narração):`, '', '| Cena | Fala |', '|---|---|',
+    ...falas.map((f) => `| ${f.n} | ${f.texto.replace(/\|/g, '/')} |`), '',
+    'Depois rode `npm run rascunho -- ' + nome + '`: o terminal mostra em quantos trechos o áudio foi cortado.'].join('\n');
+  fs.writeFileSync(path.join(pasta, 'TEXTOS-PARA-ELEVENLABS.md'), md + '\n');
+  console.log(`✔ ${falas.length} falas → ${path.join(pasta, 'TEXTO-COMPLETO.txt')}\n  Gere um único áudio e salve como ${path.join(pasta, 'narracao-completa.mp3')}`);
+}
+
 function sfx() {
   const dir = path.join(PASTA_BIBLIOTECA, 'sfx', '_gerados');
   fs.mkdirSync(dir, { recursive: true });
@@ -199,6 +223,7 @@ Gerador de vídeos pixel art (Three.js + GPU)
   npm run final -- meu-video        versão final 1080p com efeitos visuais e sonoros
   npm run previa -- meu-video       prévia em tempo real no navegador
   npm run gpu                       verifica GPU (WebGL) e NVENC
+  npm run narracao -- meu-video     monta o texto da narração para colar no ElevenLabs
   npm run sfx                       exporta os efeitos sonoros para sfx/_gerados
   npm run sprites                   gera sprites-disponiveis.png
   npm run lista [-- projeto]        lista fundos, sprites, sons e a biblioteca (personagens, cenários)
@@ -230,6 +255,7 @@ try {
     }
     case 'previa': await previa(pos[0]); break;
     case 'gpu': await gpu(); break;
+    case 'narracao': narracao(pos[0]); break;
     case 'sfx': sfx(); break;
     case 'sprites': await sprites(); break;
     case 'lista': await lista(); break;

@@ -1,22 +1,24 @@
-# Narração do Episódio 1 — textos para o ElevenLabs
+# Narração — Nada acontece em Vila Serena (narrado por Bia (a protagonista))
 
-Gere **um arquivo por cena**, com o nome exato da coluna "Arquivo", e salve **nesta pasta**
-(`projetos/episodio-01/narracao/`). Formatos aceitos: mp3, wav, m4a, ogg, flac.
-A cena se estica sozinha para caber a narração (que começa 0,3 s depois do início da cena).
+Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como
+**`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac).
 
-Dicas: use **a mesma voz** em todos (narrador), estabilidade ~50%, e exporte em MP3 44,1 kHz.
-As falas dos personagens aparecem nos balões com "blips" — não precisam de voz.
+O gerador corta o áudio nas pausas: deixe uma pausa clara (meio segundo ou mais) entre as falas de cada cena.
+O texto já vem com `<break time="1.0s" />` entre as cenas — no ElevenLabs essa marcação cria a pausa (se a voz
+ignorar a marcação, apague-a e deixe só a linha em branco, ou gere com reticências no fim de cada fala).
 
-| Arquivo | Cena | Texto da narração |
-|---|---|---|
-| `01.mp3` | Abertura — a cidade | Essa é a Lia. E essa é Vila Serena... a cidade mais calma do mundo. |
-| `02.mp3` | Padaria | Aqui, a grande notícia do dia é o pão saindo do forno. |
-| `03.mp3` | Delegacia | Até a polícia tinha tempo de sobra. E o prefeito adorava isso. |
-| `04.mp3` | Escola | As crianças corriam para a aula... e era isso. Era sempre isso. |
-| `05.mp3` | Lia reclama | A Lia estava cansada de tanta calmaria. |
-| `06.mp3` | Pôr do sol | Naquela tarde, ela fez um pedido. |
-| `07.mp3` | À noite | E naquela mesma noite... algo aconteceu. |
-| `08.mp3` | A luz na escola | Uma luz estranha piscou dentro da escola. Uma escola que deveria estar vazia. |
-| `09.mp3` | Decisão | E agora? A Lia deve ir verificar? Comente 1 para verificar, ou 2 para ela ficar em casa. Você decide o próximo episódio! |
+São **9 falas** (uma por cena com narração):
 
-Para pular a narração de uma cena, simplesmente não crie o arquivo dela.
+| Cena | Fala |
+|---|---|
+| 1 | Oi, eu sou a Bia. E essa é Vila Serena... a cidade mais calma do mundo. |
+| 2 | Aqui, a grande notícia do dia é o pão saindo do forno. |
+| 3 | Até a polícia tem tempo de sobra. E o prefeito adora isso. |
+| 4 | As crianças correm pra escola... e é isso. É sempre isso. |
+| 5 | Sério... eu não aguento mais tanta calmaria. |
+| 6 | Naquela tarde, eu fiz um pedido. |
+| 7 | E naquela mesma noite... algo aconteceu. |
+| 8 | Uma luz estranha piscou dentro da escola. Uma escola que devia estar vazia. |
+| 9 | E agora? Eu vou lá ver o que é? Comenta 1 pra eu verificar, ou 2 pra eu ficar em casa. Você decide o próximo episódio! |
+
+Depois rode `npm run rascunho -- episodio-01`: o terminal mostra em quantos trechos o áudio foi cortado.

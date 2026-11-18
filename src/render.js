@@ -108,6 +108,7 @@ export async function renderizar(nome, modo, opc = {}) {
   console.log(`  Cenas: ${roteiro.cenas.length}  •  Duração: ${roteiro.duracaoTotal.toFixed(1)}s  •  ${roteiro.resolucao.join('x')} interno → ${roteiro.resolucao.map((v) => v * m.escala).join('x')}  •  ${fps} fps`);
   const semNarr = roteiro.cenas.filter((c) => !c.narracao).map((c) => c.numero);
   console.log(`  Narração: ${narr.mapa.size}/${roteiro.cenas.length} cenas${semNarr.length ? `  (sem áudio: ${semNarr.join(', ')})` : ''}  — pasta: ${narr.pasta}`);
+  if (narr.unico) console.log(`  Narração única: ${narr.unico} cortada em ${narr.trechos} trechos (um por cena)`);
   if (narr.ignorados.length) avisos.push(`Arquivos de narração sem cena correspondente: ${narr.ignorados.join(', ')}`);
 
   const encoder = detectarEncoder(ff, cfg.encoder);

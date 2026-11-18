@@ -1,100 +1,111 @@
 {
   // EPISÓDIO 1 — "Nada acontece em Vila Serena"
-  // Narração: um arquivo por cena em narracao/ (01.mp3 ... 09.mp3). Textos em narracao/TEXTOS-PARA-ELEVENLABS.md
+  // Narração: UM único áudio narrado pela Bia (narracao/narracao-completa.mp3), cortado nas pausas.
+  // O texto de cada cena está em "narracaoTexto"; npm run narracao -- episodio-01 monta o texto completo.
   // "vertical": ajustes usados só na versão Shorts (9:16).
   "titulo": "Nada acontece em Vila Serena",
+  "narrador": "Bia (a protagonista)",
   "resolucao": [320, 180],
   "cenas": [
     { // 01 — abertura: a cidade calma
-      "cenario": "rua-comercial", "duracao": 7, "transicao": "fade", "seguir": "lia",
+      "narracaoTexto": "Oi, eu sou a Bia. E essa é Vila Serena... a cidade mais calma do mundo.",
+      "cenario": "rua-comercial", "duracao": 7, "transicao": "fade", "seguir": "bia",
       "titulo": "NADA ACONTECE EM VILA SERENA", "subtitulo": "EPISÓDIO 1", "tituloInicio": 0.6, "tituloDuracao": 3.6,
       "elementos": [
-        { "id": "lia", "personagem": "menina-capa", "x": -9, "z": 0 },
+        { "id": "bia", "personagem": "menina-capa", "x": -9, "z": 0 },
         { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": -2, "z": 5.4 },
         { "id": "caixa", "personagem": "caixa", "x": 4, "z": 5.2, "virado": "esquerda" } ],
-      "acoes": [ { "tipo": "andar", "alvo": "lia", "para": -1, "inicio": 0.4, "duracao": 5.5 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -1, "inicio": 0.4, "duracao": 5.5 } ],
       "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 02 — padaria
+      "narracaoTexto": "Aqui, a grande notícia do dia é o pão saindo do forno.",
       "cenario": "padaria", "duracao": 7, "transicao": "dither",
       "elementos": [
-        { "id": "lia", "personagem": "menina-capa", "x": -1.8 },
+        { "id": "bia", "personagem": "menina-capa", "x": -1.8 },
         { "id": "padeiro", "personagem": "padeiro", "x": 1.4, "virado": "esquerda" } ],
       "acoes": [
-        { "tipo": "falar", "alvo": "lia", "texto": "* Bom dia, seu Tonho! Alguma novidade?", "inicio": 0.8 },
+        { "tipo": "falar", "alvo": "bia", "texto": "* Bom dia, seu Tonho! Alguma novidade?", "inicio": 0.8 },
         { "tipo": "falar", "alvo": "padeiro", "texto": "* O pão saiu quentinho!", "inicio": 4.2 },
-        { "tipo": "emocao", "alvo": "lia", "icone": "...", "inicio": 5.8 } ],
+        { "tipo": "emocao", "alvo": "bia", "icone": "...", "inicio": 5.8 } ],
       "vertical": { "camera": { "x": -0.2, "zoom": 2 } }
     },
     { // 03 — delegacia: até a polícia está à toa
+      "narracaoTexto": "Até a polícia tem tempo de sobra. E o prefeito adora isso.",
       "cenario": "delegacia", "duracao": 7, "transicao": "dither",
       "elementos": [
         { "id": "policial", "personagem": "policial", "x": -1.2 },
         { "id": "prefeito", "personagem": "prefeito", "x": 1.4, "virado": "esquerda" },
-        { "id": "lia", "personagem": "menina-capa", "x": -3.6 } ],
+        { "id": "bia", "personagem": "menina-capa", "x": -3.6 } ],
       "acoes": [
         { "tipo": "emocao", "alvo": "policial", "icone": "zzz", "inicio": 0.5, "duracao": 2.4 },
         { "tipo": "falar", "alvo": "prefeito", "texto": "* Mais um dia perfeito! Nenhum problema!", "inicio": 2.6 },
-        { "tipo": "emocao", "alvo": "lia", "icone": "...", "inicio": 5.2 } ],
+        { "tipo": "emocao", "alvo": "bia", "icone": "...", "inicio": 5.2 } ],
       "vertical": { "camera": { "x": -1.4, "zoom": 2 } }
     },
     { // 04 — escola
+      "narracaoTexto": "As crianças correm pra escola... e é isso. É sempre isso.",
       "cenario": "escola", "duracao": 7, "transicao": "dither",
       "elementos": [
         { "id": "prof", "personagem": "professora", "x": -2.8 },
         { "id": "aluno", "personagem": "aluno", "x": -9 },
         { "id": "aluna", "personagem": "aluna", "x": -10.4 },
-        { "id": "lia", "personagem": "menina-capa", "x": 2.0, "virado": "esquerda" } ],
+        { "id": "bia", "personagem": "menina-capa", "x": 2.0, "virado": "esquerda" } ],
       "acoes": [
         { "tipo": "correr", "alvo": "aluno", "para": 0.6, "inicio": 0.4, "duracao": 2.2 },
         { "tipo": "correr", "alvo": "aluna", "para": -0.6, "inicio": 0.6, "duracao": 2.2 },
         { "tipo": "falar", "alvo": "prof", "texto": "* Sem correr, crianças!", "inicio": 2.2 },
-        { "tipo": "falar", "alvo": "lia", "texto": "* Até a escola é sem graça...", "inicio": 4.4 } ],
+        { "tipo": "falar", "alvo": "bia", "texto": "* Até a escola é sem graça...", "inicio": 4.4 } ],
       "vertical": { "camera": { "x": -1.6, "zoom": 2 }, "cameraFim": { "x": 0.9 } }
     },
-    { // 05 — Lia reclama
-      "cenario": "rua-comercial", "duracao": 6, "transicao": "fade", "seguir": "lia",
-      "elementos": [ { "id": "lia", "personagem": "menina-capa", "x": 1, "z": 0 } ],
+    { // 05 — Bia reclama
+      "narracaoTexto": "Sério... eu não aguento mais tanta calmaria.",
+      "cenario": "rua-comercial", "duracao": 6, "transicao": "fade", "seguir": "bia",
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 1, "z": 0 } ],
       "acoes": [
-        { "tipo": "andar", "alvo": "lia", "para": 5, "inicio": 0.3, "duracao": 2.6 },
-        { "tipo": "falar", "alvo": "lia", "texto": "* NADA acontece nessa cidade!", "inicio": 3.2 } ],
+        { "tipo": "andar", "alvo": "bia", "para": 5, "inicio": 0.3, "duracao": 2.6 },
+        { "tipo": "falar", "alvo": "bia", "texto": "* NADA acontece nessa cidade!", "inicio": 3.2 } ],
       "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 06 — o pedido ao pôr do sol
+      "narracaoTexto": "Naquela tarde, eu fiz um pedido.",
       "fundo": "por-do-sol", "duracao": 6, "transicao": "dither",
-      "elementos": [ { "id": "lia", "personagem": "menina-capa", "x": 0 }, { "id": "casa", "sprite": "casa", "x": 5, "z": -2 } ],
-      "acoes": [ { "tipo": "falar", "alvo": "lia", "texto": "* Eu só queria UMA aventura...", "inicio": 1.6 } ],
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 0 }, { "id": "casa", "sprite": "casa", "x": 5, "z": -2 } ],
+      "acoes": [ { "tipo": "falar", "alvo": "bia", "texto": "* Eu só queria UMA aventura...", "inicio": 1.6 } ],
       "vertical": { "camera": { "x": 0.6, "zoom": 2 } }
     },
     { // 07 — à noite, algo acontece
-      "cenario": "rua-comercial-noite", "duracao": 6, "transicao": "iris", "seguir": "lia",
-      "elementos": [ { "id": "lia", "personagem": "menina-capa", "x": -3, "z": 0 } ],
+      "narracaoTexto": "E naquela mesma noite... algo aconteceu.",
+      "cenario": "rua-comercial-noite", "duracao": 6, "transicao": "iris", "seguir": "bia",
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": -3, "z": 0 } ],
       "acoes": [
-        { "tipo": "andar", "alvo": "lia", "para": -0.5, "inicio": 0.3, "duracao": 2 },
+        { "tipo": "andar", "alvo": "bia", "para": -0.5, "inicio": 0.3, "duracao": 2 },
         { "tipo": "tremer", "intensidade": 0.9, "inicio": 2.8, "duracao": 1.2 },
         { "tipo": "flash", "inicio": 2.8 },
-        { "tipo": "emocao", "alvo": "lia", "icone": "!", "inicio": 3.1 } ],
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 3.1 } ],
       "sons": [ { "som": "revelar", "inicio": 2.6, "volume": 1 } ],
       "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 08 — a luz na escola
+      "narracaoTexto": "Uma luz estranha piscou dentro da escola. Uma escola que devia estar vazia.",
       "cenario": "escola", "fundo": "cidade-noite", "realce": 0.25, "duracao": 6, "transicao": "corte",
-      "elementos": [ { "id": "lia", "personagem": "menina-capa", "x": 1.4, "virado": "esquerda" } ],
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 1.4, "virado": "esquerda" } ],
       "acoes": [
         { "tipo": "magia", "posicao": [-4.0, 3.6], "inicio": 0.8 },
         { "tipo": "flash", "intensidade": 0.5, "inicio": 0.8 },
         { "tipo": "magia", "posicao": [-5.4, 3.6], "inicio": 2.2 },
-        { "tipo": "emocao", "alvo": "lia", "icone": "?", "inicio": 1.4 },
-        { "tipo": "falar", "alvo": "lia", "texto": "* Aquilo veio... da escola?", "inicio": 3.0 } ],
+        { "tipo": "emocao", "alvo": "bia", "icone": "?", "inicio": 1.4 },
+        { "tipo": "falar", "alvo": "bia", "texto": "* Aquilo veio... da escola?", "inicio": 3.0 } ],
       "vertical": { "camera": { "x": -3.0, "zoom": 2 }, "cameraFim": { "x": 0.6 } }
     },
     { // 09 — o público decide
+      "narracaoTexto": "E agora? Eu vou lá ver o que é? Comenta 1 pra eu verificar, ou 2 pra eu ficar em casa. Você decide o próximo episódio!",
       "fundo": "preto", "duracao": 7, "transicao": "pixelizar", "ambiente": false,
       "camera": { "zoom": 2, "y": 2.2 }, "tituloPosicao": 0.2,
       "titulo": "E AGORA?", "subtitulo": "1 = VERIFICAR   2 = FICAR EM CASA", "tituloInicio": 0.6, "tituloDuracao": 6,
       "legenda": "COMENTE 1 OU 2 - VOCÊ DECIDE O PRÓXIMO EPISÓDIO!", "legendaInicio": 1.6,
-      "elementos": [ { "id": "lia", "personagem": "menina-capa", "x": 0 } ],
-      "acoes": [ { "tipo": "emocao", "alvo": "lia", "icone": "?", "inicio": 1.2 } ],
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 0 } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "bia", "icone": "?", "inicio": 1.2 } ],
       "vertical": { "camera": { "zoom": 3, "y": 2.4 }, "tituloPosicao": 0.16 }
     }
   ]

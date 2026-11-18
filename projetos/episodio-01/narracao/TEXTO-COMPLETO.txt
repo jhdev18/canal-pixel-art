@@ -1,0 +1,33 @@
+Oi, eu sou a Bia. E essa é Vila Serena... a cidade mais calma do mundo.
+
+<break time="1.0s" />
+
+Aqui, a grande notícia do dia é o pão saindo do forno.
+
+<break time="1.0s" />
+
+Até a polícia tem tempo de sobra. E o prefeito adora isso.
+
+<break time="1.0s" />
+
+As crianças correm pra escola... e é isso. É sempre isso.
+
+<break time="1.0s" />
+
+Sério... eu não aguento mais tanta calmaria.
+
+<break time="1.0s" />
+
+Naquela tarde, eu fiz um pedido.
+
+<break time="1.0s" />
+
+E naquela mesma noite... algo aconteceu.
+
+<break time="1.0s" />
+
+Uma luz estranha piscou dentro da escola. Uma escola que devia estar vazia.
+
+<break time="1.0s" />
+
+E agora? Eu vou lá ver o que é? Comenta 1 pra eu verificar, ou 2 pra eu ficar em casa. Você decide o próximo episódio!

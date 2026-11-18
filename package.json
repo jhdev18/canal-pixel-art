@@ -16,7 +16,8 @@
     "gpu": "node src/cli.js gpu",
     "sfx": "node src/cli.js sfx",
     "sprites": "node src/cli.js sprites",
-    "lista": "node src/cli.js lista"
+    "lista": "node src/cli.js lista",
+    "narracao": "node src/cli.js narracao"
   },
   "engines": {
     "node": ">=18"
