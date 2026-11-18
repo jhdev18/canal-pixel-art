@@ -43,7 +43,10 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       }
     }
     // Câmera padrão: chão a ~80% da altura da tela (funciona em 16:9 e 9:16).
-    cena.camera = { x: 0, y: Math.round(res[1] * 0.3) / 16, zoom: 1, ...(cena.camera || {}) };
+    const camPadrao = cena.vista === 'diagonal' ? { x: 0, y: 2.2, zoom: 1 }
+      : cena.vista === 'avenida' ? { x: 0.6, y: 2.6, z: 11, zoom: 1 }
+      : { x: 0, y: Math.round(res[1] * 0.3) / 16, zoom: 1 };
+    cena.camera = { ...camPadrao, ...(cena.camera || {}) };
     cena.narracaoInicio = cena.narracaoInicio ?? 0.3;
     const narr = narracoes.get(indice);
     let dur = cena.duracao ?? 4;
@@ -160,12 +163,15 @@ export function estadoCamera(cena, t) {
     const fim = { ...base, ...cena.cameraFim };
     const p = easeInOut(clamp(t / cena.duracao));
     cam = { x: lerp(base.x, fim.x, p), y: lerp(base.y, fim.y, p), zoom: lerp(base.zoom, fim.zoom, p) };
+    if (base.z != null) cam.z = lerp(base.z, fim.z ?? base.z, p);
   }
   for (const a of cena.acoes) {
     if (a.tipo !== 'camera' || t < a.inicio) continue;
     const p = (EASINGS[a.easing] || easeInOut)(clamp((t - a.inicio) / Math.max(a.duracao, 1e-6)));
     const alvo = { ...cam, ...(a.para || {}) };
+    const zAnt = cam.z;
     cam = { x: lerp(cam.x, alvo.x, p), y: lerp(cam.y, alvo.y, p), zoom: lerp(cam.zoom, alvo.zoom, p) };
+    if (zAnt != null) cam.z = lerp(zAnt, alvo.z ?? zAnt, p);
   }
   if (cena.seguir) {
     const el = elementoPorId(cena, cena.seguir);

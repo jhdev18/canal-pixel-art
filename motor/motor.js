@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './sprites-rpg.js';
 import './sprites-detalhados.js';
-import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
+import { criarVista } from './vistas.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
 import { PosProcessamento } from './pos.js';
@@ -115,21 +115,11 @@ class Motor {
   }
 
   construirCena(c) {
-    const { W, H, D } = this;
-    const cena = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(FOV, W / H, 0.1, 2000);
-    camera.position.z = D;
-
-    // Alcance horizontal que a câmera percorre (para dimensionar as camadas).
-    let xmin = Infinity, xmax = -Infinity, zoomMin = 1;
-    for (let t = 0; t <= c.duracao; t += 0.2) {
-      const s = estadoCamera(c, t);
-      xmin = Math.min(xmin, s.x); xmax = Math.max(xmax, s.x); zoomMin = Math.min(zoomMin, s.zoom);
-    }
-    if (!NOMES_FUNDOS.includes(c.fundo)) this.avisos.push(`Fundo desconhecido "${c.fundo}" (cena ${c.numero}); usando floresta-dia.`);
-    const fundo = criarFundo(c.fundo, { W, H, D, camY: estadoCamera(c, 0).y, alcance: [xmin, xmax], zoomMin, semente: c.semente ?? c.numero * 13 }, c.fundoOpcoes || {});
-    cena.background = fundo.ceu.textura;
-    fundo.objetos.forEach((o) => cena.add(o));
+    const { W, H } = this;
+    // A vista (lateral, diagonal ou avenida) monta o cenário, a câmera e o posicionamento.
+    const vista = criarVista(c, this);
+    const { cena, camera } = vista;
+    const fundo = vista;
     const amb = c.luzAmbiente || {};
     // Three.js usa iluminação física (Lambert = albedo/π): multiplicamos por π para que
     // intensidade 1 mostre exatamente as cores desenhadas.
@@ -148,8 +138,7 @@ class Motor {
       const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2, 0);
       const mat = new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
-      const z = el.z ?? 0;
-      malha.renderOrder = ordemPorZ(z) + 2 + i * 2;
+      malha.renderOrder = vista.ordemInicial(el, i);
       cena.add(malha);
       const obj = { def: el, sprite, texturas, malha, mat, h: h * esc, esc, realce: el.realce ?? realce };
       // Camada de brilho: pixels que emitem luz (lanterna, olhos, telas) ficam fora da iluminação.
@@ -167,6 +156,7 @@ class Motor {
         const sm = new THREE.Mesh(new THREE.PlaneGeometry(p.w / PPU, p.h / PPU),
           new THREE.MeshBasicMaterial({ map: texturaCanvas(p.paraCanvas()), transparent: true, opacity: 0.3, depthWrite: false }));
         sm.renderOrder = malha.renderOrder - 1;
+        if (vista.sombraDeitada) sm.rotation.x = -Math.PI / 2;
         cena.add(sm);
         obj.sombra = sm;
       }
@@ -191,7 +181,7 @@ class Motor {
       const e = porId.get(id);
       if (!e) return null;
       const st = estadoElemento(c, e.def, t);
-      return { x: st.x, y: st.y + e.h * st.escala / 2, z: e.def.z ?? 0 };
+      return vista.paraMundo(e.def, st, e.h * st.escala / 2);
     };
     c.acoes.forEach((a, k) => {
       const add = (tipo, t0, posFn, mult = 1) => {
@@ -208,7 +198,7 @@ class Motor {
         case 'magia': add('magia', a.inicio, daPosicao(a) || fixo(centroEl(a.alvo, a.inicio) || { x: 0, y: 1, z: 0 })); break;
         case 'pular': if (a.alvo && porId.get(a.alvo)?.sprite.personagem) {
           const fim = a.inicio + a.duracao;
-          add('poeira', fim, () => { const st = estadoElemento(c, porId.get(a.alvo).def, fim); return { x: st.x, y: st.yBase + 0.1, z: 0 }; });
+          add('poeira', fim, () => { const d = porId.get(a.alvo).def, st = estadoElemento(c, d, fim); return vista.paraMundo(d, { ...st, y: st.yBase }, 0.1); });
         } break;
         case 'emocao': if (a.icone === 'coracao' && a.alvo) add('coracoes', a.inicio, fixo(centroEl(a.alvo, a.inicio))); break;
         default: break;
@@ -216,21 +206,24 @@ class Motor {
     });
     rajadas.forEach((rj) => { const p = rj.pos(); rj.posFixa = p && { ...p }; });
 
-    const tipoClima = c.clima === 'nenhum' ? null : (c.clima || fundo.clima);
+    const tipoClima = c.clima === 'nenhum' ? null : (c.clima || vista.climaPadrao);
     const clima = tipoClima ? criarClima(tipoClima, W, H) : null;
     if (c.clima && c.clima !== 'nenhum' && !clima) this.avisos.push(`Clima desconhecido "${c.clima}" (cena ${c.numero}).`);
     if (clima) overlay.add(clima.objeto);
 
-    return { def: c, cena, camera, overlay, fundo, elementos, porId, rajadas, clima };
+    return { def: c, cena, camera, overlay, fundo, vista, elementos, porId, rajadas, clima };
   }
 
   liberar(obj) {
     obj.cena.traverse((o) => {
       if (o.geometry) o.geometry.dispose();
-      if (o.material) { if (o.material.map && !o.material.map.userData.compartilhada) o.material.map.dispose(); o.material.dispose(); }
+      for (const m of [o.material].flat().filter(Boolean)) {   // caixas 3D têm vários materiais
+        for (const t of [m.map, m.emissiveMap]) if (t && !t.userData.compartilhada) t.dispose();
+        m.dispose();
+      }
     });
     obj.overlay.traverse((o) => { if (o !== this.ui.malha) { o.geometry?.dispose(); o.material?.dispose(); } });
-    obj.fundo.ceu.textura.dispose();
+    obj.vista.liberar();
   }
 
   obterCena(c) {
@@ -250,8 +243,8 @@ class Motor {
     const c = obj.def;
     const cam = estadoCamera(c, t);
     const ef = efeitosTela(c, t);
-    obj.camera.position.set(snap(cam.x) + ef.tremorX / PPU, snap(cam.y) + ef.tremorY / PPU, this.D);
-    obj.camera.zoom = cam.zoom;
+    const vista = obj.vista;
+    vista.atualizarCamera(cam, ef);
     obj.camera.updateProjectionMatrix();
     obj.camera.updateMatrixWorld();
 
@@ -272,28 +265,28 @@ class Motor {
       if (e.sprite.flutua && e.def.flutuar !== false && st.anim === 'parado') bob = Math.round(Math.sin(tAnim * 3) * 1.5) / PPU;
       if (e.sprite.voa) bob = Math.round(Math.sin(tAnim * 4) * 3) / PPU;
       e.mat.map = e.mat.emissiveMap = e.texturas[q] || e.texturas[0];
-      const z = e.def.z ?? 0;
-      e.malha.position.set(snap(st.x), snap(st.y) + bob, z);
+      vista.posicionar(e, st, bob);
       const s = e.esc * st.escala;
       e.malha.scale.set(st.virado * s, s, 1);
       e.mat.opacity = st.alpha;
       if (e.brilho) {
         e.brilho.mat.map = e.brilho.texturas[q] || e.brilho.texturas[0];
         e.brilho.malha.position.copy(e.malha.position); e.brilho.malha.scale.copy(e.malha.scale);
+        e.brilho.malha.quaternion.copy(e.malha.quaternion); e.brilho.malha.renderOrder = e.malha.renderOrder + 1;
         e.brilho.mat.opacity = st.alpha;
       }
       e.mat.emissive.setRGB(e.realce + st.vermelho * 0.9, e.realce * (1 - st.vermelho), e.realce * (1 - st.vermelho));
       if (e.sombra) {
         const enc = Math.max(0.4, 1 - st.alturaPulo * 0.25);
-        e.sombra.position.set(snap(st.x), st.yBase + 1 / PPU, z);
+        vista.posicionarSombra(e, st);
         e.sombra.scale.set(enc * e.esc, e.esc, 1);
       }
       if (e.luz) {
         const { cfg, L, base } = e.luz;
-        L.position.set(st.x, st.y + (cfg.dy ?? 0.5) * e.esc, z + (cfg.dz ?? 1));
+        L.position.copy(vista.paraMundo(e.def, st, (cfg.dy ?? 0.5) * e.esc)); L.position.z += cfg.dz ?? 1;
         L.intensity = cfg.cintila ? base * (1 + 0.18 * ruido1(t * 9, 3) + 0.08 * ruido1(t * 23, 5)) : base;
       }
-      if (e.brasas) e.brasas.atualizar(t, this.projetar(obj, { x: st.x, y: st.y + 0.5, z }));
+      if (e.brasas) e.brasas.atualizar(t, this.projetar(obj, vista.paraMundo(e.def, st, 0.5)));
     }
     for (const rj of obj.rajadas) {
       const dt = t - rj.t0;
@@ -310,7 +303,7 @@ class Motor {
     const e = id && obj.porId.get(id);
     if (!e) return { x: this.W / 2, y: this.H / 2 };
     const st = estadoElemento(c, e.def, t);
-    return this.projetar(obj, { x: st.x, y: st.y + e.h / 2, z: e.def.z ?? 0 });
+    return this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h / 2));
   }
 
   renderizarTempo(T, paraTela = false) {
@@ -332,7 +325,7 @@ class Motor {
         const e = obj.porId.get(id);
         if (!e) return null;
         const st = estadoElemento(c, e.def, tt);
-        const p = this.projetar(obj, { x: st.x, y: st.y + e.h * st.escala, z: e.def.z ?? 0 });
+        const p = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
         return { x: p.x, y: this.H - p.y };
       },
     });

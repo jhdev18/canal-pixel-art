@@ -282,6 +282,33 @@ Na cena: `"ambiente": ["chuva", ["vento", 0.3]]` ou `"ambiente": false`.
 nome em `projetos/meu-video/sfx/` (só nesse projeto) ou em `biblioteca/sfx/` (todos os projetos):
 `biblioteca/sfx/explosao.mp3`, `biblioteca/sfx/moeda.wav`... Pode inventar nomes novos e usar com `{ "tipo": "som", "som": "meu-efeito" }`.
 
+### Vistas (`"vista"` na cena)
+
+A câmera **nunca gira para os lados** — assim os pixels continuam alinhados com a tela e a pixel art fica nítida.
+
+| Vista | Como é | Coordenadas dos elementos |
+|---|---|---|
+| `lateral` (padrão) | cenário em camadas com paralaxe, usando `fundo` | `x` horizontal, `y` altura, `z` profundidade |
+| `diagonal` | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
+| `avenida` | avenida em **perspectiva** indo para o fundo, prédios dos dois lados, postes e carros | `x` lateral (−3 a 3 é o asfalto), `z` profundidade (maior = mais perto da câmera) |
+
+```jsonc
+{ "vista": "diagonal", "seguir": "menina",
+  "rua": { "periodo": "noite", "faixaPedestre": 0, "comprimento": 44, "distanciaPostes": 8, "semente": 3 },
+  "elementos": [ { "id": "menina", "personagem": "menina-capa", "x": -6, "z": 0 } ],
+  "acoes": [ { "tipo": "andar", "alvo": "menina", "para": 2, "inicio": 0.3, "duracao": 4 } ] }
+```
+
+```jsonc
+{ "vista": "avenida",
+  "avenida": { "periodo": "noite", "carros": true, "comprimento": 80 },
+  "camera": { "z": 11.5 }, "cameraFim": { "z": 9.5 },     // a câmera avança pela avenida
+  "elementos": [ { "id": "menina", "personagem": "menina-capa", "x": 1.2, "z": 3.4 } ] }
+```
+
+`"periodo": "dia"` também funciona nas duas. Na `diagonal` a câmera usa `x` (ao longo da rua), `y` (altura do
+enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na avenida) e `zoom`.
+
 ### Fundos
 
 `floresta-dia`, `floresta-noite`, `por-do-sol`, `caverna`, `deserto`, `espaco`, `cidade-noite`, `neve`,
