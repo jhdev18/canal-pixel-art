@@ -161,7 +161,20 @@ export function estadoCamera(cena, t) {
   // Vista avenida: a câmera fica parada e só se move junto com o protagonista ("seguir"),
   // acompanhando o deslocamento dele a partir do início da cena.
   if (cena.vista === 'avenida') {
-    const cam = { ...base };
+    let cam = { ...base };
+    // movimentoReal (teste): permite avançar/recuar com cameraFim e ações de câmera
+    if (cena.avenida?.movimentoReal) {
+      if (cena.cameraFim) {
+        const fim = { ...base, ...cena.cameraFim }, p = easeInOut(clamp(t / cena.duracao));
+        cam = { ...cam, y: lerp(base.y, fim.y, p), zoom: lerp(base.zoom, fim.zoom, p), z: lerp(base.z, fim.z ?? base.z, p) };
+      }
+      for (const a of cena.acoes) {
+        if (a.tipo !== 'camera' || t < a.inicio) continue;
+        const p = (EASINGS[a.easing] || easeInOut)(clamp((t - a.inicio) / Math.max(a.duracao, 1e-6)));
+        const alvo = { ...cam, ...(a.para || {}) };
+        cam = { ...cam, y: lerp(cam.y, alvo.y, p), zoom: lerp(cam.zoom, alvo.zoom, p), z: lerp(cam.z, alvo.z ?? cam.z, p) };
+      }
+    }
     const el = cena.seguir && elementoPorId(cena, cena.seguir);
     if (el) {
       const x0 = estadoElemento(cena, el, 0).x;

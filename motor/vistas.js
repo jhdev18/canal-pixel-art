@@ -159,9 +159,11 @@ function vistaAvenida(c, motor) {
   const FOLGA = 4;                                    // largura virtual = (1 + 2*FOLGA) telas
   const LARG = W * (1 + 2 * FOLGA);
   const focal = () => (H / 2) / Math.tan((camera.fov * Math.PI) / 360);
-  const ppuEm = (z) => focal() / Math.max(0.6, (base.z ?? 11) - z);   // pixels por unidade nessa profundidade
+  const real = !!op.movimentoReal;                    // teste: câmera se move de verdade
+  const camRef = () => (real ? camera.position : { x: base.x, z: base.z ?? 11 });
+  const ppuEm = (z) => focal() / Math.max(0.6, camRef().z - z);       // pixels por unidade nessa profundidade
   const zRef = () => { const el = c.seguir && c.elementos.find((e) => e.id === c.seguir); return el?.z ?? 3; };
-  const presoX = (x, z) => { const k = ppuEm(z); return base.x + Math.round((x - base.x) * k) / k; };
+  const presoX = (x, z) => { const k = ppuEm(z), cx = camRef().x; return cx + Math.round((x - cx) * k) / k; };
   const presoY = (y, z) => { const k = ppuEm(z); return Math.round(y * k) / k; };
   camera.fov = 52 / (base.zoom ?? 1);
   camera.aspect = LARG / H;
@@ -184,6 +186,19 @@ function vistaAvenida(c, motor) {
     },
     posicionarSombra(e, st) { const z = e.def.z ?? 3; e.sombra.position.set(presoX(st.x, z), 0.02, z); },
     atualizarCamera(cam, ef) {
+      if (real) {
+        // a câmera anda de verdade; o passo lateral é ajustado para o plano dos personagens
+        // andar pixels inteiros. O céu acompanha a câmera (fica "no infinito").
+        const z = cam.z ?? base.z ?? 11;
+        camera.position.z = z;
+        const k = ppuEm(zRef());
+        camera.position.set(base.x + Math.round((cam.x - base.x) * k) / k + ef.tremorX / k, cam.y + ef.tremorY / k, z);
+        camera.fov = 52 / (cam.zoom ?? 1);
+        camera.setViewOffset(LARG, H, W * FOLGA, 0, W, H);
+        const dir = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+        ceu.position.copy(camera.position).addScaledVector(dir, 150);
+        return;
+      }
       const dx = Math.round((cam.x - base.x) * ppuEm(zRef())) + ef.tremorX;
       camera.setViewOffset(LARG, H, W * FOLGA + dx, -ef.tremorY, W, H);
     },

@@ -15,6 +15,7 @@ uniform int uNumLuzes;
 uniform vec3 uAmb, uCorLuz, uNeblina;
 uniform vec2 uNeblinaDist;
 uniform float uPesoVertical;
+uniform float uEstavel;   // 1 = desenho estável para câmera em movimento (linhas de 2 px, menos detalhe fino)
 varying vec3 vMundo;
 float bayer4(vec2 p) {
   int x = int(mod(p.x, 4.0)), y = int(mod(p.y, 4.0));
@@ -25,7 +26,7 @@ float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 // linha de exatamente ~1 pixel sobre uma grade de passo 'passo' (px = mundo por pixel)
 float linha(float coord, float passo, float px) {
   float d = abs(fract(coord / passo + 0.5) - 0.5) * passo;
-  return step(d, px * 0.5);
+  return step(d, px * (uEstavel > 0.5 ? 1.0 : 0.5));
 }
 // neblina em faixas (pixel art), borda reta
 vec3 neblina(vec3 c) {
@@ -62,16 +63,16 @@ void main() {
   if (ax < 3.0) {
     c = vec3(0.216, 0.224, 0.29);
     float s = exp2(ceil(log2(max(px, 1.0 / 32.0))));   // grão do asfalto ~1 pixel em qualquer distância
-    float n = hash(floor(p / s));
+    float n = uEstavel > 0.5 ? 1.0 : hash(floor(p / s));
     if (n < 0.08) c = vec3(0.27, 0.275, 0.35); else if (n < 0.14) c = vec3(0.165, 0.165, 0.215);
-    if (ax < 0.07 + px * 0.5 && fract(p.y / 2.0) < 0.55) c = vec3(0.9, 0.74, 0.24);            // faixa central
+    if (ax < 0.07 + px * (uEstavel > 0.5 ? 1.0 : 0.5) && fract(p.y / 2.0) < 0.55) c = vec3(0.9, 0.74, 0.24);            // faixa central
     if (p.y > uFaixa.x && p.y < uFaixa.y && fract((p.x + 3.0) * 1.0) < 0.5) c = vec3(0.88, 0.88, 0.92);
   } else if (ax < 3.3) {
     c = ax < 3.15 ? vec3(0.71, 0.72, 0.77) : vec3(0.6, 0.61, 0.67);
     if (abs(ax - 3.15) < px * 0.5) c = vec3(0.29, 0.29, 0.35);
   } else {
     c = vec3(0.478, 0.486, 0.565);
-    if (0.5 / px > 4.0 && (linha(p.x, 0.5, px) > 0.0 || linha(p.y, 0.5, px) > 0.0)) c = vec3(0.37, 0.376, 0.455);
+    if (0.5 / px > (uEstavel > 0.5 ? 8.0 : 4.0) && (linha(p.x, 0.5, px) > 0.0 || linha(p.y, 0.5, px) > 0.0)) c = vec3(0.37, 0.376, 0.455);
     if (ax > 5.6) c *= 0.82;                             // sombra junto às fachadas
   }
   gl_FragColor = vec4(iluminar(c, 1.0), 1.0);
@@ -88,7 +89,7 @@ void main() {
   float px = max(fwidth(q.x), fwidth(q.y));
   vec3 c = uCor0;
   bool emissivo = false;
-  if (uTijolo > 0.5 && 0.25 / px > 3.0 && linha(q.y, 0.25, px) > 0.0) c = uCor1;   // fiadas
+  if (uEstavel < 0.5 && uTijolo > 0.5 && 0.25 / px > 3.0 && linha(q.y, 0.25, px) > 0.0) c = uCor1;   // fiadas
   if (q.x < 0.12 || q.x > uTam.x - 0.12) c = uCor2;                                // pilastras
   if (q.y < 0.1) c = uCor2;
   if (uParede > 0.5 && q.y < 1.45) {                                                // parede lateral: térreo liso
@@ -117,7 +118,7 @@ void main() {
     vec2 celula = vec2(1.0, 1.5);
     vec2 g = (q - vec2(0.0, 1.55)) / celula;
     vec2 id = floor(g), l = fract(g) * celula;
-    float tamPx = celula.x / px;                       // largura da célula em pixels
+    float tamPx = celula.x / px / (uEstavel > 0.5 ? 1.8 : 1.0);   // célula em pixels (modo estável: pede mais espaço)
     bool acesa = uNoite > 0.5 && hash(id + uSemente) < (uParede > 0.5 ? 0.25 : 0.5);
     if (uParede > 0.5 && mod(id.x, 2.0) > 0.5) { gl_FragColor = vec4(iluminar(c * 0.8, 1.0), 1.0); return; }
     vec3 vidro = acesa ? vec3(1.0, 0.83, 0.42) : vec3(0.16, 0.2, 0.32);
@@ -235,6 +236,7 @@ export function gerarAvenida(opc = {}) {
     uNeblina: { value: v3(neblina[0]) },
     uNeblinaDist: { value: new THREE.Vector2(neblina[1], neblina[2]) },
     uPesoVertical: { value: 1 },
+    uEstavel: { value: opc.movimentoReal ? 1 : 0 },
   });
   const materiais = [];
   const shader = (frag, extra) => {

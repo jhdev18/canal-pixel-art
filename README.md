@@ -311,6 +311,10 @@ simplifica com a distância, sem texturas esticadas pela perspectiva. `"periodo"
 enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na avenida) e `zoom`. Na `avenida` a câmera fica **parada**:
 `cameraFim` e ações de câmera são ignorados, e ela só acompanha o protagonista (`seguir`) enquanto ele se move.
 
+*Experimental:* `"avenida": { "movimentoReal": true }` faz a câmera se mover de verdade (acompanhar de lado com
+paralaxe real e avançar com `cameraFim`/ação `camera` em `z`). Usa um desenho mais simples (linhas de 2 px, sem
+grão nem fiadas) para reduzir o tremido, que mesmo assim pode aparecer de leve no avanço.
+
 ### Fundos
 
 `floresta-dia`, `floresta-noite`, `por-do-sol`, `caverna`, `deserto`, `espaco`, `cidade-noite`, `neve`,
