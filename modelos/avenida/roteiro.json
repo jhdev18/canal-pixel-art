@@ -1,0 +1,46 @@
+{
+  "titulo": "Avenida - perspectiva",
+  "cenas": [
+    {
+      "vista": "avenida",
+      "duracao": 7,
+      "transicao": "fade",
+      "seguir": "menina",
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": 1.2,
+          "z": 3.4
+        },
+        {
+          "id": "robo",
+          "personagem": "robo-semaforo",
+          "x": 3.9,
+          "z": 3.0
+        },
+        {
+          "id": "pombo",
+          "personagem": "pombo-fofoqueiro",
+          "x": -4.4,
+          "z": 1.5
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "falar",
+          "alvo": "menina",
+          "texto": "* Que avenida enorme...",
+          "inicio": 0.6
+        },
+        {
+          "tipo": "andar",
+          "alvo": "menina",
+          "para": -1.2,
+          "inicio": 4.0,
+          "duracao": 1.8
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "titulo": "Diagonal - rua desenhada",
+  "cenas": [
+    {
+      "vista": "diagonal",
+      "duracao": 7,
+      "transicao": "fade",
+      "seguir": "menina",
+      "rua": {
+        "periodo": "noite",
+        "faixaPedestre": -2
+      },
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": -6,
+          "z": 0
+        },
+        {
+          "id": "cao",
+          "personagem": "cao-guarda",
+          "x": 3.5,
+          "z": 0.2,
+          "virado": "esquerda"
+        },
+        {
+          "id": "pombo",
+          "personagem": "pombo-fofoqueiro",
+          "x": 1,
+          "z": 5.4
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "andar",
+          "alvo": "menina",
+          "para": 1.5,
+          "inicio": 0.4,
+          "duracao": 3.6
+        },
+        {
+          "tipo": "falar",
+          "alvo": "cao",
+          "texto": "* Boa noite!",
+          "inicio": 4.4
+        }
+      ]
+    }
+  ]
+}

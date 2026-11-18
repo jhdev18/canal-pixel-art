@@ -1,0 +1,39 @@
+{
+  "titulo": "Lateral - cidade estilo RPG",
+  "cenas": [
+    {
+      "cenario": "cidade-rpg-chuva",
+      "duracao": 6,
+      "transicao": "fade",
+      "seguir": "menina",
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": -4
+        },
+        {
+          "id": "robo",
+          "personagem": "robo-semaforo",
+          "x": 2,
+          "virado": "esquerda"
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "andar",
+          "alvo": "menina",
+          "para": -0.8,
+          "inicio": 0.4,
+          "duracao": 2.4
+        },
+        {
+          "tipo": "falar",
+          "alvo": "robo",
+          "texto": "* Pode atravessar.",
+          "inicio": 3.0
+        }
+      ]
+    }
+  ]
+}

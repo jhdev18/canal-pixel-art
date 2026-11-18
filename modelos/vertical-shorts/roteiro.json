@@ -1,0 +1,35 @@
+{
+  "titulo": "Vertical - Shorts",
+  "resolucao": [
+    180,
+    320
+  ],
+  "cenas": [
+    {
+      "fundo": "cidade-noite",
+      "duracao": 6,
+      "transicao": "fade",
+      "titulo": "VOCÊ SABIA?",
+      "clima": "chuva",
+      "camera": {
+        "zoom": 2,
+        "y": 3.2
+      },
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": 0
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "falar",
+          "alvo": "menina",
+          "texto": "* Formato 9:16 para Shorts e Reels.",
+          "inicio": 2
+        }
+      ]
+    }
+  ]
+}

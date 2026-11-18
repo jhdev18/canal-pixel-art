@@ -1,0 +1,41 @@
+{
+  "titulo": "Avenida - avanço de câmera (uso pontual)",
+  "cenas": [
+    {
+      "vista": "avenida",
+      "duracao": 4,
+      "transicao": "fade",
+      "avenida": {
+        "movimentoReal": true
+      },
+      "camera": {
+        "z": 11.5
+      },
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": 0.4,
+          "z": -2
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "camera",
+          "para": {
+            "z": 4
+          },
+          "inicio": 1.2,
+          "duracao": 0.7,
+          "easing": "suave"
+        },
+        {
+          "tipo": "emocao",
+          "alvo": "menina",
+          "icone": "!",
+          "inicio": 2.2
+        }
+      ]
+    }
+  ]
+}

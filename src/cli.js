@@ -73,7 +73,17 @@ async function novo(nome) {
   const dir = path.join(RAIZ, 'projetos', nome);
   if (fs.existsSync(path.join(dir, 'roteiro.json'))) throw new Error(`Já existe: ${dir}`);
   for (const sub of [PASTA_NARRACAO, 'sfx', 'sprites', 'saida']) fs.mkdirSync(path.join(dir, sub), { recursive: true });
-  fs.writeFileSync(path.join(dir, 'roteiro.json'), JSON.stringify(ROTEIRO_NOVO(nome.replace(/[-_]/g, ' ').toUpperCase()), null, 2));
+  const modelo = flags.modelo;
+  if (modelo) {
+    const arq = path.join(RAIZ, 'modelos', String(modelo), 'roteiro.json');
+    if (!fs.existsSync(arq)) {
+      const lista = fs.readdirSync(path.join(RAIZ, 'modelos')).filter((d) => fs.existsSync(path.join(RAIZ, 'modelos', d, 'roteiro.json')));
+      throw new Error(`Modelo "${modelo}" não existe. Modelos: ${lista.join(', ')}`);
+    }
+    fs.copyFileSync(arq, path.join(dir, 'roteiro.json'));
+  } else {
+    fs.writeFileSync(path.join(dir, 'roteiro.json'), JSON.stringify(ROTEIRO_NOVO(nome.replace(/[-_]/g, ' ').toUpperCase()), null, 2));
+  }
   fs.writeFileSync(path.join(dir, PASTA_NARRACAO, 'LEIA-ME.txt'), LEIA_ME_NARRACAO);
   fs.writeFileSync(path.join(dir, 'sfx', 'LEIA-ME.txt'), 'Opcional: coloque aqui um arquivo com o nome de um efeito (ex.: moeda.wav, explosao.mp3)\npara substituir o efeito gerado automaticamente. Veja os nomes com: npm run lista\n');
   fs.writeFileSync(path.join(dir, 'sprites', 'LEIA-ME.txt'), 'Opcional: sprites PNG só deste projeto (fundo transparente).\nPara usar em todos os projetos, coloque em biblioteca/sprites/.\nUse no roteiro: { "sprite": "arquivo:meu-sprite.png", "quadros": 4, "fps": 8 }\nQuadros lado a lado na horizontal.\n');
@@ -182,7 +192,7 @@ SPRITES PNG: ${listarSpritesBiblioteca().join(', ') || '(nenhum em biblioteca/sp
 const AJUDA = `
 Gerador de vídeos pixel art (Three.js + GPU)
 
-  npm run novo -- meu-video         cria projetos/meu-video
+  npm run novo -- meu-video         cria projetos/meu-video  (--modelo diagonal: começa de um modelo; veja FORMAS-DE-VIDEO.md)
   npm run rascunho -- meu-video     rascunho rápido (baixa resolução, só narração) + storyboard.png
   npm run final -- meu-video        versão final 1080p com efeitos visuais e sonoros
   npm run previa -- meu-video       prévia em tempo real no navegador

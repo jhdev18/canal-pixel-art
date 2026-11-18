@@ -1,0 +1,29 @@
+{
+  "titulo": "Batalha",
+  "cenas": [
+    {
+      "cenario": "batalha",
+      "duracao": 5,
+      "legenda": "* UM CONE BLOQUEIA O CAMINHO.",
+      "elementos": [
+        {
+          "id": "cone",
+          "personagem": "cone-agressivo",
+          "x": -2.2
+        },
+        {
+          "id": "bueiro",
+          "personagem": "bueiro-olhos",
+          "x": 2.2
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "tremer",
+          "intensidade": 0.4,
+          "inicio": 1.0
+        }
+      ]
+    }
+  ]
+}

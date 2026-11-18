@@ -1,0 +1,67 @@
+{
+  "titulo": "Lateral - paisagem",
+  "cenas": [
+    {
+      "fundo": "floresta-dia",
+      "duracao": 6,
+      "transicao": "fade",
+      "titulo": "TÍTULO DO EPISÓDIO",
+      "subtitulo": "SUBTÍTULO",
+      "camera": {
+        "x": 0
+      },
+      "cameraFim": {
+        "x": 3
+      },
+      "elementos": [
+        {
+          "id": "heroi",
+          "personagem": "menina-capa",
+          "x": -6
+        },
+        {
+          "id": "a1",
+          "sprite": "arvore",
+          "x": -3,
+          "z": -2,
+          "semente": 2
+        },
+        {
+          "id": "a2",
+          "sprite": "arvore",
+          "x": 7,
+          "z": -2.5,
+          "semente": 5
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "andar",
+          "alvo": "heroi",
+          "para": 1,
+          "inicio": 1.5,
+          "duracao": 3
+        }
+      ]
+    },
+    {
+      "fundo": "por-do-sol",
+      "duracao": 5,
+      "transicao": "dither",
+      "legenda": "Legenda da cena (ou a narração da cena).",
+      "elementos": [
+        {
+          "id": "heroi",
+          "personagem": "menina-capa",
+          "x": -1
+        },
+        {
+          "id": "casa",
+          "sprite": "casa",
+          "x": 5,
+          "z": -2
+        }
+      ]
+    }
+  ]
+}

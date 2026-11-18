@@ -102,6 +102,9 @@ Exemplo: `npm run final -- meu-video --fps 60`.
 
 Há um projeto completo de exemplo em `projetos/exemplo` (`npm run rascunho -- exemplo`).
 
+**Guia das formas de fazer o vídeo** (vistas, estilos de personagem, formatos, modos, acabamento e som), com
+modelos prontos: [FORMAS-DE-VIDEO.md](FORMAS-DE-VIDEO.md). Comece de um modelo com `npm run novo -- meu-video --modelo diagonal`.
+
 ---
 
 ## Biblioteca de assets reutilizáveis (`biblioteca/`)

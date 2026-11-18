@@ -1,0 +1,103 @@
+{
+  "titulo": "Misto - combinação recomendada",
+  "cenas": [
+    {
+      "vista": "avenida",
+      "duracao": 4,
+      "transicao": "fade",
+      "avenida": {
+        "movimentoReal": true
+      },
+      "camera": {
+        "z": 11.5
+      },
+      "titulo": "CAPÍTULO 1",
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": 0.4,
+          "z": -2
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "camera",
+          "para": {
+            "z": 5
+          },
+          "inicio": 2.0,
+          "duracao": 0.7,
+          "easing": "suave"
+        }
+      ]
+    },
+    {
+      "vista": "diagonal",
+      "duracao": 6,
+      "transicao": "dither",
+      "seguir": "menina",
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": -5,
+          "z": 0
+        },
+        {
+          "id": "robo",
+          "personagem": "robo-semaforo",
+          "x": 2,
+          "z": 0.4,
+          "virado": "esquerda"
+        }
+      ],
+      "acoes": [
+        {
+          "tipo": "andar",
+          "alvo": "menina",
+          "para": 0.5,
+          "inicio": 0.3,
+          "duracao": 3
+        },
+        {
+          "tipo": "falar",
+          "alvo": "robo",
+          "texto": "* Cuidado com o cone!",
+          "inicio": 3.6
+        }
+      ]
+    },
+    {
+      "cenario": "batalha",
+      "duracao": 4,
+      "legenda": "* UM CONE BLOQUEIA O CAMINHO.",
+      "elementos": [
+        {
+          "id": "cone",
+          "personagem": "cone-agressivo",
+          "x": 0
+        }
+      ]
+    },
+    {
+      "fundo": "por-do-sol",
+      "duracao": 4,
+      "transicao": "pixelizar",
+      "titulo": "CONTINUA...",
+      "elementos": [
+        {
+          "id": "menina",
+          "personagem": "menina-capa",
+          "x": -1
+        },
+        {
+          "id": "robo",
+          "personagem": "robo-semaforo",
+          "x": 1.4,
+          "virado": "esquerda"
+        }
+      ]
+    }
+  ]
+}
