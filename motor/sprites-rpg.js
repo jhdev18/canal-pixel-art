@@ -170,8 +170,9 @@ const bueiroOlhos = () => batalha([
 ]);
 
 registrarSprites({
-  'menina-capa': (o) => meninaCapa(o.cores),
-  'robo-semaforo': (o) => roboSemaforo(o.cores),
+  // versões antigas (simples); as detalhadas usam os nomes principais (sprites-detalhados.js)
+  'menina-capa-antigo': (o) => meninaCapa(o.cores),
+  'robo-semaforo-antigo': (o) => roboSemaforo(o.cores),
   'pombo-fofoqueiro': (o) => pomboFofoqueiro(o.cores),
   'lixeira-timida': (o) => lixeiraTimida(o.cores),
   'cao-guarda': (o) => caoGuarda(o.cores),

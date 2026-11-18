@@ -169,10 +169,10 @@ A biblioteca já vem com personagens (`protagonista`, `companheira`, `anciao`, `
 
 **Estilo RPG indie** (personagens originais de frente, contorno grosso, olhos que piscam): `menina-capa`,
 `robo-semaforo`, `pombo-fofoqueiro`, `lixeira-timida`, `cao-guarda`, `fantasma-metro`, `coruja-banca` e os
-inimigos brancos `cone-agressivo` e `bueiro-olhos`. Os personagens `menina-capa` e `robo-semaforo`
-da biblioteca usam as versões **detalhadas** (`menina-capa-detalhada`, `robo-semaforo-detalhado`: 28×44 px,
-contorno colorido, sombreamento em 3 tons, respiração e piscar de frente, andar de lado em 4 quadros e
-correr em 6). As versões simples continuam disponíveis pelo nome do sprite. Use com os cenários `cidade-rpg`, `cidade-rpg-chuva`
+inimigos brancos `cone-agressivo` e `bueiro-olhos`. `menina-capa` e `robo-semaforo` são as versões
+**detalhadas** (28×44 px, contorno colorido, sombreamento em 3 tons, respiração e piscar de frente, andar de lado
+em 4 quadros e correr em 6). As versões antigas, mais simples, ficaram como `menina-capa-antigo` e
+`robo-semaforo-antigo`. Use com os cenários `cidade-rpg`, `cidade-rpg-chuva`
 (câmera com zoom 2×) e `batalha` (fundo preto):
 
 ```json

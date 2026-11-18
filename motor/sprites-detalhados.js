@@ -196,6 +196,9 @@ function roboV2() {
 }
 
 registrarSprites({
+  'menina-capa': () => meninaV2(),
+  'robo-semaforo': () => roboV2(),
+  // nomes usados antes (continuam funcionando)
   'menina-capa-detalhada': () => meninaV2(),
   'robo-semaforo-detalhado': () => roboV2(),
 });
