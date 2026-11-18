@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './sprites-rpg.js';
+import './sprites-detalhados.js';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';

@@ -154,6 +154,7 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              pedra, casa, casa-noite, nuvem, cacto, poste, placa, fogueira, tocha
              estilo RPG: menina-capa, robo-semaforo, pombo-fofoqueiro, lixeira-timida, cao-guarda,
              fantasma-metro, coruja-banca, cone-agressivo, bueiro-olhos
+             detalhados (28x44, andar de lado e correr): menina-capa-detalhada, robo-semaforo-detalhado
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
 CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum

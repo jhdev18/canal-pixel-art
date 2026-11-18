@@ -22,8 +22,10 @@
 
   // ---- Estilo RPG indie (vista de frente, contorno grosso). Ficam melhor com "zoom": 2 na câmera
   //      ou usando o cenário "cidade-rpg" / "batalha".
-  "menina-capa":      { "sprite": "menina-capa", "voz": 1.2 },
-  "robo-semaforo":    { "sprite": "robo-semaforo", "voz": 0.7 },
+  //      menina-capa e robo-semaforo usam as versões DETALHADAS (28x44, andar de lado e correr).
+  //      As versões simples continuam disponíveis direto pelo sprite: "sprite": "menina-capa".
+  "menina-capa":      { "sprite": "menina-capa-detalhada", "voz": 1.2, "realce": 0.15 },
+  "robo-semaforo":    { "sprite": "robo-semaforo-detalhado", "voz": 0.7, "realce": 0.15 },
   "pombo-fofoqueiro": { "sprite": "pombo-fofoqueiro", "voz": 1.6 },
   "lixeira-timida":   { "sprite": "lixeira-timida", "voz": 1.2 },
   "cao-guarda":       { "sprite": "cao-guarda", "voz": 0.9 },
