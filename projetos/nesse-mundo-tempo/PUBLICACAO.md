@@ -13,10 +13,4 @@ Em Vila Serena, quem está feliz anda com um solzinho na cabeça, e quem está t
 O prefeito proibiu andar nublado, e no Dia do Sol ninguém podia ficar triste.
 Só que a cidade inteira entendeu tudo errado... e só a Bia descobriu a verdade. ☔
 
-00:00 A regra da cidade
-00:35 A Bia
-00:55 O Dia do Sol
-01:40 A verdade
-02:20 O último a chorar
-
 #pixelart #animação #nessemundo #humor #historiasempixel #vilaserena
