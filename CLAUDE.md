@@ -57,18 +57,38 @@ Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Baseado em Short
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
 - **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
 - **Tons possíveis:** sombrio (virada de terror), cômico (protagonista que humilha a regra) ou emocional.
-- **Versão longa (1:30–2:30) funciona diferente:** é uma história completa (normalmente cômica), não só um choque.
-  A virada vem a **~70%** e o resto é a solução. Estrutura:
-  1. **Regra + piadas do mundo** (0–20 s): 2–3 detalhes engraçados de como a sociedade vive com a regra
-     (com números/datas concretas) e um **personagem secundário marcante** apresentado com um detalhe estranho.
-  2. **Protagonista com 2 manias** (20–40 s): hábitos que parecem bobos e vão ser usados depois.
-  3. **Evento** (40–50 s): algo ridículo dispara a regra em público.
-  4. **Escalada em 3 degraus** (50–70 s): um → cinco → doze/todos; atinge alguém querido do protagonista.
-  5. **Protagonista também é atingido** e, ao reagir, **descobre como a regra funciona de verdade** (virada, ~70%).
-  6. **Solução** (100–125 s): ele usa as manias da parte 2 + a descoberta para salvar todo mundo.
-  7. **Callback final**: o personagem secundário da parte 1 fecha a história com a última piada.
-  Tudo que aparece no começo precisa ser usado no fim (sem detalhe solto).
+- **Versão longa (1:30–2:30) funciona diferente** — ver a seção "Mundo Torto longo" abaixo.
 - Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
+
+### Mundo Torto longo (história completa, normalmente cômica)
+Extraído da referência "quem ri vira balão" (2:15, ~38 frases, ~3,5 s por frase). Não é um choque só:
+a virada vem a **~70%** e o resto é a solução e o fechamento.
+
+**Linha do tempo (proporção do vídeo):**
+| Parte | Tempo (~2:15) | O que acontece |
+|---|---|---|
+| 1. Regra + mundo | 0–18% (0–24 s) | Regra + 2–3 piadas de como a sociedade vive com ela + **secundário marcante** com detalhe estranho |
+| 2. Protagonista | 18–28% (24–38 s) | Nome, idade, **2 manias** que parecem bobas (uma delas é a pista escondida) |
+| 3. Evento | 28–36% (38–48 s) | "Até que chegou..." — algo ridículo em público dispara a regra |
+| 4. Escalada | 36–49% (48–66 s) | "Primeiro... depois... em um minuto já eram..." (1 → 5 → 12); o secundário e alguém querido são atingidos |
+| 5. Protagonista atingido | 49–64% (66–86 s) | Tenta ajudar, não aguenta e a regra pega ele também |
+| 6. Descoberta (virada) | 64–75% (86–102 s) | "Foi aí que ela entendeu tudo": a regra funciona **ao contrário** do que todos achavam; revela também o segredo do secundário |
+| 7. Solução | 75–92% (102–124 s) | Usa a mania + a descoberta como arma; um por um, todos são salvos ("só faltava um") |
+| 8. Callback | 92–100% (124–135 s) | O secundário da parte 1 fecha com a última piada, curta e exagerada |
+
+**Técnicas:**
+- **A cidade entende a regra errado.** A virada não cria regra nova: revela o que ela sempre foi ("não é quem ri, é quem segura").
+- **Pistas disfarçadas de piada:** a mania do protagonista prova a verdade sem ninguém notar (ela ria escondida e nunca inchava);
+  o detalhe do secundário também (o juiz "redondo" não ria escondido, segurava a risada).
+- **Nada solto:** cada mania, personagem e objeto do começo volta no fim (sacos de areia, imitar o andar, o pombo).
+- **Concreto e exagerado:** números e datas ("preso desde 2023", "12 pessoas", "40 anos", "três quarteirões")
+  e comparações visuais ("redondas feito melancia", "feito bexiga solta").
+- **Uma imagem cômica a cada ~10 s** (peruca voando, gente boiando, choveu gente, pouso na barraca de pipoca) — é a quebra de padrão.
+- **Sem vilão:** a ameaça é a própria regra; o humor vem de autoridades ridicularizadas (prefeito, juiz).
+- **Elenco pequeno:** protagonista, 1 pessoa querida, 1 secundário marcante, 1 autoridade, multidão (pode usar moradores da biblioteca).
+- **Conectores do narrador:** "Funciona assim", "Por isso", "Até que", "Bem na hora", "Primeiro... depois...",
+  "Foi aí que... entendeu tudo", "Só faltava um".
+- **Tom:** cômico com um momento de aperto (parte 5); termina leve, sem moral explícita.
 
 ## Dinâmica de trabalho (ajustes visuais)
 1. O usuário renderiza no PC dele e diz o que ajustar, em texto, indicando **cena e momento**
