@@ -170,7 +170,7 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   `lista-compras` (abrindo), `malinha`. Cenários na biblioteca: `praca-festa`, `praca-festa-noite`, `rua-festa`
   (diagonal), `morro-mirante`, `rua-monstros`. Recursos novos do motor: ação `trocar`, `"sobre"`, `"balancar"`, clima `calor`.
 - **Diagonal nova — PROTÓTIPO, NÃO aprovado** (teste em `projetos/prototipo-diagonal`, `previa.png`): modo
-  `"exterior": true` do diorama (sem paredes, céu, cerca viva, piso `pedras`, tapete `grama`) e cômodos `praca`,
+  `"exterior": true` do diorama (sem paredes; chão vai além da tela; atrás da cerca viva: rua e fileira de prédios, céu só acima dos telhados; piso `pedras`, tapete `grama`) e cômodos `praca`,
   `praca-noite`, `praca-festa` (palanque: em cima `"y": 0.75`) + `quarto-menina` / `quarto-menina-noite`
   (diorama e lateral). Móveis novos do diorama: `fonte` (`seca`), `banco`, `arvore` (`altura`, `copa`, `folhas`),
   `poste`, `canteiro-flores` (`murcho`), `palanque-d`, `bandeirinhas`, `penteadeira`, `pufe`, `cavalete`.

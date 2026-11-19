@@ -534,8 +534,10 @@ export function gerarComodoDiagonal(opc = {}) {
   ALT = cfg.alturaParede ?? 200;
   // O piso continua até perto da câmera (profundidade 11) e o cômodo vai para a esquerda até onde a câmera
   // e os personagens chegam (inicio vem da vista): o enquadramento fica sempre cheio, sem vazio preto.
-  const Ja = -cfg.fim, Jb = -cfg.inicio, P = cfg.profundidade ?? 11;   // j cresce para a esquerda: o fim (direita) é Ja
-  const I0 = -0.8, I1 = P + 1, J0 = Ja - 1, J1 = Jb + 1, HMAX = ALT + 30;
+  const Ja = -cfg.fim, Jb = -cfg.inicio, P = cfg.profundidade ?? (exterior ? 20 : 11);   // j cresce para a esquerda: o fim (direita) é Ja
+  // ao ar livre a praça continua além da tela: rua e prédios no fundo (IB) e calçamento para a direita (JR)
+  const IB = exterior ? -7 : 0, JR = exterior ? Ja - 14 : Ja;
+  const I0 = IB - 0.8, I1 = P + 1, J0 = JR - 1, J1 = Jb + 1, HMAX = ALT + 30;
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 20);
   const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
@@ -546,12 +548,18 @@ export function gerarComodoDiagonal(opc = {}) {
   // piso (com a borda cortada na frente e na esquerda)
   const [t0, t1, t2] = chao.topo, [d0] = chao.terra;
   const tapetes = (cfg.piso || []).map((t) => ({ ...t, j0: -t.x - t.dj / 2, j1: -t.x + t.dj / 2 }));
-  B.prisma(0, P, Ja, Jb, -8, 8, {
+  B.prisma(IB, P, JR, Jb, -8, 8, {
     frente: (u, t) => (tema && t === 7 ? [tema.neon, 2] : t > 5 ? t1 : t % 3 === 0 ? '#3a2a22' : '#4e3a2e'),
     lado: (u, t) => (t > 5 ? t2 : '#3a2a22'),
     topo: (a, b, d, x, y) => {
-      const i = a, j = b + Ja;
+      const i = a + IB, j = b + JR;
       if (tema && (P - i < 0.07 || Jb - j < 0.05)) return [tema.neon, 2];       // borda da plataforma
+      if (exterior && i < 0) {                     // atrás da cerca viva: meio-fio, rua e calçada dos prédios
+        if (i > -0.75) return bayer(x, y) < 0.3 ? '#4a8a3a' : '#3a7a34';
+        if (i > -1.0 || (i < -3.6 && i > -3.85)) return i > -0.88 || i < -3.72 ? '#d8d8e0' : '#9a9aa8';
+        if (i > -3.6) { if (Math.abs(i + 2.3) < 0.06 && (((j % 1.2) + 1.2) % 1.2) < 0.6) return '#f0e8c0'; return bayer(x, y) < 0.12 ? '#6a6a78' : '#585866'; }
+        const fi = i * 2, fj = j * 2; return (fi - Math.floor(fi)) < 0.1 || (fj - Math.floor(fj)) < 0.08 ? '#a8a0a0' : '#c8c0b8';
+      }
       for (const tp of tapetes) if (i > tp.i0 && i < tp.i1 && j > tp.j0 && j < tp.j1) {
         const bi = Math.min(i - tp.i0, tp.i1 - i), bj = Math.min(j - tp.j0, tp.j1 - j);
         if (tp.grama) { const v = bayer(x, y) + (Math.sin(x * 1.7 + y * 2.3) * 0.15); return bi < 0.06 || bj < 0.06 ? '#3a7a3a' : v < 0.2 ? '#7ac85a' : v < 0.75 ? '#5aaa4a' : '#4a9040'; }
@@ -572,7 +580,7 @@ export function gerarComodoDiagonal(opc = {}) {
     },
   });
   // sombra suave junto às paredes
-  for (let k = 0; k < W * H; k++) if (B.tipo[k] && B.ph[k] === 0 && (B.pi[k] < 0.35 || B.pj[k] < Ja + 0.35)) B.face[k] = 0.86;
+  for (let k = 0; k < W * H; k++) if (B.tipo[k] && B.ph[k] === 0 && (exterior ? (B.pi[k] >= 0 && B.pi[k] < 0.35) : (B.pi[k] < 0.35 || B.pj[k] < Ja + 0.35))) B.face[k] = 0.86;
   // parede do fundo (i = 0) e parede lateral (j = Ja, à direita)
   const dFundo = (cfg.paredes || []).filter((d) => !d.lateral), dLat = (cfg.paredes || []).filter((d) => d.lateral);
   const corte = ['#5a4a5a', '#3a2e3a'];
@@ -580,7 +588,33 @@ export function gerarComodoDiagonal(opc = {}) {
   const pintaDecor = (lista, pos, t, cBase) => { for (const d of lista) { const c = corDecor(d, pos, t, noite); if (c) return c; } return cBase; };
   if (exterior) {
     // sem paredes: só uma cerca viva baixa no fundo (o céu aparece atrás)
-    if (cfg.cercaViva !== false) B.prisma(-0.7, 0, Ja, Jb, 0, 16, {
+    // fileira de prédios do outro lado da rua (o céu só aparece acima dos telhados)
+    const rp = rng((cfg.semente ?? 7) + 77);
+    const FACH = [['#e8c8a0', '#c8a078', '#9a7656'], ['#a8c8e0', '#88a8c8', '#68809e'], ['#f0e0b0', '#d0bc88', '#a08e60'],
+      ['#e8a8a0', '#c88880', '#9a6460'], ['#c8d8b0', '#a8b890', '#7a8a68'], ['#d8d0e8', '#b8b0c8', '#8a84a0']];
+    for (let j0 = JR; j0 < Jb; ) {
+      const larg = 3 + Math.floor(rp() * 3), j1 = Math.min(Jb, j0 + larg), alt = 64 + Math.floor(rp() * 4) * 12;
+      const [fc, fb, fs] = FACH[Math.floor(rp() * FACH.length)], sem = Math.floor(rp() * 1000);
+      B.prisma(IB, IB + 1, j0, j1, 0, alt, {
+        frente: (u, t, l) => {
+          const px = Math.floor(u * 16), L = Math.floor(l * 16);
+          if (t > alt - 4) return t > alt - 2 ? fc : fs;                                   // platibanda
+          if (px < 1 || px > L - 2) return fs;
+          const porta = Math.abs(px - Math.floor(L / 2)) < 5 && t < 20;
+          if (porta) return t > 18 || Math.abs(px - Math.floor(L / 2)) === 4 ? '#f0ece0' : '#6a4a30';
+          const cx = (px - 4) % 12, cy = (t - 26) % 18;
+          if (t > 24 && t < alt - 8 && px > 3 && px < L - 4 && cx >= 0 && cx < 7 && cy >= 0 && cy < 10) {
+            if (cx === 0 || cx === 6 || cy === 0 || cy === 9) return '#f4f0e8';
+            const k = ((sem + px * 13 + t * 7) >>> 3) % 3;
+            return noite ? (k ? ['#ffe890', 2] : '#1e2648') : cy > 5 ? '#7ab0e0' : '#a8d0f0';
+          }
+          return t < 4 ? fs : (t % 6 === 0 && cfg.tijolo ? fs : fb);
+        },
+        lado: () => fs, topo: () => fs,
+      });
+      j0 = j1;
+    }
+    if (cfg.cercaViva !== false) B.prisma(-0.7, 0, JR, Jb, 0, 16, {
       frente: (u, t) => (t < 2 ? '#24502a' : (bayer(Math.floor(u * 16), t) + Math.sin(u * 23 + t) * 0.2) < 0.3 ? '#5aa84a' : t > 12 ? '#4a9040' : '#3a7a3a'),
       lado: () => '#2a5a30', topo: (a, b, d, x, y) => (bayer(x, y) < 0.3 ? '#7ac85a' : '#5aa84a'),
     });
