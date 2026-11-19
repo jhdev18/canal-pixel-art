@@ -75,8 +75,10 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   Pendência conhecida: texto pequeno em objetos do fundo (lousa, cartaz) perde linhas de pixel.
 - **Poses (aguardando aprovação)**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente, estilo jogo),
   `"sentado-lado"`, `"costas"` (em pé, de costas) e `"sentado-costas"` (ex.: alunos olhando para a lousa), e as
-  ações `sentar`/`levantar` (`sentar` aceita `"pose"`) (`motor/sentado.js`). Sala de aula da diagonal: carteiras
-  viradas para a lousa do fundo, janelas na parede do lado; lugares x = -2.6, 0, 2.6 × z = 1.15 e -0.15. Assento a ~12 px do chão: em
+  ações `sentar`/`levantar` (`sentar` aceita `"pose"`) (`motor/sentado.js`). Sala de aula da diagonal: duas
+  versões em teste — (1) `sala-aula` (lousa no fundo; alunos `sentado-costas` na espelhada, x = -0.8, -3.4, -6 ×
+  z = 1.15 e -0.15) e (2) `sala-aula-lousa-lado` (lousa na parede da direita, carteiras viradas para ela, alunos
+  `sentado-lado`; x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75). Aguardando o usuário escolher. Assento a ~12 px do chão: em
   sofás use `"y": 0.25`, nas carteiras `"y": 0.2`. Teste em `projetos/prototipo-sentados`.
 - **Diagonal espelhada** (`"comodo": { ..., "espelhar": true }`): o cômodo desenhado pelo outro lado da diagonal
   (câmera continua sem girar). O x do roteiro troca de sinal em relação ao desenho normal. Bom para variar o
