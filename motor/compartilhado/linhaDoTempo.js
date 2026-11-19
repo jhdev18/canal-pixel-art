@@ -100,6 +100,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     niveis: roteiro.niveis || 8,
     efeitos: { bloom: 0.8, vinheta: 0.3, aberracao: true, ...(roteiro.efeitos || {}) },
     fps,
+    volumeBaloes: roteiro.volumeBaloes ?? 1,
     cenas,
     duracaoTotal: inicio,
   };
@@ -291,6 +292,7 @@ export function eventosSonoros(roteiro) {
   const eventos = [];
   const ambientes = [];
   const meiaLarg = larguraVisivel(roteiro) / 2;
+  const volBaloes = roteiro.volumeBaloes ?? 1;   // som das falas dos balões (projetos novos: 0.4, narrador em destaque)
   for (const cena of roteiro.cenas) {
     const T0 = cena.inicio;
     const pan = (x, t) => clamp((x - estadoCamera(cena, t).x) / meiaLarg, -1, 1) * 0.7;
@@ -347,7 +349,7 @@ export function eventosSonoros(roteiro) {
           for (let i = 0; i < txt.length; i += 2) {
             if (!/[\p{L}\p{N}]/u.test(txt[i])) continue;
             const t = a.inicio + 0.15 + i * vel;
-            add(somManual || 'blip', t, { volume: 0.35 * vol, taxa: tom * (1 + ((i * 7) % 5) * 0.03), pan: panEl(a.alvo, t) });
+            add(somManual || 'blip', t, { volume: 0.35 * vol * volBaloes, taxa: tom * (1 + ((i * 7) % 5) * 0.03), pan: panEl(a.alvo, t) });
           }
           break;
         }

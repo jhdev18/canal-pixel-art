@@ -47,6 +47,7 @@ Para ignorar o áudio de uma cena:  "narracao": false
 const ROTEIRO_NOVO = (titulo) => ({
   titulo,
   resolucao: [320, 180],
+  volumeBaloes: 0.4,
   paleta: 'nenhuma',
   cenas: [
     {
@@ -80,7 +81,10 @@ async function novo(nome) {
       const lista = fs.readdirSync(path.join(RAIZ, 'modelos')).filter((d) => fs.existsSync(path.join(RAIZ, 'modelos', d, 'roteiro.json')));
       throw new Error(`Modelo "${modelo}" não existe. Modelos: ${lista.join(', ')}`);
     }
-    fs.copyFileSync(arq, path.join(dir, 'roteiro.json'));
+    // Projetos novos: som dos balões mais baixo (narrador em destaque).
+    let txt = fs.readFileSync(arq, 'utf8');
+    if (!/"volumeBaloes"/.test(txt)) txt = txt.replace('{', '{\n  "volumeBaloes": 0.4,');
+    fs.writeFileSync(path.join(dir, 'roteiro.json'), txt);
   } else {
     fs.writeFileSync(path.join(dir, 'roteiro.json'), JSON.stringify(ROTEIRO_NOVO(nome.replace(/[-_]/g, ' ').toUpperCase()), null, 2));
   }

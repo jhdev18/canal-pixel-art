@@ -232,6 +232,7 @@ Comentários com `//` são permitidos.
   "titulo": "A Moeda Perdida",
   "resolucao": [320, 180],        // pixels internos; 320x180 → 1080p (6x). Vertical/Shorts: [180, 320]
   "paleta": "nenhuma",            // nenhuma | posterizar | retro32 | verde4 | sepia | noir | quente | fria
+  "volumeBaloes": 0.4,            // som das falas dos balões (1 = antigo; projetos novos já vêm com 0.4)
   "efeitos": { "bloom": 0.8, "vinheta": 0.3, "aberracao": true },
   "cenas": [
     {

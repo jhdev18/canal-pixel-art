@@ -23,6 +23,18 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
     terminam antes (ou junto) do fim da fala do narrador — nada de tempo parado sem narração. Conferir pelas
     durações calculadas (fala estimada ≈ 0,065 s por letra) antes de entregar.
 
+## Ritmo dos próximos vídeos (retenção)
+- **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
+- **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
+- **Nada parado:** toda cena tem movimento (`cameraFim` com pan/zoom leve, alguém andando, partículas).
+- **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
+- **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
+- **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
+  Projetos novos já vêm com `"volumeBaloes": 0.4` (som baixo, narrador em destaque).
+- **Loop aberto no meio** ("mas o que ninguém sabia...") e **pergunta/voto só nos últimos ~3 s**.
+- **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
+- Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
+
 ## Dinâmica de trabalho (ajustes visuais)
 1. O usuário renderiza no PC dele e diz o que ajustar, em texto, indicando **cena e momento**
    (ex.: "cena 3, ~0:22, a Bia está cortada no Shorts"), de preferência **vários ajustes numa só mensagem**.
