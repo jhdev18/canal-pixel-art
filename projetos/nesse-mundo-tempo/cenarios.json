@@ -1,0 +1,59 @@
+{
+  // PROTÓTIPO (não aprovado): cenários novos com foco na diagonal (vista "diorama").
+  // Depois do "pode salvar", vão para biblioteca/cenarios.json.
+
+  // Praça seca (calor do Dia do Sol): a decorada com fonte seca, árvores amareladas e canteiros murchos
+  // (protótipo para a história)
+  "praca-seca": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25, "pose": "seca" },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25, "pose": "seca" },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25, "pose": "seca" },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25, "pose": "seca" },
+      { "id": "poste3", "sprite": "poste-iso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9, "pose": "seca" },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9, "pose": "murcho" },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9, "pose": "murcho" },
+      { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
+      { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
+      { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 },
+      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.4, "z": -3.2 },
+      { "id": "barraca2", "sprite": "barraca-doces", "x": -4.5, "z": -3.2 },
+      { "id": "barraca3", "sprite": "barraca-jogos", "x": -2.6, "z": -3.2 }
+    ]
+  },
+
+  // Quarto de menina (diagonal): cama rosa, penteadeira com espelho, pufe, cavalete com pintura, estante, planta.
+  "quarto-menina-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina" } },
+  "quarto-menina-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina-noite" } },
+
+  // Quarto de menina (lateral), para alternar com a diagonal
+  "quarto-menina": {
+    "fundo": "quarto-menina", "realce": 0,
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 0.4, "z": -0.06, "cores": { "cor": "#a888e0" } },
+      { "id": "cama", "sprite": "cama", "x": -5.6, "z": -0.05, "cores": { "tecido": "#e87ab0" } },
+      { "id": "criado", "sprite": "criado-mudo", "x": -2.4, "z": -0.05 },
+      { "id": "abajur", "sprite": "abajur-apagado", "x": -2.4, "y": 1.375, "z": -0.05 },
+      { "id": "planta", "sprite": "planta-vaso", "x": 0.8, "z": -0.05 },
+      { "id": "escrivaninha", "sprite": "escrivaninha-desligada", "x": 3.7, "z": -0.05 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.6, "z": -0.05 }
+    ]
+  },
+  "quarto-menina-noite": {
+    "fundo": "quarto-menina-noite",
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 0.4, "z": -0.06, "cores": { "cor": "#a888e0" } },
+      { "id": "cama", "sprite": "cama", "x": -5.6, "z": -0.05, "cores": { "tecido": "#e87ab0" } },
+      { "id": "criado", "sprite": "criado-mudo", "x": -2.4, "z": -0.05 },
+      { "id": "abajur", "sprite": "abajur", "x": -2.4, "y": 1.375, "z": -0.05 },
+      { "id": "planta", "sprite": "planta-vaso", "x": 0.8, "z": -0.05 },
+      { "id": "escrivaninha", "sprite": "escrivaninha", "x": 3.7, "z": -0.05 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.6, "z": -0.05 }
+    ]
+  }
+}

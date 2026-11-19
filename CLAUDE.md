@@ -136,6 +136,11 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - **Episódio 1** em `projetos/episodio-01` ("Nada acontece em Vila Serena"): protagonista **Bia**
   (`menina-capa`), padeiro **seu Tonho**; 9 cenas; final com o público decidindo (comentar 1 ou 2).
   Aguardando o usuário gravar a narração e renderizar.
+- **Vídeos "Nesse Mundo" — rascunhos prontos, aguardando o usuário gravar a narração e renderizar** (o usuário aponta
+  os problemas; ajustar só o que ele apontar): `projetos/nesse-mundo-estrelas` (curto, 13 cenas, ~53 s),
+  `projetos/nesse-mundo-monstros` (curto, 9 cenas, ~47 s), `projetos/nesse-mundo-tempo` (longo, 33 cenas, ~2:45;
+  usa `praca-seca` e `quarto-menina-noite-diorama` do `cenarios.json` do próprio projeto). Texto do ElevenLabs em
+  `narracao/TEXTO-COMPLETO.txt` de cada um.
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,

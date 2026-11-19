@@ -1,0 +1,538 @@
+// Nessa cidade, cada rua tem um monstro — estilo "Nesse Mundo" (curto).
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-monstros
+// "vertical": enquadramento só da versão Shorts (9:16).
+{
+ "titulo": "Nessa cidade, cada rua tem um monstro",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, cada rua tem um monstro. E criança não passa sozinha por nenhuma.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 0,
+    "z": 0.5,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bueiro",
+     "sprite": "bueiro-monstro",
+     "x": 1.5,
+     "z": 0.3
+    },
+    {
+     "id": "cone",
+     "personagem": "cone-monstro",
+     "x": 5.5,
+     "z": 0.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0.9
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -1.2,
+     "z": 0.6
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.5,
+     "z": 0
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "inicio": 0.3,
+     "alvo": "bueiro",
+     "estado": "agarrar"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 0.56,
+     "alvo": "aluno",
+     "icone": "!"
+    },
+    {
+     "tipo": "correr",
+     "inicio": 0.92,
+     "alvo": "aluno",
+     "para": -8,
+     "duracao": 1.6
+    },
+    {
+     "tipo": "correr",
+     "inicio": 1.07,
+     "alvo": "aluna",
+     "para": -9,
+     "duracao": 1.6
+    },
+    {
+     "tipo": "correr",
+     "inicio": 1.84,
+     "alvo": "cone",
+     "para": 2.8,
+     "duracao": 1.2
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 1.84,
+     "duracao": 0.4
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "Porém, essa menina vai sozinha para a escola todo dia. E chega adiantada.",
+   "cenario": "escola",
+   "titulo": "NESSA CIDADE, CADA RUA TEM UM MONSTRO",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.6,
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -9
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -3.2
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.4,
+     "zoom": 2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "bia",
+     "para": -5,
+     "duracao": 2.85
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.86,
+     "alvo": "prof",
+     "icone": "!",
+     "duracao": 1.19
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "O primeiro monstro mora no bueiro e agarra o pé de quem pisa na tampa.",
+   "cenario": "rua-monstros",
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -4
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "zoom": 2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "aluno",
+     "para": 1.2,
+     "duracao": 1.8
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.57,
+     "alvo": "bueiro",
+     "estado": "agarrar"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 2.8,
+     "alvo": "aluno",
+     "icone": "!"
+    },
+    {
+     "tipo": "correr",
+     "inicio": 3.58,
+     "alvo": "aluno",
+     "para": -9,
+     "duracao": 0.9
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "Porém, a Bia joga lá dentro o sanduíche de sardinha da merenda. Ele passa a semana enjoado.",
+   "cenario": "rua-monstros",
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.6
+    },
+    {
+     "id": "sanduiche",
+     "sprite": "sanduiche",
+     "x": -1.2,
+     "z": 0.2,
+     "y": 1.3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "zoom": 2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "inicio": 0,
+     "alvo": "bueiro",
+     "estado": "agarrar"
+    },
+    {
+     "tipo": "aparecer",
+     "inicio": 1.48,
+     "alvo": "sanduiche"
+    },
+    {
+     "tipo": "pular",
+     "inicio": 1.96,
+     "alvo": "sanduiche",
+     "para": 1.5,
+     "altura": 1.2,
+     "duracao": 0.6,
+     "som": null
+    },
+    {
+     "tipo": "sumir",
+     "inicio": 2.56,
+     "alvo": "sanduiche"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.66,
+     "alvo": "bueiro",
+     "estado": "enjoado"
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 2.66,
+     "duracao": 0.3,
+     "intensidade": 0.5
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 4.74,
+     "alvo": "bia",
+     "icone": "..."
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "O segundo é um cone que persegue quem anda rápido demais.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": -4,
+    "z": 0.4,
+    "y": 2.4
+   },
+   "cameraFim": {
+    "x": -1
+   },
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -8,
+     "z": 0.7
+    },
+    {
+     "id": "cone",
+     "personagem": "cone-monstro",
+     "x": -11,
+     "z": 0.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3,
+     "z": 0
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "correr",
+     "inicio": 0.3,
+     "alvo": "aluno",
+     "para": 4,
+     "duracao": 2.6
+    },
+    {
+     "tipo": "correr",
+     "inicio": 0.6,
+     "alvo": "cone",
+     "para": 1,
+     "duracao": 2.4
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 2.15,
+     "duracao": 0.4,
+     "intensidade": 0.6
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "Porém, a Bia anda tão devagar, mas tão devagar, que o cone dorme esperando.",
+   "cenario": "rua-monstros",
+   "remover": [
+    "bueiro"
+   ],
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3
+    },
+    {
+     "id": "cone",
+     "personagem": "cone-monstro",
+     "x": -5.2
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3.4,
+     "zoom": 2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "bia",
+     "para": -1.8,
+     "duracao": 4.14,
+     "som": null
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 3.32,
+     "alvo": "cone",
+     "estado": "dormindo"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.62,
+     "alvo": "cone",
+     "icone": "zzz",
+     "duracao": 1.4
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "O terceiro é um pombo que conta o seu segredo para a cidade inteira.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -4,
+     "z": 5.4
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -2,
+     "z": 5.7
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1,
+     "z": 5.7
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 4,
+     "z": 5.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.5,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "pular",
+     "inicio": 0.3,
+     "alvo": "pombo",
+     "para": -1,
+     "altura": 1
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 0.83,
+     "alvo": "tonho",
+     "icone": "!"
+    },
+    {
+     "tipo": "pular",
+     "inicio": 1.63,
+     "alvo": "pombo",
+     "para": 2,
+     "altura": 1
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 2.16,
+     "alvo": "caixa",
+     "icone": "!"
+    },
+    {
+     "tipo": "pular",
+     "inicio": 2.95,
+     "alvo": "pombo",
+     "para": 5,
+     "altura": 1
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.48,
+     "alvo": "prof",
+     "icone": "!"
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "Porém, a Bia conta para ele a lista de compras do seu Tonho. Inteira. Por quarenta minutos.",
+   "cenario": "padaria",
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.4
+    },
+    {
+     "id": "lista",
+     "sprite": "lista-compras",
+     "x": 0,
+     "sobre": {
+      "id": "bia",
+      "dx": 0.6,
+      "dy": 0
+     }
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": 1.6,
+     "virado": "esquerda"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "zoom": 2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "inicio": 1.19,
+     "alvo": "lista",
+     "estado": "abrindo"
+    },
+    {
+     "tipo": "falar",
+     "inicio": 0.6,
+     "alvo": "bia",
+     "texto": "* Farinha, ovos, fermento..."
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.97,
+     "alvo": "pombo",
+     "icone": "...",
+     "duracao": 1.4
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "No dia seguinte, o pombo pediu demissão e se mudou de cidade.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.5,
+    "z": 0.5,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -1,
+     "z": 0.6
+    },
+    {
+     "id": "mala",
+     "sprite": "malinha",
+     "x": 0,
+     "sobre": {
+      "id": "pombo",
+      "dx": 0.4,
+      "dy": 0.1
+     }
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 0
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "falar",
+     "inicio": 0.3,
+     "alvo": "pombo",
+     "texto": "* Eu me demito."
+    },
+    {
+     "tipo": "andar",
+     "inicio": 2.28,
+     "alvo": "pombo",
+     "para": 5,
+     "duracao": 1.9
+    }
+   ]
+  }
+ ]
+}
