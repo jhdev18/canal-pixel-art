@@ -18,7 +18,7 @@ Na escola, chamavam ele de apagado. O garoto sem estrela.
 
 <break time="1.0s" />
 
-Até que, na Noite das Estrelas, a cidade subiu o morro.
+Até que, na Noite das Estrelas, a cidade toda saiu para a rua.
 
 <break time="1.0s" />
 

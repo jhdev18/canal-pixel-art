@@ -16,7 +16,7 @@ São **13 falas** (uma por cena com narração):
 | 3 | Só o prefeito já acendeu metade dele. E elas piscam muito. |
 | 4 | Mas o Caio nunca contou uma mentira. Nem uma. |
 | 5 | Na escola, chamavam ele de apagado. O garoto sem estrela. |
-| 6 | Até que, na Noite das Estrelas, a cidade subiu o morro. |
+| 6 | Até que, na Noite das Estrelas, a cidade toda saiu para a rua. |
 | 7 | E o prefeito discursou: aqui, nunca acontece nada de ruim. |
 | 8 | Na hora, acendeu a maior estrela já vista. |
 | 9 | Todos aplaudiram. Menos o Caio, que congelou. |

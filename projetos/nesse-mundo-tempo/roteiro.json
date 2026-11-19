@@ -110,7 +110,12 @@
   },
   {
    "narracaoTexto": "Funciona assim: quem está feliz anda com um solzinho. Quem está triste, com uma nuvem de chuva.",
-   "cenario": "escola",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 4.6,
+    "z": 2.2,
+    "y": 2.4
+   },
    "titulo": "CADA UM CARREGA O PRÓPRIO TEMPO",
    "tituloInicio": 0.3,
    "tituloDuracao": 2.8,
@@ -118,7 +123,8 @@
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": -1.4
+     "x": 3.6,
+     "z": 5.6
     },
     {
      "id": "taluno",
@@ -132,7 +138,8 @@
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": 1.6,
+     "x": 5.8,
+     "z": 5.6,
      "virado": "esquerda"
     },
     {
@@ -147,8 +154,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
-     "zoom": 2
+     "x": 4.7,
+     "z": 1.2
     }
    },
    "acoes": [
@@ -174,12 +181,18 @@
   },
   {
    "narracaoTexto": "Por isso, ninguém consegue dizer que está bem. A garoa entrega na hora.",
-   "cenario": "mercado",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 15.6,
+    "z": 2.2,
+    "y": 2.4
+   },
    "elementos": [
     {
      "id": "caixa",
      "personagem": "caixa",
-     "x": 0.4
+     "x": 16.4,
+     "z": 5.6
     },
     {
      "id": "tcaixa",
@@ -193,7 +206,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -2.4
+     "x": 14.6,
+     "z": 5.6
     },
     {
      "id": "tbia",
@@ -207,8 +221,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": -0.8,
-     "zoom": 2
+     "x": 15.6,
+     "z": 1.2
     }
    },
    "acoes": [
@@ -344,12 +358,18 @@
   },
   {
    "narracaoTexto": "E o prefeito criou a Lei do Céu Limpo: andar nublado em público dá multa.",
-   "cenario": "delegacia",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 11,
+    "z": 2.2,
+    "y": 2.4
+   },
    "elementos": [
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.6
+     "x": 10,
+     "z": 5.6
     },
     {
      "id": "tprefeito",
@@ -363,14 +383,15 @@
     {
      "id": "placa",
      "sprite": "placa-lei",
-     "x": 3.4,
-     "z": -0.2
+     "x": 12.4,
+     "z": 5.0,
+     "oculto": true
     }
    ],
    "vertical": {
     "camera": {
-     "x": 1.6,
-     "zoom": 2
+     "x": 11,
+     "z": 1.2
     }
    },
    "acoes": [
@@ -393,12 +414,18 @@
   },
   {
    "narracaoTexto": "O policial Ronaldo nunca mostrou o tempo dele. Anda com um guarda-chuva aberto há trinta anos.",
-   "cenario": "delegacia",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 9,
+    "z": 2.2,
+    "y": 2.4
+   },
    "elementos": [
     {
      "id": "ronaldo",
      "personagem": "policial-oculos",
-     "x": -6
+     "x": 6,
+     "z": 5.6
     },
     {
      "id": "guarda",
@@ -412,8 +439,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": -2.4,
-     "zoom": 2
+     "x": 9,
+     "z": 1.2
     }
    },
    "acoes": [
@@ -421,7 +448,7 @@
      "tipo": "andar",
      "inicio": 0.3,
      "alvo": "ronaldo",
-     "para": -0.6,
+     "para": 10,
      "duracao": 3.67
     },
     {
@@ -481,12 +508,18 @@
   },
   {
    "narracaoTexto": "E tinha a Bia, de dez anos, uma menina com um sol bem pequenininho.",
-   "cenario": "escola",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 3,
+    "z": 2.2,
+    "y": 2.4
+   },
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -6
+     "x": 0.6,
+     "z": 5.6
     },
     {
      "id": "tbia",
@@ -500,8 +533,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
-     "zoom": 2
+     "x": 3.4,
+     "z": 1.2
     }
    },
    "acoes": [
@@ -509,7 +542,7 @@
      "tipo": "andar",
      "inicio": 0.3,
      "alvo": "bia",
-     "para": -0.4,
+     "para": 3.8,
      "duracao": 2.61
     },
     {
@@ -736,16 +769,18 @@
   },
   {
    "narracaoTexto": "O prefeito subiu no palanque e decretou: hoje, ninguém fica triste.",
-   "cenario": "praca-festa",
+   "cenario": "praca-decorada",
    "camera": {
-    "x": 3
+    "x": 3,
+    "z": -8.5
    },
    "elementos": [
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 6.4,
-     "y": 1.125,
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
      "virado": "esquerda"
     },
     {
@@ -760,7 +795,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": 2.4
+     "x": 2,
+     "z": -8.6
     },
     {
      "id": "tbia",
@@ -774,8 +810,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5,
-     "zoom": 2
+     "x": 4,
+     "z": -8.5
     }
    },
    "acoes": [
@@ -893,7 +929,11 @@
   },
   {
    "narracaoTexto": "Primeiro, o sorvete do mercado derreteu. Depois, a fonte da praça secou.",
-   "cenario": "praca-festa",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
    "clima": "calor",
    "paleta": "quente",
    "elementos": [
@@ -901,12 +941,13 @@
      "id": "sorvete",
      "sprite": "sorvete",
      "x": -2.4,
-     "z": 0.1
+     "z": -8.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": -3.6
+     "x": -3.4,
+     "z": -8.6
     },
     {
      "id": "taluno",
@@ -920,8 +961,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1.2,
-     "zoom": 2
+     "x": -1.4,
+     "z": -8.5
     }
    },
    "acoes": [
@@ -964,7 +1005,7 @@
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 5.2,
+     "x": 5,
      "z": -6.7,
      "y": 0.75,
      "virado": "esquerda"
@@ -996,14 +1037,19 @@
   },
   {
    "narracaoTexto": "O seu Tonho sorria tanto que o chapéu de padeiro dele pegou fogo.",
-   "cenario": "praca-festa",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": -1.4,
+    "z": -8.5
+   },
    "clima": "calor",
    "paleta": "quente",
    "elementos": [
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -1.6
+     "x": -1.6,
+     "z": -8.6
     },
     {
      "id": "ttonho",
@@ -1028,10 +1074,16 @@
    "vertical": {
     "camera": {
      "x": -1.6,
-     "zoom": 2
+     "z": -8.5
     }
    },
    "acoes": [
+    {
+     "tipo": "trocar",
+     "inicio": 0,
+     "alvo": "fonte",
+     "estado": "seca"
+    },
     {
      "tipo": "aparecer",
      "inicio": 2.92,
@@ -1162,14 +1214,19 @@
   },
   {
    "narracaoTexto": "A Bia não aguentou. O sol dela apagou, e uma nuvenzinha apareceu.",
-   "cenario": "praca-festa",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
    "clima": "calor",
    "paleta": "quente",
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": 1.4,
+     "x": 1.2,
+     "z": -8.6,
      "virado": "esquerda"
     },
     {
@@ -1184,7 +1241,8 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -1.6,
+     "x": -1.4,
+     "z": -8.6,
      "pose": "sentado"
     },
     {
@@ -1200,7 +1258,7 @@
    "vertical": {
     "camera": {
      "x": 0,
-     "zoom": 2
+     "z": -8.5
     }
    },
    "acoes": [
@@ -1277,13 +1335,18 @@
   },
   {
    "narracaoTexto": "Mas, onde a garoa da Bia caía, a grama voltava a ficar verde.",
-   "cenario": "praca-festa",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": -4.5,
+    "z": -8.5
+   },
    "paleta": "quente",
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -5.6
+     "x": -5.5,
+     "z": -10.3
     },
     {
      "id": "tbia",
@@ -1297,17 +1360,11 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.6,
-     "zoom": 2
+     "x": -5.5,
+     "z": -8.5
     }
    },
    "acoes": [
-    {
-     "tipo": "trocar",
-     "inicio": 0,
-     "alvo": "canteiro1",
-     "estado": "murcho"
-    },
     {
      "tipo": "trocar",
      "inicio": 2.68,
@@ -1330,12 +1387,17 @@
   },
   {
    "narracaoTexto": "E o seu Tonho abriu os olhos, molhadinho, e sorriu de verdade.",
-   "cenario": "praca-festa",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": -0.6,
+    "z": -8.5
+   },
    "elementos": [
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -1.6,
+     "x": -1.4,
+     "z": -8.6,
      "pose": "sentado"
     },
     {
@@ -1351,6 +1413,7 @@
      "id": "bia",
      "personagem": "menina-capa",
      "x": 0.4,
+     "z": -8.8,
      "virado": "esquerda"
     },
     {
@@ -1366,7 +1429,7 @@
    "vertical": {
     "camera": {
      "x": -0.6,
-     "zoom": 2
+     "z": -8.5
     }
    },
    "acoes": [
@@ -1493,15 +1556,17 @@
   },
   {
    "narracaoTexto": "A Bia subiu no palanque e pegou o microfone.",
-   "cenario": "praca-festa",
+   "cenario": "praca-seca",
    "camera": {
-    "x": 3
+    "x": 3,
+    "z": -8.5
    },
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": 3.8
+     "x": 2.6,
+     "z": -6.7
     },
     {
      "id": "tbia",
@@ -1515,8 +1580,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5.4,
-     "zoom": 2
+     "x": 4,
+     "z": -8.5
     }
    },
    "acoes": [
@@ -1525,8 +1590,8 @@
      "inicio": 0.73,
      "alvo": "bia",
      "para": [
-      6.4,
-      1.125
+      4.4,
+      0.75
      ],
      "altura": 1.2,
      "duracao": 0.7
@@ -1535,16 +1600,18 @@
   },
   {
    "narracaoTexto": "E contou a história mais triste que ela sabia: a do pãozinho que ninguém quis comprar.",
-   "cenario": "praca-festa",
+   "cenario": "praca-seca",
    "camera": {
-    "x": 3
+    "x": 3,
+    "z": -8.5
    },
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": 6.4,
-     "y": 1.125,
+     "x": 4.4,
+     "z": -6.7,
+     "y": 0.75,
      "virado": "esquerda"
     },
     {
@@ -1559,8 +1626,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5.6,
-     "zoom": 2
+     "x": 4.4,
+     "z": -8.5
     }
    },
    "acoes": [
@@ -1745,13 +1812,18 @@
   },
   {
    "narracaoTexto": "Até o prefeito chorou, e a chuva dele levou a peruca para dentro da fonte.",
-   "cenario": "praca-festa",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 1,
+    "z": -6.5
+   },
    "clima": "chuva",
    "elementos": [
     {
      "id": "prefeito",
      "personagem": "prefeito-careca",
-     "x": 2.6,
+     "x": 1.8,
+     "z": -5.8,
      "virado": "esquerda"
     },
     {
@@ -1766,15 +1838,15 @@
     {
      "id": "peruca",
      "sprite": "peruca",
-     "x": 2.6,
-     "z": 0.05,
+     "x": 1.8,
+     "z": -5.8,
      "y": 2.8
     }
    ],
    "vertical": {
     "camera": {
-     "x": 1.4,
-     "zoom": 2
+     "x": 1,
+     "z": -8.5
     }
    },
    "acoes": [
@@ -1783,8 +1855,8 @@
      "inicio": 2.46,
      "alvo": "peruca",
      "para": [
-      1.4,
-      3.8
+      1.0,
+      3.6
      ],
      "duracao": 0.8
     },
@@ -1793,8 +1865,8 @@
      "inicio": 3.26,
      "alvo": "peruca",
      "para": [
-      0.3,
-      0.9
+      0.2,
+      0.6
      ],
      "duracao": 1.0
     },
@@ -1866,13 +1938,18 @@
   },
   {
    "narracaoTexto": "O policial Ronaldo olhou para a Bia, respirou fundo e fechou o guarda-chuva.",
-   "cenario": "praca-festa",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": -0.6,
+    "z": -8.5
+   },
    "clima": "chuva",
    "elementos": [
     {
      "id": "ronaldo",
      "personagem": "policial-oculos",
      "x": 0.6,
+     "z": -8.6,
      "virado": "esquerda"
     },
     {
@@ -1896,7 +1973,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -2
+     "x": -1.8,
+     "z": -8.8
     },
     {
      "id": "tbia",
@@ -1911,7 +1989,7 @@
    "vertical": {
     "camera": {
      "x": -0.4,
-     "zoom": 2
+     "z": -8.5
     }
    },
    "acoes": [
@@ -1925,13 +2003,18 @@
   },
   {
    "narracaoTexto": "Trinta anos de chuva caíram de uma vez só.",
-   "cenario": "praca-festa",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
    "clima": "chuva",
    "elementos": [
     {
      "id": "ronaldo",
      "personagem": "policial-oculos",
      "x": 0.6,
+     "z": -8.6,
      "virado": "esquerda"
     },
     {
@@ -1954,34 +2037,25 @@
      "pose": "fechado"
     },
     {
-     "id": "agua1",
-     "sprite": "agua-enchente",
-     "x": -8,
-     "z": 0.6,
-     "y": -0.2,
-     "oculto": true
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.8,
+     "z": -8.8
     },
     {
-     "id": "agua2",
-     "sprite": "agua-enchente",
-     "x": 0,
-     "z": 0.6,
-     "y": -0.2,
-     "oculto": true
-    },
-    {
-     "id": "agua3",
-     "sprite": "agua-enchente",
-     "x": 8,
-     "z": 0.6,
-     "y": -0.2,
-     "oculto": true
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol"
     }
    ],
    "vertical": {
     "camera": {
      "x": 0.6,
-     "zoom": 2
+     "z": -8.5
     }
    },
    "acoes": [
@@ -2001,19 +2075,10 @@
      "inicio": 0.57
     },
     {
-     "tipo": "aparecer",
+     "tipo": "emocao",
      "inicio": 1.8,
-     "alvo": "agua1"
-    },
-    {
-     "tipo": "aparecer",
-     "inicio": 1.8,
-     "alvo": "agua2"
-    },
-    {
-     "tipo": "aparecer",
-     "inicio": 1.8,
-     "alvo": "agua3"
+     "alvo": "bia",
+     "icone": "!"
     }
    ]
   },

@@ -12,32 +12,38 @@
  "cenas": [
   {
    "narracaoTexto": "Nessa cidade, cada mentira que alguém conta acende uma estrela nova no céu.",
-   "cenario": "praca-festa-noite",
+   "cenario": "rua-comercial-noite",
    "transicao": "fade",
+   "camera": {
+    "x": 1.2,
+    "z": 3.5,
+    "y": 3.4
+   },
    "elementos": [
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": -1.2
+     "x": 0.2,
+     "z": 5.6
     },
     {
      "id": "caixa",
      "personagem": "caixa",
-     "x": 1.6,
+     "x": 2.2,
+     "z": 5.6,
      "virado": "esquerda"
     },
     {
      "id": "est",
      "sprite": "estrela-mentira",
-     "x": -1.2,
-     "z": -0.1,
-     "y": 5.6
+     "x": 0.2,
+     "z": 6.05,
+     "y": 7.4
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
-     "zoom": 2
+     "x": 1.2
     }
    },
    "acoes": [
@@ -68,41 +74,89 @@
    "narracaoTexto": "Por isso, Vila Serena tem o céu mais bonito do mundo.",
    "cenario": "rua-comercial-noite",
    "camera": {
-    "x": -1,
-    "z": 2.2,
-    "y": 2.4
+    "x": 3,
+    "z": 3.5,
+    "y": 3.4
    },
    "cameraFim": {
-    "x": 2
+    "x": 6
    },
    "titulo": "NESSA CIDADE, TODA MENTIRA VIRA ESTRELA",
    "tituloInicio": 0.4,
    "tituloDuracao": 2.6,
    "elementos": [
     {
+     "id": "c0",
+     "sprite": "estrela-mentira",
+     "x": -1,
+     "z": 6.05,
+     "y": 7.6
+    },
+    {
+     "id": "c1",
+     "sprite": "estrela-mentira",
+     "x": 1.2,
+     "z": 6.05,
+     "y": 8.6
+    },
+    {
+     "id": "c2",
+     "sprite": "estrela-mentira",
+     "x": 3.4,
+     "z": 6.05,
+     "y": 7.2
+    },
+    {
+     "id": "c3",
+     "sprite": "estrela-mentira",
+     "x": 5.2,
+     "z": 6.05,
+     "y": 8.4
+    },
+    {
+     "id": "c4",
+     "sprite": "estrela-mentira",
+     "x": 7.4,
+     "z": 6.05,
+     "y": 7.6
+    },
+    {
+     "id": "c5",
+     "sprite": "estrela-mentira",
+     "x": 9.2,
+     "z": 6.05,
+     "y": 8.8
+    },
+    {
+     "id": "c6",
+     "sprite": "estrela-mentira",
+     "x": 11,
+     "z": 6.05,
+     "y": 7.4
+    },
+    {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -2,
+     "x": 1,
      "z": 5.6
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 1,
+     "x": 4,
      "z": 5.6
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": 3.2,
-     "z": 0.6,
+     "x": 8,
+     "z": 3.4,
      "virado": "esquerda"
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.5,
-     "z": 1.2
+     "x": 4
     }
    },
    "acoes": [
@@ -122,80 +176,86 @@
      "tipo": "andar",
      "inicio": 0.3,
      "alvo": "aluna",
-     "para": 0.4,
+     "para": 5.6,
      "duracao": 2.76
     }
    ]
   },
   {
    "narracaoTexto": "Só o prefeito já acendeu metade dele. E elas piscam muito.",
-   "cenario": "praca-festa-noite",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 1,
+    "z": 3.5,
+    "y": 3.8
+   },
    "elementos": [
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": -1.2
+     "x": 0.2,
+     "z": 5.6
     },
     {
      "id": "caixa",
      "personagem": "caixa",
-     "x": 1.6,
+     "x": 2.2,
+     "z": 5.6,
      "virado": "esquerda"
     },
     {
      "id": "p0",
      "sprite": "estrela-mentira",
-     "x": -2.8,
-     "z": -0.1,
-     "y": 4.6
+     "x": -1.4000000000000001,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "p1",
      "sprite": "estrela-mentira",
-     "x": -1.7999999999999998,
-     "z": -0.1,
-     "y": 5.6
+     "x": -0.39999999999999997,
+     "z": 6.05,
+     "y": 8.0
     },
     {
      "id": "p2",
      "sprite": "estrela-mentira",
-     "x": -0.6,
-     "z": -0.1,
-     "y": 4.9
+     "x": 0.8,
+     "z": 6.05,
+     "y": 7.3
     },
     {
      "id": "p3",
      "sprite": "estrela-mentira",
-     "x": 0.30000000000000004,
-     "z": -0.1,
-     "y": 5.9
+     "x": 1.7,
+     "z": 6.05,
+     "y": 8.3
     },
     {
      "id": "p4",
      "sprite": "estrela-mentira",
-     "x": -2.4,
-     "z": -0.1,
-     "y": 6.6
+     "x": -1.0,
+     "z": 6.05,
+     "y": 8.9
     },
     {
      "id": "p5",
      "sprite": "estrela-mentira",
-     "x": -1.0,
-     "z": -0.1,
-     "y": 6.9
+     "x": 0.4,
+     "z": 6.05,
+     "y": 9.0
     },
     {
      "id": "p6",
      "sprite": "estrela-mentira",
-     "x": -0.19999999999999996,
-     "z": -0.1,
-     "y": 4.2
+     "x": 1.2,
+     "z": 6.05,
+     "y": 6.9
     }
    ],
    "vertical": {
     "camera": {
-     "x": -0.4,
-     "zoom": 2
+     "x": 1
     }
    },
    "acoes": [
@@ -289,92 +349,114 @@
    ]
   },
   {
-   "narracaoTexto": "Até que, na Noite das Estrelas, a cidade subiu o morro.",
-   "cenario": "morro-mirante",
+   "narracaoTexto": "Até que, na Noite das Estrelas, a cidade toda saiu para a rua.",
+   "cenario": "rua-estrelas",
+   "camera": {
+    "x": 1,
+    "z": 3.5,
+    "y": 3.4
+   },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
-     "y": 8.2
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4
     },
     {
      "id": "e3",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9
+     "x": -3.6,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
      "x": -1.6,
-     "z": -0.1,
+     "z": 6.05,
      "y": 8.6
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5
     },
     {
      "id": "e8",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -10
+     "x": -9,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -11.4
+     "x": -10.4,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
      "x": 10,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 11.6,
+     "x": 11.4,
+     "z": 3.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 12.8,
+     "z": 2.9,
      "virado": "esquerda"
     }
    ],
    "vertical": {
     "camera": {
-     "x": -3,
-     "zoom": 2
+     "x": -1
     }
    },
    "acoes": [
@@ -382,131 +464,148 @@
      "tipo": "andar",
      "inicio": 0.3,
      "alvo": "caio",
-     "para": -4.6,
-     "duracao": 3.22
+     "para": -3.6,
+     "duracao": 3.63
     },
     {
      "tipo": "andar",
-     "inicio": 0.48,
+     "inicio": 0.5,
      "alvo": "aluna",
-     "para": -2.6,
-     "duracao": 3.04
+     "para": -2.2,
+     "duracao": 3.43
     },
     {
      "tipo": "andar",
      "inicio": 0.3,
      "alvo": "prof",
-     "para": 2.8,
-     "duracao": 3.22
+     "para": 3.6,
+     "duracao": 3.63
     },
     {
      "tipo": "andar",
-     "inicio": 0.48,
+     "inicio": 0.5,
      "alvo": "tonho",
-     "para": 4.6,
-     "duracao": 3.04
+     "para": 5,
+     "duracao": 3.43
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.7,
+     "alvo": "caixa",
+     "para": 6.4,
+     "duracao": 3.22
     }
    ]
   },
   {
    "narracaoTexto": "E o prefeito discursou: aqui, nunca acontece nada de ruim.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
+   "camera": {
+    "x": 1,
+    "z": 3.5,
+    "y": 3.4
+   },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
-     "y": 8.2
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4
     },
     {
      "id": "e3",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9
+     "x": -3.6,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
      "x": -1.6,
-     "z": -0.1,
+     "z": 6.05,
      "y": 8.6
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5
     },
     {
      "id": "e8",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.4,
-     "zoom": 2
+     "x": 0.9
     }
    },
    "acoes": [
@@ -520,114 +619,121 @@
   },
   {
    "narracaoTexto": "Na hora, acendeu a maior estrela já vista.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
    "camera": {
-    "x": 0,
-    "y": 4.4
+    "x": 1,
+    "z": 3.5,
+    "y": 4.2
    },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
-     "y": 8.2
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4
     },
     {
      "id": "e3",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9
+     "x": -3.6,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
      "x": -1.6,
-     "z": -0.1,
+     "z": 6.05,
      "y": 8.6
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5
     },
     {
      "id": "e8",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
     },
     {
      "id": "gigante",
      "sprite": "estrela-gigante",
-     "x": 0.5,
-     "z": -0.1,
-     "y": 6.4
+     "x": 1,
+     "z": 6.05,
+     "y": 7.2,
+     "oculto": true
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.5,
-     "zoom": 2
+     "x": 1
     }
    },
    "acoes": [
@@ -649,110 +755,120 @@
   },
   {
    "narracaoTexto": "Todos aplaudiram. Menos o Caio, que congelou.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
+   "camera": {
+    "x": 1,
+    "z": 3.5,
+    "y": 3.4
+   },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
-     "y": 8.2
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4
     },
     {
      "id": "e3",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9
+     "x": -3.6,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
      "x": -1.6,
-     "z": -0.1,
+     "z": 6.05,
      "y": 8.6
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5
     },
     {
      "id": "e8",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
     },
     {
      "id": "gigante",
      "sprite": "estrela-gigante",
-     "x": 0.5,
-     "z": -0.1,
-     "y": 6.4
+     "x": 1,
+     "z": 6.05,
+     "y": 7.2
     }
    ],
    "vertical": {
     "camera": {
-     "x": -3,
-     "zoom": 2
+     "x": -2
     }
    },
    "acoes": [
@@ -790,115 +906,120 @@
   },
   {
    "narracaoTexto": "Porque a estrela piscou. Depois, devagar, ela abriu.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
    "camera": {
-    "x": 0.5,
-    "y": 6,
-    "zoom": 2
+    "x": 1,
+    "z": 3.5,
+    "y": 5.6
    },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
-     "y": 8.2
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4
     },
     {
      "id": "e3",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9
+     "x": -3.6,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
      "x": -1.6,
-     "z": -0.1,
+     "z": 6.05,
      "y": 8.6
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5
     },
     {
      "id": "e8",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
     },
     {
      "id": "gigante",
      "sprite": "estrela-gigante",
-     "x": 0.5,
-     "z": -0.1,
-     "y": 6.4
+     "x": 1,
+     "z": 6.05,
+     "y": 7.2
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.5,
-     "zoom": 2
+     "x": 1
     }
    },
    "acoes": [
@@ -917,110 +1038,120 @@
   },
   {
    "narracaoTexto": "E o céu abriu junto. Mil olhos, cada um sobre quem mentiu.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
+   "camera": {
+    "x": 1,
+    "z": 3.5,
+    "y": 3.4
+   },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
-     "y": 8.2
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4
     },
     {
      "id": "e3",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9
+     "x": -3.6,
+     "z": 6.05,
+     "y": 7.0
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
      "x": -1.6,
-     "z": -0.1,
+     "z": 6.05,
      "y": 8.6
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5
     },
     {
      "id": "e8",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
     },
     {
      "id": "gigante",
      "sprite": "estrela-gigante",
-     "x": 0.5,
-     "z": -0.1,
-     "y": 6.4
+     "x": 1,
+     "z": 6.05,
+     "y": 7.2
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
-     "zoom": 2
+     "x": 1
     }
    },
    "acoes": [
@@ -1040,12 +1171,6 @@
      "tipo": "trocar",
      "inicio": 1.05,
      "alvo": "e2",
-     "estado": "olho"
-    },
-    {
-     "tipo": "trocar",
-     "inicio": 1.24,
-     "alvo": "e3",
      "estado": "olho"
     },
     {
@@ -1088,116 +1213,121 @@
   },
   {
    "narracaoTexto": "Só em cima do Caio, o céu continuou escuro.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
    "camera": {
-    "x": -4.6,
-    "y": 4.2,
-    "zoom": 2
+    "x": -3.6,
+    "z": 3.5,
+    "y": 3.4
    },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
-     "y": 7.4,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e3",
-     "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e4",
-     "sprite": "estrela-mentira",
-     "x": -1.6,
-     "z": -0.1,
-     "y": 8.6,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e5",
-     "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e6",
-     "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e7",
-     "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e8",
-     "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4,
      "pose": "olho-aberto"
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -5.6,
-     "z": -0.1,
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4,
+     "pose": "olho-aberto"
+    },
+    {
+     "id": "e4",
+     "sprite": "estrela-mentira",
+     "x": -1.6,
+     "z": 6.05,
+     "y": 8.6,
+     "pose": "olho-aberto"
+    },
+    {
+     "id": "e5",
+     "sprite": "estrela-mentira",
+     "x": 2.8,
+     "z": 6.05,
      "y": 8.2,
-     "oculto": true
+     "pose": "olho-aberto"
+    },
+    {
+     "id": "e6",
+     "sprite": "estrela-mentira",
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1,
+     "pose": "olho-aberto"
+    },
+    {
+     "id": "e7",
+     "sprite": "estrela-mentira",
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5,
+     "pose": "olho-aberto"
+    },
+    {
+     "id": "e8",
+     "sprite": "estrela-mentira",
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5,
+     "pose": "olho-aberto"
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
+    },
+    {
+     "id": "gigante",
+     "sprite": "estrela-gigante",
+     "x": 1,
+     "z": 6.05,
+     "y": 7.2,
+     "pose": "olho-aberto"
     }
    ],
    "vertical": {
     "camera": {
-     "x": -4.6,
-     "zoom": 2
+     "x": -3.6
     }
    },
    "acoes": [
@@ -1212,111 +1342,121 @@
   },
   {
    "narracaoTexto": "A cidade olhou para o céu. E o céu, pela primeira vez, olhou de volta.",
-   "cenario": "morro-mirante",
+   "cenario": "rua-estrelas",
+   "camera": {
+    "x": 1,
+    "z": 3.5,
+    "y": 3.4
+   },
    "elementos": [
     {
      "id": "e1",
      "sprite": "estrela-mentira",
-     "x": -7.6,
-     "z": -0.1,
+     "x": -7.2,
+     "z": 6.05,
      "y": 7.4,
      "pose": "olho-aberto"
     },
     {
      "id": "e2",
      "sprite": "estrela-mentira",
-     "x": -3.8,
-     "z": -0.1,
-     "y": 6.9,
-     "pose": "olho-aberto"
-    },
-    {
-     "id": "e3",
-     "sprite": "estrela-mentira",
-     "x": -1.6,
-     "z": -0.1,
-     "y": 8.6,
+     "x": -5.4,
+     "z": 6.05,
+     "y": 8.4,
      "pose": "olho-aberto"
     },
     {
      "id": "e4",
      "sprite": "estrela-mentira",
-     "x": 2.6,
-     "z": -0.1,
-     "y": 8.0,
+     "x": -1.6,
+     "z": 6.05,
+     "y": 8.6,
      "pose": "olho-aberto"
     },
     {
      "id": "e5",
      "sprite": "estrela-mentira",
-     "x": 4.4,
-     "z": -0.1,
-     "y": 7.0,
+     "x": 2.8,
+     "z": 6.05,
+     "y": 8.2,
      "pose": "olho-aberto"
     },
     {
      "id": "e6",
      "sprite": "estrela-mentira",
-     "x": 6.2,
-     "z": -0.1,
-     "y": 8.4,
+     "x": 4.6,
+     "z": 6.05,
+     "y": 7.1,
      "pose": "olho-aberto"
     },
     {
      "id": "e7",
      "sprite": "estrela-mentira",
-     "x": 8.2,
-     "z": -0.1,
-     "y": 7.4,
+     "x": 6.6,
+     "z": 6.05,
+     "y": 8.5,
+     "pose": "olho-aberto"
+    },
+    {
+     "id": "e8",
+     "sprite": "estrela-mentira",
+     "x": 8.4,
+     "z": 6.05,
+     "y": 7.5,
      "pose": "olho-aberto"
     },
     {
      "id": "prefeito",
      "personagem": "prefeito",
-     "x": 0.4,
-     "y": 1.125
+     "x": 0.9,
+     "z": 3.3,
+     "y": 0.75
     },
     {
      "id": "caio",
      "personagem": "aluno",
-     "x": -4.6
+     "x": -3.6,
+     "z": 2.8
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -2.6
+     "x": -2.2,
+     "z": 3.2
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 2.8,
+     "x": 3.6,
+     "z": 3.0,
      "virado": "esquerda"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.6,
+     "x": 5,
+     "z": 3.2,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
      "x": 6.4,
+     "z": 2.9,
      "virado": "esquerda"
     },
     {
      "id": "gigante",
      "sprite": "estrela-gigante",
-     "x": 0.5,
-     "z": -0.1,
-     "y": 6.4,
+     "x": 1,
+     "z": 6.05,
+     "y": 7.2,
      "pose": "olho-aberto"
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
-     "zoom": 2
+     "x": 1
     }
    },
    "acoes": [

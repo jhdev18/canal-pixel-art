@@ -6,8 +6,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Regras do usuário (sempre seguir)
 1. **Não renderizar vídeos.** O usuário renderiza no PC dele (GTX 1050 Ti). Para conferir, use no máximo
    imagens paradas — e só quando for essencial.
-2. **Só vistas `lateral` e `diagonal`** ao criar vídeos/roteiros (para cômodos, a diagonal é a vista `diorama`),
-   a menos que o usuário peça outra. O **modo 3D** segue a regra 12.
+2. **A vista padrão é a `diagonal`** (para cômodos, a vista `diorama`). A `lateral` só **muito raramente**, quando a
+   cena não funciona na diagonal (ex.: algo que precisa ser visto de lado). Nenhuma outra vista, a menos que o usuário
+   peça. O **modo 3D** segue a regra 12.
    A vista `avenida` e o `"movimentoReal"` existem, mas não usar (e nunca o tempo todo).
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
    Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
@@ -26,7 +27,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 11. **Roteiros de concorrentes** (`referencias/roteiros-concorrentes/`): só referência. **Não ler nem usar**
     ao criar roteiros, a menos que o usuário peça explicitamente; nunca copiar premissas, falas ou personagens.
 12. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
-    roteiros, cenas, testes ou sugestões de vídeo; a vista padrão continua `lateral` (e `diagonal`/`diorama`).
+    roteiros, cenas, testes ou sugestões de vídeo; a vista padrão continua a `diagonal` (`diorama` nos cômodos).
 
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
@@ -35,7 +36,11 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
   pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
-- **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
+- **Diagonal em quase tudo.** Para variar o visual, troque de lugar (rua, praça, cômodo) e de enquadramento, não de
+  vista. Lugares da cidade sem interior na diagonal (escola, delegacia, padaria, mercado): a cena acontece na rua
+  comercial, na calçada em frente ao prédio (`z` ~5.6; câmera `{ "x": <prédio>, "z": 2.2, "y": 2.4 }`; prédios em
+  x ≈ padaria 0.6, escola 4.6, delegacia 10.4, mercado 16.2). Céu na diagonal: câmera mais alta (`"y"` ~3.5) mostra
+  o céu acima dos telhados.
 - **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
   Exceção: um balão maior é permitido quando o personagem tiver **algo interessante a dizer** (piada, revelação,
   fala marcante) — charme estilo Undertale.
@@ -59,7 +64,7 @@ Usar quando o usuário pedir um vídeo "no estilo Nesse Mundo". Tem dois formato
 - **Virada justa:** plantar uma pista no começo que, depois da virada, passa a fazer sentido.
 - **Narração:** terceira pessoa, frases curtas (8–15 palavras, ~3,5 s cada), uma frase = uma cena.
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
-- Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
+- Segue também as regras de ritmo acima (vista diagonal, `vertical` no Shorts, sem pausa entre cenas).
 
 ### Nesse Mundo curto (um choque só, 30–45 s)
 Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no fim e o vídeo acaba nela.
@@ -140,7 +145,8 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   os problemas; ajustar só o que ele apontar): `projetos/nesse-mundo-estrelas` (curto, 13 cenas, ~53 s),
   `projetos/nesse-mundo-monstros` (curto, 9 cenas, ~47 s), `projetos/nesse-mundo-tempo` (longo, 33 cenas, ~2:45;
   usa `praca-seca` e `quarto-menina-noite-diorama` do `cenarios.json` do próprio projeto). Texto do ElevenLabs em
-  `narracao/TEXTO-COMPLETO.txt` de cada um.
+  `narracao/TEXTO-COMPLETO.txt` de cada um. Todos na diagonal (só a última cena do longo, a viatura boiando, é lateral);
+  o curto das estrelas usa `rua-estrelas` (do `cenarios.json` do projeto) e o céu acima dos telhados.
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
