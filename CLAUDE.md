@@ -7,7 +7,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 1. **Não renderizar vídeos.** O usuário renderiza no PC dele (GTX 1050 Ti). Para conferir, use no máximo
    imagens paradas — e só quando for essencial.
 2. **Só vistas `lateral` e `diagonal`** ao criar vídeos/roteiros (para cômodos, a diagonal é a vista `diorama`),
-   a menos que o usuário peça outra. O **modo 3D** segue a regra 11.
+   a menos que o usuário peça outra. O **modo 3D** segue a regra 12.
    A vista `avenida` e o `"movimentoReal"` existem, mas não usar (e nunca o tempo todo).
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
    Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
@@ -23,7 +23,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 10. **Sem pausa entre cenas** (retenção): ao escrever roteiros novos, todas as ações e balões de cada cena
     terminam antes (ou junto) do fim da fala do narrador — nada de tempo parado sem narração. Conferir pelas
     durações calculadas (fala estimada ≈ 0,065 s por letra) antes de entregar.
-11. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
+12. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
     roteiros, cenas, testes ou sugestões de vídeo; a vista padrão continua `lateral` (e `diagonal`/`diorama`).
 
 ## Ritmo dos próximos vídeos (retenção)
@@ -74,7 +74,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Poses APROVADAS**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"`,
   `"sentado-costas"` e as ações `sentar`/`levantar` (`motor/sentado.js`). Assento a ~12 px do chão: em sofás da
   lateral use `"y": 0.25`, nas carteiras da lateral `"y": 0.2`.
-- **Modo 3D GUARDADO — só usar se o usuário pedir (regra 11)** (vista padrão continua `lateral`).
+- **Modo 3D GUARDADO — só usar se o usuário pedir (regra 12)** (vista padrão continua `lateral`).
   `"vista": "3d", "palco": { "tipo": "quarto-menino" | "quarto-menino-noite" | "sala-aula" | "sala-estar" |
   "praca" | "praca-noite" }` (`motor/cenarios/palco3d.js`, `objetos3d.js`; teste em `projetos/prototipo-3d`).
   Pendência: texto pequeno em objetos do fundo perde linhas de pixel.
