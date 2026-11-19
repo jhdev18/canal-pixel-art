@@ -1,0 +1,76 @@
+{
+  // PROTÓTIPO (não aprovado): vista "3d" — personagens e objetos 2D em pé num mundo 3D.
+  // x = lateral; z = profundidade (parede do fundo dos cômodos em z = -6, borda da frente em z = 3).
+  // Objetos em cima de outros usam "y" (ex.: abajur sobre o criado-mudo).
+  "quarto-menino-3d": {
+    "vista": "3d", "palco": { "tipo": "quarto-menino" }, "realce": 0,
+    "elementos": [
+      { "id": "cama", "sprite": "cama", "x": -6.4, "z": -4.6 },
+      { "id": "criado", "sprite": "criado-mudo", "x": -3.4, "z": -5.5 },
+      { "id": "abajur", "sprite": "abajur-apagado", "x": -3.4, "y": 1.375, "z": -5.5 },
+      { "id": "bau", "sprite": "bau-brinquedos", "x": -0.6, "z": -5.4 },
+      { "id": "escrivaninha", "sprite": "escrivaninha", "x": 3.4, "z": -5.5 },
+      { "id": "cadeira", "sprite": "cadeira-gamer", "x": 3.0, "z": -4.5 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.8, "z": -5.5 },
+      { "id": "bola", "sprite": "bola", "x": -1.8, "z": 0.8 }
+    ]
+  },
+  "quarto-menino-noite-3d": {
+    "vista": "3d", "palco": { "tipo": "quarto-menino-noite" },
+    "elementos": [
+      { "id": "cama", "sprite": "cama", "x": -6.4, "z": -4.6 },
+      { "id": "criado", "sprite": "criado-mudo", "x": -3.4, "z": -5.5 },
+      { "id": "abajur", "sprite": "abajur", "x": -3.4, "y": 1.375, "z": -5.5 },
+      { "id": "bau", "sprite": "bau-brinquedos", "x": -0.6, "z": -5.4 },
+      { "id": "escrivaninha", "sprite": "escrivaninha-desligada", "x": 3.4, "z": -5.5 },
+      { "id": "cadeira", "sprite": "cadeira-gamer", "x": 3.0, "z": -4.5 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.8, "z": -5.5 },
+      { "id": "bola", "sprite": "bola", "x": -1.8, "z": 0.8 }
+    ]
+  },
+  "sala-de-aula-3d": {
+    "vista": "3d", "palco": { "tipo": "sala-aula" }, "realce": 0,
+    "elementos": [
+      { "id": "lousa", "sprite": "lousa", "x": 1, "y": 1.5, "z": -5.9 },
+      { "id": "alfabeto", "sprite": "cartaz-alfabeto", "x": 1, "y": 4.75, "z": -5.9 },
+      { "id": "relogio", "sprite": "relogio-parede", "x": 5.2, "y": 4.4, "z": -5.9 },
+      { "id": "estante", "sprite": "estante-livros", "x": -4.6, "z": -5.6 },
+      { "id": "globo", "sprite": "globo", "x": -4.6, "y": 3.75, "z": -5.6 },
+      { "id": "mesa", "sprite": "mesa-professor", "x": -7.4, "z": -4 },
+      { "id": "c1", "sprite": "carteira", "x": -1.5, "z": -2.2 }, { "id": "c2", "sprite": "carteira", "x": 2, "z": -2.2 }, { "id": "c3", "sprite": "carteira", "x": 5.5, "z": -2.2 },
+      { "id": "c4", "sprite": "carteira", "x": -1.5, "z": 0.4 }, { "id": "c5", "sprite": "carteira", "x": 2, "z": 0.4 }, { "id": "c6", "sprite": "carteira", "x": 5.5, "z": 0.4 }
+    ]
+  },
+  "sala-de-estar-3d": {
+    "vista": "3d", "palco": { "tipo": "sala-estar" }, "realce": 0,
+    "elementos": [
+      { "id": "tv", "sprite": "tv-rack", "x": -6.8, "z": -5.4 },
+      { "id": "estante", "sprite": "estante-sala", "x": -2.8, "z": -5.6 },
+      { "id": "luminaria", "sprite": "luminaria-pe", "x": -0.9, "z": -5.4 },
+      { "id": "sofa", "sprite": "sofa", "x": 2.4, "z": -5.2 },
+      { "id": "mesa", "sprite": "mesa-centro", "x": 2.4, "z": -3.3 },
+      { "id": "poltrona", "sprite": "poltrona", "x": 7.2, "z": -4.2 },
+      { "id": "planta", "sprite": "planta-vaso", "x": 9.1, "z": -5.4 }
+    ]
+  },
+  "praca-3d": {
+    "vista": "3d", "palco": { "tipo": "praca" }, "realce": 0,
+    "elementos": [
+      { "id": "escola", "sprite": "escola", "x": -12, "z": -8, "escala": 1.3 },
+      { "id": "padaria", "sprite": "padaria", "x": 1, "z": -8.5, "escala": 1.3 },
+      { "id": "mercado", "sprite": "mercado", "x": 14.5, "z": -8, "escala": 1.3 },
+      { "id": "arv1", "sprite": "arvore", "x": -4.6, "z": -11, "semente": 2, "escala": 1.3 },
+      { "id": "arv2", "sprite": "arvore", "x": 7, "z": -11.5, "semente": 5, "escala": 1.3 },
+      { "id": "arv3", "sprite": "arvore", "x": -20, "z": -10, "semente": 3, "escala": 1.3 },
+      { "id": "pin1", "sprite": "pinheiro", "x": 21, "z": -11, "escala": 1.3 },
+      { "id": "banco1", "sprite": "banco-praca", "x": -3, "z": -2.6 },
+      { "id": "banco2", "sprite": "banco-praca", "x": 5, "z": -2.6 },
+      { "id": "poste1", "sprite": "poste", "x": -7, "z": -2.2 },
+      { "id": "poste2", "sprite": "poste", "x": 9, "z": -2.2 },
+      { "id": "hidrante", "sprite": "hidrante", "x": 1.5, "z": -2.3 },
+      { "id": "arb1", "sprite": "arbusto", "x": -6.5, "z": 3 },
+      { "id": "arb2", "sprite": "arbusto", "x": 3, "z": 3.4, "semente": 3 },
+      { "id": "arvFrente", "sprite": "arvore", "x": -10.5, "z": 5, "semente": 4 }
+    ]
+  }
+}

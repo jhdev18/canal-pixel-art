@@ -217,7 +217,7 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
 CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum
-VISTAS:      lateral (padrão), diagonal (rua desenhada 2:1), avenida (perspectiva)
+VISTAS:      lateral (padrão), diagonal (rua desenhada 2:1), 3d (sprites num mundo 3D), avenida (perspectiva)
 TRANSIÇÕES:  dither, fade, iris, pixelizar, corte
 PALETAS:     nenhuma (padrão), posterizar, retro32, verde4, sepia, noir, quente, fria
 EMOÇÕES:     !, ?, coracao, ..., zzz

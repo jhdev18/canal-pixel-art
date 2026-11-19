@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { gerarRuaDiagonal, FAIXA } from './cenarios/ruaDiagonal.js';
 import { gerarComodoDiagonal, COMODO } from './cenarios/comodoDiagonal.js';
+import { gerarPalco3d } from './cenarios/palco3d.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
 import { estadoCamera, estadoElemento } from './compartilhado/linhaDoTempo.js';
 import { obterSprite } from './sprites.js';
@@ -15,11 +16,12 @@ import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
 const snap = (v) => Math.round(v * PPU) / PPU;
 const tex = (canvas) => { const t = new THREE.CanvasTexture(canvas); t.magFilter = t.minFilter = THREE.NearestFilter; t.generateMipmaps = false; t.colorSpace = THREE.NoColorSpace; return t; };
 
-export const NOMES_VISTAS = ['lateral', 'diagonal', 'avenida'];
+export const NOMES_VISTAS = ['lateral', 'diagonal', '3d', 'avenida'];
 
 export function criarVista(c, motor) {
   if (c.vista === 'diagonal') return vistaDiagonal(c, motor);
   if (c.vista === 'avenida') return vistaAvenida(c, motor);
+  if (c.vista === '3d') return vista3d(c, motor);
   if (c.vista && c.vista !== 'lateral') motor.avisos.push(`Vista desconhecida "${c.vista}" (cena ${c.numero}); usando lateral.`);
   return vistaLateral(c, motor);
 }
@@ -242,6 +244,45 @@ function vistaComodo(c, motor) {
     atualizarCamera(cam, ef) {
       const centro = ponto(COMODO.meio - (cam.z ?? 0), -cam.x, cam.y);
       camera.position.set(snap(centro.x) + ef.tremorX / PPU, snap(centro.y) + ef.tremorY / PPU, 50);
+      camera.zoom = cam.zoom;
+    },
+  };
+}
+
+// ---------------------------------------------------------------- 3d
+// Personagens e objetos 2D (sprites) em pé num mundo 3D (chão, paredes e luz de verdade).
+// A câmera fica fixa, só inclinada para baixo (nunca gira para os lados); ela desliza em x/z e aproxima (zoom).
+// Coordenadas: x = lateral, z = profundidade (0 = meio do palco; negativo = fundo), y = altura.
+// Câmera: x, z = ponto do chão que fica no centro; y = altura desse ponto; zoom.
+// Os sprites ficam em pé (verticais) e um pouco mais altos (1/cos da inclinação), para aparecerem
+// na tela com a proporção original.
+function vista3d(c, motor) {
+  const { W, H } = motor;
+  const op = typeof c.palco === 'string' ? { tipo: c.palco } : (c.palco || {});
+  const pal = gerarPalco3d({ ...op, semente: op.semente ?? c.semente ?? c.numero * 13 });
+  const cena = new THREE.Scene();
+  cena.background = pal.externo ? ceuDiagonal(W, H, pal.noite) : new THREE.Color(op.fundo || pal.fundo);
+  if (pal.neblina) cena.fog = new THREE.Fog(...pal.neblina);
+  cena.add(pal.grupo);
+  const incl = ((op.inclinacao ?? (pal.externo ? 24 : 30)) * Math.PI) / 180;
+  const dist = op.distancia ?? 21;
+  const camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 400);
+  const k = 1 / Math.cos(incl);
+  return {
+    cena, camera, ambiente: pal.ambiente, climaPadrao: null, sombraDeitada: true, apoiarPeloPe: true, escalaY: k,
+    atualizar: () => {},
+    liberar: () => pal.grupo.traverse((o) => { o.geometry?.dispose(); o.material?.map?.dispose(); o.material?.dispose?.(); }),
+    ordemInicial: () => 1,
+    paraMundo: (el, st, dy = 0) => new THREE.Vector3(st.x, (st.y + dy) * k, el.z ?? 0),
+    posicionar(e, st, bob) { e.malha.position.set(st.x, (st.y + bob) * k, e.def.z ?? 0); e.malha.renderOrder = 1; },
+    posicionarSombra(e, st) { e.sombra.position.set(st.x, 0.02, e.def.z ?? 0); e.sombra.renderOrder = 0; },
+    atualizarCamera(cam, ef) {
+      // nos cômodos o centro fica mais para o fundo e mais alto: cabe a parede inteira e os móveis do fundo
+      // ficam perto do tamanho original (sprites longe da câmera encolhem e perdem linhas de pixel)
+      const aj = pal.externo ? { y: 0, z: 0 } : { y: 0.7, z: -2 };
+      const alvo = new THREE.Vector3(cam.x + ef.tremorX / PPU, cam.y + aj.y + ef.tremorY / PPU, (cam.z ?? 0) + aj.z);
+      camera.position.set(alvo.x, alvo.y + Math.sin(incl) * dist, alvo.z + Math.cos(incl) * dist);
+      camera.lookAt(alvo);                               // mesmo x: só inclina para baixo, sem girar para os lados
       camera.zoom = cam.zoom;
     },
   };

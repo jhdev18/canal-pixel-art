@@ -137,7 +137,7 @@ class Motor {
 
   construirCena(c) {
     const { W, H } = this;
-    // A vista (lateral, diagonal ou avenida) monta o cenário, a câmera e o posicionamento.
+    // A vista (lateral, diagonal, 3d ou avenida) monta o cenário, a câmera e o posicionamento.
     const vista = criarVista(c, this);
     const { cena, camera } = vista;
     const fundo = vista;
@@ -314,7 +314,7 @@ class Motor {
       e.mat.map = e.texturas[q] || e.texturas[0]; if ('emissiveMap' in e.mat) e.mat.emissiveMap = e.mat.map;
       vista.posicionar(e, st, bob);
       const s = e.esc * st.escala;
-      e.malha.scale.set(st.virado * s, s, 1);
+      e.malha.scale.set(st.virado * s, s * (vista.escalaY ?? 1), 1);
       e.mat.opacity = st.alpha;
       if (e.brilho) {
         e.brilho.mat.map = e.brilho.texturas[q] || e.brilho.texturas[0];

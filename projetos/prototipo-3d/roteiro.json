@@ -1,0 +1,33 @@
+{
+  // PROTÓTIPO da vista "3d" (só para conferir na prévia: npm run previa -- prototipo-3d)
+  "titulo": "Protótipo — 2D num mundo 3D",
+  "resolucao": [320, 180],
+  "cenas": [
+    { "cenario": "quarto-menino-3d", "duracao": 5, "transicao": "fade",
+      "camera": { "x": -1.5 }, "cameraFim": { "x": 1.5, "zoom": 1.15 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -8.5, "z": -1 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "aluno", "para": 1.5, "inicio": 0.3, "duracao": 3.5 } ] },
+    { "cenario": "quarto-menino-noite-3d", "duracao": 4, "transicao": "dither",
+      "camera": { "x": -3, "zoom": 1.4 }, "cameraFim": { "x": -2.4, "zoom": 1.5 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -1.8, "z": -3.4, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "aluno", "icone": "zzz", "inicio": 0.6, "duracao": 2.5 } ] },
+    { "cenario": "sala-de-aula-3d", "duracao": 5, "transicao": "dither",
+      "camera": { "x": -1 }, "cameraFim": { "x": 1 },
+      "elementos": [
+        { "id": "prof", "personagem": "professora", "x": -2.6, "z": -4.2 },
+        { "id": "aluno", "personagem": "aluno", "x": 3, "z": -1.4, "virado": "esquerda" },
+        { "id": "aluna", "personagem": "aluna", "x": 6.5, "z": 1.2, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Bom dia, turma!", "inicio": 0.8 } ] },
+    { "cenario": "sala-de-estar-3d", "duracao": 5, "transicao": "dither",
+      "camera": { "x": 1 }, "cameraFim": { "x": -1 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 7, "z": -1.5, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": 0, "inicio": 0.4, "duracao": 3 } ] },
+    { "cenario": "praca-3d", "duracao": 6, "transicao": "dither",
+      "camera": { "x": -3 }, "cameraFim": { "x": 4 },
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -10, "z": 0 },
+        { "id": "padeiro", "personagem": "padeiro", "x": 2.5, "z": -2.2 },
+        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": 4.2, "z": 0.6 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": 5, "inicio": 0.3, "duracao": 5 } ] }
+  ]
+}
