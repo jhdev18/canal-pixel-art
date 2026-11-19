@@ -15,11 +15,17 @@ let ALT = 200;            // altura das paredes (px): passa do alto da tela, par
 const PX_ALT = 16;
 
 class Camada {
-  constructor(g) { Object.assign(this, g); const N = g.W * g.H; this.cor = new Float32Array(N * 3); this.pi = new Float32Array(N); this.pj = new Float32Array(N); this.ph = new Float32Array(N); this.tipo = new Uint8Array(N); this.face = new Float32Array(N).fill(1); }
+  constructor(g) { Object.assign(this, g); const N = g.W * g.H; this.cor = new Float32Array(N * 3); this.pi = new Float32Array(N); this.pj = new Float32Array(N); this.ph = new Float32Array(N); this.tipo = new Uint8Array(N); this.face = new Float32Array(N).fill(1); this.prof = new Float32Array(N).fill(-1e9); }
   pintar(x, y, hex, i, j, h, t = 1, f = 1) {
     x = Math.round(x); y = Math.round(y);
     if (hex == null || x < 0 || y < 0 || x >= this.W || y >= this.H) return;
-    const k = y * this.W + x, [r, g, b] = hexParaRgb(hex);
+    const k = y * this.W + x;
+    // profundidade: ao longo do raio da câmera i, j e h crescem juntos; o ponto mais perto (maior) vence,
+    // então a ordem em que as peças de um móvel são pintadas não importa
+    const d = i + j + h / 16;
+    if (d < this.prof[k] - 0.02) return;
+    this.prof[k] = d;
+    const [r, g, b] = hexParaRgb(hex);
     this.cor[k * 3] = r / 255; this.cor[k * 3 + 1] = g / 255; this.cor[k * 3 + 2] = b / 255;
     this.pi[k] = i; this.pj[k] = j; this.ph[k] = h; this.tipo[k] = t; this.face[k] = f;
   }
