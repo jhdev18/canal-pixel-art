@@ -67,9 +67,10 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Teste "mundo sombrio" (aguardando aprovação)** em `projetos/prototipo-mundo-sombrio`: fundo lateral
   `mundo-sombrio` (`motor/cenarios/mundoSombrio.js`) e `"tema": "sombrio" | "sombrio-verde" | "sombrio-vermelho"`
   nos cômodos da diagonal (poucas cores, contorno brilhante, plataforma flutuando).
-- **Teste vista `"3d"` (aguardando aprovação; o usuário prefere esta ideia ao mundo sombrio)** em
-  `projetos/prototipo-3d`: sprites 2D em pé num mundo 3D (chão, paredes e luz reais), câmera fixa só inclinada
-  para baixo. `"vista": "3d", "palco": { "tipo": "quarto-menino" | "quarto-menino-noite" | "sala-aula" |
-  "sala-estar" | "praca" | "praca-noite" }` (`motor/cenarios/palco3d.js`). Objetos longe da câmera encolhem e
-  perdem linhas de pixel: compensar com `"escala"` (ex.: prédios do fundo da praça com 1.3).
+- **Vista `"3d"` GUARDADA para uso futuro — NÃO usar nos vídeos por enquanto** (o usuário gostou do estilo;
+  seguir usando `lateral`/`diagonal`). Protótipo em `projetos/prototipo-3d`: personagens 2D (sprites) num mundo
+  3D; chão, paredes, móveis e prédios em 3D com textura pixel art (`motor/cenarios/palco3d.js`,
+  `motor/cenarios/objetos3d.js`), câmera fixa só inclinada para baixo. `"vista": "3d", "palco": { "tipo":
+  "quarto-menino" | "quarto-menino-noite" | "sala-aula" | "sala-estar" | "praca" | "praca-noite" }`.
+  Pendência conhecida: texto pequeno em objetos do fundo (lousa, cartaz) perde linhas de pixel.
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

@@ -271,7 +271,7 @@ function vista3d(c, motor) {
   return {
     cena, camera, ambiente: pal.ambiente, climaPadrao: null, sombraDeitada: true, apoiarPeloPe: true, escalaY: k,
     atualizar: () => {},
-    liberar: () => pal.grupo.traverse((o) => { o.geometry?.dispose(); o.material?.map?.dispose(); o.material?.dispose?.(); }),
+    liberar: () => pal.grupo.traverse((o) => { o.geometry?.dispose(); for (const m of [].concat(o.material || [])) { m.map?.dispose(); m.dispose(); } }),
     ordemInicial: () => 1,
     paraMundo: (el, st, dy = 0) => new THREE.Vector3(st.x, (st.y + dy) * k, el.z ?? 0),
     posicionar(e, st, bob) { e.malha.position.set(st.x, (st.y + bob) * k, e.def.z ?? 0); e.malha.renderOrder = 1; },

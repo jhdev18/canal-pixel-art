@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import { Pix, bayer } from '../pixel.js';
 import { rng } from '../compartilhado/util.js';
 import { PRESETS_INTERIORES, pintarComodo } from './interiores.js';
+import { construirObjetos } from './objetos3d.js';
 
 const texDe = (pix, repetir = false) => {
   const t = new THREE.CanvasTexture(pix.paraCanvas());
@@ -61,16 +62,27 @@ function ocluir(p, lados) {
 export const PALCOS = {
   'quarto-menino': { estilo: 'quarto-menino', fundo: { janelas: [{ x: 36, w: 44, h: 40, cortina: ['#e8a040', '#c07820'] }],
       quadros: [{ x: 150, w: 22, h: 30, altura: 62, tipo: 'poster', cores: ['#c83c4c', '#a82a3c'], estrela: true }, { x: 196, w: 30, h: 20, altura: 70, tipo: 'paisagem' }] },
-    dir: { portas: [{ x: 60, w: 30, h: 76 }] }, tapetes: [{ x: 0, z: -1.2, w: 6, d: 3.2, cor: ['#5a8ae0', '#3a6ac8', '#f0d090'] }] },
+    dir: { portas: [{ x: 60, w: 30, h: 76 }] }, tapetes: [{ x: 0, z: -1.2, w: 6, d: 3.2, cor: ['#5a8ae0', '#3a6ac8', '#f0d090'] }],
+    objetos: [{ tipo: 'cama', x: -6.4, z: -4.9 }, { tipo: 'criado-mudo', x: -3.5, z: -5.45 }, { tipo: 'bau-brinquedos', x: -0.6, z: -5.35 },
+      { tipo: 'escrivaninha', x: 3.4, z: -5.3 }, { tipo: 'cadeira-gamer', x: 3.6, z: -4.2 }, { tipo: 'guarda-roupa', x: 7.8, z: -5.3 }, { tipo: 'bola', x: -1.8, z: 0.8 }] },
   'quarto-menino-noite': { base: 'quarto-menino', noite: true },
   'sala-aula': { estilo: 'sala-aula', fundo: { janelas: [{ x: 14, w: 52, h: 38 }, { x: 254, w: 52, h: 38 }],
       quadros: [{ x: 90, w: 20, h: 26, altura: 70, tipo: 'poster', cores: ['#f0d040', '#e8b030'], estrela: true }] },
-    dir: { portas: [{ x: 50, w: 30, h: 78, cor: ['#c89a5a', '#a87a42', '#6a4a24'] }] } },
+    dir: { portas: [{ x: 50, w: 30, h: 78, cor: ['#c89a5a', '#a87a42', '#6a4a24'] }] },
+    objetos: [{ tipo: 'lousa', x: 1, y: 1.5, z: -6 }, { tipo: 'cartaz-alfabeto', x: 1, y: 4.75, z: -6 }, { tipo: 'relogio-parede', x: 5.2, y: 4.4, z: -6 },
+      { tipo: 'estante-livros', x: -4.6, z: -5.5 }, { tipo: 'mesa-professor', x: -7.2, z: -4.2 },
+      ...[-1.5, 2, 5.5].flatMap((x) => [-2.8, -0.2].map((z) => ({ tipo: 'carteira', x, z })))] },
   'sala-estar': { estilo: 'sala-estar', fundo: { janelas: [{ x: 22, w: 56, h: 44, cortina: ['#b83a4a', '#8a2a3a'] }],
       quadros: [{ x: 138, w: 34, h: 22, altura: 74, tipo: 'paisagem' }, { x: 182, w: 22, h: 16, altura: 78, tipo: 'familia' }] },
-    esq: { portas: [{ x: 70, w: 30, h: 78, cor: ['#f4f0e8', '#e0d8c8', '#a8a090'] }] }, tapetes: [{ x: 2.4, z: -3.2, w: 7, d: 3, cor: ['#c85a5a', '#a83a3a', '#f0d090'] }] },
-  praca: { externo: true },
-  'praca-noite': { externo: true, noite: true },
+    esq: { portas: [{ x: 70, w: 30, h: 78, cor: ['#f4f0e8', '#e0d8c8', '#a8a090'] }] }, tapetes: [{ x: 2.4, z: -3.2, w: 7, d: 3, cor: ['#c85a5a', '#a83a3a', '#f0d090'] }],
+    objetos: [{ tipo: 'tv-rack', x: -6.8, z: -5.45 }, { tipo: 'estante-sala', x: -3.0, z: -5.5 }, { tipo: 'luminaria-pe', x: -1.0, z: -5.4 },
+      { tipo: 'sofa', x: 2.4, z: -5.1 }, { tipo: 'mesa-centro', x: 2.4, z: -3.0 }, { tipo: 'poltrona', x: 7.0, z: -4.4 }, { tipo: 'planta-vaso', x: 9.1, z: -5.4 }] },
+  praca: { externo: true, objetos: [
+    { tipo: 'predio', sprite: 'escola', x: -12, z: -9, escala: 1.3 }, { tipo: 'predio', sprite: 'padaria', x: 1, z: -9.5, escala: 1.3 },
+    { tipo: 'predio', sprite: 'mercado', x: 14.5, z: -9, escala: 1.3 },
+    { tipo: 'banco-praca', x: -3, z: -2.6 }, { tipo: 'banco-praca', x: 5, z: -2.6 }, { tipo: 'poste', x: -7, z: -2.2 }, { tipo: 'poste', x: 9, z: -2.2 },
+    { tipo: 'hidrante', x: 1.5, z: -2.3 }] },
+  'praca-noite': { base: 'praca', noite: true },
 };
 
 // Monta o palco. Retorna { grupo, ambiente, fundo (cor do vazio/céu), noite, externo }.
@@ -103,7 +115,6 @@ export function gerarPalco3d(opc = {}) {
   for (const [lado, sx] of [['esq', -1], ['dir', 1]]) {
     const p = parede(D * 16, cfg[lado]);
     // escurece um pouco as laterais (recebem menos luz)
-    for (let k = 0; k < p.d.length; k += 4) { p.d[k] *= 0.86; p.d[k + 1] *= 0.86; p.d[k + 2] *= 0.9; }
     const m = new THREE.Mesh(new THREE.PlaneGeometry(D, A), mat(p));
     m.rotation.y = -sx * Math.PI / 2; m.position.set(sx * L / 2, A / 2, (Z0 + Z1) / 2); grupo.add(m);
   }
@@ -117,8 +128,9 @@ export function gerarPalco3d(opc = {}) {
     const luz = new THREE.PointLight(noite ? '#7a8ae0' : '#fff0d0', (noite ? 0.5 : 0.9) * Math.PI, 9, 1.2);
     luz.position.set(x, 3.6, Z0 + 1.2); grupo.add(luz);
   }
+  objetosELuzes(grupo, cfg, noite);
   return { grupo, noite, externo: false, fundo: noite ? '#0c0c18' : '#1c1a26',
-    ambiente: noite ? ['#6a74b0', 0.42] : ['#ffffff', 0.84], limites: { x: L / 2, z0: Z0, z1: Z1 } };
+    ambiente: noite ? ['#6a74b0', 0.36] : ['#ffffff', 0.66], limites: { x: L / 2, z0: Z0, z1: Z1 } };
 }
 
 // Praça ao ar livre: grama, caminho de pedras e "fundo" de prédios/árvores (sprites, no roteiro).
@@ -135,7 +147,17 @@ function praca(grupo, cfg, noite, r) {
   }
   const m = new THREE.Mesh(new THREE.PlaneGeometry(L, D), mat(p));
   m.rotation.x = -Math.PI / 2; m.position.set(0, 0, (Z0 + Z1) / 2); grupo.add(m);
+  objetosELuzes(grupo, cfg, noite, true);
   return { grupo, noite, externo: true, fundo: null,
-    ambiente: noite ? ['#7078b8', 0.5] : ['#ffffff', 1.0], neblina: noite ? ['#141638', 26, 48] : ['#a4d0f4', 30, 56], limites: { x: L / 2, z0: Z0, z1: Z1 } };
+    ambiente: noite ? ['#7078b8', 0.42] : ['#ffffff', 0.7], neblina: noite ? ['#141638', 26, 48] : ['#a4d0f4', 30, 56], limites: { x: L / 2, z0: Z0, z1: Z1 } };
+}
+// Móveis/prédios 3D + luzes: uma luz direcional (de cima, da esquerda e da frente) dá volume às caixas
+// (topo mais claro, frente média, lado mais escuro); abajures, TVs e postes acendem PointLights.
+function objetosELuzes(grupo, cfg, noite, externo = false) {
+  const ctx = { luzes: [], noite };
+  construirObjetos(grupo, cfg.objetos, ctx);
+  for (const l of ctx.luzes) { const L = new THREE.PointLight(l.cor, l.forca * Math.PI, l.alcance, 1.2); L.position.set(l.x, l.y, l.z); grupo.add(L); }
+  const sol = new THREE.DirectionalLight(noite ? '#8090d0' : '#fff4e0', (noite ? 0.18 : externo ? 0.5 : 0.42) * Math.PI);
+  sol.position.set(-4, 10, 6); grupo.add(sol); grupo.add(sol.target);
 }
 export { misturar };
