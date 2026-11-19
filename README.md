@@ -65,9 +65,11 @@ projetos/meu-video/
 ### Narração do ElevenLabs
 
 **Opção 1 — um único áudio (recomendado):** escreva a fala de cada cena em `"narracaoTexto"` no roteiro e rode
-`npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (com pausas `<break time="1.0s" />` entre as
-cenas) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o gerador corta o
-áudio nas pausas, um trecho por cena, e ajusta a duração de cada cena. Deixe uma pausa clara entre as falas.
+`npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (um parágrafo por cena, sem marcações de
+pausa, para a fala fluir) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o
+gerador **ouve o áudio** (reconhecimento de fala no próprio PC; na primeira vez baixa um modelo de ~75 MB) e corta
+exatamente entre a última palavra de uma cena e a primeira da seguinte; cada cena dura o seu trecho de áudio. Se o
+reconhecimento não estiver instalado, corta pelas pausas naturais.
 
 **Conferir os cortes sem renderizar:** `npm run narracao -- meu-video --verificar` mostra de que segundo a que
 segundo vai a fala de cada cena (e salva em `narracao/CORTES.txt`). O corte leva em conta o tamanho do texto de
@@ -294,6 +296,9 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `mover` | `alvo`, `para`, `easing` | desliza suave (voar, flutuar) | — |
 | `pular` | `alvo`, `altura`, `para` | pulo em arco + poeira ao cair | pulo + aterrissar |
 | `virar` | `alvo`, `direcao` | — | — |
+| `sentar` | `alvo`, `lado` (true = de lado) ou `pose` (`sentado`, `sentado-lado`, `sentado-costas`) | personagem fica sentado (de frente ou de lado) | — |
+| `levantar` | `alvo` | volta a ficar em pé | — |
+| `trocar` | `alvo`, `estado` | muda o estado de um objeto (ex.: `tempo-pessoal` de `sol` para `chuva`; estrela vira `olho`) | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
 | `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` | ícone sobre a cabeça | surpresa/dúvida/amor |
 | `numero` | `alvo`, `valor` (`null` tira), `cor`, `estilo` | troca o número sobre a cabeça (com pulinho); vale até o fim da cena | clique |
@@ -330,7 +335,9 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 | Vista | Como é | Coordenadas dos elementos |
 |---|---|---|
 | `lateral` (padrão) | cenário em camadas com paralaxe, usando `fundo` | `x` horizontal, `y` altura, `z` profundidade |
-| `diorama` (antiga `diagonal`, ainda aceita; **padrão nos vídeos novos**) | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
+| `diorama` (rua; **padrão**) — antiga `diagonal`, ainda aceita | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
+| `diorama` + `"comodo"` (cômodos) | **cômodos** (interiores) desenhados em diagonal 2:1, em corte, com **ângulos**: `"comodo": { "tipo": "sala-aula", "angulo": "espelhado" }`. Padrão: `classico` (a diagonal clássica, não precisa escrever); `espelhado` (visto pelo outro lado da diagonal); ângulos extras quando o cômodo tem (sala de aula: `lousa-fundo`), combináveis (`lousa-fundo-espelhado`). Ângulo que não existe usa o clássico, com aviso. Tipos: `sala-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-estar` | `x` ao longo do cômodo; `z` = 0 perto da frente, ~3.8 encostado na parede do fundo. No ângulo espelhado o `x` troca de sinal |
+| `3d` (**modo 3D**, guardado para o futuro) | personagens 2D (sprites) num mundo 3D: chão, paredes, móveis e prédios em 3D com textura pixel art; câmera fixa só inclinada para baixo. `"palco": { "tipo": "quarto-menino" \| "quarto-menino-noite" \| "sala-aula" \| "sala-estar" \| "praca" \| "praca-noite" }` | `x` lateral, `z` profundidade (fundo dos cômodos em −6), `y` altura |
 | `avenida` | avenida em **perspectiva** indo para o fundo, prédios dos dois lados, postes e carros | `x` lateral (−3 a 3 é o asfalto), `z` profundidade (maior = mais perto da câmera) |
 
 ```jsonc
@@ -356,9 +363,21 @@ enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na aven
 paralaxe real e avançar com `cameraFim`/ação `camera` em `z`). Usa um desenho mais simples (linhas de 2 px, sem
 grão nem fiadas) para reduzir o tremido, que mesmo assim pode aparecer de leve no avanço.
 
+Cenários prontos de interiores: `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-de-estar` (lateral) e
+`sala-de-aula-diorama`, `quarto-menino-diorama`, `quarto-menino-noite-diorama`, `sala-de-estar-diorama` (diorama).
+Poses dos personagens (moradores e `menina-capa`): `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"` e
+`"sentado-costas"`; ações `sentar` / `levantar`.
+
+Elemento preso em outro: `"sobre": { "id": "bia", "dx": 0.45, "dy": 2.75 }` — acompanha o dono (posição, lado e
+visibilidade); `dx` segue o lado para onde ele olha. Usado para o tempo na cabeça, guarda-chuva, fogo no chapéu etc.
+Praça (diagonal): `praca` / `praca-noite` (padrão) e `praca-decorada` / `praca-decorada-noite` (festa: bandeirinhas,
+palanque e barracas). Os objetos da praça (`fonte-iso`, `banco-iso`, `barraca-pipoca`...) usam x/z = canto da frente.
+`"balancar": true` faz o elemento boiar (sobe e desce devagar). Clima `"calor"`: ar quente subindo.
+
 ### Fundos
 
 `floresta-dia`, `floresta-noite`, `por-do-sol`, `caverna`, `deserto`, `espaco`, `cidade-noite`, `neve`,
+`sala-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-estar` (interiores),
 `preto` (sem chão, para telas de batalha). Todos são procedurais, em camadas de profundidade (montanhas, colinas, árvores, prédios...), então
 o movimento de câmera gera paralaxe real.
 

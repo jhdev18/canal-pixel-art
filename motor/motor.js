@@ -7,6 +7,9 @@ import './sprites-detalhados.js';
 import './sprites-cidade.js';
 import './sprites-guardioes.js';   // protótipo
 import './estabelecimentos.js';
+import './sprites-interiores.js';
+import './sprites-nesse-mundo.js';
+import './sprites-praca.js';
 import { criarVista } from './vistas.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
@@ -137,7 +140,7 @@ class Motor {
 
   construirCena(c) {
     const { W, H } = this;
-    // A vista (lateral, diorama ou avenida) monta o cenário, a câmera e o posicionamento.
+    // A vista (lateral, diorama, 3d ou avenida) monta o cenário, a câmera e o posicionamento.
     const vista = criarVista(c, this);
     const { cena, camera } = vista;
     const fundo = vista;
@@ -161,14 +164,23 @@ class Motor {
       const vazio = vista.apoiarPeloPe ? (sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas))) : 0;
       const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2 - vazio / PPU, 0);
       // 'semLuz' (sprite ou elemento): não recebe luz da cena — ex.: uma sombra continua preta perto do fogo
-      const semLuz = el.semLuz ?? sprite.semLuz;
+      const semLuz = el.semLuz ?? sprite.semLuz ?? el.tela;   // "tela": detalhe por cima da cena (não recebe luz)
       const mat = semLuz
         ? new THREE.MeshBasicMaterial({ map: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide })
         : new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
       malha.renderOrder = vista.ordemInicial(el, i);
-      cena.add(malha);
       const obj = { def: el, sprite, texturas, malha, mat, h: h * esc, esc, realce: el.realce ?? realce };
+      // "tela": true — detalhe em close (ex.: página de um caderno), no centro da tela, por cima da cena,
+      // com o fundo escurecido ("escurecer": 0..1, padrão 0.6). "telaX"/"telaY" deslocam em pixels.
+      if (el.tela) {
+        malha.renderOrder = 60; overlay.add(malha);
+        const esc2 = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: el.escurecer ?? 0.6, depthTest: false, depthWrite: false }));
+        esc2.position.set(W / 2, H / 2, 0); esc2.renderOrder = 59; overlay.add(esc2);
+        obj.escuro = esc2; mat.depthTest = false;
+        return obj;
+      }
+      cena.add(malha);
       // Camada de brilho: pixels que emitem luz (lanterna, olhos, telas) ficam fora da iluminação.
       if (sprite.brilho) {
         if (!sprite._texBrilho) sprite._texBrilho = sprite.brilho.map(texturaCanvas);
@@ -280,6 +292,7 @@ class Motor {
       const st = estadoElemento(c, e.def, t);
       const vis = st.visivel && st.alpha > 0.01 && st.escala > 0.01;
       e.malha.visible = vis;
+      if (e.escuro) { e.escuro.visible = vis; e.escuro.material.opacity = (e.def.escurecer ?? 0.6) * st.alpha; }
       if (e.sombra) e.sombra.visible = vis;
       if (e.brilho) e.brilho.malha.visible = vis;
       if (e.luz) e.luz.L.visible = vis;
@@ -291,6 +304,8 @@ class Motor {
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);
+      // "unica": a animação toca uma vez a partir do "trocar" e para no último quadro
+      if (anim.unica) idx = Math.min(anim.q.length - 1, Math.max(0, Math.floor((t - (st.animInicio || 0)) * fps)));
       // Com 'passada' definida, os passos seguem a distância percorrida: sem pés escorregando.
       if (anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) {
         const a = c.acoes.find((ac) => ac.alvo === e.def.id && (ac.tipo === 'andar' || ac.tipo === 'correr') && t >= ac.inicio && t < ac.inicio + ac.duracao);
@@ -311,10 +326,17 @@ class Motor {
       if (e.sprite.personagem && !anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) bob = idx % 2 ? 1 / PPU : 0;
       if (e.sprite.flutua && e.def.flutuar !== false && st.anim === 'parado') bob = Math.round(Math.sin(tAnim * 3) * 1.5) / PPU;
       if (e.sprite.voa) bob = Math.round(Math.sin(tAnim * 4) * 3) / PPU;
+      // "balancar": true — boia na água (sobe e desce devagar, em pixels inteiros)
+      if (e.def.balancar) bob = Math.round(Math.sin(tAnim * 2.2) * 1.5) / PPU;
       e.mat.map = e.texturas[q] || e.texturas[0]; if ('emissiveMap' in e.mat) e.mat.emissiveMap = e.mat.map;
-      vista.posicionar(e, st, bob);
       const s = e.esc * st.escala;
-      e.malha.scale.set(st.virado * s, s, 1);
+      if (e.def.tela) {         // em pixels da tela (a malha está em unidades do mundo: x16)
+        e.malha.position.set(Math.round(this.W / 2 + (e.def.telaX ?? 0)), Math.round(this.H / 2 - e.h * PPU / 2 + (e.def.telaY ?? 0)), 0);
+        e.malha.scale.set(s * PPU, s * PPU, 1);
+      } else {
+        vista.posicionar(e, st, bob);
+        e.malha.scale.set(st.virado * s, s * (vista.escalaY ?? 1), 1);
+      }
       e.mat.opacity = st.alpha;
       if (e.brilho) {
         e.brilho.mat.map = e.brilho.texturas[q] || e.brilho.texturas[0];

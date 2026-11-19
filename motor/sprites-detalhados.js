@@ -2,6 +2,7 @@
 // e correr (6 quadros). Desenhados com o sistema de camadas de boneco.js.
 import { Boneco, passada } from './boneco.js';
 import { registrarSprites } from './sprites.js';
+import { adicionarSentado, adicionarCostas } from './sentado.js';
 
 const W = 28, H = 44;
 
@@ -118,6 +119,12 @@ function meninaV2() {
     sombra: true, personagem: true,
   };
 }
+// sentada: a capa cobre o colo
+// de costas: o capuz cobre a cabeça e a capa cobre as costas
+const meninaComSentado = () => adicionarCostas(adicionarSentado(meninaV2(), { q: 33, coxa: PAL_MENINA.capa[1] }), {
+  cabeca: { cx: 14.2, cy: 11.4, rx: 6.8, ry: 6 }, de: [...PAL_MENINA.pele, ...PAL_MENINA.cabelo], para: [...PAL_MENINA.capa.slice(0, 4), ...PAL_MENINA.capa.slice(0, 4)], tudo: true,
+  tronco: { x0: 9, x1: 18, y0: 17, y1: 32, tons: PAL_MENINA.capa },
+}, { q: 33, coxa: PAL_MENINA.capa[1] });
 
 // ======================= ROBÔ SEMÁFORO (v2) =======================
 const PAL_ROBO = {
@@ -212,9 +219,9 @@ function roboV2() {
 }
 
 registrarSprites({
-  'menina-capa': () => meninaV2(),
+  'menina-capa': () => meninaComSentado(),
   'robo-semaforo': () => roboV2(),
   // nomes usados antes (continuam funcionando)
-  'menina-capa-detalhada': () => meninaV2(),
+  'menina-capa-detalhada': () => meninaComSentado(),
   'robo-semaforo-detalhado': () => roboV2(),
 });

@@ -1,5 +1,6 @@
 <!doctype html><meta charset="utf-8"><title>Sprites</title>
 <style>body{background:#888;margin:0}canvas{image-rendering:pixelated}</style>
+<script type="importmap">{ "imports": { "three": "/vendor/three/three.module.js" } }</script>
 <canvas id="c"></canvas>
 <script type="module">
 import { obterSprite, NOMES_SPRITES } from './sprites.js';
@@ -8,6 +9,9 @@ import './sprites-detalhados.js';
 import './sprites-cidade.js';
 import './sprites-guardioes.js';
 import './estabelecimentos.js';
+import './sprites-interiores.js';
+import './sprites-nesse-mundo.js';
+import './sprites-praca.js';
 import { desenharTexto } from './fonte.js';
 const c = document.getElementById('c'); const E = 4;
 const sprites = NOMES_SPRITES.map(n => [n, obterSprite(n)]);

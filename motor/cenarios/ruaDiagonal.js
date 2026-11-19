@@ -64,6 +64,17 @@ export function gerarRuaDiagonal(opc = {}) {
   const faixaPedestre = opc.faixaPedestre ?? 0;   // posição x (ao longo da rua) da faixa
   const jFaixa = -faixaPedestre;
   const bueiros = [J0 + 6, J0 + 19, J0 + 31].map((j) => j + (r() - 0.5) * 3);
+  // Praça do lado de cá da rua (no lugar do canteiro): "rua": { "praca": { "x": 0, "largura": 16, "profundidade": 12 } }.
+  // No roteiro: z = -0.9 (borda perto da rua) até z = -(profundidade - 1) (fundo, perto da câmera).
+  const op = opc.praca;
+  const PR = op ? { i0: 7.0, i1: 7.0 + (op.profundidade ?? 12), j0: -(op.x ?? 0) - (op.largura ?? 16) / 2, j1: -(op.x ?? 0) + (op.largura ?? 16) / 2 } : null;
+  const pedra = (i, j) => {          // pedras bege em fileiras desencontradas (as mesmas da praça do diorama)
+    const fi = i * 2.4, k = Math.floor(fi), fj = j * 2.4 + (k % 2) * 0.5, kj = Math.floor(fj);
+    const ri = fi - k, rj = fj - kj, h = ((k * 73856093) ^ (kj * 19349663)) >>> 0;
+    if (ri < 0.12 || rj < 0.1) return '#9a8a74';
+    if (ri > 0.84) return '#e8dcc8';
+    return h % 5 === 0 ? '#b8a890' : h % 3 === 0 ? '#e8dcc8' : '#cfc0a8';
+  };
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const X = (x - OX) / 16, Y = (y - OY) / 8;
     const i = (Y + X) / 2, j = (Y - X) / 2;
@@ -81,10 +92,19 @@ export function gerarRuaDiagonal(opc = {}) {
       if (i > 1.74 && i < 1.8) c = '#4a4a58';
     } else if (i <= 5.2) {
       const v = r(); c = v < 0.07 ? '#45475a' : v < 0.13 ? '#2c2c38' : '#37394a';
+      if (opc.alagada) {   // rua alagada: água por cima do asfalto
+        const onda = Math.sin(j * 5 + i * 2.2) + Math.sin(j * 2.1 - i * 3.7) * 0.6;
+        c = onda > 1.15 ? '#c8ecff' : onda > 0.6 ? '#6ab0e8' : bayer(x, y) < 0.15 ? '#3a78c0' : '#4a8ad0';
+        if (noite) c = onda > 1.15 ? '#8ab8e0' : onda > 0.6 ? '#3a6aa8' : '#24487a';
+        pintar(x, y, c, i, j, 0); continue;
+      }
       if (Math.abs(j - jFaixa) < 1.4 && (Math.floor((i - 1.8) * 4)) % 2 === 0) c = r() < 0.05 ? '#b8b8c4' : '#e2e2ea';
       else if (Math.abs(i - 3.5) < 0.06 && (j - Math.floor(j)) < 0.5) c = '#e0b838';
       for (const jb of bueiros) if (Math.abs(i - 1.95) < 0.12 && Math.abs(j - jb) < 0.35) c = (Math.floor(j * 16) % 2) ? '#1e1e26' : '#4a4a58';
       if (Math.hypot((i - 3.5) * 1.0, (j - (J0 + 12)) * 1.0) < 0.42) c = Math.hypot(i - 3.5, j - (J0 + 12)) < 0.36 ? ((Math.floor(i * 12) + Math.floor(j * 12)) % 2 ? '#4e4e5c' : '#3e3e4a') : '#2a2a34';
+    } else if (PR && i >= PR.i0 && i < PR.i1 && j >= PR.j0 && j <= PR.j1) {
+      const bi = Math.min(i - PR.i0, PR.i1 - i), bj = Math.min(j - PR.j0, PR.j1 - j);
+      c = bi < 0.18 || bj < 0.18 ? (bi < 0.09 || bj < 0.09 ? '#8a8c9c' : '#b6b8c6') : pedra(i, j);     // meio-fio em volta
     } else if (i < 7.4) c = '#2e5a3a';
     else { const v = r(); c = v < 0.1 ? '#4a9a5a' : v < 0.17 ? '#2c5a3a' : '#3a7a4a'; }
     pintar(x, y, c, i, j, 0);
@@ -117,11 +137,13 @@ export function gerarRuaDiagonal(opc = {}) {
   }
 
   // cerca viva entre a calçada da frente e o canteiro
-  prisma(7.0, 7.45, J0, J1, 0, 9, {
+  const cerca = (ja, jb) => prisma(7.0, 7.45, ja, jb, 0, 9, {
     frente: (x, y, u, t, l, s) => pintar(x, y, t > 7 ? '#4a8a4a' : ((u + t) % 3 ? '#2e6a3a' : '#3a7a44'), 7.45, s, t, 1, 0.92),
-    lado: (x, y, u, t, s) => pintar(x, y, '#24502e', s, J1, t, 1, 0.75),
+    lado: (x, y, u, t, s) => pintar(x, y, '#24502e', s, jb, t, 1, 0.75),
     topo: (x, y, i, j) => pintar(x, y, r() < 0.2 ? '#6aaa5a' : '#58984e', i, j, 9, 1, 1.1),
   });
+  if (PR) { if (PR.j0 > J0) cerca(J0, PR.j0); if (PR.j1 < J1) cerca(PR.j1, J1); }   // a cerca abre para a praça
+  else cerca(J0, J1);
 
   // ---------- prédios (da esquerda/fundo para a direita/frente: j crescente) ----------
   const tipos = Object.keys(PALETAS);
@@ -283,7 +305,9 @@ export function gerarRuaDiagonal(opc = {}) {
   const postes = [];
   const passo = opc.distanciaPostes ?? 8;
   for (let j = J0 + 3; j < J1 - 1; j += passo) { postes.push({ i: FAIXA.calcadaFundo, j }); postes.push({ i: FAIXA.calcadaFrente, j: j + passo / 2 }); }
-  const luzes = noite ? [...postes.map((p) => ({ ...p, h: 40, raio: 4.2, forca: 1 })), ...lojas] : [];
+  // luz dos postes da praça (os postes são sprites "poste-iso"; a luz no chão vem daqui)
+  const luzPraca = PR && noite ? (op.luzes ? op.luzes.map(([x, z]) => [FAIXA.calcadaFrente - z, -x]) : [[PR.i0 + 1.5, PR.j0 + 2], [PR.i0 + 1.5, PR.j1 - 2], [PR.i1 - 3, PR.j0 + 2], [PR.i1 - 3, PR.j1 - 2]]).map(([i, j]) => ({ i, j, h: 40, raio: 4.6, forca: 1 })) : [];
+  const luzes = noite ? [...postes.map((p) => ({ ...p, h: 40, raio: 4.2, forca: 1 })), ...lojas, ...luzPraca] : [];
   const amb = noite ? [0.70, 0.74, 0.94] : [1, 1, 1];
   const corLuz = [1.0, 0.86, 0.6];
   const saida = new Uint8ClampedArray(N * 4), brilho = new Uint8ClampedArray(N * 4);

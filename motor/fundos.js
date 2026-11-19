@@ -2,6 +2,8 @@
 import * as THREE from 'three';
 import { Pix, bayer } from './pixel.js';
 import { rng, PIXELS_POR_UNIDADE } from './compartilhado/util.js';
+import { PRESETS_INTERIORES, pintarComodo, corPisoInterno, PISOS_INTERNOS } from './cenarios/interiores.js';
+import { PRESETS_SOMBRIOS, pintarPilares } from './cenarios/mundoSombrio.js';
 
 const K = '#1a1c2c';
 
@@ -113,6 +115,10 @@ export const PRESETS = {
     ambiente: ['#e8eeff', 1.0],
     clima: 'neve',
   },
+  // interiores (vista lateral): sala-aula, quarto-menino, quarto-menino-noite, sala-estar
+  ...PRESETS_INTERIORES,
+  // teste de "mundo sombrio" (lateral)
+  ...PRESETS_SOMBRIOS,
 };
 
 // Ruído periódico (repete a cada P pixels): soma de senos com frequências inteiras.
@@ -125,6 +131,8 @@ function periodico(P, semente, termos) {
 function encher(p, x, desde, cor) { for (let y = Math.max(0, Math.floor(desde)); y < p.h; y++) p.set(x, y, cor); }
 
 const GERADORES = {
+  comodo: pintarComodo,
+  pilares: pintarPilares,
   montanhas(p, c, s) {
     const h = periodico(p.w, s, [[1, 0.5], [2, 0.35], [3, 0.25], [5, 0.18], [8, 0.1], [13, 0.05]]);
     const amp = c.amp || 30;
@@ -298,7 +306,9 @@ function texturaChao(estilo, c, semente) {
     for (let y = linha; y < Hh; y++) {
       const prof = y - linha;
       let cor;
-      if (estilo === 'rua') {
+      if (PISOS_INTERNOS.includes(estilo)) {
+        cor = corPisoInterno(estilo, c, x, y, prof);
+      } else if (estilo === 'rua') {
         cor = prof < 1 ? t0 : prof < 6 ? (x % 16 === 0 ? t2 : t1) : prof < 8 ? t2 : prof < 30 ? (prof === 18 && x % 16 < 8 ? '#c8b860' : d0) : d1;
       } else if (estilo === 'metal') {
         cor = prof < 1 ? t0 : prof < 8 ? ((x % 32 === 3 && prof === 4) ? t0 : t1) : prof < 9 ? t2 : (x % 32 === 0 ? d2 : (prof % 12 === 6 && x % 32 === 16 ? t2 : d0));
@@ -324,7 +334,7 @@ function texturaChao(estilo, c, semente) {
       if (estilo === 'grama' && r() < 0.05) { p.set(x, linha - 1, '#f0e060'); }
     }
   }
-  const nPedras = estilo === 'metal' || estilo === 'rua' ? 0 : 14;
+  const nPedras = estilo === 'metal' || estilo === 'rua' || PISOS_INTERNOS.includes(estilo) ? 0 : 14;
   for (let i = 0; i < nPedras; i++) {
     const cx = Math.floor(r() * P), cy = linha + 10 + Math.floor(r() * 60);
     const w = 2 + Math.floor(r() * 3);
@@ -359,6 +369,7 @@ export function criarFundo(nome, ctx, extra = {}) {
     const P = 512;
     let topoLinha, alturaPx;
     if (c.tipo === 'parede') { topoLinha = -40; alturaPx = ctx.H + 120; }
+    else if (c.tipo === 'comodo') { c.base = Math.max(c.acima, Math.round(lc) - 4); topoLinha = lc - c.base; alturaPx = c.base + 24; }
     else if (c.tipo === 'estalactites') { topoLinha = -4; alturaPx = 50; }
     else { topoLinha = lc - c.acima - 30; alturaPx = Math.max(80, ctx.H - topoLinha + 60); }
     if (c.tipo === 'arvores' || c.tipo === 'rochas') topoLinha = lc - c.acima - 4;
@@ -368,6 +379,11 @@ export function criarFundo(nome, ctx, extra = {}) {
     GERADORES[c.tipo](pix, c, s++);
     const m = planoCamada(ctx, { z: c.z, larguraPeriodo: P, alturaPx: pix.h, topoMundo: mundoYDeLinha(ctx, topoLinha, c.z), pix, iluminada: c.iluminada });
     if (c.deriva) m.userData.deriva = c.deriva;
+    if (c.tipo === 'comodo') {
+      // coluna 256 da parede (centro do desenho) fica em x = 0 do mundo: janelas e portas em lugar previsível
+      const L = P / m.userData.ppu, esquerda = m.position.x - m.geometry.parameters.width / 2;
+      m.userData.tex.offset.x = (((esquerda / L + 0.5) % 1) + 1) % 1;
+    }
     objetos.push(m);
   }
 
