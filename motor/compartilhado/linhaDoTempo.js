@@ -10,7 +10,7 @@ export const DURACAO_PADRAO = {
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
-const NARRACAO_FOLGA = 0.15;   // respiro curto após a fala (sem pausa entre cenas, melhor retenção)
+const NARRACAO_FOLGA = 0.6;
 const SEG_POR_LETRA = 0.065;   // estimativa da fala quando ainda não há áudio
 
 // Divide o texto da narração em blocos curtos de legenda (frases; frases longas quebram na vírgula).
@@ -64,10 +64,9 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       : cena.vista === 'avenida' ? { x: 0.6, y: 2.6, z: 11, zoom: 1 }
       : { x: 0, y: Math.round(res[1] * 0.3) / 16 / (cena.camera?.zoom ?? 1), zoom: 1 };   // chão a ~80% da altura, considerando o zoom
     cena.camera = { ...camPadrao, ...(cena.camera || {}) };
-    cena.narracaoInicio = cena.narracaoInicio ?? (indice === 0 ? 0.3 : 0.1);
+    cena.narracaoInicio = cena.narracaoInicio ?? 0.3;
     const narr = narracoes.get(indice);
-    const temFala = !!(narr || cena.narracaoTexto);
-    let dur = cena.duracao ?? (temFala ? 0 : 4);
+    let dur = cena.duracao ?? 4;
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };
       dur = Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
@@ -81,15 +80,8 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       let t0 = cena.narracaoInicio;
       cena.legendasNarracao = blocos.map((b) => { const d = falaDur * (b.length / total); const r = { texto: b, ini: t0, fim: t0 + d }; t0 += d; return r; });
     }
-    let fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
-    // Cena com narração dura o tempo da fala: ações que passariam do fim são comprimidas para caber
-    // (evita silêncio entre as cenas). "esperarAcoes": true na cena mantém o tempo original das ações.
-    if (cena.duracao == null && temFala && !cena.esperarAcoes && fimAcoes > dur && fimAcoes > 0) {
-      const k = dur / fimAcoes;
-      for (const a of cena.acoes) { a.inicio *= k; a.duracao *= k; }
-      fimAcoes = dur;
-    }
-    if (cena.duracao == null && !(temFala && !cena.esperarAcoes)) dur = Math.max(dur, fimAcoes + 0.5);
+    const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
+    if (cena.duracao == null) dur = Math.max(dur, fimAcoes + 0.5);
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;
     cena.inicio = inicio;
