@@ -39,8 +39,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
 
-## Estilo "Mundo Torto" (vídeos de regra absurda)
-Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Tem dois formatos: **curto** e **longo**
+## Estilo "Nesse Mundo" (vídeos de regra absurda)
+Usar quando o usuário pedir um vídeo "no estilo Nesse Mundo". Tem dois formatos: **curto** e **longo**
 (se o usuário não disser qual, perguntar). Baseado em Shorts de referência; as premissas devem ser
 **nossas**, nunca as das referências.
 
@@ -56,7 +56,7 @@ Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Tem dois formato
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
 - Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
 
-### Mundo Torto curto (um choque só, 30–45 s)
+### Nesse Mundo curto (um choque só, 30–45 s)
 Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no fim e o vídeo acaba nela.
 
 **Linha do tempo (proporção do vídeo):**
@@ -82,7 +82,7 @@ Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no
 - **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
 - **Tons possíveis:** sombrio (virada de terror), cômico (lista de 3) ou emocional.
 
-### Mundo Torto longo (história completa, normalmente cômica, 1:30–2:30)
+### Nesse Mundo longo (história completa, normalmente cômica, 1:30–2:30)
 Extraído da referência "quem ri vira balão" (2:15, ~38 frases, ~3,5 s por frase). Não é um choque só:
 a virada vem a **~70%** e o resto é a solução e o fechamento.
 
