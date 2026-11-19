@@ -165,11 +165,12 @@ const MOVEIS = {
     L.caixa(i0 + 0.05, i1 - 0.05, j0 + 0.05, j1 - 0.05, 5, 3, '#4a5060');
     L.caixa(i0, i1, j0, j1, 10, 2, { frente: MAD.esc, lado: MAD.esc, topo: (a, b) => (a > 0.15 && a < 0.4 && b > 0.3 && b < 0.7 ? '#f4f0e8' : MAD.claro) });
   } },
-  cadeira: { di: 0.45, dj: 0.6, f(L, m) {                         // cadeira escolar (encosto na frente: aluno olha para a lousa)
-    const { i0, i1, j0, j1 } = m, cinza = '#6a7080';
+  cadeira: { di: 0.45, dj: 0.6, f(L, m, ctx) {                    // cadeira escolar. encosto: 'i' (na frente) ou 'j' (à esquerda:
+    const { i0, i1, j0, j1 } = m, cinza = '#6a7080';               //  o aluno sentado de lado olha para a direita)
     for (const [a, b] of [[i0, j0], [i1 - 0.07, j0], [i0, j1 - 0.07], [i1 - 0.07, j1 - 0.07]]) L.caixa(a, a + 0.07, b, b + 0.07, 0, 7, cinza);
     L.caixa(i0, i1, j0, j1, 7, 2, { frente: MAD.esc, topo: MAD.base });
-    L.caixa(i1 - 0.08, i1, j0, j1, 9, 11, { frente: (u, t) => (t > 4 ? MAD.base : cinza), topo: MAD.claro });
+    if (ctx.op.encosto === 'j') L.caixa(i0, i1, j1 - 0.08, j1, 9, 11, { frente: MAD.esc, lado: (u, t) => (t > 4 ? MAD.base : cinza), topo: MAD.claro });
+    else L.caixa(i1 - 0.08, i1, j0, j1, 9, 11, { frente: (u, t) => (t > 4 ? MAD.base : cinza), topo: MAD.claro });
   } },
   estante: { di: 0.55, dj: 1.7, f(L, m, ctx) {
     const { i0, i1, j0, j1 } = m, r = rng(ctx.semente + 3), cores = Array.from({ length: 40 }, () => LIVROS[Math.floor(r() * LIVROS.length)]);
@@ -277,18 +278,22 @@ const MOVEIS = {
 // moveis: { tipo, x (centro ao longo do cômodo), i (distância da parede do fundo), opções... }
 // paredes: decorações na parede do fundo (x) e na lateral (lateral: true, x = distância do fundo).
 export const COMODOS_DIAGONAL = {
+  // Sala de aula: a lousa fica na parede da direita e as carteiras apontam para ela — assim os alunos
+  // sentados de lado ("sentado-lado", virados para a direita) olham para a lousa.
+  // Lugares dos alunos (centro das cadeiras): x = -4.6, -1.6, 1.4  ×  z = 2.45 (fileira de trás) e 0.75.
   'sala-aula': {
     estilo: 'sala-aula', inicio: -9, fim: 9,
     paredes: [
-      { tipo: 'janela', x: -6.2, w: 3 }, { tipo: 'janela', x: 6, w: 3 },
-      { tipo: 'lousa', x: 0, w: 5.6 }, { tipo: 'alfabeto', x: 0, w: 4.4, altura: 76, h: 12 },
-      { tipo: 'relogio', x: 3.6, w: 1, altura: 80, h: 14 }, { tipo: 'poster', x: -3.6, w: 1.2, altura: 62, h: 22, cores: ['#f0d040', '#e8b030'] },
-      { tipo: 'porta', lateral: true, x: 3.2, w: 1.8 },
+      { tipo: 'janela', x: -6.2, w: 3 }, { tipo: 'janela', x: 5.4, w: 3 },
+      { tipo: 'poster', x: -3.6, w: 1.2, altura: 62, h: 22, cores: ['#f0d040', '#e8b030'] }, { tipo: 'porta', x: 1.6, w: 1.8 },
+      { tipo: 'lousa', lateral: true, x: 2.6, w: 3.8 }, { tipo: 'alfabeto', lateral: true, x: 2.6, w: 3.4, altura: 74, h: 12 },
+      { tipo: 'relogio', lateral: true, x: 4.9, w: 0.9, altura: 66, h: 14 },
     ],
     moveis: [
       { tipo: 'estante', x: -8.1, i: 0 }, { tipo: 'globo', x: -8.1, i: 0.08, h0: 46 },
-      { tipo: 'mesa-professor', x: -3.3, i: 1.0 },
-      ...[0.8, 3.4, 6].flatMap((x) => [2.2, 3.5].flatMap((i) => [{ tipo: 'carteira', x, i }, { tipo: 'cadeira', x, i: i + 0.62 }])),
+      { tipo: 'mesa-professor', x: 6.7, i: 1.5, di: 2.2, dj: 1.0 },
+      ...[-3.8, -0.8, 2.2].flatMap((x) => [1.2, 2.9].flatMap((i) => [
+        { tipo: 'carteira', x, i, di: 1.1, dj: 0.55 }, { tipo: 'cadeira', x: x - 0.8, i: i + 0.25, di: 0.6, dj: 0.5, encosto: 'j' }])),
     ],
     piso: [],
   },

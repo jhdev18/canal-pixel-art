@@ -26,12 +26,13 @@
         { "id": "aluno", "personagem": "aluno", "x": 2.0, "y": 0.2, "pose": "sentado-lado" },
         { "id": "aluna", "personagem": "aluna", "x": 5.0, "y": 0.2, "pose": "sentado-lado" } ],
       "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Atenção!", "inicio": 0.5 } ] },
-    { // diagonal: alunos sentados nas cadeiras
-      "cenario": "sala-de-aula-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": 2.5, "y": 3 },
+    { // diagonal: alunos sentados nas cadeiras, olhando para a lousa (parede da direita)
+      "cenario": "sala-de-aula-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": 1.5, "y": 3 },
       "elementos": [
-        { "id": "aluno", "personagem": "aluno", "x": 0.8, "z": 1.15, "pose": "sentado-lado" },
-        { "id": "aluna", "personagem": "aluna", "x": 3.4, "z": 1.15, "pose": "sentado-lado" },
-        { "id": "bia", "personagem": "menina-capa", "x": 6, "z": -0.15, "pose": "sentado-lado" } ],
+        { "id": "prof", "personagem": "professora", "x": 8.1, "z": 1.6, "virado": "esquerda" },
+        { "id": "aluno", "personagem": "aluno", "x": -1.6, "z": 0.75, "pose": "sentado-lado" },
+        { "id": "aluna", "personagem": "aluna", "x": 1.4, "z": 2.45, "pose": "sentado-lado" },
+        { "id": "bia", "personagem": "menina-capa", "x": 1.4, "z": 0.75, "pose": "sentado-lado" } ],
       "acoes": [] }
   ]
 }
