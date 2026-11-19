@@ -225,9 +225,15 @@ function vistaComodo(c, motor) {
   const pecas = cm.pecas.map((p) => ({ ...p, chave: (p.i0 + p.i1) / 2 + (p.j0 + p.j1) / 2 + (p.sobre ? 0.3 : 0) })).sort((a, b) => a.chave - b.chave);
   pecas.forEach((p, n) => { p.ordem = 2000 + n * 10; p.malha = plano(p.imagem, p.w, p.h, p.x0, p.y0, 0.4); p.malha.m.renderOrder = p.ordem; });
   // personagem: logo depois do último móvel que está atrás dele
+  // (só contam os móveis que encostam no personagem na tela: móveis longe não bagunçam a ordem)
   const ordemEm = (i, j) => {
-    let o = 1990;
-    for (const p of pecas) if (i >= p.i1 - 0.12 || j >= p.j1 - 0.12) o = Math.max(o, p.ordem);
+    const pt = cm.proj(i, j), x0 = pt.x - 15, x1 = pt.x + 15, y0 = pt.y - 48, y1 = pt.y + 2;
+    let o = 1990, frente = Infinity;
+    for (const p of pecas) {
+      if (p.x0 > x1 || p.x0 + p.w < x0 || p.y0 > y1 || p.y0 + p.h < y0) continue;
+      if (i >= p.i1 - 0.12 || j >= p.j1 - 0.12) o = Math.max(o, p.ordem); else frente = Math.min(frente, p.ordem);
+    }
+    if (o >= frente) o = frente - 10;                   // na dúvida, o móvel da frente cobre o personagem
     return o + 5 + Math.max(0, Math.min(3.9, (i + j + 20) / 12));
   };
   for (const l of cm.noite ? cm.luzes : []) {
