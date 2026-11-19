@@ -71,19 +71,23 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     // Ações sincronizadas com a fala real: o roteiro marca os tempos pela fala estimada (0,065 s por letra);
     // com o áudio, os tempos de cada cena esticam/encolhem na mesma proporção da fala real.
     // ("sincronizarAcoes": false no roteiro ou "sincronizar": false na cena desliga.)
+    // Narração única contínua: a cena dura exatamente o seu trecho de áudio (que já traz meia pausa de cada lado),
+    // sem silêncio extra no começo nem no fim — a voz segue sem buracos e o vídeo tem o tamanho do áudio.
+    const continuo = !!(narr && narr.continuo);
     if (narr && cena.narracaoTexto && roteiro.sincronizarAcoes !== false && cena.sincronizar !== false) {
-      const f = clamp(narr.duracao / (cena.narracaoTexto.length * SEG_POR_LETRA), 0.5, 2);
-      const n0 = cena.narracaoInicio;
+      const f = clamp(narr.duracao / (cena.narracaoTexto.length * SEG_POR_LETRA + (continuo ? cena.narracaoInicio : 0)), 0.5, 2);
+      const n0 = cena.narracaoInicio, novo = continuo ? 0 : n0;
       for (const a of cena.acoes) {
-        if (a.inicio > n0) a.inicio = n0 + (a.inicio - n0) * f;
+        a.inicio = a.inicio > n0 ? novo + (a.inicio - n0) * f : a.inicio * (n0 ? novo / n0 : 1);
         if (a.tipo !== 'flash' && a.tipo !== 'tremer') a.duracao *= f;
       }
       for (const k of ['tituloInicio', 'tituloDuracao']) if (cena[k] != null) cena[k] *= f;
     }
+    if (continuo) cena.narracaoInicio = 0;
     let dur = cena.duracao ?? 4;
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };
-      dur = Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
+      dur = continuo ? narr.duracao : Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
     }
     // Legenda do narrador: blocos distribuídos pela duração da fala (real, ou estimada sem áudio).
     if (cena.narracaoTexto && roteiro.legendasNarracao !== false && cena.legendaNarracao !== false) {
@@ -95,7 +99,8 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       cena.legendasNarracao = blocos.map((b) => { const d = falaDur * (b.length / total); const r = { texto: b, ini: t0, fim: t0 + d }; t0 += d; return r; });
     }
     const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
-    if (cena.duracao == null) dur = Math.max(dur, fimAcoes + 0.5);
+    if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + 0.5);
+    if (continuo) for (const a of cena.acoes) if (a.inicio + a.duracao > dur) a.duracao = Math.max(0, dur - a.inicio);   // nada passa do fim da fala
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;
     cena.inicio = inicio;
