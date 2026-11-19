@@ -33,7 +33,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - Texto para o ElevenLabs: `npm run narracao -- <ep>` (usa `"narracaoTexto"` de cada cena)
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
-- Transições curtas (0,2 s); cenas sem duração fixa (duram o tempo da fala/ações).
+- Transições curtas (0,2 s); sem pausa entre cenas: cada cena dura o tempo da fala (+0,15 s) e as ações
+  que passariam do fim são comprimidas para caber. `"esperarAcoes": true` na cena mantém o tempo das ações.
 
 ## Estado atual
 - **Episódio 1** em `projetos/episodio-01` ("Nada acontece em Vila Serena"): protagonista **Bia**
