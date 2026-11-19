@@ -278,7 +278,7 @@ const MOVEIS = {
 // moveis: { tipo, x (centro ao longo do cômodo), i (distância da parede do fundo), opções... }
 // paredes: decorações na parede do fundo (x) e na lateral (lateral: true, x = distância do fundo).
 export const COMODOS_DIAGONAL = {
-  // Carteiras na frente da lousa (centralizadas nela), mesa da professora entre a lousa e as carteiras.
+  // Ângulo "frente": carteiras na frente da lousa (centralizadas nela), mesa da professora entre a lousa e as carteiras.
   // Lugares dos alunos (centro das cadeiras): x = -2.6, 0, 2.6  ×  z = 1.15 (1ª fileira) e -0.15 (2ª).
   // Professora: x ≈ -1.4, z ≈ 3.8 (ao lado da mesa). No "espelhar": true o x troca de sinal.
   'sala-aula': {
@@ -296,9 +296,10 @@ export const COMODOS_DIAGONAL = {
     ],
     piso: [],
   },
-  // Versão com a lousa na parede da direita: carteiras e cadeiras viradas para ela; alunos "sentado-lado"
-  // (virados para a direita) olham para a lousa. Lugares: x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75.
-  'sala-aula-lousa-lado': {
+  // Ângulo "lado" (o padrão da sala de aula; aprovado): lousa na parede da direita, carteiras viradas para ela;
+  // alunos "sentado-lado" (virados para a direita) olham para a lousa. Lugares: x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75.
+  // Professora: x ≈ 8.1, z ≈ 1.6, "virado": "esquerda".
+  'sala-aula@lado': {
     estilo: 'sala-aula', inicio: -9, fim: 9,
     paredes: [
       { tipo: 'janela', x: -6.2, w: 3 }, { tipo: 'janela', x: 5.4, w: 3 },
@@ -348,9 +349,24 @@ export const COMODOS_DIAGONAL = {
 };
 COMODOS_DIAGONAL['quarto-menino-noite'] = { ...COMODOS_DIAGONAL['quarto-menino'], estilo: 'quarto-menino-noite', noite: true };
 
+// ------------------------------------------------------------------ ângulos (vista "diorama")
+// Cada cômodo pode ter vários ângulos: "frente" (desenho base), "lado" (outro arranjo, quando existe a chave
+// "tipo@lado") e "espelhado" (o mesmo desenho visto pelo outro lado da diagonal). Combina: "lado-espelhado".
+// Ângulos novos entram como chaves "tipo@angulo" em COMODOS_DIAGONAL.
+export const ANGULO_PADRAO = { 'sala-aula': 'lado' };
+export function resolverAngulo(op = {}) {
+  const tipo = op.tipo || 'quarto-menino';
+  const ang = String(op.angulo ?? ANGULO_PADRAO[tipo] ?? 'frente');
+  const espelhar = op.espelhar ?? /espelhad/.test(ang);
+  const nome = ang.replace(/-?espelhad[oa]/, '') || 'frente';
+  const chave = nome !== 'frente' && COMODOS_DIAGONAL[`${tipo}@${nome}`] ? `${tipo}@${nome}` : tipo;
+  return { chave, espelhar, angulo: ang };
+}
+export const angulosDe = (tipo) => ['frente', ...Object.keys(COMODOS_DIAGONAL).filter((k) => k.startsWith(tipo + '@')).map((k) => k.split('@')[1])];
+
 // ------------------------------------------------------------------ geração
 export function gerarComodoDiagonal(opc = {}) {
-  const base = COMODOS_DIAGONAL[opc.tipo] || COMODOS_DIAGONAL['quarto-menino'];
+  const base = COMODOS_DIAGONAL[resolverAngulo(opc).chave] || COMODOS_DIAGONAL['quarto-menino'];
   const cfg = { ...base, ...opc };
   if (opc.periodo) cfg.noite = opc.periodo === 'noite';
   const noite = !!cfg.noite;

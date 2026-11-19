@@ -2,11 +2,13 @@
 // para os pixels continuarem alinhados com a tela.
 //   lateral  — cenário em camadas com paralaxe (padrão)
 //   diagonal — rua desenhada em diagonal 2:1, câmera ortográfica deslizando
+//   diorama  — cômodos em diagonal 2:1, com vários ângulos ("comodo": { "tipo", "angulo" })
+//   3d       — modo 3D (guardado para o futuro): sprites 2D num mundo 3D
 //   avenida  — avenida em perspectiva indo para o fundo
 import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { gerarRuaDiagonal, FAIXA } from './cenarios/ruaDiagonal.js';
-import { gerarComodoDiagonal, COMODO } from './cenarios/comodoDiagonal.js';
+import { gerarComodoDiagonal, COMODO, resolverAngulo } from './cenarios/comodoDiagonal.js';
 import { gerarPalco3d } from './cenarios/palco3d.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
 import { estadoCamera, estadoElemento } from './compartilhado/linhaDoTempo.js';
@@ -16,9 +18,11 @@ import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
 const snap = (v) => Math.round(v * PPU) / PPU;
 const tex = (canvas) => { const t = new THREE.CanvasTexture(canvas); t.magFilter = t.minFilter = THREE.NearestFilter; t.generateMipmaps = false; t.colorSpace = THREE.NoColorSpace; return t; };
 
-export const NOMES_VISTAS = ['lateral', 'diagonal', '3d', 'avenida'];
+export const NOMES_VISTAS = ['lateral', 'diagonal', 'diorama', '3d', 'avenida'];
 
 export function criarVista(c, motor) {
+  // "diorama": cômodos em diagonal com vários ângulos ("comodo": { "tipo", "angulo" }); é a diagonal dos interiores
+  if (c.vista === 'diorama') return vistaComodo({ ...c, comodo: c.comodo || { tipo: 'quarto-menino' } }, motor);
   if (c.vista === 'diagonal') return vistaDiagonal(c, motor);
   if (c.vista === 'avenida') return vistaAvenida(c, motor);
   if (c.vista === '3d') return vista3d(c, motor);
@@ -193,7 +197,7 @@ function vistaComodo(c, motor) {
   // "espelhar": o cômodo é desenhado pelo outro lado da diagonal (parede do fundo subindo para a esquerda).
   // A câmera continua de frente; só o desenho é espelhado. No espelhado, o x do roteiro = -x do desenho,
   // então andar para +x continua indo para a direita na tela.
-  const esp = !!op.espelhar, xg = (x) => (esp ? -x : x);
+  const esp = resolverAngulo(op).espelhar, xg = (x) => (esp ? -x : x);
   let minX = 0;
   for (let t = 0; t <= c.duracao; t += 0.25) {
     minX = Math.min(minX, xg(estadoCamera(c, t).x));

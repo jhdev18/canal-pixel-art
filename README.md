@@ -331,6 +331,8 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 |---|---|---|
 | `lateral` (padrão) | cenário em camadas com paralaxe, usando `fundo` | `x` horizontal, `y` altura, `z` profundidade |
 | `diagonal` | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
+| `diorama` | **cômodos** (interiores) desenhados em diagonal 2:1, em corte, com **vários ângulos**: `"comodo": { "tipo": "sala-aula", "angulo": "lado" }`. Ângulos: `frente`, `lado` (quando o cômodo tem), `espelhado` (visto pelo outro lado da diagonal) e combinações (`lado-espelhado`). Tipos: `sala-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-estar` | `x` ao longo do cômodo; `z` = 0 perto da frente, ~3.8 encostado na parede do fundo. No ângulo espelhado o `x` troca de sinal |
+| `3d` (**modo 3D**, guardado para o futuro) | personagens 2D (sprites) num mundo 3D: chão, paredes, móveis e prédios em 3D com textura pixel art; câmera fixa só inclinada para baixo. `"palco": { "tipo": "quarto-menino" \| "quarto-menino-noite" \| "sala-aula" \| "sala-estar" \| "praca" \| "praca-noite" }` | `x` lateral, `z` profundidade (fundo dos cômodos em −6), `y` altura |
 | `avenida` | avenida em **perspectiva** indo para o fundo, prédios dos dois lados, postes e carros | `x` lateral (−3 a 3 é o asfalto), `z` profundidade (maior = mais perto da câmera) |
 
 ```jsonc
@@ -356,9 +358,15 @@ enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na aven
 paralaxe real e avançar com `cameraFim`/ação `camera` em `z`). Usa um desenho mais simples (linhas de 2 px, sem
 grão nem fiadas) para reduzir o tremido, que mesmo assim pode aparecer de leve no avanço.
 
+Cenários prontos de interiores: `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-de-estar` (lateral) e
+`sala-de-aula-diorama`, `quarto-menino-diorama`, `quarto-menino-noite-diorama`, `sala-de-estar-diorama` (diorama).
+Poses dos personagens (moradores e `menina-capa`): `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"` e
+`"sentado-costas"`; ações `sentar` / `levantar`.
+
 ### Fundos
 
 `floresta-dia`, `floresta-noite`, `por-do-sol`, `caverna`, `deserto`, `espaco`, `cidade-noite`, `neve`,
+`sala-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-estar` (interiores),
 `preto` (sem chão, para telas de batalha). Todos são procedurais, em camadas de profundidade (montanhas, colinas, árvores, prédios...), então
 o movimento de câmera gera paralaxe real.
 

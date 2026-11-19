@@ -6,7 +6,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Regras do usuário (sempre seguir)
 1. **Não renderizar vídeos.** O usuário renderiza no PC dele (GTX 1050 Ti). Para conferir, use no máximo
    imagens paradas — e só quando for essencial.
-2. **Só vistas `lateral` e `diagonal`** ao criar vídeos/roteiros, a menos que o usuário peça outra.
+2. **Só vistas `lateral` e `diagonal`** ao criar vídeos/roteiros (para cômodos, a diagonal é a vista `diorama`),
+   a menos que o usuário peça outra. O **modo 3D** (`"vista": "3d"`) está guardado: não usar por enquanto.
    A vista `avenida` e o `"movimentoReal"` existem, mas não usar (e nunca o tempo todo).
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
    Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
@@ -60,27 +61,21 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
 - **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
   Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
-- **Protótipo de interiores (aguardando "pode salvar")** em `projetos/prototipo-interiores`: sala de aula,
-  quarto de menino (dia/noite) e sala de estar, nas vistas `lateral` (fundos `sala-aula`, `quarto-menino`,
-  `sala-estar` + sprites de móveis em `motor/sprites-interiores.js`) e `diagonal` (`"comodo": { "tipo": ... }`,
-  gerador `motor/cenarios/comodoDiagonal.js`). Depois de aprovado, mover os cenários para `biblioteca/cenarios.json`.
-- **Teste "mundo sombrio" (aguardando aprovação)** em `projetos/prototipo-mundo-sombrio`: fundo lateral
-  `mundo-sombrio` (`motor/cenarios/mundoSombrio.js`) e `"tema": "sombrio" | "sombrio-verde" | "sombrio-vermelho"`
-  nos cômodos da diagonal (poucas cores, contorno brilhante, plataforma flutuando).
-- **Vista `"3d"` GUARDADA para uso futuro — NÃO usar nos vídeos por enquanto** (o usuário gostou do estilo;
-  seguir usando `lateral`/`diagonal`). Protótipo em `projetos/prototipo-3d`: personagens 2D (sprites) num mundo
-  3D; chão, paredes, móveis e prédios em 3D com textura pixel art (`motor/cenarios/palco3d.js`,
-  `motor/cenarios/objetos3d.js`), câmera fixa só inclinada para baixo. `"vista": "3d", "palco": { "tipo":
-  "quarto-menino" | "quarto-menino-noite" | "sala-aula" | "sala-estar" | "praca" | "praca-noite" }`.
-  Pendência conhecida: texto pequeno em objetos do fundo (lousa, cartaz) perde linhas de pixel.
-- **Poses (aguardando aprovação)**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente, estilo jogo),
-  `"sentado-lado"`, `"costas"` (em pé, de costas) e `"sentado-costas"` (ex.: alunos olhando para a lousa), e as
-  ações `sentar`/`levantar` (`sentar` aceita `"pose"`) (`motor/sentado.js`). Sala de aula da diagonal: duas
-  versões em teste — (1) `sala-aula`: carteiras centralizadas na frente da lousa; alunos `sentado-costas` em
-  x = -2.6, 0, 2.6 × z = 1.15 e -0.15 (espelhada: x trocado de sinal) e (2) `sala-aula-lousa-lado` (lousa na parede da direita, carteiras viradas para ela, alunos
-  `sentado-lado`; x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75). Aguardando o usuário escolher. Assento a ~12 px do chão: em
-  sofás use `"y": 0.25`, nas carteiras `"y": 0.2`. Teste em `projetos/prototipo-sentados`.
-- **Diagonal espelhada** (`"comodo": { ..., "espelhar": true }`): o cômodo desenhado pelo outro lado da diagonal
-  (câmera continua sem girar). O x do roteiro troca de sinal em relação ao desenho normal. Bom para variar o
-  ângulo entre cenas (lugares dos alunos com x trocado de sinal).
+- **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
+  `sala-de-estar` (fundos + móveis de `motor/sprites-interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
+  `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,
+  `quarto-menino-noite-diorama`, `sala-de-estar-diorama`. O diorama aceita **ângulos**:
+  `"comodo": { "tipo": ..., "angulo": "frente" | "lado" | "espelhado" | "lado-espelhado" }` (ângulos novos =
+  chaves `tipo@angulo`). Sala de aula: ângulo padrão `lado` (aprovado: lousa na parede da direita; alunos
+  `sentado-lado` em x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75; professora x 8.1, z 1.6 virada para a esquerda).
+  Outros ângulos ainda NÃO desenhados (o usuário vai pedir depois).
+- **Poses APROVADAS**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"`,
+  `"sentado-costas"` e as ações `sentar`/`levantar` (`motor/sentado.js`). Assento a ~12 px do chão: em sofás da
+  lateral use `"y": 0.25`, nas carteiras da lateral `"y": 0.2`.
+- **Modo 3D GUARDADO para uso futuro — NÃO usar nos vídeos por enquanto** (vista padrão continua `lateral`).
+  `"vista": "3d", "palco": { "tipo": "quarto-menino" | "quarto-menino-noite" | "sala-aula" | "sala-estar" |
+  "praca" | "praca-noite" }` (`motor/cenarios/palco3d.js`, `objetos3d.js`; teste em `projetos/prototipo-3d`).
+  Pendência: texto pequeno em objetos do fundo perde linhas de pixel.
+- **Teste "mundo sombrio" (o usuário não gostou; não usar)** em `projetos/prototipo-mundo-sombrio`.
+- Protótipos de teste: `projetos/prototipo-interiores`, `projetos/prototipo-sentados`.
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

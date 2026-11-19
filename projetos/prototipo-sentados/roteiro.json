@@ -43,7 +43,7 @@
         { "id": "bia", "personagem": "menina-capa", "x": 0, "z": -0.15, "pose": "sentado-costas" } ],
       "acoes": [] },
     { // VERSÃO 2 — cadeiras viradas para a lousa (lousa na parede da direita), alunos sentados de lado
-      "cenario": "sala-de-aula-lousa-lado-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": 1.5, "y": 3 },
+      "cenario": "sala-de-aula-diorama", "duracao": 4, "transicao": "dither", "camera": { "x": 1.5, "y": 3 },
       "elementos": [
         { "id": "prof", "personagem": "professora", "x": 8.1, "z": 1.6, "virado": "esquerda" },
         { "id": "aluno", "personagem": "aluno", "x": -1.6, "z": 0.75, "pose": "sentado-lado" },
