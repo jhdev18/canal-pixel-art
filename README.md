@@ -278,6 +278,7 @@ Comentários com `//` são permitidos.
 | `voz` | Tom dos "blips" de fala (1 = normal, 1.3 = mais agudo) |
 | `luz` | `{ "cor": "#ff9933", "intensidade": 2, "alcance": 6 }` — ou `false` para tirar a luz da fogueira/tocha/poste |
 | `semente` | Variação de árvores/arbustos procedurais |
+| `numero` | Número sobre a cabeça a cena toda (`1`, `10`, `"?"`, `"#"`, `"-"`); acompanha o personagem. `numeroCor` (`"#f8d040"`) e `numeroEstilo` (`"placa"` padrão ou `"solto"`, algarismos grandes sem placa) |
 
 Sprites PNG próprios: fundo transparente, quadros lado a lado; `"quadros": 4`, `"fps": 8` e, para
 personagens, `"animacoes": { "parado": [0], "andando": [1, 2, 3] }`.
@@ -295,6 +296,7 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `virar` | `alvo`, `direcao` | — | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
 | `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` | ícone sobre a cabeça | surpresa/dúvida/amor |
+| `numero` | `alvo`, `valor` (`null` tira), `cor`, `estilo` | troca o número sobre a cabeça (com pulinho); vale até o fim da cena | clique |
 | `aparecer` / `sumir` | `alvo` | "puf" de fumaça | puf |
 | `coletar` | `alvo` | item sobe com brilho e some | moeda/vida/powerup/item |
 | `piscar` | `alvo` | pisca vermelho (dano) | dano |

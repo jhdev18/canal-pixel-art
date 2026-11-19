@@ -1,0 +1,28 @@
+{
+  // PROTÓTIPO (não aprovado): pequenos guardiões + números sobre a cabeça, na vista diorama.
+  // Ver: npm run previa -- prototipo-guardioes   (ou: npm run rascunho -- prototipo-guardioes)
+  "titulo": "Protótipo - guardiões e números",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "cenas": [
+    {
+      "cenario": "rua-comercial", "duracao": 8, "transicao": "fade",
+      "camera": { "x": -3, "y": 2.2, "zoom": 1 }, "cameraFim": { "x": 2 },
+      "elementos": [
+        { "id": "azul",    "sprite": "guardiao-azul",    "x": -8,  "z": 1.2, "numero": 1 },
+        { "id": "verde",   "sprite": "guardia-verde",    "x": -9.5, "z": 0.4, "numero": 2, "numeroCor": "#7ad87a" },
+        { "id": "noturno", "sprite": "guardiao-noturno", "x": 3,   "z": 4.8, "numero": 3, "numeroCor": "#c8a0f0", "virado": "esquerda" },
+        { "id": "chefe",   "sprite": "guardiao-chefe",   "x": 5,   "z": 4.8, "numero": "?", "numeroEstilo": "solto", "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "azul",  "para": 0.5, "inicio": 0.2, "duracao": 4.5 },
+        { "tipo": "andar", "alvo": "verde", "para": -1,  "inicio": 0.4, "duracao": 4.5 },
+        { "tipo": "numero", "alvo": "chefe", "valor": 4, "inicio": 3.2 },
+        { "tipo": "emocao", "alvo": "chefe", "icone": "!", "inicio": 3.3 },
+        { "tipo": "numero", "alvo": "azul", "valor": 10, "cor": "#f06a5a", "inicio": 5.2 },
+        { "tipo": "falar", "alvo": "azul", "texto": "Subi de nível!", "inicio": 5.4 }
+      ],
+      "vertical": { "camera": { "x": -4, "y": 2.2, "zoom": 2 }, "cameraFim": { "x": 1 } }
+    }
+  ]
+}

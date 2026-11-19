@@ -5,6 +5,7 @@ import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './sprites-rpg.js';
 import './sprites-detalhados.js';
 import './sprites-cidade.js';
+import './sprites-guardioes.js';   // protótipo
 import './estabelecimentos.js';
 import { criarVista } from './vistas.js';
 import { criarClima, criarRajada } from './particulas.js';
@@ -373,7 +374,7 @@ class Motor {
         if (!e) return null;
         const st = estadoElemento(c, e.def, tt);
         const p = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
-        return { x: p.x, y: this.H - p.y };
+        return { x: p.x, y: this.H - p.y, visivel: st.visivel, alpha: st.alpha };
       },
     });
     if (this.ui.malha.parent !== obj.overlay) obj.overlay.add(this.ui.malha);

@@ -59,6 +59,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
+- **Protótipos aguardando aprovação:** guardiões pequenos (`guardiao-azul`, `guardia-verde`, `guardiao-chefe`,
+  `guardiao-noturno`, em `motor/sprites-guardioes.js`) e números sobre a cabeça (campo `numero` / ação `numero`).
+  Demonstração: `projetos/prototipo-guardioes`. Após o "pode salvar", cadastrar os guardiões em `biblioteca/personagens.json`.
 - **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
   Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

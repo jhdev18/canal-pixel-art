@@ -14,6 +14,47 @@ function caixa(ctx, x, y, w, h, fundo, borda) {
   ctx.fillRect(x + 1, y + 1, w - 2, h - 2);
 }
 
+// Algarismos 5x7 (mais grossos que a fonte do texto) para os números sobre a cabeça.
+const DIGITOS = {
+  0: ['.###.', '##.##', '##.##', '##.##', '##.##', '##.##', '.###.'],
+  1: ['.##..', '###..', '.##..', '.##..', '.##..', '.##..', '####.'],
+  2: ['.###.', '##.##', '...##', '..##.', '.##..', '##...', '#####'],
+  3: ['####.', '...##', '...##', '.###.', '...##', '...##', '####.'],
+  4: ['...##', '..###', '.#.##', '#..##', '#####', '...##', '...##'],
+  5: ['#####', '##...', '####.', '...##', '...##', '##.##', '.###.'],
+  6: ['.###.', '##...', '##...', '####.', '##.##', '##.##', '.###.'],
+  7: ['#####', '...##', '..##.', '..##.', '.##..', '.##..', '.##..'],
+  8: ['.###.', '##.##', '##.##', '.###.', '##.##', '##.##', '.###.'],
+  9: ['.###.', '##.##', '##.##', '.####', '...##', '...##', '.###.'],
+  '?': ['.###.', '##.##', '...##', '..##.', '.##..', '.....', '.##..'],
+  '#': ['.#.#.', '#####', '.#.#.', '.#.#.', '#####', '.#.#.', '.....'],
+  '-': ['.....', '.....', '.....', '####.', '.....', '.....', '.....'],
+};
+function desenharDigito(ctx, c, x, y, e, cor, contorno) {
+  const m = DIGITOS[c];
+  if (contorno) {
+    ctx.fillStyle = contorno;
+    for (let j = 0; j < 7; j++) for (let i = 0; i < 5; i++) if (m[j][i] === '#') ctx.fillRect(x + (i - 1) * e, y + (j - 1) * e, 3 * e, 3 * e);
+  }
+  ctx.fillStyle = cor;
+  for (let j = 0; j < 7; j++) for (let i = 0; i < 5; i++) if (m[j][i] === '#') ctx.fillRect(x + i * e, y + j * e, e, e);
+}
+function clarear(hex, t) {
+  const n = parseInt(hex.replace('#', ''), 16), rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return 'rgb(' + rgb.map((v) => Math.round(t > 0 ? v + (255 - v) * t : v * (1 + t))).join(',') + ')';
+}
+// Número ativo de um elemento no tempo t: a última ação "numero" que já começou vence o campo "numero" do elemento.
+function numeroAtual(cena, el, t) {
+  let n = el.numero != null ? { valor: el.numero, inicio: 0, cor: el.numeroCor, estilo: el.numeroEstilo } : null;
+  let ultimo = -1;
+  for (const a of cena.acoes) {
+    if (a.tipo !== 'numero' || a.alvo !== el.id || a.inicio > t || a.inicio < ultimo) continue;
+    ultimo = a.inicio;
+    n = a.valor == null ? null : { valor: a.valor, inicio: a.inicio, cor: a.cor ?? el.numeroCor, estilo: a.estilo ?? el.numeroEstilo };
+  }
+  return n;
+}
+
 export class UI {
   constructor(W, H) {
     this.W = W; this.H = H;
@@ -35,10 +76,20 @@ export class UI {
     ctx.clearRect(0, 0, W, H);
     ctx.globalAlpha = 1;
 
+    // números sobre a cabeça (campo "numero" do elemento / ação "numero"); balões e emoções sobem acima deles
+    const acima = new Map();
+    for (const el of cena.elementos || []) {
+      const n = numeroAtual(cena, el, t);
+      if (!n) continue;
+      const pos = cabeca(el.id, t);
+      if (!pos || pos.visivel === false) continue;
+      acima.set(el.id, this.numero(n, t, pos));
+    }
+    const cab = (id, tt) => { const p = cabeca(id, tt); return p && acima.has(id) ? { ...p, y: p.y - acima.get(id) } : p; };
     for (const a of cena.acoes) {
       if (t < a.inicio || t > a.inicio + a.duracao) continue;
-      if (a.tipo === 'falar') this.balao(a, t, cabeca(a.alvo, t));
-      if (a.tipo === 'emocao') this.emocao(a, t, cabeca(a.alvo, t));
+      if (a.tipo === 'falar') this.balao(a, t, cab(a.alvo, t));
+      if (a.tipo === 'emocao') this.emocao(a, t, cab(a.alvo, t));
     }
     if (cena.legendasNarracao) {
       const b = cena.legendasNarracao.find((l) => t >= l.ini && t < l.fim + 0.12);
@@ -92,6 +143,32 @@ export class UI {
     caixa(ctx, x, y, larg, alt, BRANCO, K);
     ctx.fillStyle = K; ctx.fillRect(Math.round(pos.x), y + alt, 1, 2);
     desenharTexto(ctx, txt, x + 3, y, ic === 'coracao' ? '#e83a4a' : ic === '!' ? '#c83c4c' : K);
+  }
+
+  // Número sobre a cabeça. estilo "placa" (padrão: plaquinha com borda) ou "solto" (algarismos grandes com contorno).
+  // Devolve quantos pixels ocupa acima da cabeça.
+  numero(n, t, pos) {
+    const { ctx } = this;
+    const txt = String(n.valor).toUpperCase().split('').filter((c) => DIGITOS[c]);
+    if (!txt.length) return 0;
+    const pop = clamp((t - n.inicio) / 0.25);
+    const salto = n.inicio > 0 ? Math.round((1 - easeOutBack(pop)) * 5) : 0;
+    const flut = Math.floor(t * 2.5) % 2;                     // sobe e desce 1 px (nada parado)
+    const cor = n.cor || '#f8d040';
+    if (n.estilo === 'solto') {
+      const e = 2, larg = txt.length * 6 * e - e, alt = 7 * e;
+      const x = Math.round(pos.x - larg / 2), y = Math.round(pos.y - alt - 4 - flut + salto);
+      txt.forEach((c, i) => desenharDigito(ctx, c, x + i * 6 * e, y, e, cor, K));
+      return alt + 6;
+    }
+    const larg = txt.length * 6 + 5, alt = 11;
+    const x = Math.round(pos.x - larg / 2), y = Math.round(pos.y - alt - 5 - flut + salto);
+    caixa(ctx, x, y, larg, alt, cor, K);
+    ctx.fillStyle = clarear(cor, 0.45); ctx.fillRect(x + 2, y + 1, larg - 4, 1);       // brilho em cima
+    ctx.fillStyle = clarear(cor, -0.35); ctx.fillRect(x + 2, y + alt - 2, larg - 4, 1); // sombra embaixo
+    ctx.fillStyle = K; ctx.fillRect(Math.round(pos.x) - 1, y + alt, 3, 1); ctx.fillRect(Math.round(pos.x), y + alt + 1, 1, 2);
+    txt.forEach((c, i) => desenharDigito(ctx, c, x + 3 + i * 6, y + 2, 1, n.corTexto || K));
+    return alt + 7;
   }
 
   legenda(cena, t) {

@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, numero: 0.3,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -355,6 +355,9 @@ export function eventosSonoros(roteiro) {
         }
         case 'emocao':
           if (!semSom) add(somManual || SOM_EMOCAO[a.icone || '!'] || 'surpresa', a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
+          break;
+        case 'numero':
+          if (!semSom) add(somManual || 'clique', a.inicio, { volume: 0.5 * vol, pan: panEl(a.alvo, a.inicio) });
           break;
         case 'piscar':
           if (!semSom) add(somManual || 'dano', a.inicio, { volume: vol, pan: panEl(a.alvo, a.inicio) });

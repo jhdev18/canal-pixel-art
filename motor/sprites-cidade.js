@@ -28,6 +28,8 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   const yC = p.corpo === 'crianca' ? 2 : 0;          // crianças: corpo um pouco mais baixo
   // cabelo comprido atrás da cabeça
   if (p.cabelo === 'longo') b.poli([[7.3, 7 - r + yC], [20.7, 7 - r + yC], [21.4, 20 - r + yC], [6.6, 20 - r + yC]], M.cabelo);
+  // capa (atrás do corpo)
+  if (p.capa) b.poli([[7.6 - largT, 16.6 - r + yC], [20.4 + largT, 16.6 - r + yC], [22.4 + largT, 37], [5.6 - largT, 37]], M.capa);
   // mochila (alças aparecem na frente; o corpo da mochila aparece nas laterais)
   if (p.mochila) { b.ret(6, 18 - r + yC, 2, 10, M.mochila); b.ret(20, 18 - r + yC, 2, 10, M.mochila); }
   // pernas e calçados
@@ -51,7 +53,11 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   b.poli([[18 + largT, 18 - r + yC], [20.6 + largT, 17.6 - r + yC], [22.8 + largT, 28.6 - r + yC], [19.4 + largT, 28.6 - r + yC]], M.tronco);
   if (p.mangaCurta) { b.poli([[6.2 - largT, 22 - r + yC], [9.2 - largT, 22 - r + yC], [8.6 - largT, 28.6 - r + yC], [5.2 - largT, 28.6 - r + yC]], M.pele); b.poli([[18.8 + largT, 22 - r + yC], [21.8 + largT, 22 - r + yC], [22.8 + largT, 28.6 - r + yC], [19.4 + largT, 28.6 - r + yC]], M.pele); }
   if (p.casaco) { b.poli([[7.4 - largT, 17.6 - r + yC], [10 - largT, 18 - r + yC], [8.6 - largT, 28.6 - r + yC], [5.2 - largT, 28.6 - r + yC]], bracoCor); b.poli([[18 + largT, 18 - r + yC], [20.6 + largT, 17.6 - r + yC], [22.8 + largT, 28.6 - r + yC], [19.4 + largT, 28.6 - r + yC]], bracoCor); }
+  // lança na mão direita (a mão é desenhada por cima, segurando)
+  if (p.lanca) { const lx = Math.round(21.6 + largT); b.ret(lx, 6 + yC, 1, 35 - yC, M.lanca); b.poli([[lx - 1.4, 6.4 + yC], [lx + 0.5, 1.2 + yC], [lx + 2.4, 6.4 + yC]], M.metal); }
   b.elipse(6.8 - largT, 29.6 - r + yC, 1.6, 1.4, M.pele); b.elipse(21.2 + largT, 29.6 - r + yC, 1.6, 1.4, M.pele);
+  // escudo no braço esquerdo
+  if (p.escudo) b.elipse(6.4 - largT, 25.6 - r + yC, 3.4, 4, M.escudo);
   if (p.livro) b.ret(19 + largT, 25 - r + yC, 4, 5, M.livro);
   if (p.faixa) b.poli([[9 - largT, 17 - r + yC], [12, 17 - r + yC], [20 + largT, 28 + yC], [17 + largT, 30 + yC]], M.faixa);
   if (p.cinto) b.ret(8.2 - largT, 28.5 + yC, 11.6 + 2 * largT, 1.6, M.cinto);
@@ -69,6 +75,11 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   if (p.chapeu === 'quepe') { b.poli([[7.4, 6.2 + yc], [8.4, 1.2 + yc], [19.6, 1.2 + yc], [20.6, 6.2 + yc]], M.chapeu); b.poli([[7, 6 + yc], [21, 6 + yc], [20.4, 7.6 + yc], [7.6, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8, 5.6 + yc], [7.2, -0.4 + yc], [10, -2 + yc], [14, -1 + yc], [18, -2 + yc], [20.8, -0.4 + yc], [20, 5.6 + yc]], M.chapeu); b.ret(8, 4.4 + yc, 12, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[7.6, 6.4 + yc], [8.6, 2 + yc], [19.4, 2 + yc], [20.4, 6.4 + yc]], M.chapeu); b.poli([[12, 5.6 + yc], [22.4, 5.6 + yc], [22, 7.2 + yc], [12, 7.2 + yc]], M.aba); }
+  if (p.chapeu === 'elmo') {
+    b.poli([[7.2, 8.6 + yc], [7.4, 4.4 + yc], [9.6, 1.8 + yc], [18.4, 1.8 + yc], [20.6, 4.4 + yc], [20.8, 8.6 + yc], [19.2, 8.6 + yc], [19, 7.2 + yc], [9, 7.2 + yc], [8.8, 8.6 + yc]], M.chapeu);
+    b.ret(8, 6 + yc, 12, 1, M.aba);
+    if (p.cores.pluma) b.poli([[12.4, 2.2 + yc], [12.8, -1.6 + yc], [15.2, -1.6 + yc], [15.6, 2.2 + yc]], M.pluma);
+  }
   // ---- detalhes
   const o = (y) => Math.round(y - r + yC);
   const olho = '#2a1810';
@@ -81,6 +92,8 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   else { b.pinta(13, o(13.4), '#9a4a3a'); b.pinta(14, o(13.4), '#9a4a3a'); b.pinta(15, o(13), '#9a4a3a'); }
   b.pinta(9, o(12), '#e8907a'); b.pinta(19, o(12), '#e8907a');
   if (p.chapeu === 'quepe') { b.pinta(13, o(3.4), '#f0c840'); b.pinta(14, o(3.4), '#f0c840'); b.pinta(13, o(4.4), '#c89020'); b.pinta(14, o(4.4), '#c89020'); }
+  if (p.emblema) { const ce = p.cores.emblema || '#f0c840'; for (const [x, y] of [[13, 21], [14, 21], [13, 22], [14, 22]]) b.pinta(x, o(y), ce); b.pinta(13, o(20), ce); b.pinta(14, o(23), ce); }
+  if (p.escudo) { const ce = p.cores.emblema || '#f0c840'; for (const [x, y] of [[6, 25], [6, 26], [5, 25.5], [7, 25.5]]) b.pinta(Math.round(x - largT), o(y), ce); }
   if (p.distintivo) { b.pinta(17, o(20.6), '#f0c840'); b.pinta(17, o(21.6), '#c89020'); b.pinta(18, o(21), '#f0c840'); }
   if (p.radio) { b.ret(9, o(18.4), 2, 3, M.cinto); b.pinta(10, o(17.4), '#3a3a3a'); }
   if (p.gravata) { b.pinta(14, o(17.4), '#f4f4f4'); b.pinta(13, o(17.4), '#f4f4f4'); b.pinta(15, o(17.4), '#f4f4f4'); for (let y = 18; y < 26; y++) { b.pinta(14, o(y), y === 18 ? '#a82020' : '#c83030'); if (y > 19 && y < 25) b.pinta(13, o(y), '#a82020'); } }
@@ -110,9 +123,15 @@ function lado(p, t, { correr = false, classico = false } = {}) {
     b.traco(14 + incl * 0.2, barra + y0, pe.x, pe.y - 3, 1.3, mPerna);
     b.poli([[pe.x - 2.2, pe.y - 3.6], [pe.x + 1.6, pe.y - 3.6], [pe.x + 3.4, pe.y], [pe.x - 2.2, pe.y]], mSap);
   };
-  // braço de trás
+  // capa balançando atrás
+  if (p.capa) { const ond = onda(t * Math.PI * 2) * (correr ? 1.4 : 0.6), voo = correr ? 3 : 0; b.poli([[10.6 + incl, 16.8 + y0 + yC], [14 + incl, 16.8 + y0 + yC], [9.8 - ond - voo * 0.6, 36 + y0], [6 - ond - voo, 35 + y0 - voo * 0.6]], M.capa); }
+  // braço de trás (segura a lança, que passa atrás do corpo)
   const bt = -g.braco * (correr ? 4 : 2.4);
+  if (p.lanca) { const lx = Math.round(13.6 + incl + bt); b.ret(lx, 4 + y0 + yC, 1, 37 - yC, M.lanca); b.poli([[lx - 1.4, 4.4 + y0 + yC], [lx + 0.5, -0.6 + y0 + yC], [lx + 2.4, 4.4 + y0 + yC]], M.metal); }
   b.traco(13.6 + incl, 18.5 + y0 + yC, 13.6 + incl + bt, 27.5 + y0 + yC, 1.2, p.mangaCurta ? M.pele : (p.casaco ? M.casaco : M.tronco));
+  if (p.lanca) b.elipse(13.6 + incl + bt, 28.4 + y0 + yC, 1.4, 1.2, M.pele);
+  // escudo nas costas
+  if (p.escudo) b.elipse(9.4 + incl, 23 + y0 + yC, 2.2, 3.8, M.escudo);
   // mochila nas costas
   if (p.mochila) b.poli([[7.2 + incl, 17.5 + y0 + yC], [10.4 + incl, 17 + y0 + yC], [10.4 + incl, 28 + y0 + yC], [7.4 + incl, 28 + y0 + yC]], M.mochila);
   // cabelo comprido atrás
@@ -139,6 +158,11 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (p.chapeu === 'quepe') { b.poli([[8.4 + x, 6.4 + yc], [9.4 + x, 1.2 + yc], [19.4 + x, 1.2 + yc], [20 + x, 6.4 + yc]], M.chapeu); b.poli([[14 + x, 5.8 + yc], [23 + x, 6.2 + yc], [22.4 + x, 7.6 + yc], [14 + x, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8.6 + x, 5.8 + yc], [8 + x, -0.4 + yc], [12 + x, -2 + yc], [17 + x, -1.6 + yc], [20.4 + x, -0.2 + yc], [20 + x, 5.8 + yc]], M.chapeu); b.ret(8.6 + x, 4.4 + yc, 11.6, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[8.4 + x, 6.6 + yc], [9.4 + x, 2 + yc], [19.4 + x, 2 + yc], [20 + x, 6.6 + yc]], M.chapeu); b.poli([[16 + x, 5.8 + yc], [24 + x, 6 + yc], [23.6 + x, 7.4 + yc], [16 + x, 7.4 + yc]], M.aba); }
+  if (p.chapeu === 'elmo') {
+    b.poli([[8.2 + x, 9 + yc], [8.6 + x, 4 + yc], [11.4 + x, 1.6 + yc], [17.4 + x, 1.6 + yc], [20.2 + x, 4 + yc], [20.6 + x, 7.2 + yc], [16 + x, 7.2 + yc], [13.4 + x, 9.6 + yc], [12.6 + x, 9.6 + yc]], M.chapeu);
+    b.ret(Math.round(14 + x), Math.round(6 + yc), 6, 1, M.aba);
+    if (p.cores.pluma) { b.poli([[11 + x, 2 + yc], [12 + x, -1.4 + yc], [15.6 + x, -1.4 + yc], [15 + x, 2 + yc]], M.pluma); b.poli([[8.6 + x, 4.8 + yc], [10.8 + x, -0.6 + yc], [12.6 + x, -0.2 + yc], [11.4 + x, 2.6 + yc]], M.pluma); }
+  }
   // braço da frente
   const bf = g.braco * (correr ? 4 : 2.4);
   b.traco(14.4 + incl, 18.5 + y0 + yC, 14.8 + incl + bf, 27.6 + y0 + yC, 1.3, p.mangaCurta ? M.pele : (p.casaco ? M.casaco : M.tronco));
@@ -153,11 +177,12 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   else b.pinta(ex + 1, ey + 4, '#9a4a3a');
   b.pinta(ex - 1, ey + 2, '#e8907a');
   if (p.distintivo) b.pinta(Math.round(16 + incl), Math.round(21 + y0 + yC), '#f0c840');
+  if (p.emblema) { const ce = p.cores.emblema || '#f0c840'; b.pinta(Math.round(16 + incl), Math.round(21 + y0 + yC), ce); b.pinta(Math.round(16 + incl), Math.round(22 + y0 + yC), ce); }
   if (p.gravata) for (let y = 18; y < 24; y++) b.pinta(Math.round(17.2 + incl), Math.round(y + y0), '#c83030');
   return b.render();
 }
 
-function pessoa(p) {
+export function pessoa(p) {
   const fr = [frente(p), frente(p, { piscar: true }), frente(p, { resp: 1 })];
   const andar = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => lado(p, i / 8));
   const correr = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => lado(p, i / 8, { correr: true }));
