@@ -237,5 +237,97 @@
       { "id": "hidrante", "sprite": "hidrante", "x": -6, "z": -0.2 },
       { "id": "ponto", "sprite": "ponto-onibus", "x": 7, "z": -0.5 }
     ]
+  },
+
+  // ---- Praça (diagonal), na rua comercial, de frente para os mesmos prédios. A câmera já foca a praça ("z": -8.5).
+  // Personagens: x de -7.5 a 7.5, z de -1.5 (perto da rua) a -11.5 (perto da câmera). Fonte no centro (x 0, z -6).
+  // PADRÃO (uso normal): bancos em x -5 e 5, z -4 (sentar: "y": 0.45).
+  // DECORADA (festa): mesma praça + bandeirinhas, palanque (em cima: "y": 0.75, x 4.2 a 6.2, z -6.4 a -7.2) e 3 barracas
+  //   (pipoca, doces, jogos) no fundo, em x -5.6, -3.7, -1.8, z -2.7 (atender atrás do balcão: z -2.4).
+  // Objetos: x/z = canto da frente; estado inicial com "pose" ou mude com "trocar": fonte "cheia"/"seca",
+  //   árvores "verde"/"seca", canteiros "verde"/"murcho", barracas "parado"/"acesa".
+  // Praça padrão, de dia
+  "praca": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "banco1", "sprite": "banco-iso", "x": -5.85, "z": -4.25 },
+      { "id": "banco2", "sprite": "banco-iso", "x": 4.15, "z": -4.25 }
+    ]
+  },
+  // Praça padrão, à noite (postes acesos)
+  "praca-noite": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "noite", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste3", "sprite": "poste-iso-aceso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso-aceso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "banco1", "sprite": "banco-iso", "x": -5.85, "z": -4.25 },
+      { "id": "banco2", "sprite": "banco-iso", "x": 4.15, "z": -4.25 }
+    ]
+  },
+  // Praça decorada para festa, de dia
+  "praca-decorada": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
+      { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
+      { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 },
+      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.4, "z": -3.2 },
+      { "id": "barraca2", "sprite": "barraca-doces", "x": -4.5, "z": -3.2 },
+      { "id": "barraca3", "sprite": "barraca-jogos", "x": -2.6, "z": -3.2 }
+    ]
+  },
+  // Praça decorada à noite (barracas com luzinhas)
+  "praca-decorada-noite": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "noite", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste3", "sprite": "poste-iso-aceso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso-aceso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
+      { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
+      { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 },
+      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.4, "z": -3.2, "pose": "acesa" },
+      { "id": "barraca2", "sprite": "barraca-doces", "x": -4.5, "z": -3.2, "pose": "acesa" },
+      { "id": "barraca3", "sprite": "barraca-jogos", "x": -2.6, "z": -3.2, "pose": "acesa" }
+    ]
   }
 }

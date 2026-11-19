@@ -1,4 +1,4 @@
-// PROTÓTIPO (não aprovado): objetos da praça para a RUA DIAGONAL, desenhados igual aos móveis do diorama.
+// Objetos da praça (aprovados) para a RUA DIAGONAL, desenhados igual aos móveis do diorama.
 // Posição no roteiro (x, z) = canto da FRENTE do objeto (o ponto mais baixo na tela). O objeto se estende
 // para a direita (+x, "largura") e para o fundo (+z, "fundo"). A ordem de desenho usa o centro do objeto,
 // então os personagens passam na frente ou atrás dele.
@@ -38,4 +38,8 @@ registrarSprites({
   'canteiro-iso': () => iso({ verde: { tipo: 'canteiro-flores' }, murcho: { tipo: 'canteiro-flores', op: { murcho: true } } }),
   'palanque-iso': () => iso({ parado: { tipo: 'palanque-d' } }),
   'bandeirinhas-iso': () => iso({ parado: { tipo: 'bandeirinhas' } }),
+  // barracas de festa (estado "acesa": lâmpadas no toldo, para a festa à noite)
+  'barraca-pipoca': () => iso({ parado: { tipo: 'barraca', op: { produto: 'pipoca' } }, acesa: { tipo: 'barraca', op: { produto: 'pipoca', luzes: true } } }),
+  'barraca-doces': () => iso({ parado: { tipo: 'barraca', op: { produto: 'doces' } }, acesa: { tipo: 'barraca', op: { produto: 'doces', luzes: true } } }),
+  'barraca-jogos': () => iso({ parado: { tipo: 'barraca', op: { produto: 'jogos' } }, acesa: { tipo: 'barraca', op: { produto: 'jogos', luzes: true } } }),
 });

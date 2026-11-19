@@ -169,14 +169,17 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   `bueiro-monstro` (parado/agarrar/enjoado/fechado), `cone-monstro` (personagem; dormindo), `sanduiche`,
   `lista-compras` (abrindo), `malinha`. Cenários na biblioteca: `praca-festa`, `praca-festa-noite`, `rua-festa`
   (diagonal), `morro-mirante`, `rua-monstros`. Recursos novos do motor: ação `trocar`, `"sobre"`, `"balancar"`, clima `calor`.
-- **Diagonal nova — PROTÓTIPO, NÃO aprovado** (teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
-  **praça na rua comercial** (opção `"rua": { "praca": { "x", "largura", "profundidade" } }` do `ruaDiagonal.js`, no lugar
-  do canteiro, de frente para os mesmos prédios; câmera `"z": -8.5` foca a praça) com objetos isométricos
-  (`motor/sprites-praca.js`: `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande` verde/seca, `poste-iso`,
-  `poste-iso-aceso`, `canteiro-iso` verde/murcho, `palanque-iso`, `bandeirinhas-iso`; x/z = canto da frente; estado
-  inicial com `"pose"`). Cenários: `praca`, `praca-noite`, `praca-festa`, `praca-seca`. Também `quarto-menina` /
-  `quarto-menina-noite` (diorama e lateral) com móveis `penteadeira`, `pufe`, `cavalete`. Os postes de TODA a rua diagonal agora são o `poste-iso` (aceso à noite); `"rua": { "postes": "antigo" }` volta ao chapado. O modo `"exterior"` do
-  diorama (praça com prédios próprios) foi trocado pela praça na rua (o usuário preferiu os prédios de antes).
+- **Praça diagonal — APROVADA (na biblioteca)**: na rua comercial (opção `"rua": { "praca": { "x", "largura",
+  "profundidade" } }` do `ruaDiagonal.js`, de frente para os mesmos prédios; câmera `"z": -8.5` foca a praça).
+  **Padrão** (uso normal): `praca`, `praca-noite`. **Decorada** (festa): `praca-decorada`, `praca-decorada-noite`
+  (bandeirinhas, palanque — em cima `"y": 0.75` — e barracas). Para decorar uma cena, troque só o nome do cenário.
+  Objetos isométricos (`motor/sprites-praca.js`): `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande`
+  verde/seca, `poste-iso`, `poste-iso-aceso`, `canteiro-iso` verde/murcho, `palanque-iso`, `bandeirinhas-iso`,
+  `barraca-pipoca`/`-doces`/`-jogos` (parado/acesa); x/z = canto da frente; estado inicial com `"pose"`.
+  Os postes de TODA a rua diagonal são o `poste-iso` (aceso à noite); `"rua": { "postes": "antigo" }` volta ao chapado.
+- **Protótipos NÃO aprovados** (teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
+  `praca-seca` (decorada com fonte seca etc., para a história do Dia do Sol) e `quarto-menina` / `quarto-menina-noite`
+  (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
 - **Branch de trabalho único:** `claude/modest-hamilton-4p4851` (já reúne `jolly-archimedes`, `cool-noether`,

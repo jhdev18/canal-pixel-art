@@ -298,7 +298,7 @@ const MOVEIS = {
     }, lado: '#e0d8c8', topo: '#f4f0e8' });
     L.caixa(i1 - 0.1, i1, j0, j1, 10, 2, MAD.base);
   } },
-  // ===== PROTÓTIPO (não aprovado): praça (ao ar livre)
+  // ===== praça (aprovada; usada como sprites na rua diagonal e no diorama ao ar livre)
   fonte: { di: 1.8, dj: 1.8, f(L, m, ctx) {
     const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2, seca = !!ctx.op.seca;
     const pedra = ['#e0e0ea', '#b8b8ca', '#8a8aa0'];
@@ -378,6 +378,33 @@ const MOVEIS = {
         const c = cores[Math.floor(k / 6) % cores.length];
         for (let j = 1; j <= 6; j++) { const meia = Math.round(2.5 * (1 - j / 7)); for (let i = -meia; i <= meia; i++) L.pintar(p.x + i, p.y + j, j === 1 ? '#ffffff' : c, ci, b, h - j, 1, 1); }
       }
+    }
+  } },
+  // barraca de festa: balcão, 4 varas e toldo listrado. op.produto: 'pipoca' | 'doces' | 'jogos'; op.luzes: lâmpadas no toldo
+  barraca: { di: 1.0, dj: 1.6, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, op = ctx.op;
+    const TEMAS_B = { pipoca: ['#f4f0e8', '#d83a3a', '#a82a2a'], doces: ['#f4f0e8', '#f07ab0', '#c05a88'], jogos: ['#f8d848', '#3a6ad8', '#2a4aa8'] };
+    const [cl, cf, ce] = TEMAS_B[op.produto] || TEMAS_B.pipoca;
+    for (const [a, b] of [[i0, j0], [i1 - 0.07, j0], [i0, j1 - 0.07], [i1 - 0.07, j1 - 0.07]]) L.caixa(a, a + 0.07, b, b + 0.07, 0, 36, MAD.base);
+    // balcão na frente
+    L.caixa(i1 - 0.4, i1, j0 + 0.05, j1 - 0.05, 0, 13, { frente: (u, t) => (t > 10 ? MAD.claro : Math.floor(u * 4) % 2 ? cl : cf), lado: (u, t) => (t > 10 ? MAD.base : ce), topo: MAD.claro });
+    // produtos no balcão
+    const r = rng(ctx.semente + 41);
+    for (let k = 0; k < 4; k++) {
+      const b = j0 + 0.25 + k * ((j1 - j0 - 0.5) / 3), a = i1 - 0.22;
+      if (op.produto === 'doces') L.caixa(a - 0.08, a + 0.08, b - 0.08, b + 0.08, 13, 4 + (k % 2) * 2, ['#f8a8d8', '#80d8f8', '#f8e060', '#a8f088'][k]);
+      else if (op.produto === 'jogos') { L.caixa(a - 0.06, a + 0.06, b - 0.06, b + 0.06, 13, 3, '#f4f0e8'); L.caixa(a - 0.05, a + 0.05, b - 0.05, b + 0.05, 16, 3, ['#e83a3a', '#3aa860', '#f0b830', '#8a5ad8'][k]); }
+      else { L.caixa(a - 0.09, a + 0.09, b - 0.09, b + 0.09, 13, 5, { frente: (u, t) => (t > 3 ? '#fff4d0' : u * 16 % 3 < 1.5 ? '#d83a3a' : '#f4f0e8'), lado: '#e8d8b0', topo: () => (r() < 0.5 ? '#fff8e0' : '#f0d890') }); }
+    }
+    // placa pequena em cima do balcão (de pé, no fundo)
+    // toldo listrado com babado
+    L.caixa(i0 - 0.12, i1 + 0.15, j0 - 0.1, j1 + 0.1, 36, 4, {
+      frente: (u, t) => (Math.floor(u * 5) % 2 ? cl : cf), lado: (u) => (Math.floor(u * 5) % 2 ? cl : ce),
+      topo: (a, b) => (Math.floor(b * 5) % 2 ? cl : cf) });
+    L.caixa(i1 + 0.12, i1 + 0.15, j0 - 0.1, j1 + 0.1, 32, 4, { frente: (u, t) => ((Math.floor(u * 10) % 2 === 0 && t < 2) ? null : Math.floor(u * 5) % 2 ? cl : cf), lado: () => ce, topo: () => cf });
+    if (op.luzes) for (let k = 0; k < 7; k++) {
+      const b = j0 + (k / 6) * (j1 - j0), p = L.proj(i1 + 0.16, b, 31);
+      L.pintar(p.x, p.y, ['#fff0a0', '#ffb0c0', '#a0e0ff'][k % 3], i1 + 0.2, b, 31, 2, 1);
     }
   } },
 };
