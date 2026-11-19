@@ -1,0 +1,11 @@
+# Todos carregam um relógio nesse mundo (0:43)
+- [0:00] Nesse mundo, toda pessoa carrega um relógio flutuante, que avança um pouco mais cada vez que você faz uma maldade com alguém.
+- [0:06] A sociedade acredita que, se você zerar o relógio, garante uma grande quantia de dinheiro.
+- [0:10] Mas esse garoto, chamado Marcos, era bonzinho demais pra isso.
+- [0:13] Ele não se importava com dinheiro e não gostava de fazer mal a ninguém.
+- [0:16] As pessoas achavam que ele era idiota, e até mesmo faziam mal pra ele, mas Marcos nunca devolvia.
+- [0:20] Mas em um certo dia, um morador da cidade finalmente completou 24 horas do seu relógio.
+- [0:25] Todos ao redor ficaram com inveja dele, com exceção de Marcos, que ficou horrorizado, imaginando todo o mal que ele já fez.
+- [0:30] E de repente, uma luz se acende sobre aquele homem, que já fazia planos com o dinheiro,
+- [0:34] mas toda a população percebeu que, na verdade, não existia prêmio nenhum.
+- [0:37] E o relógio era apenas pra despertar uma criatura gigante, que se alimentava de maldade humana, e levou o homem [?] vivo na frente de todos.

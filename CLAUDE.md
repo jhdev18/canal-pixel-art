@@ -23,20 +23,99 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 10. **Sem pausa entre cenas** (retenção): ao escrever roteiros novos, todas as ações e balões de cada cena
     terminam antes (ou junto) do fim da fala do narrador — nada de tempo parado sem narração. Conferir pelas
     durações calculadas (fala estimada ≈ 0,065 s por letra) antes de entregar.
+11. **Roteiros de concorrentes** (`referencias/roteiros-concorrentes/`): só referência. **Não ler nem usar**
+    ao criar roteiros, a menos que o usuário peça explicitamente; nunca copiar premissas, falas ou personagens.
 12. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
     roteiros, cenas, testes ou sugestões de vídeo; a vista padrão continua `lateral` (e `diagonal`/`diorama`).
 
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
 - **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
-- **Nada parado:** toda cena tem movimento (`cameraFim` com pan/zoom leve, alguém andando, partículas).
+- **Nada parado, mas com sentido:** a vida da cena vem de preferência dos **personagens** (expressões no rosto,
+  ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
+  pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
 - **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
 - **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
+  Exceção: um balão maior é permitido quando o personagem tiver **algo interessante a dizer** (piada, revelação,
+  fala marcante) — charme estilo Undertale.
   Projetos novos já vêm com `"volumeBaloes": 0.4` (som baixo, narrador em destaque).
 - **Loop aberto no meio** ("mas o que ninguém sabia...") e **pergunta/voto só nos últimos ~3 s**.
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
+
+## Estilo "Nesse Mundo" (vídeos de regra absurda)
+Usar quando o usuário pedir um vídeo "no estilo Nesse Mundo". Tem dois formatos: **curto** e **longo**
+(se o usuário não disser qual, perguntar). Baseado em Shorts de referência (ver regra 11); as premissas devem ser
+**nossas**, nunca as das referências.
+
+**Formato comum (aparece nos curtos e no longo):**
+`Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
+- **1ª frase = regra absurda do mundo** — "Nesse mundo / Nessa cidade, ...". É o gancho e o título.
+- **A cidade acredita em algo errado** sobre a regra (boa sorte, prêmio, "quem ri incha"); a virada desmente.
+- **O protagonista é diferente dos outros** (sem guardião, bonzinho demais, ri escondido) e no fim
+  a diferença dele é o que importa.
+- **Regra visual:** tem que dar pra mostrar na tela (algo no ombro, relógio flutuando, gente inchando).
+- **Virada justa:** plantar uma pista no começo que, depois da virada, passa a fazer sentido.
+- **Narração:** terceira pessoa, frases curtas (8–15 palavras, ~3,5 s cada), uma frase = uma cena.
+- **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
+- Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
+
+### Nesse Mundo curto (um choque só, 30–45 s)
+Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no fim e o vídeo acaba nela.
+
+**Linha do tempo (proporção do vídeo):**
+| Parte | Tempo (~40 s) | O que acontece |
+|---|---|---|
+| 1. Regra | 0–12% (0–5 s) | "Nesse mundo, ..." — a regra em uma frase |
+| 2. Crença | 12–25% (5–10 s) | Exemplo do dia a dia ou o que a sociedade acredita ("acreditam que trazem boa sorte") |
+| 3. Protagonista | 25–45% (10–18 s) | "Mas esse garoto..." — é a exceção e **sofre** por isso (excluído, chamado de idiota) |
+| 4. Evento | 45–80% (18–32 s) | "Até que um dia..." — alguém completa a regra, um forasteiro chega, um acidente acontece |
+| 5. Virada | 80–100% (32–40 s) | A verdade da regra, em 1–2 frases, com uma imagem forte. Termina seco: sem moral, sem "comente" |
+
+**Variações:**
+- **Exceção sortuda** (guardiões, relógio): o protagonista excluído era o único a salvo; os outros estavam condenados.
+- **Olhar de fora** (guardiões, jornal na TV): a verdade chega por alguém/algo de fora — forasteiro sussurrando, notícia.
+- **Consequência inesperada** (dor transferível): a regra age no protagonista e o susto é **em quem** ela cai.
+- **Lista de 3** (criaturas, cômico): regra + protagonista e depois 3 casos seguidos, cada um "ameaça → *Porém* ela vence
+  de um jeito ridículo"; o 3º é o mais engraçado e fecha o vídeo.
+
+**Técnicas:**
+- **Conectores:** "Mas", "Porém", "Até que", "E de repente", "Então".
+- **Reação antes da virada:** alguém congela, fica horrorizado ou fica sério ("ele congelou", "olhou seriamente").
+- **Última frase concreta e visual** (esmagada no quarto, levou o homem vivo, "você foi o único que não foi consumido").
+- **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
+- **Tons possíveis:** sombrio (virada de terror), cômico (lista de 3) ou emocional.
+
+### Nesse Mundo longo (história completa, normalmente cômica, 1:30–2:30)
+Extraído da referência "quem ri vira balão" (2:15, ~38 frases, ~3,5 s por frase). Não é um choque só:
+a virada vem a **~70%** e o resto é a solução e o fechamento.
+
+**Linha do tempo (proporção do vídeo):**
+| Parte | Tempo (~2:15) | O que acontece |
+|---|---|---|
+| 1. Regra + mundo | 0–18% (0–24 s) | Regra + 2–3 piadas de como a sociedade vive com ela + **secundário marcante** com detalhe estranho |
+| 2. Protagonista | 18–28% (24–38 s) | Nome, idade, **2 manias** que parecem bobas (uma delas é a pista escondida) |
+| 3. Evento | 28–36% (38–48 s) | "Até que chegou..." — algo ridículo em público dispara a regra |
+| 4. Escalada | 36–49% (48–66 s) | "Primeiro... depois... em um minuto já eram..." (1 → 5 → 12); o secundário e alguém querido são atingidos |
+| 5. Protagonista atingido | 49–64% (66–86 s) | Tenta ajudar, não aguenta e a regra pega ele também |
+| 6. Descoberta (virada) | 64–75% (86–102 s) | "Foi aí que ela entendeu tudo": a regra funciona **ao contrário** do que todos achavam; revela também o segredo do secundário |
+| 7. Solução | 75–92% (102–124 s) | Usa a mania + a descoberta como arma; um por um, todos são salvos ("só faltava um") |
+| 8. Callback | 92–100% (124–135 s) | O secundário da parte 1 fecha com a última piada, curta e exagerada |
+
+**Técnicas:**
+- **A cidade entende a regra errado.** A virada não cria regra nova: revela o que ela sempre foi ("não é quem ri, é quem segura").
+- **Pistas disfarçadas de piada:** a mania do protagonista prova a verdade sem ninguém notar (ela ria escondida e nunca inchava);
+  o detalhe do secundário também (o juiz "redondo" não ria escondido, segurava a risada).
+- **Nada solto:** cada mania, personagem e objeto do começo volta no fim (sacos de areia, imitar o andar, o pombo).
+- **Concreto e exagerado:** números e datas ("preso desde 2023", "12 pessoas", "40 anos", "três quarteirões")
+  e comparações visuais ("redondas feito melancia", "feito bexiga solta").
+- **Uma imagem cômica a cada ~10 s** (peruca voando, gente boiando, choveu gente, pouso na barraca de pipoca) — é a quebra de padrão.
+- **Sem vilão:** a ameaça é a própria regra; o humor vem de autoridades ridicularizadas (prefeito, juiz).
+- **Elenco pequeno:** protagonista, 1 pessoa querida, 1 secundário marcante, 1 autoridade, multidão (pode usar moradores da biblioteca).
+- **Conectores do narrador:** "Funciona assim", "Por isso", "Até que", "Bem na hora", "Primeiro... depois...",
+  "Foi aí que... entendeu tudo", "Só faltava um".
+- **Tom:** cômico com um momento de aperto (parte 5); termina leve, sem moral explícita.
 
 ## Dinâmica de trabalho (ajustes visuais)
 1. O usuário renderiza no PC dele e diz o que ajustar, em texto, indicando **cena e momento**
@@ -80,4 +159,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   Pendência: texto pequeno em objetos do fundo perde linhas de pixel.
 - **Teste "mundo sombrio" (o usuário não gostou; não usar)** em `projetos/prototipo-mundo-sombrio`.
 - Protótipos de teste: `projetos/prototipo-interiores`, `projetos/prototipo-sentados`.
-- Branch de trabalho: `claude/cool-noether-ai5egq`.
+- **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
+  (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
+- **Branch de trabalho único:** `claude/jolly-archimedes-hpl3qb` (já reúne `cool-noether`, `charming-mendel` e
+  `epic-bardeen`; não usar os outros).

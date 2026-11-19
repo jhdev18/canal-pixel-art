@@ -1,0 +1,29 @@
+# Quem ri vira balão (2:15)
+- [0:00] Nesse mundo, quem ri vira balão. Funciona assim: a pessoa incha e sobe, até alguém amarrá-la pelo pé.
+- [0:08] Por isso, piada só se compra na farmácia, com receita, e o palhaço Pipo está preso desde 2023.
+- [0:14] O juiz Severo, o homem mais sério da cidade, anda com sacos de areia na cintura.
+- [0:19] Ele é tão redondo que todo mundo jura que ri escondido.
+- [0:21] E tinha a Lily, uma menina de 10 anos que achava graça de tudo.
+- [0:25] Toda noite ela entrava debaixo do cobertor e ria até a barriga doer, e nunca, nenhuma vez, inchou um dedinho.
+- [0:32] Ela também sabia imitar o jeito de andar de qualquer um, mas só fazia isso trancada no quarto, pra não fazer ninguém subir.
+- [0:38] Até que chegou a festa da cidade.
+- [0:40] A praça estava cheia, e o prefeito subiu no palanque pra fazer o discurso.
+- [0:45] Bem na hora, um pombo desceu, agarrou a peruca dele e saiu voando.
+- [0:49] A praça inteira tapou a boca com as mãos.
+- [0:51] Primeiro subiu o padeiro, depois subiram cinco de uma vez.
+- [0:55] Em um minuto, já eram 12 pessoas boiando em cima da praça, redondas feito melancia.
+- [1:00] O juiz Severo arrebentou os sacos de areia e subiu mais alto que todos.
+- [1:04] E a mãe da Lily foi a próxima.
+- [1:06] A Lily agarrou o pé da mãe [?] e amarrou no poste, só que o prefeito careca continuava correndo atrás do pombo, em volta do palanque.
+- [1:13] Era a coisa mais engraçada que a Lily já tinha visto, e ali não tinha cobertor pra se esconder.
+- [1:18] Ela apertou a boca com as duas mãos e segurou.
+- [1:20] Na mesma hora, a barriga dela começou a crescer, os braços ficaram redondos e os pés saíram do chão.
+- [1:26] A Lily não aguentou e soltou a maior gargalhada da vida dela, e murchou inteira, de volta pro chão.
+- [1:33] Foi aí que a Lily entendeu tudo: ninguém inchava por rir, inchava quem prendia a risada.
+- [1:37] E o juiz Severo não ria escondido, ele estava segurando a risada há 40 anos.
+- [1:42] A Lily subiu no palanque, estufou a barriga e começou a andar igualzinho ao prefeito, correndo atrás de um pombo que nem existia.
+- [1:50] A mãe dela foi a primeira a rir. Ela murchou tão depressa que a corda arrebentou,
+- [1:54] e ela caiu zunindo feito bexiga solta, e pousou em cima da barraca de pipoca.
+- [1:59] Depois riu o padeiro, depois riram os doze, e choveu gente na praça inteira. Só faltava um.
+- [2:05] Lá no alto, o juiz Severo olhou pra baixo, viu o prefeito brigando com o pombo, e não aguentou.
+- [2:11] Ele riu pela primeira vez em 40 anos, e saiu voando por três quarteirões.
