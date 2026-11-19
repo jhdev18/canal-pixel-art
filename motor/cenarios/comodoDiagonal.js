@@ -278,21 +278,23 @@ const MOVEIS = {
 // moveis: { tipo, x (centro ao longo do cômodo), i (distância da parede do fundo), opções... }
 // paredes: decorações na parede do fundo (x) e na lateral (lateral: true, x = distância do fundo).
 export const COMODOS_DIAGONAL = {
-  // Lugares dos alunos sentados (centro das cadeiras): x = 0.8, 3.4, 6  ×  z = 1.15 (fileira de trás) e -0.15.
-  // Com "espelhar": true os alunos "sentado-lado" (virados para a direita) olham para a lousa; lá o x troca de
-  // sinal: x = -0.8, -3.4, -6.
+  // Quem está de costas parece olhar "para cima" na tela; a lousa fica ~3 unidades para o lado (em x) das
+  // carteiras, exatamente acima delas na tela — vale para a sala normal e para a espelhada.
+  // Lugares dos alunos (centro das cadeiras), com "pose": "sentado-costas":
+  //   normal:    x = -5, -2.4, 0.2  ×  z = 1.15 (fileira de trás) e -0.15     professora: x ≈ 1.3, z ≈ 3.8
+  //   espelhada: x = 5, 2.4, -0.2   ×  z = 1.15 e -0.15                        professora: x ≈ -1.3, z ≈ 3.8
   'sala-aula': {
     estilo: 'sala-aula', inicio: -9, fim: 9,
     paredes: [
-      { tipo: 'janela', x: -6.2, w: 3 }, { tipo: 'janela', x: 6, w: 3 },
-      { tipo: 'lousa', x: 0, w: 5.6 }, { tipo: 'alfabeto', x: 0, w: 4.4, altura: 76, h: 12 },
-      { tipo: 'relogio', x: 3.6, w: 1, altura: 80, h: 14 }, { tipo: 'poster', x: -3.6, w: 1.2, altura: 62, h: 22, cores: ['#f0d040', '#e8b030'] },
+      { tipo: 'janela', x: -6.4, w: 3 }, { tipo: 'janela', x: 6.6, w: 2.6 },
+      { tipo: 'lousa', x: 1.3, w: 5.6 }, { tipo: 'alfabeto', x: 1.3, w: 4.4, altura: 76, h: 12 },
+      { tipo: 'relogio', x: 4.6, w: 1, altura: 80, h: 14 }, { tipo: 'poster', x: -3.4, w: 1.2, altura: 62, h: 22, cores: ['#f0d040', '#e8b030'] },
       { tipo: 'porta', lateral: true, x: 3.2, w: 1.8 },
     ],
     moveis: [
-      { tipo: 'estante', x: -8.1, i: 0 }, { tipo: 'globo', x: -8.1, i: 0.08, h0: 46 },
-      { tipo: 'mesa-professor', x: -3.3, i: 1.0 },
-      ...[0.8, 3.4, 6].flatMap((x) => [2.2, 3.5].flatMap((i) => [{ tipo: 'carteira', x, i }, { tipo: 'cadeira', x, i: i + 0.62 }])),
+      { tipo: 'estante', x: -8.3, i: 0 }, { tipo: 'globo', x: -8.3, i: 0.08, h0: 46 },
+      { tipo: 'mesa-professor', x: 1.3, i: 0.85 },
+      ...[-5, -2.4, 0.2].flatMap((x) => [2.2, 3.5].flatMap((i) => [{ tipo: 'carteira', x, i }, { tipo: 'cadeira', x, i: i + 0.62 }])),
     ],
     piso: [],
   },
