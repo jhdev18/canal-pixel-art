@@ -41,5 +41,9 @@
   "aluna":      { "sprite": "aluna", "voz": 1.5 },
   "professora": { "sprite": "professora", "voz": 1.15 },
   "padeiro":    { "sprite": "padeiro", "voz": 0.85 },
-  "caixa":      { "sprite": "caixa", "voz": 1.1 }
+  "caixa":      { "sprite": "caixa", "voz": 1.1 },
+  // Nesse Mundo
+  "policial-oculos": { "sprite": "policial-oculos", "voz": 0.9 },
+  "prefeito-careca": { "sprite": "prefeito-careca", "voz": 0.7 },
+  "cone-monstro":    { "sprite": "cone-monstro", "voz": 0.6 }
 }

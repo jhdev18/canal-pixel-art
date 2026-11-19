@@ -1,5 +1,4 @@
-// PROTÓTIPO (não aprovado) — assets das histórias "Nesse Mundo".
-// Depois do "pode salvar", os sprites aprovados passam a ser usados pelos cenários/personagens da biblioteca.
+// Assets das histórias "Nesse Mundo" (aprovados).
 // Estados: muitos sprites têm vários estados, trocados pela ação  { "tipo": "trocar", "alvo": "id", "estado": "chuva" }.
 // Estados com "unica" tocam uma vez a partir do "trocar" e param no último quadro.
 // Para prender num personagem: "sobre": { "id": "bia", "dx": 0, "dy": 2.8 } (dx acompanha o lado em que ele olha).

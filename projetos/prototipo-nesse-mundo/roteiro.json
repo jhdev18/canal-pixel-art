@@ -1,5 +1,5 @@
 {
-  // PROTÓTIPO dos assets "Nesse Mundo" (só para conferir: npm run previa -- prototipo-nesse-mundo)
+  // TESTE dos assets "Nesse Mundo" (aprovados; cenários na biblioteca). npm run previa -- prototipo-nesse-mundo
   // Mostra cada asset novo funcionando. Não é o roteiro final de nenhum vídeo.
   "titulo": "Protótipo — Nesse Mundo",
   "resolucao": [320, 180],

@@ -159,15 +159,15 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   Pendência: texto pequeno em objetos do fundo perde linhas de pixel.
 - **Teste "mundo sombrio" (o usuário não gostou; não usar)** em `projetos/prototipo-mundo-sombrio`.
 - Protótipos de teste: `projetos/prototipo-interiores`, `projetos/prototipo-sentados`.
-- **Assets "Nesse Mundo" — PROTÓTIPO, NÃO aprovados** (`motor/sprites-nesse-mundo.js`, variações `policial-oculos` e
-  `prefeito-careca` em `sprites-cidade.js`; teste em `projetos/prototipo-nesse-mundo`, folha em `folha-assets.png`).
+- **Assets "Nesse Mundo" — APROVADOS (na biblioteca)** (`motor/sprites-nesse-mundo.js`, variações `policial-oculos` e
+  `prefeito-careca` em `sprites-cidade.js`; teste em `projetos/prototipo-nesse-mundo`, folha em `folha-assets.png`; personagens `policial-oculos`, `prefeito-careca`, `cone-monstro`).
   Para 3 roteiros: curto "estrelas que viram olhos", curto "cada rua tem um monstro" e longo "cada um carrega o
   próprio tempo". Sprites: `tempo-pessoal` (estados sol-pequeno/sol/sol-grande/sol-forte/nuvenzinha/garoa/chuva/
   aguaceiro/nada), `guarda-chuva` (aberto/fechando/fechado), `estrela-mentira`/`estrela-gigante` (parado/olho/
   olho-aberto), `palanque` (em cima: y 1.125), `bandeirinhas`, `fonte-praca` (cheia/seca), `canteiro` (verde/murcho),
   `placa-lei`, `bloco-multas`, `fogo-chapeu`, `peruca`, `sorvete` (derretendo), `agua-enchente`, `cerca-mirante`,
   `bueiro-monstro` (parado/agarrar/enjoado/fechado), `cone-monstro` (personagem; dormindo), `sanduiche`,
-  `lista-compras` (abrindo), `malinha`. Cenários do protótipo: `praca-festa`, `praca-festa-noite`, `rua-festa`
+  `lista-compras` (abrindo), `malinha`. Cenários na biblioteca: `praca-festa`, `praca-festa-noite`, `rua-festa`
   (diagonal), `morro-mirante`, `rua-monstros`. Recursos novos do motor: ação `trocar`, `"sobre"`, `"balancar"`, clima `calor`.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.

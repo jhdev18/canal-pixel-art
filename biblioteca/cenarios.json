@@ -180,5 +180,62 @@
   "sala-de-aula-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-aula" } },
   "quarto-menino-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menino" } },
   "quarto-menino-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menino-noite" } },
-  "sala-de-estar-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-estar" } }
+  "sala-de-estar-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-estar" } },
+
+  // ---- Nesse Mundo (aprovados): praça da festa, morro do mirante e rua dos monstros
+  // Praça da festa (lateral, de dia): fonte no centro, canteiros, bandeirinhas, palanque e a placa da lei.
+  // Quem sobe no palanque fica em "y": 1.125 (palanque em x 6.5 → em cima: x 5.4 a 7.4).
+  "praca-festa": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [
+      { "id": "band1", "sprite": "bandeirinhas", "x": -4.2, "y": 3.9, "z": -0.4 },
+      { "id": "band2", "sprite": "bandeirinhas", "x": 2.8, "y": 3.9, "z": -0.4 },
+      { "id": "fonte", "sprite": "fonte-praca", "x": 0, "z": -0.3 },
+      { "id": "canteiro1", "sprite": "canteiro", "x": -5.6, "z": -0.2 },
+      { "id": "canteiro2", "sprite": "canteiro", "x": 3.4, "z": -0.2 },
+      { "id": "palanque", "sprite": "palanque", "x": 6.5, "z": -0.25 },
+      { "id": "placa", "sprite": "placa-lei", "x": -8.6, "z": -0.35 }
+    ]
+  },
+  // A mesma praça à noite (flashback/ronda do policial)
+  "praca-festa-noite": {
+    "fundo": "cidade-noite", "clima": "nenhum",
+    "elementos": [
+      { "id": "fonte", "sprite": "fonte-praca", "x": 0, "z": -0.3 },
+      { "id": "canteiro1", "sprite": "canteiro", "x": -5.6, "z": -0.2 },
+      { "id": "canteiro2", "sprite": "canteiro", "x": 3.4, "z": -0.2 },
+      { "id": "poste1", "sprite": "poste", "x": -3.2, "z": -0.6 },
+      { "id": "poste2", "sprite": "poste", "x": 5.2, "z": -0.6 }
+    ]
+  },
+  // Rua comercial enfeitada para o Dia do Sol (diagonal)
+  "rua-festa": {
+    "vista": "diagonal",
+    "rua": { "periodo": "dia", "faixaPedestre": -3,
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "band1", "sprite": "bandeirinhas", "x": -2, "y": 3.6, "z": 4.6 },
+      { "id": "band2", "sprite": "bandeirinhas", "x": 6, "y": 3.6, "z": 4.6 },
+      { "id": "fonte", "sprite": "fonte-praca", "x": 2, "z": 3.4 },
+      { "id": "canteiro", "sprite": "canteiro", "x": -4, "z": 4.9 }
+    ]
+  },
+  // Morro do mirante à noite (curto das estrelas). As estrelas ficam no roteiro (cada uma vira olho).
+  "morro-mirante": {
+    "fundo": "floresta-noite", "clima": "nenhum",
+    "elementos": [
+      { "id": "cerca1", "sprite": "cerca-mirante", "x": -6, "z": -0.2 },
+      { "id": "cerca2", "sprite": "cerca-mirante", "x": 6, "z": -0.2 },
+      { "id": "palanque", "sprite": "palanque", "x": 0.5, "z": -0.25 }
+    ]
+  },
+  // Rua dos monstros (lateral, de dia): bueiro na calçada; o cone e o pombo entram pelo roteiro.
+  "rua-monstros": {
+    "fundo": "cidade-dia", "realce": 0,
+    "elementos": [
+      { "id": "bueiro", "sprite": "bueiro-monstro", "x": 1.5, "z": 0.1 },
+      { "id": "hidrante", "sprite": "hidrante", "x": -6, "z": -0.2 },
+      { "id": "ponto", "sprite": "ponto-onibus", "x": 7, "z": -0.5 }
+    ]
+  }
 }

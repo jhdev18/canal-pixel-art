@@ -215,7 +215,7 @@ export const MORADORES = {
 
 registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])));
 
-// PROTÓTIPO (Nesse Mundo, não aprovado): variações dos moradores
+// Nesse Mundo (aprovadas): variações dos moradores
 export const VARIACOES = {
   'policial-oculos': { ...MORADORES.policial, oculosEscuros: true },   // policial Ronaldo, óculos escuros
   'prefeito-careca': { ...MORADORES.prefeito, cabelo: 'careca' },      // prefeito depois que a peruca voa
