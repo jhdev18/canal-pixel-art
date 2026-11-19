@@ -59,11 +59,11 @@
     },
   // ---- vista diagonal (cômodo em corte, móveis desenhados em 3D-pixel)
   // z dos personagens: 0 = perto da frente do piso, ~3.8 = encostado na parede do fundo.
-  "sala-de-aula-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "frente" }, "camera": { "x": 0, "y": 3 } },
+  "sala-de-aula-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "lousa-fundo" }, "camera": { "x": 0, "y": 3 } },
   // mesma sala vista pelo outro lado da diagonal (x troca de sinal)
   // versão com a lousa na parede da direita (carteiras viradas para ela)
-  "sala-de-aula-lousa-lado-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "lado" }, "camera": { "x": 0, "y": 3 } },
-  "sala-de-aula-diagonal-espelhada": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "frente-espelhado" }, "camera": { "x": 0, "y": 3 } },
+  "sala-de-aula-lousa-lado-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula" }, "camera": { "x": 0, "y": 3 } },
+  "sala-de-aula-diagonal-espelhada": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "lousa-fundo-espelhado" }, "camera": { "x": 0, "y": 3 } },
   "quarto-menino-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino" }, "camera": { "x": 0, "y": 3 } },
   "quarto-menino-noite-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino-noite" }, "camera": { "x": 0, "y": 3 } },
   "sala-de-estar-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-estar" }, "camera": { "x": 0, "y": 3 } }

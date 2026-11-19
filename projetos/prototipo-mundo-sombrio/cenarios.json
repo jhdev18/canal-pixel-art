@@ -4,6 +4,6 @@
   // Qualquer cômodo da diagonal vira sombrio com "tema": "sombrio" | "sombrio-verde" | "sombrio-vermelho".
   "mundo-sombrio": { "fundo": "mundo-sombrio", "realce": 0 },
   "quarto-sombrio-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino", "tema": "sombrio" }, "camera": { "x": 0, "y": 3 } },
-  "sala-de-aula-sombria-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "frente", "tema": "sombrio-verde" }, "camera": { "x": 0, "y": 3 } },
+  "sala-de-aula-sombria-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula", "angulo": "lousa-fundo", "tema": "sombrio-verde" }, "camera": { "x": 0, "y": 3 } },
   "sala-de-estar-sombria-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-estar", "tema": "sombrio-vermelho" }, "camera": { "x": 0, "y": 3 } }
 }

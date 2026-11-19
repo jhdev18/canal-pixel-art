@@ -64,9 +64,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
   `sala-de-estar` (fundos + móveis de `motor/sprites-interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
   `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,
-  `quarto-menino-noite-diorama`, `sala-de-estar-diorama`. O diorama aceita **ângulos**:
-  `"comodo": { "tipo": ..., "angulo": "frente" | "lado" | "espelhado" | "lado-espelhado" }` (ângulos novos =
-  chaves `tipo@angulo`). Sala de aula: ângulo padrão `lado` (aprovado: lousa na parede da direita; alunos
+  `quarto-menino-noite-diorama`, `sala-de-estar-diorama`. O diorama aceita **ângulos**: padrão `"classico"`
+  (diagonal clássica; não precisa escrever), `"espelhado"` e extras `tipo@angulo` (sala de aula: `lousa-fundo`).
+  Ângulo inexistente → clássico com aviso. Sala de aula clássica (aprovada: lousa na parede da direita; alunos
   `sentado-lado` em x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75; professora x 8.1, z 1.6 virada para a esquerda).
   Outros ângulos ainda NÃO desenhados (o usuário vai pedir depois).
 - **Poses APROVADAS**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"`,

@@ -197,7 +197,9 @@ function vistaComodo(c, motor) {
   // "espelhar": o cômodo é desenhado pelo outro lado da diagonal (parede do fundo subindo para a esquerda).
   // A câmera continua de frente; só o desenho é espelhado. No espelhado, o x do roteiro = -x do desenho,
   // então andar para +x continua indo para a direita na tela.
-  const esp = resolverAngulo(op).espelhar, xg = (x) => (esp ? -x : x);
+  const ang = resolverAngulo(op);
+  if (ang.aviso) motor.avisos.push(`${ang.aviso} (cena ${c.numero})`);
+  const esp = ang.espelhar, xg = (x) => (esp ? -x : x);
   let minX = 0;
   for (let t = 0; t <= c.duracao; t += 0.25) {
     minX = Math.min(minX, xg(estadoCamera(c, t).x));

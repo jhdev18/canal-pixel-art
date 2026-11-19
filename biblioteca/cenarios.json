@@ -172,9 +172,10 @@
       { "id": "planta", "sprite": "planta-vaso", "x": 8.4, "z": -0.05 }
     ]
   },
-  // ---- Interiores no modo DIORAMA (diagonal dos cômodos, com ângulos: "angulo": "frente" | "lado" | "espelhado"...)
+  // ---- Interiores no modo DIORAMA (diagonal dos cômodos). Ângulo padrão: "classico" (não precisa escrever).
+  //      Outros: "espelhado" e, na sala de aula, "lousa-fundo". Ângulo inexistente → clássico (com aviso).
   //      z dos personagens: 0 = perto da frente, ~3.8 = encostado na parede do fundo.
-  //      Sala de aula: ângulo padrão "lado" (lousa na parede da direita; alunos "sentado-lado" em
+  //      Sala de aula clássica (lousa na parede da direita; alunos "sentado-lado" em
   //      x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75; professora x 8.1, z 1.6, virada para a esquerda).
   "sala-de-aula-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-aula" } },
   "quarto-menino-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menino" } },
