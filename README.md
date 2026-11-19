@@ -67,8 +67,9 @@ projetos/meu-video/
 **Opção 1 — um único áudio (recomendado):** escreva a fala de cada cena em `"narracaoTexto"` no roteiro e rode
 `npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (um parágrafo por cena, sem marcações de
 pausa, para a fala fluir) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o
-gerador corta o áudio nas pausas naturais entre as frases (0,2 s ou mais), um trecho por cena, e ajusta a duração de
-cada cena.
+gerador **ouve o áudio** (reconhecimento de fala no próprio PC; na primeira vez baixa um modelo de ~75 MB) e corta
+exatamente entre a última palavra de uma cena e a primeira da seguinte; cada cena dura o seu trecho de áudio. Se o
+reconhecimento não estiver instalado, corta pelas pausas naturais.
 
 **Conferir os cortes sem renderizar:** `npm run narracao -- meu-video --verificar` mostra de que segundo a que
 segundo vai a fala de cada cena (e salva em `narracao/CORTES.txt`). O corte leva em conta o tamanho do texto de

@@ -5,6 +5,7 @@ import { RAIZ } from './config.js';
 import { decodificarAudio } from './ffmpeg.js';
 import { SR } from './audio/sintetizador.js';
 import { lerJsonFlexivel, aplicarBiblioteca, carregarBiblioteca, PASTA_BIBLIOTECA } from './biblioteca.js';
+import { cortesPelaFala } from './alinhar.js';
 
 export const PASTA_NARRACAO = 'narracao';
 export const EXT_AUDIO = ['.mp3', '.wav', '.m4a', '.ogg', '.flac', '.aac', '.opus', '.webm'];
@@ -106,7 +107,21 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
     const dados = await decodificarAudio(ff, path.join(pasta, unico));
     // peso de cada cena = letras + as pausas entre as frases dela (cada pausa interna vale ~6 letras de fala)
     const peso = (t) => t.length + 6 * ((t.match(/[.!?:…]\s/g) || []).length);
-    // o nível de "silêncio" muda de áudio para áudio (respiração, ruído, emoções): testa vários e fica com o corte
+    // 1º: pelo que é falado (reconhecimento de fala) — corta entre a última palavra de uma cena e a primeira da outra
+    let pelaFala = null;
+    if (alvo.length > 1 && process.env.ALINHAR_FALA !== '0') {
+      try { pelaFala = await cortesPelaFala(dados, SR, alvo.map((i) => cenas[i].narracaoTexto || ''), pasta, path.join(pasta, unico)); }
+      catch (e) { console.log(`  (reconhecimento de fala indisponível: ${String(e.message || e).split('\n')[0]} — usando as pausas)`); }
+    }
+    if (pelaFala) {
+      const limites = [0, ...pelaFala.map((t) => Math.round(t * SR)), dados.length];
+      alvo.forEach((ci, k) => {
+        const a = limites[k], b = limites[k + 1];
+        mapa.set(ci, { arquivo: `${unico} [${(a / SR).toFixed(1)}s–${(b / SR).toFixed(1)}s] fala`, duracao: (b - a) / SR, dados: dados.slice(a, b), continuo: true });
+      });
+      return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: alvo.length, metodo: 'fala' };
+    }
+    // 2º (reserva): pelas pausas. O nível de "silêncio" muda de áudio para áudio (respiração, ruído, emoções): testa vários e fica com o corte
     // cujos trechos mais combinam com o tamanho do texto de cada cena
     const pesos = alvo.map((i) => peso(cenas[i].narracaoTexto || 'x'));
     let r = null, melhorErro = Infinity;
@@ -119,7 +134,7 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
     }
     if (r.erro) throw new Error(`Narração única (${unico}): ${r.erro}`);
     r.trechos.forEach((t, k) => mapa.set(alvo[k], { arquivo: `${unico} [${t.de.toFixed(1)}s–${t.ate.toFixed(1)}s]`, duracao: t.dados.length / SR, dados: t.dados, continuo: true }));
-    return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length };
+    return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length, metodo: 'pausas' };
   }
   const porNumero = new Map();
   for (const f of arquivos) {

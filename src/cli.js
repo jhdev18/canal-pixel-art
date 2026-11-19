@@ -145,7 +145,7 @@ async function verificarNarracao(nome) {
   const r = lerRoteiro(dir);
   const n = await encontrarNarracoes(dir, r, cfg.ffmpeg);
   if (!n.mapa.size) throw new Error(`Nenhum áudio de narração em ${n.pasta} (nome esperado: narracao-completa.mp3).`);
-  console.log(n.unico ? `\n▶ ${n.unico} → ${n.trechos} trechos` : `\n▶ Narração por cena (${n.mapa.size} arquivos)`);
+  console.log(n.unico ? `\n▶ ${n.unico} → ${n.trechos} trechos (${n.metodo === 'fala' ? 'alinhado pelo que é falado' : 'cortado pelas pausas'})` : `\n▶ Narração por cena (${n.mapa.size} arquivos)`);
   const linhas = [];
   for (const [i, v] of [...n.mapa.entries()].sort((a, b) => a[0] - b[0])) {
     const txt = r.cenas[i].narracaoTexto || '';

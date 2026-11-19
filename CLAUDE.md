@@ -136,9 +136,11 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
 - Transições curtas (0,2 s); cenas sem duração fixa (duram o tempo da fala/ações).
-- Narração sem `<break>` (um parágrafo por cena). Com o áudio, o corte é automático (pausas + tamanho de cada cena,
-  contando as pausas entre frases; o limite de silêncio é escolhido sozinho, pois respiração/emoções sujam as pausas)
-  e o áudio fica **contínuo**: cada cena dura exatamente o seu trecho (vídeo = tamanho do áudio, sem silêncio extra).
+- Narração sem `<break>` (um parágrafo por cena). Com o áudio, o corte é automático **pelo que é falado**
+  (`src/alinhar.js`: Whisper `whisper-base_timestamped` via `@huggingface/transformers`, roda no PC; palavras com tempo
+  alinhadas ao texto do roteiro; cache em `narracao/.alinhamento.json`; modelo em `.modelos/`). Reserva: pelas pausas
+  (limite de silêncio automático). O áudio fica **contínuo**: cada cena dura exatamente o seu trecho (vídeo = tamanho do
+  áudio, sem silêncio extra). `--verificar` mostra o método usado ("alinhado pelo que é falado").
   Os tempos das ações de cada cena se ajustam à duração real da fala (`"sincronizarAcoes": false` desliga).
   O usuário não marca cortes à mão.
 
