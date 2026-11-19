@@ -56,6 +56,24 @@ class Camada {
       }
     }
   }
+  // Caixa "de frente para a tela" (girada 45° no chão): pegada em a = i + j (profundidade da tela) e
+  // b = i - j (horizontal da tela). Aparece como uma frente reta + o tampo visto de cima (estilo Deltarune).
+  // frente(u, t, largura) e topo(ua, ub) devolvem cor, [cor, 2] ou null.
+  caixaVista(a0, a1, b0, b1, h0, h, c) {
+    const { W, H, OX, OY } = this, fn = (v) => (typeof v === 'function' ? v : () => v);
+    const fr = fn(c.frente), to = fn(c.topo ?? c.frente);
+    const put = (x, y, v, i, j, hh, f) => { if (v == null) return; const [cc, t] = Array.isArray(v) ? v : [v, 1]; this.pintar(x, y, cc, i, j, hh, t, f); };
+    for (let x = Math.ceil(b0 * 16 + OX); x <= Math.floor(b1 * 16 + OX); x++) {
+      const b = (x - OX) / 16, base = a1 * 8 + OY - h0;
+      const borda = x === Math.floor(b1 * 16 + OX);
+      for (let t = 0; t < h; t++) put(x, Math.round(base - t), fr(b - b0, t, b1 - b0), (a1 + b) / 2, (a1 - b) / 2, h0 + t, borda ? 0.82 : 1);
+      for (let y = Math.floor(a0 * 8 + OY - h0 - h); y <= Math.ceil(a1 * 8 + OY - h0 - h); y++) {
+        const a = (y + h0 + h - OY) / 8;
+        if (a < a0 || a > a1 || y < 0 || y >= H) continue;
+        put(x, y, to(a - a0, b - b0, a1 - a0, b1 - b0), (a + b) / 2, (a - b) / 2, h0 + h, borda ? 0.86 : 1.06);
+      }
+    }
+  }
   // Caixa de cores lisas (lado e topo derivados da frente se não vierem).
   caixa(i0, i1, j0, j1, h0, h, c) {
     const f = typeof c === 'string' ? { frente: c } : c;
@@ -172,6 +190,35 @@ const MOVEIS = {
     if (ctx.op.encosto === 'j') L.caixa(i0, i1, j1 - 0.08, j1, 9, 11, { frente: MAD.esc, lado: (u, t) => (t > 4 ? MAD.base : cinza), topo: MAD.claro });
     else L.caixa(i1 - 0.08, i1, j0, j1, 9, 11, { frente: (u, t) => (t > 4 ? MAD.base : cinza), topo: MAD.claro });
   } },
+  // ---- móveis "de frente para a tela" (vista: true): pegada em a/b (ver caixaVista); no roteiro: { a, b }
+  'carteira-frente': { vista: true, da: 0.85, db: 1.4, f(L, m) {
+    const { a0, a1, b0, b1 } = m, cinza = '#6a7080';
+    for (const bb of [b0, b1 - 0.1]) for (const aa of [a0, a1 - 0.12]) L.caixaVista(aa, aa + 0.12, bb, bb + 0.1, 0, 9, aa === a0 ? '#4a5060' : cinza);
+    L.caixaVista(a0 + 0.12, a1 - 0.15, b0 + 0.1, b1 - 0.1, 5, 3, { frente: '#4a5060', topo: '#3a4050' });
+    L.caixaVista(a0, a1, b0, b1, 9, 2, { frente: MAD.esc, topo: (ua, ub, da, db) => (ua > 0.15 && ua < 0.55 && ub > db * 0.3 && ub < db * 0.65 ? (ua < 0.22 ? '#c83c4c' : '#f4f0e8') : ua < 0.08 ? MAD.claro : MAD.base) });
+  } },
+  'cadeira-frente': { vista: true, da: 0.55, db: 0.95, f(L, m) {   // encosto do lado da câmera (aluno de costas)
+    const { a0, a1, b0, b1 } = m, cinza = '#6a7080';
+    for (const bb of [b0 + 0.05, b1 - 0.13]) for (const aa of [a0, a1 - 0.1]) L.caixaVista(aa, aa + 0.1, bb, bb + 0.08, 0, 6, cinza);
+    L.caixaVista(a0, a1 - 0.1, b0, b1, 6, 2, { frente: MAD.esc, topo: MAD.base });
+    L.caixaVista(a1 - 0.1, a1, b0, b1, 7, 12, { frente: (u, t) => (t < 4 ? cinza : t === 11 ? MAD.claro : (t === 6 ? MAD.esc : MAD.base)), topo: MAD.claro });
+  } },
+  'mesa-professor-frente': { vista: true, da: 1.2, db: 3.6, f(L, m) {
+    const { a0, a1, b0, b1 } = m, db = b1 - b0;
+    L.caixaVista(a0, a1, b0, b1, 0, 15, { frente: (u, t, l) => {
+      const gaveta = u < 0.9 || u > l - 0.9;
+      if (t > 12) return t === 13 ? MAD.esc : MAD.base;
+      if (!gaveta) return t > 3 ? '#8a5a34' : MAD.esc;                         // painel do meio
+      if (u < 0.06 || Math.abs(u - (l - 0.9)) < 0.06 || Math.abs(u - 0.9) < 0.06 || u > l - 0.06) return MAD.esc;
+      if (t === 6 || t === 10) return MAD.esc;
+      if ((t === 8 || t === 4) && (Math.abs(u - 0.45) < 0.1 || Math.abs(u - (l - 0.45)) < 0.1)) return '#e8c040';
+      return MAD.base;
+    }, topo: (ua, ub) => (ua < 0.1 ? MAD.claro : (Math.floor(ub * 5) % 7 === 0 ? MAD.esc : MAD.claro)) });
+    L.caixaVista(a0 + 0.25, a0 + 0.75, b0 + 0.3, b0 + 1.1, 15, 4, { frente: '#3a6ac8', topo: '#f4f0e8' });
+    L.caixaVista(a0 + 0.3, a0 + 0.7, b0 + 0.35, b0 + 1.0, 19, 3, { frente: '#c83c4c', topo: '#f4f0e8' });
+    L.caixaVista(a0 + 0.4, a0 + 0.6, b0 + db / 2 - 0.12, b0 + db / 2 + 0.12, 15, 4, { frente: '#d83a3a', topo: '#ff7a7a' });
+    L.caixaVista(a0 + 0.35, a0 + 0.6, b1 - 1.0, b1 - 0.7, 15, 5, { frente: '#f4f0e8', topo: '#7a4e2a' });
+  } },
   estante: { di: 0.55, dj: 1.7, f(L, m, ctx) {
     const { i0, i1, j0, j1 } = m, r = rng(ctx.semente + 3), cores = Array.from({ length: 40 }, () => LIVROS[Math.floor(r() * LIVROS.length)]);
     L.caixa(i0, i1, j0, j1, 0, 46, {
@@ -278,11 +325,12 @@ const MOVEIS = {
 // moveis: { tipo, x (centro ao longo do cômodo), i (distância da parede do fundo), opções... }
 // paredes: decorações na parede do fundo (x) e na lateral (lateral: true, x = distância do fundo).
 export const COMODOS_DIAGONAL = {
-  // Quem está de costas parece olhar "para cima" na tela; a lousa fica ~3 unidades para o lado (em x) das
-  // carteiras, exatamente acima delas na tela — vale para a sala normal e para a espelhada.
+  // Carteiras, cadeiras e mesa da professora DE FRENTE para a lousa (móveis alinhados à tela, estilo Deltarune);
+  // a lousa fica exatamente "acima" delas na tela. Vale para a sala normal e a espelhada.
   // Lugares dos alunos (centro das cadeiras), com "pose": "sentado-costas":
-  //   normal:    x = -5, -2.4, 0.2  ×  z = 1.15 (fileira de trás) e -0.15     professora: x ≈ 1.3, z ≈ 3.8
-  //   espelhada: x = 5, 2.4, -0.2   ×  z = 1.15 e -0.15                        professora: x ≈ -1.3, z ≈ 3.8
+  //   normal:    1ª fileira (x, z) = (-3.8, 1.7) (-2.5, 0.4) (-1.2, -0.9)
+  //              2ª fileira        = (-5.3, 0.2) (-4.0, -1.1) (-2.7, -2.4)            professora: x 0.5, z 3.4
+  //   espelhada: os mesmos com x trocado de sinal                                     professora: x -0.5, z 3.4
   'sala-aula': {
     estilo: 'sala-aula', inicio: -9, fim: 9,
     paredes: [
@@ -293,8 +341,8 @@ export const COMODOS_DIAGONAL = {
     ],
     moveis: [
       { tipo: 'estante', x: -8.3, i: 0 }, { tipo: 'globo', x: -8.3, i: 0.08, h0: 46 },
-      { tipo: 'mesa-professor', x: 1.3, i: 0.85 },
-      ...[-5, -2.4, 0.2].flatMap((x) => [2.2, 3.5].flatMap((i) => [{ tipo: 'carteira', x, i }, { tipo: 'cadeira', x, i: i + 0.62 }])),
+      { tipo: 'mesa-professor-frente', a: 1.6, b: 1.3 },
+      ...[5.4, 8.4].flatMap((a) => [-1.3, 1.3, 3.9].flatMap((b) => [{ tipo: 'carteira-frente', a, b }, { tipo: 'cadeira-frente', a: a + 0.9, b }])),
     ],
     piso: [],
   },
@@ -416,8 +464,14 @@ export function gerarComodoDiagonal(opc = {}) {
   for (const mv of cfg.moveis || []) {
     const def = MOVEIS[mv.tipo];
     if (!def) continue;
-    const di = mv.di ?? def.di, dj = mv.dj ?? def.dj;
-    const m = { i0: mv.i ?? 0, i1: (mv.i ?? 0) + di, j0: -mv.x - dj / 2, j1: -mv.x + dj / 2, h0: mv.h0 };
+    let m;
+    if (def.vista) {                                   // pegada em a/b; i/j = caixa que contém (para a ordem de desenho)
+      const da = mv.da ?? def.da, db = mv.db ?? def.db, a0 = mv.a - da / 2, a1 = mv.a + da / 2, b0 = mv.b - db / 2, b1 = mv.b + db / 2;
+      m = { a0, a1, b0, b1, i0: (a0 + b0) / 2, i1: (a1 + b1) / 2, j0: (a0 - b1) / 2, j1: (a1 - b0) / 2, h0: mv.h0 };
+    } else {
+      const di = mv.di ?? def.di, dj = mv.dj ?? def.dj;
+      m = { i0: mv.i ?? 0, i1: (mv.i ?? 0) + di, j0: -mv.x - dj / 2, j1: -mv.x + dj / 2, h0: mv.h0 };
+    }
     const L = new Camada(geo);
     def.f(L, m, { luzes, noite, op: mv, semente: (cfg.semente ?? 7) + pecas.length * 11 });
     pecas.push({ L, ...m, sobre: mv.h0 != null });
