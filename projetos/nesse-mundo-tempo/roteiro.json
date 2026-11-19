@@ -1375,7 +1375,7 @@
    ]
   },
   {
-   "narracaoTexto": "Choveu na praça inteira. A fonte encheu, as flores levantaram e o asfalto esfriou.",
+   "narracaoTexto": "Choveu na praça inteira. A fonte encheu, as flores levantaram e a praça esfriou.",
    "cenario": "praca-seca",
    "clima": "chuva",
    "elementos": [

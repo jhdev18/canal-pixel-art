@@ -32,7 +32,7 @@ São **28 falas** (uma por cena com narração):
 | 20 | A Bia subiu no palanque e pegou o microfone. |
 | 21 | E contou a história mais triste que ela sabia: a do pãozinho que ninguém quis comprar. |
 | 22 | O cachorro foi o primeiro a chorar. Depois, a professora. Depois, o seu Tonho. |
-| 23 | Choveu na praça inteira. A fonte encheu, as flores levantaram e o asfalto esfriou. |
+| 23 | Choveu na praça inteira. A fonte encheu, as flores levantaram e a praça esfriou. |
 | 24 | Até o prefeito chorou, e a chuva dele levou a peruca para dentro da fonte. |
 | 25 | Só faltava um. |
 | 26 | O policial Ronaldo olhou para a Bia, respirou fundo e fechou o guarda-chuva. |
