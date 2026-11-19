@@ -217,7 +217,7 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
 CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum
-VISTAS:      lateral (padrão), diagonal (rua desenhada 2:1), avenida (perspectiva)
+VISTAS:      diorama (padrão nos vídeos novos; rua desenhada 2:1), lateral (padrão do motor sem "vista"), avenida (perspectiva)
 TRANSIÇÕES:  dither, fade, iris, pixelizar, corte
 PALETAS:     nenhuma (padrão), posterizar, retro32, verde4, sepia, noir, quente, fria
 EMOÇÕES:     !, ?, coracao, ..., zzz
@@ -240,7 +240,7 @@ SPRITES PNG: ${listarSpritesBiblioteca().join(', ') || '(nenhum em biblioteca/sp
 const AJUDA = `
 Gerador de vídeos pixel art (Three.js + GPU)
 
-  npm run novo -- meu-video         cria projetos/meu-video  (--modelo diagonal: começa de um modelo; veja FORMAS-DE-VIDEO.md)
+  npm run novo -- meu-video         cria projetos/meu-video  (--modelo diorama: começa de um modelo; veja FORMAS-DE-VIDEO.md)
   npm run rascunho -- meu-video     rascunho rápido (baixa resolução, só narração) + storyboard.png
   npm run final -- meu-video        versão final 1080p com efeitos visuais e sonoros
   npm run previa -- meu-video       prévia em tempo real no navegador

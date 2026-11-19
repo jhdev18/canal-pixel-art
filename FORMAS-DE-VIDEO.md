@@ -4,7 +4,7 @@ Guia de todas as formas que o gerador oferece, organizadas por tipo. Cada forma 
 em `modelos/` — para começar um vídeo a partir dele:
 
 ```bash
-npm run novo -- meu-video --modelo diagonal
+npm run novo -- meu-video --modelo diorama
 ```
 
 ![Galeria das formas](modelos/galeria.png)
@@ -20,14 +20,14 @@ Cada cena do roteiro escolhe a sua forma, então dá para misturar várias no me
 |---|---|---|---|---|---|---|
 | 1 | **Lateral – paisagem** | `"fundo": "floresta-dia"` (padrão) | desliza de lado; `cameraFim`, `seguir` | aberturas, viagens, natureza, passagem de tempo | conversas longas de perto | `lateral-paisagem` |
 | 2 | **Lateral – cidade RPG** | `"cenario": "cidade-rpg"` ou `"cidade-rpg-chuva"` | zoom 2×; acompanha com `seguir` | conversas de perto, personagens grandes | cenas que precisam mostrar a rua | `lateral-cidade-rpg` |
-| 3 | **Diagonal – rua desenhada** | `"vista": "diagonal"` | desliza junto com `seguir` | caminhar e conversar pela rua | atravessar a rua (sem pose na diagonal) | `diagonal` |
+| 3 | **Diorama – rua desenhada** (padrão) | `"vista": "diorama"` | desliza junto com `seguir` | caminhar e conversar pela rua | atravessar a rua (sem pose na diagonal) | `diorama` |
 | 4 | **Avenida – perspectiva** | `"vista": "avenida"` | **parada**; só acompanha o protagonista enquanto ele anda | chegada a um lugar, cenas dramáticas, contemplação | personagem andando para o fundo | `avenida` |
 | 5 | **Avenida – avanço** | `"avenida": { "movimentoReal": true }` + ação `camera` em `z` | avança/recua de verdade | impacto, revelação — **só em momentos pontuais** | usar o tempo todo (pode tremer de leve) | `avenida-movimento` |
 | 6 | **Batalha** | `"cenario": "batalha"` | fixa | confronto, suspense, "encontro" | — | `batalha` |
 
 **Coordenadas por forma:**
 - Lateral: `x` horizontal, `y` altura, `z` profundidade (negativo = fundo).
-- Diagonal: `x` = posição **ao longo da rua**; `z` = distância a partir da calçada da frente (0 = calçada da frente, ~2,7 = meio da rua, ~5,3 = calçada dos prédios).
+- Diorama: `x` = posição **ao longo da rua**; `z` = distância a partir da calçada da frente (0 = calçada da frente, ~2,7 = meio da rua, ~5,3 = calçada dos prédios).
 - Avenida: `x` lateral (−3 a 3 é o asfalto), `z` profundidade (maior = mais perto da câmera).
 
 ---
@@ -36,7 +36,7 @@ Cada cena do roteiro escolhe a sua forma, então dá para misturar várias no me
 
 | Estilo | Sprites | Visual | Quando usar |
 |---|---|---|---|
-| **Detalhado** (padrão para os principais) | `menina-capa`, `robo-semaforo` | 28×44 px, contorno colorido, 3 tons, respiração e piscar. Na **avenida**: andar e correr com 8 quadros e pé cravado no chão; na **lateral** e na **diagonal**: caminhada clássica (4 quadros andando, 6 correndo) | protagonistas |
+| **Detalhado** (padrão para os principais) | `menina-capa`, `robo-semaforo` | 28×44 px, contorno colorido, 3 tons, respiração e piscar. Na **avenida**: andar e correr com 8 quadros e pé cravado no chão; na **lateral** e no **diorama**: caminhada clássica (4 quadros andando, 6 correndo) | protagonistas |
 | **Moradores** (detalhados) | `policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa` | mesmo padrão dos detalhados | histórias na cidade (cenários `escola`, `delegacia`, `padaria`, `mercado`, `farmacia`, `rua-comercial`) |
 | **RPG indie** | `pombo-fofoqueiro`, `lixeira-timida`, `cao-guarda`, `fantasma-metro`, `coruja-banca`, `cone-agressivo`, `bueiro-olhos` | de frente, contorno grosso, olhos que piscam | coadjuvantes, cidade, batalha |
 | **Simples (antigo)** | `heroi`, `amiga`, `velho`, `mago`, `slime`... `menina-capa-antigo`, `robo-semaforo-antigo` | 16 px, estilo plataforma | figurantes, cenas de paisagem |
@@ -74,7 +74,7 @@ Use sempre pelos nomes da biblioteca (`"personagem": "menina-capa"`) — veja `n
 | `transicao` | `fade`, `dither`, `iris`, `pixelizar`, `corte` | como a cena entra |
 | `clima` | `chuva`, `neve`, `vagalumes`, `brasas`, `poeira`, `folhas` | partículas na tela |
 | `paleta` | `nenhuma`, `posterizar`, `retro32`, `verde4`, `sepia`, `noir`, `quente`, `fria` | sépia/noir são ótimos para flashback |
-| `periodo` (diagonal/avenida) | `noite`, `dia` | luzes acesas ou não |
+| `periodo` (diorama/avenida) | `noite`, `dia` | luzes acesas ou não |
 | `efeitos` | `bloom`, `vinheta`, `aberracao` | brilho das luzes, cantos escuros, tremor colorido |
 | `--crt` | — | linhas de TV antiga |
 
@@ -94,7 +94,7 @@ Use sempre pelos nomes da biblioteca (`"personagem": "menina-capa"`) — veja `n
 ## 7. Receita recomendada (modelo `misto`)
 
 1. **Abertura:** avenida com avanço rápido de câmera e o título (forma 5).
-2. **Desenvolvimento:** rua diagonal com os personagens caminhando e conversando (forma 3) e conversas de perto na lateral RPG (forma 2).
+2. **Desenvolvimento:** rua em diorama com os personagens caminhando e conversando (forma 3) e conversas de perto na lateral RPG (forma 2).
 3. **Conflito:** batalha (forma 6).
 4. **Fechamento:** lateral – paisagem com pôr do sol e "CONTINUA..." (forma 1).
 

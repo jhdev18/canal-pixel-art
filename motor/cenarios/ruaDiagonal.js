@@ -1,3 +1,4 @@
+// Vista "diorama" (nome antigo: "diagonal").
 // Rua em diagonal DESENHADA em pixel art (projeção 2:1). A câmera fica sempre de frente;
 // a diagonal está no desenho, então cada pixel continua alinhado com a tela.
 // Cada pixel guarda sua posição 3D (i, j, altura) e a iluminação é calculada pixel a pixel,

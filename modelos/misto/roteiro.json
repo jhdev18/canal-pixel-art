@@ -33,7 +33,7 @@
       ]
     },
     {
-      "vista": "diagonal",
+      "vista": "diorama",
       "duracao": 6,
       "transicao": "dither",
       "seguir": "menina",

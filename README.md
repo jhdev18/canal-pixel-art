@@ -118,14 +118,14 @@ Opções: `--fps 60`, `--crt` (linhas de varredura de TV antiga), `--escala 4`, 
 (o rascunho sai no formato normal; o final gera os dois — use `--formato normal` para gerar só o vídeo longo).
 
 **Ajustes só para o Shorts:** cada cena pode ter um bloco `"vertical"` com o que muda no formato 9:16 — normalmente o
-enquadramento: `"vertical": { "camera": { "x": -1, "zoom": 2 }, "cameraFim": { "x": 1 } }`. Na vista diagonal, use
+enquadramento: `"vertical": { "camera": { "x": -1, "zoom": 2 }, "cameraFim": { "x": 1 } }`. Na vista diorama, use
 `"camera": { "z": -2.75 }` para a câmera mirar a calçada da frente. Veja `projetos/episodio-01`.
 Exemplo: `npm run final -- meu-video --fps 60`.
 
 Há um projeto completo de exemplo em `projetos/exemplo` (`npm run rascunho -- exemplo`).
 
 **Guia das formas de fazer o vídeo** (vistas, estilos de personagem, formatos, modos, acabamento e som), com
-modelos prontos: [FORMAS-DE-VIDEO.md](FORMAS-DE-VIDEO.md). Comece de um modelo com `npm run novo -- meu-video --modelo diagonal`.
+modelos prontos: [FORMAS-DE-VIDEO.md](FORMAS-DE-VIDEO.md). Comece de um modelo com `npm run novo -- meu-video --modelo diorama`.
 
 ---
 
@@ -203,9 +203,9 @@ em 4 quadros e correr em 6). As versões antigas, mais simples, ficaram como `me
 `padeiro`, `caixa`. **Estabelecimentos** (vista lateral): `escola`, `delegacia`, `padaria`, `mercado`, `farmacia`,
 mais `carro-policia`, `banco-praca`, `ponto-onibus` e `hidrante`; fundo `cidade-dia`. Cenários prontos na biblioteca:
 `escola`, `delegacia`, `padaria`, `mercado`, `farmacia` (lateral) e `rua-comercial` / `rua-comercial-noite`
-(diagonal com os estabelecimentos).
+(diorama com os estabelecimentos).
 
-Na vista diagonal dá para escolher os prédios da rua, da esquerda para a direita:
+Na vista diorama dá para escolher os prédios da rua, da esquerda para a direita:
 
 ```json
 "rua": { "periodo": "dia", "predios": [ { "tipo": "padaria", "largura": 4 }, { "tipo": "comum" }, { "tipo": "escola", "largura": 6 } ] }
@@ -328,11 +328,11 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 | Vista | Como é | Coordenadas dos elementos |
 |---|---|---|
 | `lateral` (padrão) | cenário em camadas com paralaxe, usando `fundo` | `x` horizontal, `y` altura, `z` profundidade |
-| `diagonal` | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
+| `diorama` (antiga `diagonal`, ainda aceita; **padrão nos vídeos novos**) | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
 | `avenida` | avenida em **perspectiva** indo para o fundo, prédios dos dois lados, postes e carros | `x` lateral (−3 a 3 é o asfalto), `z` profundidade (maior = mais perto da câmera) |
 
 ```jsonc
-{ "vista": "diagonal", "seguir": "menina",
+{ "vista": "diorama", "seguir": "menina",
   "rua": { "periodo": "noite", "faixaPedestre": 0, "comprimento": 44, "distanciaPostes": 8, "semente": 3 },
   "elementos": [ { "id": "menina", "personagem": "menina-capa", "x": -6, "z": 0 } ],
   "acoes": [ { "tipo": "andar", "alvo": "menina", "para": 2, "inicio": 0.3, "duracao": 4 } ] }
@@ -346,7 +346,7 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 ```
 
 A avenida é desenhada pixel a pixel na GPU (shaders): linhas sempre com 1 pixel e detalhe que se
-simplifica com a distância, sem texturas esticadas pela perspectiva. `"periodo": "dia"` também funciona nas duas. Na `diagonal` a câmera usa `x` (ao longo da rua), `y` (altura do
+simplifica com a distância, sem texturas esticadas pela perspectiva. `"periodo": "dia"` também funciona nas duas. No `diorama` a câmera usa `x` (ao longo da rua), `y` (altura do
 enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na avenida) e `zoom`. Na `avenida` a câmera fica **parada**:
 `cameraFim` e ações de câmera são ignorados, e ela só acompanha o protagonista (`seguir`) enquanto ele se move.
 

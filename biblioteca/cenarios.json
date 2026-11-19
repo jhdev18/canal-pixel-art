@@ -105,14 +105,14 @@
     "fundo": "cidade-dia", "realce": 0,
     "elementos": [ { "id": "farmacia", "sprite": "farmacia", "x": 0, "z": -1.2 }, { "id": "hidrante", "sprite": "hidrante", "x": 4, "z": -0.2 } ]
   },
-  // ---- Cidade (vista diagonal): rua com os estabelecimentos, da esquerda para a direita
+  // ---- Cidade (vista diorama): rua com os estabelecimentos, da esquerda para a direita
   "rua-comercial": {
-    "vista": "diagonal",
+    "vista": "diorama",
     "rua": { "periodo": "dia", "faixaPedestre": -3,
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
   },
   "rua-comercial-noite": {
-    "vista": "diagonal",
+    "vista": "diorama",
     "rua": { "periodo": "noite", "faixaPedestre": -3,
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
   }

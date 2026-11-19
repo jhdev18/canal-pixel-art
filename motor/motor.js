@@ -136,7 +136,7 @@ class Motor {
 
   construirCena(c) {
     const { W, H } = this;
-    // A vista (lateral, diagonal ou avenida) monta o cenário, a câmera e o posicionamento.
+    // A vista (lateral, diorama ou avenida) monta o cenário, a câmera e o posicionamento.
     const vista = criarVista(c, this);
     const { cena, camera } = vista;
     const fundo = vista;
@@ -156,7 +156,7 @@ class Motor {
       const esc = el.escala ?? 1;
       const w = texturas[0].image.width / PPU, h = texturas[0].image.height / PPU;
       // Apoia o sprite pela linha mais baixa que tem desenho (os pés tocam o chão de verdade).
-      // (só nas vistas que pedem; a lateral e a diagonal mantêm o apoio de antes)
+      // (só nas vistas que pedem; a lateral e o diorama mantêm o apoio de antes)
       const vazio = vista.apoiarPeloPe ? (sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas))) : 0;
       const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2 - vazio / PPU, 0);
       // 'semLuz' (sprite ou elemento): não recebe luz da cena — ex.: uma sombra continua preta perto do fogo

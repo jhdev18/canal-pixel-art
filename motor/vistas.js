@@ -1,7 +1,7 @@
 // Vistas de cena. Todas mantêm a câmera de frente (nunca gira para os lados),
 // para os pixels continuarem alinhados com a tela.
 //   lateral  — cenário em camadas com paralaxe (padrão)
-//   diagonal — rua desenhada em diagonal 2:1, câmera ortográfica deslizando
+//   diorama  — (antiga "diagonal") rua desenhada em diagonal 2:1, câmera ortográfica deslizando
 //   avenida  — avenida em perspectiva indo para o fundo
 import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
@@ -14,10 +14,10 @@ import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
 const snap = (v) => Math.round(v * PPU) / PPU;
 const tex = (canvas) => { const t = new THREE.CanvasTexture(canvas); t.magFilter = t.minFilter = THREE.NearestFilter; t.generateMipmaps = false; t.colorSpace = THREE.NoColorSpace; return t; };
 
-export const NOMES_VISTAS = ['lateral', 'diagonal', 'avenida'];
+export const NOMES_VISTAS = ['lateral', 'diorama', 'avenida'];   // 'diagonal' = nome antigo de 'diorama'
 
 export function criarVista(c, motor) {
-  if (c.vista === 'diagonal') return vistaDiagonal(c, motor);
+  if (c.vista === 'diorama' || c.vista === 'diagonal') return vistaDiagonal(c, motor);
   if (c.vista === 'avenida') return vistaAvenida(c, motor);
   if (c.vista && c.vista !== 'lateral') motor.avisos.push(`Vista desconhecida "${c.vista}" (cena ${c.numero}); usando lateral.`);
   return vistaLateral(c, motor);
@@ -73,7 +73,7 @@ function vistaLateral(c, motor) {
   };
 }
 
-// Céu da vista diagonal: faixas de cor com dithering na transição (e estrelas à noite).
+// Céu da vista diorama: faixas de cor com dithering na transição (e estrelas à noite).
 function ceuDiagonal(W, H, noite) {
   const cores = noite ? ['#05061a', '#0a0c26', '#141638', '#22204a'] : ['#4a8ad8', '#62a2e4', '#80baee', '#a4d0f4'];
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
@@ -95,7 +95,7 @@ function ceuDiagonal(W, H, noite) {
   return tex(cv);
 }
 
-// ---------------------------------------------------------------- diagonal
+// ---------------------------------------------------------------- diorama
 // Coordenadas dos elementos: x = posição AO LONGO da rua (cresce para a direita/cima);
 // z = distância a partir da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua,
 // ~5.3 = calçada dos prédios); y = altura (pulo).

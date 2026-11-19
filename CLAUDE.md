@@ -6,8 +6,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Regras do usuário (sempre seguir)
 1. **Não renderizar vídeos.** O usuário renderiza no PC dele (GTX 1050 Ti). Para conferir, use no máximo
    imagens paradas — e só quando for essencial.
-2. **Só vistas `lateral` e `diagonal`** ao criar vídeos/roteiros, a menos que o usuário peça outra.
-   A vista `avenida` e o `"movimentoReal"` existem, mas não usar (e nunca o tempo todo).
+2. **O estilo diorama é o padrão** (`"vista": "diorama"`, antigo nome `diagonal`, que o motor ainda aceita).
+   Ao criar vídeos/roteiros, **todas as cenas usam diorama**. Outros estilos (`lateral`, `avenida`,
+   `"movimentoReal"` etc.) **só se o usuário pedir diretamente**.
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
    Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
 4. **Narração por um narrador em terceira pessoa**, em **um único áudio**
@@ -28,7 +29,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
 - **Nada parado:** toda cena tem movimento (`cameraFim` com pan/zoom leve, alguém andando, partículas).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
-- **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
+- **Variar o visual dentro do diorama** (zoom, posição da câmera, cenário/período) entre cenas seguidas; não trocar de estilo sem pedido.
 - **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
   Projetos novos já vêm com `"volumeBaloes": 0.4` (som baixo, narrador em destaque).
 - **Loop aberto no meio** ("mas o que ninguém sabia...") e **pergunta/voto só nos últimos ~3 s**.
