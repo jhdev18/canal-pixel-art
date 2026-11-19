@@ -27,16 +27,39 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
 - **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
 - **Nada parado, mas com sentido:** a vida da cena vem de preferência dos **personagens** (expressões no rosto,
-  ícone de emoção, alguém andando) e de partículas. Mover a câmera só quando ajudar a história; evitar
+  ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
   pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
 - **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
 - **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
-  Exceção: de vez em quando um balão um pouco maior quando ele **é a piada da cena** (charme estilo Undertale).
+  Exceção: um balão maior é permitido quando o personagem tiver **algo interessante a dizer** (piada, revelação,
+  fala marcante) — charme estilo Undertale.
   Projetos novos já vêm com `"volumeBaloes": 0.4` (som baixo, narrador em destaque).
 - **Loop aberto no meio** ("mas o que ninguém sabia...") e **pergunta/voto só nos últimos ~3 s**.
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
+
+## Estilo "Mundo Torto" (Shorts de regra absurda)
+Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Baseado em Shorts de referência
+("Nesse mundo, quem ri vira balão" etc.); as premissas devem ser **nossas**, nunca as das referências.
+- **Duração:** 30–45 s (8–10 frases do narrador). Versão longa: até ~2:30, com escalada (ver abaixo).
+- **Estrutura (5 partes):**
+  1. **Regra** (0–4 s): a 1ª frase é a regra absurda do mundo — "Nesse mundo / Nessa cidade, ...". É o gancho e o título.
+  2. **Exemplo** (4–10 s): 1–2 frases mostrando a regra funcionando no dia a dia.
+  3. **Exceção** (10–18 s): "Mas esse garoto / essa menina..." — o protagonista que não se encaixa na regra.
+  4. **Evento** (18–30 s): "Até que um dia..." — algo põe a regra à prova (acidente, festa, forasteiro chegando).
+  5. **Virada** (últimos 3–6 s): revelação que muda o sentido da regra. Termina seco na virada:
+     sem moral, sem "comente", sem tela final.
+- **Regra visual:** tem que dar pra mostrar na tela (algo no ombro, relógio flutuando, gente inchando).
+- **Virada justa:** plantar uma pista na parte 1 ou 2 que, depois da virada, passa a fazer sentido.
+- **Narração:** terceira pessoa, frases curtas (8–15 palavras), uma frase = uma cena. Conectores fortes
+  nas mudanças: "Mas", "Porém", "Até que", "E de repente".
+- **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
+- **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
+- **Tons possíveis:** sombrio (virada de terror), cômico (protagonista que humilha a regra) ou emocional.
+- **Versão longa:** escalada em 3 degraus (um → cinco → todos), o protagonista entende a regra de verdade
+  e resolve usando ela; última frase é a piada/virada final.
+- Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
 
 ## Dinâmica de trabalho (ajustes visuais)
 1. O usuário renderiza no PC dele e diz o que ajustar, em texto, indicando **cena e momento**
