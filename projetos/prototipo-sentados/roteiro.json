@@ -1,0 +1,37 @@
+{
+  // PROTÓTIPO das poses sentadas (npm run previa -- prototipo-sentados)
+  // "pose": "sentado" (de frente) | "sentado-lado"; ações "sentar" (com "lado": true para de lado) e "levantar".
+  // O assento fica a ~11 px do chão; para sofás/cadeiras mais altos, suba com "y".
+  "titulo": "Protótipo — sentados",
+  "resolucao": [320, 180],
+  "cenas": [
+    { // vista de frente, estilo jogo: dois amigos no sofá
+      "cenario": "sala-de-estar", "duracao": 4, "transicao": "fade",
+      "camera": { "x": 1.2, "zoom": 2 }, "cameraFim": { "x": 1.2, "zoom": 2.2 }, "remover": ["mesa"],
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0.3, "y": 0.25, "pose": "sentado" },
+        { "id": "aluno", "personagem": "aluno", "x": 2.1, "y": 0.25, "pose": "sentado" } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "aluno", "icone": "!", "inicio": 1 } ] },
+    { // anda até o sofá e senta
+      "cenario": "sala-de-estar", "duracao": 4, "transicao": "dither", "camera": { "x": 1 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 6, "virado": "esquerda" } ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": 1.2, "inicio": 0.3, "duracao": 2 },
+        { "tipo": "mover", "alvo": "bia", "para": [1.2, 0.25], "inicio": 2.3, "duracao": 0.2 },
+        { "tipo": "sentar", "alvo": "bia", "inicio": 2.3 } ] },
+    { // de lado, nas carteiras
+      "cenario": "sala-de-aula", "duracao": 4, "transicao": "dither", "camera": { "x": 4 },
+      "elementos": [
+        { "id": "prof", "personagem": "professora", "x": -1.6 },
+        { "id": "aluno", "personagem": "aluno", "x": 2.0, "y": 0.2, "pose": "sentado-lado" },
+        { "id": "aluna", "personagem": "aluna", "x": 5.0, "y": 0.2, "pose": "sentado-lado" } ],
+      "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Atenção!", "inicio": 0.5 } ] },
+    { // diagonal: alunos sentados nas cadeiras
+      "cenario": "sala-de-aula-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": 2.5, "y": 3 },
+      "elementos": [
+        { "id": "aluno", "personagem": "aluno", "x": 0.8, "z": 1.15, "pose": "sentado-lado" },
+        { "id": "aluna", "personagem": "aluna", "x": 3.4, "z": 1.15, "pose": "sentado-lado" },
+        { "id": "bia", "personagem": "menina-capa", "x": 6, "z": -0.15, "pose": "sentado-lado" } ],
+      "acoes": [] }
+  ]
+}

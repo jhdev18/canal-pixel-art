@@ -73,4 +73,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   `motor/cenarios/objetos3d.js`), câmera fixa só inclinada para baixo. `"vista": "3d", "palco": { "tipo":
   "quarto-menino" | "quarto-menino-noite" | "sala-aula" | "sala-estar" | "praca" | "praca-noite" }`.
   Pendência conhecida: texto pequeno em objetos do fundo (lousa, cartaz) perde linhas de pixel.
+- **Poses sentadas (aguardando aprovação)**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente, estilo
+  jogo) e `"sentado-lado"`, e as ações `sentar`/`levantar` (`motor/sentado.js`). Assento a ~12 px do chão: em
+  sofás use `"y": 0.25`, nas carteiras `"y": 0.2`. Teste em `projetos/prototipo-sentados`.
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

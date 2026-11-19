@@ -3,6 +3,7 @@
 import { Boneco, passada } from './boneco.js';
 import { registrarSprites } from './sprites.js';
 import { hexParaRgb } from './pixel.js';
+import { adicionarSentado } from './sentado.js';
 
 const W = 28, H = 44;
 
@@ -176,6 +177,7 @@ function pessoa(p) {
     sombra: true, personagem: true,
   };
 }
+const pessoaComSentado = (p) => adicionarSentado(pessoa(p), { q: p.corpo === 'crianca' ? 32 : 30 });
 
 export const MORADORES = {
   policial: { cores: { pele: '#c88a64', cabelo: '#2a1e1a', tronco: '#3a5aa0', calca: '#222a48', sapato: '#2a2a30', chapeu: '#222a48', aba: '#1a1a24', cinto: '#2a2a2a' },
@@ -194,4 +196,4 @@ export const MORADORES = {
     cabelo: 'curto', chapeu: 'bone', baixo: 'calca', avental: true, mangaCurta: true },
 };
 
-registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k, () => pessoa(p)])));
+registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])));

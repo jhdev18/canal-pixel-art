@@ -1,0 +1,66 @@
+{
+  // PROTÓTIPO (não aprovado): interiores para a vista lateral.
+  // Depois do "pode salvar", estes cenários vão para biblioteca/cenarios.json.
+  // x = 0 é o centro da parede (janelas/portas pintadas em lugar fixo). Objetos de parede usam "y".
+  "sala-de-aula": {
+    "fundo": "sala-aula", "realce": 0,
+    "elementos": [
+      { "id": "lousa", "sprite": "lousa", "x": 0, "y": 1.5, "z": -0.05 },
+      { "id": "alfabeto", "sprite": "cartaz-alfabeto", "x": 0, "y": 4.75, "z": -0.05 },
+      { "id": "relogio", "sprite": "relogio-parede", "x": 4.6, "y": 4.6, "z": -0.05 },
+      { "id": "estante", "sprite": "estante-livros", "x": -8.2, "z": -0.05 },
+      { "id": "globo", "sprite": "globo", "x": -8.2, "y": 3.75, "z": -0.05 },
+      { "id": "mesa", "sprite": "mesa-professor", "x": -4.4, "z": -0.04 },
+      { "id": "carteira1", "sprite": "carteira", "x": 2.6, "z": 0.05 },
+      { "id": "carteira2", "sprite": "carteira", "x": 5.6, "z": 0.05 },
+      { "id": "carteira3", "sprite": "carteira", "x": 8.6, "z": 0.05 }
+    ]
+  },
+  "quarto-menino": {
+    "fundo": "quarto-menino", "realce": 0,
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 0.4, "z": -0.06, "cores": { "cor": "#3a7ac8" } },
+      { "id": "cama", "sprite": "cama", "x": -5.6, "z": -0.05 },
+      { "id": "criado", "sprite": "criado-mudo", "x": -2.4, "z": -0.05 },
+      { "id": "abajur", "sprite": "abajur-apagado", "x": -2.4, "y": 1.375, "z": -0.05 },
+      { "id": "bau", "sprite": "bau-brinquedos", "x": 0.6, "z": -0.05 },
+      { "id": "escrivaninha", "sprite": "escrivaninha", "x": 3.7, "z": -0.05 },
+      { "id": "cadeira", "sprite": "cadeira-gamer", "x": 3.2, "z": 0.05 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.6, "z": -0.05 },
+      { "id": "bola", "sprite": "bola", "x": -0.9, "z": 0.08 }
+    ]
+  },
+  "quarto-menino-noite": {
+    "fundo": "quarto-menino-noite",
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 0.4, "z": -0.06, "cores": { "cor": "#3a7ac8" } },
+      { "id": "cama", "sprite": "cama", "x": -5.6, "z": -0.05 },
+      { "id": "criado", "sprite": "criado-mudo", "x": -2.4, "z": -0.05 },
+      { "id": "abajur", "sprite": "abajur", "x": -2.4, "y": 1.375, "z": -0.05 },
+      { "id": "bau", "sprite": "bau-brinquedos", "x": 0.6, "z": -0.05 },
+      { "id": "escrivaninha", "sprite": "escrivaninha-desligada", "x": 3.7, "z": -0.05 },
+      { "id": "cadeira", "sprite": "cadeira-gamer", "x": 3.2, "z": 0.05 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.6, "z": -0.05 },
+      { "id": "bola", "sprite": "bola", "x": -0.9, "z": 0.08 }
+    ]
+  },
+  "sala-de-estar": {
+    "fundo": "sala-estar", "realce": 0,
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 1.2, "z": -0.06 },
+      { "id": "estante", "sprite": "estante-sala", "x": -10.4, "z": -0.05 },
+      { "id": "tv", "sprite": "tv-rack", "x": -6.4, "z": -0.05 },
+      { "id": "luminaria", "sprite": "luminaria-pe", "x": -3.1, "z": -0.05 },
+      { "id": "sofa", "sprite": "sofa", "x": 1.2, "z": -0.05 },
+      { "id": "mesa", "sprite": "mesa-centro", "x": 1.2, "z": 0.06 },
+      { "id": "poltrona", "sprite": "poltrona", "x": 6.2, "z": -0.05 },
+      { "id": "planta", "sprite": "planta-vaso", "x": 8.4, "z": -0.05 }
+    ]
+    },
+  // ---- vista diagonal (cômodo em corte, móveis desenhados em 3D-pixel)
+  // z dos personagens: 0 = perto da frente do piso, ~3.8 = encostado na parede do fundo.
+  "sala-de-aula-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula" }, "camera": { "x": 0, "y": 3 } },
+  "quarto-menino-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino" }, "camera": { "x": 0, "y": 3 } },
+  "quarto-menino-noite-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino-noite" }, "camera": { "x": 0, "y": 3 } },
+  "sala-de-estar-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-estar" }, "camera": { "x": 0, "y": 3 } }
+}

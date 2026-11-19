@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -132,6 +132,8 @@ export function estadoElemento(cena, el, t) {
   let virado = el.virado === 'esquerda' ? -1 : 1;
   let visivel = !el.oculto;
   let anim = 'parado', alpha = 1, offY = 0, escala = 1, vermelho = 0;
+  // pose de quando está parado: "pose": "sentado" (de frente) ou "sentado-lado"; muda com as ações sentar/levantar
+  let pose = el.pose || null;
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
     if (t < a.inicio) break;
@@ -154,6 +156,8 @@ export function estadoElemento(cena, el, t) {
         if (p < 1) { offY += 4 * h * p * (1 - p); anim = 'pulando'; }
         break;
       }
+      case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
+      case 'levantar': pose = null; break;
       case 'virar':
         virado = a.direcao === 'esquerda' ? -1 : a.direcao === 'direita' ? 1 : -virado;
         break;
@@ -173,6 +177,7 @@ export function estadoElemento(cena, el, t) {
       default: break;
     }
   }
+  if (pose && anim === 'parado') anim = pose;
   return { x, y: y + offY, yBase: y, z, virado, visivel, anim, alpha, escala, vermelho, alturaPulo: offY };
 }
 
