@@ -1,0 +1,11 @@
+# Nesse mundo não olhe para as criaturas (0:36)
+- [0:00] Nesse mundo, as crianças são proibidas de olharem para essas criaturas.
+- [0:05] Porém, essa menina aprendeu a humilhar cada uma delas.
+- [0:08] A primeira criatura, que se esconde debaixo da cama, fica esperando os pés da menina ficarem pro lado de fora.
+- [0:13] Porém, a menina não dorme na cama, ela dorme no chão e encara [?] a criatura pelo outro lado.
+- [0:17] A segunda criatura aparece escondida dentro do armário, na escuridão,
+- [0:20] esperando o momento certo para pegar a menina.
+- [0:23] Porém, ela joga [?] lá dentro e apenas tranca a porta.
+- [0:26] A terceira criatura é o monstro do corredor.
+- [0:28] A menina já não consegue se assustar, porque ela dominou a arte de desviar dos chinelos que a mãe dela joga.
+- [0:33] Então ela só mantém um olhar fixo até a criatura ficar sem graça.

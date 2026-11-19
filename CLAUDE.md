@@ -22,6 +22,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 10. **Sem pausa entre cenas** (retenção): ao escrever roteiros novos, todas as ações e balões de cada cena
     terminam antes (ou junto) do fim da fala do narrador — nada de tempo parado sem narração. Conferir pelas
     durações calculadas (fala estimada ≈ 0,065 s por letra) antes de entregar.
+11. **Roteiros de concorrentes** (`referencias/roteiros-concorrentes/`): só referência. **Não ler nem usar**
+    ao criar roteiros, a menos que o usuário peça explicitamente; nunca copiar premissas, falas ou personagens.
 
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
@@ -41,7 +43,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 
 ## Estilo "Nesse Mundo" (vídeos de regra absurda)
 Usar quando o usuário pedir um vídeo "no estilo Nesse Mundo". Tem dois formatos: **curto** e **longo**
-(se o usuário não disser qual, perguntar). Baseado em Shorts de referência; as premissas devem ser
+(se o usuário não disser qual, perguntar). Baseado em Shorts de referência (ver regra 11); as premissas devem ser
 **nossas**, nunca as das referências.
 
 **Formato comum (aparece nos curtos e no longo):**
