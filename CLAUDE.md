@@ -15,7 +15,17 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 5. **A câmera nunca gira para os lados, em qualquer vista** (pixels precisam ficar alinhados à tela).
 6. Personagens e cenários são **originais** (estilo inspirado em Undertale/Deltarune, sem copiar).
 7. Usar Three.js para tudo que for visual (os assets precisam funcionar no motor).
-8. Economizar tokens: respostas objetivas, evitar abrir imagens sem necessidade.
+8. Economizar tokens: respostas objetivas.
+9. **Não gerar nem abrir imagens para conferir, a menos que o usuário peça** (ex.: "confere antes de me
+   mostrar"). Conferir por texto: sintaxe, roteiro válido, durações calculadas, cortes da narração
+   (`--verificar`), medições simples.
+
+## Dinâmica de trabalho (ajustes visuais)
+1. O usuário renderiza no PC dele e diz o que ajustar, em texto, indicando **cena e momento**
+   (ex.: "cena 3, ~0:22, a Bia está cortada no Shorts"), de preferência **vários ajustes numa só mensagem**.
+2. Captura de tela só quando for difícil descrever.
+3. O Claude ajusta **só o que foi apontado**, sem renderizar e sem abrir imagens.
+4. Conteúdo novo (episódio novo, personagens novos) → **conversa nova** (este arquivo guarda as regras).
 
 ## Produção de um episódio
 - Rascunho (16:9): `npm run rascunho -- <ep>`
