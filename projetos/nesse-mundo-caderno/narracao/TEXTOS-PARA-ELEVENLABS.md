@@ -24,3 +24,7 @@ São **12 falas** (uma por cena com narração):
 | 12 | E na última linha, com a letra dela, ainda molhada de tinta, estava escrito: Bia. |
 
 Depois rode `npm run rascunho -- nesse-mundo-caderno`: o terminal mostra em quantos trechos o áudio foi cortado.
+
+## Com emoções (Eleven v4)
+Para o ElevenLabs v4, use o `TEXTO-ELEVENLABS.txt`: o mesmo texto com tags de emoção entre colchetes nos momentos de terror
+(as tags não são faladas e não vão para a legenda, que vem do roteiro).

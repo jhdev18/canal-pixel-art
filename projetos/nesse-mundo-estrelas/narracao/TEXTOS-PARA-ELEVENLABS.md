@@ -25,3 +25,7 @@ São **13 falas** (uma por cena com narração):
 | 13 | A cidade olhou para o céu. E o céu, pela primeira vez, olhou de volta. |
 
 Depois rode `npm run rascunho -- nesse-mundo-estrelas`: o terminal mostra em quantos trechos o áudio foi cortado.
+
+## Com emoções (Eleven v4)
+Para o ElevenLabs v4, use o `TEXTO-ELEVENLABS.txt`: o mesmo texto com tags de emoção entre colchetes nos momentos de terror
+(as tags não são faladas e não vão para a legenda, que vem do roteiro).
