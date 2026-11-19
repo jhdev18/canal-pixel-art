@@ -189,7 +189,14 @@ function fundoSombrio(W, H, tema) {
 function vistaComodo(c, motor) {
   const { W, H } = motor;
   const op = typeof c.comodo === 'string' ? { tipo: c.comodo } : c.comodo;
-  const cm = gerarComodoDiagonal({ ...op, semente: op.semente ?? c.semente ?? c.numero * 13 });
+  // o cômodo se estende para a esquerda até onde a câmera e os personagens chegam (com folga de uma tela)
+  let minX = 0;
+  for (let t = 0; t <= c.duracao; t += 0.25) {
+    minX = Math.min(minX, estadoCamera(c, t).x);
+    for (const el of c.elementos) minX = Math.min(minX, estadoElemento(c, el, t).x);
+  }
+  const extra = op.inicio == null ? { inicio: Math.min(-9, Math.floor(minX) - 14) } : {};
+  const cm = gerarComodoDiagonal({ ...op, ...extra, semente: op.semente ?? c.semente ?? c.numero * 13 });
   const cena = new THREE.Scene();
   cena.background = cm.tema ? fundoSombrio(W, H, cm.tema) : new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
   const plano = (img, w, h, x0, y0, z) => {

@@ -10,8 +10,8 @@ import { rng } from '../compartilhado/util.js';
 import { PRESETS_INTERIORES } from './interiores.js';
 
 // i dos personagens com z = 0 (perto da frente) e centro da câmera; P = borda da frente do piso.
-export const COMODO = { frente: 4.2, meio: 2.5, P: 5 };
-const ALT = 104;                                       // altura das paredes (px)
+export const COMODO = { frente: 4.2, meio: 2.5 };
+let ALT = 200;            // altura das paredes (px): passa do alto da tela, para não aparecer o vazio em cima
 const PX_ALT = 16;
 
 class Camada {
@@ -329,7 +329,10 @@ export function gerarComodoDiagonal(opc = {}) {
   const tema = cfg.tema ? (typeof cfg.tema === 'string' ? TEMAS[cfg.tema] || TEMAS.sombrio : { ...TEMAS.sombrio, ...cfg.tema }) : null;
   const lat = PRESETS_INTERIORES[cfg.estilo] || PRESETS_INTERIORES['quarto-menino'];
   const par = lat.camadas[0], chao = lat.chao;
-  const Ja = -cfg.fim, Jb = -cfg.inicio, P = COMODO.P;      // j cresce para a esquerda: o fim (direita) é Ja
+  ALT = cfg.alturaParede ?? 200;
+  // O piso continua até perto da câmera (profundidade 11) e o cômodo vai para a esquerda até onde a câmera
+  // e os personagens chegam (inicio vem da vista): o enquadramento fica sempre cheio, sem vazio preto.
+  const Ja = -cfg.fim, Jb = -cfg.inicio, P = cfg.profundidade ?? 11;   // j cresce para a esquerda: o fim (direita) é Ja
   const I0 = -0.8, I1 = P + 1, J0 = Ja - 1, J1 = Jb + 1, HMAX = ALT + 30;
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 20);
