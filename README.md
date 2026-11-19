@@ -65,9 +65,10 @@ projetos/meu-video/
 ### Narração do ElevenLabs
 
 **Opção 1 — um único áudio (recomendado):** escreva a fala de cada cena em `"narracaoTexto"` no roteiro e rode
-`npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (com pausas `<break time="1.0s" />` entre as
-cenas) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o gerador corta o
-áudio nas pausas, um trecho por cena, e ajusta a duração de cada cena. Deixe uma pausa clara entre as falas.
+`npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (um parágrafo por cena, sem marcações de
+pausa, para a fala fluir) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o
+gerador corta o áudio nas pausas naturais entre as frases (0,2 s ou mais), um trecho por cena, e ajusta a duração de
+cada cena.
 
 **Conferir os cortes sem renderizar:** `npm run narracao -- meu-video --verificar` mostra de que segundo a que
 segundo vai a fala de cada cena (e salva em `narracao/CORTES.txt`). O corte leva em conta o tamanho do texto de

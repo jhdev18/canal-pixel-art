@@ -164,15 +164,14 @@ function narracao(nome) {
   if (!falas.length) throw new Error('Nenhuma cena tem "narracaoTexto" no roteiro.');
   const pasta = path.join(dir, PASTA_NARRACAO);
   fs.mkdirSync(pasta, { recursive: true });
-  const pausa = '\n\n<break time="1.0s" />\n\n';
+  const pausa = '\n\n';   // um parágrafo por cena (a pausa natural da voz basta para o corte; sem <break>, a fala flui melhor)
   fs.writeFileSync(path.join(pasta, 'TEXTO-COMPLETO.txt'), falas.map((f) => f.texto).join(pausa) + '\n');
   const narrador = r.narrador ? ` (narrado por ${r.narrador})` : '';
   const md = [`# Narração — ${r.titulo || nome}${narrador}`, '',
     'Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como',
     '**`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac).', '',
-    'O gerador corta o áudio nas pausas: deixe uma pausa clara (meio segundo ou mais) entre as falas de cada cena.',
-    'O texto já vem com `<break time="1.0s" />` entre as cenas — no ElevenLabs essa marcação cria a pausa (se a voz',
-    'ignorar a marcação, apague-a e deixe só a linha em branco, ou gere com reticências no fim de cada fala).', '',
+    'O texto vem com um parágrafo por cena. O gerador corta o áudio nas pausas naturais entre as frases (0,2 s ou mais)',
+    'e escolhe as que combinam com cada cena; confira com `npm run narracao -- ' + nome + ' --verificar`.', '',
     `São **${falas.length} falas** (uma por cena com narração):`, '', '| Cena | Fala |', '|---|---|',
     ...falas.map((f) => `| ${f.n} | ${f.texto.replace(/\|/g, '/')} |`), '',
     'Depois rode `npm run rascunho -- ' + nome + '`: o terminal mostra em quantos trechos o áudio foi cortado.'].join('\n');

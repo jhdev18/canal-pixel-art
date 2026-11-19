@@ -1,129 +1,65 @@
 Nessa cidade, cada pessoa carrega o próprio tempo em cima da cabeça.
 
-<break time="1.0s" />
-
 Funciona assim: quem está feliz anda com um solzinho. Quem está triste, com uma nuvem de chuva.
-
-<break time="1.0s" />
 
 Por isso, ninguém consegue dizer que está bem. A garoa entrega na hora.
 
-<break time="1.0s" />
-
 Casamento aqui termina com todo mundo bronzeado. Velório termina com a rua alagada.
-
-<break time="1.0s" />
 
 E o prefeito criou a Lei do Céu Limpo: andar nublado em público dá multa.
 
-<break time="1.0s" />
-
 O policial Ronaldo nunca mostrou o tempo dele. Anda com um guarda-chuva aberto há trinta anos.
-
-<break time="1.0s" />
 
 E o único canteiro verde da cidade fica bem do lado da delegacia.
 
-<break time="1.0s" />
-
 E tinha a Bia, de dez anos, uma menina com um sol bem pequenininho.
-
-<break time="1.0s" />
 
 Toda noite, ela chorava escondida vendo desenho. E a planta do quarto dela era a mais verde da rua.
 
-<break time="1.0s" />
-
 E contava histórias tão tristes que até o cachorro da praça chorava. Escondido, claro.
-
-<break time="1.0s" />
 
 Até que chegou o Dia do Sol, a festa mais importante de Vila Serena.
 
-<break time="1.0s" />
-
 O prefeito subiu no palanque e decretou: hoje, ninguém fica triste.
-
-<break time="1.0s" />
 
 A praça inteira forçou o maior sorriso da vida.
 
-<break time="1.0s" />
-
 Primeiro, o sorvete do mercado derreteu. Depois, a fonte da praça secou.
-
-<break time="1.0s" />
 
 Em uma hora, o asfalto estava mole feito chiclete e o prefeito, vermelho feito camarão.
 
-<break time="1.0s" />
-
 O seu Tonho sorria tanto que o chapéu de padeiro dele pegou fogo.
-
-<break time="1.0s" />
 
 As flores da praça murcharam. Todas, menos as do canteiro da delegacia.
 
-<break time="1.0s" />
-
 Então o seu Tonho caiu sentado, tonto de calor, no meio da praça.
-
-<break time="1.0s" />
 
 A Bia não aguentou. O sol dela apagou, e uma nuvenzinha apareceu.
 
-<break time="1.0s" />
-
 O policial Ronaldo já vinha correndo com o bloco de multas.
-
-<break time="1.0s" />
 
 Mas, onde a garoa da Bia caía, a grama voltava a ficar verde.
 
-<break time="1.0s" />
-
 E o seu Tonho abriu os olhos, molhadinho, e sorriu de verdade.
-
-<break time="1.0s" />
 
 Foi aí que a Bia entendeu tudo: a tristeza não estragava o tempo. Era ela que regava a cidade.
 
-<break time="1.0s" />
-
 E o policial Ronaldo não escondia mau humor. Toda noite, ele regava o canteiro chorando escondido.
-
-<break time="1.0s" />
 
 A Bia subiu no palanque e pegou o microfone.
 
-<break time="1.0s" />
-
 E contou a história mais triste que ela sabia: a do pãozinho que ninguém quis comprar.
-
-<break time="1.0s" />
 
 O cachorro foi o primeiro a chorar. Depois, a professora. Depois, o seu Tonho.
 
-<break time="1.0s" />
-
 Choveu na praça inteira. A fonte encheu, as flores levantaram e o asfalto esfriou.
-
-<break time="1.0s" />
 
 Até o prefeito chorou, e a chuva dele levou a peruca para dentro da fonte.
 
-<break time="1.0s" />
-
 Só faltava um.
-
-<break time="1.0s" />
 
 O policial Ronaldo olhou para a Bia, respirou fundo e fechou o guarda-chuva.
 
-<break time="1.0s" />
-
 Trinta anos de chuva caíram de uma vez só.
-
-<break time="1.0s" />
 
 E a viatura saiu boiando por três quarteirões.
