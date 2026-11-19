@@ -24,9 +24,9 @@
       "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -1.4, "inicio": 0.4, "duracao": 2.6 } ] },
     { "cenario": "sala-de-aula-diagonal", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 1.5 },
       "elementos": [
-        { "id": "prof", "personagem": "professora", "x": 0.5, "z": 3.4 },
+        { "id": "prof", "personagem": "professora", "x": -1.4, "z": 3.8 },
         { "id": "aluno", "personagem": "aluno", "x": 3.4, "z": -3.0 },
-        { "id": "aluna", "personagem": "aluna", "x": -2.5, "z": 0.4, "pose": "sentado-costas" } ],
+        { "id": "aluna", "personagem": "aluna", "x": -2.6, "z": 1.15, "pose": "sentado-costas" } ],
       "acoes": [ { "tipo": "andar", "alvo": "aluno", "para": -1, "inicio": 0.4, "duracao": 3 } ] },
     { "cenario": "quarto-menino-diagonal", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 1.5 },
       "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -3, "z": 0.6 } ],
