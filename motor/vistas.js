@@ -167,6 +167,19 @@ function vistaDiagonal(c, motor) {
   };
 }
 
+// Fundo do "mundo sombrio": preto com um padrão de losangos bem apagado (fica parado na tela).
+function fundoSombrio(W, H, tema) {
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d');
+  g.fillStyle = tema.fundo; g.fillRect(0, 0, W, H);
+  g.fillStyle = tema.grade;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const a = (x + 2 * y) % 32, b = (x - 2 * y + 4096) % 32;
+    if (a === 0 || b === 0) g.fillRect(x, y, 1, 1);
+  }
+  return tex(cv);
+}
+
 // ---------------------------------------------------------------- diagonal: interior (cômodo)
 // Mesmas coordenadas da rua: x = ao longo do cômodo; z = distância a partir da frente (0 = perto da
 // borda do piso, ~3.8 = encostado na parede do fundo); y = altura. Cada móvel é um plano próprio:
@@ -176,7 +189,7 @@ function vistaComodo(c, motor) {
   const op = typeof c.comodo === 'string' ? { tipo: c.comodo } : c.comodo;
   const cm = gerarComodoDiagonal({ ...op, semente: op.semente ?? c.semente ?? c.numero * 13 });
   const cena = new THREE.Scene();
-  cena.background = new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
+  cena.background = cm.tema ? fundoSombrio(W, H, cm.tema) : new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
   const plano = (img, w, h, x0, y0, z) => {
     const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
     cv.getContext('2d').putImageData(new ImageData(img, w, h), 0, 0);
@@ -211,8 +224,8 @@ function vistaComodo(c, motor) {
   camera.position.z = 50;
   return {
     cena, camera,
-    ambiente: cm.noite ? ['#7a84c0', 0.62] : ['#ffffff', 1.0],
-    climaPadrao: null,
+    ambiente: cm.noite && !cm.tema ? ['#7a84c0', 0.62] : ['#ffffff', 1.0],
+    climaPadrao: cm.tema ? 'vagalumes' : null,
     atualizar: () => {},
     liberar: () => { base.t.dispose(); pecas.forEach((p) => p.malha.t.dispose()); },
     ordemInicial: (el) => ordemEm(iDe(el), -(el.x ?? 0)),

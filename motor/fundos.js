@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Pix, bayer } from './pixel.js';
 import { rng, PIXELS_POR_UNIDADE } from './compartilhado/util.js';
 import { PRESETS_INTERIORES, pintarComodo, corPisoInterno, PISOS_INTERNOS } from './cenarios/interiores.js';
+import { PRESETS_SOMBRIOS, pintarPilares } from './cenarios/mundoSombrio.js';
 
 const K = '#1a1c2c';
 
@@ -116,6 +117,8 @@ export const PRESETS = {
   },
   // interiores (vista lateral): sala-aula, quarto-menino, quarto-menino-noite, sala-estar
   ...PRESETS_INTERIORES,
+  // teste de "mundo sombrio" (lateral)
+  ...PRESETS_SOMBRIOS,
 };
 
 // Ruído periódico (repete a cada P pixels): soma de senos com frequências inteiras.
@@ -129,6 +132,7 @@ function encher(p, x, desde, cor) { for (let y = Math.max(0, Math.floor(desde));
 
 const GERADORES = {
   comodo: pintarComodo,
+  pilares: pintarPilares,
   montanhas(p, c, s) {
     const h = periodico(p.w, s, [[1, 0.5], [2, 0.35], [3, 0.25], [5, 0.18], [8, 0.1], [13, 0.05]]);
     const amp = c.amp || 30;

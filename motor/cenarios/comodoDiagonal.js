@@ -59,6 +59,14 @@ class Camada {
   }
 }
 
+// Temas de "mundo sombrio": o cômodo vira uma plataforma no escuro, com poucas cores (rampa por
+// luminosidade) e contorno brilhante nos móveis. Os personagens continuam com as cores normais.
+export const TEMAS = {
+  sombrio: { rampa: ['#07040f', '#170c30', '#2c1858', '#4a2c8a', '#7a52c8'], neon: '#4af0e0', acento: '#ff5ad0', contorno: '#9a7ae8', fundo: '#020106', grade: '#0e0820' },
+  'sombrio-verde': { rampa: ['#030a08', '#0a2018', '#12382a', '#1e5a40', '#3a8a5a'], neon: '#b0ff60', acento: '#ffe050', contorno: '#5ac888', fundo: '#010403', grade: '#071410' },
+  'sombrio-vermelho': { rampa: ['#0c0306', '#280a14', '#481424', '#78203a', '#b03a50'], neon: '#ffb040', acento: '#ff5a5a', contorno: '#e06070', fundo: '#050102', grade: '#1a060c' },
+};
+
 const MAD = { claro: '#c89060', base: '#a8703e', esc: '#7a4e2a' };
 const LIVROS = ['#c83c4c', '#3a6ac8', '#3aa860', '#f0b830', '#8a4ac8', '#e87a3a', '#4a4a5a'];
 
@@ -318,6 +326,7 @@ export function gerarComodoDiagonal(opc = {}) {
   const cfg = { ...base, ...opc };
   if (opc.periodo) cfg.noite = opc.periodo === 'noite';
   const noite = !!cfg.noite;
+  const tema = cfg.tema ? (typeof cfg.tema === 'string' ? TEMAS[cfg.tema] || TEMAS.sombrio : { ...TEMAS.sombrio, ...cfg.tema }) : null;
   const lat = PRESETS_INTERIORES[cfg.estilo] || PRESETS_INTERIORES['quarto-menino'];
   const par = lat.camadas[0], chao = lat.chao;
   const Ja = -cfg.fim, Jb = -cfg.inicio, P = COMODO.P;      // j cresce para a esquerda: o fim (direita) é Ja
@@ -333,10 +342,11 @@ export function gerarComodoDiagonal(opc = {}) {
   const [t0, t1, t2] = chao.topo, [d0] = chao.terra;
   const tapetes = (cfg.piso || []).map((t) => ({ ...t, j0: -t.x - t.dj / 2, j1: -t.x + t.dj / 2 }));
   B.prisma(0, P, Ja, Jb, -8, 8, {
-    frente: (u, t) => (t > 5 ? t1 : t % 3 === 0 ? '#3a2a22' : '#4e3a2e'),
+    frente: (u, t) => (tema && t === 7 ? [tema.neon, 2] : t > 5 ? t1 : t % 3 === 0 ? '#3a2a22' : '#4e3a2e'),
     lado: (u, t) => (t > 5 ? t2 : '#3a2a22'),
     topo: (a, b, d, x, y) => {
       const i = a, j = b + Ja;
+      if (tema && (P - i < 0.07 || Jb - j < 0.05)) return [tema.neon, 2];       // borda da plataforma
       for (const tp of tapetes) if (i > tp.i0 && i < tp.i1 && j > tp.j0 && j < tp.j1) {
         const bi = Math.min(i - tp.i0, tp.i1 - i), bj = Math.min(j - tp.j0, tp.j1 - j);
         if (bi < 0.1 || bj < 0.1) return tp.cor[2];
@@ -354,16 +364,17 @@ export function gerarComodoDiagonal(opc = {}) {
   // parede do fundo (i = 0) e parede lateral (j = Ja, à direita)
   const dFundo = (cfg.paredes || []).filter((d) => !d.lateral), dLat = (cfg.paredes || []).filter((d) => d.lateral);
   const corte = ['#5a4a5a', '#3a2e3a'];
+  const topoCorte = () => (tema ? [tema.neon, 2] : corte[0]);
   const pintaDecor = (lista, pos, t, cBase) => { for (const d of lista) { const c = corDecor(d, pos, t, noite); if (c) return c; } return cBase; };
   B.prisma(-0.3, 0, Ja - 0.3, Jb, 0, ALT, {
     frente: (u, t, l, s) => pintaDecor(dFundo, -s, t, corParede(par, Math.floor((Jb - s) * 16), t, r)),
     lado: (u, t) => (t > ALT - 3 ? corte[0] : corte[1]),
-    topo: () => corte[0],
+    topo: topoCorte,
   });
   B.prisma(-0.3, P, Ja - 0.3, Ja, 0, ALT, {
     frente: (u, t) => (t > ALT - 3 ? corte[0] : corte[1]),
     lado: (u, t, l, s) => (s < 0 ? null : pintaDecor(dLat, s, t, corParede(par, Math.floor(s * 16), t, r))),
-    topo: () => corte[0],
+    topo: topoCorte,
   });
   // janelas emitem luz de dia (só nos pixels de vidro, que ficam claros)
   // móveis: uma camada cada
@@ -397,6 +408,17 @@ export function gerarComodoDiagonal(opc = {}) {
         const f = L.face[k];
         R *= f * (amb[0] + q * 0.62); G *= f * (amb[1] + q * 0.5); Bc *= f * (amb[2] + q * 0.22);
       }
+      if (tema) {
+        // poucas cores: rampa escolhida pela luminosidade (emissivos viram acento/neon)
+        const hex = L.tipo[k] === 2 ? ((R + G + Bc) > 2.2 ? '#ffffff' : (G > R ? tema.neon : tema.acento)) : null;
+        if (hex) { const [a, b2, c2] = hexParaRgb(hex); R = a / 255; G = b2 / 255; Bc = c2 / 255; }
+        else {
+          const Y = 0.3 * R + 0.59 * G + 0.11 * Bc, n = tema.rampa.length;
+          const v = Math.min(n - 1.001, Math.max(0, Math.pow(Y, 1.15) * (n - 0.6)));
+          const idx = Math.floor(v) + ((v - Math.floor(v)) > 0.5 + (bayer(x, y) - 0.5) * 0.6 ? 1 : 0);
+          const [a, b2, c2] = hexParaRgb(tema.rampa[Math.min(n - 1, idx)]); R = a / 255; G = b2 / 255; Bc = c2 / 255;
+        }
+      }
       out.set([Math.min(255, R * 255), Math.min(255, G * 255), Math.min(255, Bc * 255), 255], k * 4);
       if (x < x0) x0 = x; if (y < y0) y0 = y; if (x > x1) x1 = x; if (y > y1) y1 = y;
     }
@@ -404,11 +426,22 @@ export function gerarComodoDiagonal(opc = {}) {
   };
   const b = iluminar(B);
   const saidaPecas = pecas.map((p) => {
-    const { out, x0, y0, x1, y1 } = iluminar(p.L);
+    let { out, x0, y0, x1, y1 } = iluminar(p.L);
     if (x1 < 0) return null;
+    if (tema) {                                                     // contorno brilhante (1 px por fora)
+      const [cr, cg, cb] = hexParaRgb(tema.contorno), marcar = [];
+      for (let y = Math.max(0, y0 - 1); y <= Math.min(H - 1, y1 + 1); y++) for (let x = Math.max(0, x0 - 1); x <= Math.min(W - 1, x1 + 1); x++) {
+        const k = y * W + x;
+        if (out[k * 4 + 3]) continue;
+        const v = (xx, yy) => xx >= 0 && yy >= 0 && xx < W && yy < H && out[(yy * W + xx) * 4 + 3] === 255;
+        if (v(x - 1, y) || v(x + 1, y) || v(x, y - 1) || v(x, y + 1)) marcar.push(k);
+      }
+      for (const k of marcar) out.set([cr, cg, cb, 254], k * 4);
+      x0 = Math.max(0, x0 - 1); y0 = Math.max(0, y0 - 1); x1 = Math.min(W - 1, x1 + 1); y1 = Math.min(H - 1, y1 + 1);
+    }
     const w = x1 - x0 + 1, h = y1 - y0 + 1, img = new Uint8ClampedArray(w * h * 4);
     for (let y = 0; y < h; y++) img.set(out.subarray(((y0 + y) * W + x0) * 4, ((y0 + y) * W + x1 + 1) * 4), y * w * 4);
     return { imagem: img, x0, y0, w, h, i0: p.i0, i1: p.i1, j0: p.j0, j1: p.j1, sobre: p.sobre };
   }).filter(Boolean);
-  return { W, H, imagem: b.out, pecas: saidaPecas, proj, luzes, noite, Ja, Jb };
+  return { W, H, imagem: b.out, pecas: saidaPecas, proj, luzes, noite, Ja, Jb, tema };
 }

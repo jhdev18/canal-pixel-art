@@ -132,10 +132,16 @@ export function corPisoInterno(estilo, c, x, y, prof) {
     if ((prof - 1) % 8 === 7 || (x + (lin % 2) * 8) % 16 === 0) return t2;
     return (lin + col) % 2 ? t1 : d0;
   }
+  if (estilo === 'neon') {                               // placas escuras com linha brilhante na borda
+    if (prof < 2) return prof < 1.5 ? t0 : t1;
+    const lin = Math.floor((prof - 2) / 9), col = Math.floor((x + (lin % 2) * 16) / 32);
+    if ((prof - 2) % 9 === 8 || (x + (lin % 2) * 16) % 32 === 0) return d1;
+    return (lin + col) % 2 ? t2 : (bayer(x, y) < 0.1 ? t2 : d0);
+  }
   if (estilo === 'carpete') return bayer(x, y) < 0.25 ? d1 : bayer(x, y) > 0.85 ? t1 : d0;
   return t1;
 }
-export const PISOS_INTERNOS = ['taco', 'piso', 'carpete'];
+export const PISOS_INTERNOS = ['taco', 'piso', 'carpete', 'neon'];
 
 // ------------------------------------------------------------------ presets (fundos)
 const tetoClaro = ['#f4f0e8', '#e0dacc', '#a8a090'];

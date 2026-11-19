@@ -64,4 +64,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   quarto de menino (dia/noite) e sala de estar, nas vistas `lateral` (fundos `sala-aula`, `quarto-menino`,
   `sala-estar` + sprites de móveis em `motor/sprites-interiores.js`) e `diagonal` (`"comodo": { "tipo": ... }`,
   gerador `motor/cenarios/comodoDiagonal.js`). Depois de aprovado, mover os cenários para `biblioteca/cenarios.json`.
+- **Teste "mundo sombrio" (aguardando aprovação)** em `projetos/prototipo-mundo-sombrio`: fundo lateral
+  `mundo-sombrio` (`motor/cenarios/mundoSombrio.js`) e `"tema": "sombrio" | "sombrio-verde" | "sombrio-vermelho"`
+  nos cômodos da diagonal (poucas cores, contorno brilhante, plataforma flutuando).
 - Branch de trabalho: `claude/cool-noether-ai5egq`.
