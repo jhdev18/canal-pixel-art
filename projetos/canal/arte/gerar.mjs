@@ -1,4 +1,4 @@
-// Gera a arte do canal: node projetos/canal/arte/gerar.mjs [saida.png]
+// Gera a arte do canal: node projetos/canal/arte/gerar.mjs [banner|icone] [saida.png]
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,13 +6,14 @@ import { chromium } from 'playwright';
 import { iniciarServidor } from '../../../src/servidor.js';
 
 const AQUI = path.dirname(fileURLToPath(import.meta.url));
-const saida = path.resolve(process.argv[2] || path.join(AQUI, '..', 'banner.png'));
+const peca = process.argv[2] || 'banner';
+const saida = path.resolve(process.argv[3] || path.join(AQUI, '..', peca === 'icone' ? 'foto-perfil.png' : 'banner.png'));
 const srv = await iniciarServidor({ projetoDir: AQUI });
 const browser = await chromium.launch({ args: ['--ignore-gpu-blocklist', '--enable-unsafe-swiftshader'] });
 try {
   const page = await browser.newPage();
   page.on('pageerror', (e) => console.error('Erro na página:', e.message));
-  await page.goto(`${srv.url}/projeto/banner.html`);
+  await page.goto(`${srv.url}/projeto/${peca}.html`);
   await page.waitForFunction(() => window.resultado, null, { timeout: 60000 });
   const { url, limites } = await page.evaluate(() => ({ url: window.resultado, limites: window.limites }));
   fs.writeFileSync(saida, Buffer.from(url.split(',')[1], 'base64'));
