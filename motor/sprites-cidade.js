@@ -63,7 +63,7 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   const yc = -r + yC;
   if (p.cabelo === 'curto') b.poli([[7.6, 9 + yc], [8.4, 4.4 + yc], [11, 2.4 + yc], [17, 2.4 + yc], [19.8, 4.6 + yc], [20.4, 9 + yc], [18.6, 6.4 + yc], [15.6, 7 + yc], [12, 6 + yc], [9.4, 7.4 + yc]], M.cabelo);
   if (p.cabelo === 'bagunçado') b.poli([[7.4, 9.6 + yc], [7.6, 4 + yc], [10, 1.6 + yc], [12, 2.6 + yc], [14, 1 + yc], [16.4, 2.4 + yc], [18.6, 1.8 + yc], [20.6, 5 + yc], [20.6, 9.6 + yc], [19, 6.6 + yc], [16.4, 7.4 + yc], [14.6, 5.6 + yc], [12.4, 7.4 + yc], [9.6, 6.4 + yc]], M.cabelo);
-  if (p.cabelo === 'grisalho') { b.poli([[7.6, 11 + yc], [7.8, 6 + yc], [9.4, 4.6 + yc], [10, 9 + yc]], M.cabelo); b.poli([[20.4, 11 + yc], [20.2, 6 + yc], [18.6, 4.6 + yc], [18, 9 + yc]], M.cabelo); b.poli([[10, 4 + yc], [18, 4 + yc], [17, 3 + yc], [11, 3 + yc]], M.cabelo); }
+  if (p.cabelo === 'grisalho' || p.cabelo === 'careca') { b.poli([[7.6, 11 + yc], [7.8, 6 + yc], [9.4, 4.6 + yc], [10, 9 + yc]], M.cabelo); b.poli([[20.4, 11 + yc], [20.2, 6 + yc], [18.6, 4.6 + yc], [18, 9 + yc]], M.cabelo); if (p.cabelo === 'grisalho') b.poli([[10, 4 + yc], [18, 4 + yc], [17, 3 + yc], [11, 3 + yc]], M.cabelo); }
   if (p.cabelo === 'longo' || p.cabelo === 'rabo' || p.cabelo === 'coque') b.poli([[7.4, 11 + yc], [7.8, 4.6 + yc], [10.6, 2.2 + yc], [17.4, 2.2 + yc], [20.2, 4.6 + yc], [20.6, 11 + yc], [19.2, 7 + yc], [16, 5.6 + yc], [13.2, 6.6 + yc], [10, 5.8 + yc], [8.8, 8 + yc]], M.cabelo);
   if (p.cabelo === 'rabo') b.poli([[19.6, 5 + yc], [22.6, 6 + yc], [23.4, 14 + yc], [21.4, 15 + yc], [20.4, 9 + yc]], M.cabelo);
   if (p.cabelo === 'coque') b.elipse(14, 1.8 + yc, 3.2, 2.4, M.cabelo);
@@ -78,6 +78,7 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   const sobr = tons(p.cores.cabelo)[3];
   if (!p.chapeu || p.chapeu === 'bone') { for (const x of [10, 11, 12]) b.pinta(x, o(7.6), sobr); for (const x of [15, 16, 17]) b.pinta(x, o(7.6), sobr); }
   if (p.oculos) { const f = '#2a2a3a'; for (const [x0] of [[10], [15]]) { for (let x = x0; x < x0 + 4; x++) { b.pinta(x, o(8), f); b.pinta(x, o(11), f); } b.pinta(x0, o(9), f); b.pinta(x0, o(10), f); b.pinta(x0 + 3, o(9), f); b.pinta(x0 + 3, o(10), f); } b.pinta(14, o(9), f); }
+  if (p.oculosEscuros) { const f = '#14141e', l = '#3a3a52'; for (const x0 of [10, 15]) for (let x = x0; x < x0 + 4; x++) for (let y = 8; y <= 10; y++) b.pinta(x, o(y), y === 8 && x === x0 + 1 ? l : f); b.pinta(14, o(8), f); }
   if (p.bigode) { for (const x of [12, 13, 14, 15, 16]) b.pinta(x, o(12.6), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(11, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(17, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); }
   else { b.pinta(13, o(13.4), '#9a4a3a'); b.pinta(14, o(13.4), '#9a4a3a'); b.pinta(15, o(13), '#9a4a3a'); }
   b.pinta(9, o(12), '#e8907a'); b.pinta(19, o(12), '#e8907a');
@@ -135,6 +136,7 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (['curto', 'longo', 'rabo', 'coque', 'bagunçado'].includes(p.cabelo)) b.poli([[8.4 + x, 11 + yc], [8.6 + x, 4.4 + yc], [11.6 + x, 2.2 + yc], [17 + x, 2.2 + yc], [20 + x, 4.4 + yc], [20 + x, 6.6 + yc], [16.4 + x, 6 + yc], [13.4 + x, 7.6 + yc], [12.6 + x, 11.6 + yc]], M.cabelo);
   if (p.cabelo === 'bagunçado') b.poli([[8.6 + x, 4 + yc], [10.4 + x, 0.8 + yc], [12.4 + x, 2.4 + yc], [14.6 + x, 0.6 + yc], [16.6 + x, 2.4 + yc]], M.cabelo);
   if (p.cabelo === 'grisalho') b.poli([[8.6 + x, 11 + yc], [8.8 + x, 5 + yc], [11.6 + x, 3.6 + yc], [13 + x, 8 + yc], [12.4 + x, 11 + yc]], M.cabelo);
+  if (p.cabelo === 'careca') b.poli([[8.6 + x, 11 + yc], [8.8 + x, 7 + yc], [11 + x, 6.4 + yc], [12.4 + x, 11 + yc]], M.cabelo);
   if (p.cabelo === 'rabo') b.poli([[8.4 + x, 5 + yc], [5 + x + onda(t * 6.28) * 0.6, 7 + yc], [4.6 + x, 14 + yc], [6.6 + x, 15 + yc], [9 + x, 9 + yc]], M.cabelo);
   if (p.cabelo === 'coque') b.elipse(10 + x, 3.4 + yc, 2.6, 2.4, M.cabelo);
   if (p.chapeu === 'quepe') { b.poli([[8.4 + x, 6.4 + yc], [9.4 + x, 1.2 + yc], [19.4 + x, 1.2 + yc], [20 + x, 6.4 + yc]], M.chapeu); b.poli([[14 + x, 5.8 + yc], [23 + x, 6.2 + yc], [22.4 + x, 7.6 + yc], [14 + x, 7.6 + yc]], M.aba); }
@@ -150,6 +152,7 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   const ex = Math.round(18 + incl), ey = Math.round(9 + y0 + yC);
   b.pinta(ex, ey, '#2a1810'); b.pinta(ex, ey + 1, '#2a1810');
   if (p.oculos) { const f = '#2a2a3a'; for (let k = -1; k <= 2; k++) { b.pinta(ex + k, ey - 1, f); b.pinta(ex + k, ey + 2, f); } b.pinta(ex + 2, ey, f); b.pinta(ex + 2, ey + 1, f); b.pinta(ex - 2, ey, f); }
+  if (p.oculosEscuros) { const f = '#14141e'; for (let k = -1; k <= 2; k++) for (let j = -1; j <= 1; j++) b.pinta(ex + k, ey + j, f); b.pinta(ex, ey - 1, '#3a3a52'); b.pinta(ex - 2, ey - 1, f); b.pinta(ex - 3, ey - 1, f); }
   if (p.bigode) { b.pinta(ex + 1, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(ex + 2, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); }
   else b.pinta(ex + 1, ey + 4, '#9a4a3a');
   b.pinta(ex - 1, ey + 2, '#e8907a');
@@ -211,3 +214,10 @@ export const MORADORES = {
 };
 
 registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])));
+
+// PROTÓTIPO (Nesse Mundo, não aprovado): variações dos moradores
+export const VARIACOES = {
+  'policial-oculos': { ...MORADORES.policial, oculosEscuros: true },   // policial Ronaldo, óculos escuros
+  'prefeito-careca': { ...MORADORES.prefeito, cabelo: 'careca' },      // prefeito depois que a peruca voa
+};
+registrarSprites(Object.fromEntries(Object.entries(VARIACOES).map(([k, p]) => [k, () => pessoaComSentado(p)])));

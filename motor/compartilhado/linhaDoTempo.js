@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, trocar: 0,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -127,14 +127,29 @@ function destino(a, x, y) {
 }
 
 // Estado de um elemento no tempo local t da cena.
-export function estadoElemento(cena, el, t) {
+export function estadoElemento(cena, el, t, _prof = 0) {
   let x = el.x ?? 0, y = el.y ?? 0;
-  const z = el.z ?? 0;
+  let z = el.z ?? 0;
   let virado = el.virado === 'esquerda' ? -1 : 1;
+  // "sobre": { "id": "bia", "dx": 0, "dy": 2.8 } — o elemento acompanha outro (tempo na cabeça, guarda-chuva na mão).
+  // dx segue o lado para onde o dono está virado; "virar": false mantém o próprio lado.
+  let dono = null;
+  if (el.sobre && _prof < 4) {
+    const so = typeof el.sobre === 'string' ? { id: el.sobre } : el.sobre;
+    const pai = elementoPorId(cena, so.id);
+    if (pai) {
+      dono = estadoElemento(cena, pai, t, _prof + 1);
+      if (so.virar !== false) virado = dono.virado;
+      x = dono.x + (so.dx ?? 0) * (so.virar !== false ? dono.virado : 1);
+      y = dono.yBase + (dono.alturaPulo || 0) + (so.dy ?? 0);
+      z = dono.z + (so.dz ?? 0);
+    }
+  }
   let visivel = !el.oculto;
   let anim = 'parado', alpha = 1, offY = 0, escala = 1, vermelho = 0;
   // pose de quando está parado: "pose": "sentado" (de frente) ou "sentado-lado"; muda com as ações sentar/levantar
   let pose = el.pose || null;
+  let animInicio = 0;   // quando começou o estado atual (para animações que tocam uma vez só)
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
     if (t < a.inicio) break;
@@ -159,6 +174,8 @@ export function estadoElemento(cena, el, t) {
       }
       case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
       case 'levantar': pose = null; break;
+      // "trocar": muda o estado do objeto (ex.: tempo-pessoal de "sol" para "chuva"; estrela vira "olho")
+      case 'trocar': pose = a.estado || a.anim || null; animInicio = a.inicio; break;
       case 'virar':
         virado = a.direcao === 'esquerda' ? -1 : a.direcao === 'direita' ? 1 : -virado;
         break;
@@ -179,7 +196,8 @@ export function estadoElemento(cena, el, t) {
     }
   }
   if (pose && anim === 'parado') anim = pose;
-  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, alpha, escala, vermelho, alturaPulo: offY };
+  if (dono && !dono.visivel) visivel = false;
+  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, animInicio, alpha, escala, vermelho, alturaPulo: offY };
 }
 
 export function elementoPorId(cena, id) {

@@ -70,9 +70,9 @@ function vistaLateral(c, motor) {
     },
     liberar: () => fundo.ceu.textura.dispose(),
     ordemInicial: (el, i) => ordemPorZ(el.z ?? 0) + 2 + i * 2,
-    paraMundo: (el, st, dy = 0) => new THREE.Vector3(snap(st.x), snap(st.y) + dy, el.z ?? 0),
-    posicionar(e, st, bob) { e.malha.position.set(snap(st.x), snap(st.y) + bob, e.def.z ?? 0); },
-    posicionarSombra(e, st) { e.sombra.position.set(snap(st.x), st.yBase + 1 / PPU, e.def.z ?? 0); },
+    paraMundo: (el, st, dy = 0) => new THREE.Vector3(snap(st.x), snap(st.y) + dy, st.z ?? el.z ?? 0),
+    posicionar(e, st, bob) { e.malha.position.set(snap(st.x), snap(st.y) + bob, st.z ?? e.def.z ?? 0); },
+    posicionarSombra(e, st) { e.sombra.position.set(snap(st.x), st.yBase + 1 / PPU, st.z ?? e.def.z ?? 0); },
     atualizarCamera(cam, ef) {
       camera.position.set(snap(cam.x) + ef.tremorX / PPU, snap(cam.y) + ef.tremorY / PPU, D);
       camera.zoom = cam.zoom;
@@ -130,7 +130,7 @@ function vistaDiagonal(c, motor) {
   plano.position.set(rua.W / PPU / 2, rua.H / PPU / 2, 0);
   cena.add(plano);
 
-  const iDe = (el) => FAIXA.calcadaFrente - (el.z ?? 0);
+  const iDe = (el, st) => FAIXA.calcadaFrente - (st?.z ?? el.z ?? 0);
   const ponto = (i, j, altura = 0) => {
     const p = rua.proj(i, j);
     return new THREE.Vector3(Math.round(p.x) / PPU, (rua.H - Math.round(p.y)) / PPU + altura, 0.5);
@@ -155,14 +155,14 @@ function vistaDiagonal(c, motor) {
     atualizar: () => {},
     liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); },
     ordemInicial: (el) => ordem(iDe(el), -(el.x ?? 0)),
-    paraMundo: (el, st, dy = 0) => ponto(iDe(el), -st.x, snap(st.y) + dy),
+    paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), -st.x, snap(st.y) + dy),
     posicionar(e, st, bob) {
-      const i = iDe(e.def), j = -st.x;
+      const i = iDe(e.def, st), j = -st.x;
       e.malha.position.copy(ponto(i, j, snap(st.y) + bob));
-      e.malha.renderOrder = ordem(i, j) + 1;
+      e.malha.renderOrder = ordem(i, j) + 1 + (e.def.sobre ? 2 : 0);   // o que está "sobre" alguém fica na frente dele
     },
     posicionarSombra(e, st) {
-      const i = iDe(e.def), j = -st.x;
+      const i = iDe(e.def, st), j = -st.x;
       e.sombra.position.copy(ponto(i, j, 1 / PPU)); e.sombra.renderOrder = ordem(i, j);
     },
     atualizarCamera(cam, ef) {
@@ -247,7 +247,7 @@ function vistaComodo(c, motor) {
     const p = cm.proj(l.i, l.j, l.h);
     L.position.set(Math.round(p.x) / PPU, (cm.H - Math.round(p.y)) / PPU, 1.5); cena.add(L);
   }
-  const iDe = (el) => COMODO.frente - (el.z ?? 0);
+  const iDe = (el, st) => COMODO.frente - (st?.z ?? el.z ?? 0);
   const ponto = (i, j, altura = 0) => {
     const p = cm.proj(i, j);
     return new THREE.Vector3(Math.round(p.x) / PPU, (cm.H - Math.round(p.y)) / PPU + altura, 0.5);
@@ -261,14 +261,14 @@ function vistaComodo(c, motor) {
     atualizar: () => {},
     liberar: () => { base.t.dispose(); pecas.forEach((p) => p.malha.t.dispose()); },
     ordemInicial: (el) => ordemEm(iDe(el), jDe(el.x ?? 0)),
-    paraMundo: (el, st, dy = 0) => ponto(iDe(el), jDe(st.x), snap(st.y) + dy),
+    paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), jDe(st.x), snap(st.y) + dy),
     posicionar(e, st, bob) {
-      const i = iDe(e.def), j = jDe(st.x);
+      const i = iDe(e.def, st), j = jDe(st.x);
       e.malha.position.copy(ponto(i, j, snap(st.y) + bob));
-      e.malha.renderOrder = ordemEm(i, j);
+      e.malha.renderOrder = ordemEm(i, j) + (e.def.sobre ? 2 : 0);
     },
     posicionarSombra(e, st) {
-      const i = iDe(e.def), j = jDe(st.x);
+      const i = iDe(e.def, st), j = jDe(st.x);
       e.sombra.position.copy(ponto(i, j, 1 / PPU)); e.sombra.renderOrder = ordemEm(i, j) - 0.5;
     },
     atualizarCamera(cam, ef) {

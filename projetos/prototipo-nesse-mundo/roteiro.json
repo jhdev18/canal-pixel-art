@@ -1,0 +1,192 @@
+{
+  // PROTÓTIPO dos assets "Nesse Mundo" (só para conferir: npm run previa -- prototipo-nesse-mundo)
+  // Mostra cada asset novo funcionando. Não é o roteiro final de nenhum vídeo.
+  "titulo": "Protótipo — Nesse Mundo",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "cenas": [
+    // 1. LONGO — tempo na cabeça: sol que cresce, nuvem que chove; canteiro e fonte mudando
+    { "cenario": "praca-festa", "duracao": 6, "transicao": "fade", "clima": "calor", "paleta": "quente",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -2.4 },
+        { "id": "tempoBia", "sprite": "tempo-pessoal", "sobre": { "id": "bia", "dy": 2.75 } },
+        { "id": "tonho", "personagem": "padeiro", "x": 2.2, "virado": "esquerda" },
+        { "id": "tempoTonho", "sprite": "tempo-pessoal", "sobre": { "id": "tonho", "dy": 2.75 } },
+        { "id": "fogo", "sprite": "fogo-chapeu", "sobre": { "id": "tonho", "dy": 2.6 } }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tempoBia", "estado": "sol-pequeno", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "tempoTonho", "estado": "sol-grande", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "fonte", "estado": "seca", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "canteiro1", "estado": "murcho", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "tempoTonho", "estado": "sol-forte", "inicio": 1.2 },
+        { "tipo": "aparecer", "alvo": "fogo", "inicio": 1.6 },
+        { "tipo": "tremer", "inicio": 1.6, "duracao": 0.4 },
+        { "tipo": "trocar", "alvo": "tempoBia", "estado": "nuvenzinha", "inicio": 2.6 },
+        { "tipo": "trocar", "alvo": "tempoBia", "estado": "garoa", "inicio": 3.2 },
+        { "tipo": "trocar", "alvo": "canteiro1", "estado": "verde", "inicio": 4.2 },
+        { "tipo": "flash", "inicio": 4.2 },
+        { "tipo": "trocar", "alvo": "fonte", "estado": "cheia", "inicio": 4.8 }
+      ] },
+
+    // 2. LONGO — policial Ronaldo: óculos escuros, guarda-chuva e bloco de multas; placa da lei
+    { "cenario": "praca-festa", "duracao": 5, "transicao": "dither",
+      "camera": { "x": -6 },
+      "elementos": [
+        { "id": "ronaldo", "sprite": "policial-oculos", "voz": 0.9, "x": -3.4 },
+        { "id": "guarda", "sprite": "guarda-chuva", "sobre": { "id": "ronaldo", "dx": 0.45, "dy": 1.0 } },
+        { "id": "bloco", "sprite": "bloco-multas", "sobre": { "id": "ronaldo", "dx": -0.45, "dy": 0.85 } },
+        { "id": "caixa", "personagem": "caixa", "x": -9.6 },
+        { "id": "tempoCaixa", "sprite": "tempo-pessoal", "sobre": { "id": "caixa", "dy": 2.75 } }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tempoCaixa", "estado": "garoa", "inicio": 0 },
+        { "tipo": "falar", "alvo": "caixa", "texto": "* Tô ótima!", "inicio": 0.4 },
+        { "tipo": "andar", "alvo": "ronaldo", "para": -7.8, "inicio": 1.2, "duracao": 2 },
+        { "tipo": "emocao", "alvo": "caixa", "icone": "!", "inicio": 3.4 }
+      ] },
+
+    // 3. LONGO — prefeito no palanque; a peruca voa e cai na fonte (chuva geral)
+    { "cenario": "praca-festa", "duracao": 5, "transicao": "dither", "clima": "chuva",
+      "camera": { "x": 3 },
+      "elementos": [
+        { "id": "prefeito", "sprite": "prefeito-careca", "voz": 0.7, "x": 6.4, "y": 1.125, "virado": "esquerda" },
+        { "id": "tempoPref", "sprite": "tempo-pessoal", "sobre": { "id": "prefeito", "dy": 2.75 } },
+        { "id": "peruca", "sprite": "peruca", "x": 6.4, "y": 3.55, "z": 0.05 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tempoPref", "estado": "chuva", "inicio": 0 },
+        { "tipo": "mover", "alvo": "peruca", "para": [3.6, 4.6], "inicio": 1, "duracao": 1.2 },
+        { "tipo": "mover", "alvo": "peruca", "para": [0.4, 0.9], "inicio": 2.2, "duracao": 1.4 },
+        { "tipo": "emocao", "alvo": "prefeito", "icone": "!", "inicio": 1.1 }
+      ] },
+
+    // 4. LONGO — final: o guarda-chuva fecha, aguaceiro, enchente e a viatura boiando
+    { "cenario": "praca-festa", "duracao": 6, "transicao": "dither", "clima": "chuva",
+      "remover": ["placa"],
+      "elementos": [
+        { "id": "ronaldo", "sprite": "policial-oculos", "x": -2 },
+        { "id": "guarda", "sprite": "guarda-chuva", "sobre": { "id": "ronaldo", "dx": 0.45, "dy": 1.0 } },
+        { "id": "tempoRon", "sprite": "tempo-pessoal", "sobre": { "id": "ronaldo", "dy": 2.75 } },
+        { "id": "viatura", "sprite": "carro-policia", "x": -9, "y": 0.35, "z": 0.3, "balancar": true },
+        { "id": "agua1", "sprite": "agua-enchente", "x": -8, "y": -0.2, "z": 0.6 },
+        { "id": "agua2", "sprite": "agua-enchente", "x": 0, "y": -0.2, "z": 0.6 },
+        { "id": "agua3", "sprite": "agua-enchente", "x": 8, "y": -0.2, "z": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tempoRon", "estado": "nada", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "guarda", "estado": "fechando", "inicio": 0.8 },
+        { "tipo": "trocar", "alvo": "tempoRon", "estado": "aguaceiro", "inicio": 1.4 },
+        { "tipo": "tremer", "inicio": 1.4, "duracao": 0.6 },
+        { "tipo": "flash", "inicio": 1.4 },
+        { "tipo": "aparecer", "alvo": "agua1", "inicio": 2.4 },
+        { "tipo": "aparecer", "alvo": "agua2", "inicio": 2.4 },
+        { "tipo": "aparecer", "alvo": "agua3", "inicio": 2.4 },
+        { "tipo": "mover", "alvo": "viatura", "para": 9, "inicio": 2.6, "duracao": 3.2, "easing": "linear" }
+      ] },
+
+    // 5. LONGO — rua enfeitada (diagonal) com todos de sol na cabeça
+    { "cenario": "rua-festa", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 2 },
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -3, "z": 0.6 },
+        { "id": "tBia", "sprite": "tempo-pessoal", "sobre": { "id": "bia", "dy": 2.75 } },
+        { "id": "prof", "personagem": "professora", "x": 1, "z": 1.2 },
+        { "id": "tProf", "sprite": "tempo-pessoal", "sobre": { "id": "prof", "dy": 2.75 } },
+        { "id": "aluno", "personagem": "aluno", "x": 4, "z": 0.8 },
+        { "id": "tAluno", "sprite": "tempo-pessoal", "sobre": { "id": "aluno", "dy": 2.65 } }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tBia", "estado": "sol-pequeno", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "tProf", "estado": "sol-grande", "inicio": 0 },
+        { "tipo": "andar", "alvo": "bia", "para": 2.2, "inicio": 0.3, "duracao": 3.5 }
+      ] },
+
+    // 6. CURTO 1 — estrelas que viram olhos, no morro
+    { "cenario": "morro-mirante", "duracao": 6, "transicao": "dither",
+      "elementos": [
+        { "id": "e1", "sprite": "estrela-mentira", "x": -7.5, "y": 7.6, "z": -0.1 },
+        { "id": "e2", "sprite": "estrela-mentira", "x": -4.2, "y": 8.3, "z": -0.1 },
+        { "id": "e3", "sprite": "estrela-mentira", "x": -2, "y": 6.9, "z": -0.1 },
+        { "id": "e4", "sprite": "estrela-mentira", "x": 3.2, "y": 8.1, "z": -0.1 },
+        { "id": "e5", "sprite": "estrela-mentira", "x": 6.4, "y": 7.2, "z": -0.1 },
+        { "id": "e6", "sprite": "estrela-mentira", "x": 8.4, "y": 8.6, "z": -0.1 },
+        { "id": "gigante", "sprite": "estrela-gigante", "x": 0.5, "y": 6.6, "z": -0.1 },
+        { "id": "prefeito", "personagem": "prefeito", "x": 0.4, "y": 1.125 },
+        { "id": "caio", "personagem": "aluno", "x": -5, "virado": "direita" },
+        { "id": "aluna", "personagem": "aluna", "x": 4.4, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "aparecer", "alvo": "gigante", "inicio": 0.6 },
+        { "tipo": "flash", "inicio": 0.6 },
+        { "tipo": "trocar", "alvo": "gigante", "estado": "olho", "inicio": 2 },
+        { "tipo": "emocao", "alvo": "caio", "icone": "!", "inicio": 2.2 },
+        { "tipo": "trocar", "alvo": "e1", "estado": "olho", "inicio": 3.2 },
+        { "tipo": "trocar", "alvo": "e2", "estado": "olho", "inicio": 3.3 },
+        { "tipo": "trocar", "alvo": "e3", "estado": "olho", "inicio": 3.4 },
+        { "tipo": "trocar", "alvo": "e4", "estado": "olho", "inicio": 3.3 },
+        { "tipo": "trocar", "alvo": "e5", "estado": "olho", "inicio": 3.5 },
+        { "tipo": "trocar", "alvo": "e6", "estado": "olho", "inicio": 3.4 },
+        { "tipo": "tremer", "inicio": 3.2, "duracao": 0.5, "intensidade": 0.6 },
+        { "tipo": "trocar", "alvo": "gigante", "estado": "olho-aberto", "inicio": 4.4 }
+      ] },
+
+    // 7. CURTO 2 — bueiro: agarra, a Bia joga o sanduíche, ele fica enjoado
+    { "cenario": "rua-monstros", "duracao": 6, "transicao": "dither",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -2.4 },
+        { "id": "sanduiche", "sprite": "sanduiche", "x": -2, "y": 1.3, "z": 0.2 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "bueiro", "estado": "agarrar", "inicio": 0.8 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "...", "inicio": 1.4 },
+        { "tipo": "aparecer", "alvo": "sanduiche", "inicio": 2.2 },
+        { "tipo": "pular", "alvo": "sanduiche", "para": 1.5, "altura": 1.2, "inicio": 2.4, "duracao": 0.6, "som": null },
+        { "tipo": "sumir", "alvo": "sanduiche", "inicio": 3 },
+        { "tipo": "trocar", "alvo": "bueiro", "estado": "enjoado", "inicio": 3.1 },
+        { "tipo": "tremer", "inicio": 3.1, "duracao": 0.3, "intensidade": 0.5 }
+      ] },
+
+    // 8. CURTO 2 — cone persegue o aluno; depois dorme esperando a Bia
+    { "cenario": "rua-monstros", "duracao": 6, "transicao": "dither", "remover": ["bueiro"],
+      "elementos": [
+        { "id": "aluno", "personagem": "aluno", "x": -9 },
+        { "id": "cone", "sprite": "cone-monstro", "voz": 0.6, "x": -11 },
+        { "id": "bia", "personagem": "menina-capa", "x": 5, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "correr", "alvo": "aluno", "para": 11, "inicio": 0, "duracao": 2.2 },
+        { "tipo": "correr", "alvo": "cone", "para": 3, "inicio": 0.2, "duracao": 1.8 },
+        { "tipo": "trocar", "alvo": "cone", "estado": "dormindo", "inicio": 2.8 },
+        { "tipo": "emocao", "alvo": "cone", "icone": "zzz", "inicio": 3.2, "duracao": 2.4 }
+      ] },
+
+    // 9. CURTO 2 — a lista de compras desenrola; o pombo vai embora de malinha
+    { "cenario": "rua-monstros", "duracao": 6, "transicao": "dither", "remover": ["bueiro"],
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -1.4 },
+        { "id": "lista", "sprite": "lista-compras", "sobre": { "id": "bia", "dx": 0.6, "dy": 0 } },
+        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": 1.4, "virado": "esquerda" },
+        { "id": "mala", "sprite": "malinha", "sobre": { "id": "pombo", "dx": 0.4, "dy": 0.1 } }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "lista", "estado": "abrindo", "inicio": 0.6 },
+        { "tipo": "emocao", "alvo": "pombo", "icone": "...", "inicio": 1.8 },
+        { "tipo": "aparecer", "alvo": "mala", "inicio": 3.2 },
+        { "tipo": "falar", "alvo": "pombo", "texto": "* Eu me demito.", "inicio": 3.3 },
+        { "tipo": "andar", "alvo": "pombo", "para": 11, "inicio": 4.4, "duracao": 1.6 }
+      ] },
+
+    // 10. LONGO — quarto à noite: a Bia chora vendo desenho (garoa), a planta ao lado
+    { "cenario": "quarto-menino-noite", "duracao": 4, "transicao": "dither",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -0.6, "virado": "esquerda" },
+        { "id": "tBia", "sprite": "tempo-pessoal", "sobre": { "id": "bia", "dy": 2.75 } },
+        { "id": "planta", "sprite": "planta-vaso", "x": 1.8, "z": 0.05 },
+        { "id": "picole", "sprite": "sorvete", "x": 3.2, "y": 0, "z": 0.1 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tBia", "estado": "garoa", "inicio": 0.4 },
+        { "tipo": "trocar", "alvo": "picole", "estado": "derretendo", "inicio": 1 }
+      ] }
+  ]
+}

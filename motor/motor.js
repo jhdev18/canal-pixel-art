@@ -7,6 +7,7 @@ import './sprites-detalhados.js';
 import './sprites-cidade.js';
 import './estabelecimentos.js';
 import './sprites-interiores.js';
+import './sprites-nesse-mundo.js';
 import { criarVista } from './vistas.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
@@ -291,6 +292,8 @@ class Motor {
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);
+      // "unica": a animação toca uma vez a partir do "trocar" e para no último quadro
+      if (anim.unica) idx = Math.min(anim.q.length - 1, Math.max(0, Math.floor((t - (st.animInicio || 0)) * fps)));
       // Com 'passada' definida, os passos seguem a distância percorrida: sem pés escorregando.
       if (anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) {
         const a = c.acoes.find((ac) => ac.alvo === e.def.id && (ac.tipo === 'andar' || ac.tipo === 'correr') && t >= ac.inicio && t < ac.inicio + ac.duracao);
@@ -311,6 +314,8 @@ class Motor {
       if (e.sprite.personagem && !anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) bob = idx % 2 ? 1 / PPU : 0;
       if (e.sprite.flutua && e.def.flutuar !== false && st.anim === 'parado') bob = Math.round(Math.sin(tAnim * 3) * 1.5) / PPU;
       if (e.sprite.voa) bob = Math.round(Math.sin(tAnim * 4) * 3) / PPU;
+      // "balancar": true — boia na água (sobe e desce devagar, em pixels inteiros)
+      if (e.def.balancar) bob = Math.round(Math.sin(tAnim * 2.2) * 1.5) / PPU;
       e.mat.map = e.texturas[q] || e.texturas[0]; if ('emissiveMap' in e.mat) e.mat.emissiveMap = e.mat.map;
       vista.posicionar(e, st, bob);
       const s = e.esc * st.escala;

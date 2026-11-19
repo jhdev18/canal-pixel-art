@@ -295,6 +295,7 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `virar` | `alvo`, `direcao` | — | — |
 | `sentar` | `alvo`, `lado` (true = de lado) ou `pose` (`sentado`, `sentado-lado`, `sentado-costas`) | personagem fica sentado (de frente ou de lado) | — |
 | `levantar` | `alvo` | volta a ficar em pé | — |
+| `trocar` | `alvo`, `estado` | muda o estado de um objeto (ex.: `tempo-pessoal` de `sol` para `chuva`; estrela vira `olho`) | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
 | `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` | ícone sobre a cabeça | surpresa/dúvida/amor |
 | `aparecer` / `sumir` | `alvo` | "puf" de fumaça | puf |
@@ -362,6 +363,10 @@ Cenários prontos de interiores: `sala-de-aula`, `quarto-menino`, `quarto-menino
 `sala-de-aula-diorama`, `quarto-menino-diorama`, `quarto-menino-noite-diorama`, `sala-de-estar-diorama` (diorama).
 Poses dos personagens (moradores e `menina-capa`): `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"` e
 `"sentado-costas"`; ações `sentar` / `levantar`.
+
+Elemento preso em outro: `"sobre": { "id": "bia", "dx": 0.45, "dy": 2.75 }` — acompanha o dono (posição, lado e
+visibilidade); `dx` segue o lado para onde ele olha. Usado para o tempo na cabeça, guarda-chuva, fogo no chapéu etc.
+`"balancar": true` faz o elemento boiar (sobe e desce devagar). Clima `"calor"`: ar quente subindo.
 
 ### Fundos
 
