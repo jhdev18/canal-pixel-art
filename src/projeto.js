@@ -33,7 +33,7 @@ export function lerRoteiro(dir) {
 export const NOME_NARRACAO_UNICA = /^(narracao[-_ ]?completa|narracao|completa)$/i;
 
 // pesos: tamanho do texto de cada cena (para saber quanto cada trecho deve durar).
-function dividirPorPausas(dados, partes, pesos = null) {
+export function dividirPorPausas(dados, partes, pesos = null) {
   const QUADRO = Math.round(SR * 0.01);                           // janelas de 10 ms
   const n = Math.floor(dados.length / QUADRO);
   const rms = new Float32Array(n);
@@ -103,7 +103,9 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
     let alvo = cenas.map((c, i) => (c.narracaoTexto ? i : -1)).filter((i) => i >= 0);
     if (!alvo.length) alvo = cenas.map((c, i) => i).filter((i) => cenas[i].narracao !== false);
     const dados = await decodificarAudio(ff, path.join(pasta, unico));
-    const r = dividirPorPausas(dados, alvo.length, alvo.map((i) => (cenas[i].narracaoTexto || 'x').length));
+    // peso de cada cena = letras + as pausas entre as frases dela (cada pausa interna vale ~6 letras de fala)
+    const peso = (t) => t.length + 6 * ((t.match(/[.!?:…]\s/g) || []).length);
+    const r = dividirPorPausas(dados, alvo.length, alvo.map((i) => peso(cenas[i].narracaoTexto || 'x')));
     if (r.erro) throw new Error(`Narração única (${unico}): ${r.erro}`);
     r.trechos.forEach((t, k) => mapa.set(alvo[k], { arquivo: `${unico} [${t.de.toFixed(1)}s–${t.ate.toFixed(1)}s]`, duracao: t.dados.length / SR, dados: t.dados }));
     return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length };

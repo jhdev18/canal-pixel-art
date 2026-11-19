@@ -68,6 +68,18 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     cena.camera = { ...camPadrao, ...(cena.camera || {}) };
     cena.narracaoInicio = cena.narracaoInicio ?? 0.3;
     const narr = narracoes.get(indice);
+    // Ações sincronizadas com a fala real: o roteiro marca os tempos pela fala estimada (0,065 s por letra);
+    // com o áudio, os tempos de cada cena esticam/encolhem na mesma proporção da fala real.
+    // ("sincronizarAcoes": false no roteiro ou "sincronizar": false na cena desliga.)
+    if (narr && cena.narracaoTexto && roteiro.sincronizarAcoes !== false && cena.sincronizar !== false) {
+      const f = clamp(narr.duracao / (cena.narracaoTexto.length * SEG_POR_LETRA), 0.5, 2);
+      const n0 = cena.narracaoInicio;
+      for (const a of cena.acoes) {
+        if (a.inicio > n0) a.inicio = n0 + (a.inicio - n0) * f;
+        if (a.tipo !== 'flash' && a.tipo !== 'tremer') a.duracao *= f;
+      }
+      for (const k of ['tituloInicio', 'tituloDuracao']) if (cena[k] != null) cena[k] *= f;
+    }
     let dur = cena.duracao ?? 4;
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };

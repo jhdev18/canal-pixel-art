@@ -136,6 +136,9 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
 - Transições curtas (0,2 s); cenas sem duração fixa (duram o tempo da fala/ações).
+- Narração sem `<break>` (um parágrafo por cena). Com o áudio, o corte é automático (pausas + tamanho de cada cena,
+  contando as pausas entre frases) e os tempos das ações de cada cena se ajustam à duração real da fala
+  (`"sincronizarAcoes": false` no roteiro desliga). O usuário não marca cortes à mão.
 
 ## Estado atual
 - **Episódio 1** em `projetos/episodio-01` ("Nada acontece em Vila Serena"): protagonista **Bia**
