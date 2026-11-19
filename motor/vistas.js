@@ -37,7 +37,13 @@ function decoracao(nome) {
   const t = tex(cv);
   const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h).translate(0, h / 2, 0),
     new THREE.MeshLambertMaterial({ map: t, emissiveMap: t, emissive: new THREE.Color(0.12, 0.12, 0.12), transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide }));
-  return { m, s };
+  // camada que brilha sem depender da luz (lâmpada acesa)
+  let br = null;
+  if (s.brilho) {
+    const tb = tex(s.brilho[0]);
+    br = new THREE.Mesh(new THREE.PlaneGeometry(w, h).translate(0, h / 2, 0), new THREE.MeshBasicMaterial({ map: tb, transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide }));
+  }
+  return { m, s, br };
 }
 
 // ---------------------------------------------------------------- lateral
@@ -139,10 +145,13 @@ function vistaDiagonal(c, motor) {
 
   // postes da rua (sprites) + luz para iluminar os personagens que passam perto
   const decor = [];
+  // postes: o mesmo poste isométrico da praça ("postes": "antigo" volta ao desenho chapado de antes)
+  const nomePoste = op.postes === 'antigo' ? 'poste' : rua.noite ? 'poste-iso-aceso' : 'poste-iso';
   if (op.postes !== false) for (const p of rua.postes) {
-    const { m } = decoracao('poste');
-    m.position.copy(ponto(p.i, p.j)); m.renderOrder = ordem(p.i, p.j);
+    const { m, br } = decoracao(nomePoste);
+    m.position.copy(ponto(p.i, p.j)); m.renderOrder = ordem(p.i - 0.15, p.j - 0.15);
     cena.add(m); decor.push(m);
+    if (br) { br.position.copy(m.position); br.renderOrder = m.renderOrder + 1; cena.add(br); }
     if (rua.noite) { const L = new THREE.PointLight('#ffe0a0', 1.3 * Math.PI, 5, 1); L.position.copy(ponto(p.i, p.j, 2.5)).add(new THREE.Vector3(0, 0, 1)); cena.add(L); }
   }
 

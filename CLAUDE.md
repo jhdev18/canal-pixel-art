@@ -175,7 +175,7 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   (`motor/sprites-praca.js`: `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande` verde/seca, `poste-iso`,
   `poste-iso-aceso`, `canteiro-iso` verde/murcho, `palanque-iso`, `bandeirinhas-iso`; x/z = canto da frente; estado
   inicial com `"pose"`). Cenários: `praca`, `praca-noite`, `praca-festa`, `praca-seca`. Também `quarto-menina` /
-  `quarto-menina-noite` (diorama e lateral) com móveis `penteadeira`, `pufe`, `cavalete`. O modo `"exterior"` do
+  `quarto-menina-noite` (diorama e lateral) com móveis `penteadeira`, `pufe`, `cavalete`. Os postes de TODA a rua diagonal agora são o `poste-iso` (aceso à noite); `"rua": { "postes": "antigo" }` volta ao chapado. O modo `"exterior"` do
   diorama (praça com prédios próprios) foi trocado pela praça na rua (o usuário preferiu os prédios de antes).
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
