@@ -58,6 +58,12 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
-- **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
-  Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
+- **Protótipos NÃO aprovados (já no motor, fora da `biblioteca/`):**
+  - Casa em diorama (`motor/casa-diorama.js`): `casa-sala`, `casa-cozinha`, `casa-quarto`, `casa-banheiro`
+    (+ `-noite`), personagens `mae`, `mae-avental`, `menino-topete`; fundos `diorama`/`diorama-noite`.
+    Prévia: `npm run previa -- prototipo-casa`.
+  - Monstros de sombra 3D (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" | "tentaculos" | "massa-olhos"`,
+    desenhados em alta resolução sobre o pixel art (o quadro sai em HD quando o roteiro tem monstro).
+    Prévia: `npm run previa -- prototipo-monstros`.
+  - Depois do "pode salvar": cadastrar em `biblioteca/` (personagens/cenários) e documentar no README.
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

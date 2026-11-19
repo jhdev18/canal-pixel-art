@@ -64,6 +64,7 @@ function vistaLateral(c, motor) {
     liberar: () => fundo.ceu.textura.dispose(),
     ordemInicial: (el, i) => ordemPorZ(el.z ?? 0) + 2 + i * 2,
     paraMundo: (el, st, dy = 0) => new THREE.Vector3(snap(st.x), snap(st.y) + dy, el.z ?? 0),
+    paraMundoSuave: (el, st) => new THREE.Vector3(st.x, st.y, el.z ?? 0),   // monstros 3D: sem prender à grade
     posicionar(e, st, bob) { e.malha.position.set(snap(st.x), snap(st.y) + bob, e.def.z ?? 0); },
     posicionarSombra(e, st) { e.sombra.position.set(snap(st.x), st.yBase + 1 / PPU, e.def.z ?? 0); },
     atualizarCamera(cam, ef) {

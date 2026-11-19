@@ -129,6 +129,16 @@ const SONS = {
   erro: () => misturar([[tom({ f0: 220, f1: 160, dur: 0.14, vol: 0.3 })], [tom({ f0: 200, f1: 140, dur: 0.2, vol: 0.3, curva: 1.5 }), 0.17]]),
   soco: () => misturar([[ruido({ dur: 0.12, vol: 0.8, f0: 2500, f1: 300, curva: 2 })], [tom({ tipo: 'seno', f0: 160, f1: 60, dur: 0.12, vol: 0.7, curva: 2 })]]),
   espada: () => ruido({ dur: 0.22, vol: 0.5, filtro: 'passa-banda', q: 0.3, corteFn: (t, p) => 1500 + 5000 * p, envFn: (t, p) => Math.sin(Math.PI * p) }),
+  // monstros de sombra: grave que cresce + sussurro de ruído (surge) / sopro que se desfaz (some)
+  'sombra-surge': () => misturar([
+    [tom({ tipo: 'seno', f0: 38, f1: 52, dur: 2.2, vol: 0.7, ataque: 0.9, curva: 1.4 })],
+    [ruido({ dur: 2.0, vol: 0.45, filtro: 'passa-banda', q: 0.35, corteFn: (t, p) => 250 + 900 * p, envFn: (t, p) => Math.sin(Math.PI * p) ** 2 * (0.6 + 0.4 * Math.sin(TAU * 7 * t)), semente: 13 })],
+    [ruido({ dur: 1.6, vol: 0.18, f0: 3500, filtro: 'passa-alta', envFn: (t, p) => Math.sin(Math.PI * p) ** 3 * (0.5 + 0.5 * Math.sin(TAU * 11 * t)), semente: 17 }), 0.3],
+  ]),
+  'sombra-some': () => misturar([
+    [ruido({ dur: 1.3, vol: 0.5, f0: 2200, f1: 140, filtro: 'passa-banda', q: 0.4, ataque: 0.05, curva: 1.6, semente: 19 })],
+    [tom({ tipo: 'seno', f0: 60, f1: 30, dur: 1.2, vol: 0.5, curva: 1.5 })],
+  ]),
   sino: () => misturar([[tom({ tipo: 'seno', f0: 1760, dur: 1.2, vol: 0.25, curva: 3 })], [tom({ tipo: 'seno', f0: 2637, dur: 0.8, vol: 0.12, curva: 3 })]]),
   // ---- Ambientes (loops) ----
   chuva: () => emLoop((L) => misturar([
