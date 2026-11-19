@@ -26,10 +26,13 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
 - **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
-- **Nada parado:** toda cena tem movimento (`cameraFim` com pan/zoom leve, alguém andando, partículas).
+- **Nada parado, mas com sentido:** a vida da cena vem de preferência dos **personagens** (expressões no rosto,
+  ícone de emoção, alguém andando) e de partículas. Mover a câmera só quando ajudar a história; evitar
+  pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
 - **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
 - **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
+  Exceção: de vez em quando um balão um pouco maior quando ele **é a piada da cena** (charme estilo Undertale).
   Projetos novos já vêm com `"volumeBaloes": 0.4` (som baixo, narrador em destaque).
 - **Loop aberto no meio** ("mas o que ninguém sabia...") e **pergunta/voto só nos últimos ~3 s**.
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
