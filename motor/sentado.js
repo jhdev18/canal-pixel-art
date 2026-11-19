@@ -106,12 +106,26 @@ export function costasDe(frente, op) {
   return p;
 }
 
+// Sentado de costas: as pernas vão para a frente (escondidas pelo corpo/carteira); fica o tronco apoiado no
+// assento, com o quadril a ~assento px do chão (o encosto da cadeira cobre a parte de baixo das costas).
+export function sentadoCostas(costas, { q = 30, assento = 9, coxa } = {}) {
+  const W = costas.w, H = costas.h, p = new Pix(W, H), novo = new Pix(W, H);
+  const calca = coxa || amostra(costas, q + 2, [11, 16, 12, 15]), cont = cor(costas, 9, 38) || escurecer(calca, 0.35);
+  const desce = Math.max(0, H - 1 - assento - (q + 3));
+  const fundo = q + 3 + desce;                         // última linha do corpo (apoiada no assento)
+  copiar(costas, p, q + 1, desce);
+  for (let y = q + 1 + desce; y <= fundo; y++) for (let x = 8; x <= 19; x++)   // quadril/bumbum no assento
+    novo.set(x, y, y === fundo ? escurecer(calca, 0.8) : x === 19 ? escurecer(calca, 0.85) : (x === 13 || x === 14) && y === fundo - 1 ? escurecer(calca, 0.85) : calca);
+  juntar(p, novo, cont);
+  return p;
+}
+
 // Acrescenta "costas" (em pé, de costas para a câmera) e "sentado-costas" (sentado de costas: olhando para a
 // lousa, para a TV...). opCostas: as opções de costasDe (sem o quadro).
 export function adicionarCostas(sprite, opCostas, { q = 30, coxa } = {}) {
   const Q = sprite.quadros, n = Q.length;
   const c0 = costasDe(Q[0], opCostas), c1 = costasDe(Q[2], { ...opCostas, cabeca: { ...opCostas.cabeca, cy: opCostas.cabeca.cy - 1 }, tronco: opCostas.tronco && { ...opCostas.tronco, y0: opCostas.tronco.y0 - 1, y1: opCostas.tronco.y1 - 1 } });
-  Q.push(c0, c1, sentadoFrente(c0, { q, coxa }), sentadoFrente(c1, { q, coxa }));
+  Q.push(c0, c1, sentadoCostas(c0, { q, coxa }), sentadoCostas(c1, { q, coxa }));
   sprite.anims.costas = { q: [n, n, n + 1, n + 1], fps: 2 };
   sprite.anims['sentado-costas'] = { q: [n + 2, n + 2, n + 3, n + 3], fps: 2 };
   return sprite;
