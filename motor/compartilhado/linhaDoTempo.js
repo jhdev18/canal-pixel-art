@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, trocar: 0,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, trocar: 0, desaparecer: 1.2,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -185,6 +185,10 @@ export function estadoElemento(cena, el, t, _prof = 0) {
         break;
       case 'sumir':
         if (p >= 1) visivel = false; else escala = 1 - p * p;
+        break;
+      // "desaparecer": some devagar, sem fumaça nem som (para cenas pesadas)
+      case 'desaparecer':
+        if (p >= 1) visivel = false; else alpha = Math.min(alpha, 1 - p);
         break;
       case 'coletar':
         if (p >= 1) visivel = false; else { offY += easeOutBack(p) * 1.2; alpha = p < 0.6 ? 1 : 1 - (p - 0.6) / 0.4; }

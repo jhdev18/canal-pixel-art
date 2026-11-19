@@ -380,6 +380,18 @@ const MOVEIS = {
       }
     }
   } },
+  // viatura de polícia (para a rua diagonal), ao longo da rua; op.sirene: luzes acesas
+  viatura: { di: 1.1, dj: 2.3, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, br = ['#f8f8fc', '#dcdce8', '#a8a8bc'], az = '#2a4aa8';
+    for (const [a, b] of [[i0 + 0.1, j0 + 0.3], [i1 - 0.3, j0 + 0.3], [i0 + 0.1, j1 - 0.7], [i1 - 0.3, j1 - 0.7]]) L.caixa(a, a + 0.2, b, b + 0.4, 0, 5, '#1a1a22');
+    L.caixa(i0, i1, j0, j1, 3, 9, { frente: (u, t) => (t > 3 && t < 6 ? az : t < 2 ? br[2] : br[1]), lado: (u, t) => (t > 3 && t < 6 ? az : br[2]),
+      topo: (a, b) => (b < 0.35 ? '#e8b040' : br[0]) });
+    L.caixa(i0 + 0.1, i1 - 0.1, j0 + 0.6, j1 - 0.5, 12, 7, { frente: (u, t) => (t < 6 && u > 0.1 && u < (j1 - j0 - 1.1) - 0.1 ? ['#5a7ab8', 1] : br[1]),
+      lado: (u, t) => (t < 6 && u > 0.12 && u < (i1 - i0 - 0.2) - 0.12 ? '#4a6aa8' : br[2]), topo: () => br[0] });
+    const ci = (i0 + i1) / 2, cj = (j0 + j1) / 2 + 0.05, lig = !!ctx.op.sirene;
+    L.caixa(ci - 0.2, ci + 0.2, cj - 0.35, cj, 19, 3, { frente: lig ? ['#ff4040', 2] : '#b02a2a', lado: lig ? ['#ff6060', 2] : '#8a2020', topo: lig ? ['#ff8080', 2] : '#c83a3a' });
+    L.caixa(ci - 0.2, ci + 0.2, cj, cj + 0.35, 19, 3, { frente: lig ? ['#4080ff', 2] : '#2a4ab0', lado: lig ? ['#60a0ff', 2] : '#203a8a', topo: lig ? ['#80b0ff', 2] : '#3a5ac8' });
+  } },
   // barraca de festa: balcão, 4 varas e toldo listrado. op.produto: 'pipoca' | 'doces' | 'jogos'; op.luzes: lâmpadas no toldo
   barraca: { di: 1.0, dj: 1.6, f(L, m, ctx) {
     const { i0, i1, j0, j1 } = m, op = ctx.op;

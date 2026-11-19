@@ -38,6 +38,8 @@ registrarSprites({
   'canteiro-iso': () => iso({ verde: { tipo: 'canteiro-flores' }, murcho: { tipo: 'canteiro-flores', op: { murcho: true } } }),
   'palanque-iso': () => iso({ parado: { tipo: 'palanque-d' } }),
   'bandeirinhas-iso': () => iso({ parado: { tipo: 'bandeirinhas' } }),
+  // viatura (rua diagonal): "parado" ou "sirene"; boia com "balancar": true
+  'viatura-iso': () => iso({ parado: { tipo: 'viatura' }, sirene: { tipo: 'viatura', op: { sirene: true } } }),
   // barracas de festa (estado "acesa": lâmpadas no toldo, para a festa à noite)
   'barraca-pipoca': () => iso({ parado: { tipo: 'barraca', op: { produto: 'pipoca' } }, acesa: { tipo: 'barraca', op: { produto: 'pipoca', luzes: true } } }),
   'barraca-doces': () => iso({ parado: { tipo: 'barraca', op: { produto: 'doces' } }, acesa: { tipo: 'barraca', op: { produto: 'doces', luzes: true } } }),

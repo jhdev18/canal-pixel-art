@@ -6,6 +6,7 @@ import { Pix } from './pixel.js';
 import { registrarSprites } from './sprites.js';
 import { desenharTexto, larguraTexto } from './fonte.js';
 import { rng } from './compartilhado/util.js';
+import { renderOlho } from './olho3d.js';
 
 const K = '#1a1c2c';
 
@@ -164,11 +165,22 @@ function olho(t, abertura, pupila = 1) {   // abertura 0..1; pupila 1 = olhando 
   p.contorno('#3a1a2a');
   return p;
 }
-function sprEstrela(t) {
+// Olhos feitos em 3D (motor/olho3d.js), reduzidos a pixel. Todos os quadros com o mesmo tamanho (estrela no centro).
+function centrar(p, W, H) {
+  const q = new Pix(W, H), dx = Math.floor((W - p.w) / 2), dy = Math.floor((H - p.h) / 2);
+  for (let y = 0; y < p.h; y++) for (let x = 0; x < p.w; x++) { const k = (y * p.w + x) * 4; if (p.d[k + 3]) q.d.set(p.d.subarray(k, k + 4), ((y + dy) * W + x + dx) * 4); }
+  return q;
+}
+function sprEstrela(t, W, H) {
+  const sem = t * 3.1;
+  const st = (f) => centrar(estrela(t, f), W, H);
+  const o = (abertura, olhar, pupila = 0.35) => renderOlho(W, H, { abertura, olhar, pupila, semente: sem });
+  const aberto = o(1, [0, -0.55], 0.3);
   return montar({
-    parado: { q: [estrela(t, 0), estrela(t, 0), estrela(t, 1), estrela(t, 0), estrela(t, 0), estrela(t, 0)], fps: 5 },
-    olho: { q: [estrela(t, 0), estrela(t, 1), olho(t, 0), olho(t, 0.35), olho(t, 0.7, 0), olho(t, 1, 0), olho(t, 1, 1)], fps: 6, unica: true },
-    'olho-aberto': { q: [olho(t, 1), olho(t, 1), olho(t, 1), olho(t, 1), olho(t, 1), olho(t, 1), olho(t, 1), olho(t, 0.35), olho(t, 0), olho(t, 0.35)], fps: 6 },
+    parado: { q: [st(0), st(0), st(1), st(0), st(0), st(0)], fps: 5 },
+    // abre devagar, olha em volta e crava o olhar para baixo com a pupila dilatando
+    olho: { q: [st(0), st(1), o(0, [0, 0]), o(0.2, [0, 0]), o(0.45, [0.3, 0.1]), o(0.75, [-0.35, -0.1], 0.25), o(1, [0, -0.3], 0.22), o(1, [0, -0.55], 0.3), aberto], fps: 6, unica: true },
+    'olho-aberto': { q: [aberto, aberto, aberto, aberto, o(1, [0.08, -0.55], 0.3), aberto, aberto, aberto, o(0.4, [0, -0.55], 0.3), o(0, [0, -0.55]), o(0.4, [0, -0.55], 0.3), aberto, aberto, o(1, [0, -0.55], 0.42), o(1, [0, -0.55], 0.42)], fps: 6 },
   }, { semLuz: true });
 }
 
@@ -485,11 +497,44 @@ function malinha() {
   return montar({ parado: { q: [p] } });
 }
 
+// ===================================================================== CADERNO DOS NOMES (PROTÓTIPO)
+// caderno na mão: "sobre": { "id": "bia", "dx": 0.5, "dy": 0.7 }. Estados: fechado, aberto.
+function caderno(aberto) {
+  const p = new Pix(16, 10);
+  if (!aberto) { p.ret(3, 2, 10, 7, '#3a2a4a'); p.ret(3, 2, 10, 1, '#5a4a6a'); p.ret(4, 3, 1, 5, '#c8c0b0'); }
+  else {
+    p.ret(0, 3, 16, 6, '#f4f0e4'); p.ret(7, 3, 2, 6, '#c8c0b0');
+    for (const y of [4, 6, 8]) { for (let x = 1; x < 7; x++) if ((x + y) % 3) p.set(x, y, '#4a4a6a'); for (let x = 9; x < 15; x++) if ((x * y) % 4) p.set(x, y, '#4a4a6a'); }
+    p.ret(0, 9, 16, 1, '#3a2a4a');
+  }
+  p.contorno(K);
+  return p;
+}
+// página do caderno de perto (cena de "close"). Estados: cheia (nomes), ultima (o nome BIA aparece, uma vez), bia (fica).
+const NOMES = ['ANA LUZ', 'SEU JOSÉ', 'DONA CIDA', 'PEDRINHO', 'TIA RITA', 'SEU DITO'];
+function pagina(final) {   // final: quantas letras de "BIA" já escritas (0..3)
+  const W = 120, H = 92, p = new Pix(W, H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) p.set(x, y, (y - 8) % 11 === 10 ? '#a8c0e0' : x === 14 ? '#e08080' : (x * 7 + y * 13) % 53 === 0 ? '#e8e0d0' : '#f4f0e4');
+  for (let y = 0; y < H; y++) { p.set(0, y, '#c8c0b0'); p.set(W - 1, y, '#c8c0b0'); }
+  const t = new Pix(W, H);
+  NOMES.forEach((n, k) => texto(t, n, 20 + (k % 2), 2 + k * 11, '#3a3a5a'));
+  for (let k = 0; k < W * H; k++) if (t.d[k * 4 + 3]) p.d.set(t.d.subarray(k * 4, k * 4 + 4), k * 4);
+  if (final > 0) {
+    const t2 = new Pix(W, H); texto(t2, 'BIA'.slice(0, final), 20, 2 + 6 * 11, '#c81a1a');
+    for (let k = 0; k < W * H; k++) if (t2.d[k * 4 + 3]) p.d.set(t2.d.subarray(k * 4, k * 4 + 4), k * 4);
+    if (final === 3) for (const [x, y] of [[24, 80], [25, 81], [25, 82], [36, 79], [36, 80]]) p.set(x, y, '#a81010');   // tinta escorrendo
+  }
+  p.contorno(K);
+  return p;
+}
+
 registrarSprites({
+  caderno: () => montar({ fechado: { q: [caderno(false)] }, aberto: { q: [caderno(true)] } }),
+  'pagina-caderno': () => montar({ cheia: { q: [pagina(0)] }, ultima: { q: [pagina(0), pagina(1), pagina(2), pagina(3)], fps: 3, unica: true }, bia: { q: [pagina(3)] } }),
   'tempo-pessoal': tempoPessoal,
   'guarda-chuva': sprGuardaChuva,
-  'estrela-mentira': () => sprEstrela(3),
-  'estrela-gigante': () => sprEstrela(10),
+  'estrela-mentira': () => sprEstrela(3, 17, 11),
+  'estrela-gigante': () => sprEstrela(10, 45, 29),
   palanque: () => montar({ parado: { q: [palanque()] } }),
   bandeirinhas: sprBandeirinhas,
   'fonte-praca': sprFonte,

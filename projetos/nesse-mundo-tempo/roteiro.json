@@ -124,7 +124,7 @@
      "id": "aluno",
      "personagem": "aluno",
      "x": 3.6,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "taluno",
@@ -139,7 +139,7 @@
      "id": "aluna",
      "personagem": "aluna",
      "x": 5.8,
-     "z": 5.6,
+     "z": 5.1,
      "virado": "esquerda"
     },
     {
@@ -192,7 +192,7 @@
      "id": "caixa",
      "personagem": "caixa",
      "x": 16.4,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tcaixa",
@@ -207,7 +207,7 @@
      "id": "bia",
      "personagem": "menina-capa",
      "x": 14.6,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tbia",
@@ -263,7 +263,7 @@
      "id": "noivo",
      "personagem": "prefeito",
      "x": -6,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tnoivo",
@@ -278,7 +278,7 @@
      "id": "noiva",
      "personagem": "professora",
      "x": -4.8,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tnoiva",
@@ -293,7 +293,7 @@
      "id": "v1",
      "personagem": "padeiro",
      "x": 5,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tv1",
@@ -308,7 +308,7 @@
      "id": "v2",
      "personagem": "caixa",
      "x": 6.4,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tv2",
@@ -323,7 +323,7 @@
      "id": "v3",
      "personagem": "aluna",
      "x": 7.6,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tv3",
@@ -369,7 +369,7 @@
      "id": "prefeito",
      "personagem": "prefeito",
      "x": 10,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tprefeito",
@@ -425,7 +425,7 @@
      "id": "ronaldo",
      "personagem": "policial-oculos",
      "x": 6,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "guarda",
@@ -519,7 +519,7 @@
      "id": "bia",
      "personagem": "menina-capa",
      "x": 0.6,
-     "z": 5.6
+     "z": 5.1
     },
     {
      "id": "tbia",
@@ -931,22 +931,16 @@
    "narracaoTexto": "Primeiro, o sorvete do mercado derreteu. Depois, a fonte da praça secou.",
    "cenario": "praca-decorada",
    "camera": {
-    "x": -1,
+    "x": -1.4,
     "z": -8.5
    },
    "clima": "calor",
    "paleta": "quente",
    "elementos": [
     {
-     "id": "sorvete",
-     "sprite": "sorvete",
-     "x": -2.4,
-     "z": -8.4
-    },
-    {
      "id": "aluno",
      "personagem": "aluno",
-     "x": -3.4,
+     "x": -3.2,
      "z": -8.6
     },
     {
@@ -957,20 +951,50 @@
       "dy": 2.65
      },
      "pose": "sol-grande"
+    },
+    {
+     "id": "sorvete",
+     "sprite": "sorvete",
+     "x": 0,
+     "sobre": {
+      "id": "aluno",
+      "dx": 0.5,
+      "dy": 0.55
+     }
+    },
+    {
+     "id": "poca",
+     "sprite": "sorvete",
+     "x": -2.7,
+     "z": -8.7,
+     "pose": "derretido",
+     "oculto": true
     }
    ],
    "vertical": {
     "camera": {
-     "x": -1.4,
+     "x": -1.8,
      "z": -8.5
     }
    },
    "acoes": [
     {
      "tipo": "trocar",
-     "inicio": 0.77,
+     "inicio": 0.53,
      "alvo": "sorvete",
      "estado": "derretendo"
+    },
+    {
+     "tipo": "desaparecer",
+     "inicio": 1.4300000000000002,
+     "alvo": "sorvete",
+     "duracao": 0.2
+    },
+    {
+     "tipo": "aparecer",
+     "inicio": 1.4300000000000002,
+     "alvo": "poca",
+     "som": null
     },
     {
      "tipo": "emocao",
@@ -2084,46 +2108,30 @@
   },
   {
    "narracaoTexto": "E a viatura saiu boiando por três quarteirões.",
-   "cenario": "delegacia",
+   "cenario": "rua-alagada",
    "clima": "chuva",
    "camera": {
-    "x": 2
+    "x": -3,
+    "z": 0.8,
+    "y": 2.4
+   },
+   "cameraFim": {
+    "x": 3
    },
    "elementos": [
     {
      "id": "viatura",
-     "sprite": "carro-policia",
-     "x": 3,
-     "z": 0.3,
-     "y": 0.35,
-     "balancar": true
-    },
-    {
-     "id": "agua1",
-     "sprite": "agua-enchente",
-     "x": -8,
-     "z": 0.6,
-     "y": -0.2
-    },
-    {
-     "id": "agua2",
-     "sprite": "agua-enchente",
-     "x": 0,
-     "z": 0.6,
-     "y": -0.2
-    },
-    {
-     "id": "agua3",
-     "sprite": "agua-enchente",
-     "x": 8,
-     "z": 0.6,
-     "y": -0.2
+     "sprite": "viatura-iso",
+     "x": -6,
+     "z": 3.6,
+     "balancar": true,
+     "pose": "sirene"
     }
    ],
    "vertical": {
     "camera": {
-     "x": 4,
-     "zoom": 2
+     "x": 0,
+     "z": 1.2
     }
    },
    "acoes": [
@@ -2131,7 +2139,7 @@
      "tipo": "mover",
      "inicio": 0.3,
      "alvo": "viatura",
-     "para": 11,
+     "para": 6,
      "duracao": 2.84,
      "easing": "linear"
     }

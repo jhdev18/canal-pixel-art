@@ -6,9 +6,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Regras do usuário (sempre seguir)
 1. **Não renderizar vídeos.** O usuário renderiza no PC dele (GTX 1050 Ti). Para conferir, use no máximo
    imagens paradas — e só quando for essencial.
-2. **A vista padrão é a `diagonal`** (para cômodos, a vista `diorama`). A `lateral` só **muito raramente**, quando a
-   cena não funciona na diagonal (ex.: algo que precisa ser visto de lado). Nenhuma outra vista, a menos que o usuário
-   peça. O **modo 3D** segue a regra 12.
+2. **Só a vista `diagonal`** (para cômodos, a vista `diorama`). **Nunca usar a `lateral`** em vídeos novos, nem em
+   cenas soltas: se algo parece precisar de lateral, resolver na diagonal (outro enquadramento, outro lugar, ou um
+   detalhe em close com `"tela": true`). Nenhuma outra vista, a menos que o usuário peça. O **modo 3D** segue a regra 12.
    A vista `avenida` e o `"movimentoReal"` existem, mas não usar (e nunca o tempo todo).
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
    Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
@@ -36,7 +36,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
   pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
-- **Diagonal em quase tudo.** Para variar o visual, troque de lugar (rua, praça, cômodo) e de enquadramento, não de
+- **Só diagonal.** Para variar o visual, troque de lugar (rua, praça, cômodo) e de enquadramento, não de
   vista. Lugares da cidade sem interior na diagonal (escola, delegacia, padaria, mercado): a cena acontece na rua
   comercial, na calçada em frente ao prédio (`z` ~5.6; câmera `{ "x": <prédio>, "z": 2.2, "y": 2.4 }`; prédios em
   x ≈ padaria 0.6, escola 4.6, delegacia 10.4, mercado 16.2). Céu na diagonal: câmera mais alta (`"y"` ~3.5) mostra
@@ -142,11 +142,16 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   (`menina-capa`), padeiro **seu Tonho**; 9 cenas; final com o público decidindo (comentar 1 ou 2).
   Aguardando o usuário gravar a narração e renderizar.
 - **Vídeos "Nesse Mundo" — rascunhos prontos, aguardando o usuário gravar a narração e renderizar** (o usuário aponta
-  os problemas; ajustar só o que ele apontar): `projetos/nesse-mundo-estrelas` (curto, 13 cenas, ~53 s),
-  `projetos/nesse-mundo-monstros` (curto, 9 cenas, ~47 s), `projetos/nesse-mundo-tempo` (longo, 33 cenas, ~2:45;
-  usa `praca-seca` e `quarto-menina-noite-diorama` do `cenarios.json` do próprio projeto). Texto do ElevenLabs em
-  `narracao/TEXTO-COMPLETO.txt` de cada um. Todos na diagonal (só a última cena do longo, a viatura boiando, é lateral);
-  o curto das estrelas usa `rua-estrelas` (do `cenarios.json` do projeto) e o céu acima dos telhados.
+  os problemas; ajustar só o que ele apontar). Todos só na diagonal:
+  `projetos/nesse-mundo-estrelas` (curto, 13 cenas, ~53 s; usa `rua-estrelas` do próprio projeto; cenas na rua e
+  cenas só de céu separadas), `projetos/nesse-mundo-caderno` (curto, 12 cenas, ~52 s — "Nessa cidade, toda noite
+  alguém some": o caderno da Bia escolhe quem some; substituiu o dos monstros), `projetos/nesse-mundo-tempo` (longo,
+  33 cenas, ~2:45; usa `praca-seca`, `quarto-menina-noite-diorama` e `rua-alagada` do `cenarios.json` do projeto).
+  Texto do ElevenLabs em `narracao/TEXTO-COMPLETO.txt` de cada um.
+- **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
+  reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no
+  centro, fundo escurecido com `"escurecer"`); `"rua": { "alagada": true }`; sprites `viatura-iso` (parado/sirene),
+  `caderno` (fechado/aberto), `pagina-caderno` (cheia/ultima/bia). Postes da frente da praça foram para as laterais.
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,

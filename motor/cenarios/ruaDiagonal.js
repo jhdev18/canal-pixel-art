@@ -91,6 +91,12 @@ export function gerarRuaDiagonal(opc = {}) {
       if (i > 1.74 && i < 1.8) c = '#4a4a58';
     } else if (i <= 5.2) {
       const v = r(); c = v < 0.07 ? '#45475a' : v < 0.13 ? '#2c2c38' : '#37394a';
+      if (opc.alagada) {   // rua alagada: água por cima do asfalto
+        const onda = Math.sin(j * 5 + i * 2.2) + Math.sin(j * 2.1 - i * 3.7) * 0.6;
+        c = onda > 1.15 ? '#c8ecff' : onda > 0.6 ? '#6ab0e8' : bayer(x, y) < 0.15 ? '#3a78c0' : '#4a8ad0';
+        if (noite) c = onda > 1.15 ? '#8ab8e0' : onda > 0.6 ? '#3a6aa8' : '#24487a';
+        pintar(x, y, c, i, j, 0); continue;
+      }
       if (Math.abs(j - jFaixa) < 1.4 && (Math.floor((i - 1.8) * 4)) % 2 === 0) c = r() < 0.05 ? '#b8b8c4' : '#e2e2ea';
       else if (Math.abs(i - 3.5) < 0.06 && (j - Math.floor(j)) < 0.5) c = '#e0b838';
       for (const jb of bueiros) if (Math.abs(i - 1.95) < 0.12 && Math.abs(j - jb) < 0.35) c = (Math.floor(j * 16) % 2) ? '#1e1e26' : '#4a4a58';
