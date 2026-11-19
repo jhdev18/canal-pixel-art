@@ -57,8 +57,17 @@ Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Baseado em Short
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
 - **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
 - **Tons possíveis:** sombrio (virada de terror), cômico (protagonista que humilha a regra) ou emocional.
-- **Versão longa:** escalada em 3 degraus (um → cinco → todos), o protagonista entende a regra de verdade
-  e resolve usando ela; última frase é a piada/virada final.
+- **Versão longa (1:30–2:30) funciona diferente:** é uma história completa (normalmente cômica), não só um choque.
+  A virada vem a **~70%** e o resto é a solução. Estrutura:
+  1. **Regra + piadas do mundo** (0–20 s): 2–3 detalhes engraçados de como a sociedade vive com a regra
+     (com números/datas concretas) e um **personagem secundário marcante** apresentado com um detalhe estranho.
+  2. **Protagonista com 2 manias** (20–40 s): hábitos que parecem bobos e vão ser usados depois.
+  3. **Evento** (40–50 s): algo ridículo dispara a regra em público.
+  4. **Escalada em 3 degraus** (50–70 s): um → cinco → doze/todos; atinge alguém querido do protagonista.
+  5. **Protagonista também é atingido** e, ao reagir, **descobre como a regra funciona de verdade** (virada, ~70%).
+  6. **Solução** (100–125 s): ele usa as manias da parte 2 + a descoberta para salvar todo mundo.
+  7. **Callback final**: o personagem secundário da parte 1 fecha a história com a última piada.
+  Tudo que aparece no começo precisa ser usado no fim (sem detalhe solto).
 - Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
 
 ## Dinâmica de trabalho (ajustes visuais)
