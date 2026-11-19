@@ -60,4 +60,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
 - **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
   Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
+- **Protótipo de interiores (aguardando "pode salvar")** em `projetos/prototipo-interiores`: sala de aula,
+  quarto de menino (dia/noite) e sala de estar, nas vistas `lateral` (fundos `sala-aula`, `quarto-menino`,
+  `sala-estar` + sprites de móveis em `motor/sprites-interiores.js`) e `diagonal` (`"comodo": { "tipo": ... }`,
+  gerador `motor/cenarios/comodoDiagonal.js`). Depois de aprovado, mover os cenários para `biblioteca/cenarios.json`.
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

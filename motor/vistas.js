@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
 import { gerarRuaDiagonal, FAIXA } from './cenarios/ruaDiagonal.js';
+import { gerarComodoDiagonal, COMODO } from './cenarios/comodoDiagonal.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
 import { estadoCamera, estadoElemento } from './compartilhado/linhaDoTempo.js';
 import { obterSprite } from './sprites.js';
@@ -100,6 +101,7 @@ function ceuDiagonal(W, H, noite) {
 // z = distância a partir da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua,
 // ~5.3 = calçada dos prédios); y = altura (pulo).
 function vistaDiagonal(c, motor) {
+  if (c.comodo) return vistaComodo(c, motor);
   const { W, H } = motor;
   const op = c.rua || {};
   // Comprimento da rua calculado pelo caminho da câmera e dos personagens (com folga),
@@ -159,6 +161,73 @@ function vistaDiagonal(c, motor) {
     },
     atualizarCamera(cam, ef) {
       const centro = ponto(FAIXA.meioRua - (cam.z ?? 0), -cam.x, cam.y);
+      camera.position.set(snap(centro.x) + ef.tremorX / PPU, snap(centro.y) + ef.tremorY / PPU, 50);
+      camera.zoom = cam.zoom;
+    },
+  };
+}
+
+// ---------------------------------------------------------------- diagonal: interior (cômodo)
+// Mesmas coordenadas da rua: x = ao longo do cômodo; z = distância a partir da frente (0 = perto da
+// borda do piso, ~3.8 = encostado na parede do fundo); y = altura. Cada móvel é um plano próprio:
+// o personagem que está na frente dele é desenhado por cima, o que está atrás fica escondido.
+function vistaComodo(c, motor) {
+  const { W, H } = motor;
+  const op = typeof c.comodo === 'string' ? { tipo: c.comodo } : c.comodo;
+  const cm = gerarComodoDiagonal({ ...op, semente: op.semente ?? c.semente ?? c.numero * 13 });
+  const cena = new THREE.Scene();
+  cena.background = new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
+  const plano = (img, w, h, x0, y0, z) => {
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    cv.getContext('2d').putImageData(new ImageData(img, w, h), 0, 0);
+    const t = tex(cv);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w / PPU, h / PPU), new THREE.MeshBasicMaterial({ map: t, transparent: true, alphaTest: 0.5, depthWrite: false }));
+    m.position.set((x0 + w / 2) / PPU, (cm.H - y0 - h / 2) / PPU, z);
+    cena.add(m);
+    return { m, t };
+  };
+  const base = plano(cm.imagem, cm.W, cm.H, 0, 0, 0);
+  base.m.renderOrder = 1000;
+  // móveis em ordem de profundidade (os de cima de outro móvel logo depois dele)
+  const pecas = cm.pecas.map((p) => ({ ...p, chave: (p.i0 + p.i1) / 2 + (p.j0 + p.j1) / 2 + (p.sobre ? 0.3 : 0) })).sort((a, b) => a.chave - b.chave);
+  pecas.forEach((p, n) => { p.ordem = 2000 + n * 10; p.malha = plano(p.imagem, p.w, p.h, p.x0, p.y0, 0.4); p.malha.m.renderOrder = p.ordem; });
+  // personagem: logo depois do último móvel que está atrás dele
+  const ordemEm = (i, j) => {
+    let o = 1990;
+    for (const p of pecas) if (i >= p.i1 - 0.12 || j >= p.j1 - 0.12) o = Math.max(o, p.ordem);
+    return o + 5 + Math.max(0, Math.min(3.9, (i + j + 20) / 12));
+  };
+  for (const l of cm.noite ? cm.luzes : []) {
+    const L = new THREE.PointLight(l.cor || '#ffe0a0', 1.1 * Math.PI, 4.5, 1);
+    const p = cm.proj(l.i, l.j, l.h);
+    L.position.set(Math.round(p.x) / PPU, (cm.H - Math.round(p.y)) / PPU, 1.5); cena.add(L);
+  }
+  const iDe = (el) => COMODO.frente - (el.z ?? 0);
+  const ponto = (i, j, altura = 0) => {
+    const p = cm.proj(i, j);
+    return new THREE.Vector3(Math.round(p.x) / PPU, (cm.H - Math.round(p.y)) / PPU + altura, 0.5);
+  };
+  const camera = new THREE.OrthographicCamera(-W / 2 / PPU, W / 2 / PPU, H / 2 / PPU, -H / 2 / PPU, -100, 100);
+  camera.position.z = 50;
+  return {
+    cena, camera,
+    ambiente: cm.noite ? ['#7a84c0', 0.62] : ['#ffffff', 1.0],
+    climaPadrao: null,
+    atualizar: () => {},
+    liberar: () => { base.t.dispose(); pecas.forEach((p) => p.malha.t.dispose()); },
+    ordemInicial: (el) => ordemEm(iDe(el), -(el.x ?? 0)),
+    paraMundo: (el, st, dy = 0) => ponto(iDe(el), -st.x, snap(st.y) + dy),
+    posicionar(e, st, bob) {
+      const i = iDe(e.def), j = -st.x;
+      e.malha.position.copy(ponto(i, j, snap(st.y) + bob));
+      e.malha.renderOrder = ordemEm(i, j);
+    },
+    posicionarSombra(e, st) {
+      const i = iDe(e.def), j = -st.x;
+      e.sombra.position.copy(ponto(i, j, 1 / PPU)); e.sombra.renderOrder = ordemEm(i, j) - 0.5;
+    },
+    atualizarCamera(cam, ef) {
+      const centro = ponto(COMODO.meio - (cam.z ?? 0), -cam.x, cam.y);
       camera.position.set(snap(centro.x) + ef.tremorX / PPU, snap(centro.y) + ef.tremorY / PPU, 50);
       camera.zoom = cam.zoom;
     },

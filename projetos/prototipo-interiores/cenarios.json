@@ -56,5 +56,11 @@
       { "id": "poltrona", "sprite": "poltrona", "x": 6.2, "z": -0.05 },
       { "id": "planta", "sprite": "planta-vaso", "x": 8.4, "z": -0.05 }
     ]
-  }
+    },
+  // ---- vista diagonal (cômodo em corte, móveis desenhados em 3D-pixel)
+  // z dos personagens: 0 = perto da frente do piso, ~3.8 = encostado na parede do fundo.
+  "sala-de-aula-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-aula" }, "camera": { "x": 0, "y": 3 } },
+  "quarto-menino-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino" }, "camera": { "x": 0, "y": 3 } },
+  "quarto-menino-noite-diagonal": { "vista": "diagonal", "comodo": { "tipo": "quarto-menino-noite" }, "camera": { "x": 0, "y": 3 } },
+  "sala-de-estar-diagonal": { "vista": "diagonal", "comodo": { "tipo": "sala-estar" }, "camera": { "x": 0, "y": 3 } }
 }
