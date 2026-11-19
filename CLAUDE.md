@@ -76,4 +76,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Poses sentadas (aguardando aprovação)**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente, estilo
   jogo) e `"sentado-lado"`, e as ações `sentar`/`levantar` (`motor/sentado.js`). Assento a ~12 px do chão: em
   sofás use `"y": 0.25`, nas carteiras `"y": 0.2`. Teste em `projetos/prototipo-sentados`.
+- **Diagonal espelhada** (`"comodo": { ..., "espelhar": true }`): o cômodo desenhado pelo outro lado da diagonal
+  (câmera continua sem girar). O x do roteiro troca de sinal em relação ao desenho normal. Bom para variar o
+  ângulo entre cenas e para alunos `sentado-lado` olharem para a lousa (lugares: x = -0.8, -3.4, -6; z = 1.15 e -0.15).
 - Branch de trabalho: `claude/cool-noether-ai5egq`.

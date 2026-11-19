@@ -190,13 +190,24 @@ function vistaComodo(c, motor) {
   const { W, H } = motor;
   const op = typeof c.comodo === 'string' ? { tipo: c.comodo } : c.comodo;
   // o cômodo se estende para a esquerda até onde a câmera e os personagens chegam (com folga de uma tela)
+  // "espelhar": o cômodo é desenhado pelo outro lado da diagonal (parede do fundo subindo para a esquerda).
+  // A câmera continua de frente; só o desenho é espelhado. No espelhado, o x do roteiro = -x do desenho,
+  // então andar para +x continua indo para a direita na tela.
+  const esp = !!op.espelhar, xg = (x) => (esp ? -x : x);
   let minX = 0;
   for (let t = 0; t <= c.duracao; t += 0.25) {
-    minX = Math.min(minX, estadoCamera(c, t).x);
-    for (const el of c.elementos) minX = Math.min(minX, estadoElemento(c, el, t).x);
+    minX = Math.min(minX, xg(estadoCamera(c, t).x));
+    for (const el of c.elementos) minX = Math.min(minX, xg(estadoElemento(c, el, t).x));
   }
   const extra = op.inicio == null ? { inicio: Math.min(-9, Math.floor(minX) - 14) } : {};
   const cm = gerarComodoDiagonal({ ...op, ...extra, semente: op.semente ?? c.semente ?? c.numero * 13 });
+  if (esp) {
+    const virar = (img, w, h) => { const o = new Uint8ClampedArray(img.length); for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) o.set(img.subarray((y * w + x) * 4, (y * w + x) * 4 + 4), (y * w + (w - 1 - x)) * 4); return o; };
+    cm.imagem = virar(cm.imagem, cm.W, cm.H);
+    for (const p of cm.pecas) { p.imagem = virar(p.imagem, p.w, p.h); p.x0 = cm.W - p.x0 - p.w; }
+    const proj = cm.proj; cm.proj = (i, j, h) => { const p = proj(i, j, h); return { x: cm.W - p.x, y: p.y }; };
+  }
+  const jDe = (x) => (esp ? x : -x);
   const cena = new THREE.Scene();
   cena.background = cm.tema ? fundoSombrio(W, H, cm.tema) : new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
   const plano = (img, w, h, x0, y0, z) => {
@@ -237,19 +248,19 @@ function vistaComodo(c, motor) {
     climaPadrao: cm.tema ? 'vagalumes' : null,
     atualizar: () => {},
     liberar: () => { base.t.dispose(); pecas.forEach((p) => p.malha.t.dispose()); },
-    ordemInicial: (el) => ordemEm(iDe(el), -(el.x ?? 0)),
-    paraMundo: (el, st, dy = 0) => ponto(iDe(el), -st.x, snap(st.y) + dy),
+    ordemInicial: (el) => ordemEm(iDe(el), jDe(el.x ?? 0)),
+    paraMundo: (el, st, dy = 0) => ponto(iDe(el), jDe(st.x), snap(st.y) + dy),
     posicionar(e, st, bob) {
-      const i = iDe(e.def), j = -st.x;
+      const i = iDe(e.def), j = jDe(st.x);
       e.malha.position.copy(ponto(i, j, snap(st.y) + bob));
       e.malha.renderOrder = ordemEm(i, j);
     },
     posicionarSombra(e, st) {
-      const i = iDe(e.def), j = -st.x;
+      const i = iDe(e.def), j = jDe(st.x);
       e.sombra.position.copy(ponto(i, j, 1 / PPU)); e.sombra.renderOrder = ordemEm(i, j) - 0.5;
     },
     atualizarCamera(cam, ef) {
-      const centro = ponto(COMODO.meio - (cam.z ?? 0), -cam.x, cam.y);
+      const centro = ponto(COMODO.meio - (cam.z ?? 0), jDe(cam.x), cam.y);
       camera.position.set(snap(centro.x) + ef.tremorX / PPU, snap(centro.y) + ef.tremorY / PPU, 50);
       camera.zoom = cam.zoom;
     },
