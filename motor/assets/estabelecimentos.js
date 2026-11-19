@@ -1,8 +1,8 @@
 // Estabelecimentos para a vista LATERAL (escola, delegacia, padaria, mercado, farmácia) + objetos de rua.
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
-import { desenharTexto, larguraTexto } from './fonte.js';
-import { rng } from './compartilhado/util.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
+import { desenharTexto, larguraTexto } from '../fonte.js';
+import { rng } from '../compartilhado/util.js';
 
 const K = '#1a1c2c';
 
@@ -187,5 +187,5 @@ function comoSprite(fab) {
 registrarSprites({
   escola: comoSprite(escola), delegacia: comoSprite(delegacia), padaria: comoSprite(padaria), mercado: comoSprite(mercado), farmacia: comoSprite(farmacia),
   'carro-policia': comoSprite(carroPolicia), 'banco-praca': comoSprite(bancoPraca), 'ponto-onibus': comoSprite(pontoOnibus), hidrante: comoSprite(hidrante),
-});
+}, { grupo: 'Cidade (vista lateral)' });
 

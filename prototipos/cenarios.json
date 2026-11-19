@@ -1,0 +1,582 @@
+{
+  // PROTÓTIPOS de cenários (aguardando aprovação). Valem para TODOS os projetos, sem copiar.
+  // Aprovado ("pode salvar")? Mova a entrada para biblioteca/cenarios.json.
+  // Prioridade: projeto > biblioteca > prototipos (um protótipo nunca substitui um aprovado).
+
+  // ---- Praça e rua (diorama)
+  // Feira na praça: barracas frutas, verduras, flores, sorvete e uma fechada. Vendedor: x da barraca + 0.8, z -2.4.
+  "praca-feira": {
+    "vista": "diorama",
+    "camera": {
+      "x": 0,
+      "z": -8.5
+    },
+    "rua": {
+      "periodo": "dia",
+      "faixaPedestre": -3,
+      "praca": {
+        "x": 0,
+        "largura": 16,
+        "profundidade": 12
+      },
+      "predios": [
+        {
+          "tipo": "comum"
+        },
+        {
+          "tipo": "padaria",
+          "largura": 4
+        },
+        {
+          "tipo": "escola",
+          "largura": 6
+        },
+        {
+          "tipo": "delegacia",
+          "largura": 5
+        },
+        {
+          "tipo": "mercado",
+          "largura": 6
+        },
+        {
+          "tipo": "farmacia",
+          "largura": 4
+        }
+      ]
+    },
+    "elementos": [
+      {
+        "id": "arvore1",
+        "sprite": "arvore-iso-grande",
+        "x": -7.25,
+        "z": -2.25
+      },
+      {
+        "id": "arvore2",
+        "sprite": "arvore-iso-grande",
+        "x": 6.75,
+        "z": -2.25
+      },
+      {
+        "id": "arvore3",
+        "sprite": "arvore-iso",
+        "x": -7.25,
+        "z": -10.25
+      },
+      {
+        "id": "arvore4",
+        "sprite": "arvore-iso",
+        "x": 6.75,
+        "z": -10.25
+      },
+      {
+        "id": "poste3",
+        "sprite": "poste-iso",
+        "x": -8.4,
+        "z": -6.4
+      },
+      {
+        "id": "poste4",
+        "sprite": "poste-iso",
+        "x": 7.9,
+        "z": -6.4
+      },
+      {
+        "id": "fonte",
+        "sprite": "fonte-iso",
+        "x": -0.9,
+        "z": -6.9
+      },
+      {
+        "id": "canteiro1",
+        "sprite": "canteiro-iso",
+        "x": -6.7,
+        "z": -9.9
+      },
+      {
+        "id": "canteiro2",
+        "sprite": "canteiro-iso",
+        "x": 4.3,
+        "z": -9.9
+      },
+      {
+        "id": "barraca1",
+        "sprite": "barraca-frutas",
+        "x": -6,
+        "z": -3.2
+      },
+      {
+        "id": "barraca2",
+        "sprite": "barraca-verduras",
+        "x": -3.7,
+        "z": -3.2
+      },
+      {
+        "id": "barraca3",
+        "sprite": "barraca-flores",
+        "x": -1.4,
+        "z": -3.2
+      },
+      {
+        "id": "barraca4",
+        "sprite": "barraca-sorvete",
+        "x": 2.4,
+        "z": -3.2
+      },
+      {
+        "id": "barraca5",
+        "sprite": "barraca-vazia",
+        "x": 4.7,
+        "z": -3.2,
+        "pose": "fechada"
+      }
+    ]
+  },
+  // Praça seca (calor do Dia do Sol): a decorada com fonte seca, árvores amareladas e canteiros murchos.
+  "praca-seca": {
+    "vista": "diagonal",
+    "camera": {
+      "x": 0,
+      "z": -8.5
+    },
+    "rua": {
+      "periodo": "dia",
+      "faixaPedestre": -3,
+      "praca": {
+        "x": 0,
+        "largura": 16,
+        "profundidade": 12
+      },
+      "predios": [
+        {
+          "tipo": "comum"
+        },
+        {
+          "tipo": "padaria",
+          "largura": 4
+        },
+        {
+          "tipo": "escola",
+          "largura": 6
+        },
+        {
+          "tipo": "delegacia",
+          "largura": 5
+        },
+        {
+          "tipo": "mercado",
+          "largura": 6
+        },
+        {
+          "tipo": "farmacia",
+          "largura": 4
+        }
+      ]
+    },
+    "elementos": [
+      {
+        "id": "arvore1",
+        "sprite": "arvore-iso-grande",
+        "x": -7.25,
+        "z": -2.25,
+        "pose": "seca"
+      },
+      {
+        "id": "arvore2",
+        "sprite": "arvore-iso-grande",
+        "x": 6.75,
+        "z": -2.25,
+        "pose": "seca"
+      },
+      {
+        "id": "arvore3",
+        "sprite": "arvore-iso",
+        "x": -7.25,
+        "z": -10.25,
+        "pose": "seca"
+      },
+      {
+        "id": "arvore4",
+        "sprite": "arvore-iso",
+        "x": 6.75,
+        "z": -10.25,
+        "pose": "seca"
+      },
+      {
+        "id": "poste3",
+        "sprite": "poste-iso",
+        "x": -8.4,
+        "z": -6.4
+      },
+      {
+        "id": "poste4",
+        "sprite": "poste-iso",
+        "x": 7.9,
+        "z": -6.4
+      },
+      {
+        "id": "fonte",
+        "sprite": "fonte-iso",
+        "x": -0.9,
+        "z": -6.9,
+        "pose": "seca"
+      },
+      {
+        "id": "canteiro1",
+        "sprite": "canteiro-iso",
+        "x": -6.7,
+        "z": -9.9,
+        "pose": "murcho"
+      },
+      {
+        "id": "canteiro2",
+        "sprite": "canteiro-iso",
+        "x": 4.3,
+        "z": -9.9,
+        "pose": "murcho"
+      },
+      {
+        "id": "palanque",
+        "sprite": "palanque-iso",
+        "x": 3.5,
+        "z": -7.4
+      },
+      {
+        "id": "band1",
+        "sprite": "bandeirinhas-iso",
+        "x": -6,
+        "z": -4.6
+      },
+      {
+        "id": "band2",
+        "sprite": "bandeirinhas-iso",
+        "x": 0.2,
+        "z": -4.6
+      },
+      {
+        "id": "barraca1",
+        "sprite": "barraca-pipoca",
+        "x": -6.4,
+        "z": -3.2
+      },
+      {
+        "id": "barraca2",
+        "sprite": "barraca-doces",
+        "x": -4.5,
+        "z": -3.2
+      },
+      {
+        "id": "barraca3",
+        "sprite": "barraca-jogos",
+        "x": -2.6,
+        "z": -3.2
+      }
+    ]
+  },
+  // Rua comercial alagada (chuva de 30 anos), para a viatura boiar.
+  "rua-alagada": {
+    "vista": "diagonal",
+    "clima": "chuva",
+    "rua": {
+      "periodo": "dia",
+      "faixaPedestre": -3,
+      "alagada": true,
+      "predios": [
+        {
+          "tipo": "comum"
+        },
+        {
+          "tipo": "padaria",
+          "largura": 4
+        },
+        {
+          "tipo": "escola",
+          "largura": 6
+        },
+        {
+          "tipo": "delegacia",
+          "largura": 5
+        },
+        {
+          "tipo": "mercado",
+          "largura": 6
+        },
+        {
+          "tipo": "farmacia",
+          "largura": 4
+        }
+      ]
+    }
+  },
+  // Noite das Estrelas: rua comercial à noite com palanque no meio da rua e bandeirinhas na calçada dos prédios.
+  // Palanque: canto da frente em x -0.6, z 2.6 (em cima: "y": 0.75, x ~0 a 1.8, z ~3 a 3.8).
+  // Céu acima dos telhados: câmera { "z": 3.5, "y": 3.4 }; estrelas em z 6.05, "y" 7 a 9.
+  "rua-estrelas": {
+    "vista": "diagonal",
+    "rua": {
+      "periodo": "noite",
+      "faixaPedestre": -3,
+      "predios": [
+        {
+          "tipo": "comum"
+        },
+        {
+          "tipo": "padaria",
+          "largura": 4
+        },
+        {
+          "tipo": "escola",
+          "largura": 6
+        },
+        {
+          "tipo": "delegacia",
+          "largura": 5
+        },
+        {
+          "tipo": "mercado",
+          "largura": 6
+        },
+        {
+          "tipo": "farmacia",
+          "largura": 4
+        }
+      ]
+    },
+    "elementos": [
+      {
+        "id": "palanque",
+        "sprite": "palanque-iso",
+        "x": -0.6,
+        "z": 2.6
+      },
+      {
+        "id": "band1",
+        "sprite": "bandeirinhas-iso",
+        "x": -6,
+        "z": 5
+      },
+      {
+        "id": "band2",
+        "sprite": "bandeirinhas-iso",
+        "x": 0.2,
+        "z": 5
+      }
+    ]
+  },
+
+  // ---- Quarto de menina (diorama e lateral)
+  // Quarto de menina: cama rosa, penteadeira com espelho, pufe, cavalete com pintura, estante, planta.
+  "quarto-menina-diorama": {
+    "vista": "diorama",
+    "comodo": {
+      "tipo": "quarto-menina"
+    }
+  },
+  "quarto-menina-noite-diorama": {
+    "vista": "diorama",
+    "comodo": {
+      "tipo": "quarto-menina-noite"
+    }
+  },
+  "quarto-menina": {
+    "fundo": "quarto-menina",
+    "realce": 0,
+    "elementos": [
+      {
+        "id": "tapete",
+        "sprite": "tapete",
+        "x": 0.4,
+        "z": -0.06,
+        "cores": {
+          "cor": "#a888e0"
+        }
+      },
+      {
+        "id": "cama",
+        "sprite": "cama",
+        "x": -5.6,
+        "z": -0.05,
+        "cores": {
+          "tecido": "#e87ab0"
+        }
+      },
+      {
+        "id": "criado",
+        "sprite": "criado-mudo",
+        "x": -2.4,
+        "z": -0.05
+      },
+      {
+        "id": "abajur",
+        "sprite": "abajur-apagado",
+        "x": -2.4,
+        "y": 1.375,
+        "z": -0.05
+      },
+      {
+        "id": "planta",
+        "sprite": "planta-vaso",
+        "x": 0.8,
+        "z": -0.05
+      },
+      {
+        "id": "escrivaninha",
+        "sprite": "escrivaninha-desligada",
+        "x": 3.7,
+        "z": -0.05
+      },
+      {
+        "id": "guarda-roupa",
+        "sprite": "guarda-roupa",
+        "x": 7.6,
+        "z": -0.05
+      }
+    ]
+  },
+  "quarto-menina-noite": {
+    "fundo": "quarto-menina-noite",
+    "elementos": [
+      {
+        "id": "tapete",
+        "sprite": "tapete",
+        "x": 0.4,
+        "z": -0.06,
+        "cores": {
+          "cor": "#a888e0"
+        }
+      },
+      {
+        "id": "cama",
+        "sprite": "cama",
+        "x": -5.6,
+        "z": -0.05,
+        "cores": {
+          "tecido": "#e87ab0"
+        }
+      },
+      {
+        "id": "criado",
+        "sprite": "criado-mudo",
+        "x": -2.4,
+        "z": -0.05
+      },
+      {
+        "id": "abajur",
+        "sprite": "abajur",
+        "x": -2.4,
+        "y": 1.375,
+        "z": -0.05
+      },
+      {
+        "id": "planta",
+        "sprite": "planta-vaso",
+        "x": 0.8,
+        "z": -0.05
+      },
+      {
+        "id": "escrivaninha",
+        "sprite": "escrivaninha",
+        "x": 3.7,
+        "z": -0.05
+      },
+      {
+        "id": "guarda-roupa",
+        "sprite": "guarda-roupa",
+        "x": 7.6,
+        "z": -0.05
+      }
+    ]
+  },
+
+  // ---- Modo 3D (guardado: só se o usuário pedir)
+  // Vista "3d": personagens 2D num mundo 3D (motor/cenarios/palco3d.js e objetos3d.js).
+  // x = lateral; z = profundidade (fundo dos cômodos em z = -6).
+  "quarto-menino-3d": {
+    "vista": "3d",
+    "palco": {
+      "tipo": "quarto-menino"
+    },
+    "realce": 0
+  },
+  "quarto-menino-noite-3d": {
+    "vista": "3d",
+    "palco": {
+      "tipo": "quarto-menino-noite"
+    }
+  },
+  "sala-de-aula-3d": {
+    "vista": "3d",
+    "palco": {
+      "tipo": "sala-aula"
+    },
+    "realce": 0
+  },
+  "sala-de-estar-3d": {
+    "vista": "3d",
+    "palco": {
+      "tipo": "sala-estar"
+    },
+    "realce": 0
+  },
+  "praca-3d": {
+    "vista": "3d",
+    "palco": {
+      "tipo": "praca"
+    },
+    "realce": 0,
+    "elementos": [
+      {
+        "id": "arv1",
+        "sprite": "arvore",
+        "x": -4.6,
+        "z": -11,
+        "semente": 2,
+        "escala": 1.3
+      },
+      {
+        "id": "arv2",
+        "sprite": "arvore",
+        "x": 7.5,
+        "z": -11.5,
+        "semente": 5,
+        "escala": 1.3
+      },
+      {
+        "id": "arv3",
+        "sprite": "arvore",
+        "x": -20,
+        "z": -10,
+        "semente": 3,
+        "escala": 1.3
+      },
+      {
+        "id": "pin1",
+        "sprite": "pinheiro",
+        "x": 21,
+        "z": -11,
+        "escala": 1.3
+      },
+      {
+        "id": "arb1",
+        "sprite": "arbusto",
+        "x": -6.5,
+        "z": 3
+      },
+      {
+        "id": "arb2",
+        "sprite": "arbusto",
+        "x": 3,
+        "z": 3.4,
+        "semente": 3
+      },
+      {
+        "id": "arvFrente",
+        "sprite": "arvore",
+        "x": -10.5,
+        "z": 5,
+        "semente": 4
+      }
+    ]
+  }
+}

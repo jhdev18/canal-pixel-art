@@ -319,10 +319,18 @@ const FABRICAS = {
 
 export const NOMES_SPRITES = Object.keys(FABRICAS);
 
-// Permite que outros módulos (ex.: sprites-rpg.js) adicionem sprites ao catálogo.
-export function registrarSprites(fabricas) {
+// Metadados de cada sprite (para o catálogo): grupo, status ("aprovado" | "protótipo") e descrição curta.
+export const INFO_SPRITES = {};
+for (const n of NOMES_SPRITES) INFO_SPRITES[n] = { grupo: 'Básicos (simples)', status: 'aprovado' };
+
+// Permite que outros módulos (motor/assets/*.js) adicionem sprites ao catálogo.
+//   meta: { grupo, status: 'aprovado' | 'protótipo', prototipos: [nomes que ainda são protótipo], descricoes: { nome: texto } }
+export function registrarSprites(fabricas, meta = {}) {
   Object.assign(FABRICAS, fabricas);
-  for (const n of Object.keys(fabricas)) if (!NOMES_SPRITES.includes(n)) NOMES_SPRITES.push(n);
+  for (const n of Object.keys(fabricas)) {
+    if (!NOMES_SPRITES.includes(n)) NOMES_SPRITES.push(n);
+    INFO_SPRITES[n] = { grupo: meta.grupo || 'Outros', status: meta.prototipos?.includes(n) ? 'protótipo' : (meta.status || 'aprovado'), descricao: meta.descricoes?.[n] };
+  }
 }
 
 // Recolore pixels de cores específicas (para variações de 'cores' em sprites prontos).

@@ -2,9 +2,9 @@
 // Posição no roteiro (x, z) = canto da FRENTE do objeto (o ponto mais baixo na tela). O objeto se estende
 // para a direita (+x, "largura") e para o fundo (+z, "fundo"). A ordem de desenho usa o centro do objeto,
 // então os personagens passam na frente ou atrás dele.
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
-import { spriteIso } from './cenarios/comodoDiagonal.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
+import { spriteIso } from '../cenarios/comodoDiagonal.js';
 
 // estados: { nome: { tipo, op, noite } }; todos os quadros com o mesmo tamanho (o maior), base no mesmo ponto
 export function iso(estados, extra = {}) {
@@ -51,4 +51,4 @@ registrarSprites({
   'barraca-verduras': () => barraca('verduras'),
   'barraca-flores': () => barraca('flores'),
   'barraca-vazia': () => barraca('vazia'),
-});
+}, { grupo: 'Praça e rua (diorama, isométricos)', prototipos: ['viatura-iso', 'barraca-sorvete', 'barraca-frutas', 'barraca-verduras', 'barraca-flores', 'barraca-vazia'] });

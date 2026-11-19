@@ -1,13 +1,13 @@
 // PROTÓTIPOS (aguardando aprovação): personagens, objetos e itens de praça para histórias futuras.
 // Tudo já no formato do diorama: moradores 28x44 (andam, sentam, costas) e objetos isométricos
 // (x/z = canto da frente, como os da praça).
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
-import { pessoaComSentado, MORADORES } from './sprites-cidade.js';
-import { MOVEIS } from './cenarios/comodoDiagonal.js';
-import { iso } from './sprites-praca.js';
-import { desenharTexto, larguraTexto } from './fonte.js';
-import { rng } from './compartilhado/util.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
+import { pessoaComSentado, MORADORES } from './moradores.js';
+import { MOVEIS } from '../cenarios/comodoDiagonal.js';
+import { iso } from './praca.js';
+import { desenharTexto, larguraTexto } from '../fonte.js';
+import { rng } from '../compartilhado/util.js';
 
 const K = '#1a1c2c';
 
@@ -166,5 +166,5 @@ registrarSprites({
   'lixeira-praca': () => iso({ parado: { tipo: 'lixeira-praca' } }),
   'placa-praca': () => iso({ parado: { tipo: 'placa-nome', op: { texto: 'PRACA SERENA' } } }),
   'carrinho-sorvete': () => iso({ parado: { tipo: 'carrinho-sorvete' } }),
-});
+}, { grupo: 'Novos (personagens, objetos, praça)', status: 'protótipo' });
 void rng; void estados; void MORADORES;

@@ -113,6 +113,9 @@ Outros comandos:
 | `npm run previa -- meu-video` | Prévia em tempo real no navegador (sem áudio); recarrega quando o `roteiro.json` muda |
 | `npm run lista` | Lista fundos, sprites, ações, efeitos sonoros, paletas e a biblioteca |
 | `npm run sprites` | Gera `sprites-disponiveis.png` com todos os sprites |
+| `npm run fotos -- meu-video` | Imagens paradas de cada cena (sem vídeo) em `saida/fotos/` + `folha.png`. Na cena, `"foto": 2.5` (ou `[1, 4]`) escolhe o momento |
+| `npm run vitrine` | Imagens das principais mudanças (projeto `vitrine`) |
+| `npm run catalogo` | Lista todos os assets (sprites com estados, personagens, cenários, ações, sons) em `biblioteca/CATALOGO.md` |
 | `npm run sfx` | Exporta todos os efeitos sonoros para `biblioteca/sfx/_gerados/` (para ouvir) |
 | `npm run gpu` | Diagnóstico de GPU e NVENC |
 

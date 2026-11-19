@@ -2,16 +2,7 @@
 // Exposto como window.motor para o orquestrador em Node (Playwright).
 import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
-import './sprites-rpg.js';
-import './sprites-detalhados.js';
-import './sprites-cidade.js';
-import './sprites-guardioes.js';   // protótipo
-import './sprites-fantasmas.js';   // protótipo
-import './sprites-prototipos.js';  // protótipo
-import './estabelecimentos.js';
-import './sprites-interiores.js';
-import './sprites-nesse-mundo.js';
-import './sprites-praca.js';
+import './assets/index.js';   // todos os assets (motor/assets/)
 import { criarVista } from './vistas.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
@@ -430,6 +421,21 @@ class Motor {
     const out = [];
     for (let i = 0; i < n; i++) out.push(this.quadro(inicio + i));
     return out;
+  }
+
+  // Imagem parada no tempo T (PNG em dataURL), ampliada "escala" vezes sem suavizar (pixel nítido).
+  foto(T, escala = 4) {
+    const { W, H } = this;
+    const rasc = this.rascunho; this.rascunho = false;
+    this.renderizarTempo(T);
+    this.rascunho = rasc;
+    this.renderer.readRenderTargetPixels(this.rtSaida, 0, 0, W, H, this.buffer);
+    const img = new ImageData(W, H);
+    for (let y = 0; y < H; y++) img.data.set(this.buffer.subarray((H - 1 - y) * W * 4, (H - y) * W * 4), y * W * 4);
+    const a = document.createElement('canvas'); a.width = W; a.height = H; a.getContext('2d').putImageData(img, 0, 0);
+    const b = document.createElement('canvas'); b.width = W * escala; b.height = H * escala;
+    const g = b.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(a, 0, 0, b.width, b.height);
+    return b.toDataURL('image/png');
   }
 
   // Folha com uma miniatura por cena (para revisar o rascunho rapidamente).

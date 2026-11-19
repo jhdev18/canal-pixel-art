@@ -2,11 +2,11 @@
 // Estados: muitos sprites têm vários estados, trocados pela ação  { "tipo": "trocar", "alvo": "id", "estado": "chuva" }.
 // Estados com "unica" tocam uma vez a partir do "trocar" e param no último quadro.
 // Para prender num personagem: "sobre": { "id": "bia", "dx": 0, "dy": 2.8 } (dx acompanha o lado em que ele olha).
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
-import { desenharTexto, larguraTexto } from './fonte.js';
-import { rng } from './compartilhado/util.js';
-import { renderOlho } from './olho3d.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
+import { desenharTexto, larguraTexto } from '../fonte.js';
+import { rng } from '../compartilhado/util.js';
+import { renderOlho } from '../olho3d.js';
 
 const K = '#1a1c2c';
 
@@ -551,4 +551,4 @@ registrarSprites({
   sanduiche,
   'lista-compras': sprLista,
   malinha,
-});
+}, { grupo: 'Nesse Mundo (objetos de história)', prototipos: ['caderno', 'pagina-caderno'] });

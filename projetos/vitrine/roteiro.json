@@ -1,0 +1,156 @@
+{
+  // VITRINE: as principais mudanças, para conferir no seu PC.
+  //   npm run vitrine                  -> imagens em projetos/vitrine/saida/fotos/ (01.png... + folha.png)
+  //   npm run previa -- vitrine        -> ver em movimento no navegador
+  //   npm run rascunho -- vitrine      -> vídeo rápido (com os sons novos)
+  // "foto": segundo(s) da cena em que a imagem é tirada. Tudo no diorama.
+  "titulo": "Vitrine das mudanças",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "cenas": [
+    // 1. Rua (diorama, antiga "diagonal"): guardiões pequenos ao lado das pessoas; números só nas pessoas
+    { "cenario": "rua-comercial", "duracao": 7, "transicao": "fade", "foto": [2.5, 6],
+      "legenda": "1. Diorama + guardiões. Números só nas pessoas.",
+      "camera": { "x": -2, "z": 2.2, "y": 2.4 }, "cameraFim": { "x": 1 },
+      "elementos": [
+        { "id": "bia",     "personagem": "menina-capa", "x": -7,   "z": 1.2, "numero": 1 },
+        { "id": "azul",    "personagem": "guardiao-azul",   "x": -8.4, "z": 0.6 },
+        { "id": "prof",    "personagem": "professora",  "x": -2,   "z": 5.6, "numero": 2, "numeroCor": "#7ad87a" },
+        { "id": "verde",   "personagem": "guardia-verde",   "x": -0.8, "z": 5.6, "virado": "esquerda" },
+        { "id": "padeiro", "personagem": "padeiro",     "x": 2.4,  "z": 5.6, "numero": 3, "numeroCor": "#c8a0f0", "virado": "esquerda" },
+        { "id": "noturno", "personagem": "guardiao-noturno","x": 3.6,  "z": 5.6, "virado": "esquerda" },
+        { "id": "prefeito","personagem": "prefeito",    "x": 5.4,  "z": 5.6, "numero": "?", "numeroEstilo": "solto", "virado": "esquerda" },
+        { "id": "chefe",   "personagem": "guardiao-chefe",  "x": 6.6,  "z": 5.6, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia",  "para": 0.5, "inicio": 0.2, "duracao": 4 },
+        { "tipo": "andar", "alvo": "azul", "para": -0.9, "inicio": 0.2, "duracao": 4 },
+        { "tipo": "numero", "alvo": "prefeito", "valor": 4, "inicio": 3 },
+        { "tipo": "numero", "alvo": "bia", "valor": 10, "cor": "#f06a5a", "inicio": 4.6 },
+        { "tipo": "falar", "alvo": "bia", "texto": "Dez?!", "inicio": 4.8 }
+      ],
+      "vertical": { "camera": { "x": -3, "z": 2.2, "y": 2.4, "zoom": 2 }, "cameraFim": { "x": 0 } } },
+
+    // 2. Praça decorada melhorada: barracas espaçadas, toldo acima das pessoas, placa com ícone
+    { "cenario": "praca-decorada", "duracao": 3, "transicao": "dither", "foto": 1.5,
+      "legenda": "2. Praça decorada: barracas espaçadas, com placa.",
+      "elementos": [ { "id": "tonho", "personagem": "padeiro", "x": -5.2, "z": -2.4 }, { "id": "caixa", "personagem": "caixa", "x": -2.9, "z": -2.4 }, { "id": "bia", "personagem": "menina-capa", "x": -2, "z": -8.6 } ] },
+
+    // 3. Close: vendedor aparece embaixo do toldo
+    { "cenario": "praca-decorada", "duracao": 3, "transicao": "dither", "foto": 1.5, "camera": { "x": -3.6, "z": -5, "zoom": 2 },
+      "legenda": "3. Vendedores aparecem sob o toldo.",
+      "elementos": [ { "id": "tonho", "personagem": "padeiro", "x": -5.2, "z": -2.4 }, { "id": "caixa", "personagem": "caixa", "x": -2.9, "z": -2.4 } ] },
+
+    // 4. Praça decorada à noite (luzinhas)
+    { "cenario": "praca-decorada-noite", "duracao": 3, "transicao": "dither", "foto": 1.5,
+      "legenda": "4. Festa à noite.",
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": -2, "z": -8.6 } ] },
+
+    // 5. Feira (barracas novas) + sorveteiro, rival, ícones e placar
+    { "cenario": "praca-feira", "duracao": 6, "transicao": "dither", "foto": [1, 5.5], "camera": { "x": -1, "z": -7.5 },
+      "legenda": "5. Feira, sorveteiro, rival, ícones e placar.",
+      "elementos": [
+        { "id": "verdureira", "personagem": "caixa", "x": -3.8, "z": -2.4 },
+        { "id": "carrinho", "sprite": "carrinho-sorvete", "x": 1.2, "z": -8.6 },
+        { "id": "sorveteiro", "personagem": "sorveteiro", "x": 2.9, "z": -8.1, "virado": "esquerda" },
+        { "id": "bia", "personagem": "menina-capa", "x": -6, "z": -8.4 },
+        { "id": "rival", "personagem": "rival", "x": 6, "z": -8.6, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": -1.4, "inicio": 0.2, "duracao": 2.2 },
+        { "tipo": "andar", "alvo": "rival", "para": 3.8, "inicio": 0.2, "duracao": 1.6 },
+        { "tipo": "emocao", "alvo": "rival", "icone": "raiva", "inicio": 2.6, "duracao": 3 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "gota", "inicio": 2.9, "duracao": 3 },
+        { "tipo": "emocao", "alvo": "sorveteiro", "icone": "nota", "inicio": 3.2, "duracao": 3 },
+        { "tipo": "placar", "opcoes": ["BIA", "RIVAL"], "votos": [58, 42], "inicio": 3.6, "duracao": 2.4 }
+      ] },
+
+    // 6. Praça de dia: vovó no banco, carteiro, bilhete, relógio, caixa de correio, lixeira, placa, gato
+    { "cenario": "praca", "duracao": 7, "transicao": "dither", "foto": [2.9, 4.6], "camera": { "x": -2, "z": -8.5 }, "cameraFim": { "x": 0 },
+      "legenda": "6. Vovó, carteiro, gato, relógio e pensamento.",
+      "elementos": [
+        { "id": "placa", "sprite": "placa-praca", "x": -3.6, "z": -10.8 },
+        { "id": "relogio", "sprite": "relogio-praca", "x": 2.6, "z": -9.2, "pose": "h3" },
+        { "id": "correio", "sprite": "caixa-correio", "x": -3.2, "z": -4.6 },
+        { "id": "lixeira", "sprite": "lixeira-praca", "x": 3.4, "z": -4.4 },
+        { "id": "vovo", "personagem": "vovo", "x": -5.1, "y": 0, "z": -4.05, "pose": "sentado" },
+        { "id": "carteiro", "personagem": "carteiro", "x": -9, "z": -8.4 },
+        { "id": "bilhete", "sprite": "bilhete", "x": -2, "z": -8.4, "oculto": true },
+        { "id": "gato", "personagem": "gato-chapeu", "x": 5.6, "z": -7.4, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "correr", "alvo": "carteiro", "para": 6, "inicio": 0.2, "duracao": 3.2 },
+        { "tipo": "aparecer", "alvo": "bilhete", "inicio": 1.6, "som": "papel" },
+        { "tipo": "trocar", "alvo": "bilhete", "estado": "brilhando", "inicio": 2.2 },
+        { "tipo": "emocao", "alvo": "vovo", "icone": "lampada", "inicio": 2.4 },
+        { "tipo": "pensar", "alvo": "vovo", "texto": "De novo, Tonho?", "inicio": 3.6 },
+        { "tipo": "trocar", "alvo": "relogio", "estado": "h11-55", "inicio": 5 },
+        { "tipo": "som", "som": "sino-relogio", "inicio": 5 },
+        { "tipo": "andar", "alvo": "gato", "para": 3, "inicio": 5, "duracao": 1.6 },
+        { "tipo": "som", "som": "miau", "inicio": 6.4 }
+      ] },
+
+    // 7. Praça à noite: fantasmas, fogo-fátuo, pegadas, menino de pijama e contagem
+    { "cenario": "praca-noite", "duracao": 8, "transicao": "dither", "foto": [3.6, 7.3], "camera": { "x": 0, "z": -8.5 }, "cameraFim": { "x": 1 },
+      "legenda": "7. Fantasmas, fogo-fátuo e contagem.",
+      "elementos": [
+        { "id": "menino", "personagem": "menino-pijama", "x": -6, "z": -8.6 },
+        { "id": "pegadas", "sprite": "pegadas-brilhantes", "x": -3.4, "z": -8.4 },
+        { "id": "fatuo", "sprite": "fogo-fatuo", "x": -1.4, "y": 1.4, "z": -8.2 },
+        { "id": "crianca", "personagem": "fantasma-crianca", "x": 1.6, "z": -8, "pose": "timido", "oculto": true },
+        { "id": "lencol", "personagem": "fantasma-lencol", "x": 4.6, "z": -6.6, "virado": "esquerda" },
+        { "id": "vovof", "personagem": "fantasma-vovo", "x": -5.4, "z": -4.6, "pose": "rindo" },
+        { "id": "cao", "personagem": "fantasma-cachorro", "x": 6.4, "z": -9.4, "pose": "feliz", "virado": "esquerda" },
+        { "id": "sombra", "personagem": "fantasma-sombra", "x": 7.2, "z": -4.4, "escala": 2, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "menino", "para": -2.4, "inicio": 0.2, "duracao": 2.4 },
+        { "tipo": "aparecer", "alvo": "crianca", "inicio": 1.2, "som": "fantasma" },
+        { "tipo": "trocar", "alvo": "crianca", "estado": "acenar", "inicio": 2.6 },
+        { "tipo": "trocar", "alvo": "lencol", "estado": "assustar", "inicio": 3.2 },
+        { "tipo": "emocao", "alvo": "menino", "icone": "!", "inicio": 3.3 },
+        { "tipo": "contador", "de": 3, "inicio": 4, "duracao": 3 },
+        { "tipo": "aparecer", "alvo": "sombra", "inicio": 6.9, "som": "trovao" },
+        { "tipo": "tremer", "inicio": 7, "duracao": 0.4 }
+      ] },
+
+    // 8. Pistas de perto: lupa no mapa, carta, cadeado, cartaz "procura-se" e selo "CONTINUA..."
+    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [1, 5.2], "camera": { "x": -1, "z": -7.4, "zoom": 2 },
+      "legenda": "8. Lupa, pistas, cartaz e CONTINUA.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -2.6, "z": -7.4 },
+        { "id": "mapa", "sprite": "mapa", "x": -1.2, "z": -7.2 },
+        { "id": "carta", "sprite": "carta", "x": -0.4, "z": -7.2, "pose": "fechada" },
+        { "id": "cadeado", "sprite": "cadeado", "x": 0.4, "z": -7.2 },
+        { "id": "cartaz", "sprite": "cartaz-procura-se", "tela": true, "escurecer": 0.6, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "destaque", "alvo": "mapa", "raio": 18, "dy": 4, "inicio": 0.4, "duracao": 1.4 },
+        { "tipo": "trocar", "alvo": "carta", "estado": "aberta", "inicio": 2, "som": "papel" },
+        { "tipo": "trocar", "alvo": "cadeado", "estado": "aberto", "inicio": 2.6, "som": "cadeado" },
+        { "tipo": "aparecer", "alvo": "cartaz", "inicio": 3.2, "som": "suspense" },
+        { "tipo": "trocar", "alvo": "cartaz", "estado": "foto", "inicio": 4 },
+        { "tipo": "continua", "inicio": 4.4, "duracao": 1.6 }
+      ] },
+
+    // 9. Galeria dos fantasmas (todos os estados principais lado a lado)
+    { "cenario": "praca-noite", "duracao": 4, "transicao": "dither", "foto": [1.2, 3.2], "camera": { "x": 0, "z": -7.6, "zoom": 2 },
+      "legenda": "9. Fantasmas: estados.",
+      "elementos": [
+        { "id": "f1", "personagem": "fantasma-lencol",   "x": -3.4, "z": -7.6 },
+        { "id": "f2", "personagem": "fantasma-crianca",  "x": -1.8, "z": -7.6, "pose": "timido" },
+        { "id": "f3", "personagem": "fantasma-vovo",     "x": -0.2, "z": -7.6 },
+        { "id": "f4", "personagem": "fantasma-cachorro", "x": 1.4,  "z": -7.6 },
+        { "id": "f5", "personagem": "fantasma-sombra",   "x": 3.0,  "z": -7.6 },
+        { "id": "f6", "sprite": "fogo-fatuo", "x": 4.2, "y": 1, "z": -7.6, "pose": "verde" }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "f1", "estado": "assustar", "inicio": 2.5 },
+        { "tipo": "trocar", "alvo": "f2", "estado": "acenar", "inicio": 2.5 },
+        { "tipo": "trocar", "alvo": "f3", "estado": "rindo", "inicio": 2.5 },
+        { "tipo": "trocar", "alvo": "f4", "estado": "feliz", "inicio": 2.5 },
+        { "tipo": "trocar", "alvo": "f5", "estado": "assustar", "inicio": 2.5 },
+        { "tipo": "trocar", "alvo": "f6", "estado": "roxo", "inicio": 2.5 }
+      ] }
+  ]
+}

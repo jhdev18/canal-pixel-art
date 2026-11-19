@@ -1,6 +1,6 @@
 // Interiores para a vista LATERAL: parede do cômodo (camada 'comodo') + pisos internos.
 // A parede repete a cada 512 px; janelas, portas e quadros ficam pintados nela.
-// Os móveis são sprites (motor/sprites-interiores.js), posicionados no roteiro/cenário.
+// Os móveis são sprites (motor/assets/interiores.js), posicionados no roteiro/cenário.
 import { bayer } from '../pixel.js';
 import { rng } from '../compartilhado/util.js';
 

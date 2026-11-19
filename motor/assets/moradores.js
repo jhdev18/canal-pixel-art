@@ -1,9 +1,9 @@
 // Moradores da cidade: gerador de pessoas detalhadas (28x44) + 7 personagens.
 // Mesmo sistema de camadas da menina-capa: formas por material -> sombreamento -> contorno colorido.
-import { Boneco, passada } from './boneco.js';
-import { registrarSprites } from './sprites.js';
-import { hexParaRgb } from './pixel.js';
-import { adicionarSentado, adicionarCostas } from './sentado.js';
+import { Boneco, passada } from '../boneco.js';
+import { registrarSprites } from '../sprites.js';
+import { hexParaRgb } from '../pixel.js';
+import { adicionarSentado, adicionarCostas } from '../sentado.js';
 
 const W = 28, H = 44;
 
@@ -259,7 +259,7 @@ export const MORADORES = {
     cabelo: 'curto', chapeu: 'bone', baixo: 'calca', avental: true, mangaCurta: true },
 };
 
-registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])));
+registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])), { grupo: 'Moradores da cidade' });
 
 // Nesse Mundo (aprovadas): variações dos moradores
 export const VARIACOES = {
@@ -269,4 +269,4 @@ export const VARIACOES = {
   'cao-policial': { ...MORADORES.policial, cao: true, cabelo: 'nenhum',
     cores: { ...MORADORES.policial.cores, pele: '#c8884a', cabelo: '#7a4a24', orelha: '#6a3a1c', focinho: '#f0dcc0' } },
 };
-registrarSprites(Object.fromEntries(Object.entries(VARIACOES).map(([k, p]) => [k, () => pessoaComSentado(p)])));
+registrarSprites(Object.fromEntries(Object.entries(VARIACOES).map(([k, p]) => [k, () => pessoaComSentado(p)])), { grupo: 'Moradores da cidade', prototipos: ['cao-policial'] });

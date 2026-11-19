@@ -11,7 +11,13 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
    Outros estilos (`lateral`, `avenida`, `"movimentoReal"`, `3d` etc.) **só se o usuário pedir diretamente**. Se algo
    parece precisar de lateral, resolver no diorama (outro enquadramento, outro lugar, ou detalhe em close com `"tela": true`).
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
-   Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
+   Protótipos ficam em `prototipos/` (a pasta temporária); só passar para `biblioteca/` depois do "pode salvar".
+   **Organização dos assets (não espalhar pelo projeto):** código de sprite novo → um arquivo em `motor/assets/`
+   (registrado em `motor/assets/index.js`, com `grupo` e `status: 'protótipo'`); personagens/cenários de protótipo →
+   `prototipos/personagens.json` / `prototipos/cenarios.json` (valem para todos os projetos; nunca copiar para dentro
+   de um projeto). Aprovado: mover a entrada para `biblioteca/` e tirar o `status: 'protótipo'`. Depois de mudar
+   assets, rodar `npm run catalogo` (atualiza `biblioteca/CATALOGO.md`). Para o usuário conferir mudanças: cenas
+   no projeto `projetos/vitrine` (com `"foto"` e `"legenda"`) e ele roda `npm run vitrine`.
 4. **Narração por um narrador em terceira pessoa**, em **um único áudio**
    (`projetos/<ep>/narracao/narracao-completa.mp3`), com legenda automática do texto do narrador.
 5. **A câmera nunca gira para os lados, em qualquer vista** (pixels precisam ficar alinhados à tela).
@@ -166,26 +172,26 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
 - **Protótipos aguardando aprovação** (após o "pode salvar", cadastrar personagens em `biblioteca/personagens.json`):
-  - guardiões pequenos (`guardiao-azul`, `guardia-verde`, `guardiao-chefe`, `guardiao-noturno`, `motor/sprites-guardioes.js`)
-    e números sobre a cabeça **das pessoas** (guardiões sem número; campo `numero` / ação `numero`). Teste: `projetos/prototipo-guardioes`.
-  - fantasmas (`motor/sprites-fantasmas.js`): `fantasma-lencol` (parado/assustar/timido), `fantasma-crianca`
+  - guardiões pequenos (`guardiao-azul`, `guardia-verde`, `guardiao-chefe`, `guardiao-noturno`, `motor/assets/guardioes.js`)
+    e números sobre a cabeça **das pessoas** (guardiões sem número; campo `numero` / ação `numero`). Teste: `projetos/vitrine` (cena 1).
+  - fantasmas (`motor/assets/fantasmas.js`): `fantasma-lencol` (parado/assustar/timido), `fantasma-crianca`
     (parado/timido/acenar/assustar), `fantasma-vovo` (parado/rindo/acenar), `fantasma-sombra` (parado/assustar; use `escala` 2),
     `fantasma-cachorro` (parado/feliz), `fogo-fatuo` (azul/verde/roxo, com luz). Flutuam sozinhos; use `"y"` ~0.4.
-  - `motor/sprites-prototipos.js`: moradores `carteiro`, `vovo`, `sorveteiro`, `rival`, `menino-pijama` (andam e sentam);
+  - `motor/assets/prototipos.js`: moradores `carteiro`, `vovo`, `sorveteiro`, `rival`, `menino-pijama` (andam e sentam);
     `gato-chapeu`; objetos `bilhete` (brilhando), `carta` (fechada/aberta), `mapa`, `cadeado` (fechado/aberto),
     `pegadas-brilhantes`, `cartaz-procura-se` (vazio/foto; bom com `"tela": true`); isométricos `relogio-praca`
     (h3/h6/h9/h12/h11-55), `caixa-correio`, `lixeira-praca`, `placa-praca`, `carrinho-sorvete`.
   - ações novas: `pensar`, `destaque`, `contador`, `placar`, `continua`; ícones `lampada`/`gota`/`raiva`/`nota`;
-    sons `sino-relogio`, `cadeado`, `papel`, `miau`, `trovao`, `suspense`, `fantasma`. Teste: `projetos/prototipo-assets`
-    (personagens no `personagens.json` do projeto).
+    sons `sino-relogio`, `cadeado`, `papel`, `miau`, `trovao`, `suspense`, `fantasma`. Teste: `projetos/vitrine`
+    (personagens em `prototipos/personagens.json`).
   - barracas novas `barraca-sorvete`/`-frutas`/`-verduras`/`-flores`/`-vazia` (estados parado/acesa/fechada) e cenário
-    `praca-feira` (em `projetos/prototipo-praca/cenarios.json`).
+    `praca-feira` (em `prototipos/cenarios.json`).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
   Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
-  `sala-de-estar` (fundos + móveis de `motor/sprites-interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
+  `sala-de-estar` (fundos + móveis de `motor/assets/interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
   `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,
   `quarto-menino-noite-diorama`, `sala-de-estar-diorama`. O diorama aceita **ângulos**: padrão `"classico"`
   (diagonal clássica; não precisa escrever), `"espelhado"` e extras `tipo@angulo` (sala de aula: `lousa-fundo`).
@@ -201,8 +207,8 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   Pendência: texto pequeno em objetos do fundo perde linhas de pixel.
 - **Teste "mundo sombrio" (o usuário não gostou; não usar)** em `projetos/prototipo-mundo-sombrio`.
 - Protótipos de teste: `projetos/prototipo-interiores`, `projetos/prototipo-sentados`.
-- **Assets "Nesse Mundo" — APROVADOS (na biblioteca)** (`motor/sprites-nesse-mundo.js`, variações `policial-oculos` e
-  `prefeito-careca` em `sprites-cidade.js`; teste em `projetos/prototipo-nesse-mundo`, folha em `folha-assets.png`; personagens `policial-oculos`, `prefeito-careca`, `cone-monstro`).
+- **Assets "Nesse Mundo" — APROVADOS (na biblioteca)** (`motor/assets/nesse-mundo.js`, variações `policial-oculos` e
+  `prefeito-careca` em `motor/assets/moradores.js`; teste em `projetos/prototipo-nesse-mundo`, folha em `folha-assets.png`; personagens `policial-oculos`, `prefeito-careca`, `cone-monstro`).
   Para 3 roteiros: curto "estrelas que viram olhos", curto "cada rua tem um monstro" e longo "cada um carrega o
   próprio tempo". Sprites: `tempo-pessoal` (estados sol-pequeno/sol/sol-grande/sol-forte/nuvenzinha/garoa/chuva/
   aguaceiro/nada), `guarda-chuva` (aberto/fechando/fechado), `estrela-mentira`/`estrela-gigante` (parado/olho/
@@ -215,11 +221,11 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   "profundidade" } }` do `ruaDiagonal.js`, de frente para os mesmos prédios; câmera `"z": -8.5` foca a praça).
   **Padrão** (uso normal): `praca`, `praca-noite`. **Decorada** (festa): `praca-decorada`, `praca-decorada-noite`
   (bandeirinhas, palanque — em cima `"y": 0.75` — e barracas). Para decorar uma cena, troque só o nome do cenário.
-  Objetos isométricos (`motor/sprites-praca.js`): `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande`
+  Objetos isométricos (`motor/assets/praca.js`): `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande`
   verde/seca, `poste-iso`, `poste-iso-aceso`, `canteiro-iso` verde/murcho, `palanque-iso`, `bandeirinhas-iso`,
   `barraca-pipoca`/`-doces`/`-jogos` (parado/acesa); x/z = canto da frente; estado inicial com `"pose"`.
   Os postes de TODA a rua diagonal são o `poste-iso` (aceso à noite); `"rua": { "postes": "antigo" }` volta ao chapado.
-- **Protótipos NÃO aprovados** (teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
+- **Protótipos NÃO aprovados** (definidos em `prototipos/cenarios.json`; teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
   `praca-seca` (decorada com fonte seca etc., para a história do Dia do Sol) e `quarto-menina` / `quarto-menina-noite`
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`

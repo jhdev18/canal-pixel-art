@@ -1,6 +1,0 @@
-{
-  // Quarto de menina (protótipo, ainda não está na biblioteca)
-  // Quarto de menina (diagonal): cama rosa, penteadeira com espelho, pufe, cavalete com pintura, estante, planta.
-  "quarto-menina-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina" } },
-  "quarto-menina-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina-noite" } }
-}

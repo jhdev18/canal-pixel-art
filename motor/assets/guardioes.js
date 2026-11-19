@@ -1,8 +1,8 @@
 // PROTÓTIPO (aguardando aprovação): pequenos guardiões com jeito de gente.
 // Usam o mesmo gerador dos moradores (28x44, frente + andar/correr de lado, caminhada clássica),
 // então já funcionam na vista diorama. Corpo de criança = guardiões pequenos.
-import { pessoaComSentado as pessoa } from './sprites-cidade.js';
-import { registrarSprites } from './sprites.js';
+import { pessoaComSentado as pessoa } from './moradores.js';
+import { registrarSprites } from '../sprites.js';
 
 const BASE = { cabelo: 'curto', chapeu: 'elmo', baixo: 'calca', corpo: 'crianca', capa: true, cinto: true, emblema: true };
 const COURO = { lanca: '#7a4a2a', metal: '#dfe3ee', cinto: '#5a3a20', sapato: '#4a3020' };
@@ -22,4 +22,4 @@ export const GUARDIOES = {
     cores: { ...COURO, pele: '#c88a64', cabelo: '#1a1410', tronco: '#2e2e52', calca: '#1c1c30', chapeu: '#6a6a82', aba: '#44445a', pluma: '#9a5ad8', capa: '#1e1a2e', emblema: '#9a5ad8' } },
 };
 
-registrarSprites(Object.fromEntries(Object.entries(GUARDIOES).map(([k, p]) => [k, () => pessoa(p)])));
+registrarSprites(Object.fromEntries(Object.entries(GUARDIOES).map(([k, p]) => [k, () => pessoa(p)])), { grupo: 'Guardiões', status: 'protótipo' });

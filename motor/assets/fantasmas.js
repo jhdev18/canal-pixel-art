@@ -1,8 +1,8 @@
 // PROTÓTIPO (aguardando aprovação): fantasmas para histórias futuras. Funcionam em qualquer vista (diorama incluso).
 // Flutuam sozinhos (sobem e descem); a cauda some em dithering (parece translúcida sem perder o pixel nítido).
 // Estados ("pose" no elemento ou ação "trocar"): veja ESTADOS em cada fantasma.
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
 
 const W = 24, H = 32;
 
@@ -140,4 +140,4 @@ registrarSprites({
     anims.parado = anims.andando = anims.correndo = anims.azul;
     return { quadros, brilho, anims, sombra: false, voa: true, luz: { cor: '#7ad0ff', intensidade: 0.8, alcance: 3 } };
   },
-});
+}, { grupo: 'Fantasmas', status: 'protótipo' });

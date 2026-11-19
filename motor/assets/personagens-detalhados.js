@@ -1,8 +1,8 @@
 // Personagens detalhados (28x44): frente com respiração e piscar, andar de lado (4 quadros)
 // e correr (6 quadros). Desenhados com o sistema de camadas de boneco.js.
-import { Boneco, passada } from './boneco.js';
-import { registrarSprites } from './sprites.js';
-import { adicionarSentado, adicionarCostas } from './sentado.js';
+import { Boneco, passada } from '../boneco.js';
+import { registrarSprites } from '../sprites.js';
+import { adicionarSentado, adicionarCostas } from '../sentado.js';
 
 const W = 28, H = 44;
 
@@ -224,4 +224,4 @@ registrarSprites({
   // nomes usados antes (continuam funcionando)
   'menina-capa-detalhada': () => meninaComSentado(),
   'robo-semaforo-detalhado': () => roboV2(),
-});
+}, { grupo: 'Personagens principais (detalhados)' });

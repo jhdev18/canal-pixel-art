@@ -12,6 +12,8 @@ import { abrirNavegador, ehSoftware } from './navegador.js';
 import { gerarSom, NOMES_SONS, AMBIENTES } from './audio/sintetizador.js';
 import { escreverWavMono } from './audio/mixer.js';
 import { carregarBiblioteca, listarSpritesBiblioteca, PASTA_BIBLIOTECA } from './biblioteca.js';
+import { gerarFotos } from './fotos.js';
+import { gerarCatalogo } from './catalogo.js';
 
 const [cmd, ...resto] = process.argv.slice(2);
 const flags = {}, pos = [];
@@ -247,6 +249,9 @@ Gerador de vídeos pixel art (Three.js + GPU)
   npm run narracao -- meu-video     monta o texto da narração para colar no ElevenLabs
   npm run sfx                       exporta os efeitos sonoros para sfx/_gerados
   npm run sprites                   gera sprites-disponiveis.png
+  npm run fotos -- meu-video        imagens paradas de cada cena (sem vídeo) em saida/fotos/
+  npm run vitrine                   imagens das principais mudanças (projeto "vitrine")
+  npm run catalogo                  lista todos os assets em biblioteca/CATALOGO.md
   npm run lista [-- projeto]        lista fundos, sprites, sons e a biblioteca (personagens, cenários)
 
 Opções: --fps 60   --escala 4   --crt   --formato normal|vertical|ambos
@@ -279,6 +284,9 @@ try {
     case 'narracao': await narracao(pos[0]); break;
     case 'sfx': sfx(); break;
     case 'sprites': await sprites(); break;
+    case 'fotos': if (!pos[0]) throw new Error('Uso: npm run fotos -- nome-do-projeto'); await gerarFotos(pos[0], { escala: Number(flags.escala) || 4 }); break;
+    case 'vitrine': await gerarFotos('vitrine', { escala: Number(flags.escala) || 4 }); break;
+    case 'catalogo': { const c = await gerarCatalogo(); console.log(`✔ ${c.arq}\n  ${c.sprites} sprites, ${c.personagens} personagens, ${c.cenarios} cenários`); break; }
     case 'lista': await lista(); break;
     default: console.log(AJUDA);
   }

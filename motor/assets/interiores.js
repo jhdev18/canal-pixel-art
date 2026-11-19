@@ -1,10 +1,10 @@
 // Móveis e objetos de interiores (vista lateral): escola, quarto de menino e sala de estar.
 // Apoiados pela base (y = 0 no chão). Objetos de parede usam "y" no roteiro (ex.: lousa y 1.3).
 // Cores trocáveis com "cores": { "tecido": "#3a6ac8" } (cama, sofá, poltrona) ou { "madeira": ... }.
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
-import { desenharTexto } from './fonte.js';
-import { rng } from './compartilhado/util.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
+import { desenharTexto } from '../fonte.js';
+import { rng } from '../compartilhado/util.js';
 
 const K = '#1a1c2c';
 
@@ -300,4 +300,4 @@ registrarSprites({
   sofa: sp(sofa), poltrona: sp(poltrona), 'tv-rack': sp(tvRack), 'tv-rack-desligada': sp(tvRack, { ligada: false }),
   'mesa-centro': sp(mesaCentro), tapete: sp(tapete), 'planta-vaso': sp(plantaVaso), 'luminaria-pe': sp(luminariaPe),
   'luminaria-pe-apagada': sp(luminariaPe, { acesa: false }), 'estante-sala': sp(estanteSala),
-});
+}, { grupo: 'Interiores (móveis e cômodos)', prototipos: ['penteadeira', 'pufe', 'cavalete'] });
