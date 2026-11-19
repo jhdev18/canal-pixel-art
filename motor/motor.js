@@ -6,6 +6,7 @@ import './sprites-rpg.js';
 import './sprites-detalhados.js';
 import './sprites-cidade.js';
 import './estabelecimentos.js';
+import './sprites-interiores.js';
 import { criarVista } from './vistas.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
