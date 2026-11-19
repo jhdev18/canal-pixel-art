@@ -382,6 +382,36 @@ const MOVEIS = {
   } },
 };
 
+// ------------------------------------------------------------------ móveis como sprites (para a rua diagonal)
+// Desenha um móvel do diorama sozinho e devolve um sprite cuja base (centro de baixo) é o canto da FRENTE do
+// móvel: no roteiro, x/z do elemento = esse canto. Assim ele pode ficar na rua diagonal com os personagens
+// passando na frente ou atrás (a ordem segue a posição).
+export function spriteIso(tipo, op = {}, { noite = false } = {}) {
+  const def = MOVEIS[tipo];
+  const di = op.di ?? def.di, dj = op.dj ?? def.dj, HM = 96, pad = 4;
+  const OX = dj * 16 + pad + 40, OY = HM + pad;
+  const W = Math.ceil((di + dj) * 16 + 2 * pad + 80), H = Math.ceil((di + dj) * 8 + OY + pad);
+  const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
+  const L = new Camada({ W, H, OX, OY, proj });
+  def.f(L, { i0: 0, i1: di, j0: 0, j1: dj, h0: op.h0 }, { luzes: [], noite, op, semente: op.semente ?? 7 });
+  const ax = Math.round(proj(di, dj).x), ay = Math.round(proj(di, dj).y);
+  let x0 = W, x1 = -1, y0 = H;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (L.tipo[y * W + x]) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); }
+  const meia = Math.max(ax - x0, x1 - ax) + 1, w = meia * 2 + 1, h = ay - y0 + 1;
+  const img = new Uint8ClampedArray(w * h * 4), br = new Uint8ClampedArray(w * h * 4);
+  let temBrilho = false;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const sx = ax - meia + x, sy = y0 + y;
+    if (sx < 0 || sx >= W || sy >= H) continue;
+    const k = sy * W + sx; if (!L.tipo[k]) continue;
+    const f = L.tipo[k] === 2 ? 1 : L.face[k];
+    const px = [L.cor[k * 3] * f * 255, L.cor[k * 3 + 1] * f * 255, L.cor[k * 3 + 2] * f * 255, 255];
+    img.set(px, (y * w + x) * 4);
+    if (L.tipo[k] === 2) { br.set(px, (y * w + x) * 4); temBrilho = true; }
+  }
+  return { w, h, img, br: temBrilho ? br : null, di, dj };
+}
+
 // ------------------------------------------------------------------ cômodos prontos
 // moveis: { tipo, x (centro ao longo do cômodo), i (distância da parede do fundo), opções... }
 // paredes: decorações na parede do fundo (x) e na lateral (lateral: true, x = distância do fundo).

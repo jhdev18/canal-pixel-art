@@ -2,24 +2,98 @@
   // PROTÓTIPO (não aprovado): cenários novos com foco na diagonal (vista "diorama").
   // Depois do "pode salvar", vão para biblioteca/cenarios.json.
 
-  // Praça ao ar livre (diagonal): pedras, fonte no centro, bancos, árvores, postes e canteiros; céu atrás.
-  // Personagens: z de 0 (frente) a ~3.6 (perto da fonte/cerca). Bancos em x -4.6 e 4.6 (sentar com "y": 0.45).
-  "praca-diorama": { "vista": "diorama", "comodo": { "tipo": "praca" } },
-  "praca-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "praca-noite" } },
-  // Praça no Dia do Sol: bandeirinhas e palanque (em cima do palanque: "y": 0.75, x ~4.8 a 6.4, z ~2.4 a 3.6)
-  "praca-festa-diorama": { "vista": "diorama", "comodo": { "tipo": "praca-festa" } },
-  // Praça com a fonte seca e os canteiros murchos (o calor do Dia do Sol)
-  "praca-seca-diorama": { "vista": "diorama", "comodo": { "tipo": "praca-festa",
-    "moveis": [
-      { "tipo": "arvore", "x": -8.6, "i": -0.2, "folhas": ["#c8b860", "#a89a48", "#7a7a3a", "#5a5a2a"] },
-      { "tipo": "arvore", "x": 8.8, "i": -0.1, "altura": 34, "folhas": ["#c8b860", "#a89a48", "#7a7a3a", "#5a5a2a"] },
-      { "tipo": "banco", "x": -4.6, "i": 0.2 },
-      { "tipo": "poste", "x": -6.6, "i": 0.3 }, { "tipo": "poste", "x": 6.6, "i": 0.3 },
-      { "tipo": "fonte", "x": 0, "i": 0.4, "seca": true },
-      { "tipo": "canteiro-flores", "x": -6.2, "i": 3.9, "murcho": true }, { "tipo": "canteiro-flores", "x": 6.2, "i": 3.9, "murcho": true },
-      { "tipo": "palanque-d", "x": 5.6, "i": 0.2 },
-      { "tipo": "bandeirinhas", "x": -3, "i": 1.6, "dj": 6 }, { "tipo": "bandeirinhas", "x": 3.2, "i": 1.6, "dj": 6 }
-    ] } },
+  // Praça na RUA COMERCIAL (diagonal), do lado de cá da rua, de frente para os mesmos prédios.
+  // A câmera já vem centrada na fonte ("camera": { "z": -8.5 }). Personagens: x de -7.5 a 7.5, z de -1.5 (perto da
+  // rua) a -11.5 (perto da câmera). Fonte no centro (x 0, z -6); bancos em x -5 e 5, z -4 (sentar: "y": 0.45).
+  // Objetos da praça: x/z = canto da frente; trocar estados: fonte "cheia"/"seca", árvores "verde"/"seca", canteiros "verde"/"murcho".
+  // De dia
+  "praca": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste1", "sprite": "poste-iso", "x": -3.65, "z": -2.15 },
+      { "id": "poste2", "sprite": "poste-iso", "x": 3.35, "z": -2.15 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "banco1", "sprite": "banco-iso", "x": -5.85, "z": -4.25 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "banco2", "sprite": "banco-iso", "x": 4.15, "z": -4.25 }
+    ]
+  },
+  // À noite: postes acesos
+  "praca-noite": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "noite", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste1", "sprite": "poste-iso-aceso", "x": -3.65, "z": -2.15 },
+      { "id": "poste2", "sprite": "poste-iso-aceso", "x": 3.35, "z": -2.15 },
+      { "id": "poste3", "sprite": "poste-iso-aceso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso-aceso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "banco1", "sprite": "banco-iso", "x": -5.85, "z": -4.25 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "banco2", "sprite": "banco-iso", "x": 4.15, "z": -4.25 }
+    ]
+  },
+  // Dia do Sol: palanque (em cima: "y": 0.75, x 4.2 a 6.2, z -6.4 a -7.2) e bandeirinhas
+  "praca-festa": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste1", "sprite": "poste-iso", "x": -3.65, "z": -2.15 },
+      { "id": "poste2", "sprite": "poste-iso", "x": 3.35, "z": -2.15 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "banco1", "sprite": "banco-iso", "x": -5.85, "z": -4.25 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
+      { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
+      { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 }
+    ]
+  },
+  // Calor do Dia do Sol: igual à festa, com fonte seca, árvores amareladas e canteiros murchos
+  "praca-seca": {
+    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25, "pose": "seca" },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25, "pose": "seca" },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25, "pose": "seca" },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25, "pose": "seca" },
+      { "id": "poste1", "sprite": "poste-iso", "x": -3.65, "z": -2.15 },
+      { "id": "poste2", "sprite": "poste-iso", "x": 3.35, "z": -2.15 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -3.65, "z": -10.65 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 3.35, "z": -10.65 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9, "pose": "seca" },
+      { "id": "banco1", "sprite": "banco-iso", "x": -5.85, "z": -4.25 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9, "pose": "murcho" },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9, "pose": "murcho" },
+      { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
+      { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
+      { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 }
+    ]
+  },
 
   // Quarto de menina (diagonal): cama rosa, penteadeira com espelho, pufe, cavalete com pintura, estante, planta.
   "quarto-menina-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina" } },

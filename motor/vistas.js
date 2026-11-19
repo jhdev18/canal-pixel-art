@@ -159,7 +159,9 @@ function vistaDiagonal(c, motor) {
     posicionar(e, st, bob) {
       const i = iDe(e.def, st), j = -st.x;
       e.malha.position.copy(ponto(i, j, snap(st.y) + bob));
-      e.malha.renderOrder = ordem(i, j) + 1 + (e.def.sobre ? 2 : 0);   // o que está "sobre" alguém fica na frente dele
+      // objetos isométricos (praça): a ordem usa o centro do objeto, não o canto da frente
+      const c = e.sprite.isoCentro, ri = c ? (c.di ?? 1) / 2 : 0, rj = c ? (c.dj ?? 1) / 2 : 0;
+      e.malha.renderOrder = ordem(i - ri, j - rj) + 1 + (e.def.sobre ? 2 : 0);   // o que está "sobre" alguém fica na frente dele
     },
     posicionarSombra(e, st) {
       const i = iDe(e.def, st), j = -st.x;

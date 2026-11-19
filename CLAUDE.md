@@ -169,14 +169,14 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   `bueiro-monstro` (parado/agarrar/enjoado/fechado), `cone-monstro` (personagem; dormindo), `sanduiche`,
   `lista-compras` (abrindo), `malinha`. Cenários na biblioteca: `praca-festa`, `praca-festa-noite`, `rua-festa`
   (diagonal), `morro-mirante`, `rua-monstros`. Recursos novos do motor: ação `trocar`, `"sobre"`, `"balancar"`, clima `calor`.
-- **Diagonal nova — PROTÓTIPO, NÃO aprovado** (teste em `projetos/prototipo-diagonal`, `previa.png`): modo
-  `"exterior": true` do diorama (sem paredes; chão vai além da tela; atrás da cerca viva: rua e fileira de prédios, céu só acima dos telhados; piso `pedras`, tapete `grama`) e cômodos `praca`,
-  `praca-noite`, `praca-festa` (palanque: em cima `"y": 0.75`) + `quarto-menina` / `quarto-menina-noite`
-  (diorama e lateral). Móveis novos do diorama: `fonte` (`seca`), `banco`, `arvore` (`altura`, `copa`, `folhas`),
-  `poste`, `canteiro-flores` (`murcho`), `palanque-d`, `bandeirinhas`, `penteadeira`, `pufe`, `cavalete`.
-  Cenários (em `projetos/prototipo-diagonal/cenarios.json`): `praca-diorama`, `praca-noite-diorama`,
-  `praca-festa-diorama`, `praca-seca-diorama`, `quarto-menina-diorama`, `quarto-menina-noite-diorama`,
-  `quarto-menina`, `quarto-menina-noite`.
+- **Diagonal nova — PROTÓTIPO, NÃO aprovado** (teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
+  **praça na rua comercial** (opção `"rua": { "praca": { "x", "largura", "profundidade" } }` do `ruaDiagonal.js`, no lugar
+  do canteiro, de frente para os mesmos prédios; câmera `"z": -8.5` foca a praça) com objetos isométricos
+  (`motor/sprites-praca.js`: `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande` verde/seca, `poste-iso`,
+  `poste-iso-aceso`, `canteiro-iso` verde/murcho, `palanque-iso`, `bandeirinhas-iso`; x/z = canto da frente; estado
+  inicial com `"pose"`). Cenários: `praca`, `praca-noite`, `praca-festa`, `praca-seca`. Também `quarto-menina` /
+  `quarto-menina-noite` (diorama e lateral) com móveis `penteadeira`, `pufe`, `cavalete`. O modo `"exterior"` do
+  diorama (praça com prédios próprios) foi trocado pela praça na rua (o usuário preferiu os prédios de antes).
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
 - **Branch de trabalho único:** `claude/modest-hamilton-4p4851` (já reúne `jolly-archimedes`, `cool-noether`,

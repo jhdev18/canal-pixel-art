@@ -4,12 +4,13 @@
   "resolucao": [320, 180],
   "volumeBaloes": 0.4,
   "cenas": [
-    // 1. Praça de dia: a Bia atravessa, o pombo no banco
-    { "cenario": "praca-diorama", "duracao": 5, "transicao": "fade", "cameraFim": { "x": 2 },
+    // 1. Praça (na rua comercial) de dia: a Bia atravessa, o pombo no banco
+    { "cenario": "praca", "duracao": 5, "transicao": "fade",
+      "camera": { "x": -1, "z": -8.5 }, "cameraFim": { "x": 1, "z": -8.5 },
       "elementos": [
-        { "id": "bia", "personagem": "menina-capa", "x": -5, "z": 0.6 },
-        { "id": "tonho", "personagem": "padeiro", "x": 3, "z": 1.6, "virado": "esquerda" },
-        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": -4.6, "z": 3.4 }
+        { "id": "bia", "personagem": "menina-capa", "x": -6, "z": -8.6 },
+        { "id": "tonho", "personagem": "padeiro", "x": 3, "z": -5.2, "virado": "esquerda" },
+        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": -5.2, "y": 0.45, "z": -4.4 }
       ],
       "acoes": [
         { "tipo": "andar", "alvo": "bia", "para": 1.6, "inicio": 0.3, "duracao": 3.4 },
@@ -17,18 +18,18 @@
       ] },
 
     // 2. Praça à noite: postes acesos
-    { "cenario": "praca-noite-diorama", "duracao": 4, "transicao": "dither",
-      "elementos": [ { "id": "ronaldo", "personagem": "policial-oculos", "x": -3, "z": 1.2 } ],
-      "acoes": [ { "tipo": "andar", "alvo": "ronaldo", "para": 2, "inicio": 0.3, "duracao": 3.2 } ] },
+    { "cenario": "praca-noite", "duracao": 4, "transicao": "dither",
+      "elementos": [ { "id": "ronaldo", "personagem": "policial-oculos", "x": -5, "z": -8.6 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "ronaldo", "para": 3, "inicio": 0.3, "duracao": 3.2 } ] },
 
     // 3. Praça no Dia do Sol: prefeito no palanque, todos com sol na cabeça
-    { "cenario": "praca-festa-diorama", "duracao": 5, "transicao": "dither", "clima": "calor", "camera": { "x": 2 },
+    { "cenario": "praca-festa", "duracao": 5, "transicao": "dither", "clima": "calor", "camera": { "x": 1.5, "z": -8.5 },
       "elementos": [
-        { "id": "prefeito", "personagem": "prefeito", "x": 5.6, "y": 0.75, "z": 3, "virado": "esquerda" },
+        { "id": "prefeito", "personagem": "prefeito", "x": 5, "y": 0.75, "z": -6.7, "virado": "esquerda" },
         { "id": "tPref", "sprite": "tempo-pessoal", "sobre": { "id": "prefeito", "dy": 2.75 } },
-        { "id": "bia", "personagem": "menina-capa", "x": 0.6, "z": 0.8 },
+        { "id": "bia", "personagem": "menina-capa", "x": -1, "z": -9.2 },
         { "id": "tBia", "sprite": "tempo-pessoal", "sobre": { "id": "bia", "dy": 2.75 } },
-        { "id": "prof", "personagem": "professora", "x": 2.4, "z": 1.4 },
+        { "id": "prof", "personagem": "professora", "x": 1.6, "z": -8.8 },
         { "id": "tProf", "sprite": "tempo-pessoal", "sobre": { "id": "prof", "dy": 2.75 } }
       ],
       "acoes": [
@@ -39,9 +40,9 @@
       ] },
 
     // 4. Praça seca (calor): fonte vazia, canteiros murchos, árvores amareladas
-    { "cenario": "praca-seca-diorama", "duracao": 4, "transicao": "dither", "clima": "calor", "paleta": "quente",
+    { "cenario": "praca-seca", "duracao": 4, "transicao": "dither", "clima": "calor", "paleta": "quente",
       "elementos": [
-        { "id": "tonho", "personagem": "padeiro", "x": -1.6, "z": 0.8 },
+        { "id": "tonho", "personagem": "padeiro", "x": -2.4, "z": -9 },
         { "id": "fogo", "sprite": "fogo-chapeu", "sobre": { "id": "tonho", "dy": 2.6 } }
       ],
       "acoes": [ { "tipo": "tremer", "inicio": 1, "duracao": 0.4 } ] },
