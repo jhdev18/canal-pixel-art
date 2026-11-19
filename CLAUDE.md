@@ -39,28 +39,33 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
 
-## Estilo "Mundo Torto" (Shorts de regra absurda)
-Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Baseado em Shorts de referência
-("Nesse mundo, quem ri vira balão" etc.); as premissas devem ser **nossas**, nunca as das referências.
-- **Duração:** 30–45 s (8–10 frases do narrador). Versão longa: até ~2:30, com escalada (ver abaixo).
+## Estilo "Mundo Torto" (vídeos de regra absurda)
+Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Tem dois formatos: **curto** e **longo**
+(se o usuário não disser qual, perguntar). Baseado em Shorts de referência; as premissas devem ser
+**nossas**, nunca as das referências.
+
+**Regras comuns aos dois:**
+- **1ª frase = regra absurda do mundo** — "Nesse mundo / Nessa cidade, ...". É o gancho e o título.
+- **Regra visual:** tem que dar pra mostrar na tela (algo no ombro, relógio flutuando, gente inchando).
+- **Virada justa:** plantar uma pista no começo que, depois da virada, passa a fazer sentido.
+- **Narração:** terceira pessoa, frases curtas (8–15 palavras), uma frase = uma cena.
+- **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
+- Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
+
+### Mundo Torto curto (um choque só)
+- **Duração:** 30–45 s (8–10 frases do narrador).
 - **Estrutura (5 partes):**
-  1. **Regra** (0–4 s): a 1ª frase é a regra absurda do mundo — "Nesse mundo / Nessa cidade, ...". É o gancho e o título.
+  1. **Regra** (0–4 s).
   2. **Exemplo** (4–10 s): 1–2 frases mostrando a regra funcionando no dia a dia.
   3. **Exceção** (10–18 s): "Mas esse garoto / essa menina..." — o protagonista que não se encaixa na regra.
   4. **Evento** (18–30 s): "Até que um dia..." — algo põe a regra à prova (acidente, festa, forasteiro chegando).
   5. **Virada** (últimos 3–6 s): revelação que muda o sentido da regra. Termina seco na virada:
      sem moral, sem "comente", sem tela final.
-- **Regra visual:** tem que dar pra mostrar na tela (algo no ombro, relógio flutuando, gente inchando).
-- **Virada justa:** plantar uma pista na parte 1 ou 2 que, depois da virada, passa a fazer sentido.
-- **Narração:** terceira pessoa, frases curtas (8–15 palavras), uma frase = uma cena. Conectores fortes
-  nas mudanças: "Mas", "Porém", "Até que", "E de repente".
-- **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
+- **Conectores:** "Mas", "Porém", "Até que", "E de repente".
 - **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
 - **Tons possíveis:** sombrio (virada de terror), cômico (protagonista que humilha a regra) ou emocional.
-- **Versão longa (1:30–2:30) funciona diferente** — ver a seção "Mundo Torto longo" abaixo.
-- Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
 
-### Mundo Torto longo (história completa, normalmente cômica)
+### Mundo Torto longo (história completa, normalmente cômica, 1:30–2:30)
 Extraído da referência "quem ri vira balão" (2:15, ~38 frases, ~3,5 s por frase). Não é um choque só:
 a virada vem a **~70%** e o resto é a solução e o fechamento.
 
