@@ -27,6 +27,7 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   const largT = p.corpo === 'largo' ? 1.2 : p.corpo === 'crianca' ? -0.6 : 0;
   const yC = p.corpo === 'crianca' ? 2 : 0;          // crianças: corpo um pouco mais baixo
   // cabelo comprido atrás da cabeça
+  if (p.cabelo === 'cacheado') { b.elipse(14, 10 - r + yC, 9, 8.6, M.cabelo); b.elipse(7.2, 17 - r + yC, 3.4, 3.6, M.cabelo); b.elipse(20.8, 17 - r + yC, 3.4, 3.6, M.cabelo); }
   if (p.cabelo === 'longo') b.poli([[7.3, 7 - r + yC], [20.7, 7 - r + yC], [21.4, 20 - r + yC], [6.6, 20 - r + yC]], M.cabelo);
   // mochila (alças aparecem na frente; o corpo da mochila aparece nas laterais)
   if (p.mochila) { b.ret(6, 18 - r + yC, 2, 10, M.mochila); b.ret(20, 18 - r + yC, 2, 10, M.mochila); }
@@ -63,9 +64,12 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   if (p.cabelo === 'curto') b.poli([[7.6, 9 + yc], [8.4, 4.4 + yc], [11, 2.4 + yc], [17, 2.4 + yc], [19.8, 4.6 + yc], [20.4, 9 + yc], [18.6, 6.4 + yc], [15.6, 7 + yc], [12, 6 + yc], [9.4, 7.4 + yc]], M.cabelo);
   if (p.cabelo === 'bagunçado') b.poli([[7.4, 9.6 + yc], [7.6, 4 + yc], [10, 1.6 + yc], [12, 2.6 + yc], [14, 1 + yc], [16.4, 2.4 + yc], [18.6, 1.8 + yc], [20.6, 5 + yc], [20.6, 9.6 + yc], [19, 6.6 + yc], [16.4, 7.4 + yc], [14.6, 5.6 + yc], [12.4, 7.4 + yc], [9.6, 6.4 + yc]], M.cabelo);
   if (p.cabelo === 'grisalho') { b.poli([[7.6, 11 + yc], [7.8, 6 + yc], [9.4, 4.6 + yc], [10, 9 + yc]], M.cabelo); b.poli([[20.4, 11 + yc], [20.2, 6 + yc], [18.6, 4.6 + yc], [18, 9 + yc]], M.cabelo); b.poli([[10, 4 + yc], [18, 4 + yc], [17, 3 + yc], [11, 3 + yc]], M.cabelo); }
-  if (p.cabelo === 'longo' || p.cabelo === 'rabo' || p.cabelo === 'coque') b.poli([[7.4, 11 + yc], [7.8, 4.6 + yc], [10.6, 2.2 + yc], [17.4, 2.2 + yc], [20.2, 4.6 + yc], [20.6, 11 + yc], [19.2, 7 + yc], [16, 5.6 + yc], [13.2, 6.6 + yc], [10, 5.8 + yc], [8.8, 8 + yc]], M.cabelo);
+  if (p.cabelo === 'longo' || p.cabelo === 'rabo' || p.cabelo === 'coque' || p.cabelo === 'cacheado') b.poli([[7.4, 11 + yc], [7.8, 4.6 + yc], [10.6, 2.2 + yc], [17.4, 2.2 + yc], [20.2, 4.6 + yc], [20.6, 11 + yc], [19.2, 7 + yc], [16, 5.6 + yc], [13.2, 6.6 + yc], [10, 5.8 + yc], [8.8, 8 + yc]], M.cabelo);
   if (p.cabelo === 'rabo') b.poli([[19.6, 5 + yc], [22.6, 6 + yc], [23.4, 14 + yc], [21.4, 15 + yc], [20.4, 9 + yc]], M.cabelo);
   if (p.cabelo === 'coque') b.elipse(14, 1.8 + yc, 3.2, 2.4, M.cabelo);
+  if (p.cabelo === 'cacheado') { for (const [x, y] of [[9, 3.6], [12.4, 2.2], [15.8, 2.2], [19, 3.6]]) b.elipse(x, y + yc, 2.6, 2.2, M.cabelo); b.elipse(7.6, 10 + yc, 1.8, 3.2, M.cabelo); b.elipse(20.4, 10 + yc, 1.8, 3.2, M.cabelo); }
+  if (p.cabelo === 'topete') b.poli([[7.2, 10.4], [6.6, 6.4], [3.6, 5.2], [7, 3.4], [7.4, 0.4], [10.6, 1.6], [12.6, -2.2], [14.8, 1], [17.6, -1.8], [18.6, 1.8], [22.4, 0.8], [20.8, 4.2], [24.2, 5.6], [20.8, 7], [21, 10.4], [19.2, 7.2], [16.6, 7.8], [15.2, 6], [13.2, 7.8], [11, 6.4], [9.2, 7.8]].map(([x, y]) => [x, y + yc]), M.cabelo);
+  if (p.cachecol) { b.poli([[8.4, 15.2 + yc], [19.6, 15.2 + yc], [20, 18.4 + yc], [8, 18.4 + yc]], M.cachecol); b.ret(15.4, 18 + yc, 3.2, 8, M.cachecol); }
   if (p.chapeu === 'quepe') { b.poli([[7.4, 6.2 + yc], [8.4, 1.2 + yc], [19.6, 1.2 + yc], [20.6, 6.2 + yc]], M.chapeu); b.poli([[7, 6 + yc], [21, 6 + yc], [20.4, 7.6 + yc], [7.6, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8, 5.6 + yc], [7.2, -0.4 + yc], [10, -2 + yc], [14, -1 + yc], [18, -2 + yc], [20.8, -0.4 + yc], [20, 5.6 + yc]], M.chapeu); b.ret(8, 4.4 + yc, 12, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[7.6, 6.4 + yc], [8.6, 2 + yc], [19.4, 2 + yc], [20.4, 6.4 + yc]], M.chapeu); b.poli([[12, 5.6 + yc], [22.4, 5.6 + yc], [22, 7.2 + yc], [12, 7.2 + yc]], M.aba); }
@@ -80,6 +84,12 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   if (p.bigode) { for (const x of [12, 13, 14, 15, 16]) b.pinta(x, o(12.6), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(11, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(17, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); }
   else { b.pinta(13, o(13.4), '#9a4a3a'); b.pinta(14, o(13.4), '#9a4a3a'); b.pinta(15, o(13), '#9a4a3a'); }
   b.pinta(9, o(12), '#e8907a'); b.pinta(19, o(12), '#e8907a');
+  if (p.mecha) for (const [x, y] of [[13, 1], [13, 2], [14, 2], [14, 3], [15, 4]]) b.pinta(x, o(y), p.mecha);
+  if (p.curativo) for (const x of [16, 17, 18, 19]) for (const y of [11.2, 12.2]) b.pinta(x, o(y), x === 17 || x === 18 ? '#e0b888' : '#f6dcae');
+  if (p.sardas) for (const [x, y] of [[10, 11.6], [11, 12.4], [12, 11.6]]) b.pinta(x, o(y), '#c8784a');
+  if (p.brincos) for (const x of [7, 20]) { b.pinta(x, o(12.4), '#f0c840'); b.pinta(x, o(13.4), '#c89020'); }
+  if (p.colar) for (const [x, y] of [[11, 17.4], [12, 18.4], [13, 19], [14, 19.4], [15, 19], [16, 18.4], [17, 17.4]]) b.pinta(x, o(y), p.colar);
+  if (p.cachecol) { const c = tons(p.cores.cachecol); for (const y of [20, 23]) for (const x of [16, 17]) b.pinta(x, o(y), c[2]); for (const x of [15, 17]) b.pinta(x, o(26), c[0]); }
   if (p.chapeu === 'quepe') { b.pinta(13, o(3.4), '#f0c840'); b.pinta(14, o(3.4), '#f0c840'); b.pinta(13, o(4.4), '#c89020'); b.pinta(14, o(4.4), '#c89020'); }
   if (p.distintivo) { b.pinta(17, o(20.6), '#f0c840'); b.pinta(17, o(21.6), '#c89020'); b.pinta(18, o(21), '#f0c840'); }
   if (p.radio) { b.ret(9, o(18.4), 2, 3, M.cinto); b.pinta(10, o(17.4), '#3a3a3a'); }
@@ -116,6 +126,8 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   // mochila nas costas
   if (p.mochila) b.poli([[7.2 + incl, 17.5 + y0 + yC], [10.4 + incl, 17 + y0 + yC], [10.4 + incl, 28 + y0 + yC], [7.4 + incl, 28 + y0 + yC]], M.mochila);
   // cabelo comprido atrás
+  if (p.cabelo === 'cacheado') { b.elipse(11.4 + incl, 9.4 + y0 + yC, 6.4, 7.8, M.cabelo); b.elipse(10 + incl, 16.4 + y0 + yC, 3.6, 3.2, M.cabelo); }
+  if (p.cachecol) { const ond = Math.sin(t * Math.PI * 4) * 0.8; b.traco(12 + incl, 17 + y0 + yC, (correr ? 4.6 : 7.2) + incl, (correr ? 19.4 : 23) + ond + y0 + yC, 1.2, M.cachecol); }
   if (p.cabelo === 'longo') b.poli([[9 + incl, 6 + y0 + yC], [15 + incl, 6 + y0 + yC], [13 + incl, 20 + y0 + yC], [9 + incl, 20 + y0 + yC]], M.cabelo);
   perna(g.tras, Mb, Sb);
   // tronco
@@ -131,11 +143,14 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   b.elipse(14.6 + incl, 9.4 + y0 + yC, 5.8, 6.6, M.pele);
   b.elipse(20.2 + incl, 10.6 + y0 + yC, 1, 1.2, M.pele);             // nariz
   const yc = y0 + yC, x = incl;
-  if (['curto', 'longo', 'rabo', 'coque', 'bagunçado'].includes(p.cabelo)) b.poli([[8.4 + x, 11 + yc], [8.6 + x, 4.4 + yc], [11.6 + x, 2.2 + yc], [17 + x, 2.2 + yc], [20 + x, 4.4 + yc], [20 + x, 6.6 + yc], [16.4 + x, 6 + yc], [13.4 + x, 7.6 + yc], [12.6 + x, 11.6 + yc]], M.cabelo);
+  if (['curto', 'longo', 'rabo', 'coque', 'bagunçado', 'cacheado'].includes(p.cabelo)) b.poli([[8.4 + x, 11 + yc], [8.6 + x, 4.4 + yc], [11.6 + x, 2.2 + yc], [17 + x, 2.2 + yc], [20 + x, 4.4 + yc], [20 + x, 6.6 + yc], [16.4 + x, 6 + yc], [13.4 + x, 7.6 + yc], [12.6 + x, 11.6 + yc]], M.cabelo);
   if (p.cabelo === 'bagunçado') b.poli([[8.6 + x, 4 + yc], [10.4 + x, 0.8 + yc], [12.4 + x, 2.4 + yc], [14.6 + x, 0.6 + yc], [16.6 + x, 2.4 + yc]], M.cabelo);
   if (p.cabelo === 'grisalho') b.poli([[8.6 + x, 11 + yc], [8.8 + x, 5 + yc], [11.6 + x, 3.6 + yc], [13 + x, 8 + yc], [12.4 + x, 11 + yc]], M.cabelo);
   if (p.cabelo === 'rabo') b.poli([[8.4 + x, 5 + yc], [5 + x + onda(t * 6.28) * 0.6, 7 + yc], [4.6 + x, 14 + yc], [6.6 + x, 15 + yc], [9 + x, 9 + yc]], M.cabelo);
   if (p.cabelo === 'coque') b.elipse(10 + x, 3.4 + yc, 2.6, 2.4, M.cabelo);
+  if (p.cabelo === 'cacheado') { b.elipse(11 + x, 3.4 + yc, 3, 2.4, M.cabelo); b.elipse(15.4 + x, 2.4 + yc, 3, 2, M.cabelo); b.elipse(9 + x, 8 + yc, 2.6, 3, M.cabelo); }
+  if (p.cabelo === 'topete') b.poli([[8, 11], [7.4, 7.6], [4.6, 6.4], [7.6, 4.8], [6.6, 1.6], [10.2, 2.4], [11.4, -0.8], [13.6, 1.6], [16.2, -0.6], [16.8, 2.2], [20.6, 2.4], [20.6, 5.6], [17.4, 5.4], [14.6, 6.8], [13.2, 7.8], [12.6, 11.6]].map(([px, py]) => [px + x, py + yc]), M.cabelo);
+  if (p.cachecol) b.poli([[11.6 + x, 15 + yc], [18.4 + x, 15 + yc], [18.6 + x, 18.2 + yc], [11.4 + x, 18.2 + yc]], M.cachecol);
   if (p.chapeu === 'quepe') { b.poli([[8.4 + x, 6.4 + yc], [9.4 + x, 1.2 + yc], [19.4 + x, 1.2 + yc], [20 + x, 6.4 + yc]], M.chapeu); b.poli([[14 + x, 5.8 + yc], [23 + x, 6.2 + yc], [22.4 + x, 7.6 + yc], [14 + x, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8.6 + x, 5.8 + yc], [8 + x, -0.4 + yc], [12 + x, -2 + yc], [17 + x, -1.6 + yc], [20.4 + x, -0.2 + yc], [20 + x, 5.8 + yc]], M.chapeu); b.ret(8.6 + x, 4.4 + yc, 11.6, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[8.4 + x, 6.6 + yc], [9.4 + x, 2 + yc], [19.4 + x, 2 + yc], [20 + x, 6.6 + yc]], M.chapeu); b.poli([[16 + x, 5.8 + yc], [24 + x, 6 + yc], [23.6 + x, 7.4 + yc], [16 + x, 7.4 + yc]], M.aba); }
@@ -152,12 +167,15 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (p.bigode) { b.pinta(ex + 1, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(ex + 2, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); }
   else b.pinta(ex + 1, ey + 4, '#9a4a3a');
   b.pinta(ex - 1, ey + 2, '#e8907a');
+  if (p.mecha) for (const [mx, my] of [[14, 1.6], [14, 2.6], [15, 3.6]]) b.pinta(Math.round(mx + incl), Math.round(my + y0 + yC), p.mecha);
+  if (p.curativo) for (const k of [-2, -1, 0]) b.pinta(ex + k, ey + 2, k === -1 ? '#e0b888' : '#f6dcae');
+  if (p.brincos) { b.pinta(Math.round(13.4 + incl), ey + 3, '#f0c840'); b.pinta(Math.round(13.4 + incl), ey + 4, '#c89020'); }
   if (p.distintivo) b.pinta(Math.round(16 + incl), Math.round(21 + y0 + yC), '#f0c840');
   if (p.gravata) for (let y = 18; y < 24; y++) b.pinta(Math.round(17.2 + incl), Math.round(y + y0), '#c83030');
   return b.render();
 }
 
-function pessoa(p) {
+export function pessoa(p) {
   const fr = [frente(p), frente(p, { piscar: true }), frente(p, { resp: 1 })];
   const andar = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => lado(p, i / 8));
   const correr = [0, 1, 2, 3, 4, 5, 6, 7].map((i) => lado(p, i / 8, { correr: true }));

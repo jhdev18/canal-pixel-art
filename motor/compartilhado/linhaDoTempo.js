@@ -284,6 +284,8 @@ const AMBIENTE_FUNDO = {
   espaco: [['espaco', 0.6]],
   'cidade-noite': [['cidade', 0.6]],
   neve: [['vento', 0.6]],
+  diorama: [['passaros', 0.15]],
+  'diorama-noite': [['grilos', 0.25]],
 };
 const AMBIENTE_CLIMA = { chuva: [['chuva', 0.9]], neve: [['vento', 0.4]] };
 
