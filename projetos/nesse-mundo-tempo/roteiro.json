@@ -602,8 +602,8 @@
      "id": "bia",
      "personagem": "menina-capa",
      "x": -5.2,
-     "z": -4.2,
-     "y": 0.45,
+     "z": -4.05,
+     "y": 0,
      "pose": "sentado"
     },
     {
@@ -617,16 +617,18 @@
     },
     {
      "id": "cao",
-     "personagem": "cao-guarda",
-     "x": -3.6,
-     "z": -4.8
+     "sprite": "cao-policial",
+     "x": -3.4,
+     "z": -4.6,
+     "voz": 0.9,
+     "virado": "esquerda"
     },
     {
      "id": "tcao",
      "sprite": "tempo-pessoal",
      "sobre": {
       "id": "cao",
-      "dy": 1.6
+      "dy": 2.75
      },
      "pose": "nada"
     }
@@ -1669,16 +1671,17 @@
    "elementos": [
     {
      "id": "cao",
-     "personagem": "cao-guarda",
+     "sprite": "cao-policial",
      "x": -4,
-     "z": -9.6
+     "z": -9.6,
+     "voz": 0.9
     },
     {
      "id": "tcao",
      "sprite": "tempo-pessoal",
      "sobre": {
       "id": "cao",
-      "dy": 1.6
+      "dy": 2.75
      },
      "pose": "sol"
     },

@@ -152,6 +152,8 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no
   centro, fundo escurecido com `"escurecer"`); `"rua": { "alagada": true }`; sprites `viatura-iso` (parado/sirene),
   `caderno` (fechado/aberto), `pagina-caderno` (cheia/ultima/bia). Postes da frente da praça foram para as laterais.
+  `cao-policial` (PROTÓTIPO): versão detalhada do `cao-guarda`, no padrão dos moradores (com poses), usado no longo.
+  Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,

@@ -241,7 +241,7 @@
 
   // ---- Praça (diagonal), na rua comercial, de frente para os mesmos prédios. A câmera já foca a praça ("z": -8.5).
   // Personagens: x de -7.5 a 7.5, z de -1.5 (perto da rua) a -11.5 (perto da câmera). Fonte no centro (x 0, z -6).
-  // PADRÃO (uso normal): bancos em x -5 e 5, z -4 (sentar: "y": 0.45).
+  // PADRÃO (uso normal): bancos em x -5 e 5; sentar no banco: "pose": "sentado", "y": 0, "z": -4.05 (x -5.2 ou 4.8).
   // DECORADA (festa): mesma praça + bandeirinhas, palanque (em cima: "y": 0.75, x 4.2 a 6.2, z -6.4 a -7.2) e 3 barracas
   //   (pipoca, doces, jogos) no fundo, em x -5.6, -3.7, -1.8, z -2.7 (atender atrás do balcão: z -2.4).
   // Objetos: x/z = canto da frente; estado inicial com "pose" ou mude com "trocar": fonte "cheia"/"seca",

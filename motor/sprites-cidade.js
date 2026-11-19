@@ -59,6 +59,12 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   // pescoço e cabeça
   b.ret(12.5, 14.5 - r + yC, 3, 3, M.pele);
   b.elipse(14, 9.4 - r + yC, 6.2, 6.6, M.pele);
+  // cachorro: orelhas caídas dos lados e focinho claro
+  if (p.cao) {
+    b.poli([[8.2, 5.4 - r + yC], [5, 7.6 - r + yC], [4.8, 15.4 - r + yC], [7, 17 - r + yC], [9, 11 - r + yC]], M.orelha);
+    b.poli([[19.8, 5.4 - r + yC], [23, 7.6 - r + yC], [23.2, 15.4 - r + yC], [21, 17 - r + yC], [19, 11 - r + yC]], M.orelha);
+    b.elipse(14, 12.6 - r + yC, 3.6, 2.6, M.focinho);
+  }
   // cabelo / chapéu
   const yc = -r + yC;
   if (p.cabelo === 'curto') b.poli([[7.6, 9 + yc], [8.4, 4.4 + yc], [11, 2.4 + yc], [17, 2.4 + yc], [19.8, 4.6 + yc], [20.4, 9 + yc], [18.6, 6.4 + yc], [15.6, 7 + yc], [12, 6 + yc], [9.4, 7.4 + yc]], M.cabelo);
@@ -80,8 +86,14 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   if (p.oculos) { const f = '#2a2a3a'; for (const [x0] of [[10], [15]]) { for (let x = x0; x < x0 + 4; x++) { b.pinta(x, o(8), f); b.pinta(x, o(11), f); } b.pinta(x0, o(9), f); b.pinta(x0, o(10), f); b.pinta(x0 + 3, o(9), f); b.pinta(x0 + 3, o(10), f); } b.pinta(14, o(9), f); }
   if (p.oculosEscuros) { const f = '#14141e', l = '#3a3a52'; for (const x0 of [10, 15]) for (let x = x0; x < x0 + 4; x++) for (let y = 8; y <= 10; y++) b.pinta(x, o(y), y === 8 && x === x0 + 1 ? l : f); b.pinta(14, o(8), f); }
   if (p.bigode) { for (const x of [12, 13, 14, 15, 16]) b.pinta(x, o(12.6), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(11, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(17, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); }
-  else { b.pinta(13, o(13.4), '#9a4a3a'); b.pinta(14, o(13.4), '#9a4a3a'); b.pinta(15, o(13), '#9a4a3a'); }
-  b.pinta(9, o(12), '#e8907a'); b.pinta(19, o(12), '#e8907a');
+  else if (!p.cao) { b.pinta(13, o(13.4), '#9a4a3a'); b.pinta(14, o(13.4), '#9a4a3a'); b.pinta(15, o(13), '#9a4a3a'); }
+  if (!p.cao) { b.pinta(9, o(12), '#e8907a'); b.pinta(19, o(12), '#e8907a'); }
+  else {   // nariz, boca e língua do cachorro
+    for (const x of [13, 14, 15]) b.pinta(x, o(11.2), '#1a1014');
+    b.pinta(14, o(12.2), '#1a1014'); b.pinta(13, o(10.6), '#6a5a60');
+    b.pinta(12, o(13.4), '#3a2420'); b.pinta(13, o(13.6), '#3a2420'); b.pinta(15, o(13.6), '#3a2420'); b.pinta(16, o(13.4), '#3a2420');
+    b.pinta(14, o(13.8), '#e8708a'); b.pinta(14, o(14.6), '#c84a68');
+  }
   if (p.chapeu === 'quepe') { b.pinta(13, o(3.4), '#f0c840'); b.pinta(14, o(3.4), '#f0c840'); b.pinta(13, o(4.4), '#c89020'); b.pinta(14, o(4.4), '#c89020'); }
   if (p.distintivo) { b.pinta(17, o(20.6), '#f0c840'); b.pinta(17, o(21.6), '#c89020'); b.pinta(18, o(21), '#f0c840'); }
   if (p.radio) { b.ret(9, o(18.4), 2, 3, M.cinto); b.pinta(10, o(17.4), '#3a3a3a'); }
@@ -131,7 +143,10 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   // pescoço e cabeça de perfil
   b.ret(13 + incl, 14.5 + y0 + yC, 3, 3, M.pele);
   b.elipse(14.6 + incl, 9.4 + y0 + yC, 5.8, 6.6, M.pele);
-  b.elipse(20.2 + incl, 10.6 + y0 + yC, 1, 1.2, M.pele);             // nariz
+  if (p.cao) {                                                        // focinho para a frente e orelha caída atrás
+    b.elipse(20.6 + incl, 12 + y0 + yC, 3.6, 2.4, M.focinho);
+    b.poli([[11.6 + incl, 4.6 + y0 + yC], [8.6 + incl, 6.6 + y0 + yC], [8.4 + incl, 14 + y0 + yC], [10.6 + incl, 15.6 + y0 + yC], [12.8 + incl, 9 + y0 + yC]], M.orelha);
+  } else b.elipse(20.2 + incl, 10.6 + y0 + yC, 1, 1.2, M.pele);       // nariz
   const yc = y0 + yC, x = incl;
   if (['curto', 'longo', 'rabo', 'coque', 'bagunçado'].includes(p.cabelo)) b.poli([[8.4 + x, 11 + yc], [8.6 + x, 4.4 + yc], [11.6 + x, 2.2 + yc], [17 + x, 2.2 + yc], [20 + x, 4.4 + yc], [20 + x, 6.6 + yc], [16.4 + x, 6 + yc], [13.4 + x, 7.6 + yc], [12.6 + x, 11.6 + yc]], M.cabelo);
   if (p.cabelo === 'bagunçado') b.poli([[8.6 + x, 4 + yc], [10.4 + x, 0.8 + yc], [12.4 + x, 2.4 + yc], [14.6 + x, 0.6 + yc], [16.6 + x, 2.4 + yc]], M.cabelo);
@@ -153,9 +168,15 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   b.pinta(ex, ey, '#2a1810'); b.pinta(ex, ey + 1, '#2a1810');
   if (p.oculos) { const f = '#2a2a3a'; for (let k = -1; k <= 2; k++) { b.pinta(ex + k, ey - 1, f); b.pinta(ex + k, ey + 2, f); } b.pinta(ex + 2, ey, f); b.pinta(ex + 2, ey + 1, f); b.pinta(ex - 2, ey, f); }
   if (p.oculosEscuros) { const f = '#14141e'; for (let k = -1; k <= 2; k++) for (let j = -1; j <= 1; j++) b.pinta(ex + k, ey + j, f); b.pinta(ex, ey - 1, '#3a3a52'); b.pinta(ex - 2, ey - 1, f); b.pinta(ex - 3, ey - 1, f); }
-  if (p.bigode) { b.pinta(ex + 1, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(ex + 2, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); }
-  else b.pinta(ex + 1, ey + 4, '#9a4a3a');
-  b.pinta(ex - 1, ey + 2, '#e8907a');
+  if (p.cao) {
+    b.pinta(ex + 5, ey + 1, '#1a1014'); b.pinta(ex + 6, ey + 1, '#1a1014'); b.pinta(ex + 6, ey + 2, '#1a1014'); b.pinta(ex + 5, ey, '#6a5a60');
+    for (const k of [2, 3, 4]) b.pinta(ex + k, ey + 4, '#3a2420');
+    b.pinta(ex + 3, ey + 5, '#e8708a');
+  } else {
+    if (p.bigode) { b.pinta(ex + 1, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(ex + 2, ey + 3, tons(p.cores.bigode || p.cores.cabelo)[2]); }
+    else b.pinta(ex + 1, ey + 4, '#9a4a3a');
+    b.pinta(ex - 1, ey + 2, '#e8907a');
+  }
   if (p.distintivo) b.pinta(Math.round(16 + incl), Math.round(21 + y0 + yC), '#f0c840');
   if (p.gravata) for (let y = 18; y < 24; y++) b.pinta(Math.round(17.2 + incl), Math.round(y + y0), '#c83030');
   return b.render();
@@ -219,5 +240,8 @@ registrarSprites(Object.fromEntries(Object.entries(MORADORES).map(([k, p]) => [k
 export const VARIACOES = {
   'policial-oculos': { ...MORADORES.policial, oculosEscuros: true },   // policial Ronaldo, óculos escuros
   'prefeito-careca': { ...MORADORES.prefeito, cabelo: 'careca' },      // prefeito depois que a peruca voa
+  // PROTÓTIPO: cão policial detalhado (versão nova do "cao-guarda" do estilo RPG)
+  'cao-policial': { ...MORADORES.policial, cao: true, cabelo: 'nenhum',
+    cores: { ...MORADORES.policial.cores, pele: '#c8884a', cabelo: '#7a4a24', orelha: '#6a3a1c', focinho: '#f0dcc0' } },
 };
 registrarSprites(Object.fromEntries(Object.entries(VARIACOES).map(([k, p]) => [k, () => pessoaComSentado(p)])));
