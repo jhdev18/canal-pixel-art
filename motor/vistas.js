@@ -215,7 +215,7 @@ function vistaComodo(c, motor) {
   }
   const jDe = (x) => (esp ? x : -x);
   const cena = new THREE.Scene();
-  cena.background = cm.tema ? fundoSombrio(W, H, cm.tema) : new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
+  cena.background = cm.tema ? fundoSombrio(W, H, cm.tema) : cm.exterior ? ceuDiagonal(W, H, cm.noite) : new THREE.Color(op.fundo || (cm.noite ? '#0c0e1c' : '#1a1c2c'));
   const plano = (img, w, h, x0, y0, z) => {
     const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
     cv.getContext('2d').putImageData(new ImageData(img, w, h), 0, 0);

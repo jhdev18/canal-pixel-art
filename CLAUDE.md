@@ -169,6 +169,14 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   `bueiro-monstro` (parado/agarrar/enjoado/fechado), `cone-monstro` (personagem; dormindo), `sanduiche`,
   `lista-compras` (abrindo), `malinha`. Cenários na biblioteca: `praca-festa`, `praca-festa-noite`, `rua-festa`
   (diagonal), `morro-mirante`, `rua-monstros`. Recursos novos do motor: ação `trocar`, `"sobre"`, `"balancar"`, clima `calor`.
+- **Diagonal nova — PROTÓTIPO, NÃO aprovado** (teste em `projetos/prototipo-diagonal`, `previa.png`): modo
+  `"exterior": true` do diorama (sem paredes, céu, cerca viva, piso `pedras`, tapete `grama`) e cômodos `praca`,
+  `praca-noite`, `praca-festa` (palanque: em cima `"y": 0.75`) + `quarto-menina` / `quarto-menina-noite`
+  (diorama e lateral). Móveis novos do diorama: `fonte` (`seca`), `banco`, `arvore` (`altura`, `copa`, `folhas`),
+  `poste`, `canteiro-flores` (`murcho`), `palanque-d`, `bandeirinhas`, `penteadeira`, `pufe`, `cavalete`.
+  Cenários (em `projetos/prototipo-diagonal/cenarios.json`): `praca-diorama`, `praca-noite-diorama`,
+  `praca-festa-diorama`, `praca-seca-diorama`, `quarto-menina-diorama`, `quarto-menina-noite-diorama`,
+  `quarto-menina`, `quarto-menina-noite`.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
 - **Branch de trabalho único:** `claude/modest-hamilton-4p4851` (já reúne `jolly-archimedes`, `cool-noether`,

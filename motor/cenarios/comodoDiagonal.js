@@ -272,6 +272,114 @@ const MOVEIS = {
       }
     }
   } },
+
+  // ===== PROTÓTIPO (não aprovado): quarto de menina
+  penteadeira: { di: 0.6, dj: 1.4, f(L, m) {                   // mesinha com espelho (encostar na parede do fundo)
+    const { i0, i1, j0, j1 } = m, br = ['#ffffff', '#ece8f0', '#c0b8c8'];
+    for (const [a, b] of [[i0, j0], [i1 - 0.08, j0], [i0, j1 - 0.08], [i1 - 0.08, j1 - 0.08]]) L.caixa(a, a + 0.08, b, b + 0.08, 0, 11, br[2]);
+    L.caixa(i0, i1, j0, j1, 11, 3, { frente: (u, t) => (t === 0 ? br[2] : Math.abs(u - (j1 - j0) / 2) < 0.08 && t === 1 ? '#e8b0d0' : br[1]), lado: br[2], topo: br[0] });
+    L.caixa(i0, i0 + 0.08, j0 + 0.25, j1 - 0.25, 14, 24, { frente: (u, t, l) => (u < 0.07 || u > l - 0.07 || t < 1 || t > 22 ? '#f0a8cc' : [(t + Math.floor(u * 16)) % 9 === 0 ? '#ffffff' : '#c8e4f8', 2]), lado: '#d888b0', topo: '#f8c8e0' });
+    L.caixa(i0 + 0.2, i0 + 0.35, j0 + 0.2, j0 + 0.35, 14, 4, { frente: '#c060e0', topo: '#f0c0ff' });   // perfume
+    L.caixa(i0 + 0.25, i0 + 0.4, j1 - 0.45, j1 - 0.25, 14, 2, { frente: '#f8d860', topo: '#fff0a0' });  // caixinha
+  } },
+  pufe: { di: 0.5, dj: 0.5, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, c = ctx.op.tecido || ['#f8a8cc', '#e07aa8', '#b85a88'];
+    L.caixa(i0, i1, j0, j1, 0, 8, { frente: (u, t) => (t > 6 ? c[0] : c[1]), lado: c[2], topo: c[0] });
+  } },
+  cavalete: { di: 0.4, dj: 0.9, f(L, m) {                       // cavalete com uma pintura (de frente para +i)
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2;
+    for (const b of [j0 + 0.05, j1 - 0.12]) L.caixa(ci - 0.04, ci + 0.04, b, b + 0.07, 0, 30, MAD.base);
+    L.caixa(i0, i0 + 0.07, (j0 + j1) / 2 - 0.04, (j0 + j1) / 2 + 0.03, 0, 26, MAD.esc);
+    L.caixa(i1 - 0.1, i1 - 0.04, j0, j1, 12, 18, { frente: (u, t, l) => {
+      if (u < 0.05 || u > l - 0.05 || t < 1 || t > 16) return '#f4f0e8';
+      if ((u - l * 0.62) ** 2 * 260 + (t - 12) ** 2 < 8) return '#f8d040';          // sol
+      if (t < 5 + Math.sin(u * 9) * 2) return '#4aa84a';                                 // morro
+      return t > 10 ? '#8ac8f8' : '#b8e0fa';
+    }, lado: '#e0d8c8', topo: '#f4f0e8' });
+    L.caixa(i1 - 0.1, i1, j0, j1, 10, 2, MAD.base);
+  } },
+  // ===== PROTÓTIPO (não aprovado): praça (ao ar livre)
+  fonte: { di: 1.8, dj: 1.8, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2, seca = !!ctx.op.seca;
+    const pedra = ['#e0e0ea', '#b8b8ca', '#8a8aa0'];
+    const agua = (a, b) => (seca ? ((Math.floor(a * 9) + Math.floor(b * 7)) % 5 === 0 ? '#7a7a90' : '#9a9aae') : [((Math.floor(a * 6 + b * 4)) % 4 === 0 ? '#c8ecff' : '#5aa8e8'), 2]);
+    L.caixa(i0, i1, j0, j1, 0, 9, { frente: (u, t) => (t > 7 ? pedra[0] : t % 4 === 0 ? pedra[2] : pedra[1]), lado: (u, t) => (t > 7 ? pedra[0] : pedra[2]),
+      topo: (a, b, d) => (d < 0.16 ? pedra[0] : agua(a, b)) });
+    L.caixa(ci - 0.18, ci + 0.18, cj - 0.18, cj + 0.18, 9, 14, { frente: pedra[1], lado: pedra[2], topo: pedra[0] });
+    L.caixa(ci - 0.5, ci + 0.5, cj - 0.5, cj + 0.5, 23, 3, { frente: pedra[1], lado: pedra[2], topo: (a, b, d) => (d < 0.1 ? pedra[0] : agua(a, b)) });
+    if (!seca) {
+      const p = L.proj(ci, cj, 26);
+      for (let t = 0; t < 14; t++) for (const dx of [0, 1]) L.pintar(p.x + dx, p.y - t, t % 3 === 0 ? '#ffffff' : '#8ad0f8', ci, cj, 26 + t, 2, 1);
+      for (let k = 0; k < 4; k++) for (let s = 0; s < 12; s++) {          // jatos caindo nos 4 lados
+        const u = s / 11, [di2, dj2] = [[1, 0], [-1, 0], [0, 1], [0, -1]][k];
+        L.pintar(p.x + (di2 - dj2) * u * 10, p.y - 14 + (di2 + dj2) * u * 5 + u * u * 22, s % 3 ? '#8ad0f8' : '#e8f8ff', ci + di2 * u * 0.6, cj + dj2 * u * 0.6, 30 - u * 18, 2, 1);
+      }
+    }
+  } },
+  banco: { di: 0.5, dj: 1.7, f(L, m) {                          // banco de praça, encosto no lado do fundo
+    const { i0, i1, j0, j1 } = m, ferro = '#3a3a4a';
+    for (const b of [j0 + 0.1, j1 - 0.2]) { L.caixa(i0 + 0.05, i0 + 0.13, b, b + 0.1, 0, 15, ferro); L.caixa(i1 - 0.13, i1 - 0.05, b, b + 0.1, 0, 7, ferro); }
+    L.caixa(i0 + 0.05, i1, j0, j1, 7, 2, { frente: MAD.esc, lado: MAD.esc, topo: (a) => (Math.floor(a * 20) % 3 === 0 ? MAD.esc : MAD.claro) });
+    L.caixa(i0, i0 + 0.08, j0, j1, 10, 6, { frente: (u, t) => (t % 3 === 0 ? MAD.esc : MAD.base), lado: MAD.esc, topo: MAD.claro });
+  } },
+  arvore: { di: 0.5, dj: 0.5, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2, r = rng(ctx.semente + 21);
+    const alt = ctx.op.altura ?? 30, R = ctx.op.copa ?? 22;
+    L.caixa(ci - 0.12, ci + 0.12, cj - 0.12, cj + 0.12, 0, alt, { frente: (u, t) => (t % 5 === 0 ? '#5a3a22' : '#7a5232'), lado: '#4a2e1a', topo: '#7a5232' });
+    const folha = ctx.op.folhas || ['#8ad070', '#5aa84a', '#3a8040', '#24582c'], p = L.proj(ci, cj, alt + R * 0.55);
+    const bolas = [[0, 0, 1], [-0.55, 0.25, 0.7], [0.55, 0.2, 0.72], [-0.2, -0.45, 0.66], [0.3, -0.4, 0.6]];
+    for (const [bx, by, br] of bolas) {
+      const rr = R * br, cx = p.x + bx * R, cy = p.y + by * R * 0.8;
+      for (let y = Math.floor(cy - rr); y <= cy + rr; y++) for (let x = Math.floor(cx - rr); x <= cx + rr; x++) {
+        const dx = (x - cx) / rr, dy = (y - cy) / rr;
+        if (dx * dx + dy * dy > 1) continue;
+        const v = dx * 0.5 + dy * 0.8 + (bayer(x, y) - 0.5) * 0.35 + (r() < 0.04 ? -0.5 : 0);
+        const h = alt + R * 0.55 + (cy - y) + (1 - Math.hypot(dx, dy)) * 6;
+        L.pintar(x, y, v < -0.55 ? folha[0] : v < 0.05 ? folha[1] : v < 0.55 ? folha[2] : folha[3], ci + 0.3, cj + 0.3, h, 1, 1);
+      }
+    }
+  } },
+  poste: { di: 0.3, dj: 0.3, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2, aceso = ctx.op.aceso ?? ctx.noite;
+    L.caixa(ci - 0.1, ci + 0.1, cj - 0.1, cj + 0.1, 0, 3, '#2a2a36');
+    L.caixa(ci - 0.04, ci + 0.04, cj - 0.04, cj + 0.04, 3, 50, '#3a3a4a');
+    L.caixa(ci - 0.14, ci + 0.14, cj - 0.14, cj + 0.14, 53, 7, aceso ? { frente: ['#fff0c0', 2], lado: ['#f8e0a0', 2], topo: '#3a3a4a' } : { frente: '#d8d0b0', lado: '#b0a888', topo: '#3a3a4a' });
+    L.caixa(ci - 0.18, ci + 0.18, cj - 0.18, cj + 0.18, 60, 2, '#2a2a36');
+    if (aceso) ctx.luzes.push({ i: ci, j: cj, h: 56, raio: 4.2, forca: 1, cor: '#ffe0a0' });
+  } },
+  'canteiro-flores': { di: 0.8, dj: 2.4, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, murcho = !!ctx.op.murcho, r = rng(ctx.semente + 5);
+    const flores = ['#e83a5a', '#f8c840', '#f07ac0', '#ffffff', '#8a5ad8'];
+    const mapa = Array.from({ length: 64 }, () => r());
+    L.caixa(i0, i1, j0, j1, 0, 5, { frente: (u, t) => (t === 4 ? '#c87a50' : (Math.floor(u * 8) + t) % 4 === 0 ? '#7a3a2a' : '#a8543a'), lado: '#8a4430',
+      topo: (a, b, d) => { if (d < 0.08) return '#c87a50'; const k = (Math.floor(a * 8) * 7 + Math.floor(b * 8)) % 64; if (murcho) return mapa[k] < 0.25 ? '#8a7a3a' : '#6a4a2a'; return mapa[k] < 0.18 ? flores[Math.floor(mapa[k] * 27) % 5] : mapa[k] < 0.6 ? '#3a9a4a' : '#5ac85a'; } });
+    if (!murcho) for (let k = 0; k < 10; k++) {   // flores altas
+      const a = i0 + 0.15 + r() * (i1 - i0 - 0.3), b = j0 + 0.15 + r() * (j1 - j0 - 0.3), p = L.proj(a, b, 5), c = flores[k % 5];
+      for (let t = 0; t < 5; t++) L.pintar(p.x, p.y - t, '#3a9a4a', a, b, 5 + t, 1, 1);
+      for (const [dx, dy] of [[0, -6], [-1, -5], [1, -5], [0, -4]]) L.pintar(p.x + dx, p.y + dy, c, a, b, 11, 1, 1);
+      L.pintar(p.x, p.y - 5, '#f8e070', a, b, 11.5, 1, 1);
+    }
+  } },
+  'palanque-d': { di: 1.4, dj: 3.0, f(L, m) {                  // quem sobe fica em "y": 0.75
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 12, { frente: (u, t) => (t > 9 ? MAD.base : Math.floor(u * 4) % 2 ? '#f0c840' : '#3a9a5a'), lado: (u, t) => (t > 9 ? MAD.esc : Math.floor(u * 4) % 2 ? '#c89a20' : '#2a7a44'), topo: (a, b) => (Math.floor(b * 5) % 2 ? MAD.claro : MAD.base) });
+    const ci = i0 + 0.3, cj = j0 + 0.5;
+    L.caixa(ci - 0.03, ci + 0.03, cj - 0.03, cj + 0.03, 12, 16, '#4a4a5a');
+    L.caixa(ci - 0.07, ci + 0.07, cj - 0.07, cj + 0.07, 28, 4, '#2a2a36');
+  } },
+  bandeirinhas: { di: 0.2, dj: 6, f(L, m) {                     // varal de bandeirinhas entre dois postes (ao longo de x)
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cores = ['#e83a4a', '#f8c840', '#3aa860', '#3a7ad8', '#f07ac0', '#f88a30'];
+    for (const b of [j0, j1 - 0.08]) L.caixa(ci - 0.04, ci + 0.04, b, b + 0.08, 0, 46, MAD.esc);
+    const N = Math.round((j1 - j0) * 16);
+    for (let k = 0; k <= N; k++) {
+      const u = k / N, b = j0 + u * (j1 - j0), h = 44 - Math.sin(u * Math.PI) * 8, p = L.proj(ci, b, h);
+      L.pintar(p.x, p.y, '#5a4a3a', ci, b, h, 1, 1);
+      if (k % 6 === 3 && k < N - 2) {
+        const c = cores[Math.floor(k / 6) % cores.length];
+        for (let j = 1; j <= 6; j++) { const meia = Math.round(2.5 * (1 - j / 7)); for (let i = -meia; i <= meia; i++) L.pintar(p.x + i, p.y + j, j === 1 ? '#ffffff' : c, ci, b, h - j, 1, 1); }
+      }
+    }
+  } },
 };
 
 // ------------------------------------------------------------------ cômodos prontos
@@ -349,6 +457,53 @@ export const COMODOS_DIAGONAL = {
 };
 COMODOS_DIAGONAL['quarto-menino-noite'] = { ...COMODOS_DIAGONAL['quarto-menino'], estilo: 'quarto-menino-noite', noite: true };
 
+// PROTÓTIPO (não aprovado): quarto de menina
+COMODOS_DIAGONAL['quarto-menina'] = {
+  estilo: 'quarto-menina', inicio: -9, fim: 9,
+  paredes: [
+    { tipo: 'janela', x: -3.4, w: 2.8, cortina: ['#f8a8cc', '#d87aa8'] },
+    { tipo: 'poster', x: 0.8, w: 1.3, altura: 58, h: 26, cores: ['#8a5ad8', '#6a3ab8'] },
+    { tipo: 'quadro', x: 4.6, w: 1.9, altura: 64, h: 18 },
+    { tipo: 'porta', lateral: true, x: 3.4, w: 1.8, cor: ['#f4f0e8', '#e0d8c8', '#a8a090'] },
+  ],
+  moveis: [
+    { tipo: 'cama', x: -6.6, i: 0, tecido: ['#f8b8d8', '#e87ab0', '#b85a88'] }, { tipo: 'criado-mudo', x: -5.2, i: 0 },
+    { tipo: 'estante', x: -1.2, i: 0, dj: 1.4 },
+    { tipo: 'penteadeira', x: 2.4, i: 0 }, { tipo: 'pufe', x: 2.4, i: 0.95 },
+    { tipo: 'cavalete', x: 5.6, i: 0.6 }, { tipo: 'planta', x: 0.4, i: 0.1 },
+    { tipo: 'guarda-roupa', x: 8.65, i: 0.15 },
+  ],
+  piso: [{ x: -0.4, i0: 1.6, i1: 3.8, dj: 4.2, cor: ['#c8a8f0', '#a888e0', '#ffffff'] }],
+};
+COMODOS_DIAGONAL['quarto-menina-noite'] = { ...COMODOS_DIAGONAL['quarto-menina'], estilo: 'quarto-menina-noite', noite: true };
+
+// PROTÓTIPO (não aprovado): praça ao ar livre ("exterior": sem paredes, céu atrás, cerca viva no fundo).
+// Personagens: z de 0 (frente) a ~3.8 (perto da cerca). Fonte no centro (x 0); bancos em x -4.6 e 4.6.
+const PRACA = {
+  exterior: true, inicio: -12, fim: 12,
+  chao: { estilo: 'pedras', topo: ['#e8dcc8', '#cfc0a8', '#9a8a74'], terra: ['#b8a890', '#a09078'] },
+  cercaViva: true,
+  moveis: [
+    { tipo: 'arvore', x: -8.6, i: -0.2, semente: 1 }, { tipo: 'arvore', x: 8.8, i: -0.1, altura: 34 },
+    { tipo: 'arvore', x: -2.6, i: -0.4, altura: 26, copa: 18 },
+    { tipo: 'banco', x: -4.6, i: 0.2 }, { tipo: 'banco', x: 4.6, i: 0.2 },
+    { tipo: 'poste', x: -6.6, i: 0.3 }, { tipo: 'poste', x: 6.6, i: 0.3 },
+    { tipo: 'fonte', x: 0, i: 0.4 },
+    { tipo: 'canteiro-flores', x: -6.2, i: 3.9 }, { tipo: 'canteiro-flores', x: 6.2, i: 3.9 },
+  ],
+  piso: [
+    { x: -9.5, i0: 0, i1: 1.4, dj: 5, grama: true }, { x: 9.5, i0: 0, i1: 1.4, dj: 5, grama: true },
+  ],
+};
+COMODOS_DIAGONAL.praca = PRACA;
+COMODOS_DIAGONAL['praca-noite'] = { ...PRACA, noite: true };
+// Praça no Dia do Sol: bandeirinhas e palanque (quem sobe: "y": 0.75; palanque em x 6.2, z ~2.6 a 3.6)
+COMODOS_DIAGONAL['praca-festa'] = { ...PRACA, moveis: [
+  ...PRACA.moveis.filter((mv) => !(mv.tipo === 'banco' && mv.x > 0)),
+  { tipo: 'palanque-d', x: 5.6, i: 0.2 },
+  { tipo: 'bandeirinhas', x: -3, i: 1.6, dj: 6 }, { tipo: 'bandeirinhas', x: 3.2, i: 1.6, dj: 6 },
+] };
+
 // ------------------------------------------------------------------ ângulos (vista "diorama")
 // Ângulo padrão de todos os cômodos: "classico" (a diagonal clássica, o desenho aprovado de cada cômodo).
 // Outros ângulos entram como chaves "tipo@angulo" em COMODOS_DIAGONAL. "espelhado" mostra o mesmo desenho pelo
@@ -375,7 +530,7 @@ export function gerarComodoDiagonal(opc = {}) {
   const noite = !!cfg.noite;
   const tema = cfg.tema ? (typeof cfg.tema === 'string' ? TEMAS[cfg.tema] || TEMAS.sombrio : { ...TEMAS.sombrio, ...cfg.tema }) : null;
   const lat = PRESETS_INTERIORES[cfg.estilo] || PRESETS_INTERIORES['quarto-menino'];
-  const par = lat.camadas[0], chao = lat.chao;
+  const par = lat.camadas[0], chao = cfg.chao || lat.chao, exterior = !!cfg.exterior;
   ALT = cfg.alturaParede ?? 200;
   // O piso continua até perto da câmera (profundidade 11) e o cômodo vai para a esquerda até onde a câmera
   // e os personagens chegam (inicio vem da vista): o enquadramento fica sempre cheio, sem vazio preto.
@@ -399,11 +554,18 @@ export function gerarComodoDiagonal(opc = {}) {
       if (tema && (P - i < 0.07 || Jb - j < 0.05)) return [tema.neon, 2];       // borda da plataforma
       for (const tp of tapetes) if (i > tp.i0 && i < tp.i1 && j > tp.j0 && j < tp.j1) {
         const bi = Math.min(i - tp.i0, tp.i1 - i), bj = Math.min(j - tp.j0, tp.j1 - j);
+        if (tp.grama) { const v = bayer(x, y) + (Math.sin(x * 1.7 + y * 2.3) * 0.15); return bi < 0.06 || bj < 0.06 ? '#3a7a3a' : v < 0.2 ? '#7ac85a' : v < 0.75 ? '#5aaa4a' : '#4a9040'; }
         if (bi < 0.1 || bj < 0.1) return tp.cor[2];
         return (bi < 0.25 || bj < 0.25) && ((Math.floor(i * 6) + Math.floor(j * 6)) % 2) ? tp.cor[2] : (bayer(x, y) < 0.2 ? tp.cor[0] : tp.cor[1]);
       }
       let c;
       if (chao.estilo === 'taco') { const k = Math.floor(i * 3); const jj = j + k * 0.37; c = (i * 3 - k) < 0.1 || (jj - Math.floor(jj)) < 0.05 ? t2 : (k % 2 ? t1 : (bayer(x, y) < 0.12 ? t2 : t1)); if ((i * 3 - k) > 0.85) c = t0; }
+      else if (chao.estilo === 'pedras') {        // pedras da praça, fileiras desencontradas
+        const fi = i * 2.4, k = Math.floor(fi), fj = j * 2.4 + (k % 2) * 0.5, kj = Math.floor(fj);
+        const ri = fi - k, rj = fj - kj, h = ((k * 73856093) ^ (kj * 19349663)) >>> 0;
+        c = ri < 0.12 || rj < 0.1 ? t2 : (h % 5 === 0 ? d0 : h % 3 === 0 ? t0 : t1);
+        if (ri > 0.84 && rj > 0.1) c = t0;
+      }
       else if (chao.estilo === 'piso') { const fi = i - Math.floor(i), fj = j - Math.floor(j); c = fi < 0.06 || fj < 0.06 ? t2 : ((Math.floor(i) + Math.floor(j)) % 2 ? t1 : d0); }
       else c = bayer(x, y) < 0.25 ? chao.terra[1] : d0;
       return c;
@@ -416,6 +578,13 @@ export function gerarComodoDiagonal(opc = {}) {
   const corte = ['#5a4a5a', '#3a2e3a'];
   const topoCorte = () => (tema ? [tema.neon, 2] : corte[0]);
   const pintaDecor = (lista, pos, t, cBase) => { for (const d of lista) { const c = corDecor(d, pos, t, noite); if (c) return c; } return cBase; };
+  if (exterior) {
+    // sem paredes: só uma cerca viva baixa no fundo (o céu aparece atrás)
+    if (cfg.cercaViva !== false) B.prisma(-0.7, 0, Ja, Jb, 0, 16, {
+      frente: (u, t) => (t < 2 ? '#24502a' : (bayer(Math.floor(u * 16), t) + Math.sin(u * 23 + t) * 0.2) < 0.3 ? '#5aa84a' : t > 12 ? '#4a9040' : '#3a7a3a'),
+      lado: () => '#2a5a30', topo: (a, b, d, x, y) => (bayer(x, y) < 0.3 ? '#7ac85a' : '#5aa84a'),
+    });
+  } else {
   B.prisma(-0.3, 0, Ja - 0.3, Jb, 0, ALT, {
     frente: (u, t, l, s) => pintaDecor(dFundo, -s, t, corParede(par, Math.floor((Jb - s) * 16), t, r)),
     lado: (u, t) => (t > ALT - 3 ? corte[0] : corte[1]),
@@ -426,6 +595,7 @@ export function gerarComodoDiagonal(opc = {}) {
     lado: (u, t, l, s) => (s < 0 ? null : pintaDecor(dLat, s, t, corParede(par, Math.floor(s * 16), t, r))),
     topo: topoCorte,
   });
+  }
   // janelas emitem luz de dia (só nos pixels de vidro, que ficam claros)
   // móveis: uma camada cada
   const luzes = [];
@@ -493,5 +663,5 @@ export function gerarComodoDiagonal(opc = {}) {
     for (let y = 0; y < h; y++) img.set(out.subarray(((y0 + y) * W + x0) * 4, ((y0 + y) * W + x1 + 1) * 4), y * w * 4);
     return { imagem: img, x0, y0, w, h, i0: p.i0, i1: p.i1, j0: p.j0, j1: p.j1, sobre: p.sobre };
   }).filter(Boolean);
-  return { W, H, imagem: b.out, pecas: saidaPecas, proj, luzes, noite, Ja, Jb, tema };
+  return { W, H, imagem: b.out, pecas: saidaPecas, proj, luzes, noite, Ja, Jb, tema, exterior };
 }

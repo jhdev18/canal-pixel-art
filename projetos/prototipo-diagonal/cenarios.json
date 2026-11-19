@@ -1,0 +1,53 @@
+{
+  // PROTÓTIPO (não aprovado): cenários novos com foco na diagonal (vista "diorama").
+  // Depois do "pode salvar", vão para biblioteca/cenarios.json.
+
+  // Praça ao ar livre (diagonal): pedras, fonte no centro, bancos, árvores, postes e canteiros; céu atrás.
+  // Personagens: z de 0 (frente) a ~3.6 (perto da fonte/cerca). Bancos em x -4.6 e 4.6 (sentar com "y": 0.45).
+  "praca-diorama": { "vista": "diorama", "comodo": { "tipo": "praca" } },
+  "praca-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "praca-noite" } },
+  // Praça no Dia do Sol: bandeirinhas e palanque (em cima do palanque: "y": 0.75, x ~4.8 a 6.4, z ~2.4 a 3.6)
+  "praca-festa-diorama": { "vista": "diorama", "comodo": { "tipo": "praca-festa" } },
+  // Praça com a fonte seca e os canteiros murchos (o calor do Dia do Sol)
+  "praca-seca-diorama": { "vista": "diorama", "comodo": { "tipo": "praca-festa",
+    "moveis": [
+      { "tipo": "arvore", "x": -8.6, "i": -0.2, "folhas": ["#c8b860", "#a89a48", "#7a7a3a", "#5a5a2a"] },
+      { "tipo": "arvore", "x": 8.8, "i": -0.1, "altura": 34, "folhas": ["#c8b860", "#a89a48", "#7a7a3a", "#5a5a2a"] },
+      { "tipo": "banco", "x": -4.6, "i": 0.2 },
+      { "tipo": "poste", "x": -6.6, "i": 0.3 }, { "tipo": "poste", "x": 6.6, "i": 0.3 },
+      { "tipo": "fonte", "x": 0, "i": 0.4, "seca": true },
+      { "tipo": "canteiro-flores", "x": -6.2, "i": 3.9, "murcho": true }, { "tipo": "canteiro-flores", "x": 6.2, "i": 3.9, "murcho": true },
+      { "tipo": "palanque-d", "x": 5.6, "i": 0.2 },
+      { "tipo": "bandeirinhas", "x": -3, "i": 1.6, "dj": 6 }, { "tipo": "bandeirinhas", "x": 3.2, "i": 1.6, "dj": 6 }
+    ] } },
+
+  // Quarto de menina (diagonal): cama rosa, penteadeira com espelho, pufe, cavalete com pintura, estante, planta.
+  "quarto-menina-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina" } },
+  "quarto-menina-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-menina-noite" } },
+
+  // Quarto de menina (lateral), para alternar com a diagonal
+  "quarto-menina": {
+    "fundo": "quarto-menina", "realce": 0,
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 0.4, "z": -0.06, "cores": { "cor": "#a888e0" } },
+      { "id": "cama", "sprite": "cama", "x": -5.6, "z": -0.05, "cores": { "tecido": "#e87ab0" } },
+      { "id": "criado", "sprite": "criado-mudo", "x": -2.4, "z": -0.05 },
+      { "id": "abajur", "sprite": "abajur-apagado", "x": -2.4, "y": 1.375, "z": -0.05 },
+      { "id": "planta", "sprite": "planta-vaso", "x": 0.8, "z": -0.05 },
+      { "id": "escrivaninha", "sprite": "escrivaninha-desligada", "x": 3.7, "z": -0.05 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.6, "z": -0.05 }
+    ]
+  },
+  "quarto-menina-noite": {
+    "fundo": "quarto-menina-noite",
+    "elementos": [
+      { "id": "tapete", "sprite": "tapete", "x": 0.4, "z": -0.06, "cores": { "cor": "#a888e0" } },
+      { "id": "cama", "sprite": "cama", "x": -5.6, "z": -0.05, "cores": { "tecido": "#e87ab0" } },
+      { "id": "criado", "sprite": "criado-mudo", "x": -2.4, "z": -0.05 },
+      { "id": "abajur", "sprite": "abajur", "x": -2.4, "y": 1.375, "z": -0.05 },
+      { "id": "planta", "sprite": "planta-vaso", "x": 0.8, "z": -0.05 },
+      { "id": "escrivaninha", "sprite": "escrivaninha", "x": 3.7, "z": -0.05 },
+      { "id": "guarda-roupa", "sprite": "guarda-roupa", "x": 7.6, "z": -0.05 }
+    ]
+  }
+}
