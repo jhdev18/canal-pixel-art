@@ -26,17 +26,22 @@
         { "id": "aluno", "personagem": "aluno", "x": 2.0, "y": 0.2, "pose": "sentado-lado" },
         { "id": "aluna", "personagem": "aluna", "x": 5.0, "y": 0.2, "pose": "sentado-lado" } ],
       "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Atenção!", "inicio": 0.5 } ] },
-    { // diagonal normal: sala arrumada de verdade (carteiras viradas para a lousa do fundo)
-      "cenario": "sala-de-aula-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": 2, "y": 3 },
-      "elementos": [ { "id": "prof", "personagem": "professora", "x": -1.4, "z": 2.4 }, { "id": "bia", "personagem": "menina-capa", "x": 4.5, "z": -1.2 } ],
-      "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Sentem-se!", "inicio": 0.5 } ] },
-    { // diagonal espelhada: alunos sentados de lado olhando para a lousa
-      "cenario": "sala-de-aula-diagonal-espelhada", "duracao": 4, "transicao": "dither", "camera": { "x": -2.5, "y": 3 },
+    { // diagonal: alunos sentados de costas, olhando para a lousa (janelas na parede do lado)
+      "cenario": "sala-de-aula-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": 0.5, "y": 3 },
       "elementos": [
-        { "id": "prof", "personagem": "professora", "x": 1.6, "z": 2.6, "virado": "esquerda" },
-        { "id": "aluno", "personagem": "aluno", "x": -0.8, "z": 1.15, "pose": "sentado-lado" },
-        { "id": "aluna", "personagem": "aluna", "x": -3.4, "z": 1.15, "pose": "sentado-lado" },
-        { "id": "bia", "personagem": "menina-capa", "x": -3.4, "z": -0.15, "pose": "sentado-lado" } ],
+        { "id": "prof", "personagem": "professora", "x": -0.6, "z": 3.8 },
+        { "id": "aluno", "personagem": "aluno", "x": -2.6, "z": 1.15, "pose": "sentado-costas" },
+        { "id": "aluna", "personagem": "aluna", "x": 2.6, "z": 1.15, "pose": "sentado-costas" },
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": -0.15, "pose": "sentado-costas" } ],
+      "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Bom dia!", "inicio": 0.5 } ] },
+    { // a mesma sala vista pelo outro lado da diagonal (espelhada)
+      "cenario": "sala-de-aula-diagonal-espelhada", "duracao": 4, "transicao": "dither", "camera": { "x": -0.5, "y": 3 },
+      "elementos": [
+        { "id": "prof", "personagem": "professora", "x": 0.6, "z": 3.8 },
+        { "id": "aluno", "personagem": "aluno", "x": 2.6, "z": 1.15, "pose": "sentado-costas" },
+        { "id": "aluna", "personagem": "aluna", "x": -2.6, "z": 1.15, "pose": "sentado-costas" },
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": -0.15, "pose": "sentado-costas" },
+        { "id": "caixa", "personagem": "padeiro", "x": -6.5, "z": -0.8, "pose": "costas" } ],
       "acoes": [] }
   ]
 }

@@ -66,3 +66,53 @@ export function adicionarSentado(sprite, { frente = [0, 1, 2], lado = 3, q = 30,
   sprite.anims['sentado-lado'] = { q: [n + 3], fps: 1 };
   return sprite;
 }
+
+// ------------------------------------------------------------------ de costas
+// Gera o quadro "de costas" a partir do de frente: rosto vira cabelo (ou capuz), a frente da roupa vira as
+// costas lisas e, se tiver, a mochila aparece. op:
+//   cabeca: { cx, cy, rx, ry } (elipse do rosto)   de: tons a trocar → para: tons novos (mesma ordem)
+//   detalhes: cores do rosto (olhos, boca...) que viram para[1]   tudo: true = troca tudo dentro do rosto
+//   tronco: { x0, x1, y0, y1, tons: [luz, base, sombra] }   mochila: tons [luz, base, sombra, contorno]
+export function costasDe(frente, op) {
+  const p = new Pix(frente.w, frente.h); p.d.set(frente.d);
+  const mapa = new Map((op.de || []).map((c, i) => [c.toLowerCase(), op.para[i]]));
+  const det = new Set((op.detalhes || []).map((c) => c.toLowerCase()));
+  const { cx, cy, rx, ry } = op.cabeca;
+  for (let y = 0; y < p.h; y++) for (let x = 0; x < p.w; x++) {
+    const c = cor(p, x, y); if (!c) continue;
+    const d2 = ((x + 0.5 - cx) / rx) ** 2 + ((y + 0.5 - cy) / ry) ** 2;
+    if (d2 > 1) continue;
+    const lado = x + 0.5 > cx + rx * 0.55 ? op.para[2] : op.para[1];
+    if (op.tudo) { p.set(x, y, lado); continue; }                       // capuz: tudo liso
+    // miolo da cabeça: some com sobrancelhas, contorno do rosto e da franja (viram cabelo)
+    if (d2 < 0.72 && (escura(c) || c === op.para[3] || c === (op.de[3] || '').toLowerCase())) { p.set(x, y, lado); continue; }
+    if (mapa.has(c)) p.set(x, y, mapa.get(c)); else if (det.has(c)) p.set(x, y, lado);
+  }
+  if (op.tronco) {                                    // frente da roupa → costas lisas
+    const t = op.tronco;
+    for (let y = t.y0; y <= t.y1; y++) for (let x = t.x0; x <= t.x1; x++) {
+      const c = cor(p, x, y); if (!c || escura(c)) continue;
+      p.set(x, y, x === t.x1 ? t.tons[2] : y === t.y0 ? t.tons[0] : t.tons[1]);
+    }
+  }
+  if (op.mochila) {                                   // mochila nas costas
+    const [l, b, s, k] = op.mochila, y0 = op.tronco ? op.tronco.y0 + 1 : 18;
+    for (let y = y0; y < y0 + 11; y++) for (let x = 9; x <= 18; x++) {
+      const borda = x === 9 || x === 18 || y === y0 || y === y0 + 10;
+      p.set(x, y, borda ? k : y === y0 + 4 ? s : x === 10 || y === y0 + 1 ? l : x === 17 ? s : b);
+    }
+    for (let x = 12; x <= 15; x++) p.set(x, y0 + 7, s);   // bolso
+  }
+  return p;
+}
+
+// Acrescenta "costas" (em pé, de costas para a câmera) e "sentado-costas" (sentado de costas: olhando para a
+// lousa, para a TV...). opCostas: as opções de costasDe (sem o quadro).
+export function adicionarCostas(sprite, opCostas, { q = 30, coxa } = {}) {
+  const Q = sprite.quadros, n = Q.length;
+  const c0 = costasDe(Q[0], opCostas), c1 = costasDe(Q[2], { ...opCostas, cabeca: { ...opCostas.cabeca, cy: opCostas.cabeca.cy - 1 }, tronco: opCostas.tronco && { ...opCostas.tronco, y0: opCostas.tronco.y0 - 1, y1: opCostas.tronco.y1 - 1 } });
+  Q.push(c0, c1, sentadoFrente(c0, { q, coxa }), sentadoFrente(c1, { q, coxa }));
+  sprite.anims.costas = { q: [n, n, n + 1, n + 1], fps: 2 };
+  sprite.anims['sentado-costas'] = { q: [n + 2, n + 2, n + 3, n + 3], fps: 2 };
+  return sprite;
+}

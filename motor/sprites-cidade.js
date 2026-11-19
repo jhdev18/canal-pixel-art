@@ -3,7 +3,7 @@
 import { Boneco, passada } from './boneco.js';
 import { registrarSprites } from './sprites.js';
 import { hexParaRgb } from './pixel.js';
-import { adicionarSentado } from './sentado.js';
+import { adicionarSentado, adicionarCostas } from './sentado.js';
 
 const W = 28, H = 44;
 
@@ -177,7 +177,21 @@ function pessoa(p) {
     sombra: true, personagem: true,
   };
 }
-const pessoaComSentado = (p) => adicionarSentado(pessoa(p), { q: p.corpo === 'crianca' ? 32 : 30 });
+// de costas: rosto vira cabelo, frente da roupa vira costas lisas e a mochila aparece
+function opCostas(p) {
+  const yC = p.corpo === 'crianca' ? 2 : 0, cab = tons(p.cores.cabelo), pele = tons(p.cores.pele);
+  const roupa = tons(p.casaco ? p.cores.casaco : p.cores.tronco), largT = p.corpo === 'largo' ? 1 : 0;
+  const det = ['#2a1810', '#ffffff', '#9a4a3a', '#e8907a', '#2a2a3a', pele[2], tons(p.cores.bigode || p.cores.cabelo)[2]];
+  return {
+    cabeca: { cx: 14, cy: 9.6 + yC, rx: 6.6, ry: 7 }, de: pele, para: [cab[0], cab[1], cab[2], cab[3]], detalhes: det,
+    tronco: { x0: 10 - largT, x1: 18 + largT, y0: 18 + yC, y1: 29 + yC, tons: roupa },
+    mochila: p.mochila ? tons(p.cores.mochila) : null,
+  };
+}
+const pessoaComSentado = (p) => {
+  const q = p.corpo === 'crianca' ? 32 : 30;
+  return adicionarCostas(adicionarSentado(pessoa(p), { q }), opCostas(p), { q });
+};
 
 export const MORADORES = {
   policial: { cores: { pele: '#c88a64', cabelo: '#2a1e1a', tronco: '#3a5aa0', calca: '#222a48', sapato: '#2a2a30', chapeu: '#222a48', aba: '#1a1a24', cinto: '#2a2a2a' },

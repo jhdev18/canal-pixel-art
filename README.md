@@ -293,7 +293,7 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `mover` | `alvo`, `para`, `easing` | desliza suave (voar, flutuar) | — |
 | `pular` | `alvo`, `altura`, `para` | pulo em arco + poeira ao cair | pulo + aterrissar |
 | `virar` | `alvo`, `direcao` | — | — |
-| `sentar` | `alvo`, `lado` (true = de lado, para cadeiras) ou `pose` | personagem fica sentado (de frente ou de lado) | — |
+| `sentar` | `alvo`, `lado` (true = de lado) ou `pose` (`sentado`, `sentado-lado`, `sentado-costas`) | personagem fica sentado (de frente ou de lado) | — |
 | `levantar` | `alvo` | volta a ficar em pé | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
 | `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` | ícone sobre a cabeça | surpresa/dúvida/amor |
