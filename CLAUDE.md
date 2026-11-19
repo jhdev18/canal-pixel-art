@@ -44,26 +44,43 @@ Usar quando o usuário pedir um vídeo "no estilo Mundo Torto". Tem dois formato
 (se o usuário não disser qual, perguntar). Baseado em Shorts de referência; as premissas devem ser
 **nossas**, nunca as das referências.
 
-**Regras comuns aos dois:**
+**Formato comum (aparece nos curtos e no longo):**
+`Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
 - **1ª frase = regra absurda do mundo** — "Nesse mundo / Nessa cidade, ...". É o gancho e o título.
+- **A cidade acredita em algo errado** sobre a regra (boa sorte, prêmio, "quem ri incha"); a virada desmente.
+- **O protagonista é diferente dos outros** (sem guardião, bonzinho demais, ri escondido) e no fim
+  a diferença dele é o que importa.
 - **Regra visual:** tem que dar pra mostrar na tela (algo no ombro, relógio flutuando, gente inchando).
 - **Virada justa:** plantar uma pista no começo que, depois da virada, passa a fazer sentido.
-- **Narração:** terceira pessoa, frases curtas (8–15 palavras), uma frase = uma cena.
+- **Narração:** terceira pessoa, frases curtas (8–15 palavras, ~3,5 s cada), uma frase = uma cena.
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
 - Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
 
-### Mundo Torto curto (um choque só)
-- **Duração:** 30–45 s (8–10 frases do narrador).
-- **Estrutura (5 partes):**
-  1. **Regra** (0–4 s).
-  2. **Exemplo** (4–10 s): 1–2 frases mostrando a regra funcionando no dia a dia.
-  3. **Exceção** (10–18 s): "Mas esse garoto / essa menina..." — o protagonista que não se encaixa na regra.
-  4. **Evento** (18–30 s): "Até que um dia..." — algo põe a regra à prova (acidente, festa, forasteiro chegando).
-  5. **Virada** (últimos 3–6 s): revelação que muda o sentido da regra. Termina seco na virada:
-     sem moral, sem "comente", sem tela final.
-- **Conectores:** "Mas", "Porém", "Até que", "E de repente".
+### Mundo Torto curto (um choque só, 30–45 s)
+Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no fim e o vídeo acaba nela.
+
+**Linha do tempo (proporção do vídeo):**
+| Parte | Tempo (~40 s) | O que acontece |
+|---|---|---|
+| 1. Regra | 0–12% (0–5 s) | "Nesse mundo, ..." — a regra em uma frase |
+| 2. Crença | 12–25% (5–10 s) | Exemplo do dia a dia ou o que a sociedade acredita ("acreditam que trazem boa sorte") |
+| 3. Protagonista | 25–45% (10–18 s) | "Mas esse garoto..." — é a exceção e **sofre** por isso (excluído, chamado de idiota) |
+| 4. Evento | 45–80% (18–32 s) | "Até que um dia..." — alguém completa a regra, um forasteiro chega, um acidente acontece |
+| 5. Virada | 80–100% (32–40 s) | A verdade da regra, em 1–2 frases, com uma imagem forte. Termina seco: sem moral, sem "comente" |
+
+**Variações:**
+- **Exceção sortuda** (guardiões, relógio): o protagonista excluído era o único a salvo; os outros estavam condenados.
+- **Olhar de fora** (guardiões, jornal na TV): a verdade chega por alguém/algo de fora — forasteiro sussurrando, notícia.
+- **Consequência inesperada** (dor transferível): a regra age no protagonista e o susto é **em quem** ela cai.
+- **Lista de 3** (criaturas, cômico): regra + protagonista e depois 3 casos seguidos, cada um "ameaça → *Porém* ela vence
+  de um jeito ridículo"; o 3º é o mais engraçado e fecha o vídeo.
+
+**Técnicas:**
+- **Conectores:** "Mas", "Porém", "Até que", "E de repente", "Então".
+- **Reação antes da virada:** alguém congela, fica horrorizado ou fica sério ("ele congelou", "olhou seriamente").
+- **Última frase concreta e visual** (esmagada no quarto, levou o homem vivo, "você foi o único que não foi consumido").
 - **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
-- **Tons possíveis:** sombrio (virada de terror), cômico (protagonista que humilha a regra) ou emocional.
+- **Tons possíveis:** sombrio (virada de terror), cômico (lista de 3) ou emocional.
 
 ### Mundo Torto longo (história completa, normalmente cômica, 1:30–2:30)
 Extraído da referência "quem ri vira balão" (2:15, ~38 frases, ~3,5 s por frase). Não é um choque só:
