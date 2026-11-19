@@ -237,7 +237,7 @@ function opCostas(p) {
     mochila: p.mochila ? tons(p.cores.mochila) : null,
   };
 }
-const pessoaComSentado = (p) => {
+export const pessoaComSentado = (p) => {
   const q = p.corpo === 'crianca' ? 32 : 30;
   return adicionarCostas(adicionarSentado(pessoa(p), { q }), opCostas(p), { q });
 };

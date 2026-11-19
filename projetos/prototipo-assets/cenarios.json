@@ -1,0 +1,25 @@
+{
+  // PROTÓTIPO (não aprovado): feira na praça. Barracas novas: frutas, verduras, flores, sorvete, vazia
+  // (estados "parado", "acesa", "fechada"). Vendedores atrás do balcão: x da barraca + 0.8, z -2.4.
+  "praca-feira": {
+    "vista": "diorama", "camera": { "x": 0, "z": -8.5 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
+      "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 },
+      { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "arvore3", "sprite": "arvore-iso", "x": -7.25, "z": -10.25 },
+      { "id": "arvore4", "sprite": "arvore-iso", "x": 6.75, "z": -10.25 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -8.4, "z": -6.4 },
+      { "id": "poste4", "sprite": "poste-iso", "x": 7.9, "z": -6.4 },
+      { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 },
+      { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 },
+      { "id": "barraca1", "sprite": "barraca-frutas", "x": -6.0, "z": -3.2 },
+      { "id": "barraca2", "sprite": "barraca-verduras", "x": -3.7, "z": -3.2 },
+      { "id": "barraca3", "sprite": "barraca-flores", "x": -1.4, "z": -3.2 },
+      { "id": "barraca4", "sprite": "barraca-sorvete", "x": 2.4, "z": -3.2 },
+      { "id": "barraca5", "sprite": "barraca-vazia", "x": 4.7, "z": -3.2, "pose": "fechada" }
+    ]
+  }
+}

@@ -7,6 +7,7 @@ export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
   piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  pensar: null, destaque: 1.5, contador: 3, placar: 3, continua: 2,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -48,7 +49,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       const acao = { ...a };
       acao.inicio = acao.inicio ?? 0;
       if (acao.duracao == null) {
-        acao.duracao = acao.tipo === 'falar' ? duracaoFala(acao.texto || '') : (DURACAO_PADRAO[acao.tipo] ?? 1);
+        acao.duracao = (acao.tipo === 'falar' || acao.tipo === 'pensar') ? duracaoFala(acao.texto || '') : (DURACAO_PADRAO[acao.tipo] ?? 1);
       }
       return acao;
     }).sort((a, b) => a.inicio - b.inicio);
@@ -319,7 +320,7 @@ export function larguraVisivel(roteiro, zoom = 1) {
 }
 
 const SOM_COLETAR = { moeda: 'moeda', coracao: 'vida', estrela: 'powerup', gema: 'powerup', chave: 'item' };
-const SOM_EMOCAO = { '!': 'surpresa', '?': 'duvida', coracao: 'amor', '...': 'blip', zzz: 'blip' };
+const SOM_EMOCAO = { '!': 'surpresa', '?': 'duvida', coracao: 'amor', '...': 'blip', zzz: 'blip', lampada: 'item', gota: 'duvida', raiva: 'erro', nota: 'amor' };
 
 const AMBIENTE_FUNDO = {
   'floresta-dia': [['passaros', 0.5], ['vento', 0.25]],
@@ -401,6 +402,17 @@ export function eventosSonoros(roteiro) {
         }
         case 'emocao':
           if (!semSom) add(somManual || SOM_EMOCAO[a.icone || '!'] || 'surpresa', a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
+          break;
+        case 'contador':   // um tique por segundo; no último, o sino
+          if (semSom) break;
+          for (let k = 0; k < Math.round(a.de ?? a.duracao); k++) add(somManual || 'clique', a.inicio + k * (a.duracao / Math.round(a.de ?? a.duracao)), { volume: 0.7 * vol });
+          add('sino', a.inicio + a.duracao, { volume: 0.5 * vol });
+          break;
+        case 'destaque':
+          if (!semSom) add(somManual || 'revelar', a.inicio, { volume: 0.6 * vol });
+          break;
+        case 'continua':
+          if (!semSom) add(somManual || 'suspense', a.inicio, { volume: 0.8 * vol });
           break;
         case 'numero':
           if (!semSom) add(somManual || 'clique', a.inicio, { volume: 0.5 * vol, pan: panEl(a.alvo, a.inicio) });

@@ -165,9 +165,23 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
-- **Protótipos aguardando aprovação:** guardiões pequenos (`guardiao-azul`, `guardia-verde`, `guardiao-chefe`,
-  `guardiao-noturno`, em `motor/sprites-guardioes.js`) e números sobre a cabeça (campo `numero` / ação `numero`).
-  Demonstração: `projetos/prototipo-guardioes`. Após o "pode salvar", cadastrar os guardiões em `biblioteca/personagens.json`.
+- **Protótipos aguardando aprovação** (após o "pode salvar", cadastrar personagens em `biblioteca/personagens.json`):
+  - guardiões pequenos (`guardiao-azul`, `guardia-verde`, `guardiao-chefe`, `guardiao-noturno`, `motor/sprites-guardioes.js`)
+    e números sobre a cabeça **das pessoas** (guardiões sem número; campo `numero` / ação `numero`). Teste: `projetos/prototipo-guardioes`.
+  - fantasmas (`motor/sprites-fantasmas.js`): `fantasma-lencol` (parado/assustar/timido), `fantasma-crianca`
+    (parado/timido/acenar/assustar), `fantasma-vovo` (parado/rindo/acenar), `fantasma-sombra` (parado/assustar; use `escala` 2),
+    `fantasma-cachorro` (parado/feliz), `fogo-fatuo` (azul/verde/roxo, com luz). Flutuam sozinhos; use `"y"` ~0.4.
+  - `motor/sprites-prototipos.js`: moradores `carteiro`, `vovo`, `sorveteiro`, `rival`, `menino-pijama` (andam e sentam);
+    `gato-chapeu`; objetos `bilhete` (brilhando), `carta` (fechada/aberta), `mapa`, `cadeado` (fechado/aberto),
+    `pegadas-brilhantes`, `cartaz-procura-se` (vazio/foto; bom com `"tela": true`); isométricos `relogio-praca`
+    (h3/h6/h9/h12/h11-55), `caixa-correio`, `lixeira-praca`, `placa-praca`, `carrinho-sorvete`.
+  - ações novas: `pensar`, `destaque`, `contador`, `placar`, `continua`; ícones `lampada`/`gota`/`raiva`/`nota`;
+    sons `sino-relogio`, `cadeado`, `papel`, `miau`, `trovao`, `suspense`, `fantasma`. Teste: `projetos/prototipo-assets`
+    (personagens no `personagens.json` do projeto).
+  - barracas novas `barraca-sorvete`/`-frutas`/`-verduras`/`-flores`/`-vazia` (estados parado/acesa/fechada) e cenário
+    `praca-feira` (em `projetos/prototipo-praca/cenarios.json`).
+- **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
+  ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
   Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,

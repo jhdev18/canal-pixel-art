@@ -1,0 +1,91 @@
+{
+  // PROTÓTIPO (não aprovado): assets novos para histórias futuras, todos no diorama.
+  // Ver: npm run previa -- prototipo-assets   (cenas sem narração, só para conferir)
+  "titulo": "Protótipo - assets novos",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "cenas": [
+    // 1. Praça de dia: vovó no banco, carteiro apressado perde um bilhete, relógio, caixa de correio, placa
+    { "cenario": "praca", "duracao": 7, "transicao": "fade", "camera": { "x": -2, "z": -8.5 }, "cameraFim": { "x": 0 },
+      "elementos": [
+        { "id": "placa", "sprite": "placa-praca", "x": -3.6, "z": -10.8 },
+        { "id": "relogio", "sprite": "relogio-praca", "x": 2.6, "z": -9.2, "pose": "h3" },
+        { "id": "correio", "sprite": "caixa-correio", "x": -3.2, "z": -4.6 },
+        { "id": "lixeira", "sprite": "lixeira-praca", "x": 3.4, "z": -4.4 },
+        { "id": "vovo", "personagem": "vovo", "x": -5.1, "y": 0, "z": -4.05, "pose": "sentado" },
+        { "id": "carteiro", "sprite": "carteiro", "x": -9, "z": -8.4 },
+        { "id": "bilhete", "sprite": "bilhete", "x": -2, "z": -8.4, "oculto": true },
+        { "id": "gato", "sprite": "gato-chapeu", "x": 5.6, "z": -7.4, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "correr", "alvo": "carteiro", "para": 6, "inicio": 0.2, "duracao": 3.2 },
+        { "tipo": "aparecer", "alvo": "bilhete", "inicio": 1.6, "som": "papel" },
+        { "tipo": "trocar", "alvo": "bilhete", "estado": "brilhando", "inicio": 2.4 },
+        { "tipo": "emocao", "alvo": "vovo", "icone": "lampada", "inicio": 2.6 },
+        { "tipo": "pensar", "alvo": "vovo", "texto": "De novo, Tonho?", "inicio": 3.6 },
+        { "tipo": "trocar", "alvo": "relogio", "estado": "h11-55", "inicio": 5 },
+        { "tipo": "som", "som": "sino-relogio", "inicio": 5 },
+        { "tipo": "andar", "alvo": "gato", "para": 3, "inicio": 5, "duracao": 1.6 },
+        { "tipo": "som", "som": "miau", "inicio": 6.4 }
+      ],
+      "vertical": { "camera": { "x": -3.4, "z": -6.5, "zoom": 2 }, "cameraFim": { "x": -2 } } },
+
+    // 2. Feira: sorveteiro com carrinho, rival da Bia, ícones novos
+    { "cenario": "praca-feira", "duracao": 6, "transicao": "dither", "camera": { "x": -1, "z": -7 },
+      "elementos": [
+        { "id": "carrinho", "sprite": "carrinho-sorvete", "x": 1.2, "z": -8.6 },
+        { "id": "sorveteiro", "sprite": "sorveteiro", "x": 2.9, "z": -8.1, "virado": "esquerda" },
+        { "id": "bia", "personagem": "menina-capa", "x": -6, "z": -8.4 },
+        { "id": "rival", "sprite": "rival", "x": 6, "z": -8.6, "virado": "esquerda" }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": -1.4, "inicio": 0.2, "duracao": 2.4 },
+        { "tipo": "andar", "alvo": "rival", "para": 3.8, "inicio": 0.2, "duracao": 1.6 },
+        { "tipo": "emocao", "alvo": "rival", "icone": "raiva", "inicio": 2.8 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "gota", "inicio": 3.2 },
+        { "tipo": "emocao", "alvo": "sorveteiro", "icone": "nota", "inicio": 3.8 },
+        { "tipo": "placar", "opcoes": ["BIA", "RIVAL"], "votos": [58, 42], "inicio": 4, "duracao": 2 }
+      ] },
+
+    // 3. Praça à noite: fantasmas, fogo-fátuo, menino de pijama, pegadas e contagem
+    { "cenario": "praca-noite", "duracao": 8, "transicao": "dither", "camera": { "x": 0, "z": -8.5 }, "cameraFim": { "x": 1 },
+      "elementos": [
+        { "id": "menino", "sprite": "menino-pijama", "x": -6, "z": -8.6 },
+        { "id": "pegadas", "sprite": "pegadas-brilhantes", "x": -3.4, "z": -8.4 },
+        { "id": "fatuo", "sprite": "fogo-fatuo", "x": -1.4, "y": 1.4, "z": -8.2 },
+        { "id": "crianca", "sprite": "fantasma-crianca", "x": 1.6, "y": 0.4, "z": -8, "pose": "timido", "oculto": true },
+        { "id": "lencol", "sprite": "fantasma-lencol", "x": 4.6, "y": 0.4, "z": -6.6, "virado": "esquerda" },
+        { "id": "vovof", "sprite": "fantasma-vovo", "x": -5.4, "y": 0.5, "z": -4.6, "pose": "rindo" },
+        { "id": "cao", "sprite": "fantasma-cachorro", "x": 6.4, "y": 0.6, "z": -9.4, "pose": "feliz", "virado": "esquerda" },
+        { "id": "sombra", "sprite": "fantasma-sombra", "x": 7.2, "y": 0.4, "z": -4.4, "escala": 2, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "menino", "para": -2.4, "inicio": 0.2, "duracao": 2.4 },
+        { "tipo": "aparecer", "alvo": "crianca", "inicio": 1.2, "som": "fantasma" },
+        { "tipo": "trocar", "alvo": "crianca", "estado": "acenar", "inicio": 2.6 },
+        { "tipo": "trocar", "alvo": "lencol", "estado": "assustar", "inicio": 3.2 },
+        { "tipo": "emocao", "alvo": "menino", "icone": "!", "inicio": 3.3 },
+        { "tipo": "contador", "de": 3, "inicio": 4, "duracao": 3 },
+        { "tipo": "aparecer", "alvo": "sombra", "inicio": 6.9, "som": "trovao" },
+        { "tipo": "tremer", "inicio": 7, "duracao": 0.4 }
+      ] },
+
+    // 4. Close: mapa, carta, cadeado e cartaz; destaque (lupa) no bilhete e selo "CONTINUA..."
+    { "cenario": "praca", "duracao": 6, "transicao": "dither", "camera": { "x": -1, "z": -7.4, "zoom": 2 },
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -2.6, "z": -7.4 },
+        { "id": "mapa", "sprite": "mapa", "x": -1.2, "z": -7.2 },
+        { "id": "carta", "sprite": "carta", "x": -0.4, "z": -7.2, "pose": "fechada" },
+        { "id": "cadeado", "sprite": "cadeado", "x": 0.4, "z": -7.2 },
+        { "id": "cartaz", "sprite": "cartaz-procura-se", "tela": true, "escurecer": 0.6, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "destaque", "alvo": "mapa", "raio": 18, "dy": 4, "inicio": 0.4, "duracao": 1.4 },
+        { "tipo": "trocar", "alvo": "carta", "estado": "aberta", "inicio": 2, "som": "papel" },
+        { "tipo": "trocar", "alvo": "cadeado", "estado": "aberto", "inicio": 2.6, "som": "cadeado" },
+        { "tipo": "aparecer", "alvo": "cartaz", "inicio": 3.2, "som": "suspense" },
+        { "tipo": "trocar", "alvo": "cartaz", "estado": "foto", "inicio": 4 },
+        { "tipo": "continua", "inicio": 4.4, "duracao": 1.6 }
+      ] }
+  ]
+}

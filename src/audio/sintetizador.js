@@ -130,6 +130,14 @@ const SONS = {
   soco: () => misturar([[ruido({ dur: 0.12, vol: 0.8, f0: 2500, f1: 300, curva: 2 })], [tom({ tipo: 'seno', f0: 160, f1: 60, dur: 0.12, vol: 0.7, curva: 2 })]]),
   espada: () => ruido({ dur: 0.22, vol: 0.5, filtro: 'passa-banda', q: 0.3, corteFn: (t, p) => 1500 + 5000 * p, envFn: (t, p) => Math.sin(Math.PI * p) }),
   sino: () => misturar([[tom({ tipo: 'seno', f0: 1760, dur: 1.2, vol: 0.25, curva: 3 })], [tom({ tipo: 'seno', f0: 2637, dur: 0.8, vol: 0.12, curva: 3 })]]),
+  // ---- protótipos (aguardando aprovação)
+  'sino-relogio': () => misturar([0, 1.1, 2.2].flatMap((t0) => [[tom({ tipo: 'seno', f0: 196, dur: 1.6, vol: 0.4, curva: 2.2 }), t0], [tom({ tipo: 'seno', f0: 392, dur: 1.2, vol: 0.18, curva: 2.5 }), t0], [tom({ tipo: 'seno', f0: 523, dur: 0.8, vol: 0.08, curva: 3 }), t0]])),
+  cadeado: () => misturar([[tom({ f0: 2400, dur: 0.02, vol: 0.3 })], [ruido({ dur: 0.08, vol: 0.45, f0: 3500, filtro: 'passa-banda', q: 2, curva: 2 }), 0.05], [tom({ tipo: 'triangulo', f0: 1400, f1: 1200, dur: 0.12, vol: 0.25, curva: 2 }), 0.06]]),
+  papel: () => misturar([0, 0.07, 0.15, 0.21, 0.3].map((t0, k) => [ruido({ dur: 0.06 + (k % 2) * 0.03, vol: 0.35, f0: 2500 + k * 400, filtro: 'passa-banda', q: 0.6, curva: 1.5, semente: 7 + k }), t0])),
+  miau: () => tom({ tipo: 'triangulo', f0: 700, f1: 520, dur: 0.45, vol: 0.35, ataque: 0.05, curva: 1.2, vibrato: 0.04, vibratoHz: 7 }),
+  trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
+  suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),
+  fantasma: () => misturar([[tom({ tipo: 'seno', f0: 420, f1: 640, dur: 1.1, vol: 0.28, ataque: 0.25, curva: 1.4, vibrato: 0.06, vibratoHz: 5 })], [tom({ tipo: 'seno', f0: 630, f1: 960, dur: 0.9, vol: 0.12, ataque: 0.3, curva: 1.6, vibrato: 0.05, vibratoHz: 6 }), 0.15], [ruido({ dur: 1.2, vol: 0.12, f0: 900, filtro: 'passa-banda', q: 0.5, ataque: 0.3 })]]),
   // ---- Ambientes (loops) ----
   chuva: () => emLoop((L) => misturar([
     [ruido({ dur: L, vol: 0.28, f0: 5000, envFn: () => 1, semente: 21 })],

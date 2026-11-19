@@ -300,8 +300,13 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `levantar` | `alvo` | volta a ficar em pé | — |
 | `trocar` | `alvo`, `estado` | muda o estado de um objeto (ex.: `tempo-pessoal` de `sol` para `chuva`; estrela vira `olho`) | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
-| `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` | ícone sobre a cabeça | surpresa/dúvida/amor |
+| `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` `lampada` `gota` `raiva` `nota` | ícone sobre a cabeça | surpresa/dúvida/amor |
 | `numero` | `alvo`, `valor` (`null` tira), `cor`, `estilo` | troca o número sobre a cabeça (com pulinho); vale até o fim da cena | clique |
+| `pensar` | `alvo`, `texto` | balão de pensamento (nuvem com bolinhas) | — |
+| `destaque` | `alvo` (ou `posicao` [x, y] px), `raio`, `dy`, `escurecer`, `cor` | lupa: escurece a tela e ilumina um círculo | revelar |
+| `contador` | `de` (padrão = duração), `cor`, `y` | contagem regressiva grande no alto (vermelha nos 3 últimos) | tique + sino |
+| `placar` | `opcoes` (["AJUDAR", "FUGIR"]), `votos` ([62, 38], opcional), `cores` | placar de votação (1, 2...) com barras enchendo | — |
+| `continua` | `texto` (padrão "CONTINUA...") | selo no canto para o gancho do fim | suspense |
 | `aparecer` / `sumir` | `alvo` | "puf" de fumaça | puf |
 | `coletar` | `alvo` | item sobe com brilho e some | moeda/vida/powerup/item |
 | `piscar` | `alvo` | pisca vermelho (dano) | dano |
@@ -318,7 +323,8 @@ Os efeitos ficam no **estéreo** de acordo com a posição do personagem na tela
 
 Gerados por síntese, no estilo 8/16-bit:
 `passo, pulo, aterrissar, moeda, item, vida, powerup, puf, explosao, tremor, blip, surpresa, duvida,
-amor, dano, magia, revelar, transicao, porta, clique, sucesso, erro, soco, espada, sino`.
+amor, dano, magia, revelar, transicao, porta, clique, sucesso, erro, soco, espada, sino` e (protótipo)
+`sino-relogio, cadeado, papel, miau, trovao, suspense, fantasma`.
 
 Ambientes (em loop, escolhidos pelo fundo/clima automaticamente):
 `chuva, vento, grilos, passaros, fogo, caverna, espaco, cidade`.

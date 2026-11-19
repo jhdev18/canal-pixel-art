@@ -6,6 +6,8 @@ import './sprites-rpg.js';
 import './sprites-detalhados.js';
 import './sprites-cidade.js';
 import './sprites-guardioes.js';   // protótipo
+import './sprites-fantasmas.js';   // protótipo
+import './sprites-prototipos.js';  // protótipo
 import './estabelecimentos.js';
 import './sprites-interiores.js';
 import './sprites-nesse-mundo.js';

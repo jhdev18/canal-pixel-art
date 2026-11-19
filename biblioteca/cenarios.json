@@ -210,7 +210,7 @@
   },
   // Rua comercial enfeitada para o Dia do Sol (diagonal)
   "rua-festa": {
-    "vista": "diagonal",
+    "vista": "diorama",
     "rua": { "periodo": "dia", "faixaPedestre": -3,
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
     "elementos": [
@@ -243,12 +243,12 @@
   // Personagens: x de -7.5 a 7.5, z de -1.5 (perto da rua) a -11.5 (perto da câmera). Fonte no centro (x 0, z -6).
   // PADRÃO (uso normal): bancos em x -5 e 5; sentar no banco: "pose": "sentado", "y": 0, "z": -4.05 (x -5.2 ou 4.8).
   // DECORADA (festa): mesma praça + bandeirinhas, palanque (em cima: "y": 0.75, x 4.2 a 6.2, z -6.4 a -7.2) e 3 barracas
-  //   (pipoca, doces, jogos) no fundo, em x -5.6, -3.7, -1.8, z -2.7 (atender atrás do balcão: z -2.4).
+  //   (pipoca, doces, jogos) no fundo, em x -6.0, -3.7, -1.4 (vendedor atrás do balcão: x -5.2, -2.9, -0.6, z -2.4).
   // Objetos: x/z = canto da frente; estado inicial com "pose" ou mude com "trocar": fonte "cheia"/"seca",
   //   árvores "verde"/"seca", canteiros "verde"/"murcho", barracas "parado"/"acesa".
   // Praça padrão, de dia
   "praca": {
-    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "vista": "diorama", "camera": { "x": 0, "z": -8.5 },
     "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
     "elementos": [
@@ -267,7 +267,7 @@
   },
   // Praça padrão, à noite (postes acesos)
   "praca-noite": {
-    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "vista": "diorama", "camera": { "x": 0, "z": -8.5 },
     "rua": { "periodo": "noite", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12, "luzes": [[-8.25, -6.25], [8.05, -6.25]] },
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
     "elementos": [
@@ -286,7 +286,7 @@
   },
   // Praça decorada para festa, de dia
   "praca-decorada": {
-    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "vista": "diorama", "camera": { "x": 0, "z": -8.5 },
     "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 },
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
     "elementos": [
@@ -302,14 +302,14 @@
       { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
       { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
       { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 },
-      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.4, "z": -3.2 },
-      { "id": "barraca2", "sprite": "barraca-doces", "x": -4.5, "z": -3.2 },
-      { "id": "barraca3", "sprite": "barraca-jogos", "x": -2.6, "z": -3.2 }
+      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.0, "z": -3.2 },
+      { "id": "barraca2", "sprite": "barraca-doces", "x": -3.7, "z": -3.2 },
+      { "id": "barraca3", "sprite": "barraca-jogos", "x": -1.4, "z": -3.2 }
     ]
   },
   // Praça decorada à noite (barracas com luzinhas)
   "praca-decorada-noite": {
-    "vista": "diagonal", "camera": { "x": 0, "z": -8.5 },
+    "vista": "diorama", "camera": { "x": 0, "z": -8.5 },
     "rua": { "periodo": "noite", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12, "luzes": [[-8.25, -6.25], [8.05, -6.25]] },
       "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
     "elementos": [
@@ -325,9 +325,9 @@
       { "id": "palanque", "sprite": "palanque-iso", "x": 3.5, "z": -7.4 },
       { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": -4.6 },
       { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": -4.6 },
-      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.4, "z": -3.2, "pose": "acesa" },
-      { "id": "barraca2", "sprite": "barraca-doces", "x": -4.5, "z": -3.2, "pose": "acesa" },
-      { "id": "barraca3", "sprite": "barraca-jogos", "x": -2.6, "z": -3.2, "pose": "acesa" }
+      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -6.0, "z": -3.2, "pose": "acesa" },
+      { "id": "barraca2", "sprite": "barraca-doces", "x": -3.7, "z": -3.2, "pose": "acesa" },
+      { "id": "barraca3", "sprite": "barraca-jogos", "x": -1.4, "z": -3.2, "pose": "acesa" }
     ]
   }
 }

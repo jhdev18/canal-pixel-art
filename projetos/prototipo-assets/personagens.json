@@ -1,0 +1,9 @@
+{
+  // PROTÓTIPO: personagens novos (só neste projeto até o "pode salvar")
+  "vovo":       { "sprite": "vovo", "voz": 0.8 },
+  "carteiro":   { "sprite": "carteiro", "voz": 1.1 },
+  "sorveteiro": { "sprite": "sorveteiro", "voz": 0.9 },
+  "rival":      { "sprite": "rival", "voz": 1.35 },
+  "menino-pijama": { "sprite": "menino-pijama", "voz": 1.45 },
+  "gato-chapeu": { "sprite": "gato-chapeu", "voz": 1.8 }
+}

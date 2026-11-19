@@ -7,7 +7,7 @@ import { registrarSprites } from './sprites.js';
 import { spriteIso } from './cenarios/comodoDiagonal.js';
 
 // estados: { nome: { tipo, op, noite } }; todos os quadros com o mesmo tamanho (o maior), base no mesmo ponto
-function iso(estados, extra = {}) {
+export function iso(estados, extra = {}) {
   const partes = Object.entries(estados).map(([nome, e]) => [nome, spriteIso(e.tipo, e.op || {}, { noite: !!e.noite })]);
   const W = Math.max(...partes.map(([, s]) => s.w)) | 1, H = Math.max(...partes.map(([, s]) => s.h));
   const quadros = [], brilho = [], anims = {};
@@ -26,6 +26,7 @@ function iso(estados, extra = {}) {
   const s0 = partes[0][1];
   return { quadros, brilho: temBrilho ? brilho : undefined, anims, sombra: false, isoCentro: { di: s0.di, dj: s0.dj }, ...extra };
 }
+const barraca = (produto) => iso({ parado: { tipo: 'barraca', op: { produto } }, acesa: { tipo: 'barraca', op: { produto, luzes: true } }, fechada: { tipo: 'barraca', op: { produto, fechada: true } } });
 const SECA = ['#c8b860', '#a89a48', '#7a7a3a', '#5a5a2a'];
 
 registrarSprites({
@@ -41,7 +42,13 @@ registrarSprites({
   // viatura (rua diagonal): "parado" ou "sirene"; boia com "balancar": true
   'viatura-iso': () => iso({ parado: { tipo: 'viatura' }, sirene: { tipo: 'viatura', op: { sirene: true } } }),
   // barracas de festa (estado "acesa": lâmpadas no toldo, para a festa à noite)
-  'barraca-pipoca': () => iso({ parado: { tipo: 'barraca', op: { produto: 'pipoca' } }, acesa: { tipo: 'barraca', op: { produto: 'pipoca', luzes: true } } }),
-  'barraca-doces': () => iso({ parado: { tipo: 'barraca', op: { produto: 'doces' } }, acesa: { tipo: 'barraca', op: { produto: 'doces', luzes: true } } }),
-  'barraca-jogos': () => iso({ parado: { tipo: 'barraca', op: { produto: 'jogos' } }, acesa: { tipo: 'barraca', op: { produto: 'jogos', luzes: true } } }),
+  // barracas (festa/feira): estados "parado", "acesa" (lâmpadas no toldo) e "fechada" (lona baixada)
+  'barraca-pipoca': () => barraca('pipoca'),
+  'barraca-doces': () => barraca('doces'),
+  'barraca-jogos': () => barraca('jogos'),
+  'barraca-sorvete': () => barraca('sorvete'),
+  'barraca-frutas': () => barraca('frutas'),
+  'barraca-verduras': () => barraca('verduras'),
+  'barraca-flores': () => barraca('flores'),
+  'barraca-vazia': () => barraca('vazia'),
 });

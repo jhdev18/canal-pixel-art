@@ -1,7 +1,7 @@
 // PROTÓTIPO (aguardando aprovação): pequenos guardiões com jeito de gente.
 // Usam o mesmo gerador dos moradores (28x44, frente + andar/correr de lado, caminhada clássica),
 // então já funcionam na vista diorama. Corpo de criança = guardiões pequenos.
-import { pessoa } from './sprites-cidade.js';
+import { pessoaComSentado as pessoa } from './sprites-cidade.js';
 import { registrarSprites } from './sprites.js';
 
 const BASE = { cabelo: 'curto', chapeu: 'elmo', baixo: 'calca', corpo: 'crianca', capa: true, cinto: true, emblema: true };

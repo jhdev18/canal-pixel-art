@@ -150,7 +150,7 @@ function corDecor(d, pos, t, noite) {
 
 // ------------------------------------------------------------------ móveis
 // m: { i0, i1, j0, j1 } (pegada no chão). L: camada. luzes: lista para acender (abajur, TV...).
-const MOVEIS = {
+export const MOVEIS = {
   'mesa-professor': { di: 1.0, dj: 2.4, f(L, m) {
     const { i0, i1, j0, j1 } = m;
     L.caixa(i0, i1, j0, j1, 0, 13, { frente: (u, t, l) => (u < 0.1 || u > l - 0.1 || t > 11 ? MAD.esc : ((u > 0.2 && u < 0.8) || (u > l - 0.8 && u < l - 0.2)) && t % 6 === 3 ? '#e8c040' : MAD.base), lado: MAD.esc, topo: MAD.claro });
@@ -392,31 +392,59 @@ const MOVEIS = {
     L.caixa(ci - 0.2, ci + 0.2, cj - 0.35, cj, 19, 3, { frente: lig ? ['#ff4040', 2] : '#b02a2a', lado: lig ? ['#ff6060', 2] : '#8a2020', topo: lig ? ['#ff8080', 2] : '#c83a3a' });
     L.caixa(ci - 0.2, ci + 0.2, cj, cj + 0.35, 19, 3, { frente: lig ? ['#4080ff', 2] : '#2a4ab0', lado: lig ? ['#60a0ff', 2] : '#203a8a', topo: lig ? ['#80b0ff', 2] : '#3a5ac8' });
   } },
-  // barraca de festa: balcão, 4 varas e toldo listrado. op.produto: 'pipoca' | 'doces' | 'jogos'; op.luzes: lâmpadas no toldo
+  // barraca de festa/feira: balcão, 4 varas, toldo listrado (acima da cabeça das pessoas) e placa com ícone.
+  //   op.produto: pipoca | doces | jogos | sorvete | frutas | verduras | flores | vazia
+  //   op.cores: [clara, forte, escura] do toldo; op.luzes: lâmpadas no toldo; op.fechada: lona baixada (sem produtos)
   barraca: { di: 1.0, dj: 1.6, f(L, m, ctx) {
-    const { i0, i1, j0, j1 } = m, op = ctx.op;
-    const TEMAS_B = { pipoca: ['#f4f0e8', '#d83a3a', '#a82a2a'], doces: ['#f4f0e8', '#f07ab0', '#c05a88'], jogos: ['#f8d848', '#3a6ad8', '#2a4aa8'] };
-    const [cl, cf, ce] = TEMAS_B[op.produto] || TEMAS_B.pipoca;
-    for (const [a, b] of [[i0, j0], [i1 - 0.07, j0], [i0, j1 - 0.07], [i1 - 0.07, j1 - 0.07]]) L.caixa(a, a + 0.07, b, b + 0.07, 0, 36, MAD.base);
+    const { i0, i1, j0, j1 } = m, op = ctx.op, prod = op.produto || 'pipoca';
+    const TEMAS_B = { pipoca: ['#f4f0e8', '#d83a3a', '#a82a2a'], doces: ['#f4f0e8', '#f07ab0', '#c05a88'], jogos: ['#f8d848', '#3a6ad8', '#2a4aa8'],
+      sorvete: ['#f4f0e8', '#5ac8e0', '#3a90a8'], frutas: ['#f8e070', '#e86a2a', '#b04a1a'], verduras: ['#f4f0e8', '#3aa860', '#267a44'],
+      flores: ['#f8e8f0', '#a85ad8', '#7a3aa8'], vazia: ['#e8e0d0', '#8a7a68', '#5a4e40'] };
+    const [cl, cf, ce] = op.cores || TEMAS_B[prod] || TEMAS_B.pipoca;
+    const HT = 56;                                                    // altura do toldo (pessoas têm 44 px; o babado não cobre o rosto)
+    for (const [a, b] of [[i0, j0], [i1 - 0.07, j0], [i0, j1 - 0.07], [i1 - 0.07, j1 - 0.07]]) L.caixa(a, a + 0.07, b, b + 0.07, 0, HT, MAD.base);
     // balcão na frente
     L.caixa(i1 - 0.4, i1, j0 + 0.05, j1 - 0.05, 0, 13, { frente: (u, t) => (t > 10 ? MAD.claro : Math.floor(u * 4) % 2 ? cl : cf), lado: (u, t) => (t > 10 ? MAD.base : ce), topo: MAD.claro });
-    // produtos no balcão
     const r = rng(ctx.semente + 41);
-    for (let k = 0; k < 4; k++) {
+    if (op.fechada) {   // lona baixada na frente
+      L.caixa(i1 + 0.1, i1 + 0.13, j0 - 0.05, j1 + 0.05, 12, HT - 12, { frente: (u, t) => (Math.floor(u * 5) % 2 ? cl : cf), lado: () => ce, topo: () => ce });
+    } else for (let k = 0; k < 4; k++) {
       const b = j0 + 0.25 + k * ((j1 - j0 - 0.5) / 3), a = i1 - 0.22;
-      if (op.produto === 'doces') L.caixa(a - 0.08, a + 0.08, b - 0.08, b + 0.08, 13, 4 + (k % 2) * 2, ['#f8a8d8', '#80d8f8', '#f8e060', '#a8f088'][k]);
-      else if (op.produto === 'jogos') { L.caixa(a - 0.06, a + 0.06, b - 0.06, b + 0.06, 13, 3, '#f4f0e8'); L.caixa(a - 0.05, a + 0.05, b - 0.05, b + 0.05, 16, 3, ['#e83a3a', '#3aa860', '#f0b830', '#8a5ad8'][k]); }
-      else { L.caixa(a - 0.09, a + 0.09, b - 0.09, b + 0.09, 13, 5, { frente: (u, t) => (t > 3 ? '#fff4d0' : u * 16 % 3 < 1.5 ? '#d83a3a' : '#f4f0e8'), lado: '#e8d8b0', topo: () => (r() < 0.5 ? '#fff8e0' : '#f0d890') }); }
+      if (prod === 'doces') L.caixa(a - 0.08, a + 0.08, b - 0.08, b + 0.08, 13, 4 + (k % 2) * 2, ['#f8a8d8', '#80d8f8', '#f8e060', '#a8f088'][k]);
+      else if (prod === 'jogos') { L.caixa(a - 0.06, a + 0.06, b - 0.06, b + 0.06, 13, 3, '#f4f0e8'); L.caixa(a - 0.05, a + 0.05, b - 0.05, b + 0.05, 16, 3, ['#e83a3a', '#3aa860', '#f0b830', '#8a5ad8'][k]); }
+      else if (prod === 'sorvete') { L.caixa(a - 0.05, a + 0.05, b - 0.05, b + 0.05, 13, 4, '#e8b060'); L.caixa(a - 0.08, a + 0.08, b - 0.08, b + 0.08, 17, 3, ['#f8c0d8', '#f4f0e0', '#a0e0a0', '#8a5a3a'][k]); }
+      else if (prod === 'frutas' || prod === 'verduras') {
+        const cs = prod === 'frutas' ? [['#e83a3a', '#f8a030'], ['#f8d040', '#a8d040'], ['#8a3aa8', '#e83a3a'], ['#f8a030', '#f8d040']] : [['#3aa860', '#7ad070'], ['#e86a2a', '#3aa860'], ['#f4f0e8', '#7ad070'], ['#c83a3a', '#3aa860']];
+        L.caixa(a - 0.1, a + 0.1, b - 0.1, b + 0.1, 13, 3, MAD.esc);
+        L.caixa(a - 0.09, a + 0.09, b - 0.09, b + 0.09, 16, 2, { frente: (u, t) => cs[k][(Math.floor(u * 16) + t) % 2], lado: cs[k][1], topo: (x, y) => cs[k][(Math.floor(x * 16) + Math.floor(y * 16)) % 2] });
+      } else if (prod === 'flores') { L.caixa(a - 0.05, a + 0.05, b - 0.05, b + 0.05, 13, 5, '#5a8ad8'); L.caixa(a - 0.08, a + 0.08, b - 0.08, b + 0.08, 18, 3, { frente: '#3aa860', lado: '#267a44', topo: (x, y) => ['#e83a5a', '#f8c840', '#f07ac0', '#ffffff'][(k + Math.floor(x * 20) + Math.floor(y * 20)) % 4] }); }
+      else if (prod === 'pipoca') L.caixa(a - 0.09, a + 0.09, b - 0.09, b + 0.09, 13, 5, { frente: (u, t) => (t > 3 ? '#fff4d0' : u * 16 % 3 < 1.5 ? '#d83a3a' : '#f4f0e8'), lado: '#e8d8b0', topo: () => (r() < 0.5 ? '#fff8e0' : '#f0d890') });
     }
-    // placa pequena em cima do balcão (de pé, no fundo)
     // toldo listrado com babado
-    L.caixa(i0 - 0.12, i1 + 0.15, j0 - 0.1, j1 + 0.1, 36, 4, {
+    L.caixa(i0 - 0.12, i1 + 0.15, j0 - 0.1, j1 + 0.1, HT, 4, {
       frente: (u, t) => (Math.floor(u * 5) % 2 ? cl : cf), lado: (u) => (Math.floor(u * 5) % 2 ? cl : ce),
       topo: (a, b) => (Math.floor(b * 5) % 2 ? cl : cf) });
-    L.caixa(i1 + 0.12, i1 + 0.15, j0 - 0.1, j1 + 0.1, 32, 4, { frente: (u, t) => ((Math.floor(u * 10) % 2 === 0 && t < 2) ? null : Math.floor(u * 5) % 2 ? cl : cf), lado: () => ce, topo: () => cf });
+    L.caixa(i1 + 0.12, i1 + 0.15, j0 - 0.1, j1 + 0.1, HT - 4, 4, { frente: (u, t) => ((Math.floor(u * 10) % 2 === 0 && t < 2) ? null : Math.floor(u * 5) % 2 ? cl : cf), lado: () => ce, topo: () => cf });
+    // placa com ícone em cima do toldo (de frente para a câmera)
+    const ICONES = {
+      pipoca: ['.w.w.', 'wwwww', 'rwrwr', 'rwrwr', '.rwr.'], doces: ['..p..', '.ppp.', '..p..', '..m..', '..m..'], jogos: ['.rrr.', 'rwwwr', 'rwrwr', 'rwwwr', '.rrr.'],
+      sorvete: ['.ppp.', 'ppppp', '.ppp.', '.mmm.', '..m..'], frutas: ['...g.', '.rrg.', 'rrrrr', 'rrrrr', '.rrr.'], verduras: ['g.g.g', '.ggg.', '..g..', '.ooo.', '..o..'],
+      flores: ['.p.p.', 'ppypp', '.p.p.', '..g..', '.gg..'], vazia: null };
+    const ic = ICONES[prod];
+    if (ic && !op.fechada) {
+      const cores = { w: '#fff8e0', r: '#d83a3a', p: '#f07ab0', m: '#a8703e', g: '#3aa860', o: '#e86a2a', y: '#f8d040' };
+      const jc = (j0 + j1) / 2, ia = i1 + 0.16;
+      L.caixa(ia - 0.05, ia, jc - 0.38, jc + 0.38, HT + 4, 9, { frente: (u, t) => {
+        const x = 7 - Math.floor(u * 16), y = 7 - t;                   // 12 px de largura, 9 de altura (u cresce para a esquerda)
+        if (t === 0 || t === 8 || x < -3 || x > 7) return MAD.esc;
+        const c = x >= 0 && x < 5 && y >= 0 && y < 5 ? ic[y][x] : '.';
+        return c === '.' ? '#f4f0e0' : cores[c];
+      }, lado: MAD.esc, topo: MAD.esc });
+      L.caixa(ia - 0.04, ia - 0.01, jc - 0.02, jc + 0.02, HT + 2, 2, MAD.esc);
+    }
     if (op.luzes) for (let k = 0; k < 7; k++) {
-      const b = j0 + (k / 6) * (j1 - j0), p = L.proj(i1 + 0.16, b, 31);
-      L.pintar(p.x, p.y, ['#fff0a0', '#ffb0c0', '#a0e0ff'][k % 3], i1 + 0.2, b, 31, 2, 1);
+      const b = j0 + (k / 6) * (j1 - j0), p = L.proj(i1 + 0.16, b, HT - 5);
+      L.pintar(p.x, p.y, ['#fff0a0', '#ffb0c0', '#a0e0ff'][k % 3], i1 + 0.2, b, HT - 5, 2, 1);
     }
   } },
 };
