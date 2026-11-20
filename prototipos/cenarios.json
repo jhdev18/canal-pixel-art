@@ -578,5 +578,66 @@
         "semente": 4
       }
     ]
+  },
+
+  // ---- 2ª leva (protótipos): saída da cidade, ponte, beco, festa junina, chuva
+  // Estrada de terra na saída da cidade: placa "VILA SERENA 1 KM", cerca, mato e árvores (sem prédios).
+  // Personagens na estrada: z ~1.4 a 4.4 (sulcos em z ~2.2 e ~3.8).
+  "estrada-terra": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.4, "y": 2.4 },
+    "rua": { "periodo": "dia", "chao": "terra", "semPredios": true, "postes": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "placa", "sprite": "placa-saida", "x": 1.2, "z": 5.6 },
+      { "id": "cerca1", "sprite": "cerca-madeira", "x": -11, "z": 0.2 }, { "id": "cerca2", "sprite": "cerca-madeira", "x": -6.6, "z": 0.2 },
+      { "id": "cerca3", "sprite": "cerca-madeira", "x": 6, "z": 0.2 },
+      { "id": "mato1", "sprite": "mato", "x": -3.2, "z": 0.3 }, { "id": "mato2", "sprite": "mato", "x": 3.4, "z": 5.4 },
+      { "id": "mato3", "sprite": "mato", "x": -7.4, "z": 5.6 }, { "id": "mato4", "sprite": "mato", "x": 9.4, "z": 0.4 },
+      { "id": "arv1", "sprite": "arvore-iso-grande", "x": -9, "z": 7.4 }, { "id": "arv2", "sprite": "arvore-iso", "x": -2.4, "z": 8.2 },
+      { "id": "arv3", "sprite": "arvore-iso-grande", "x": 7.4, "z": 7.6 }
+    ]
+  },
+  // Ponte de madeira sobre o rio (campo dos dois lados). Em cima da ponte: x ~-0.4 a 0.8, "y": 0.45, z ~1 a 5.
+  "ponte-rio": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.4, "y": 2.4 },
+    "rua": { "periodo": "dia", "chao": "terra", "rio": true, "semPredios": true, "postes": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "ponte", "sprite": "ponte-madeira", "x": -0.6, "z": 0.4 },
+      { "id": "mato1", "sprite": "mato", "x": -4.6, "z": 0.2 }, { "id": "mato2", "sprite": "mato", "x": 4.2, "z": 5.6 },
+      { "id": "arv1", "sprite": "arvore-iso-grande", "x": -7.6, "z": 7.2 }, { "id": "arv2", "sprite": "arvore-iso", "x": 5.6, "z": 7.8 },
+      { "id": "cerca1", "sprite": "cerca-madeira", "x": 3, "z": 0.2 }
+    ]
+  },
+  "ponte-rio-noite": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.4, "y": 2.4 }, "clima": "vagalumes",
+    "rua": { "periodo": "noite", "chao": "terra", "rio": true, "semPredios": true, "postes": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "ponte", "sprite": "ponte-madeira", "x": -0.6, "z": 0.4 },
+      { "id": "arv1", "sprite": "arvore-iso-grande", "x": -7.6, "z": 7.2 }, { "id": "arv2", "sprite": "arvore-iso", "x": 5.6, "z": 7.8 }
+    ]
+  },
+  // Beco escuro (cômodo): porta trancada com corrente e cadeado de número, lixeiras, caixotes, poste aceso.
+  // Personagens: z de 0 (frente) a ~3.8 (parede). Close do cadeado: sprite "cadeado-numero" com "tela": true.
+  "beco": { "vista": "diorama", "comodo": { "tipo": "beco" } },
+  // Festa junina na rua à noite: fogueira no meio da rua, bandeirinhas, barracas acesas na calçada da frente
+  "rua-junina": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "clima": "brasas",
+    "rua": { "periodo": "noite", "faixaPedestre": -3, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [
+      { "id": "fogueira", "sprite": "fogueira-junina", "x": 1.6, "z": 2.3 },
+      { "id": "band1", "sprite": "bandeirinhas-iso", "x": -6, "z": 4.6 }, { "id": "band2", "sprite": "bandeirinhas-iso", "x": 0.2, "z": 4.6 },
+      { "id": "band3", "sprite": "bandeirinhas-iso", "x": 6.4, "z": 4.6 },
+      { "id": "barraca1", "sprite": "barraca-pipoca", "x": -7.4, "z": -0.6, "pose": "acesa" },
+      { "id": "barraca2", "sprite": "barraca-doces", "x": -5.1, "z": -0.6, "pose": "acesa" },
+      { "id": "barraca3", "sprite": "barraca-jogos", "x": 6.2, "z": -0.6, "pose": "acesa" }
+    ]
+  },
+  // Rua na chuva: poças no chão, chuva caindo (guarda-chuva: "sprite": "guarda-chuva", "sobre": { "id", "dx": 0.45, "dy": 1.0 })
+  "rua-chuva": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "clima": "chuva",
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "pocas": true, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
+  },
+  "rua-chuva-noite": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "clima": "chuva",
+    "rua": { "periodo": "noite", "faixaPedestre": -3, "pocas": true, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
   }
 }

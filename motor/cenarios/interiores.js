@@ -210,6 +210,15 @@ export const PRESETS_INTERIORES = {
     ambiente: ['#ffffff', 1.0],
   },
 };
+// PROTÓTIPO (não aprovado): beco escuro — tijolo, chão de pedras escuras, sempre à noite
+PRESETS_INTERIORES.beco = {
+  ceu: { cores: ['#141424'] },
+  camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true, noite: true,
+    cor: ['#8a5a4a', '#6a4038', '#3e2420'], padrao: 'tijolo', teto: ['#2a2a34', '#1e1e28', '#141420'],
+    rodape: ['#3a3a44', '#2e2e38', '#22222a'], janelas: [], portas: [], quadros: [] }],
+  chao: { estilo: 'pedras', topo: ['#6a6a78', '#55556a', '#3a3a48'], terra: ['#3a3a46', '#2e2e3a'] },
+  ambiente: ['#6a70a8', 0.5],
+};
 PRESETS_INTERIORES['quarto-menina-noite'] = {
   ...PRESETS_INTERIORES['quarto-menina'], ceu: { cores: ['#2a2848'] },
   camadas: [{ ...PRESETS_INTERIORES['quarto-menina'].camadas[0], noite: true }],

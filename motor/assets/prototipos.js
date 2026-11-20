@@ -145,6 +145,72 @@ Object.assign(MOVEIS, {
   } },
 });
 
+// ---- mais itens (2ª leva): ponte, fogueira junina, caixote, cerca de madeira, mato
+Object.assign(MOVEIS, {
+  // caixote de madeira (empilha com "h0": 12 no beco)
+  caixote: { di: 0.7, dj: 0.7, f(L, m) {
+    const { i0, i1, j0, j1 } = m, h0 = m.h0 ?? 0;
+    L.caixa(i0, i1, j0, j1, h0, 12, { frente: (u, t) => (t === 0 || t === 11 || Math.floor(u * 16) % 11 === 0 ? MAD.esc : t % 4 === 0 ? MAD.base : MAD.claro),
+      lado: (u, t) => (t === 0 || t === 11 ? MAD.esc : t % 4 === 0 ? '#6a4224' : MAD.base), topo: (a, b) => (Math.floor(b * 16) % 4 === 0 ? MAD.base : MAD.claro) });
+  } },
+  // ponte de madeira atravessando a rua/rio (ao longo de z). Quem passa por cima: "y": 0.45
+  ponte: { di: 4.8, dj: 1.6, f(L, m) {
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 4, 3, { frente: MAD.esc, lado: (u) => (Math.floor(u * 16) % 3 === 0 ? MAD.esc : MAD.base), topo: (a) => (Math.floor(a * 16) % 3 === 0 ? MAD.esc : (Math.floor(a * 16) % 7 === 1 ? MAD.base : MAD.claro)) });
+    for (const a of [i0 + 0.6, (i0 + i1) / 2, i1 - 0.6]) for (const b of [j0, j1 - 0.12]) L.caixa(a - 0.06, a + 0.06, b, b + 0.12, 0, 4, '#5a3a22');
+    for (const b of [j0, j1 - 0.1]) {
+      for (let a = i0; a <= i1 - 0.1; a += 0.8) L.caixa(a, a + 0.1, b, b + 0.1, 7, 10, MAD.base);
+      L.caixa(i0, i1, b, b + 0.1, 17, 2, { frente: MAD.claro, lado: MAD.base, topo: MAD.claro });
+    }
+  } },
+  // fogueira de festa junina: lenha em pirâmide e chamas (op.chama: 0..2 muda o desenho das chamas)
+  fogueira: { di: 1.0, dj: 1.0, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2, k = ctx.op.chama ?? 0;
+    for (const [da, db] of [[-0.35, 0], [0.35, 0], [0, -0.35], [0, 0.35]]) L.caixa(ci + da - 0.08, ci + da + 0.08, cj + db - 0.08, cj + db + 0.08, 0, 16, { frente: (u, t) => (t % 5 === 0 ? '#4a2e1a' : '#7a5232'), lado: '#4a2e1a', topo: '#8a6a4a' });
+    for (const [a, b] of [[-0.45, -0.45], [0.45, -0.45], [-0.45, 0.45], [0.45, 0.45], [0, -0.55], [0, 0.55], [-0.55, 0], [0.55, 0]]) L.caixa(ci + a - 0.08, ci + a + 0.08, cj + b - 0.08, cj + b + 0.08, 0, 3, '#8a8a98');
+    const p = L.proj(ci, cj, 6);
+    for (let y = 0; y < 26; y++) {
+      const w = Math.max(0, Math.round((26 - y) * 0.32 + Math.sin(y * 0.7 + k * 2.1) * 1.5));
+      for (let x = -w; x <= w; x++) {
+        const borda = Math.abs(x) >= w - 1, cor = y > 18 ? '#fff0a0' : borda ? '#e85a2a' : y > 9 ? '#f8c840' : '#f8902a';
+        if (((x + y + k) % 7 === 0) && y > 20) continue;
+        L.pintar(p.x + x, p.y - y, cor, ci + 0.6, cj + 0.6, 6 + y, 2, 1);
+      }
+    }
+    ctx.luzes.push({ i: ci, j: cj, h: 20, raio: 5, forca: 1.1, cor: '#ffa040' });
+  } },
+  // cerca de madeira (ao longo de x), para a estrada de terra
+  'cerca-madeira': { di: 0.15, dj: 4, f(L, m) {
+    const { i0, i1, j0, j1 } = m;
+    for (let b = j0; b <= j1 - 0.1; b += 1) L.caixa(i0, i1, b, b + 0.12, 0, 16, { frente: (u, t) => (t === 15 ? MAD.claro : MAD.base), lado: MAD.esc, topo: MAD.claro });
+    for (const h of [6, 12]) L.caixa(i0 + 0.03, i1 - 0.03, j0, j1, h, 2, { frente: MAD.claro, lado: MAD.base, topo: MAD.claro });
+  } },
+  // mato alto (tufos de capim)
+  mato: { di: 0.8, dj: 1.2, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, r = rng(ctx.semente + 3);
+    for (let k = 0; k < 26; k++) {
+      const a = i0 + r() * (i1 - i0), b = j0 + r() * (j1 - j0), p = L.proj(a, b, 0), h = 5 + Math.floor(r() * 8), inc = r() < 0.5 ? -1 : 1;
+      for (let t = 0; t < h; t++) L.pintar(p.x + Math.round((t / h) * inc * 2), p.y - t, t > h - 3 ? '#8ad070' : t > h / 2 ? '#5aa84a' : '#3a8040', a, b, t, 1, 1);
+    }
+  } },
+});
+
+// cadeado de número de perto (bom com "tela": true): estados fechado (???), tentando (47?), aberto (472)
+function cadeadoNumero(cod, aberto) {
+  const p = new Pix(40, 44);
+  // argola: fechada desce dos dois lados; aberta sobe e solta o lado esquerdo
+  const sobe = aberto ? -2 : 0;
+  p.ret(10, 4 + sobe, 20, 3, '#9a9aae'); p.ret(10, 4 + sobe, 3, aberto ? 6 : 16, '#9a9aae'); p.ret(27, 4 + sobe, 3, 16 - sobe, '#9a9aae');
+  p.ret(4, 18, 32, 24, '#d8b040'); p.ret(4, 18, 32, 2, '#f0d060'); p.ret(4, 39, 32, 3, '#a8801e');
+  for (let k = 0; k < 3; k++) {
+    const x = 7 + k * 9;
+    p.ret(x, 24, 8, 12, '#f4f0e0'); p.ret(x, 24, 8, 1, '#c8c0b0'); p.ret(x, 35, 8, 1, '#c8c0b0');
+    texto(p, cod[k], x + 2, 26, cod[k] === '?' ? '#8a8aa0' : '#1a1c2c');
+  }
+  p.contorno('#3a3a4a');
+  return p;
+}
+
 const estados = (n) => Object.fromEntries(n.map((x) => [x, { q: [0], fps: 1 }]));
 
 registrarSprites({
@@ -166,5 +232,17 @@ registrarSprites({
   'lixeira-praca': () => iso({ parado: { tipo: 'lixeira-praca' } }),
   'placa-praca': () => iso({ parado: { tipo: 'placa-nome', op: { texto: 'PRACA SERENA' } } }),
   'carrinho-sorvete': () => iso({ parado: { tipo: 'carrinho-sorvete' } }),
+  caixote: () => iso({ parado: { tipo: 'caixote' } }),
+  'ponte-madeira': () => iso({ parado: { tipo: 'ponte' } }),
+  'cerca-madeira': () => iso({ parado: { tipo: 'cerca-madeira' } }),
+  mato: () => iso({ parado: { tipo: 'mato' } }),
+  'placa-saida': () => iso({ parado: { tipo: 'placa-nome', op: { texto: 'VILA SERENA 1 KM', dj: 6 } } }),
+  'fogueira-junina': () => {   // chamas animadas (3 desenhos em sequência)
+    const s = iso({ a: { tipo: 'fogueira', op: { chama: 0 } }, b: { tipo: 'fogueira', op: { chama: 1 } }, c: { tipo: 'fogueira', op: { chama: 2 } } }, { luz: { cor: '#ffa040', intensidade: 1.6, alcance: 5, dy: 1 } });
+    s.anims = { parado: { q: [0, 1, 2, 1], fps: 8 } };
+    return s;
+  },
+  'cadeado-numero': () => ({ quadros: [cadeadoNumero('???', false), cadeadoNumero('47?', false), cadeadoNumero('472', true)],
+    anims: { parado: { q: [0] }, fechado: { q: [0] }, tentando: { q: [1] }, aberto: { q: [2] } }, sombra: false }),
 }, { grupo: 'Novos (personagens, objetos, praça)', status: 'protótipo' });
 void rng; void estados; void MORADORES;

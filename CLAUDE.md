@@ -172,8 +172,11 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
 - **Protótipos aguardando aprovação** (após o "pode salvar", cadastrar personagens em `biblioteca/personagens.json`):
-  - guardiões pequenos (`guardiao-azul`, `guardia-verde`, `guardiao-chefe`, `guardiao-noturno`, `motor/assets/guardioes.js`)
-    e números sobre a cabeça **das pessoas** (guardiões sem número; campo `numero` / ação `numero`). Teste: `projetos/vitrine` (cena 1).
+  - guardiões = **pequenas criaturas** (elmo, rostinho, asinhas, cauda de fumaça) que **flutuam ao lado da cabeça** de uma
+    pessoa: `"personagem": "guardiao-azul"` (ou `guardia-verde`, `guardiao-chefe`, `guardiao-noturno` com lanterna) e
+    `"sobre": { "id": "<pessoa>", "dx": 0.95, "dy": 2.0 }`; estados parado/feliz/alerta/dormindo (`motor/assets/guardioes.js`).
+    Números sobre a cabeça **das pessoas**, sempre no estilo placa (não usar `"numeroEstilo": "solto"`; o usuário achou
+    estranho); guardiões sem número. Teste: `projetos/vitrine` (cenas 1 e 1b).
   - fantasmas (`motor/assets/fantasmas.js`): `fantasma-lencol` (parado/assustar/timido), `fantasma-crianca`
     (parado/timido/acenar/assustar), `fantasma-vovo` (parado/rindo/acenar), `fantasma-sombra` (parado/assustar; use `escala` 2),
     `fantasma-cachorro` (parado/feliz), `fogo-fatuo` (azul/verde/roxo, com luz). Flutuam sozinhos; use `"y"` ~0.4.
@@ -186,6 +189,11 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
     (personagens em `prototipos/personagens.json`).
   - barracas novas `barraca-sorvete`/`-frutas`/`-verduras`/`-flores`/`-vazia` (estados parado/acesa/fechada) e cenário
     `praca-feira` (em `prototipos/cenarios.json`).
+  - 2ª leva: cenários `estrada-terra` (placa VILA SERENA 1 KM), `ponte-rio`/`-noite`, `beco` (cômodo; porta trancada
+    com corrente e cadeado), `rua-junina`, `rua-chuva`/`-noite` (em `prototipos/cenarios.json`); opções da rua
+    `"chao": "terra"`, `"rio": true`, `"semPredios": true`, `"pocas": true`, `"cerca": false`; sprites `ponte-madeira`
+    (em cima `"y": 0.45`), `fogueira-junina` (animada, com luz), `caixote`, `cerca-madeira`, `mato`, `placa-saida`,
+    `cadeado-numero` (fechado/tentando/aberto; close com `"tela": true`); som `sininho` (sorveteiro).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.

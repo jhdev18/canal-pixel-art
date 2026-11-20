@@ -83,6 +83,7 @@ function corParede(cfg, u, t, r) {
   if (cfg.padrao === 'listras') c = (u % 16) < 8 ? cb : cl;
   else if (cfg.padrao === 'papel') c = u % 12 === 0 ? cs : ((u + 6) % 12 === 0 && t % 8 === 0) ? cl : cb;
   else if (cfg.padrao === 'estrelas') { const e = ((u % 40) === 20 && (t % 36) === 18) || (((u + 20) % 40) === 0 && (t % 36) === 0) || (u * 7 + t * 13) % 97 === 0; c = e ? cl : cb; }
+  else if (cfg.padrao === 'tijolo') c = (t % 6 === 0 || (u + (Math.floor(t / 6) % 2) * 6) % 12 === 0) ? cs : (r() < 0.06 ? cl : cb);   // beco
   else if (r() < 0.02) c = cl;
   const m = cfg.meiaParede;
   if (m && t < m.altura) {
@@ -121,6 +122,14 @@ function corDecor(d, pos, t, noite) {
     if (t >= h + 3) return null;
     if (u < 3 || u > U - 4 || t >= h) return '#e8e0d0';
     const c = d.cor || ['#c8a070', '#a87a48', '#6a4a24'];
+    if (d.trancada) {   // PROTÓTIPO: corrente em X e cadeado de número (3 rodinhas) no meio
+      const cx = U / 2, cy = 38;
+      if (u > cx - 6 && u < cx + 6 && t > cy - 4 && t < cy + 5) {
+        if (u === Math.round(cx - 6) + 1 || u === Math.round(cx + 6) - 1 || t === cy - 3 || t === cy + 4) return '#3a3a4a';
+        return (t > cy - 2 && t < cy + 3 && (Math.floor(u - cx + 6) % 4) !== 0) ? '#f4f0e0' : '#d8b040';
+      }
+      if (Math.abs((u - cx) - (t - cy) * 0.5) < 0.8 || Math.abs((u - cx) + (t - cy) * 0.5) < 0.8) return (Math.floor(t / 2) % 2) ? '#8a8aa0' : '#5a5a6e';
+    }
     if (u === U - 8 && t > 34 && t < 37) return '#f0c840';
     const painel = u > 7 && u < U - 8 && ((t > 8 && t < 32) || (t > 40 && t < h - 8));
     return painel ? ((t === 31 || t === h - 9 || u === U - 9) ? c[2] : c[0]) : c[1];
@@ -571,6 +580,23 @@ COMODOS_DIAGONAL['quarto-menina'] = {
     { tipo: 'guarda-roupa', x: 8.65, i: 0.15 },
   ],
   piso: [{ x: -0.4, i0: 1.6, i1: 3.8, dj: 4.2, cor: ['#c8a8f0', '#a888e0', '#ffffff'] }],
+};
+// PROTÓTIPO (não aprovado): beco escuro — porta trancada com corrente e cadeado de número, lixeira, caixotes,
+// poste aceso. Personagens: z de 0 (frente) a ~3.8 (encostado na parede). Gato: perto das caixas (x ~ -3).
+COMODOS_DIAGONAL.beco = {
+  estilo: 'beco', inicio: -9, fim: 9, noite: true,
+  paredes: [
+    { tipo: 'porta', x: 1.4, w: 1.8, trancada: true, cor: ['#6a5a4a', '#5a4a3a', '#3a2e24'] },
+    { tipo: 'janela', x: -5.4, w: 1.6, peitoril: 60, h: 20 },
+    { tipo: 'poster', x: -1.8, w: 1.1, altura: 46, h: 22, cores: ['#e8e0c8', '#d8d0b8'] },
+    { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#5a6a7a', '#4a5a6a', '#2e3a46'] },
+  ],
+  moveis: [
+    { tipo: 'lixeira-praca', x: -7.4, i: 0.1 }, { tipo: 'lixeira-praca', x: -6.6, i: 0.15 },
+    { tipo: 'caixote', x: -3.6, i: 0 }, { tipo: 'caixote', x: -2.8, i: 0.05 }, { tipo: 'caixote', x: -3.2, i: 0.02, h0: 12 },
+    { tipo: 'poste', x: 5.2, i: 0.3, aceso: true },
+  ],
+  piso: [],
 };
 COMODOS_DIAGONAL['quarto-menina-noite'] = { ...COMODOS_DIAGONAL['quarto-menina'], estilo: 'quarto-menina-noite', noite: true };
 

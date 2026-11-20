@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (154)
+## Sprites (161)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -186,10 +186,10 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `guardiao-azul` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `guardia-verde` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `guardiao-chefe` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `guardiao-noturno` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `guardiao-azul` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
+| `guardia-verde` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
+| `guardiao-chefe` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
+| `guardiao-noturno` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
 
 ### Fantasmas
 
@@ -223,6 +223,13 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `lixeira-praca` | 🧪 protótipo | parado | 19×24 |
 | `placa-praca` | 🧪 protótipo | parado | 83×49 |
 | `carrinho-sorvete` | 🧪 protótipo | parado | 49×65 |
+| `caixote` | 🧪 protótipo | parado | 25×23 |
+| `ponte-madeira` | 🧪 protótipo | parado | 157×70 |
+| `cerca-madeira` | 🧪 protótipo | parado | 131×50 |
+| `mato` | 🧪 protótipo | parado | 33×21 |
+| `placa-saida` | 🧪 protótipo | parado | 193×77 |
+| `fogueira-junina` | 🧪 protótipo | parado | 35×40 |
+| `cadeado-numero` | 🧪 protótipo | parado, fechado, tentando, aberto | 40×44 |
 
 ## Personagens
 
@@ -293,6 +300,13 @@ Uso: `{ "cenario": "nome" }`
 | `sala-de-aula-3d` | 🧪 protótipo | 3d | 0 |
 | `sala-de-estar-3d` | 🧪 protótipo | 3d | 0 |
 | `praca-3d` | 🧪 protótipo | 3d | 7 |
+| `estrada-terra` | 🧪 protótipo | diorama | 11 |
+| `ponte-rio` | 🧪 protótipo | diorama | 6 |
+| `ponte-rio-noite` | 🧪 protótipo | diorama | 3 |
+| `beco` | 🧪 protótipo | diorama (cômodo beco) | 0 |
+| `rua-junina` | 🧪 protótipo | diorama | 7 |
+| `rua-chuva` | 🧪 protótipo | diorama | 0 |
+| `rua-chuva-noite` | 🧪 protótipo | diorama | 0 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |
@@ -333,6 +347,6 @@ Uso: `{ "cenario": "nome" }`
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sino`, `sino-relogio`, `cadeado`, `papel`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `miau`, `trovao`, `suspense`, `fantasma`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

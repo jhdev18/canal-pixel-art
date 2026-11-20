@@ -81,6 +81,29 @@ export function gerarRuaDiagonal(opc = {}) {
     if (i < I0 || i > I1 || j < J0 - 2 || j > J1 + 2) continue;
     let c;
     const calcada = (i >= 0 && i < 1.5) || (i > 5.5 && i < 7);
+    // PROTÓTIPO: "chao": "terra" (estrada de terra, margens de grama), "rio": true (água na faixa da rua),
+    // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
+    const terra = opc.chao === 'terra';
+    const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.rio && i > 1.5 && i < 5.5) {
+      const borda = i < 1.8 || i > 5.2;
+      const onda = Math.sin(j * 4 + i * 2.2 + 1) + Math.sin(j * 1.7 - i * 3.1) * 0.6;
+      c = borda ? (terra ? '#7a5a3a' : '#8a8c9c') : onda > 1.2 ? '#c8ecff' : onda > 0.55 ? '#5aa8e0' : bayer(x, y) < 0.15 ? '#2e6ab0' : '#3a7cc4';
+      if (noite && !borda) c = onda > 1.2 ? '#8ab8e0' : onda > 0.55 ? '#2e5a98' : '#1e3e6a';
+      pintar(x, y, c, i, j, 0); continue;
+    }
+    if (i < 0 && opc.semPredios) { pintar(x, y, grama(), i, j, 0); continue; }
+    if (terra && i >= 0 && i < 7 && !(i > 1.8 && i <= 5.2)) { pintar(x, y, grama(), i, j, 0); continue; }
+    if (terra && i > 1.8 && i <= 5.2) {
+      const v = r(), sulco = Math.abs(i - 2.6) < 0.18 || Math.abs(i - 4.4) < 0.18;
+      c = sulco ? (v < 0.3 ? '#8a6a44' : '#7a5a3a') : v < 0.08 ? '#c8a878' : v < 0.15 ? '#8a6a44' : '#a8845a';
+      if (Math.abs(i - 3.5) < 0.12 && v < 0.5) c = '#5aa04a';             // capim no meio da estrada
+      pintar(x, y, c, i, j, 0); continue;
+    }
+    if (opc.pocas && i >= 0 && i < 7) {
+      const n = Math.sin(j * 1.3 + i * 0.7) * Math.sin(j * 0.47 - i * 1.9 + 2) + Math.sin(i * 2.9 + j * 0.31) * 0.35;
+      if (n > 0.62) { const brilho = n > 0.86 && bayer(x, y) < 0.5; pintar(x, y, noite ? (brilho ? '#5a7ab0' : '#2a3a5e') : (brilho ? '#c8e0f8' : '#6a8ab8'), i, j, 0); continue; }
+    }
     if (i < 0) c = '#2a2a34';
     else if (calcada) {
       const a = i * 2, b = j * 2, borda = a - Math.floor(a) < 0.07 || b - Math.floor(b) < 0.07;
@@ -142,7 +165,8 @@ export function gerarRuaDiagonal(opc = {}) {
     lado: (x, y, u, t, s) => pintar(x, y, '#24502e', s, jb, t, 1, 0.75),
     topo: (x, y, i, j) => pintar(x, y, r() < 0.2 ? '#6aaa5a' : '#58984e', i, j, 9, 1, 1.1),
   });
-  if (PR) { if (PR.j0 > J0) cerca(J0, PR.j0); if (PR.j1 < J1) cerca(PR.j1, J1); }   // a cerca abre para a praça
+  if (opc.cerca === false || opc.chao === 'terra');
+  else if (PR) { if (PR.j0 > J0) cerca(J0, PR.j0); if (PR.j1 < J1) cerca(PR.j1, J1); }   // a cerca abre para a praça
   else cerca(J0, J1);
 
   // ---------- prédios (da esquerda/fundo para a direita/frente: j crescente) ----------
@@ -173,6 +197,7 @@ export function gerarRuaDiagonal(opc = {}) {
       pal: e ? e.pal : PALETAS[t][Math.floor(r() * PALETAS[t].length)], toldo: e ? e.toldo : TOLDOS[n % TOLDOS.length], s: Math.floor(r() * 1e6) });
   });
   const lojas = [];
+  if (opc.semPredios) predios.length = 0;
   for (const P of predios) {
     const rw = rng(P.s), pal = P.pal;
     const acesa = new Map();
