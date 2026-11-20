@@ -1732,18 +1732,6 @@
      "inicio": 2.96,
      "alvo": "arvore2",
      "estado": "verde"
-    },
-    {
-     "tipo": "trocar",
-     "inicio": 2.96,
-     "alvo": "arvore3",
-     "estado": "verde"
-    },
-    {
-     "tipo": "trocar",
-     "inicio": 2.96,
-     "alvo": "arvore4",
-     "estado": "verde"
     }
    ],
    "remover": [
