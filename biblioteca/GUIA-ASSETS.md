@@ -159,6 +159,12 @@ Um arquivo com o mesmo nome em `biblioteca/sfx/` (ex.: `espirro.mp3` do ElevenLa
 Rode `npm run conferir -- <projeto>` antes de entregar: acusa gente coberta por árvore/objeto, gente que falta num `"momento"` (mesmo instante da
 história; `"saiDeCena"` libera quem sai pela história), o mesmo sprite fazendo dois personagens, gente fora do cômodo e quem para de andar antes do fim da fala.
 
+**Figurantes (`"figurante": true` no elemento):** gente ou bicho de fundo, sem nome e sem papel na história (multidão, cães da
+praça). Podem repetir sprite e a conferência não cobra o "mesmo sprite". Regras:
+- Quem tem nome, fala algo importante ou é "o de alguém" (o cão da moça do caixa, a mãe do Caio) **não** é figurante: sprite próprio.
+- Quem aparece ao lado de um dono já mostrado é o **mesmo personagem**: mesmo `id` e mesmo sprite da primeira aparição.
+- Figurante pode reagir (ícone, balão curto de multidão), mas não pode ter o mesmo sprite de um personagem com nome na mesma cena.
+
 ## Como manter este guia
 - Asset novo aprovado ou criado: acrescente uma linha aqui (o que é, quando usar, como posicionar) e rode `npm run catalogo`.
 - Personagem ganhou nome ou papel fixo: atualize o "Elenco fixo".

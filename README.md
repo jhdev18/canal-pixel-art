@@ -386,6 +386,8 @@ Poses dos personagens (moradores e `menina-capa`): `"pose": "sentado"` (de frent
 
 Elemento preso em outro: `"sobre": { "id": "bia", "dx": 0.45, "dy": 2.75 }` — acompanha o dono (posição, lado e
 visibilidade); `dx` segue o lado para onde ele olha. Usado para o tempo na cabeça, guarda-chuva, fogo no chapéu etc.
+
+Figurante: `"figurante": true` no elemento = gente/bicho de fundo sem nome; pode repetir sprite (o `npm run conferir` não cobra).
 Praça (diagonal): `praca` / `praca-noite` (padrão) e `praca-decorada` / `praca-decorada-noite` (festa: bandeirinhas,
 palanque e barracas). Os objetos da praça (`fonte-iso`, `banco-iso`, `barraca-pipoca`...) usam x/z = canto da frente.
 `"balancar": true` faz o elemento boiar (sobe e desce devagar). Clima `"calor"`: ar quente subindo.
