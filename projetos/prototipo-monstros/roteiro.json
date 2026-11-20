@@ -1,6 +1,7 @@
 {
   // PROTÓTIPO (não aprovado) — monstros de sombra em 3D, desenhados em alta resolução sobre o mundo pixel art.
   // Ver sem renderizar vídeo: npm run previa -- prototipo-monstros
+  // Imagens paradas (uma por cena, com os monstros em HD): npm run fotos -- prototipo-monstros
   // Elemento: { "id": "vulto", "monstro": "sombra-alta" | "tentaculos" | "massa-olhos", "x": 2, "olhar": "filho" }
   //   "aparecer" materializa o monstro (use "duracao" de 1.5 a 2.5 s); "sumir" desfaz em fumaça.
   //   "olhar": id de um personagem (olhos e tentáculos se voltam para ele). "aura": false tira o escurecimento em volta.
@@ -11,7 +12,7 @@
   "legendasNarracao": false,
   "cenas": [
     { // 1 — vulto surge na sala, de noite
-      "fundo": "diorama-noite", "duracao": 5, "narracao": false, "transicao": "fade",
+      "fundo": "diorama-noite", "duracao": 5, "foto": 3.8, "legenda": "1. Vulto (sombra-alta) na sala, de noite.", "narracao": false, "transicao": "fade",
       "camera": { "x": 0.6, "y": 1.6875 }, "cameraFim": { "x": -0.2, "zoom": 1 },
       "elementos": [
         { "id": "comodo", "sprite": "casa-sala-noite", "x": 0, "y": -3.75 },
@@ -24,7 +25,7 @@
         { "tipo": "mover", "alvo": "vulto", "para": -1.6, "inicio": 3, "duracao": 2 } ]
     },
     { // 2 — tentáculos saindo de baixo da cama
-      "fundo": "diorama-noite", "duracao": 4, "narracao": false,
+      "fundo": "diorama-noite", "duracao": 4, "foto": 3.0, "legenda": "2. Tentáculos saindo de baixo da cama.", "narracao": false,
       "camera": { "x": -0.4, "y": 1.6875 }, "cameraFim": { "x": 0.4 },
       "elementos": [
         { "id": "comodo", "sprite": "casa-quarto-noite", "x": 0, "y": -3.75 },
@@ -36,7 +37,7 @@
         { "tipo": "correr", "alvo": "filho", "para": 5, "inicio": 1.9, "duracao": 1.2 } ]
     },
     { // 3 — massa de olhos na cozinha de dia (contraste máximo)
-      "fundo": "diorama", "duracao": 4, "narracao": false,
+      "fundo": "diorama", "duracao": 4, "foto": 3.0, "legenda": "3. Massa de olhos na cozinha, de dia.", "narracao": false,
       "camera": { "x": 0, "y": 1.6875 }, "cameraFim": { "x": 0.5 },
       "elementos": [
         { "id": "comodo", "sprite": "casa-cozinha", "x": 0, "y": -3.75 },
@@ -48,7 +49,7 @@
         { "tipo": "flash", "inicio": 2.1, "intensidade": 0.5 } ]
     },
     { // 4 — vulto no fim da rua (vista diagonal), some em fumaça
-      "cenario": "rua-comercial-noite", "duracao": 4, "narracao": false, "seguir": "bia",
+      "cenario": "rua-comercial-noite", "duracao": 4, "foto": 2.2, "legenda": "4. Vulto no fim da rua, sumindo em fumaça.", "narracao": false, "seguir": "bia",
       "elementos": [
         { "id": "bia", "personagem": "menina-capa", "x": -6, "z": 0.6 },
         { "id": "vulto", "monstro": "sombra-alta", "x": 2, "z": 2.7, "olhar": "bia" } ],
@@ -58,7 +59,7 @@
         { "tipo": "sumir", "alvo": "vulto", "inicio": 2.4, "duracao": 1.5 } ]
     },
     { // 5 — tentáculos em frente à padaria, de dia (vista lateral)
-      "cenario": "padaria", "duracao": 4, "narracao": false,
+      "cenario": "padaria", "duracao": 4, "foto": 3.0, "legenda": "5. Tentáculos em frente à padaria, de dia.", "narracao": false,
       "elementos": [
         { "id": "padeiro", "personagem": "padeiro", "x": -3 },
         { "id": "tent", "monstro": "tentaculos", "x": 2.5, "quantidade": 6, "olhar": "padeiro" } ],

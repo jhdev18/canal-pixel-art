@@ -513,10 +513,12 @@ class Motor {
     const rasc = this.rascunho; this.rascunho = false;
     this.renderizarTempo(T);
     this.rascunho = rasc;
-    this.renderer.readRenderTargetPixels(this.rtSaida, 0, 0, W, H, this.buffer);
-    const img = new ImageData(W, H);
-    for (let y = 0; y < H; y++) img.data.set(this.buffer.subarray((H - 1 - y) * W * 4, (H - y) * W * 4), y * W * 4);
-    const a = document.createElement('canvas'); a.width = W; a.height = H; a.getContext('2d').putImageData(img, 0, 0);
+    // com monstros 3D o quadro final já sai em HD (W*E x H*E)
+    const w = this.hd ? W * this.E : W, h = this.hd ? H * this.E : H, buf = this.hd ? new Uint8Array(w * h * 4) : this.buffer;
+    this.renderer.readRenderTargetPixels(this.hd ? this.rtFinal : this.rtSaida, 0, 0, w, h, buf);
+    const img = new ImageData(w, h);
+    for (let y = 0; y < h; y++) img.data.set(buf.subarray((h - 1 - y) * w * 4, (h - y) * w * 4), y * w * 4);
+    const a = document.createElement('canvas'); a.width = w; a.height = h; a.getContext('2d').putImageData(img, 0, 0);
     const b = document.createElement('canvas'); b.width = W * escala; b.height = H * escala;
     const g = b.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(a, 0, 0, b.width, b.height);
     return b.toDataURL('image/png');
