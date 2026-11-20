@@ -196,10 +196,14 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
     `cadeado-numero` (fechado/tentando/aberto; close com `"tela": true`); som `sininho` (sorveteiro).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
-- **Casa em diorama (protótipo, veio da branch `ccr-77868c41-s69pnw`)** (`motor/assets/casa.js`): cômodos como sprites
-  `casa-sala`, `casa-cozinha`, `casa-quarto`, `casa-banheiro` (+ `-noite`), sobre o fundo `diorama`/`diorama-noite`
-  (cômodo em `"x": 0, "y": -3.75`, câmera `"y": 1.6875`, personagens no piso com y 0 a ~1); personagens `mae`,
-  `mae-avental`, `menino-topete`. Teste: `projetos/prototipo-casa` e `projetos/vitrine` (cenas 17+).
+- **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de
+  cômodos em diorama, `"vista": "diorama"` + `"comodo"`): sala = `sala-de-estar-diorama` (aprovado; noite:
+  `sala-de-estar-noite-diorama`), quarto do menino = `quarto-menino-diorama` (aprovado), `cozinha-diorama` e
+  `banheiro-diorama` (+ `-noite-diorama`) em `prototipos/cenarios.json`; móveis novos em `motor/assets/casa.js`
+  (geladeira, fogao, balcao-pia, armario-alto, mesa-cozinha, banqueta, vaso, pia-banheiro, banheira; decor `espelho`,
+  `azulejos`). Personagens `mae`, `mae-avental`, `menino-topete`. Teste: `projetos/vitrine` (cenas 17–21).
+  **Não usar** os cômodos "de caixinha" (`casa-sala`... sobre fundo `diorama`) nem a `casa-corte`: o usuário preferiu o
+  formato que enche a tela (ficam no código só como protótipo antigo).
 - **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
   "tentaculos" | "massa-olhos"`, em alta resolução sobre o pixel art. Teste: `projetos/prototipo-monstros`.
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
