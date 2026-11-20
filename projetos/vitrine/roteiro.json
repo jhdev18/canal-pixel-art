@@ -261,6 +261,29 @@
         { "tipo": "andar", "alvo": "rival2", "para": 4.2, "inicio": 0.2, "duracao": 3.4 },
         { "tipo": "emocao", "alvo": "rival", "icone": "raiva", "inicio": 0.4, "duracao": 3 },
         { "tipo": "falar", "alvo": "rival", "texto": "Desta vez eu ganho!", "inicio": 2.4 }
-      ] }
+      ] },
+
+    // 23. Casa de caixinha sem o fundo vazio — versão 1 (câmera perto) e versão 2 (casa inteira em corte)
+    { "fundo": "diorama", "duracao": 3, "transicao": "dither", "legenda": "23. Versão 1: câmera perto (zoom 2), a caixinha enche a tela.",
+    "camera": { "x": 0, "y": 1.2, "zoom": 2 },
+    "elementos": [ { "id": "comodo", "sprite": "casa-sala", "x": 0, "y": -3.75 }, { "id": "mae", "personagem": "mae", "x": -1.6 }, { "id": "filho", "personagem": "menino-topete", "x": 1.8, "virado": "esquerda" } ],
+    "acoes": [ { "tipo": "falar", "alvo": "mae", "texto": "Tira o tênis!", "inicio": 0.3 } ] },
+  { "fundo": "diorama", "duracao": 3, "transicao": "dither", "legenda": "23. Versão 1: cozinha.",
+    "camera": { "x": 0, "y": 1.2, "zoom": 2 },
+    "elementos": [ { "id": "comodo", "sprite": "casa-cozinha", "x": 0, "y": -3.75 }, { "id": "mae", "personagem": "mae-avental", "x": 1.6, "virado": "esquerda" }, { "id": "filho", "personagem": "menino-topete", "x": -1.4 } ] },
+  { "fundo": "ceu-dia", "duracao": 3, "transicao": "dither", "legenda": "23. Versão 2: a casa inteira em corte.",
+    "camera": { "x": 0, "y": 14.2, "zoom": 0.5 },
+    "elementos": [ { "id": "casa", "sprite": "casa-corte", "x": 0, "y": 0, "z": -1 },
+      { "id": "mae", "personagem": "mae", "x": -8.4, "y": 5 }, { "id": "filho", "personagem": "menino-topete", "x": -5.4, "y": 16.4 },
+      { "id": "mae2", "personagem": "mae-avental", "x": 6.4, "y": 5 } ] },
+  { "fundo": "ceu-dia", "duracao": 3, "transicao": "dither", "legenda": "23. Versão 2: entrando na sala.",
+    "camera": { "x": -6.6, "y": 7.4, "zoom": 1 },
+    "elementos": [ { "id": "casa", "sprite": "casa-corte", "x": 0, "y": 0, "z": -1 },
+      { "id": "mae", "personagem": "mae", "x": -8.4, "y": 5 }, { "id": "filho", "personagem": "menino-topete", "x": -5, "y": 5, "virado": "esquerda" } ],
+    "acoes": [ { "tipo": "falar", "alvo": "mae", "texto": "Tira o tênis!", "inicio": 0.3 } ] },
+  { "fundo": "ceu-noite", "duracao": 3, "transicao": "dither", "legenda": "23. Versão 2: à noite.",
+    "camera": { "x": 0, "y": 14.2, "zoom": 0.5 },
+    "elementos": [ { "id": "casa", "sprite": "casa-corte-noite", "x": 0, "y": 0, "z": -1 },
+      { "id": "filho", "personagem": "menino-topete", "x": -6, "y": 16.4 }, { "id": "mae", "personagem": "mae", "x": 6.6, "y": 5 } ] }
   ]
 }

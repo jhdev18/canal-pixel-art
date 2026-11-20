@@ -338,6 +338,51 @@ function comoSprite(fab, noite) {
 
 export const COMODOS = { sala, cozinha, quarto, banheiro };
 
+// PROTÓTIPO (versão 2): a CASA INTEIRA EM CORTE, como casa de bonecas — os 4 cômodos de caixinha encaixados
+// (em cima: quarto e banheiro; embaixo: sala e cozinha), parede da casa em volta, telhado e quintal.
+// Uso: fundo "ceu-dia"/"ceu-noite", { "sprite": "casa-corte", "x": 0, "y": CASA_CORTE.y }; câmera "zoom": 1 e x/y do
+// cômodo (CASA_CORTE.focos) para entrar em um cômodo; "zoom": 0.5 mostra a casa toda.
+export const CASA_CORTE = { W: 2 * W + 28, H: 96 + 2 * H + 8 + 20 };
+function casaCorte(noite) {
+  const CW = CASA_CORTE.W, CH = CASA_CORTE.H, p = new Pix(CW, CH), b = new Pix(CW, CH);
+  const TELHADO = 96, M = 14, CHAO = 20, y0 = TELHADO, y1 = TELHADO + H + 8;
+  const parede = (x, y) => { const tij = (y % 7 === 0) || ((x + (Math.floor(y / 7) % 2) * 6) % 12 === 0); return noite ? (tij ? '#6a5a48' : '#8a7660') : (tij ? '#c8b090' : '#ead8b8'); };
+  // parede da casa (fachada cortada) atrás de tudo
+  for (let y = TELHADO - 6; y < CH - CHAO; y++) for (let x = 4; x < CW - 4; x++) p.set(x, y, parede(x, y));
+  // viga entre os andares
+  p.ret(4, y0 + H + 1, CW - 8, 6, noite ? '#3a2818' : '#7a4e2a'); p.ret(4, y0 + H + 1, CW - 8, 1, noite ? '#5a3e24' : '#a8703e');
+  // telhado (triângulo de telhas) e chaminé
+  for (let y = 0; y < TELHADO; y++) {
+    const meia = Math.round((y / TELHADO) * (CW / 2 + 6));
+    for (let x = CW / 2 - meia; x < CW / 2 + meia; x++) {
+      const t = ((Math.floor(y / 5) % 2) * 4 + x) % 8 === 0 || y % 5 === 0;
+      p.set(x, y, noite ? (t ? '#4a1e1e' : '#6a2a2a') : (t ? '#8a2a2a' : '#c84a3a'));
+    }
+  }
+  p.ret(CW - 110, 18, 18, 40, noite ? '#5a4a48' : '#9a8a84'); p.ret(CW - 113, 14, 24, 6, noite ? '#3a3030' : '#6a5a54');
+  // janelinha redonda no sótão (acesa à noite)
+  p.elipse(CW / 2, 62, 11, 11, '#f4f0e8'); p.elipse(CW / 2, 62, 8, 8, noite ? '#ffe890' : '#9acef4');
+  if (noite) b.elipse(CW / 2, 62, 8, 8, '#ffe890');
+  p.ret(CW / 2 - 1, 54, 2, 16, '#f4f0e8'); p.ret(CW / 2 - 8, 61, 16, 2, '#f4f0e8');
+  // chão: grama e terra
+  for (let y = CH - CHAO; y < CH; y++) for (let x = 0; x < CW; x++) p.set(x, y, y < CH - CHAO + 4 ? (noite ? '#2e5a3a' : (x % 5 ? '#5aa84a' : '#7ad070')) : (noite ? '#3a2a20' : ((x * 7 + y * 3) % 11 ? '#8a6a44' : '#6a4a2a')));
+  // os 4 cômodos
+  const cel = [[sala, M, y1], [cozinha, M + W, y1], [quarto, M, y0], [banheiro, M + W, y0]];
+  for (const [f, cx, cy] of cel) {
+    const r = f(noite);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const k = (y * W + x) * 4, kk = ((cy + y) * CW + cx + x) * 4;
+      if (r.cor.d[k + 3]) p.d.set(r.cor.d.subarray(k, k + 4), kk);
+      if (r.brilho.d[k + 3]) b.d.set(r.brilho.d.subarray(k, k + 4), kk);
+    }
+  }
+  return { cor: p, brilho: b };
+}
+// centros dos cômodos na casa em corte (para a câmera), em unidades a partir do centro da base do sprite
+CASA_CORTE.focos = { sala: [-W / 32, (CASA_CORTE.H - 96 - H - 8 - H / 2) / 16], cozinha: [W / 32, (CASA_CORTE.H - 96 - H - 8 - H / 2) / 16],
+  quarto: [-W / 32, (CASA_CORTE.H - 96 - H / 2) / 16], banheiro: [W / 32, (CASA_CORTE.H - 96 - H / 2) / 16] };
+
+
 export const MORADORES_CASA = {
   mae: { cores: { pele: '#b07450', cabelo: '#2a1a14', tronco: '#b8405a', calca: '#2e4a7a', sapato: '#5a3424' },
     cabelo: 'cacheado', baixo: 'saia-longa', brincos: true, colar: '#f0d070' },
@@ -349,6 +394,7 @@ export const MORADORES_CASA = {
 
 registrarSprites({
   ...Object.fromEntries(Object.entries(COMODOS).flatMap(([k, f]) => [[`casa-${k}`, comoSprite(f, false)], [`casa-${k}-noite`, comoSprite(f, true)]])),
+  'casa-corte': comoSprite(casaCorte, false), 'casa-corte-noite': comoSprite(casaCorte, true),
   ...Object.fromEntries(Object.entries(MORADORES_CASA).map(([k, p]) => [k, () => pessoa(p)])),
 }, { grupo: 'Casa (cômodos em diorama) e família', status: 'protótipo' });
 
