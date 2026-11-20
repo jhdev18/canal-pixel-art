@@ -279,6 +279,7 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `carteiro` | 🧪 protótipo | `carteiro` | 1.1 |
 | `sorveteiro` | 🧪 protótipo | `sorveteiro` | 0.9 |
 | `rival` | 🧪 protótipo | `rival` | 1.35 |
+| `nina` | 🧪 protótipo | `rival` | 1.35 |
 | `menino-pijama` | 🧪 protótipo | `menino-pijama` | 1.45 |
 | `gato-chapeu` | 🧪 protótipo | `gato-chapeu` | 1.8 |
 | `guardiao-azul` | 🧪 protótipo | `guardiao-azul` | 1 |

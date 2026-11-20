@@ -264,6 +264,8 @@ gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de 
   `caderno` (fechado/aberto), `pagina-caderno` (cheia/ultima/bia). Postes da frente da praça foram para as laterais.
   `cao-policial` (PROTÓTIPO): versão detalhada do `cao-guarda`, no padrão dos moradores (com poses), usado no longo.
   Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
+- **Elenco fixo:** Bia (`menina-capa`, protagonista), **Nina** (`rival`/`nina`, a rival da Bia), seu Tonho (`padeiro`),
+  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia).
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
@@ -301,7 +303,8 @@ gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de 
   estados parado/olhos); objetos `pao` e `saquinho-pimenta` (fechado/aberto); `padeiro-pregador` (seu Tonho com pregador no
   nariz); guardiões com estados novos `tremendo` e `olhando-lado`; climas `neblina` e `polen`; ação `fogos`
   (`posicao` [x, y, z], `cor` dourado/rosa/azul/verde, `subida`) com sons `fogos-sobe`/`fogos`. Teste: `projetos/vitrine` (cenas 27–28).
-  A **rival** da Bia (protótipo `rival`) ganhou nome no vídeo dos números: **Nina** (revelado só no fim).
+  **Nina** = a rival da Bia (protótipo `rival`, também `"personagem": "nina"`): nome oficial, decidido pelo usuário. No vídeo dos
+  números ninguém sabe o nome dela até o fim; nos outros vídeos pode ser chamada de Nina normalmente.
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de
