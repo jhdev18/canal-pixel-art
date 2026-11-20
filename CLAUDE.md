@@ -397,6 +397,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `azulejos`). Personagens `mae`, `mae-avental`, `menino-topete`. Teste: `projetos/vitrine` (cenas 17–21).
   **Não usar** os cômodos "de caixinha" (`casa-sala`... sobre fundo `diorama`) nem a `casa-corte`: o usuário preferiu o
   formato que enche a tela (ficam no código só como protótipo antigo).
+- **Decisão do usuário (guardiões):** o monstro do final continua o **`vulto` com `"escala": 2`** ("deixe como está por enquanto");
+  o teste com os monstros 3D fica guardado em `projetos/teste-monstro-guardioes` (A vulto, B sombra-alta, C rastejante), sem uso.
 - **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
   "tentaculos" | "massa-olhos" | "rastejante"`, em alta resolução sobre o pixel art. `rastejante` = humano de sombra
   andando de quatro (membros longos, joelhos/cotovelos para cima, cabeça aos trancos; anda com `andar`/`correr`/`mover`,
