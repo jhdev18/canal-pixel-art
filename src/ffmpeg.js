@@ -51,10 +51,11 @@ export function detectarEncoder(ff, preferencia = 'auto') {
 }
 
 // Processo de codificação que recebe quadros RGBA crus pelo stdin.
-export function abrirCodificador(ff, { W, H, fps, escala, saida, encoder, modo, qualidade, crt }) {
+export function abrirCodificador(ff, { W, H, fps, escala, grade = escala, saida, encoder, modo, qualidade, crt }) {
   const OW = Math.round((W * escala) / 2) * 2, OH = Math.round((H * escala) / 2) * 2;
-  const filtros = ['vflip', `scale=${OW}:${OH}:flags=neighbor`];
-  if (crt && escala >= 3) filtros.push(`drawgrid=w=iw:h=${escala}:t=${Math.max(1, Math.floor(escala / 3))}:c=black@0.28`);
+  const filtros = ['vflip'];
+  if (escala !== 1) filtros.push(`scale=${OW}:${OH}:flags=neighbor`);
+  if (crt && grade >= 3) filtros.push(`drawgrid=w=iw:h=${grade}:t=${Math.max(1, Math.floor(grade / 3))}:c=black@0.28`);
   filtros.push('format=yuv420p');
   const args = [
     '-y', '-hide_banner', '-loglevel', 'error',

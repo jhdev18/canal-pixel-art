@@ -2,6 +2,7 @@
 //   biblioteca/sprites/          PNGs usados por qualquer projeto
 //   biblioteca/personagens.json  personagens definidos uma vez  -> { "personagem": "joao" }
 //   biblioteca/cenarios.json     cenários prontos              -> { "cenario": "vila-noite" }
+//   prototipos/personagens.json e cenarios.json   protótipos (valem para todos; aprovados vencem)
 // Cada projeto pode ter seus próprios personagens.json / cenarios.json, que têm prioridade.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -33,10 +34,13 @@ function lerOpcional(arq) {
   return fs.existsSync(arq) ? lerJsonFlexivel(arq) : {};
 }
 
+// Protótipos (aguardando aprovação): valem para todos os projetos, mas nunca substituem um aprovado.
+export const PASTA_PROTOTIPOS = path.join(RAIZ, 'prototipos');
+
 export function carregarBiblioteca(projetoDir = null) {
   const lib = {
-    personagens: lerOpcional(path.join(PASTA_BIBLIOTECA, 'personagens.json')),
-    cenarios: lerOpcional(path.join(PASTA_BIBLIOTECA, 'cenarios.json')),
+    personagens: { ...lerOpcional(path.join(PASTA_PROTOTIPOS, 'personagens.json')), ...lerOpcional(path.join(PASTA_BIBLIOTECA, 'personagens.json')) },
+    cenarios: { ...lerOpcional(path.join(PASTA_PROTOTIPOS, 'cenarios.json')), ...lerOpcional(path.join(PASTA_BIBLIOTECA, 'cenarios.json')) },
   };
   if (projetoDir) {
     Object.assign(lib.personagens, lerOpcional(path.join(projetoDir, 'personagens.json')));

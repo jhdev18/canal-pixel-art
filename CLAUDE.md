@@ -6,11 +6,18 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Regras do usuário (sempre seguir)
 1. **Não renderizar vídeos.** O usuário renderiza no PC dele (GTX 1050 Ti). Para conferir, use no máximo
    imagens paradas — e só quando for essencial.
-2. **Só vistas `lateral` e `diagonal`** ao criar vídeos/roteiros (para cômodos, a diagonal é a vista `diorama`),
-   a menos que o usuário peça outra. O **modo 3D** segue a regra 12.
-   A vista `avenida` e o `"movimentoReal"` existem, mas não usar (e nunca o tempo todo).
+2. **O estilo diorama é o padrão** (`"vista": "diorama"`): rua/praça sem `"comodo"`, cômodos com `"comodo"`.
+   O antigo nome da rua, `diagonal`, ainda é aceito. Ao criar vídeos/roteiros, **todas as cenas usam diorama**.
+   Outros estilos (`lateral`, `avenida`, `"movimentoReal"`, `3d` etc.) **só se o usuário pedir diretamente**. Se algo
+   parece precisar de lateral, resolver no diorama (outro enquadramento, outro lugar, ou detalhe em close com `"tela": true`).
 3. **Mostrar antes de colocar na biblioteca** (`biblioteca/`: personagens, cenários, sprites, sons).
-   Protótipos ficam na pasta temporária; só cadastrar depois do "pode salvar".
+   Protótipos ficam em `prototipos/` (a pasta temporária); só passar para `biblioteca/` depois do "pode salvar".
+   **Organização dos assets (não espalhar pelo projeto):** código de sprite novo → um arquivo em `motor/assets/`
+   (registrado em `motor/assets/index.js`, com `grupo` e `status: 'protótipo'`); personagens/cenários de protótipo →
+   `prototipos/personagens.json` / `prototipos/cenarios.json` (valem para todos os projetos; nunca copiar para dentro
+   de um projeto). Aprovado: mover a entrada para `biblioteca/` e tirar o `status: 'protótipo'`. Depois de mudar
+   assets, rodar `npm run catalogo` (atualiza `biblioteca/CATALOGO.md`). Para o usuário conferir mudanças: cenas
+   no projeto `projetos/vitrine` (com `"foto"` e `"legenda"`) e ele roda `npm run vitrine`.
 4. **Narração por um narrador em terceira pessoa**, em **um único áudio**
    (`projetos/<ep>/narracao/narracao-completa.mp3`), com legenda automática do texto do narrador.
 5. **A câmera nunca gira para os lados, em qualquer vista** (pixels precisam ficar alinhados à tela).
@@ -26,7 +33,7 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 11. **Roteiros de concorrentes** (`referencias/roteiros-concorrentes/`): só referência. **Não ler nem usar**
     ao criar roteiros, a menos que o usuário peça explicitamente; nunca copiar premissas, falas ou personagens.
 12. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
-    roteiros, cenas, testes ou sugestões de vídeo; a vista padrão continua `lateral` (e `diagonal`/`diorama`).
+    roteiros, cenas, testes ou sugestões de vídeo; o padrão continua o diorama (regra 2).
 
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
@@ -35,7 +42,11 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
   pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
-- **Alternar vistas** `lateral` ↔ `diagonal` entre cenas seguidas para variar o visual.
+- **Variar o visual dentro do diorama:** troque de lugar (rua, praça, cômodo) e de enquadramento, não de
+  estilo. Lugares da cidade sem interior (escola, delegacia, padaria, mercado): a cena acontece na rua
+  comercial, na calçada em frente ao prédio (`z` ~5.6; câmera `{ "x": <prédio>, "z": 2.2, "y": 2.4 }`; prédios em
+  x ≈ padaria 0.6, escola 4.6, delegacia 10.4, mercado 16.2). Céu no diorama: câmera mais alta (`"y"` ~3.5) mostra
+  o céu acima dos telhados.
 - **Balões:** curtos (até ~4 palavras), poucos, servem de reação; quem conta a história é o narrador.
   Exceção: um balão maior é permitido quando o personagem tiver **algo interessante a dizer** (piada, revelação,
   fala marcante) — charme estilo Undertale.
@@ -59,7 +70,7 @@ Usar quando o usuário pedir um vídeo "no estilo Nesse Mundo". Tem dois formato
 - **Virada justa:** plantar uma pista no começo que, depois da virada, passa a fazer sentido.
 - **Narração:** terceira pessoa, frases curtas (8–15 palavras, ~3,5 s cada), uma frase = uma cena.
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
-- Segue também as regras de ritmo acima (vistas lateral/diagonal, `vertical` no Shorts, sem pausa entre cenas).
+- Segue também as regras de ritmo acima (diorama, `vertical` no Shorts, sem pausa entre cenas).
 
 ### Nesse Mundo curto (um choque só, 30–45 s)
 Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no fim e o vídeo acaba nela.
@@ -131,19 +142,82 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
 - Transições curtas (0,2 s); cenas sem duração fixa (duram o tempo da fala/ações).
+- Narração sem `<break>` (um parágrafo por cena). Com o áudio, o corte é automático **pelo que é falado**
+  (`src/alinhar.js`: Whisper `whisper-base_timestamped` via `@huggingface/transformers`, roda no PC; palavras com tempo
+  alinhadas ao texto do roteiro; cache em `narracao/.alinhamento.json`; modelo em `.modelos/`). Reserva: pelas pausas
+  (limite de silêncio automático). O áudio fica **contínuo**: cada cena dura exatamente o seu trecho (vídeo = tamanho do
+  áudio, sem silêncio extra). `--verificar` mostra o método usado ("alinhado pelo que é falado").
+  Os tempos das ações de cada cena se ajustam à duração real da fala (`"sincronizarAcoes": false` desliga).
+  O usuário não marca cortes à mão.
 
 ## Estado atual
 - **Episódio 1** em `projetos/episodio-01` ("Nada acontece em Vila Serena"): protagonista **Bia**
   (`menina-capa`), padeiro **seu Tonho**; 9 cenas; final com o público decidindo (comentar 1 ou 2).
   Aguardando o usuário gravar a narração e renderizar.
+- **Vídeos "Nesse Mundo" — rascunhos prontos, aguardando o usuário gravar a narração e renderizar** (o usuário aponta
+  os problemas; ajustar só o que ele apontar). Todos só na diagonal:
+  `projetos/nesse-mundo-estrelas` (curto, 13 cenas, ~53 s; usa `rua-estrelas` do próprio projeto; cenas na rua e
+  cenas só de céu separadas), `projetos/nesse-mundo-caderno` (curto, 12 cenas, ~52 s — "Nessa cidade, toda noite
+  alguém some": o caderno da Bia escolhe quem some; substituiu o dos monstros), `projetos/nesse-mundo-tempo` (longo,
+  28 cenas, ~2:36 — a 1ª versão deu 3:04, foram tiradas 5 frases; usa `praca-seca`, `quarto-menina-noite-diorama` e `rua-alagada` do `cenarios.json` do projeto).
+  Texto do ElevenLabs em `narracao/TEXTO-COMPLETO.txt` de cada um.
+- **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
+  reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no
+  centro, fundo escurecido com `"escurecer"`); `"rua": { "alagada": true }`; sprites `viatura-iso` (parado/sirene),
+  `caderno` (fechado/aberto), `pagina-caderno` (cheia/ultima/bia). Postes da frente da praça foram para as laterais.
+  `cao-policial` (PROTÓTIPO): versão detalhada do `cao-guarda`, no padrão dos moradores (com poses), usado no longo.
+  Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
   `padaria`, `mercado`, `farmacia`, `rua-comercial`, `rua-comercial-noite`, `cidade-rpg`, `batalha`).
-- **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
-  Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
+- **Protótipos aguardando aprovação** (após o "pode salvar", cadastrar personagens em `biblioteca/personagens.json`):
+  - guardiões = **pequenas criaturas** (elmo, rostinho, asinhas, cauda de fumaça) que **flutuam ao lado da cabeça** de uma
+    pessoa: `"personagem": "guardiao-azul"` (ou `guardia-verde`, `guardiao-chefe`, `guardiao-noturno` com lanterna) e
+    `"sobre": { "id": "<pessoa>", "dx": 0.9, "dy": 1.55 }`; estados parado/feliz/alerta/dormindo (`motor/assets/guardioes.js`).
+    Números sobre a cabeça **das pessoas**, sempre no estilo placa (não usar `"numeroEstilo": "solto"`; o usuário achou
+    estranho); guardiões sem número. Teste: `projetos/vitrine` (cenas 1 e 1b).
+  - fantasmas (`motor/assets/fantasmas.js`): `fantasma-lencol` (parado/assustar/timido), `fantasma-crianca`
+    (parado/timido/acenar/assustar), `fantasma-vovo` (parado/rindo/acenar), `fantasma-sombra` (parado/assustar; use `escala` 2),
+    `fantasma-cachorro` (parado/feliz), `fogo-fatuo` (azul/verde/roxo, com luz). Flutuam sozinhos; use `"y"` ~0.4.
+  - `motor/assets/prototipos.js`: moradores `carteiro`, `vovo`, `sorveteiro`, `rival`, `menino-pijama` (andam e sentam);
+    `gato-chapeu`; objetos `bilhete` (brilhando), `carta` (fechada/aberta), `mapa`, `cadeado` (fechado/aberto),
+    `pegadas-brilhantes`, `cartaz-procura-se` (vazio/foto; bom com `"tela": true`); isométricos `relogio-praca`
+    (h3/h6/h9/h12/h11-55), `caixa-correio`, `lixeira-praca`, `placa-praca`, `carrinho-sorvete`.
+  - ações novas: `pensar`, `destaque`, `contador`, `placar`, `continua`; ícones `lampada`/`gota`/`raiva`/`nota`;
+    sons `sino-relogio`, `cadeado`, `papel`, `miau`, `trovao`, `suspense`, `fantasma`. Teste: `projetos/vitrine`
+    (personagens em `prototipos/personagens.json`).
+  - barracas novas `barraca-sorvete`/`-frutas`/`-verduras`/`-flores`/`-vazia` (estados parado/acesa/fechada) e cenário
+    `praca-feira` (em `prototipos/cenarios.json`).
+  - 2ª leva: cenários `estrada-terra` (placa VILA SERENA 1 KM), `ponte-rio`/`-noite`, `beco` (cômodo; porta trancada
+    com corrente e cadeado), `rua-junina`, `rua-chuva`/`-noite` (em `prototipos/cenarios.json`); opções da rua
+    `"chao": "terra"`, `"rio": true`, `"semPredios": true`, `"pocas": true`, `"cerca": false`; sprites `ponte-madeira`
+    (em cima `"y": 0.45`), `fogueira-junina` (animada, com luz), `caixote`, `cerca-madeira`, `mato`, `placa-saida`,
+    `cadeado-numero` (fechado/tentando/aberto; close com `"tela": true`); som `sininho` (sorveteiro).
+- **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
+  ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
+- **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de
+  cômodos em diorama, `"vista": "diorama"` + `"comodo"`): sala = `sala-de-estar-diorama` (aprovado; noite:
+  `sala-de-estar-noite-diorama`), quarto do menino = `quarto-menino-diorama` (aprovado), `cozinha-diorama` e
+  `banheiro-diorama` (+ `-noite-diorama`) em `prototipos/cenarios.json`; móveis novos em `motor/assets/casa.js`
+  (geladeira, fogao, balcao-pia, armario-alto, mesa-cozinha, banqueta, vaso, pia-banheiro, banheira; decor `espelho`,
+  `azulejos`). Personagens `mae`, `mae-avental`, `menino-topete`. Teste: `projetos/vitrine` (cenas 17–21).
+  **Não usar** os cômodos "de caixinha" (`casa-sala`... sobre fundo `diorama`) nem a `casa-corte`: o usuário preferiu o
+  formato que enche a tela (ficam no código só como protótipo antigo).
+- **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
+  "tentaculos" | "massa-olhos" | "rastejante"`, em alta resolução sobre o pixel art. `rastejante` = humano de sombra
+  andando de quatro (membros longos, joelhos/cotovelos para cima, cabeça aos trancos; anda com `andar`/`correr`/`mover`,
+  `"passada"`). Teste: `projetos/prototipo-monstros` (cena 6; `npm run fotos -- prototipo-monstros`).
+- **Sombra que se alastra (protótipo)**: ação `{ "tipo": "sombra", "origem": [x, z], "raio": 20, "inicio", "duracao",
+  "recolher": s, "cor", "corBorda", "personagens": false }` — só no diorama de rua/praça: cobre o chão com borda
+  esfiapada, sobe paredes/prédios pela altura de cada pixel e sobe pelos objetos e pessoas de baixo para cima; som `sombra`.
+  Teste: `projetos/vitrine` (cena 24).
+- **Sombra em forma de pessoa (protótipo)**: elemento `{ "id": "s1", "sombraPessoa": { "tamanho": 2.6, "direcao": 0, "olhos": false },
+  "x", "z" }` (só no diorama de rua/praça; até 4 por cena): silhueta deitada no chão a partir dos pés que sobe a parede
+  quando chega nela; `direcao` em graus (0 = para os prédios, 90 = ao longo de +x). Funciona com `andar`/`mover`,
+  `aparecer` (surge em pontilhado), `sumir`/`desaparecer`, `"oculto"`. Teste: `projetos/vitrine` (cena 25).
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
-  `sala-de-estar` (fundos + móveis de `motor/sprites-interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
+  `sala-de-estar` (fundos + móveis de `motor/assets/interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
   `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,
   `quarto-menino-noite-diorama`, `sala-de-estar-diorama`. O diorama aceita **ângulos**: padrão `"classico"`
   (diagonal clássica; não precisa escrever), `"espelhado"` e extras `tipo@angulo` (sala de aula: `lousa-fundo`).
@@ -153,13 +227,34 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - **Poses APROVADAS**: moradores e `menina-capa` têm `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"`,
   `"sentado-costas"` e as ações `sentar`/`levantar` (`motor/sentado.js`). Assento a ~12 px do chão: em sofás da
   lateral use `"y": 0.25`, nas carteiras da lateral `"y": 0.2`.
-- **Modo 3D GUARDADO — só usar se o usuário pedir (regra 12)** (vista padrão continua `lateral`).
+- **Modo 3D GUARDADO — só usar se o usuário pedir (regra 12)** (o padrão continua o diorama).
   `"vista": "3d", "palco": { "tipo": "quarto-menino" | "quarto-menino-noite" | "sala-aula" | "sala-estar" |
   "praca" | "praca-noite" }` (`motor/cenarios/palco3d.js`, `objetos3d.js`; teste em `projetos/prototipo-3d`).
   Pendência: texto pequeno em objetos do fundo perde linhas de pixel.
 - **Teste "mundo sombrio" (o usuário não gostou; não usar)** em `projetos/prototipo-mundo-sombrio`.
 - Protótipos de teste: `projetos/prototipo-interiores`, `projetos/prototipo-sentados`.
+- **Assets "Nesse Mundo" — APROVADOS (na biblioteca)** (`motor/assets/nesse-mundo.js`, variações `policial-oculos` e
+  `prefeito-careca` em `motor/assets/moradores.js`; teste em `projetos/prototipo-nesse-mundo`, folha em `folha-assets.png`; personagens `policial-oculos`, `prefeito-careca`, `cone-monstro`).
+  Para 3 roteiros: curto "estrelas que viram olhos", curto "cada rua tem um monstro" e longo "cada um carrega o
+  próprio tempo". Sprites: `tempo-pessoal` (estados sol-pequeno/sol/sol-grande/sol-forte/nuvenzinha/garoa/chuva/
+  aguaceiro/nada), `guarda-chuva` (aberto/fechando/fechado), `estrela-mentira`/`estrela-gigante` (parado/olho/
+  olho-aberto), `palanque` (em cima: y 1.125), `bandeirinhas`, `fonte-praca` (cheia/seca), `canteiro` (verde/murcho),
+  `placa-lei`, `bloco-multas`, `fogo-chapeu`, `peruca`, `sorvete` (derretendo), `agua-enchente`, `cerca-mirante`,
+  `bueiro-monstro` (parado/agarrar/enjoado/fechado), `cone-monstro` (personagem; dormindo), `sanduiche`,
+  `lista-compras` (abrindo), `malinha`. Cenários na biblioteca: `praca-festa`, `praca-festa-noite`, `rua-festa`
+  (diagonal), `morro-mirante`, `rua-monstros`. Recursos novos do motor: ação `trocar`, `"sobre"`, `"balancar"`, clima `calor`.
+- **Praça diagonal — APROVADA (na biblioteca)**: na rua comercial (opção `"rua": { "praca": { "x", "largura",
+  "profundidade" } }` do `ruaDiagonal.js`, de frente para os mesmos prédios; câmera `"z": -8.5` foca a praça).
+  **Padrão** (uso normal): `praca`, `praca-noite`. **Decorada** (festa): `praca-decorada`, `praca-decorada-noite`
+  (bandeirinhas, palanque — em cima `"y": 0.75` — e barracas). Para decorar uma cena, troque só o nome do cenário.
+  Objetos isométricos (`motor/assets/praca.js`): `fonte-iso` cheia/seca, `banco-iso`, `arvore-iso`/`-grande`
+  verde/seca, `poste-iso`, `poste-iso-aceso`, `canteiro-iso` verde/murcho, `palanque-iso`, `bandeirinhas-iso`,
+  `barraca-pipoca`/`-doces`/`-jogos` (parado/acesa); x/z = canto da frente; estado inicial com `"pose"`.
+  Os postes de TODA a rua diagonal são o `poste-iso` (aceso à noite); `"rua": { "postes": "antigo" }` volta ao chapado.
+- **Protótipos NÃO aprovados** (definidos em `prototipos/cenarios.json`; teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
+  `praca-seca` (decorada com fonte seca etc., para a história do Dia do Sol) e `quarto-menina` / `quarto-menina-noite`
+  (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
-- **Branch de trabalho único:** `claude/jolly-archimedes-hpl3qb` (já reúne `cool-noether`, `charming-mendel` e
-  `epic-bardeen`; não usar os outros).
+- **Branch de trabalho:** `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,
+  `cool-noether`, `charming-mendel` e `epic-bardeen`, + diorama como padrão + guardiões/números) e `ccr-77868c41-s69pnw` (casa, mãe, menino-topete, monstros 3D).

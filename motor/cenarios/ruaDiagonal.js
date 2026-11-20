@@ -1,3 +1,4 @@
+// Vista "diorama" (nome antigo: "diagonal").
 // Rua em diagonal DESENHADA em pixel art (projeção 2:1). A câmera fica sempre de frente;
 // a diagonal está no desenho, então cada pixel continua alinhado com a tela.
 // Cada pixel guarda sua posição 3D (i, j, altura) e a iluminação é calculada pixel a pixel,
@@ -63,12 +64,46 @@ export function gerarRuaDiagonal(opc = {}) {
   const faixaPedestre = opc.faixaPedestre ?? 0;   // posição x (ao longo da rua) da faixa
   const jFaixa = -faixaPedestre;
   const bueiros = [J0 + 6, J0 + 19, J0 + 31].map((j) => j + (r() - 0.5) * 3);
+  // Praça do lado de cá da rua (no lugar do canteiro): "rua": { "praca": { "x": 0, "largura": 16, "profundidade": 12 } }.
+  // No roteiro: z = -0.9 (borda perto da rua) até z = -(profundidade - 1) (fundo, perto da câmera).
+  const op = opc.praca;
+  const PR = op ? { i0: 7.0, i1: 7.0 + (op.profundidade ?? 12), j0: -(op.x ?? 0) - (op.largura ?? 16) / 2, j1: -(op.x ?? 0) + (op.largura ?? 16) / 2 } : null;
+  const pedra = (i, j) => {          // pedras bege em fileiras desencontradas (as mesmas da praça do diorama)
+    const fi = i * 2.4, k = Math.floor(fi), fj = j * 2.4 + (k % 2) * 0.5, kj = Math.floor(fj);
+    const ri = fi - k, rj = fj - kj, h = ((k * 73856093) ^ (kj * 19349663)) >>> 0;
+    if (ri < 0.12 || rj < 0.1) return '#9a8a74';
+    if (ri > 0.84) return '#e8dcc8';
+    return h % 5 === 0 ? '#b8a890' : h % 3 === 0 ? '#e8dcc8' : '#cfc0a8';
+  };
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const X = (x - OX) / 16, Y = (y - OY) / 8;
     const i = (Y + X) / 2, j = (Y - X) / 2;
     if (i < I0 || i > I1 || j < J0 - 2 || j > J1 + 2) continue;
     let c;
     const calcada = (i >= 0 && i < 1.5) || (i > 5.5 && i < 7);
+    // PROTÓTIPO: "chao": "terra" (estrada de terra, margens de grama), "rio": true (água na faixa da rua),
+    // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
+    const terra = opc.chao === 'terra';
+    const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.rio && i > 1.5 && i < 5.5) {
+      const borda = i < 1.8 || i > 5.2;
+      const onda = Math.sin(j * 4 + i * 2.2 + 1) + Math.sin(j * 1.7 - i * 3.1) * 0.6;
+      c = borda ? (terra ? '#7a5a3a' : '#8a8c9c') : onda > 1.2 ? '#c8ecff' : onda > 0.55 ? '#5aa8e0' : bayer(x, y) < 0.15 ? '#2e6ab0' : '#3a7cc4';
+      if (noite && !borda) c = onda > 1.2 ? '#8ab8e0' : onda > 0.55 ? '#2e5a98' : '#1e3e6a';
+      pintar(x, y, c, i, j, 0); continue;
+    }
+    if (i < 0 && opc.semPredios) { pintar(x, y, grama(), i, j, 0); continue; }
+    if (terra && i >= 0 && i < 7 && !(i > 1.8 && i <= 5.2)) { pintar(x, y, grama(), i, j, 0); continue; }
+    if (terra && i > 1.8 && i <= 5.2) {
+      const v = r(), sulco = Math.abs(i - 2.6) < 0.18 || Math.abs(i - 4.4) < 0.18;
+      c = sulco ? (v < 0.3 ? '#8a6a44' : '#7a5a3a') : v < 0.08 ? '#c8a878' : v < 0.15 ? '#8a6a44' : '#a8845a';
+      if (Math.abs(i - 3.5) < 0.12 && v < 0.5) c = '#5aa04a';             // capim no meio da estrada
+      pintar(x, y, c, i, j, 0); continue;
+    }
+    if (opc.pocas && i >= 0 && i < 7) {
+      const n = Math.sin(j * 1.3 + i * 0.7) * Math.sin(j * 0.47 - i * 1.9 + 2) + Math.sin(i * 2.9 + j * 0.31) * 0.35;
+      if (n > 0.62) { const brilho = n > 0.86 && bayer(x, y) < 0.5; pintar(x, y, noite ? (brilho ? '#5a7ab0' : '#2a3a5e') : (brilho ? '#c8e0f8' : '#6a8ab8'), i, j, 0); continue; }
+    }
     if (i < 0) c = '#2a2a34';
     else if (calcada) {
       const a = i * 2, b = j * 2, borda = a - Math.floor(a) < 0.07 || b - Math.floor(b) < 0.07;
@@ -80,10 +115,19 @@ export function gerarRuaDiagonal(opc = {}) {
       if (i > 1.74 && i < 1.8) c = '#4a4a58';
     } else if (i <= 5.2) {
       const v = r(); c = v < 0.07 ? '#45475a' : v < 0.13 ? '#2c2c38' : '#37394a';
+      if (opc.alagada) {   // rua alagada: água por cima do asfalto
+        const onda = Math.sin(j * 5 + i * 2.2) + Math.sin(j * 2.1 - i * 3.7) * 0.6;
+        c = onda > 1.15 ? '#c8ecff' : onda > 0.6 ? '#6ab0e8' : bayer(x, y) < 0.15 ? '#3a78c0' : '#4a8ad0';
+        if (noite) c = onda > 1.15 ? '#8ab8e0' : onda > 0.6 ? '#3a6aa8' : '#24487a';
+        pintar(x, y, c, i, j, 0); continue;
+      }
       if (Math.abs(j - jFaixa) < 1.4 && (Math.floor((i - 1.8) * 4)) % 2 === 0) c = r() < 0.05 ? '#b8b8c4' : '#e2e2ea';
       else if (Math.abs(i - 3.5) < 0.06 && (j - Math.floor(j)) < 0.5) c = '#e0b838';
       for (const jb of bueiros) if (Math.abs(i - 1.95) < 0.12 && Math.abs(j - jb) < 0.35) c = (Math.floor(j * 16) % 2) ? '#1e1e26' : '#4a4a58';
       if (Math.hypot((i - 3.5) * 1.0, (j - (J0 + 12)) * 1.0) < 0.42) c = Math.hypot(i - 3.5, j - (J0 + 12)) < 0.36 ? ((Math.floor(i * 12) + Math.floor(j * 12)) % 2 ? '#4e4e5c' : '#3e3e4a') : '#2a2a34';
+    } else if (PR && i >= PR.i0 && i < PR.i1 && j >= PR.j0 && j <= PR.j1) {
+      const bi = Math.min(i - PR.i0, PR.i1 - i), bj = Math.min(j - PR.j0, PR.j1 - j);
+      c = bi < 0.18 || bj < 0.18 ? (bi < 0.09 || bj < 0.09 ? '#8a8c9c' : '#b6b8c6') : pedra(i, j);     // meio-fio em volta
     } else if (i < 7.4) c = '#2e5a3a';
     else { const v = r(); c = v < 0.1 ? '#4a9a5a' : v < 0.17 ? '#2c5a3a' : '#3a7a4a'; }
     pintar(x, y, c, i, j, 0);
@@ -116,11 +160,14 @@ export function gerarRuaDiagonal(opc = {}) {
   }
 
   // cerca viva entre a calçada da frente e o canteiro
-  prisma(7.0, 7.45, J0, J1, 0, 9, {
+  const cerca = (ja, jb) => prisma(7.0, 7.45, ja, jb, 0, 9, {
     frente: (x, y, u, t, l, s) => pintar(x, y, t > 7 ? '#4a8a4a' : ((u + t) % 3 ? '#2e6a3a' : '#3a7a44'), 7.45, s, t, 1, 0.92),
-    lado: (x, y, u, t, s) => pintar(x, y, '#24502e', s, J1, t, 1, 0.75),
+    lado: (x, y, u, t, s) => pintar(x, y, '#24502e', s, jb, t, 1, 0.75),
     topo: (x, y, i, j) => pintar(x, y, r() < 0.2 ? '#6aaa5a' : '#58984e', i, j, 9, 1, 1.1),
   });
+  if (opc.cerca === false || opc.chao === 'terra');
+  else if (PR) { if (PR.j0 > J0) cerca(J0, PR.j0); if (PR.j1 < J1) cerca(PR.j1, J1); }   // a cerca abre para a praça
+  else cerca(J0, J1);
 
   // ---------- prédios (da esquerda/fundo para a direita/frente: j crescente) ----------
   const tipos = Object.keys(PALETAS);
@@ -150,6 +197,7 @@ export function gerarRuaDiagonal(opc = {}) {
       pal: e ? e.pal : PALETAS[t][Math.floor(r() * PALETAS[t].length)], toldo: e ? e.toldo : TOLDOS[n % TOLDOS.length], s: Math.floor(r() * 1e6) });
   });
   const lojas = [];
+  if (opc.semPredios) predios.length = 0;
   for (const P of predios) {
     const rw = rng(P.s), pal = P.pal;
     const acesa = new Map();
@@ -282,7 +330,9 @@ export function gerarRuaDiagonal(opc = {}) {
   const postes = [];
   const passo = opc.distanciaPostes ?? 8;
   for (let j = J0 + 3; j < J1 - 1; j += passo) { postes.push({ i: FAIXA.calcadaFundo, j }); postes.push({ i: FAIXA.calcadaFrente, j: j + passo / 2 }); }
-  const luzes = noite ? [...postes.map((p) => ({ ...p, h: 40, raio: 4.2, forca: 1 })), ...lojas] : [];
+  // luz dos postes da praça (os postes são sprites "poste-iso"; a luz no chão vem daqui)
+  const luzPraca = PR && noite ? (op.luzes ? op.luzes.map(([x, z]) => [FAIXA.calcadaFrente - z, -x]) : [[PR.i0 + 1.5, PR.j0 + 2], [PR.i0 + 1.5, PR.j1 - 2], [PR.i1 - 3, PR.j0 + 2], [PR.i1 - 3, PR.j1 - 2]]).map(([i, j]) => ({ i, j, h: 40, raio: 4.6, forca: 1 })) : [];
+  const luzes = noite ? [...postes.map((p) => ({ ...p, h: 40, raio: 4.2, forca: 1 })), ...lojas, ...luzPraca] : [];
   const amb = noite ? [0.70, 0.74, 0.94] : [1, 1, 1];
   const corLuz = [1.0, 0.86, 0.6];
   const saida = new Uint8ClampedArray(N * 4), brilho = new Uint8ClampedArray(N * 4);
@@ -309,5 +359,5 @@ export function gerarRuaDiagonal(opc = {}) {
     }
     saida.set([Math.min(255, R * 255), Math.min(255, G * 255), Math.min(255, B * 255), 255], k * 4);
   }
-  return { W, H, imagem: saida, brilho, proj, postes, J0, J1, noite };
+  return { W, H, imagem: saida, brilho, proj, postes, J0, J1, noite, pi, pj, ph, tipo };
 }

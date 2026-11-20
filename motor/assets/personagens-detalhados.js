@@ -1,8 +1,8 @@
 // Personagens detalhados (28x44): frente com respiração e piscar, andar de lado (4 quadros)
 // e correr (6 quadros). Desenhados com o sistema de camadas de boneco.js.
-import { Boneco, passada } from './boneco.js';
-import { registrarSprites } from './sprites.js';
-import { adicionarSentado, adicionarCostas } from './sentado.js';
+import { Boneco, passada } from '../boneco.js';
+import { registrarSprites } from '../sprites.js';
+import { adicionarSentado, adicionarCostas } from '../sentado.js';
 
 const W = 28, H = 44;
 
@@ -62,7 +62,7 @@ function meninaLado(t, { correr = false, classico = false } = {}) {
   const Hh = b.material(PAL_MENINA.cabelo), M = b.material(PAL_MENINA.meia), U = b.material(PAL_MENINA.guarda);
   const g = passada(t, correr ? { passo: 6, levanta: 4 } : { passo: 3.6, levanta: 2.2 });
   const incl = correr ? 2.5 : 0;           // inclinação para frente
-  const onda = classico ? Math.sin : Math.cos;   // clássico = balanço usado nas vistas lateral e diagonal
+  const onda = classico ? Math.sin : Math.cos;   // clássico = balanço usado nas vistas lateral e diorama
   const pulo = correr ? Math.round(Math.abs(onda(t * Math.PI * 2)) * 1.5) : Math.round(Math.abs(onda(t * Math.PI * 2)));
   const y0 = -pulo;
   // pernas: saem abaixo da barra da capa; a de trás é mais escura (profundidade)
@@ -110,7 +110,7 @@ function meninaV2() {
       correndo: { q: [11, 12, 13, 14, 15, 16, 17, 18], fps: 18, passada: 24 },
       pulando: { q: [13], fps: 1 },
     },
-    // vistas lateral e diagonal: caminhada clássica (ritmo fixo, corpo contínuo)
+    // vistas lateral e diorama: caminhada clássica (ritmo fixo, corpo contínuo)
     animsClassicas: {
       andando: { q: [19, 20, 21, 22], fps: 7 },
       correndo: { q: [23, 24, 25, 26, 27, 28], fps: 13 },
@@ -224,4 +224,4 @@ registrarSprites({
   // nomes usados antes (continuam funcionando)
   'menina-capa-detalhada': () => meninaComSentado(),
   'robo-semaforo-detalhado': () => roboV2(),
-});
+}, { grupo: 'Personagens principais (detalhados)' });

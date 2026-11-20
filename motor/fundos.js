@@ -21,6 +21,12 @@ export const PRESETS = {
     ambiente: ['#ffffff', 1.0],
   },
   preto: { ceu: { cores: ['#000000'] }, camadas: [], chao: null, ambiente: ['#ffffff', 1.0] },
+  // fundo liso para os cômodos em diorama (casa-sala, casa-cozinha...): sem chão, só um degradê escuro
+  diorama: { ceu: { cores: ['#2a2238', '#342a46', '#3e3252', '#4a3a5a'] }, camadas: [], chao: null, ambiente: ['#ffffff', 1.0] },
+  // céu liso (protótipo: atrás da casa em corte)
+  'ceu-dia': { ceu: { cores: ['#4a8ad8', '#62a2e4', '#80baee', '#a4d0f4'] }, camadas: [], chao: null, ambiente: ['#ffffff', 1.0] },
+  'ceu-noite': { ceu: { cores: ['#05061a', '#0a0c26', '#141638', '#22204a'] }, camadas: [], chao: null, ambiente: ['#9aa0d8', 0.85] },
+  'diorama-noite': { ceu: { cores: ['#0a0816', '#100c20', '#16122a', '#1c1632'] }, camadas: [], chao: null, ambiente: ['#9aa0d8', 0.85] },
   'floresta-dia': {
     ceu: { cores: ['#3b7dd8', '#5fa8ea', '#9fd4f5', '#cdeefa'] },
     camadas: [

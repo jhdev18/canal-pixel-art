@@ -2,7 +2,7 @@
   "titulo": "Diagonal - rua desenhada",
   "cenas": [
     {
-      "vista": "diagonal",
+      "vista": "diorama",
       "duracao": 7,
       "transicao": "fade",
       "seguir": "menina",

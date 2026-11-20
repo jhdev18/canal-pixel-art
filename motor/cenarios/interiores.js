@@ -1,6 +1,6 @@
 // Interiores para a vista LATERAL: parede do cômodo (camada 'comodo') + pisos internos.
 // A parede repete a cada 512 px; janelas, portas e quadros ficam pintados nela.
-// Os móveis são sprites (motor/sprites-interiores.js), posicionados no roteiro/cenário.
+// Os móveis são sprites (motor/assets/interiores.js), posicionados no roteiro/cenário.
 import { bayer } from '../pixel.js';
 import { rng } from '../compartilhado/util.js';
 
@@ -195,5 +195,33 @@ export const PRESETS_INTERIORES = {
     chao: { estilo: 'taco', topo: ['#c08a52', '#a0703e', '#6a4424'], terra: ['#8a5a30', '#704826'] },
     ambiente: ['#fff6e8', 1.0],
   },
+  // PROTÓTIPO (não aprovado): quarto de menina — parede lilás listrada, meia-parede branca, cortina rosa
+  'quarto-menina': {
+    ceu: { cores: ['#f0dcec'] },
+    camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true,
+      cor: ['#f4dcf0', '#e4bce0', '#c498c0'], padrao: 'listras', teto: ['#fcf4fa', '#ecdcea', '#b8a0b8'],
+      meiaParede: { altura: 28, padrao: 'lambri', cores: ['#ffffff', '#ece8f0', '#c0b8c8'] },
+      rodape: ['#ffffff', '#ece8f0', '#b8b0c0'],
+      janelas: [{ x: 128, w: 44, h: 40, cortina: ['#f8a8cc', '#d87aa8'] }],
+      portas: [{ x: 404, w: 30, h: 76, cor: ['#f4f0e8', '#e0d8c8', '#a8a090'] }],
+      quadros: [{ x: 228, w: 22, h: 30, altura: 66, tipo: 'poster', cores: ['#8a5ad8', '#6a3ab8'], estrela: true },
+                { x: 290, w: 30, h: 20, altura: 72, tipo: 'paisagem' }] }],
+    chao: { estilo: 'taco', topo: ['#e8c090', '#c89a68', '#8a6440'], terra: ['#b88a58', '#9a7044'] },
+    ambiente: ['#ffffff', 1.0],
+  },
+};
+// PROTÓTIPO (não aprovado): beco escuro — tijolo, chão de pedras escuras, sempre à noite
+PRESETS_INTERIORES.beco = {
+  ceu: { cores: ['#141424'] },
+  camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true, noite: true,
+    cor: ['#8a5a4a', '#6a4038', '#3e2420'], padrao: 'tijolo', teto: ['#2a2a34', '#1e1e28', '#141420'],
+    rodape: ['#3a3a44', '#2e2e38', '#22222a'], janelas: [], portas: [], quadros: [] }],
+  chao: { estilo: 'pedras', topo: ['#6a6a78', '#55556a', '#3a3a48'], terra: ['#3a3a46', '#2e2e3a'] },
+  ambiente: ['#6a70a8', 0.5],
+};
+PRESETS_INTERIORES['quarto-menina-noite'] = {
+  ...PRESETS_INTERIORES['quarto-menina'], ceu: { cores: ['#2a2848'] },
+  camadas: [{ ...PRESETS_INTERIORES['quarto-menina'].camadas[0], noite: true }],
+  ambiente: ['#7a84c0', 0.62],
 };
 export { K };

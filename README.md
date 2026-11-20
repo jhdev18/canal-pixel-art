@@ -65,9 +65,11 @@ projetos/meu-video/
 ### Narração do ElevenLabs
 
 **Opção 1 — um único áudio (recomendado):** escreva a fala de cada cena em `"narracaoTexto"` no roteiro e rode
-`npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (com pausas `<break time="1.0s" />` entre as
-cenas) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o gerador corta o
-áudio nas pausas, um trecho por cena, e ajusta a duração de cada cena. Deixe uma pausa clara entre as falas.
+`npm run narracao -- meu-video`. Ele cria `narracao/TEXTO-COMPLETO.txt` (um parágrafo por cena, sem marcações de
+pausa, para a fala fluir) para colar no ElevenLabs. Salve o áudio gerado como **`narracao/narracao-completa.mp3`**: o
+gerador **ouve o áudio** (reconhecimento de fala no próprio PC; na primeira vez baixa um modelo de ~75 MB) e corta
+exatamente entre a última palavra de uma cena e a primeira da seguinte; cada cena dura o seu trecho de áudio. Se o
+reconhecimento não estiver instalado, corta pelas pausas naturais.
 
 **Conferir os cortes sem renderizar:** `npm run narracao -- meu-video --verificar` mostra de que segundo a que
 segundo vai a fala de cada cena (e salva em `narracao/CORTES.txt`). O corte leva em conta o tamanho do texto de
@@ -111,6 +113,9 @@ Outros comandos:
 | `npm run previa -- meu-video` | Prévia em tempo real no navegador (sem áudio); recarrega quando o `roteiro.json` muda |
 | `npm run lista` | Lista fundos, sprites, ações, efeitos sonoros, paletas e a biblioteca |
 | `npm run sprites` | Gera `sprites-disponiveis.png` com todos os sprites |
+| `npm run fotos -- meu-video` | Imagens paradas de cada cena (sem vídeo) em `saida/fotos/` + `folha.png`. Na cena, `"foto": 2.5` (ou `[1, 4]`) escolhe o momento |
+| `npm run vitrine` | Imagens das principais mudanças (projeto `vitrine`) |
+| `npm run catalogo` | Lista todos os assets (sprites com estados, personagens, cenários, ações, sons) em `biblioteca/CATALOGO.md` |
 | `npm run sfx` | Exporta todos os efeitos sonoros para `biblioteca/sfx/_gerados/` (para ouvir) |
 | `npm run gpu` | Diagnóstico de GPU e NVENC |
 
@@ -118,14 +123,14 @@ Opções: `--fps 60`, `--crt` (linhas de varredura de TV antiga), `--escala 4`, 
 (o rascunho sai no formato normal; o final gera os dois — use `--formato normal` para gerar só o vídeo longo).
 
 **Ajustes só para o Shorts:** cada cena pode ter um bloco `"vertical"` com o que muda no formato 9:16 — normalmente o
-enquadramento: `"vertical": { "camera": { "x": -1, "zoom": 2 }, "cameraFim": { "x": 1 } }`. Na vista diagonal, use
+enquadramento: `"vertical": { "camera": { "x": -1, "zoom": 2 }, "cameraFim": { "x": 1 } }`. Na vista diorama, use
 `"camera": { "z": -2.75 }` para a câmera mirar a calçada da frente. Veja `projetos/episodio-01`.
 Exemplo: `npm run final -- meu-video --fps 60`.
 
 Há um projeto completo de exemplo em `projetos/exemplo` (`npm run rascunho -- exemplo`).
 
 **Guia das formas de fazer o vídeo** (vistas, estilos de personagem, formatos, modos, acabamento e som), com
-modelos prontos: [FORMAS-DE-VIDEO.md](FORMAS-DE-VIDEO.md). Comece de um modelo com `npm run novo -- meu-video --modelo diagonal`.
+modelos prontos: [FORMAS-DE-VIDEO.md](FORMAS-DE-VIDEO.md). Comece de um modelo com `npm run novo -- meu-video --modelo diorama`.
 
 ---
 
@@ -203,9 +208,9 @@ em 4 quadros e correr em 6). As versões antigas, mais simples, ficaram como `me
 `padeiro`, `caixa`. **Estabelecimentos** (vista lateral): `escola`, `delegacia`, `padaria`, `mercado`, `farmacia`,
 mais `carro-policia`, `banco-praca`, `ponto-onibus` e `hidrante`; fundo `cidade-dia`. Cenários prontos na biblioteca:
 `escola`, `delegacia`, `padaria`, `mercado`, `farmacia` (lateral) e `rua-comercial` / `rua-comercial-noite`
-(diagonal com os estabelecimentos).
+(diorama com os estabelecimentos).
 
-Na vista diagonal dá para escolher os prédios da rua, da esquerda para a direita:
+Na vista diorama dá para escolher os prédios da rua, da esquerda para a direita:
 
 ```json
 "rua": { "periodo": "dia", "predios": [ { "tipo": "padaria", "largura": 4 }, { "tipo": "comum" }, { "tipo": "escola", "largura": 6 } ] }
@@ -278,6 +283,8 @@ Comentários com `//` são permitidos.
 | `voz` | Tom dos "blips" de fala (1 = normal, 1.3 = mais agudo) |
 | `luz` | `{ "cor": "#ff9933", "intensidade": 2, "alcance": 6 }` — ou `false` para tirar a luz da fogueira/tocha/poste |
 | `semente` | Variação de árvores/arbustos procedurais |
+| `sombraPessoa` | (diorama de rua) em vez de sprite: sombra em forma de pessoa no chão/parede. `{ "tamanho": 2.6, "direcao": 0, "olhos": true }` |
+| `numero` | Número sobre a cabeça a cena toda (`1`, `10`, `"?"`, `"#"`, `"-"`); acompanha o personagem. `numeroCor` (`"#f8d040"`) e `numeroEstilo` (`"placa"` padrão ou `"solto"`, algarismos grandes sem placa) |
 
 Sprites PNG próprios: fundo transparente, quadros lado a lado; `"quadros": 4`, `"fps": 8` e, para
 personagens, `"animacoes": { "parado": [0], "andando": [1, 2, 3] }`.
@@ -295,8 +302,16 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `virar` | `alvo`, `direcao` | — | — |
 | `sentar` | `alvo`, `lado` (true = de lado) ou `pose` (`sentado`, `sentado-lado`, `sentado-costas`) | personagem fica sentado (de frente ou de lado) | — |
 | `levantar` | `alvo` | volta a ficar em pé | — |
+| `trocar` | `alvo`, `estado` | muda o estado de um objeto (ex.: `tempo-pessoal` de `sol` para `chuva`; estrela vira `olho`) | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
-| `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` | ícone sobre a cabeça | surpresa/dúvida/amor |
+| `emocao` | `alvo`, `icone`: `!` `?` `coracao` `...` `zzz` `lampada` `gota` `raiva` `nota` | ícone sobre a cabeça | surpresa/dúvida/amor |
+| `numero` | `alvo`, `valor` (`null` tira), `cor`, `estilo` | troca o número sobre a cabeça (com pulinho); vale até o fim da cena | clique |
+| `pensar` | `alvo`, `texto` | balão de pensamento (nuvem com bolinhas) | — |
+| `destaque` | `alvo` (ou `posicao` [x, y] px), `raio`, `dy`, `escurecer`, `cor` | lupa: escurece a tela e ilumina um círculo | revelar |
+| `contador` | `de` (padrão = duração), `cor`, `y` | contagem regressiva grande no alto (vermelha nos 3 últimos) | tique + sino |
+| `placar` | `opcoes` (["AJUDAR", "FUGIR"]), `votos` ([62, 38], opcional), `cores` | placar de votação (1, 2...) com barras enchendo | — |
+| `continua` | `texto` (padrão "CONTINUA...") | selo no canto para o gancho do fim | suspense |
+| `sombra` | `origem` [x, z], `raio`, `recolher`, `cor`, `corBorda`, `personagens` | (diorama de rua) sombra que se alastra pelo chão e sobe paredes, objetos e pessoas | sombra |
 | `aparecer` / `sumir` | `alvo` | "puf" de fumaça | puf |
 | `coletar` | `alvo` | item sobe com brilho e some | moeda/vida/powerup/item |
 | `piscar` | `alvo` | pisca vermelho (dano) | dano |
@@ -313,7 +328,8 @@ Os efeitos ficam no **estéreo** de acordo com a posição do personagem na tela
 
 Gerados por síntese, no estilo 8/16-bit:
 `passo, pulo, aterrissar, moeda, item, vida, powerup, puf, explosao, tremor, blip, surpresa, duvida,
-amor, dano, magia, revelar, transicao, porta, clique, sucesso, erro, soco, espada, sino`.
+amor, dano, magia, revelar, transicao, porta, clique, sucesso, erro, soco, espada, sino` e (protótipo)
+`sino-relogio, cadeado, papel, miau, trovao, suspense, fantasma`.
 
 Ambientes (em loop, escolhidos pelo fundo/clima automaticamente):
 `chuva, vento, grilos, passaros, fogo, caverna, espaco, cidade`.
@@ -330,13 +346,13 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 | Vista | Como é | Coordenadas dos elementos |
 |---|---|---|
 | `lateral` (padrão) | cenário em camadas com paralaxe, usando `fundo` | `x` horizontal, `y` altura, `z` profundidade |
-| `diagonal` | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
-| `diorama` | **cômodos** (interiores) desenhados em diagonal 2:1, em corte, com **ângulos**: `"comodo": { "tipo": "sala-aula", "angulo": "espelhado" }`. Padrão: `classico` (a diagonal clássica, não precisa escrever); `espelhado` (visto pelo outro lado da diagonal); ângulos extras quando o cômodo tem (sala de aula: `lousa-fundo`), combináveis (`lousa-fundo-espelhado`). Ângulo que não existe usa o clássico, com aviso. Tipos: `sala-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-estar` | `x` ao longo do cômodo; `z` = 0 perto da frente, ~3.8 encostado na parede do fundo. No ângulo espelhado o `x` troca de sinal |
+| `diorama` (rua; **padrão**) — antiga `diagonal`, ainda aceita | rua **desenhada** em diagonal (pixel art 2:1): prédios com vitrines, toldos e letreiros, calçadas, faixa de pedestre, postes; luz pintada pixel a pixel. A câmera desliza acompanhando (`seguir`) | `x` = posição **ao longo da rua**; `z` = distância da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua, ~5.3 = calçada dos prédios) |
+| `diorama` + `"comodo"` (cômodos) | **cômodos** (interiores) desenhados em diagonal 2:1, em corte, com **ângulos**: `"comodo": { "tipo": "sala-aula", "angulo": "espelhado" }`. Padrão: `classico` (a diagonal clássica, não precisa escrever); `espelhado` (visto pelo outro lado da diagonal); ângulos extras quando o cômodo tem (sala de aula: `lousa-fundo`), combináveis (`lousa-fundo-espelhado`). Ângulo que não existe usa o clássico, com aviso. Tipos: `sala-aula`, `quarto-menino`, `quarto-menino-noite`, `sala-estar` | `x` ao longo do cômodo; `z` = 0 perto da frente, ~3.8 encostado na parede do fundo. No ângulo espelhado o `x` troca de sinal |
 | `3d` (**modo 3D**, guardado para o futuro) | personagens 2D (sprites) num mundo 3D: chão, paredes, móveis e prédios em 3D com textura pixel art; câmera fixa só inclinada para baixo. `"palco": { "tipo": "quarto-menino" \| "quarto-menino-noite" \| "sala-aula" \| "sala-estar" \| "praca" \| "praca-noite" }` | `x` lateral, `z` profundidade (fundo dos cômodos em −6), `y` altura |
 | `avenida` | avenida em **perspectiva** indo para o fundo, prédios dos dois lados, postes e carros | `x` lateral (−3 a 3 é o asfalto), `z` profundidade (maior = mais perto da câmera) |
 
 ```jsonc
-{ "vista": "diagonal", "seguir": "menina",
+{ "vista": "diorama", "seguir": "menina",
   "rua": { "periodo": "noite", "faixaPedestre": 0, "comprimento": 44, "distanciaPostes": 8, "semente": 3 },
   "elementos": [ { "id": "menina", "personagem": "menina-capa", "x": -6, "z": 0 } ],
   "acoes": [ { "tipo": "andar", "alvo": "menina", "para": 2, "inicio": 0.3, "duracao": 4 } ] }
@@ -350,7 +366,7 @@ A câmera **nunca gira para os lados** — assim os pixels continuam alinhados c
 ```
 
 A avenida é desenhada pixel a pixel na GPU (shaders): linhas sempre com 1 pixel e detalhe que se
-simplifica com a distância, sem texturas esticadas pela perspectiva. `"periodo": "dia"` também funciona nas duas. Na `diagonal` a câmera usa `x` (ao longo da rua), `y` (altura do
+simplifica com a distância, sem texturas esticadas pela perspectiva. `"periodo": "dia"` também funciona nas duas. No `diorama` a câmera usa `x` (ao longo da rua), `y` (altura do
 enquadramento) e `zoom`; na `avenida`, `x`, `y` (altura), `z` (posição na avenida) e `zoom`. Na `avenida` a câmera fica **parada**:
 `cameraFim` e ações de câmera são ignorados, e ela só acompanha o protagonista (`seguir`) enquanto ele se move.
 
@@ -362,6 +378,12 @@ Cenários prontos de interiores: `sala-de-aula`, `quarto-menino`, `quarto-menino
 `sala-de-aula-diorama`, `quarto-menino-diorama`, `quarto-menino-noite-diorama`, `sala-de-estar-diorama` (diorama).
 Poses dos personagens (moradores e `menina-capa`): `"pose": "sentado"` (de frente), `"sentado-lado"`, `"costas"` e
 `"sentado-costas"`; ações `sentar` / `levantar`.
+
+Elemento preso em outro: `"sobre": { "id": "bia", "dx": 0.45, "dy": 2.75 }` — acompanha o dono (posição, lado e
+visibilidade); `dx` segue o lado para onde ele olha. Usado para o tempo na cabeça, guarda-chuva, fogo no chapéu etc.
+Praça (diagonal): `praca` / `praca-noite` (padrão) e `praca-decorada` / `praca-decorada-noite` (festa: bandeirinhas,
+palanque e barracas). Os objetos da praça (`fonte-iso`, `banco-iso`, `barraca-pipoca`...) usam x/z = canto da frente.
+`"balancar": true` faz o elemento boiar (sobe e desce devagar). Clima `"calor"`: ar quente subindo.
 
 ### Fundos
 

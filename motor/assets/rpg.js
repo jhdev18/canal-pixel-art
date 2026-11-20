@@ -1,8 +1,8 @@
 // Personagens no estilo RPG indie (vista de frente, contorno preto grosso, poucas cores,
 // olhos de ponto). Personagens ORIGINAIS — tema cidade.
 // Desenho: só a metade esquerda (10 colunas) é escrita; a direita é espelhada.
-import { Pix } from './pixel.js';
-import { registrarSprites } from './sprites.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
 
 const K = '#0a0a12';
 const LARG = 10;
@@ -180,4 +180,4 @@ registrarSprites({
   'coruja-banca': (o) => corujaBanca(o.cores),
   'cone-agressivo': () => coneAgressivo(),
   'bueiro-olhos': () => bueiroOlhos(),
-});
+}, { grupo: 'Personagens RPG (estilo indie)' });

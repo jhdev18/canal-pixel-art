@@ -25,8 +25,9 @@ const CLIMAS = {
   brasas: { n: 60, cor: '#ffa040', tam: 1, alpha: 1 },
   poeira: { n: 70, cor: '#c8b8a0', tam: 1, alpha: 0.5 },
   folhas: { n: 30, cor: '#e89040', tam: 2, alpha: 1 },
+  calor: { n: 60, cor: '#fff4d0', tam: 1, alpha: 0.45 },   // ar quente subindo (Dia do Sol)
 };
-const ID_CLIMA = { chuva: 0, neve: 1, vagalumes: 2, brasas: 3, poeira: 4, folhas: 5 };
+const ID_CLIMA = { chuva: 0, neve: 1, vagalumes: 2, brasas: 3, poeira: 4, folhas: 5, calor: 6 };
 
 const VERT_CLIMA = /* glsl */ `
 attribute vec4 aSeed;
@@ -53,6 +54,10 @@ void main() {
   } else if (uTipo == 4) { // poeira
     p = vec2(aSeed.x * W + uT * (3.0 + aSeed.z * 5.0) - uCam.x * 0.8, aSeed.y * H + sin(uT * 0.4 + aSeed.w * 6.28) * 6.0 - uCam.y * 0.8);
     vBrilho = 0.4 + 0.6 * aSeed.w;
+  } else if (uTipo == 6) { // calor: ar quente subindo, tremendo de lado
+    float v = 10.0 + aSeed.z * 14.0;
+    p = vec2(aSeed.x * W + sin(uT * 5.0 + aSeed.w * 6.28) * 1.5 - uCam.x, aSeed.y * H + uT * v - uCam.y);
+    vBrilho = 0.35 + 0.65 * abs(sin(uT * 2.0 + aSeed.w * 12.0));
   } else {                 // folhas
     float v = 16.0 + aSeed.z * 14.0;
     p = vec2(aSeed.x * W + uT * 12.0 + sin(uT * 1.5 + aSeed.w * 6.28) * 10.0 - uCam.x, aSeed.y * H - uT * v - uCam.y);
