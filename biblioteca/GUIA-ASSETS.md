@@ -27,7 +27,7 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 | Robô-semáforo | `robo-semaforo` | ✅ | Robô de trânsito detalhado (ainda pouco usado) |
 
 **Outros moradores 🧪:** `vovo` (vovó de xale roxo; banco da praça), `carteiro`, `sorveteiro` (com `carrinho-sorvete`),
-`menino-pijama` (cenas à noite), `mae`, `mae-avental`, `menino-topete` (família da casa), `cao-policial` (cão em pé,
+`menino-pijama` (cenas à noite), `menino-coroa` (coroa e capa), `mae`, `mae-avental`, `menino-topete` (família da casa), `cao-policial` (cão em pé,
 de uniforme, com poses; v2 com focinho maior, manchas nos olhos, patas e rabo que abana). Todos os moradores andam, correm, sentam, ficam de costas e espirram.
 
 **Bichos e criaturas:** `pombo-fofoqueiro` ✅ (fofoca, aparece em toda praça), `coruja-banca` ✅ (vende jornal),
@@ -64,7 +64,7 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
 `praca` ✅ / `praca-noite` ✅ (uso normal) e `praca-decorada` ✅ / `praca-decorada-noite` ✅ (festas, discursos, eleição).
 Câmera `{ "x", "z": -8.5 }`; pessoas na frente em `z` ~-8.6.
 - **Palanque** (só na decorada): suba em `x` ~3.4–5, `z` -6.7, com `"y": 0.75`.
-- **Sentar:** use o **`banco-frente`** 🧪 (banco visto de frente, no mesmo ângulo de quem senta). Banco em `z` = Z + 0.2 e as pessoas
+- **Sentar:** o usuário achou estranho — por enquanto, sem gente sentada em banco de praça (conversa em pé). Asset em teste: **`banco-frente`** 🧪 (banco visto de frente, no mesmo ângulo de quem senta). Banco em `z` = Z + 0.2 e as pessoas
   em `z` = Z, `"y": 0`, `"pose": "sentado"`, a ±0.75 do centro do banco (cabem 2 ou 3). Ex.: banco x -1, z -8.35; pessoas x -1.75 e -0.25, z -8.55.
   O banco isométrico do cenário (`banco1`/`banco2`) com gente sentada de frente fica estranho: tire com `"remover"`.
 - **Árvores da frente** (`arvore3`, `arvore4`, z -10.25) cobrem quem está na fileira da frente: tire com `"remover"` quando houver gente ali.

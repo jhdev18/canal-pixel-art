@@ -446,6 +446,10 @@ export function eventosSonoros(roteiro) {
           if ((a.subida ?? 0.5) > 0) add('fogos-sobe', a.inicio, { volume: 0.6 * vol, pan: a.posicao ? pan(a.posicao[0], a.inicio) : 0 });
           add(somManual || 'fogos', a.inicio + (a.subida ?? 0.5), { volume: vol, pan: a.posicao ? pan(a.posicao[0], a.inicio) : 0 });
           break;
+        case 'trocar':   // guardião que passa a "alerta"/"tremendo" dá um "iiip!" de susto (PROTÓTIPO)
+          if (!semSom && /^guardi/.test(el?.sprite || el?.personagem || '') && ['alerta', 'tremendo'].includes(a.estado)) add(somManual || 'guardiao-susto', a.inicio, { volume: 0.8 * vol, pan: el.sobre ? panEl(el.sobre.id, a.inicio) : panEl(a.alvo, a.inicio) });
+          else if (somManual) add(somManual, a.inicio, { volume: vol });
+          break;
         case 'espirrar':   // PROTÓTIPO: inspira no começo, atchim no meio da ação
           if (semSom) break;
           add('espirro-inspira', a.inicio, { volume: 0.7 * vol, pan: panEl(a.alvo, a.inicio), taxa: el?.voz ?? 1 });

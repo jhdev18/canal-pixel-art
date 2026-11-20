@@ -93,26 +93,26 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -3,
+     "x": -0.6,
      "z": -8.6
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": -1.4,
+     "x": 1,
      "z": -8.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 0.4,
+     "x": 2.4,
      "z": -8.6,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
-     "x": 4.4,
+     "x": 5.4,
      "z": -8.6,
      "virado": "esquerda"
     },
@@ -244,6 +244,37 @@
      "z": 0,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "noite",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 52,
+    "distanciaPostes": 8
    }
   },
   {
@@ -302,6 +333,37 @@
      "z": 0,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 55,
+    "distanciaPostes": 8
    }
   },
   {
@@ -349,6 +411,37 @@
      "z": 0,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "noite",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 76,
+    "distanciaPostes": 12
    }
   },
   {
@@ -372,8 +465,34 @@
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -6,
-     "z": -9.4
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1,
+     "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 2.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 5.4,
+     "z": -8.6,
+     "virado": "esquerda"
     },
     {
      "id": "relogio",
@@ -433,28 +552,41 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -3,
+     "x": -0.6,
      "z": -8.6
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": -1.4,
+     "x": 1,
      "z": -8.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 0.4,
+     "x": 2.4,
      "z": -8.6,
      "virado": "esquerda"
     },
     {
      "id": "caixa",
      "personagem": "caixa",
-     "x": 4.4,
+     "x": 5.4,
      "z": -8.6,
      "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -5.6,
+     "z": -8.6
     },
     {
      "id": "relogio",
@@ -566,14 +698,34 @@
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -6,
-     "z": -9.4
+     "x": -5.6,
+     "z": -8.6
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
      "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1,
      "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 2.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 5.4,
+     "z": -8.6,
+     "virado": "esquerda"
     }
    ],
    "acoes": [
@@ -615,7 +767,7 @@
     "arvore4"
    ],
    "camera": {
-    "x": -4.3,
+    "x": -4.1,
     "z": -9.6,
     "zoom": 2
    },
@@ -630,8 +782,34 @@
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -6,
-     "z": -9.4
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1,
+     "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 2.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 5.4,
+     "z": -8.6,
+     "virado": "esquerda"
     }
    ],
    "acoes": [
@@ -649,7 +827,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -4.3,
+     "x": -4.1,
      "z": -9.6,
      "zoom": 2
     }
@@ -664,7 +842,7 @@
     "arvore4"
    ],
    "camera": {
-    "x": -4.3,
+    "x": -4.1,
     "z": -9.6,
     "zoom": 2
    },
@@ -679,8 +857,34 @@
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -6,
-     "z": -9.4
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1,
+     "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 2.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 5.4,
+     "z": -8.6,
+     "virado": "esquerda"
     }
    ],
    "acoes": [
@@ -693,7 +897,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -4.3,
+     "x": -4.1,
      "z": -9.6,
      "zoom": 2
     }
@@ -722,15 +926,41 @@
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -6,
-     "z": -9.4
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1,
+     "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 2.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 5.4,
+     "z": -8.6,
+     "virado": "esquerda"
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
      "alvo": "bia",
-     "para": -5,
+     "para": -4.1,
      "inicio": 0.94,
      "duracao": 1.72
     },

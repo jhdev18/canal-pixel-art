@@ -407,6 +407,6 @@ Uso: `{ "cenario": "nome" }`
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `trovao`, `suspense`, `fantasma`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

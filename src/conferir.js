@@ -1,6 +1,6 @@
 // npm run conferir -- <projeto>
 // Confere o roteiro SEM renderizar e avisa dos erros que mais se repetiram nos vídeos:
-//   1. personagem coberto por árvore/objeto alto (diorama de rua e praça)
+//   1. personagem coberto por árvore/objeto alto ou poste da rua (diorama de rua e praça); 1b. em pé em cima de canteiro/fonte/banco
 //   2. continuidade: com "momento" nas cenas, cobra o elenco de cada momento ("saiDeCena" libera quem sai pela história);
 //      sem "momento", acusa quem some e reaparece logo depois no mesmo lugar ("salto": true libera)
 //   3. o mesmo sprite fazendo dois personagens diferentes no mesmo vídeo
@@ -9,7 +9,7 @@
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
-import { resolverRoteiro, estadoElemento } from '../motor/compartilhado/linhaDoTempo.js';
+import { resolverRoteiro, estadoElemento, estadoCamera } from '../motor/compartilhado/linhaDoTempo.js';
 import { Pix } from '../motor/pixel.js';
 import path from 'node:path';
 
@@ -50,6 +50,16 @@ export async function conferir(nome) {
     if (c.vista !== 'diorama' && c.vista !== 'diagonal') continue;
     if (c.comodo) continue;
     const altos = c.elementos.filter((e) => e.sprite && ALTOS.test(e.sprite) && !e.oculto && tam(e.sprite));
+    // postes da RUA (gerados pelo desenho da rua, não estão nos elementos): mesma conta de motor/cenarios/ruaDiagonal.js
+    if (c.rua?.postes !== false) {
+      let alcance = 0;
+      for (let t = 0; t <= c.duracao; t += 0.25) { alcance = Math.max(alcance, Math.abs(estadoCamera(c, t).x)); for (const el of c.elementos) alcance = Math.max(alcance, Math.abs(estadoElemento(c, el, t).x)); }
+      const comp = Math.max(c.rua?.comprimento ?? 44, Math.ceil(2 * (alcance + 20))), passo = c.rua?.distanciaPostes ?? 8, J0 = -comp / 2, J1 = comp / 2;
+      for (let j = J0 + 3; j < J1 - 1; j += passo) {
+        altos.push({ id: 'poste da rua (calçada dos prédios)', sprite: 'poste-iso', x: -j, z: 5.35 });
+        altos.push({ id: 'poste da rua (calçada da frente)', sprite: 'poste-iso', x: -(j + passo / 2), z: 0 });
+      }
+    }
     const pessoas = c.elementos.filter((e) => ehPessoa(e, tam));
     for (const p of pessoas) {
       const tp = tam(p.sprite);
@@ -70,6 +80,21 @@ export async function conferir(nome) {
           const frac = (ix * iy) / ((rp.x1 - rp.x0) * (rp.y1 - rp.y0));
           if (frac > 0.3) { vistos.add(chave); aviso(c.numero, 'coberto', `"${p.id}" fica ${Math.round(frac * 100)}% atrás de "${o.id}" (${o.sprite}) em ~${t.toFixed(1)} s — mova a pessoa ou tire o objeto com "remover"`); break; }
         }
+      }
+    }
+  }
+
+  // ---------- 1b. pessoa EM CIMA de objeto baixo (canteiro, fonte, banco, barraca...): pés dentro da base do objeto
+  const BASE = /^(canteiro|fonte|banco-iso|barraca|palanque|carrinho|caixote|mesa|cama|sofa)/;
+  for (const c of r.cenas) {
+    if ((c.vista !== 'diorama' && c.vista !== 'diagonal') || c.comodo) continue;
+    const objs = c.elementos.filter((e) => e.sprite && BASE.test(e.sprite) && !e.oculto && tam(e.sprite)?.iso);
+    for (const p of c.elementos.filter((e) => ehPessoa(e, tam))) {
+      for (const t of [0, c.duracao - 0.05]) {
+        const sp = estadoElemento(c, p, t);
+        if (!sp.visivel || sp.yBase > 0.3) continue;                       // em cima de propósito (palanque, banco) usa "y"
+        const o = objs.find((o) => { const b = tam(o.sprite).iso; return sp.x > o.x + 0.1 && sp.x < o.x + (b.dj ?? 1) - 0.1 && (p.z ?? 0) > o.z + 0.1 && (p.z ?? 0) < o.z + (b.di ?? 1) - 0.1; });
+        if (o) { aviso(c.numero, 'em cima', `"${p.id}" está em pé em cima de "${o.id}" (${o.sprite}) em ~${t.toFixed(1)} s — mova para fora da base do objeto`); break; }
       }
     }
   }

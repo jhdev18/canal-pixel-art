@@ -46,7 +46,8 @@
    _Balões:_ bolota: "Hora do lanche."
 **19.** `praca-decorada` — O prefeito ficou vermelho de vergonha e decretou: todo cachorro vai para a delegacia.  
    _Balões:_ prefeito: "Prendam os cães!"
-**20.** `rua-comercial` — O policial começou a levar os cachorros, um por um.
+**20.** `praca-decorada` — O policial começou a levar os cachorros, um por um.  
+   _Balões:_ policial: "Todos comigo!"
 **21.** `praca-decorada` — O Caio tentou explicar, mas ninguém escuta um menino sem cachorro.  
    _Balões:_ caio: "Esperem!"
 **22.** `praca-decorada` — Até que um cachorro sem dono se escondeu atrás dele e latiu: eu gosto desse menino.  

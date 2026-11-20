@@ -58,6 +58,37 @@
      "z": 2.2,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 64,
+    "distanciaPostes": 12
    }
   },
   {
@@ -139,6 +170,37 @@
      "z": 2.2,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 69,
+    "distanciaPostes": 11
    }
   },
   {
@@ -200,6 +262,37 @@
      "z": 0,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 70,
+    "distanciaPostes": 8
    }
   },
   {
@@ -234,8 +327,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -8,
-     "z": 0.75
+     "x": -8.4,
+     "z": -0.1
     },
     {
      "id": "nina",
@@ -516,6 +609,37 @@
      "y": 2.4
     }
    },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 90,
+    "distanciaPostes": 10
+   },
    "momento": "domingo-rua",
    "saiDeCena": [
     "tonho",
@@ -558,9 +682,9 @@
     {
      "tipo": "andar",
      "alvo": "aluno",
-     "para": 7,
-     "inicio": 0.3,
-     "duracao": 2.5
+     "para": 8,
+     "inicio": 0.29,
+     "duracao": 3.58
     },
     {
      "tipo": "andar",
@@ -588,6 +712,37 @@
      "z": 0,
      "y": 2.4
     }
+   },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 86,
+    "distanciaPostes": 12
    },
    "momento": "domingo-rua",
    "saiDeCena": [
@@ -643,6 +798,37 @@
      "y": 2.4
     }
    },
+   "rua": {
+    "periodo": "dia",
+    "faixaPedestre": -3,
+    "predios": [
+     {
+      "tipo": "comum"
+     },
+     {
+      "tipo": "padaria",
+      "largura": 4
+     },
+     {
+      "tipo": "escola",
+      "largura": 6
+     },
+     {
+      "tipo": "delegacia",
+      "largura": 5
+     },
+     {
+      "tipo": "mercado",
+      "largura": 6
+     },
+     {
+      "tipo": "farmacia",
+      "largura": 4
+     }
+    ],
+    "comprimento": 71,
+    "distanciaPostes": 9
+   },
    "momento": "domingo-rua"
   },
   {
@@ -673,20 +859,20 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 0,
-     "z": -6.6
+     "x": 0.6,
+     "z": -8.4
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 1.6,
-     "z": -6.4
+     "x": 2.1,
+     "z": -8.6
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 3.2,
-     "z": -6.6
+     "x": 3.6,
+     "z": -8.4
     },
     {
      "id": "s1",
@@ -694,8 +880,8 @@
       "tamanho": 2.6,
       "direcao": 0
      },
-     "x": 0,
-     "z": -7.4
+     "x": 0.6,
+     "z": -7.8
     },
     {
      "id": "s2",
@@ -703,8 +889,8 @@
       "tamanho": 2.6,
       "direcao": 0
      },
-     "x": 1.6,
-     "z": -7.2
+     "x": 2.1,
+     "z": -8
     },
     {
      "id": "s3",
@@ -712,8 +898,8 @@
       "tamanho": 2.2,
       "direcao": 0
      },
-     "x": 3.2,
-     "z": -7.4
+     "x": 3.6,
+     "z": -7.8
     }
    ],
    "acoes": [
@@ -772,30 +958,30 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 0,
-     "z": -6.6
+     "x": 0.6,
+     "z": -8.4
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 1.6,
-     "z": -6.4
+     "x": 2.1,
+     "z": -8.6
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 3.2,
-     "z": -6.6
+     "x": 3.6,
+     "z": -8.4
     }
    ],
    "acoes": [
     {
      "tipo": "sombra",
      "origem": [
-      1.6,
-      -6.9
+      2.1,
+      -8.4
      ],
-     "raio": 3.6,
+     "raio": 3,
      "inicio": 0.46,
      "duracao": 2.39
     },

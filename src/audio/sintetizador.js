@@ -164,6 +164,12 @@ const SONS = {
     [tom({ tipo: 'seno', f0: 120, f1: 50, dur: 0.3, vol: 0.5, curva: 1.6 })],
     ...[0.25, 0.33, 0.4, 0.5, 0.56, 0.7, 0.8].map((t0, k) => [ruido({ dur: 0.02, vol: 0.25, f0: 4000 + k * 500, filtro: 'passa-banda', q: 0.5, curva: 2, semente: 60 + k }), t0]),
   ]),
+  // guardião se assustando (PROTÓTIPO): "iiip!" agudo que sobe + batidas rápidas de asinha
+  'guardiao-susto': () => misturar([
+    [tom({ tipo: 'quadrada', f0: 900, f1: 2200, dur: 0.12, vol: 0.16, duty: 0.25, curva: 0.6 })],
+    [tom({ tipo: 'triangulo', f0: 2000, f1: 2600, dur: 0.1, vol: 0.14, curva: 1.4 }), 0.1],
+    ...[0.08, 0.13, 0.18, 0.23, 0.28].map((t0, k) => [ruido({ dur: 0.03, vol: 0.18, f0: 2600 + k * 200, filtro: 'passa-banda', q: 0.6, curva: 2, semente: 70 + k }), t0]),
+  ]),
   miau: () => tom({ tipo: 'triangulo', f0: 700, f1: 520, dur: 0.45, vol: 0.35, ataque: 0.05, curva: 1.2, vibrato: 0.04, vibratoHz: 7 }),
   trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
   suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),

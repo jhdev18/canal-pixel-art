@@ -195,6 +195,16 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   "Foi aí que... entendeu tudo", "Só faltava um".
 - **Tom:** cômico com um momento de aperto (parte 5); termina leve, sem moral explícita.
 
+## Objetos que contam a história (técnica aprovada pelo usuário no `nesse-mundo-espirro`)
+O usuário gostou de como os itens foram usados no vídeo do espirro — usar essa técnica nos próximos vídeos:
+- **Plantar cedo e mostrar na pessoa:** o objeto aparece logo no começo, preso a quem o carrega (`"sobre": { "id", "dx", "dy" }`),
+  ex.: o saquinho de pimenta no bolso da Bia na cena da merenda; o pregador no nariz do seu Tonho.
+- **Mudar de estado na hora certa:** `trocar` (fechado → aberto, cheio → seco) na palavra forte da narração, com som (`papel`).
+- **Ser a arma da solução** e voltar no **callback** (a pimenta oferecida no fim; o pão que o pombo faz).
+- **Mostrar o invisível com um objeto pequeno:** o que a regra faz e não se vê vira um sprite (as almas azul/rosa trocando de
+  corpo, o número na cabeça, o guardião do lado).
+- Cada objeto importante aparece **pelo menos 3 vezes**: apresentação, uso, fechamento. Objeto que aparece uma vez só, cortar.
+
 ## Regras de cena (erros que se repetiram — evitar em TODO vídeo)
 Antes de entregar qualquer roteiro (novo ou ajustado), rodar **`npm run conferir -- <projeto>`** (`src/conferir.js`, não
 renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um problema. Os erros abaixo aconteceram em
@@ -207,6 +217,12 @@ vários vídeos diferentes:
    - Personagem importante **nunca** atrás de algo: se a história pede "escondido atrás da árvore", ele fica **ao lado/na frente**
      da árvore, visível (o espectador precisa ver).
    - Quem sobe no palanque usa `"y": 0.75` (não conta como coberto).
+   - **Postes da rua** não estão nos elementos: o desenho da rua põe um a cada `distanciaPostes` (8), alternando a calçada dos
+     prédios (z 5.35) e a da frente (z 0), a partir de x = comprimento/2 − 3. Quem está/anda numa calçada pode ficar atrás ou
+     na frente de um poste. O `nm.mjs` do Claude escolhe sozinho `"rua": { "comprimento", "distanciaPostes" }` para deixar os
+     postes a ≥ 1.6 de todo mundo; o `npm run conferir` calcula os postes e acusa.
+   - **Ninguém em pé em cima de objeto baixo** (canteiro, fonte, banco, barraca): os pés ficam fora da base do objeto
+     (`x`..`x + largura`, `z`..`z + profundidade`). O `npm run conferir` acusa ("em cima").
 2. **Continuidade de elenco — escrever a intenção no roteiro.** A conferência não entende a história: ela só cobra o que
    o roteiro DECLARA. Por isso, todo roteiro marca a continuidade com três campos de cena:
    - **`"momento": "<nome>"`** — cenas que são o **mesmo instante da história** (a mesma festa, o mesmo debate, a mesma noite
@@ -237,7 +253,9 @@ vários vídeos diferentes:
    (x -4.6, -1.6, 1.4 × z 2.45 e 0.75, `"pose": "sentado-lado"`). Cada cena põe quem a história pede e completa o resto com a
    turma (`turma()` do `nm.mjs`, sem repetir sprite); carteira vazia só quando a história pede (ex.: "ninguém senta do lado
    da Bia" → `livres`). Se a regra do vídeo dá algo a cada pessoa (número, guardião), os colegas também recebem.
-9. **Monstro/ameaça com presença:** tamanho grande (`"escala": 2`), entrada com luz piscando e câmera que mostre o rosto (sem
+9. **Sentar em banco de praça:** o usuário achou estranho (tanto no banco isométrico quanto no `banco-frente`). Até o
+   asset ser refeito, **não pôr gente sentada em banco**: encontros e conversas na praça acontecem em pé.
+10. **Monstro/ameaça com presença:** tamanho grande (`"escala": 2`), entrada com luz piscando e câmera que mostre o rosto (sem
    zoom que corte a cabeça).
 
 ## Biblioteca de assets (o que é e como usar)

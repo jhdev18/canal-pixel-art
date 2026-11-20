@@ -1,0 +1,461 @@
+// TESTE para comparar monstros no final do vídeo dos guardiões (não é vídeo para publicar).
+// A = vulto grande (atual), B = monstro 3D sombra-alta, C = monstro 3D rastejante. Ver: npm run rascunho -- teste-monstro-guardioes
+// ou só as imagens paradas: npm run fotos -- teste-monstro-guardioes
+{
+ "titulo": "Teste — monstro do final dos guardiões",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
+   "cenario": "quarto-menina-noite-diorama",
+   "paleta": "fria",
+   "titulo": "A — vulto grande (o atual)",
+   "tituloInicio": 0,
+   "tituloDuracao": 1.2,
+   "salto": true,
+   "camera": {
+    "x": -1.2,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": -0.9,
+      "dy": 1.55
+     },
+     "pose": "tremendo",
+     "virado": "esquerda"
+    },
+    {
+     "id": "m",
+     "sprite": "vulto",
+     "x": -3.2,
+     "z": 3.2,
+     "escala": 2,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "volume": 0.6,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "m",
+     "som": "sombra-surge",
+     "duracao": 1.2,
+     "inicio": 1.79
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.96
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.29
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 2.12,
+     "duracao": 0.5
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.2,
+     "y": 3.6
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
+   "cenario": "quarto-menina-noite-diorama",
+   "paleta": "noir",
+   "camera": {
+    "x": -1.2,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "m",
+     "sprite": "vulto",
+     "x": -3.2,
+     "z": 3.2,
+     "escala": 2,
+     "oculto": false
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 1.87
+    },
+    {
+     "tipo": "mover",
+     "alvo": "m",
+     "para": -1.6,
+     "inicio": 2.54,
+     "duracao": 1.35
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 1,
+     "duracao": 0.15,
+     "inicio": 3.62
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 1,
+     "inicio": 3.62,
+     "duracao": 0.99
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "inicio": 3.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.2,
+     "y": 3.6
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
+   "cenario": "quarto-menina-noite-diorama",
+   "paleta": "fria",
+   "titulo": "B — monstro 3D \"sombra alta\"",
+   "tituloInicio": 0,
+   "tituloDuracao": 1.2,
+   "salto": true,
+   "camera": {
+    "x": -1.2,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": -0.9,
+      "dy": 1.55
+     },
+     "pose": "tremendo",
+     "virado": "esquerda"
+    },
+    {
+     "id": "m",
+     "monstro": "sombra-alta",
+     "x": -3,
+     "z": 3.2,
+     "y": 0.2,
+     "olhar": "bia",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "volume": 0.6,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "m",
+     "som": "sombra-surge",
+     "duracao": 1.2,
+     "inicio": 1.79
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.96
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.29
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 2.12,
+     "duracao": 0.5
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.2,
+     "y": 3.6
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
+   "cenario": "quarto-menina-noite-diorama",
+   "paleta": "noir",
+   "camera": {
+    "x": -1.2,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "m",
+     "monstro": "sombra-alta",
+     "x": -3,
+     "z": 3.2,
+     "y": 0.2,
+     "olhar": "bia"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 1.87
+    },
+    {
+     "tipo": "mover",
+     "alvo": "m",
+     "para": -1.6,
+     "inicio": 2.54,
+     "duracao": 1.35
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 1,
+     "duracao": 0.15,
+     "inicio": 3.62
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 1,
+     "inicio": 3.62,
+     "duracao": 0.99
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "inicio": 3.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.2,
+     "y": 3.6
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
+   "cenario": "quarto-menina-noite-diorama",
+   "paleta": "fria",
+   "titulo": "C — monstro 3D \"rastejante\" (de quatro)",
+   "tituloInicio": 0,
+   "tituloDuracao": 1.2,
+   "salto": true,
+   "camera": {
+    "x": -1.2,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": -0.9,
+      "dy": 1.55
+     },
+     "pose": "tremendo",
+     "virado": "esquerda"
+    },
+    {
+     "id": "m",
+     "monstro": "rastejante",
+     "x": -4.2,
+     "z": 3,
+     "olhar": "bia",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "volume": 0.6,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "m",
+     "som": "sombra-surge",
+     "duracao": 1.2,
+     "inicio": 1.79
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.96
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.29
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 2.12,
+     "duracao": 0.5
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.2,
+     "y": 3.6
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
+   "cenario": "quarto-menina-noite-diorama",
+   "paleta": "noir",
+   "camera": {
+    "x": -1.2,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "m",
+     "monstro": "rastejante",
+     "x": -4.2,
+     "z": 3,
+     "olhar": "bia"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 1.87
+    },
+    {
+     "tipo": "mover",
+     "alvo": "m",
+     "para": -1.6,
+     "inicio": 2.54,
+     "duracao": 1.35
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 1,
+     "duracao": 0.15,
+     "inicio": 3.62
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 1,
+     "inicio": 3.62,
+     "duracao": 0.99
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "inicio": 3.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.2,
+     "y": 3.6
+    }
+   }
+  }
+ ]
+}
