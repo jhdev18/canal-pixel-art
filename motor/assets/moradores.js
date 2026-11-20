@@ -27,6 +27,7 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   const r = resp;
   const largT = p.corpo === 'largo' ? 1.2 : p.corpo === 'crianca' ? -0.6 : 0;
   const yC = p.corpo === 'crianca' ? 2 : 0;          // crianças: corpo um pouco mais baixo
+  const yP = p.pernasLongas ? 0 : yC;                 // pernasLongas: o tronco encurta e as pernas ficam do tamanho normal
   // cabelo comprido atrás da cabeça
   if (p.cabelo === 'cacheado') { b.elipse(14, 10 - r + yC, 9, 8.6, M.cabelo); b.elipse(7.2, 17 - r + yC, 3.4, 3.6, M.cabelo); b.elipse(20.8, 17 - r + yC, 3.4, 3.6, M.cabelo); }
   if (p.cabelo === 'longo') b.poli([[7.3, 7 - r + yC], [20.7, 7 - r + yC], [21.4, 20 - r + yC], [6.6, 20 - r + yC]], M.cabelo);
@@ -35,7 +36,7 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   // mochila (alças aparecem na frente; o corpo da mochila aparece nas laterais)
   if (p.mochila) { b.ret(6, 18 - r + yC, 2, 10, M.mochila); b.ret(20, 18 - r + yC, 2, 10, M.mochila); }
   // pernas e calçados
-  const pernaTopo = 30 + yC;
+  const pernaTopo = 30 + yP;
   if (p.baixo === 'saia' || p.baixo === 'saia-longa' || p.baixo === 'bermuda') {
     b.ret(10, pernaTopo, 3, 10 - yC, M.pele); b.ret(15, pernaTopo, 3, 10 - yC, M.pele);
     if (p.meias) { b.ret(10, 36, 3, 4, M.meia); b.ret(15, 36, 3, 4, M.meia); }
@@ -46,8 +47,8 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   if (p.baixo === 'saia') b.poli([[9, pernaTopo - 1], [19, pernaTopo - 1], [20.4, pernaTopo + 5], [7.6, pernaTopo + 5]], M.calca);
   if (p.baixo === 'saia-longa') b.poli([[9, pernaTopo - 1], [19, pernaTopo - 1], [20.6, 38], [7.4, 38]], M.calca);
   // tronco
-  b.poli([[8.6 - largT, 17 - r + yC], [19.4 + largT, 17 - r + yC], [20 + largT, 30 + yC], [8 - largT, 30 + yC]], M.tronco);
-  if (p.casaco) { b.poli([[8.4 - largT, 17 - r + yC], [12.6, 17 - r + yC], [12.2, 30 + yC], [7.8 - largT, 30 + yC]], M.casaco); b.poli([[15.4, 17 - r + yC], [19.6 + largT, 17 - r + yC], [20.2 + largT, 30 + yC], [15.8, 30 + yC]], M.casaco); }
+  b.poli([[8.6 - largT, 17 - r + yC], [19.4 + largT, 17 - r + yC], [20 + largT, 30 + yP], [8 - largT, 30 + yP]], M.tronco);
+  if (p.casaco) { b.poli([[8.4 - largT, 17 - r + yC], [12.6, 17 - r + yC], [12.2, 30 + yP], [7.8 - largT, 30 + yP]], M.casaco); b.poli([[15.4, 17 - r + yC], [19.6 + largT, 17 - r + yC], [20.2 + largT, 30 + yP], [15.8, 30 + yP]], M.casaco); }
   if (p.avental) b.poli([[10, 20 - r + yC], [18, 20 - r + yC], [18.6, 36], [9.4, 36]], M.avental);
   // braços
   const bracoCor = p.casaco ? M.casaco : (p.mangaCurta ? M.pele : M.tronco);
@@ -62,7 +63,7 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   if (p.escudo) b.elipse(6.4 - largT, 25.6 - r + yC, 3.4, 4, M.escudo);
   if (p.livro) b.ret(19 + largT, 25 - r + yC, 4, 5, M.livro);
   if (p.faixa) b.poli([[9 - largT, 17 - r + yC], [12, 17 - r + yC], [20 + largT, 28 + yC], [17 + largT, 30 + yC]], M.faixa);
-  if (p.cinto) b.ret(8.2 - largT, 28.5 + yC, 11.6 + 2 * largT, 1.6, M.cinto);
+  if (p.cinto) b.ret(8.2 - largT, 28.5 + yP, 11.6 + 2 * largT, 1.6, M.cinto);
   // pescoço e cabeça
   b.ret(12.5, 14.5 - r + yC, 3, 3, M.pele);
   b.elipse(14, 9.4 - r + yC, 6.2, 6.6, M.pele);
@@ -144,11 +145,12 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   const Mb = b.material(tons(p.baixo === 'calca' ? p.cores.calca : p.cores.pele).map((c, i) => tons(c)[i === 3 ? 3 : 2]));
   const Sb = b.material(tons(p.cores.sapato).map((c) => tons(c)[2]));
   const yC = p.corpo === 'crianca' ? 2 : 0;
-  const g = passada(t, correr ? { passo: 5.6, levanta: 4, quadril: [14, 30 + yC] } : { passo: 3.4, levanta: 2.2, quadril: [14, 30 + yC] });
+  const yP = p.pernasLongas ? 0 : yC;
+  const g = passada(t, correr ? { passo: 5.6, levanta: 4, quadril: [14, 30 + yP] } : { passo: 3.4, levanta: 2.2, quadril: [14, 30 + yP] });
   const onda = classico ? Math.sin : Math.cos;
   const incl = correr ? 2.2 : 0, y0 = -Math.round(Math.abs(onda(t * Math.PI * 2)) * (correr ? 1.5 : 1));
   const largT = p.corpo === 'largo' ? 1 : 0;
-  const barra = p.baixo === 'saia' ? 34.5 : p.baixo === 'saia-longa' ? 37.4 : 30.5 + yC;   // de onde a perna aparece
+  const barra = p.baixo === 'saia' ? 34.5 : p.baixo === 'saia-longa' ? 37.4 : 30.5 + yP;   // de onde a perna aparece
   const perna = (pe, mPerna, mSap) => {
     b.traco(14 + incl * 0.2, barra + y0, pe.x, pe.y - 3, 1.3, mPerna);
     b.poli([[pe.x - 2.2, pe.y - 3.6], [pe.x + 1.6, pe.y - 3.6], [pe.x + 3.4, pe.y], [pe.x - 2.2, pe.y]], mSap);
@@ -170,12 +172,12 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (p.cabelo === 'longo') b.poli([[9 + incl, 6 + y0 + yC], [15 + incl, 6 + y0 + yC], [13 + incl, 20 + y0 + yC], [9 + incl, 20 + y0 + yC]], M.cabelo);
   perna(g.tras, Mb, Sb);
   // tronco
-  b.poli([[10.4 + incl - largT, 17 + y0 + yC], [17.4 + incl + largT, 17 + y0 + yC], [17.8 + largT, 30.5 + y0 + yC], [10.2 - largT, 30.5 + y0 + yC]], p.casaco ? M.casaco : M.tronco);
+  b.poli([[10.4 + incl - largT, 17 + y0 + yC], [17.4 + incl + largT, 17 + y0 + yC], [17.8 + largT, 30.5 + y0 + yP], [10.2 - largT, 30.5 + y0 + yP]], p.casaco ? M.casaco : M.tronco);
   if (p.baixo === 'saia' || p.baixo === 'saia-longa') b.poli([[10, 29.5 + y0 + yC], [18, 29.5 + y0 + yC], [19.6, (p.baixo === 'saia' ? 35 : 38) + y0], [8.8, (p.baixo === 'saia' ? 35 : 38) + y0]], M.calca);
   if (p.baixo === 'bermuda') b.poli([[10.2, 29.5 + y0 + yC], [17.8, 29.5 + y0 + yC], [18.4, 34 + y0 + yC], [10, 34 + y0 + yC]], M.calca);
   if (p.avental) b.poli([[15.4 + incl, 20 + y0 + yC], [18.2 + incl, 20 + y0 + yC], [19.4, 35 + y0], [16.4, 35 + y0]], M.avental);
   if (p.faixa) b.poli([[11 + incl, 17 + y0], [13.4 + incl, 17 + y0], [17.6, 28.4 + y0], [15.6, 29.6 + y0]], M.faixa);
-  if (p.cinto) b.ret(10.2 - largT, 28.6 + y0 + yC, 7.8 + 2 * largT, 1.6, M.cinto);
+  if (p.cinto) b.ret(10.2 - largT, 28.6 + y0 + yP, 7.8 + 2 * largT, 1.6, M.cinto);
   perna(g.frente, p.baixo === 'calca' ? M.calca : M.pele, M.sapato);
   // pescoço e cabeça de perfil
   b.ret(13 + incl, 14.5 + y0 + yC, 3, 3, M.pele);
