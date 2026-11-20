@@ -371,11 +371,48 @@
      "pose": "sentado-lado"
     },
     {
+     "id": "ga",
+     "personagem": "guardia-verde",
+     "sobre": {
+      "id": "aluno",
+      "dx": 0.9,
+      "dy": 1.2
+     },
+     "pose": "dormindo"
+    },
+    {
      "id": "aluna",
      "personagem": "aluna",
      "x": -4.6,
      "z": 0.75,
      "pose": "sentado-lado"
+    },
+    {
+     "id": "gal",
+     "personagem": "guardiao-noturno",
+     "sobre": {
+      "id": "aluna",
+      "dx": 0.9,
+      "dy": 1.2
+     },
+     "pose": "dormindo"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "g-nina",
+     "personagem": "guardiao-chefe",
+     "sobre": {
+      "id": "nina",
+      "dx": 0.9,
+      "dy": 1.2
+     },
+     "pose": "dormindo"
     }
    ],
    "acoes": [

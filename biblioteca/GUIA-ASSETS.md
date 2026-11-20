@@ -20,6 +20,7 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 | **Policial** | `policial` | ✅ | Policial da delegacia, dorme em pé (`zzz`). Variação `policial-oculos` ✅ (o policial Ronaldo, de óculos escuros) |
 | **Bolota** | `cao-guarda` | ✅ | Cão da delegacia, de uniforme (estilo RPG, de frente). Mascote cômico |
 | **Professora** | `professora` | ✅ | Coque ruivo, óculos, casaco verde, livro. Brava mas querida ("Sem correr, crianças!") |
+| Menino do topete | `menino-topete` | 🧪 | Protagonista masculino (nome a definir), colega de turma da Bia e da Nina; topete e cachecol azul |
 | Aluno / aluna | `aluno`, `aluna` | ✅ | Colegas de escola (crianças com mochila). Servem de protagonista ("o Caio") ou de turma. **Não use o mesmo sprite para dois personagens diferentes no mesmo vídeo** |
 | Caixa | `caixa` | ✅ | Moça do mercado, boné e avental verdes |
 | Robô-semáforo | `robo-semaforo` | ✅ | Robô de trânsito detalhado (ainda pouco usado) |
@@ -73,7 +74,8 @@ Câmera `{ "x", "z": -8.5 }`; pessoas na frente em `z` ~-8.6.
 ✅ `sala-de-aula-diorama`, `quarto-menino-diorama` (+ `-noite`), `sala-de-estar-diorama`.
 🧪 **`quarto-menina-diorama` (+ `-noite`) = quarto da Bia/Nina**, `cozinha-diorama`, `banheiro-diorama`, `sala-de-estar-noite-diorama`, `beco`.
 - `z` 0 = frente, ~3.8 = parede do fundo; câmera padrão `{ "x", "y": 3 }`.
-- **Sala de aula:** a lousa fica na parede da direita. Alunos `"pose": "sentado-lado"` em x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75;
+- **Sala de aula:** turma fixa nas 6 carteiras — Bia, Nina, aluno, aluna e o menino do topete (nada de carteira vazia sem motivo).
+  A lousa fica na parede da direita. Alunos `"pose": "sentado-lado"` em x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75;
   professora em x 8.1, z 1.6, virada para a esquerda.
 
 ### Delegacia por dentro (diorama, 🧪)

@@ -256,6 +256,27 @@
      "x": -1.6,
      "z": 2.45,
      "pose": "sentado-lado"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -1.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
     }
    ],
    "acoes": [
@@ -582,6 +603,27 @@
       "dy": 0.9
      },
      "oculto": true
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
     }
    ],
    "acoes": [

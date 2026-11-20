@@ -236,6 +236,20 @@
      "personagem": "menina-capa",
      "x": -8,
      "z": 0.75
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
     }
    ],
    "acoes": [

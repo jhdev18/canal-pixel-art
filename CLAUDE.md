@@ -232,7 +232,12 @@ vários vídeos diferentes:
 6. **Coisas que acompanham cada pessoa existem para todas.** Ex.: cada pessoa que segue a sombra tem a SUA sombra (máx. 4
    `sombraPessoa` por cena); guardião para cada um que tem guardião; número para cada um, se a regra é de todos.
 7. **Gênero e nome coerentes** com o sprite e com o que foi dito antes (a fantasminha é ela; a rival é a Nina).
-8. **Monstro/ameaça com presença:** tamanho grande (`"escala": 2`), entrada com luz piscando e câmera que mostre o rosto (sem
+8. **Sala de aula cheia (turma fixa).** Carteira vazia sem motivo parece erro. A turma é sempre a mesma: **Bia** (`menina-capa`),
+   **Nina** (`rival`), **aluno**, **aluna** e o **menino do topete** (`menino-topete`, o protagonista masculino), nas 6 carteiras
+   (x -4.6, -1.6, 1.4 × z 2.45 e 0.75, `"pose": "sentado-lado"`). Cada cena põe quem a história pede e completa o resto com a
+   turma (`turma()` do `nm.mjs`, sem repetir sprite); carteira vazia só quando a história pede (ex.: "ninguém senta do lado
+   da Bia" → `livres`). Se a regra do vídeo dá algo a cada pessoa (número, guardião), os colegas também recebem.
+9. **Monstro/ameaça com presença:** tamanho grande (`"escala": 2`), entrada com luz piscando e câmera que mostre o rosto (sem
    zoom que corte a cabeça).
 
 ## Biblioteca de assets (o que é e como usar)
@@ -314,7 +319,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
 - **Elenco fixo:** Bia (`menina-capa`, protagonista principal), **Nina** (`rival`/`nina`, a rival da Bia — também pode ser a
   protagonista, dependendo da história), seu Tonho (`padeiro`),
-  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia).
+  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia), o menino do topete (`menino-topete`, protótipo —
+  protagonista masculino e colega de turma da Bia e da Nina; nome ainda não definido).
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,

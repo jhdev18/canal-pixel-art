@@ -313,12 +313,28 @@
      "pose": "sentado-lado"
     },
     {
-     "id": "menina",
+     "id": "bia",
      "personagem": "menina-capa",
      "x": -4.6,
      "z": 2.45,
-     "numero": 20,
+     "numero": 10,
      "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado",
+     "numero": 15
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado",
+     "numero": 8
     }
    ],
    "acoes": [
