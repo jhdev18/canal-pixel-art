@@ -384,11 +384,19 @@ export function eventosSonoros(roteiro) {
       const vol = a.volume ?? 1;
       switch (a.tipo) {
         case 'andar': case 'correr': {
-          if (semSom) break;
-          const passo = a.tipo === 'correr' ? 0.19 : 0.3;
+          if (semSom || el?.sombraPessoa) break;   // sombra andando não faz barulho de passo
+          // multidão: só as 3 primeiras pessoas andando ao mesmo tempo fazem som de passo, cada uma num ritmo um pouco
+          // diferente e mais baixo quanto mais gente anda junto (antes os passos se empilhavam e viravam um "metralhar")
+          const juntos = cena.acoes.filter((b) => (b.tipo === 'andar' || b.tipo === 'correr') && b.som !== null && b.som !== false
+            && !elementoPorId(cena, b.alvo)?.sombraPessoa && b.inicio < a.inicio + a.duracao && a.inicio < b.inicio + b.duracao);
+          const ordem = juntos.indexOf(a);
+          if (!somManual && ordem >= 3) break;
+          const passo = (a.tipo === 'correr' ? 0.19 : 0.3) * (1 + ((ordem * 37) % 11 - 5) / 50);
+          const fase = ordem * 0.11;
+          const volJuntos = 1 / Math.sqrt(Math.min(juntos.length, 3));
           let k = 0;
-          for (let t = a.inicio + 0.05; t < a.inicio + a.duracao; t += passo, k++) {
-            add(somManual || 'passo', t, { volume: 0.55 * vol, taxa: k % 2 ? 1.08 : 0.94, pan: panEl(a.alvo, t) });
+          for (let t = a.inicio + 0.05 + fase; t < a.inicio + a.duracao; t += passo, k++) {
+            add(somManual || 'passo', t, { volume: 0.55 * vol * volJuntos, taxa: (k % 2 ? 1.08 : 0.94) * (1 - ordem * 0.04), pan: panEl(a.alvo, t) });
           }
           break;
         }
