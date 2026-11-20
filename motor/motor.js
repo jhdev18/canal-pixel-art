@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './assets/index.js';   // todos os assets (motor/assets/)
 import { criarVista } from './vistas.js';
+import { criarMonstro, Composicao, TIPOS_TRANSICAO } from './monstros3d.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
 import { PosProcessamento } from './pos.js';
@@ -66,7 +67,12 @@ class Motor {
 
     this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true });
     this.renderer.setPixelRatio(1);
-    this.renderer.setSize(W, H, false);
+    // Monstros 3D: o quadro sai em ALTA resolução (o mundo pixel art é ampliado aqui, sem borrar,
+    // e os monstros são desenhados por cima em HD). "monstrosHD": false desenha os monstros em pixel art.
+    const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro));
+    this.hd = temMonstro && roteiro.monstrosHD !== false;
+    this.E = this.hd ? Math.max(1, Math.round(opcoes.escala || (opcoes.larguraTela ? opcoes.larguraTela / W : 3))) : 1;
+    this.renderer.setSize(W * this.E, H * this.E, false);
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
     const cv = this.renderer.domElement;
     cv.style.imageRendering = 'pixelated';
@@ -76,7 +82,15 @@ class Motor {
     const rtOpc = { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true, generateMipmaps: false };
     this.rtCena = new THREE.WebGLRenderTarget(W, H, rtOpc);
     this.rtSaida = new THREE.WebGLRenderTarget(W, H, { ...rtOpc, depthBuffer: false });
-    this.buffer = new Uint8Array(W * H * 4);
+    this.buffer = new Uint8Array(W * H * 4 * this.E * this.E);
+    this.uTempo = { value: 0 }; this.uMeiaAltura = { value: (H * this.E) / 2 };
+    if (this.hd) {
+      const E = this.E;
+      this.rtUI = new THREE.WebGLRenderTarget(W, H, { ...rtOpc, depthBuffer: false });
+      this.rtHD = new THREE.WebGLRenderTarget(W * E, H * E, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, depthBuffer: true, generateMipmaps: false, samples: 4 });
+      this.rtFinal = new THREE.WebGLRenderTarget(W * E, H * E, { ...rtOpc, depthBuffer: false });
+      this.compor = new Composicao(W, H);
+    }
 
     this.pos = new PosProcessamento(W, H);
     this.ui = new UI(W, H);
@@ -85,7 +99,7 @@ class Motor {
     this.cenas = new Map();
 
     await this.carregarArquivos();
-    return { gpu: this.infoGpu(), avisos: this.avisos };
+    return { gpu: this.infoGpu(), avisos: this.avisos, escalaSaida: this.hd ? this.E : 0 };
   }
 
   infoGpu() {
@@ -148,7 +162,14 @@ class Motor {
     const realce = c.realce ?? Math.max(0, Math.min(0.55, 0.95 - lumAmb));
 
     const overlay = new THREE.Scene();
-    const elementos = c.elementos.map((el, i) => {
+    // Monstros 3D (não são sprites): cena própria em HD, ou a própria cena se "monstrosHD": false.
+    const cenaHD = new THREE.Scene();
+    const monstros = c.elementos.filter((el) => el.monstro).map((el) => {
+      const m = criarMonstro(el, this.uTempo, this.uMeiaAltura);
+      (this.hd ? cenaHD : cena).add(m.grupo);
+      return { def: el, m };
+    });
+    const elementos = c.elementos.filter((el) => !el.monstro).map((el, i) => {
       const { sprite, texturas } = this.sprite(el, c);
       const esc = el.escala ?? 1;
       const w = texturas[0].image.width / PPU, h = texturas[0].image.height / PPU;
@@ -244,7 +265,7 @@ class Motor {
     if (c.clima && c.clima !== 'nenhum' && !clima) this.avisos.push(`Clima desconhecido "${c.clima}" (cena ${c.numero}).`);
     if (clima) overlay.add(clima.objeto);
 
-    return { def: c, cena, camera, overlay, fundo, vista, elementos, porId, rajadas, clima };
+    return { def: c, cena, camera, overlay, fundo, vista, elementos, porId, rajadas, clima, cenaHD, monstros, auras: [] };
   }
 
   liberar(obj) {
@@ -256,6 +277,7 @@ class Motor {
       }
     });
     obj.overlay.traverse((o) => { if (o !== this.ui.malha) { o.geometry?.dispose(); o.material?.dispose(); } });
+    obj.cenaHD.traverse((o) => { o.geometry?.dispose(); o.material?.dispose?.(); });
     obj.vista.liberar();
   }
 
@@ -356,8 +378,48 @@ class Motor {
       rj.r.atualizar(dt, rj.posFixa ? this.projetar(obj, rj.posFixa) : { x: -99, y: -99 });
     }
     if (obj.clima) obj.clima.atualizar(t, { x: cam.x * PPU, y: cam.y * PPU });
+    this.atualizarMonstros(obj, t);
     obj.fundo.atualizar(t);
     return { cam, ef };
+  }
+
+  // Presença do monstro (0 = invisível, 1 = inteiro): "aparecer" materializa, "sumir" desfaz em fumaça.
+  presenca(c, def, t) {
+    let v = def.oculto ? 0 : 1;
+    for (const a of c.acoes) {
+      if (a.alvo !== def.id || t < a.inicio) continue;
+      const p = Math.min(1, Math.max(0, (t - a.inicio) / Math.max(a.duracao, 1e-6)));
+      if (a.tipo === 'aparecer') v = p;
+      if (a.tipo === 'sumir') v = 1 - p;
+    }
+    return v;
+  }
+
+  atualizarMonstros(obj, t) {
+    const c = obj.def, vista = obj.vista;
+    this.uTempo.value = t;
+    obj.auras = [];
+    const posDe = (def, st) => (vista.paraMundoSuave ? vista.paraMundoSuave(def, st) : vista.paraMundo(def, st, 0));
+    for (const { def, m } of obj.monstros) {
+      const st = estadoElemento(c, def, t);
+      const pos = posDe(def, st);
+      let alvo = obj.camera.position.clone();
+      const idAlvo = def.olhar || def.alvo;
+      const eAlvo = idAlvo && (obj.porId.get(idAlvo) || null);
+      if (eAlvo) { const sa = estadoElemento(c, eAlvo.def, t); alvo = posDe(eAlvo.def, sa); alvo.y += eAlvo.h * 0.8; }
+      else { const mAlvo = idAlvo && obj.monstros.find((x) => x.def.id === idAlvo); if (mAlvo) alvo = posDe(mAlvo.def, estadoElemento(c, mAlvo.def, t)); }
+      const presenca = this.presenca(c, def, t);
+      m.atualizar(t, {
+        pos, presenca, virado: st.virado, alvo, olhosAbertos: def.olhosFechados ? 0 : 1,
+        direcaoAlvo: eAlvo ? Math.sign(alvo.x - pos.x) * st.virado : 0,
+      });
+      if (presenca > 0.01 && def.aura !== false) {
+        const esc = def.escala ?? 1, h = m.altura * esc;
+        const meio = this.projetar(obj, { x: pos.x, y: pos.y + h * 0.45, z: pos.z });
+        const topo = this.projetar(obj, { x: pos.x, y: pos.y + h * 1.25, z: pos.z });
+        obj.auras.push([meio.x, meio.y, Math.abs(topo.y - meio.y) * (def.aura ?? 1), Math.min(1, presenca * 1.2)]);
+      }
+    }
   }
 
   focoTransicao(obj, t) {
@@ -396,6 +458,12 @@ class Motor {
     R.autoClear = false;
     R.render(obj.overlay, this.camOrto);
     R.autoClear = true;
+    const cc = new THREE.Color(), ca = R.getClearAlpha(); R.getClearColor(cc);
+    if (this.hd) {   // máscara do que fica na frente dos monstros (balões, legenda, chuva, partículas)
+      R.setRenderTarget(this.rtUI); R.setClearColor(0x000000, 0); R.clear();
+      R.render(obj.overlay, this.camOrto);
+      R.setClearColor(cc, ca);
+    }
 
     const fx = this.r.efeitos;
     const paleta = c.paleta || this.r.paleta;
@@ -407,13 +475,29 @@ class Motor {
     });
     R.setRenderTarget(this.rtSaida);
     R.render(this.pos.cena, this.pos.camera);
+    if (this.hd) {
+      R.setRenderTarget(this.rtHD); R.setClearColor(0x000000, 0); R.clear();
+      R.render(obj.cenaHD, obj.camera);
+      R.setClearColor(cc, ca);
+      const u = this.compor.material.uniforms;
+      u.tPixel.value = this.rtSaida.texture; u.tMonstro.value = this.rtHD.texture; u.tUI.value = this.rtUI.texture;
+      u.uTempo.value = t; u.uFade.value = ef.fade; u.uFlash.value = ef.flash; u.uTipo.value = TIPOS_TRANSICAO[ef.transicao] ?? 0;
+      const foco = this.focoTransicao(obj, t); u.uCentro.value.set(foco.x, foco.y);
+      u.uNAura.value = Math.min(4, obj.auras.length);
+      obj.auras.slice(0, 4).forEach((a, i) => u.uAura.value[i].set(...a));
+      R.setRenderTarget(this.rtFinal);
+      R.render(this.compor.cena, this.compor.camera);
+      if (paraTela) { R.setRenderTarget(null); R.render(this.compor.cena, this.compor.camera); }
+      return;
+    }
     if (paraTela) { R.setRenderTarget(null); R.render(this.pos.cena, this.pos.camera); }
   }
 
   // Renderiza o quadro i e devolve os pixels RGBA (de baixo p/ cima) em base64.
   quadro(i) {
     this.renderizarTempo(i / this.r.fps);
-    this.renderer.readRenderTargetPixels(this.rtSaida, 0, 0, this.W, this.H, this.buffer);
+    if (this.hd) this.renderer.readRenderTargetPixels(this.rtFinal, 0, 0, this.W * this.E, this.H * this.E, this.buffer);
+    else this.renderer.readRenderTargetPixels(this.rtSaida, 0, 0, this.W, this.H, this.buffer);
     return paraBase64(this.buffer);
   }
 

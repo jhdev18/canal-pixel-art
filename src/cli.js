@@ -215,6 +215,7 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              antigos: menina-capa-antigo, robo-semaforo-antigo
              moradores: policial, prefeito, aluno, aluna, professora, padeiro, caixa
              cidade: escola, delegacia, padaria, mercado, farmacia, carro-policia, banco-praca, ponto-onibus, hidrante
+             casa (diorama): casa-sala, casa-cozinha, casa-quarto, casa-banheiro (+ -noite); mae, mae-avental, menino-topete
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
 CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum

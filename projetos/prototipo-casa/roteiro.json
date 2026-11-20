@@ -1,0 +1,84 @@
+{
+  // PROTÓTIPO (não aprovado) — casa em diorama + mãe + menino do topete.
+  // Para ver sem renderizar vídeo: npm run previa -- prototipo-casa
+  // O cômodo é um sprite: fica com "x": 0, "y": -3.75 (assim a linha do meio do piso fica em y = 0)
+  // e a câmera em "y": 1.6875. Personagens andam no piso com y = 0 (até y ≈ 1 = mais para o fundo).
+  "titulo": "Protótipo — casa em diorama",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "legendasNarracao": false,
+  "cenas": [
+    { // sala (dia)
+      "fundo": "diorama", "duracao": 4, "narracao": false, "transicao": "fade",
+      "camera": { "x": -0.5, "y": 1.6875 }, "cameraFim": { "x": 0.5 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-sala", "x": 0, "y": -3.75 },
+        { "id": "mae", "sprite": "mae", "x": -2.5, "voz": 1.1 },
+        { "id": "filho", "sprite": "menino-topete", "x": 5, "voz": 1.4 } ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "filho", "para": 1.2, "inicio": 0.2, "duracao": 2 },
+        { "tipo": "falar", "alvo": "mae", "texto": "* Tira o tênis!", "inicio": 2.3 } ]
+    },
+    { // sala (noite)
+      "fundo": "diorama-noite", "duracao": 3, "narracao": false,
+      "camera": { "x": 0.5, "y": 1.6875 }, "cameraFim": { "x": -0.5 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-sala-noite", "x": 0, "y": -3.75 },
+        { "id": "filho", "sprite": "menino-topete", "x": 1 } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "filho", "icone": "zzz", "inicio": 0.5, "duracao": 2.3 } ]
+    },
+    { // cozinha (dia)
+      "fundo": "diorama", "duracao": 4, "narracao": false,
+      "camera": { "x": 0, "y": 1.6875 }, "cameraFim": { "x": 0.6 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-cozinha", "x": 0, "y": -3.75 },
+        { "id": "mae", "sprite": "mae-avental", "x": 2.5, "virado": "esquerda", "voz": 1.1 },
+        { "id": "filho", "sprite": "menino-topete", "x": -5.5, "voz": 1.4 } ],
+      "acoes": [
+        { "tipo": "correr", "alvo": "filho", "para": -0.5, "inicio": 0.2, "duracao": 1.2 },
+        { "tipo": "falar", "alvo": "filho", "texto": "* Tem bolo?", "inicio": 1.6 } ]
+    },
+    { // cozinha (noite)
+      "fundo": "diorama-noite", "duracao": 3, "narracao": false,
+      "camera": { "x": -0.4, "y": 1.6875 }, "cameraFim": { "x": 0.4 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-cozinha-noite", "x": 0, "y": -3.75 },
+        { "id": "filho", "sprite": "menino-topete", "x": -4 } ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "filho", "para": 1, "inicio": 0.2, "duracao": 2 },
+        { "tipo": "emocao", "alvo": "filho", "icone": "?", "inicio": 2.2 } ]
+    },
+    { // quarto (dia)
+      "fundo": "diorama", "duracao": 3, "narracao": false,
+      "camera": { "x": 0.5, "y": 1.6875 }, "cameraFim": { "x": -0.5 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-quarto", "x": 0, "y": -3.75 },
+        { "id": "filho", "sprite": "menino-topete", "x": 0.5 } ],
+      "acoes": [ { "tipo": "pular", "alvo": "filho", "altura": 1.2, "inicio": 0.6 } ]
+    },
+    { // quarto (noite)
+      "fundo": "diorama-noite", "duracao": 3, "narracao": false,
+      "camera": { "x": -0.5, "y": 1.6875 }, "cameraFim": { "x": 0.5 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-quarto-noite", "x": 0, "y": -3.75 },
+        { "id": "mae", "sprite": "mae", "x": -3.5, "voz": 1.1 } ],
+      "acoes": [ { "tipo": "falar", "alvo": "mae", "texto": "* Hora de dormir.", "inicio": 0.5 } ]
+    },
+    { // banheiro (dia)
+      "fundo": "diorama", "duracao": 3, "narracao": false,
+      "camera": { "x": 0, "y": 1.6875 }, "cameraFim": { "x": 0.6 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-banheiro", "x": 0, "y": -3.75 },
+        { "id": "filho", "sprite": "menino-topete", "x": -1.5 } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "filho", "icone": "!", "inicio": 0.6 } ]
+    },
+    { // banheiro (noite)
+      "fundo": "diorama-noite", "duracao": 3, "narracao": false,
+      "camera": { "x": 0.4, "y": 1.6875 }, "cameraFim": { "x": -0.4 },
+      "elementos": [
+        { "id": "comodo", "sprite": "casa-banheiro-noite", "x": 0, "y": -3.75 },
+        { "id": "mae", "sprite": "mae", "x": 3, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "mae", "para": -1, "inicio": 0.2, "duracao": 2.2 } ]
+    }
+  ]
+}

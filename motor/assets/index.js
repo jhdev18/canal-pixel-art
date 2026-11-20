@@ -12,6 +12,7 @@
 //   guardioes.js              PROTÓTIPO: guardiões pequenos
 //   fantasmas.js              PROTÓTIPO: fantasmas
 //   prototipos.js             PROTÓTIPO: personagens, objetos e itens de praça novos
+//   casa.js                   PROTÓTIPO: casa (sala, cozinha, quarto, banheiro), mãe e menino-topete
 import './rpg.js';
 import './personagens-detalhados.js';
 import './moradores.js';
@@ -22,3 +23,4 @@ import './praca.js';
 import './guardioes.js';
 import './fantasmas.js';
 import './prototipos.js';
+import './casa.js';

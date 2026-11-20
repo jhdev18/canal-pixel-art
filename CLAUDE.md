@@ -196,8 +196,12 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
     `cadeado-numero` (fechado/tentando/aberto; close com `"tela": true`); som `sininho` (sorveteiro).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
-- **Protótipos NÃO aprovados (fora do projeto):** `monstro-sombra` e tentáculos de sombra em 3D.
-  Se o usuário aprovar, precisam ser recriados no motor (não estão no repositório).
+- **Casa em diorama (protótipo, veio da branch `ccr-77868c41-s69pnw`)** (`motor/assets/casa.js`): cômodos como sprites
+  `casa-sala`, `casa-cozinha`, `casa-quarto`, `casa-banheiro` (+ `-noite`), sobre o fundo `diorama`/`diorama-noite`
+  (cômodo em `"x": 0, "y": -3.75`, câmera `"y": 1.6875`, personagens no piso com y 0 a ~1); personagens `mae`,
+  `mae-avental`, `menino-topete`. Teste: `projetos/prototipo-casa` e `projetos/vitrine` (cenas 17+).
+- **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
+  "tentaculos" | "massa-olhos"`, em alta resolução sobre o pixel art. Teste: `projetos/prototipo-monstros`.
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
   `sala-de-estar` (fundos + móveis de `motor/assets/interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
   `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,
@@ -239,4 +243,4 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
 - **Branch de trabalho:** `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,
-  `cool-noether`, `charming-mendel` e `epic-bardeen`, + diorama como padrão + guardiões/números).
+  `cool-noether`, `charming-mendel` e `epic-bardeen`, + diorama como padrão + guardiões/números) e `ccr-77868c41-s69pnw` (casa, mãe, menino-topete, monstros 3D).

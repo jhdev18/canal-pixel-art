@@ -34,7 +34,7 @@ function barra(i, total, inicio) {
   process.stdout.write(`\r  [${'█'.repeat(cheio)}${'░'.repeat(n - cheio)}] ${(p * 100).toFixed(0).padStart(3)}%  ${i}/${total} quadros  ${fps.toFixed(1)} q/s  restam ${fmt(resto)}   `);
 }
 
-export async function abrirMotor(cfg, servidor, roteiro, modo) {
+export async function abrirMotor(cfg, servidor, roteiro, modo, escala = 0) {
   let tentativaJanela = false;
   for (;;) {
     const { browser, nome } = await abrirNavegador(cfg, { janela: tentativaJanela });
@@ -43,7 +43,7 @@ export async function abrirMotor(cfg, servidor, roteiro, modo) {
     page.on('console', (m) => { if (m.type() === 'error') console.error('\n  [motor]', m.text()); });
     await page.goto(`${servidor.url}/motor/index.html`);
     await page.waitForFunction('window.motorPronto === true', null, { timeout: 30000 });
-    const info = await page.evaluate(([r, m]) => window.motor.iniciar(r, { modo: m }), [roteiro, modo]);
+    const info = await page.evaluate(([r, m, e]) => window.motor.iniciar(r, { modo: m, escala: e }), [roteiro, modo, escala]);
     if (ehSoftware(info.gpu) && !cfg.permitirRenderizacaoCPU) {
       await browser.close();
       if (!tentativaJanela && !cfg.mostrarJanela) { tentativaJanela = true; console.log('  GPU não detectada no modo invisível; tentando com janela...'); continue; }
@@ -123,16 +123,21 @@ export async function renderizar(nome, modo, opc = {}) {
   const servidor = await iniciarServidor({ projetoDir: dir });
   let motor;
   try {
-    motor = await abrirMotor(cfg, servidor, roteiro, modo);
+    motor = await abrirMotor(cfg, servidor, roteiro, modo, m.escala);
     console.log(`  Navegador: ${motor.nomeNavegador}  •  GPU: ${motor.info.gpu.renderizador}`);
     avisos.push(...motor.info.avisos);
     for (const a of avisos) console.log(`  ⚠ ${a}`);
 
     const [W, H] = roteiro.resolucao;
     const total = Math.round(roteiro.duracaoTotal * fps);
-    const cod = abrirCodificador(ff, { W, H, fps, escala: m.escala, saida: videoTmp, encoder, modo, qualidade: m.qualidade ?? 18, crt: modo === 'final' && m.crt });
+    // Com monstros 3D o motor já entrega o quadro ampliado (HD); o FFmpeg não amplia de novo.
+    const hd = motor.info.escalaSaida || 0;
+    if (hd) console.log(`  Monstros 3D: quadro em alta resolução (${W * hd}x${H * hd}) — a renderização fica mais lenta`);
+    const cod = hd
+      ? abrirCodificador(ff, { W: W * hd, H: H * hd, fps, escala: 1, grade: hd, saida: videoTmp, encoder, modo, qualidade: m.qualidade ?? 18, crt: modo === 'final' && m.crt })
+      : abrirCodificador(ff, { W, H, fps, escala: m.escala, saida: videoTmp, encoder, modo, qualidade: m.qualidade ?? 18, crt: modo === 'final' && m.crt });
     const inicio = Date.now();
-    const LOTE = 4;
+    const LOTE = hd ? 1 : 4;
     let pendente = Promise.resolve();
     for (let i = 0; i < total; i += LOTE) {
       const n = Math.min(LOTE, total - i);
