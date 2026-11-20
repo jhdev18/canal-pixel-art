@@ -18,11 +18,11 @@ function mascaraTexto(texto) {
 
 // Estabelecimentos: cores, letreiro e térreo próprios.
 const ESTAB = {
-  escola: { pal: ['#e8d8b0', '#d8c498', '#a8946c', '#5a4a30'], tipo: 'reboco', placa: ['#2a5aa8', '#ffffff'], texto: 'ESCOLA', toldo: null, alt: 100, porta: 'vidro-dupla', base: '#a85a44' },
-  delegacia: { pal: ['#e8ecf4', '#d0d6e4', '#9aa2b8', '#3a4258'], tipo: 'reboco', placa: ['#1e2a58', '#ffffff'], texto: 'POLÍCIA', toldo: null, alt: 76, porta: 'vidro-dupla', base: '#2e3c66', sirene: true, grade: true },
-  padaria: { pal: ['#f0e0c0', '#e0ccaa', '#b09a78', '#5a4a30'], tipo: 'reboco', placa: ['#6a3a1e', '#ffe8a0'], texto: 'PADARIA', toldo: ['#f4f0e8', '#c83c4c'], alt: 76, vitrine: 'paes', base: '#8a5a3a' },
-  mercado: { pal: ['#e8f0e0', '#d4e0c8', '#a8b89c', '#4a5a40'], tipo: 'reboco', placa: ['#2e8a4a', '#ffffff'], texto: 'MERCADO', toldo: ['#f0f0e0', '#2e8a4a'], alt: 76, vitrine: 'frutas', caixotes: true },
-  farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 76, cruz: true },
+  escola: { pal: ['#e8d8b0', '#d8c498', '#a8946c', '#5a4a30'], tipo: 'reboco', placa: ['#2a5aa8', '#ffffff'], texto: 'ESCOLA', toldo: null, alt: 144, porta: 'vidro-dupla', base: '#a85a44' },
+  delegacia: { pal: ['#e8ecf4', '#d0d6e4', '#9aa2b8', '#3a4258'], tipo: 'reboco', placa: ['#1e2a58', '#ffffff'], texto: 'POLÍCIA', toldo: null, alt: 112, porta: 'vidro-dupla', base: '#2e3c66', sirene: true, grade: true },
+  padaria: { pal: ['#f0e0c0', '#e0ccaa', '#b09a78', '#5a4a30'], tipo: 'reboco', placa: ['#6a3a1e', '#ffe8a0'], texto: 'PADARIA', toldo: ['#f4f0e8', '#c83c4c'], alt: 112, vitrine: 'paes', base: '#8a5a3a' },
+  mercado: { pal: ['#e8f0e0', '#d4e0c8', '#a8b89c', '#4a5a40'], tipo: 'reboco', placa: ['#2e8a4a', '#ffffff'], texto: 'MERCADO', toldo: ['#f0f0e0', '#2e8a4a'], alt: 112, vitrine: 'frutas', caixotes: true },
+  farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 112, cruz: true },
 };
 
 // i atravessa a rua (cresce para baixo/direita); j vai ao longo dela (cresce para baixo/esquerda).
@@ -42,7 +42,7 @@ export function gerarRuaDiagonal(opc = {}) {
   const comp = opc.comprimento ?? 44;
   const noite = (opc.periodo ?? 'noite') === 'noite';
   const semente = opc.semente ?? 7;
-  const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 24, HMAX = 150;   // I1 largo: o canteiro vai até a borda
+  const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 24, HMAX = 200;   // I1 largo: o canteiro vai até a borda
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 8);
   const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
@@ -192,7 +192,7 @@ export function gerarRuaDiagonal(opc = {}) {
   segs.forEach(({ j: j0, w, ped }, n) => {
     const e = ped && ESTAB[ped.tipo];
     const t = e ? e.tipo : tipos[Math.floor(r() * tipos.length)];
-    const alt = e ? e.alt : 76 + Math.floor(r() * 3) * 24;
+    const alt = e ? e.alt : 112 + Math.floor(r() * 3) * 32;   // v2: térreo de 58 px + andares de 32 px
     predios.push({ j0, j1: j0 + w, h: alt, tipo: t, estab: e ? ped.tipo : null, e,
       pal: e ? e.pal : PALETAS[t][Math.floor(r() * PALETAS[t].length)], toldo: e ? e.toldo : TOLDOS[n % TOLDOS.length], s: Math.floor(r() * 1e6) });
   });
@@ -210,13 +210,14 @@ export function gerarRuaDiagonal(opc = {}) {
     };
     const E = P.e, masc = E ? mascaraTexto(E.texto) : null;
     prisma(-3.2, 0, P.j0, P.j1, 0, P.h, {
+      // Proporção (v2): pessoas têm ~40-44 px; porta ~46 px, vitrine 32 px, toldo acima da cabeça, andar de 32 px.
       frente: (x, y, u, t, larg, s) => {
         let c = parede(u, t, larg), tp = 1;
         if (E) {
           const meio = Math.floor(larg / 2);
-          if (E.base && t < 12 && t >= 2) c = (t % 4 === 0 || (u + (Math.floor(t / 4) % 2) * 4) % 8 === 0) ? '#6a3a2e' : E.base;
+          if (E.base && t < 16 && t >= 2) c = (t % 4 === 0 || (u + (Math.floor(t / 4) % 2) * 4) % 8 === 0) ? '#6a3a2e' : E.base;
           // letreiro grande com o nome (acima do térreo)
-          const lw = masc.w + 6, lx = meio - Math.floor(lw / 2), ly0 = 30, lh = 12;
+          const lw = masc.w + 6, lx = meio - Math.floor(lw / 2), ly0 = 62, lh = 12;
           if (u >= lx && u < lx + lw && t >= ly0 && t < ly0 + lh) {
             const borda = u === lx || u === lx + lw - 1 || t === ly0 || t === ly0 + lh - 1;
             const mx = (lx + lw - 1 - u) - 2, my = ly0 + lh - 2 - t;   // u cresce para a esquerda na fachada: inverte para ler certo
@@ -224,67 +225,70 @@ export function gerarRuaDiagonal(opc = {}) {
             if (!borda && masc.tem(mx, my) && noite) tp = 2;
             pintar(x, y, c, 0, s, t, tp, 1); return;
           }
-          if (E.cruz && u >= lx - 14 && u < lx - 4 && t >= 28 && t < 40) {
-            const cx = u - (lx - 14), cy = t - 28;
+          if (E.cruz && u >= lx - 14 && u < lx - 4 && t >= 62 && t < 74) {
+            const cx = u - (lx - 14), cy = t - 62;
             if ((cx >= 3 && cx < 7) || (cy >= 4 && cy < 8)) { pintar(x, y, '#3ae070', 0, s, t, noite ? 2 : 1, 1); return; }
           }
           if (E.sirene && t >= P.h - 2) { /* sirene fica no telhado */ }
-          if (t < 27 && t >= 4 && E.porta === 'vidro-dupla' && Math.abs(u - meio) < 10 && t < 22) {
-            const borda = Math.abs(u - meio) === 9 || u === meio || t === 21;
-            pintar(x, y, borda ? '#2a2638' : (t > 14 ? '#a8c8e0' : '#6a8aa8'), 0, s, t, 1, 1); return;
+          if (t >= 2 && E.porta === 'vidro-dupla' && Math.abs(u - meio) < 12 && t < 48) {
+            const borda = Math.abs(u - meio) === 11 || u === meio || t === 47;
+            const puxador = (u === meio - 2 || u === meio + 2) && t >= 20 && t < 26;
+            pintar(x, y, borda || puxador ? '#2a2638' : (t > 30 ? '#a8c8e0' : '#6a8aa8'), 0, s, t, 1, 1); return;
           }
-          if (E.vitrine === 'paes' && t >= 4 && t < 19 && u >= 18 && u < larg - 5) {
-            const borda = u === 18 || u === larg - 6 || t === 4 || t === 18;
-            let cc = borda ? '#3a2416' : (t > 12 ? '#fff2d0' : '#ffd890');
-            if (!borda && (t === 7 || t === 8 || t === 12 || t === 13) && (u % 7) > 1 && (u % 7) < 6) cc = (u % 7 === 3) ? '#a86a30' : '#d08a40';
+          if (E.vitrine === 'paes' && t >= 8 && t < 40 && u >= 22 && u < larg - 5) {
+            const borda = u === 22 || u === larg - 6 || t === 8 || t === 39;
+            let cc = borda ? '#3a2416' : (t > 26 ? '#fff2d0' : '#ffd890');
+            if (!borda && (t === 12 || t === 13 || t === 22 || t === 23) && (u % 7) > 1 && (u % 7) < 6) cc = (u % 7 === 3) ? '#a86a30' : '#d08a40';
+            if (!borda && (t === 11 || t === 21)) cc = '#b08a5a';                                  // prateleiras
             pintar(x, y, cc, 0, s, t, !borda && noite ? 2 : 1, 1); return;
           }
-          if (E.vitrine === 'frutas' && t >= 4 && t < 19 && u >= 18 && u < larg - 5) {
-            const borda = u === 18 || u === larg - 6 || t === 4 || t === 18;
+          if (E.vitrine === 'frutas' && t >= 8 && t < 40 && u >= 22 && u < larg - 5) {
+            const borda = u === 22 || u === larg - 6 || t === 8 || t === 39;
             const fr = ['#e83a3a', '#f0a030', '#f0e040', '#5ac84a'][Math.floor(u / 6) % 4];
-            pintar(x, y, borda ? '#2a3a2a' : (t < 9 ? fr : (t > 13 ? '#d8f0f8' : '#a8d0e0')), 0, s, t, !borda && noite && t >= 9 ? 2 : 1, 1); return;
+            pintar(x, y, borda ? '#2a3a2a' : (t < 18 ? fr : (t > 28 ? '#d8f0f8' : '#a8d0e0')), 0, s, t, !borda && noite && t >= 18 ? 2 : 1, 1); return;
           }
-          if (E.grade && t >= 38 && (u % 3 === 0)) { const ty = (t - 38) % 24; if (ty >= 7 && ty < 17) { pintar(x, y, '#3a3a4a', 0, s, t, 1, 1); return; } }
-          if (!E.toldo && t >= 20 && t < 26) { pintar(x, y, t === 20 ? E.pal[3] : E.pal[2], 0, s, t, 1, 1); return; }   // marquise lisa
+          if (E.grade && t >= 80 && (u % 3 === 0)) { const ty = (t - 80) % 32; if (ty >= 9 && ty < 25) { pintar(x, y, '#3a3a4a', 0, s, t, 1, 1); return; } }
+          if (!E.toldo && t >= 46 && t < 56) { pintar(x, y, t === 46 ? E.pal[3] : E.pal[2], 0, s, t, 1, 1); return; }   // marquise lisa
         }
         const meio = Math.floor(larg / 2);
         if (t < 2) c = pal[3];                                                     // rodapé
         if (t >= P.h - 6 && t < P.h - 2) c = pal[0] === c ? '#d8d0c0' : '#c8c0b0';   // cornija
         if (t >= P.h - 2) c = pal[3];
         if (t === P.h - 7) c = pal[3];
-        if (t < 27) {                                                              // térreo
-          if (u >= 5 && u < 15 && t < 20) {                                        // porta
-            c = (u === 5 || u === 14 || t === 19) ? pal[3] : (u === 12 && t === 9 ? '#f0c840' : ((u + t) % 5 ? '#5a3a2a' : '#4a2e22'));
-          } else if (u >= 18 && u < larg - 5 && t >= 4 && t < 19) {                // vitrine
-            const borda = u === 18 || u === larg - 6 || t === 4 || t === 18;
+        if (t < 58) {                                                              // térreo
+          if (u >= 4 && u < 20 && t < 46) {                                        // porta
+            c = (u === 4 || u === 19 || t === 45) ? pal[3] : (u === 16 && t === 22 ? '#f0c840' : ((t > 30 && t < 40 && u > 7 && u < 16) ? (noite ? '#ffd070' : '#6a8aa8') : ((u + t) % 5 ? '#5a3a2a' : '#4a2e22')));
+            if (noite && t > 30 && t < 40 && u > 7 && u < 16) tp = 2;
+          } else if (u >= 22 && u < larg - 5 && t >= 8 && t < 40) {                // vitrine
+            const borda = u === 22 || u === larg - 6 || t === 8 || t === 39;
             if (borda) c = pal[3];
-            else if (noite) { c = t > 14 ? '#fff4c8' : '#ffd070'; tp = 2; if ((u - 22) % 9 < 3 && t < 9) c = '#8a5a3a'; }
-            else c = t > 12 ? '#a8c8e0' : '#6a8aa8';
+            else if (noite) { c = t > 28 ? '#fff4c8' : '#ffd070'; tp = 2; if ((u - 26) % 9 < 3 && t < 16) c = '#8a5a3a'; }
+            else c = t > 26 ? '#a8c8e0' : '#6a8aa8';
           }
-          if (t >= 20 && t < 26) {                                                 // toldo listrado
-            c = Math.floor(u / 5) % 2 ? P.toldo[0] : P.toldo[1];
-            if (t === 20) c = '#2a2026';
-            if (t === 25) c = '#ffffff';
+          if (t >= 46 && t < 56) {                                                 // toldo listrado (acima da cabeça)
+            c = Math.floor(u / 6) % 2 ? P.toldo[0] : P.toldo[1];
+            if (t === 46) c = '#2a2026';
+            if (t === 55) c = '#ffffff';
           }
-        } else if (!E && t >= 28 && t < 35 && u > meio - 11 && u < meio + 11) {          // letreiro
-          const borda = u === meio - 10 || u === meio + 10 || t === 28 || t === 34;
-          c = borda ? pal[3] : ((t === 31 && (u % 3 !== 0)) ? (noite ? '#ffe890' : '#f0e0b0') : '#2a2a3a');
-          if (!borda && t === 31 && u % 3 !== 0 && noite) tp = 2;
-        } else if (t >= 38 && t < P.h - 8) {                                      // andares
-          const andar = Math.floor((t - 38) / 24), ty = (t - 38) % 24;
-          const nJan = Math.max(1, Math.floor((larg - 6) / 16));
-          const ini = Math.floor((larg - nJan * 16) / 2) + 3;
-          const col = Math.floor((u - ini) / 16), tx = (u - ini) % 16;
-          if (u >= ini && col < nJan && tx < 9) {
-            if (ty === 5) c = '#d8d0c0';                                           // peitoril
-            else if (ty >= 6 && ty < 18) {
+        } else if (!E && t >= 60 && t < 68 && u > meio - 11 && u < meio + 11) {          // letreiro
+          const borda = u === meio - 10 || u === meio + 10 || t === 60 || t === 67;
+          c = borda ? pal[3] : ((t === 63 && (u % 3 !== 0)) ? (noite ? '#ffe890' : '#f0e0b0') : '#2a2a3a');
+          if (!borda && t === 63 && u % 3 !== 0 && noite) tp = 2;
+        } else if (t >= 80 && t < P.h - 8) {                                      // andares (32 px cada)
+          const andar = Math.floor((t - 80) / 32), ty = (t - 80) % 32;
+          const nJan = Math.max(1, Math.floor((larg - 6) / 18));
+          const ini = Math.floor((larg - nJan * 18) / 2) + 3;
+          const col = Math.floor((u - ini) / 18), tx = (u - ini) % 18;
+          if (u >= ini && col < nJan && tx < 11) {
+            if (ty === 7) c = '#d8d0c0';                                           // peitoril
+            else if (ty >= 8 && ty < 26) {
               const k = andar * 10 + col;
               if (!acesa.has(k)) acesa.set(k, noite && rw() < 0.5);
-              const borda = tx === 0 || tx === 8 || ty === 6 || ty === 17;
+              const borda = tx === 0 || tx === 10 || ty === 8 || ty === 25 || (ty === 17 && tx > 0 && tx < 10) || tx === 5;
               if (borda) c = pal[3];
-              else if (acesa.get(k)) { c = ty > 13 ? '#fff0b8' : (tx === 4 ? '#e8b850' : '#ffd468'); tp = 2; }
-              else c = ty > 12 ? '#3a4a6e' : (tx < 3 && ty < 10 ? '#6a7aa0' : '#26304e');
-            } else if (ty === 18) c = pal[2];                                     // verga
+              else if (acesa.get(k)) { c = ty > 20 ? '#fff0b8' : (tx === 4 ? '#e8b850' : '#ffd468'); tp = 2; }
+              else c = ty > 18 ? '#3a4a6e' : (tx < 4 && ty < 13 ? '#6a7aa0' : '#26304e');
+            } else if (ty === 26) c = pal[2];                                     // verga
           }
         }
         pintar(x, y, c, 0, s, t, tp, 1);
@@ -293,7 +297,7 @@ export function gerarRuaDiagonal(opc = {}) {
         let c = P.tipo === 'tijolo' && t % 4 === 0 ? pal[3] : pal[2];
         if (t >= P.h - 6 && t < P.h - 2) c = '#a8a090';
         if (t >= P.h - 2) c = pal[3];
-        if (t > 40 && t < P.h - 10 && (t - 38) % 24 > 7 && (t - 38) % 24 < 16 && u > 18 && u < 26) c = '#1e2438';
+        if (t > 82 && t < P.h - 10 && (t - 80) % 32 > 9 && (t - 80) % 32 < 24 && u > 18 && u < 28) c = '#1e2438';
         pintar(x, y, c, s, P.j1, t, 1, 0.72);
       },
       topo: (x, y, i, j, d) => pintar(x, y, d < 0.12 ? '#7a7a8a' : d < 0.2 ? '#2e2e3a' : (bayer(x, y) < 0.12 ? '#4c4c5a' : '#40404e'), i, j, P.h, 1, 1.15),
@@ -307,12 +311,12 @@ export function gerarRuaDiagonal(opc = {}) {
       });
     }
     if (E?.caixotes) {
-      for (let k = 0; k < 3; k++) {
-        const cj = P.j0 + 0.6 + k * 1.3, fr = ['#e83a3a', '#f0a030', '#5ac84a'][k];
-        prisma(0.15, 0.75, cj, cj + 1.0, 0, 7, {
-          frente: (x, y, u, t) => pintar(x, y, t === 4 ? '#6a4a1a' : '#a0702a', 0.75, cj, t, 1, 1),
+      for (let k = 0; k < 2; k++) {   // 2 caixotes no canto direito da fachada (x ≈ 13.2–15.3): o meio (x ~16.2) fica livre para as pessoas
+        const cj = P.j1 - 1.05 - k * 1.05, fr = ['#e83a3a', '#5ac84a'][k];
+        prisma(0.15, 0.75, cj, cj + 1.0, 0, 14, {
+          frente: (x, y, u, t) => pintar(x, y, t === 7 || u % 8 === 0 ? '#6a4a1a' : '#a0702a', 0.75, cj, t, 1, 1),
           lado: (x, y, u, t, s) => pintar(x, y, '#7a5220', s, cj + 1.0, t, 1, 0.8),
-          topo: (x, y, i, j) => pintar(x, y, (Math.floor(i * 9) + Math.floor(j * 9)) % 2 ? fr : '#2a1a10', i, j, 7, 1, 1.1),
+          topo: (x, y, i, j) => pintar(x, y, (Math.floor(i * 9) + Math.floor(j * 9)) % 2 ? fr : '#2a1a10', i, j, 14, 1, 1.1),
         });
       }
     }
@@ -323,7 +327,7 @@ export function gerarRuaDiagonal(opc = {}) {
       lado: (x, y, u, t, s) => pintar(x, y, '#626270', s, cj + 0.7, P.h + t, 1, 0.75),
       topo: (x, y, i, j) => pintar(x, y, (Math.floor(i * 10) + Math.floor(j * 10)) % 2 ? '#a8a8b4' : '#9a9aa8', i, j, P.h + 7, 1, 1.1),
     });
-    if (noite) lojas.push({ i: 0.25, j: (P.j0 + P.j1) / 2 + 0.6, h: 10, raio: 1.8, forca: 0.6 });
+    if (noite) lojas.push({ i: 0.25, j: (P.j0 + P.j1) / 2 + 0.6, h: 22, raio: 2.2, forca: 0.6 });
   }
 
   // ---------- iluminação pixel a pixel ----------
