@@ -425,7 +425,8 @@ class Motor {
       else { const mAlvo = idAlvo && obj.monstros.find((x) => x.def.id === idAlvo); if (mAlvo) alvo = posDe(mAlvo.def, estadoElemento(c, mAlvo.def, t)); }
       const presenca = this.presenca(c, def, t);
       m.atualizar(t, {
-        pos, presenca, virado: st.virado, alvo, olhosAbertos: def.olhosFechados ? 0 : 1,
+        pos, presenca, virado: st.virado, alvo, olhosAbertos: def.olhosFechados ? 0 : 1, xRoteiro: st.x,
+        movendo: Math.abs(st.x - estadoElemento(c, def, Math.max(0, t - 0.06)).x) > 0.004,
         direcaoAlvo: eAlvo ? Math.sign(alvo.x - pos.x) * st.virado : 0,
       });
       if (presenca > 0.01 && def.aura !== false) {

@@ -310,6 +310,7 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `contador` | `de` (padrão = duração), `cor`, `y` | contagem regressiva grande no alto (vermelha nos 3 últimos) | tique + sino |
 | `placar` | `opcoes` (["AJUDAR", "FUGIR"]), `votos` ([62, 38], opcional), `cores` | placar de votação (1, 2...) com barras enchendo | — |
 | `continua` | `texto` (padrão "CONTINUA...") | selo no canto para o gancho do fim | suspense |
+| `sombra` | `origem` [x, z], `raio`, `recolher`, `cor`, `corBorda`, `personagens` | (diorama de rua) sombra que se alastra pelo chão e sobe paredes, objetos e pessoas | sombra |
 | `aparecer` / `sumir` | `alvo` | "puf" de fumaça | puf |
 | `coletar` | `alvo` | item sobe com brilho e some | moeda/vida/powerup/item |
 | `piscar` | `alvo` | pisca vermelho (dano) | dano |

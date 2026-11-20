@@ -205,7 +205,13 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   **Não usar** os cômodos "de caixinha" (`casa-sala`... sobre fundo `diorama`) nem a `casa-corte`: o usuário preferiu o
   formato que enche a tela (ficam no código só como protótipo antigo).
 - **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
-  "tentaculos" | "massa-olhos"`, em alta resolução sobre o pixel art. Teste: `projetos/prototipo-monstros`.
+  "tentaculos" | "massa-olhos" | "rastejante"`, em alta resolução sobre o pixel art. `rastejante` = humano de sombra
+  andando de quatro (membros longos, joelhos/cotovelos para cima, cabeça aos trancos; anda com `andar`/`correr`/`mover`,
+  `"passada"`). Teste: `projetos/prototipo-monstros` (cena 6; `npm run fotos -- prototipo-monstros`).
+- **Sombra que se alastra (protótipo)**: ação `{ "tipo": "sombra", "origem": [x, z], "raio": 20, "inicio", "duracao",
+  "recolher": s, "cor", "corBorda", "personagens": false }` — só no diorama de rua/praça: cobre o chão com borda
+  esfiapada, sobe paredes/prédios pela altura de cada pixel e sobe pelos objetos e pessoas de baixo para cima; som `sombra`.
+  Teste: `projetos/vitrine` (cena 24).
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
   `sala-de-estar` (fundos + móveis de `motor/assets/interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
   `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,

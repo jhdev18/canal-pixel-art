@@ -445,7 +445,79 @@ function massaOlhos(U, def) {
   };
 }
 
-const TIPOS = { 'sombra-alta': sombraAlta, tentaculos, 'massa-olhos': massaOlhos };
+// ---------------------------------------------------------------- RASTEJANTE (humano de sombra andando de quatro)
+// Corpo de gente, mas de quatro: braços e pernas compridos demais, cotovelos e joelhos dobrados para CIMA,
+// cabeça pendendo à frente que dá trancos de lado, olhos brilhando. Anda (andar/correr/mover) com passos nas
+// diagonais (mão direita + pé esquerdo); parado, respira e vira a cabeça aos trancos.
+function segmento(U, r0, r1, comp, fase) {
+  const geo = new THREE.CylinderGeometry(r1, r0, comp, 10, 6).translate(0, comp / 2, 0);
+  geo.setAttribute('aBalanco', new THREE.Float32BufferAttribute(new Float32Array(geo.attributes.position.count), 1));
+  return new THREE.Mesh(geo, materialSombra(U, { amp: 0.025, fase }));
+}
+const CIMA = new THREE.Vector3(0, 1, 0);
+function apontar(m, A, B) {   // segmento com a base em A apontando para B
+  m.position.copy(A);
+  m.quaternion.setFromUnitVectors(CIMA, B.clone().sub(A).normalize());
+}
+function rastejante(U, def) {
+  const g = new THREE.Group(), corpo = new THREE.Group();
+  g.add(corpo);
+  // tronco arqueado (corcunda) e pescoço comprido caindo para a frente
+  const tronco = new THREE.CatmullRomCurve3([[-0.85, 1.15, 0], [-0.3, 1.62, 0], [0.25, 1.55, 0], [0.62, 1.32, 0]].map(([x, y, z]) => new THREE.Vector3(x, y, z)));
+  corpo.add(new THREE.Mesh(tuboAfinado(tronco, (s) => 0.24 + 0.1 * Math.sin(Math.PI * s), { segs: 40, radial: 14 }), materialSombra(U, { amp: 0.05, fase: 0.4 })));
+  const pescoco = new THREE.CatmullRomCurve3([[0.55, 1.36, 0], [0.86, 1.3, 0], [1.08, 1.08, 0]].map(([x, y, z]) => new THREE.Vector3(x, y, z)));
+  corpo.add(new THREE.Mesh(tuboAfinado(pescoco, (s) => 0.13 - 0.04 * s, { segs: 16, radial: 10 }), materialSombra(U, { amp: 0.03, fase: 1.1 })));
+  const cabeca = new THREE.Group(); cabeca.position.set(1.12, 1.02, 0); corpo.add(cabeca);
+  const cg = new THREE.SphereGeometry(0.3, 24, 18); cg.scale(1.15, 1.0, 0.85);
+  cg.setAttribute('aBalanco', new THREE.Float32BufferAttribute(new Float32Array(cg.attributes.position.count), 1));
+  cabeca.add(new THREE.Mesh(cg, materialSombra(U, { amp: 0.04, fase: 2.2 })));
+  const olhos = [-1, 1].map((k) => { const o = olhoBrilhante(U, def.corOlhos || '#ff5a6a'); o.scale.setScalar(0.55); o.position.set(0.16, -0.02 + k * 0.0, 0.3 + k * 0.06); o.position.x += k * 0.11; cabeca.add(o); return o; });
+  // membros: [raiz, comprimentos, apoio no chão, fase do passo]
+  const MEMB = [
+    { raiz: [0.55, 1.3, 0.24], L: [0.85, 0.9], apoio: [1.25, 0, 0.36], fase: 0 },          // braço da frente
+    { raiz: [0.55, 1.3, -0.24], L: [0.85, 0.9], apoio: [1.25, 0, -0.36], fase: Math.PI },   // braço de trás
+    { raiz: [-0.8, 1.12, 0.22], L: [0.9, 0.95], apoio: [-1.45, 0, 0.34], fase: Math.PI },   // perna da frente
+    { raiz: [-0.8, 1.12, -0.22], L: [0.9, 0.95], apoio: [-1.45, 0, -0.34], fase: 0 },       // perna de trás
+  ].map((d, k) => ({ ...d, sup: segmento(U, 0.1, 0.075, d.L[0], k), inf: segmento(U, 0.075, 0.03, d.L[1], k + 0.5) }));
+  for (const m of MEMB) { corpo.add(m.sup); corpo.add(m.inf); }
+  // dedos/garras na ponta de cada mão
+  const garras = MEMB.slice(0, 2).map((m, k) => { const gr = new THREE.Group(); for (let d = 0; d < 3; d++) { const s = segmento(U, 0.025, 0.004, 0.34, d); s.rotation.z = -1.25 - d * 0.18; s.rotation.y = (d - 1) * 0.35; gr.add(s); } corpo.add(gr); return gr; });
+  g.add(fumaca(U, { n: 260, altura: 1.8, largura: 1.2, subida: 0.8, tam: 0.42, semente: 7 }));
+  g.add(poca(U, { rx: 1.9, ry: 0.6 }));
+  const R = new THREE.Vector3(), T = new THREE.Vector3(), J = new THREE.Vector3();
+  let fasePasso = 0;
+  return {
+    grupo: g, altura: 2.0,
+    atualizar(t, est) {
+      const movendo = !!est.movendo;
+      fasePasso = (est.xRoteiro ?? 0) * 2.6 * (def.passo ?? 1);    // passos presos à distância andada (sem patinar)
+      const resp = Math.sin(t * 1.6) * 0.03;
+      corpo.position.y = movendo ? Math.abs(Math.sin(fasePasso)) * 0.07 : resp;
+      // cabeça: balança andando; parada, dá trancos de lado de vez em quando
+      const tranco = Math.floor(t * 1.3) % 4 === 0 ? Math.sin(Math.floor(t * 7) * 2.3) * 0.5 : 0;
+      cabeca.rotation.z = movendo ? Math.sin(fasePasso * 2) * 0.12 : tranco * 0.6;
+      cabeca.rotation.y = movendo ? 0 : tranco;
+      for (const [k, m] of MEMB.entries()) {
+        R.set(...m.raiz); R.y += corpo.position.y;
+        const ph = fasePasso + m.fase, passo = 0.5 * (def.passada ?? 1);
+        T.set(m.apoio[0] + (movendo ? Math.sin(ph) * passo : 0), movendo ? Math.max(0, Math.cos(ph)) * 0.38 : 0, m.apoio[2]);
+        // IK de 2 ossos: articulação dobrada para CIMA (joelho/cotovelo alto, jeito de aranha)
+        const D = T.clone().sub(R), d = Math.min(D.length(), m.L[0] + m.L[1] - 0.02), dir = D.normalize();
+        const a = (m.L[0] ** 2 - m.L[1] ** 2 + d * d) / (2 * d), h = Math.sqrt(Math.max(0, m.L[0] ** 2 - a * a));
+        const perp = CIMA.clone().sub(dir.clone().multiplyScalar(CIMA.dot(dir))).normalize();
+        if (k >= 2) perp.add(new THREE.Vector3(-0.35, 0, 0)).normalize();          // joelhos para trás
+        J.copy(R).addScaledVector(dir, a).addScaledVector(perp, h);
+        const fim = R.clone().addScaledVector(dir, d);
+        apontar(m.sup, R, J); apontar(m.inf, J, fim);
+        if (k < 2) { garras[k].position.copy(fim); }
+      }
+      const ab = piscada(t, 0.3, 3.2) * est.olhosAbertos;
+      for (const o of olhos) o.material.uniforms.uAbertura.value = ab;
+    },
+  };
+}
+
+const TIPOS = { 'sombra-alta': sombraAlta, tentaculos, 'massa-olhos': massaOlhos, rastejante };
 export const NOMES_MONSTROS = Object.keys(TIPOS);
 
 // Cria um monstro para um elemento do roteiro: { "id": "vulto", "monstro": "sombra-alta", "x": 2 }

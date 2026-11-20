@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (172)
+## Sprites (174)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -243,6 +243,8 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `casa-quarto-noite` | 🧪 protótipo | parado | 212×174 |
 | `casa-banheiro` | 🧪 protótipo | parado | 212×174 |
 | `casa-banheiro-noite` | 🧪 protótipo | parado | 212×174 |
+| `casa-corte` | 🧪 protótipo | parado | 452×472 |
+| `casa-corte-noite` | 🧪 protótipo | parado | 452×472 |
 | `mae` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
 | `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
 | `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
@@ -367,10 +369,10 @@ Uso: `{ "cenario": "nome" }`
 
 ## Ações
 
-`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `sentar`, `levantar`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `contador`, `placar`, `continua` (detalhes no README).
+`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `sentar`, `levantar`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `miau`, `trovao`, `suspense`, `fantasma`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`
