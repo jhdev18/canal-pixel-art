@@ -542,7 +542,6 @@
   {
    "narracaoTexto": "Pela janela, ela viu os guardiões da rua inteira acordados. Olhando para a casa dela.",
    "cenario": "rua-comercial-noite",
-   "paleta": "fria",
    "camera": {
     "x": 3,
     "z": 2.2,
@@ -654,7 +653,6 @@
   {
    "narracaoTexto": "A Bia congelou. E, pela primeira vez, olhou para onde o guardião sempre olhava.",
    "cenario": "quarto-menina-noite-diorama",
-   "paleta": "fria",
    "camera": {
     "x": 0,
     "y": 3
@@ -710,7 +708,6 @@
   {
    "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
    "cenario": "quarto-menina-noite-diorama",
-   "paleta": "fria",
    "camera": {
     "x": -1.2,
     "y": 3.6
@@ -813,7 +810,6 @@
   {
    "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
    "cenario": "quarto-menina-noite-diorama",
-   "paleta": "noir",
    "camera": {
     "x": -1.2,
     "y": 3.6

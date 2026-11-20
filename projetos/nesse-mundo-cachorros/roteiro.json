@@ -2364,7 +2364,6 @@
   {
    "narracaoTexto": "Eles falam o que eles mesmos pensam. E os donos, com vergonha, sempre concordaram.",
    "cenario": "rua-comercial",
-   "paleta": "sepia",
    "camera": {
     "x": 4.6,
     "z": 2.2,

@@ -3061,7 +3061,6 @@
   {
    "narracaoTexto": "Ela nunca teve sorte nenhuma. Ela só espirrava sempre duas vezes.",
    "cenario": "rua-comercial",
-   "paleta": "sepia",
    "camera": {
     "x": 0,
     "z": 0,
@@ -3127,7 +3126,6 @@
   {
    "narracaoTexto": "E o seu Tonho não ciscava por mania. Trinta anos atrás, ele espirrou uma vez só.",
    "cenario": "rua-comercial",
-   "paleta": "sepia",
    "camera": {
     "x": 0.6,
     "z": 2.2,

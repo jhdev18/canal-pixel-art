@@ -639,7 +639,6 @@
   {
    "narracaoTexto": "Ela congelou. O número não contava amigos. Contava quantas vezes disseram seu nome.",
    "cenario": "quarto-menina-noite-diorama",
-   "paleta": "fria",
    "camera": {
     "x": 0,
     "y": 3
@@ -689,7 +688,6 @@
   {
    "narracaoTexto": "E o dela, ninguém nunca tinha dito.",
    "cenario": "quarto-menina-noite-diorama",
-   "paleta": "fria",
    "camera": {
     "x": 0,
     "y": 3,
@@ -731,7 +729,6 @@
   {
    "narracaoTexto": "Até que, do lado de fora da janela, a voz sussurrou: Nina.",
    "cenario": "quarto-menina-noite-diorama",
-   "paleta": "noir",
    "camera": {
     "x": 0,
     "y": 3,

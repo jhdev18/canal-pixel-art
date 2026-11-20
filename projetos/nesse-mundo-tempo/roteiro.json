@@ -797,7 +797,6 @@
     "z": -8.5
    },
    "clima": "calor",
-   "paleta": "quente",
    "elementos": [
     {
      "id": "aluno",
@@ -898,7 +897,6 @@
     "z": -8.5
    },
    "clima": "calor",
-   "paleta": "quente",
    "elementos": [
     {
      "id": "tonho",
@@ -1031,7 +1029,6 @@
    "narracaoTexto": "Então o seu Tonho caiu sentado, tonto de calor, no meio da praça.",
    "cenario": "praca-seca",
    "clima": "calor",
-   "paleta": "quente",
    "camera": {
     "x": -1,
     "z": -8.5
@@ -1091,7 +1088,6 @@
     "z": -8.5
    },
    "clima": "calor",
-   "paleta": "quente",
    "elementos": [
     {
      "id": "bia",
@@ -1172,7 +1168,6 @@
     "x": -4.5,
     "z": -8.5
    },
-   "paleta": "quente",
    "elementos": [
     {
      "id": "bia",
@@ -1381,7 +1376,6 @@
   {
    "narracaoTexto": "E o policial Ronaldo não escondia mau humor. Toda noite, ele regava o canteiro chorando escondido.",
    "cenario": "rua-comercial-noite",
-   "paleta": "sepia",
    "camera": {
     "x": 8.6,
     "z": 2.4,
