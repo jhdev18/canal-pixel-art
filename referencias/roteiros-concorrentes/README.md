@@ -1,8 +1,8 @@
 # Roteiros de concorrentes (só referência)
 
-> **NÃO USAR** ao criar roteiros, a menos que o usuário peça explicitamente
-> (ex.: "use os roteiros de referência"). As regras já extraídas estão no `CLAUDE.md`
-> (estilo "Nesse Mundo"). Nunca copiar premissas, falas ou personagens daqui.
+> **Ler ao criar vídeos "Nesse Mundo"** (ritmo, estrutura, tipo de virada) — ver regra 11 e a seção
+> "Estilo Nesse Mundo" do `CLAUDE.md`. Fora desse estilo, não usar. **Nunca copiar** premissas, falas,
+> personagens ou viradas daqui. Mais transcrições: `referencias/roteiros-nesse-mundo.md`.
 
 Transcrição automática (Whisper) só do áudio dos Shorts; pode ter erros de palavra (marcados com [?]).
 

@@ -30,8 +30,10 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 10. **Sem pausa entre cenas** (retenção): ao escrever roteiros novos, todas as ações e balões de cada cena
     terminam antes (ou junto) do fim da fala do narrador — nada de tempo parado sem narração. Conferir pelas
     durações calculadas (fala estimada ≈ 0,065 s por letra) antes de entregar.
-11. **Roteiros de concorrentes** (`referencias/roteiros-concorrentes/`): só referência. **Não ler nem usar**
-    ao criar roteiros, a menos que o usuário peça explicitamente; nunca copiar premissas, falas ou personagens.
+11. **Referências do estilo "Nesse Mundo"** (`referencias/roteiros-nesse-mundo.md` e `referencias/roteiros-concorrentes/`):
+    ao criar um vídeo **Nesse Mundo**, **ler as referências** para pegar ritmo, estrutura e tipo de virada (ver a seção
+    "Estilo Nesse Mundo"). Fora desse estilo, não usar. **Nunca copiar** premissas, falas, personagens ou viradas delas
+    (nem trocar só os nomes); conferir também que a premissa nova não repete um vídeo nosso já feito.
 12. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
     roteiros, cenas, testes ou sugestões de vídeo; o padrão continua o diorama (regra 2).
 
@@ -56,9 +58,27 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
 
 ## Estilo "Nesse Mundo" (vídeos de regra absurda)
-Usar quando o usuário pedir um vídeo "no estilo Nesse Mundo". Tem dois formatos: **curto** e **longo**
-(se o usuário não disser qual, perguntar). Baseado em Shorts de referência (ver regra 11); as premissas devem ser
-**nossas**, nunca as das referências.
+**O que é:** vídeos narrados (Shorts e longos) que começam com **uma regra absurda do mundo** — "Nesse mundo / Nessa
+cidade, ..." — e mostram o que acontece por causa dela até uma **virada** que revela a verdade da regra. É o formato
+principal do canal. Os personagens e lugares são os da biblioteca (Vila Serena, Bia, seu Tonho, prefeito...), mas
+cada vídeo é **independente** (não depende do episódio 1 nem de outro vídeo).
+Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** (Shorts, 30–45 s) ou **longo** (1:30–2:30).
+
+**Como criar (passo a passo):**
+1. Ler as referências (regra 11) e os vídeos nossos já feitos (`projetos/nesse-mundo-*`, texto em
+   `narracao/TEXTO-COMPLETO.txt`) — anotar as premissas usadas para **não repetir**.
+2. Ler `biblioteca/CATALOGO.md` (seção "Biblioteca de assets") e escolher uma regra que **dê pra mostrar** com o que já existe.
+3. Escrever a narração frase a frase seguindo a linha do tempo do formato (abaixo). Uma frase = uma cena.
+4. Se uma ideia boa pedir um asset que **não existe**, **falar com o usuário antes de criar** (o que é, onde seria reusado);
+   enquanto isso, escrever a cena com o que existe (substituto) e marcar no `ROTEIRO.md`.
+5. Montar `projetos/nesse-mundo-<tema>/`: `roteiro.json` (diorama, `vertical` em toda cena com personagem,
+   `"volumeBaloes": 0.4`), `ROTEIRO.md` (resumo por cena + assets usados), `PUBLICACAO.md` (título, descrição, tags),
+   e rodar `npm run narracao -- <projeto>`.
+6. Conferir por texto: JSON válido, duração estimada total, e regra 10 (ações terminam junto com a fala).
+
+**Premissas já usadas (não repetir):** mentira acende estrela no céu (`nesse-mundo-estrelas`); toda noite alguém some /
+caderno que escolhe (`nesse-mundo-caderno`); cada um carrega o próprio tempo na cabeça (`nesse-mundo-tempo`); cada rua tem
+um monstro (`rua-monstros`, substituído). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -127,6 +147,31 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - **Conectores do narrador:** "Funciona assim", "Por isso", "Até que", "Bem na hora", "Primeiro... depois...",
   "Foi aí que... entendeu tudo", "Só faltava um".
 - **Tom:** cômico com um momento de aperto (parte 5); termina leve, sem moral explícita.
+
+## Biblioteca de assets (o que é e como usar)
+**O que é:** tudo o que se repete entre vídeos — personagens, cenários, sprites, objetos e sons — fica num lugar só e
+serve para **qualquer projeto** pelo nome. Antes de escrever um roteiro, **consultar `biblioteca/CATALOGO.md`** (lista
+gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de sprite/cenário.
+
+| Onde | O quê |
+|---|---|
+| `motor/assets/*.js` (índice `motor/assets/index.js`) | código dos sprites (desenhados em Three.js/pixel), um arquivo por grupo, cada um com `status` |
+| `biblioteca/personagens.json`, `biblioteca/cenarios.json` | personagens e cenários **aprovados** (✅) |
+| `prototipos/personagens.json`, `prototipos/cenarios.json` | **protótipos** (🧪) — já funcionam em todo projeto |
+| `biblioteca/sprites/`, `biblioteca/sfx/` | PNGs e sons do usuário (som com o mesmo nome substitui o gerado) |
+| `projetos/<p>/cenarios.json` / `personagens.json` | só o que é exclusivo daquele vídeo (evitar; preferir a biblioteca) |
+
+**Regras de uso:**
+- Preferir assets **aprovados**. Protótipo pode entrar num roteiro, mas avisar o usuário quais foram usados.
+- Uso no roteiro: personagem `{ "id": "bia", "personagem": "menina-capa" }`; objeto `{ "sprite": "fonte-iso", "pose": "seca" }`
+  (estado inicial) e ação `trocar` para mudar de estado; cenário `{ "cenario": "praca-decorada" }` (+ `"remover"`/mesmo `id` para ajustar).
+- **Asset novo:** primeiro propor ao usuário (o que é, para quais cenas e vídeos futuros serve); só criar depois do "pode".
+  Criado → protótipo (regra 3) e mostrar na `projetos/vitrine`; aprovado ("pode salvar") → mover para `biblioteca/`,
+  tirar o `status: 'protótipo'` e rodar `npm run catalogo`.
+- Nada de assets copiados de jogos/filmes (regra 6); estilo próprio inspirado em Undertale/Deltarune.
+- Referências rápidas: diorama de rua (`rua-comercial`, prédios em x ≈ padaria 0.6, escola 4.6, delegacia 10.4, mercado
+  16.2; calçada dos prédios z ~5.6); praça (`praca`, `praca-decorada`: câmera `z` -8.5, pessoas na frente em z ~-8.6,
+  palanque x 3.5 z -7.4 — em cima `"y": 0.75`); cômodos `*-diorama` (z 0 = frente, ~3.8 = parede do fundo).
 
 ## Dinâmica de trabalho (ajustes visuais)
 1. O usuário renderiza no PC dele e diz o que ajustar, em texto, indicando **cena e momento**
@@ -256,5 +301,7 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
-- **Branch de trabalho:** `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,
+- **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,
+  `ccr-77868c41-s69pnw`, `claude/modest-hamilton-4p4851`, `jolly-archimedes`, `upbeat-mccarthy` e os anteriores).
+  Antes: `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,
   `cool-noether`, `charming-mendel` e `epic-bardeen`, + diorama como padrão + guardiões/números) e `ccr-77868c41-s69pnw` (casa, mãe, menino-topete, monstros 3D).
