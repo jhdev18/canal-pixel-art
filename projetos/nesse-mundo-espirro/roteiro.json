@@ -623,13 +623,10 @@
     {
      "id": "pimenta",
      "sprite": "saquinho-pimenta",
-     "x": 0,
-     "z": 0,
-     "sobre": {
-      "id": "bia",
-      "dx": 0.7,
-      "dy": 0.9
-     },
+     "x": 2.45,
+     "z": 0.55,
+     "y": 0.78,
+     "pose": "fechado",
      "oculto": true
     },
     {
@@ -658,8 +655,18 @@
     {
      "tipo": "aparecer",
      "alvo": "pimenta",
-     "som": null,
-     "inicio": 1.29
+     "inicio": 1.04
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "pimenta",
+     "estado": "aberto",
+     "inicio": 2.52
+    },
+    {
+     "tipo": "som",
+     "som": "papel",
+     "inicio": 2.52
     },
     {
      "tipo": "magia",
