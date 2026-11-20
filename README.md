@@ -305,6 +305,7 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `sentar` | `alvo`, `lado` (true = de lado) ou `pose` (`sentado`, `sentado-lado`, `sentado-costas`) | personagem fica sentado (de frente ou de lado) | — |
 | `espirrar` | `alvo`, `inspira` (fração da duração inspirando, padrão 0.6); duração padrão 1 s | **protótipo**: "ah... ah..." (pose `espirro-antes`) e "ATCHIM!" com gotinhas (pose `espirro`) — moradores e `menina-capa` | `espirro-inspira` + `espirro` |
 | `fogos` | `posicao` [x, y, z], `cor` (`dourado`, `rosa`, `azul`, `verde`), `subida` (s, padrão 0.5; 0 = só o estouro) | **protótipo**: rastro subindo e estouro colorido | `fogos-sobe` + `fogos` |
+| `expressao` | `alvo`, `rosto` (`feliz`, `rindo`, `triste`, `bravo`, `surpreso`, `assustado`, `envergonhado`, `pensativo`), `duracao` | **protótipo**: muda o rosto por um tempo (moradores e Bia). Fixa na cena: `"pose": "rosto-feliz"`. O `emocao` já muda o rosto sozinho (`!` surpreso, `?` pensativo, `coracao` feliz, `gota` triste, `raiva` bravo, `...` envergonhado; `"rosto": false` desliga) | — |
 | `levantar` | `alvo` | volta a ficar em pé | — |
 | `trocar` | `alvo`, `estado` | muda o estado de um objeto (ex.: `tempo-pessoal` de `sol` para `chuva`; estrela vira `olho`) | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |

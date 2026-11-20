@@ -40,7 +40,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
 - **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
-- **Nada parado, mas com sentido:** a vida da cena vem de preferência dos **personagens** (expressões no rosto,
+- **Nada parado, mas com sentido:** a vida da cena vem de preferência dos **personagens** (expressões no rosto — ação
+  `expressao` / `"pose": "rosto-<x>"`; o `emocao` já muda o rosto junto —,
   ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
   pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
@@ -389,6 +390,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   Regras que vieram dos ajustes do usuário: praça → tirar `arvore3`/`arvore4` (árvores da frente) quando houver gente na frente
   (o `nm.mjs` do Claude já faz isso por padrão); sentar → `banco-frente`; continuidade → numa cena longa no mesmo lugar (festa),
   o mesmo público fica nas mesmas posições em todas as cenas; quem segue algo anda até o fim da fala.
+- **Expressões faciais (PROTÓTIPO)** (`motor/expressoes.js`): moradores, Bia e todos do gerador de pessoas têm `rosto-feliz`,
+  `rosto-rindo`, `rosto-triste`, `rosto-bravo`, `rosto-surpreso`, `rosto-assustado`, `rosto-envergonhado`, `rosto-pensativo`
+  (2 quadros, com respiração). Ação `expressao` (`rosto`, `duracao`), pose fixa `"pose": "rosto-x"`, e automático com o ícone de
+  `emocao` (`"rosto": false` desliga). Cachorros e sprites RPG não têm. Teste: `projetos/vitrine` (cena 33).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de

@@ -123,7 +123,10 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 
 ## 4. Efeitos que dão vida (ações e climas)
 
-- **Emoção no rosto:** `emocao` com `!`, `?`, `coracao`, `...` e `zzz` (✅); `lampada`, `gota`, `raiva` e `nota` (🧪). Balão: `falar`. Pensamento: `pensar` 🧪.
+- **Expressão no rosto** 🧪 (moradores e Bia): ação `expressao` (`rosto`: feliz, rindo, triste, bravo, surpreso, assustado,
+  envergonhado, pensativo) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o rosto junto (`!` surpreso, `?` pensativo,
+  coração feliz, gota triste, raiva bravo, `...` envergonhado).
+- **Ícone de emoção:** `emocao` com `!`, `?`, `coracao`, `...` e `zzz` (✅); `lampada`, `gota`, `raiva` e `nota` (🧪). Balão: `falar`. Pensamento: `pensar` 🧪.
 - **Corpo:** `andar`, `correr`, `pular`, `virar`, `sentar`/`levantar`, `espirrar` 🧪 ("ah... ah..." + ATCHIM com gotinhas).
 - **Aparecer e sumir:** `aparecer`/`sumir` (com fumaça), `desaparecer` 🧪 (some devagar, ótimo no terror), `coletar`.
 - **Trocar estado de objeto:** `trocar` (`"estado"`); estado inicial com `"pose"`. Preso em alguém: `"sobre"`.

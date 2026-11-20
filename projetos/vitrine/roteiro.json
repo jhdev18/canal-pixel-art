@@ -409,6 +409,27 @@
         { "tipo": "trocar", "alvo": "coroa", "estado": "costas", "inicio": 3.0 },
         { "tipo": "sentar", "alvo": "coroa", "inicio": 3.8 },
         { "tipo": "emocao", "alvo": "bia", "icone": "...", "inicio": 4.2 }
+      ] },
+
+    // 33. PROTÓTIPO: expressões faciais (rosto-feliz, rindo, triste, bravo, surpreso, assustado, envergonhado, pensativo)
+    { "cenario": "praca", "duracao": 8, "transicao": "dither", "foto": [0.5, 2.5, 4.5, 6.5], "camera": { "x": 0, "z": -9.6, "zoom": 2 },
+      "legenda": "33. Expressões: fixas na fileira, e a Bia trocando.", "remover": ["arvore3", "arvore4"],
+      "elementos": [
+        { "id": "p1", "personagem": "aluno", "x": -4.2, "z": -8.4, "pose": "rosto-feliz" },
+        { "id": "p2", "personagem": "aluna", "x": -2.8, "z": -8.4, "pose": "rosto-triste" },
+        { "id": "p3", "personagem": "padeiro", "x": -1.4, "z": -8.4, "pose": "rosto-bravo" },
+        { "id": "p4", "personagem": "professora", "x": 1.4, "z": -8.4, "pose": "rosto-surpreso" },
+        { "id": "p5", "personagem": "prefeito", "x": 2.8, "z": -8.4, "pose": "rosto-assustado" },
+        { "id": "p6", "personagem": "nina", "x": 4.2, "z": -8.4, "pose": "rosto-envergonhado" },
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": -8.9 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.3, "duracao": 1.2 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "rindo", "inicio": 1.6, "duracao": 1.2 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 3.0 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "?", "inicio": 4.4 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 5.8, "duracao": 1.0 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "triste", "inicio": 6.9, "duracao": 1.0 }
       ] }
   ]
 }

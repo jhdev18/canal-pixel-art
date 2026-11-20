@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
   pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
@@ -167,7 +167,8 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   let anim = 'parado', alpha = 1, offY = 0, escala = 1, vermelho = 0;
   // pose de quando está parado: "pose": "sentado" (de frente) ou "sentado-lado"; muda com as ações sentar/levantar
   let pose = el.pose || null;
-  let espirro = null;
+  let espirro = null, rosto = null;
+  const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'triste', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
   let animInicio = 0;   // quando começou o estado atual (para animações que tocam uma vez só)
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
@@ -192,6 +193,8 @@ export function estadoElemento(cena, el, t, _prof = 0) {
         break;
       }
       case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
+      case 'expressao': if (p < 1) rosto = a.rosto || a.estado || null; break;   // PROTÓTIPO: rosto por um tempo
+      case 'emocao': if (p < 1 && a.rosto !== false && !rosto) rosto = (typeof a.rosto === 'string' && a.rosto) || ROSTO_DA_EMOCAO[a.icone] || null; break;
       case 'espirrar': if (p < 1) espirro = p < (a.inspira ?? 0.6) ? 'espirro-antes' : 'espirro'; break;   // PROTÓTIPO
       case 'levantar': pose = null; break;
       // "trocar": muda o estado do objeto (ex.: tempo-pessoal de "sol" para "chuva"; estrela vira "olho")
@@ -221,6 +224,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   }
   if (pose && anim === 'parado') anim = pose;
   if (espirro && anim === 'parado' && !pose) anim = espirro;
+  else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
   if (dono && !dono.visivel) visivel = false;
   return { x, y: y + offY, yBase: y, z, virado, visivel, anim, animInicio, alpha, escala, vermelho, alturaPulo: offY };
 }

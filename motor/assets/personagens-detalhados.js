@@ -4,6 +4,7 @@ import { Boneco, passada } from '../boneco.js';
 import { registrarSprites } from '../sprites.js';
 import { adicionarSentado, adicionarCostas } from '../sentado.js';
 import { adicionarEspirro, gotinhas } from '../espirro.js';
+import { aplicarRosto, adicionarExpressoes } from '../expressoes.js';
 
 const W = 28, H = 44;
 
@@ -128,10 +129,13 @@ function meninaV2() {
 }
 // sentada: a capa cobre o colo
 // de costas: o capuz cobre a cabeça e a capa cobre as costas
-const meninaComSentado = () => adicionarEspirro(adicionarCostas(adicionarSentado(meninaV2(), { q: 33, coxa: PAL_MENINA.capa[1] }), {
+const rostoMenina = (r) => ({ olhos: [[12, Math.round(11 - r)], [16, Math.round(11 - r)]], w: 1, h: 2, boca: [14, Math.round(14.6 - r)], sobr: null,
+  bochechas: [[10, Math.round(13 - r)], [18, Math.round(13 - r)]], pele: PAL_MENINA.pele[1], sombra: PAL_MENINA.pele[2], olho: '#2a1410' });
+const meninaComSentado = () => adicionarExpressoes(adicionarEspirro(adicionarCostas(adicionarSentado(meninaV2(), { q: 33, coxa: PAL_MENINA.capa[1] }), {
   cabeca: { cx: 14.2, cy: 11.4, rx: 6.8, ry: 6 }, de: [...PAL_MENINA.pele, ...PAL_MENINA.cabelo], para: [...PAL_MENINA.capa.slice(0, 4), ...PAL_MENINA.capa.slice(0, 4)], tudo: true,
   tronco: { x0: 9, x1: 18, y0: 17, y1: 32, tons: PAL_MENINA.capa },
-}, { q: 33, coxa: PAL_MENINA.capa[1] }), [meninaFrente({ espirro: 'antes' }), meninaFrente({ espirro: 'atchim' })]);
+}, { q: 33, coxa: PAL_MENINA.capa[1] }), [meninaFrente({ espirro: 'antes' }), meninaFrente({ espirro: 'atchim' })]),
+  (e) => [aplicarRosto(meninaFrente(), rostoMenina(0), e), aplicarRosto(meninaFrente({ resp: 1 }), rostoMenina(1), e)]);
 
 // ======================= ROBÔ SEMÁFORO (v2) =======================
 const PAL_ROBO = {

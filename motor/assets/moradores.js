@@ -5,6 +5,7 @@ import { registrarSprites } from '../sprites.js';
 import { hexParaRgb } from '../pixel.js';
 import { adicionarSentado, adicionarCostas } from '../sentado.js';
 import { adicionarEspirro, gotinhas } from '../espirro.js';
+import { aplicarRosto, adicionarExpressoes } from '../expressoes.js';
 
 const W = 28, H = 44;
 
@@ -298,9 +299,19 @@ function opCostas(p) {
     mochila: p.mochila ? tons(p.cores.mochila) : null,
   };
 }
+// layout do rosto (para as expressões de motor/expressoes.js); r = respiração (0 ou 1)
+function rostoDe(p, r) {
+  const yC = p.corpo === 'crianca' ? 2 : 0, o = (y) => Math.round(y - r + yC), pele = tons(p.cores.pele);
+  const temSobr = p.sobrancelhaBrava || !p.chapeu || p.chapeu === 'bone' || p.chapeu === 'coroa';
+  return { olhos: [[11, o(9)], [16, o(9)]], w: 2, h: 2, boca: [14, o(p.bigode ? 14 : 13.4)], sobr: temSobr ? o(7.6) : null,
+    sobrCor: tons(p.cores.cabelo)[3], bochechas: [[9, o(12)], [19, o(12)]], pele: pele[1], sombra: pele[2], olho: '#2a1810',
+    oculos: !!p.oculos, semOlhos: !!p.oculosEscuros };
+}
 export const pessoaComSentado = (p) => {
   const q = p.corpo === 'crianca' ? 32 : 30;
-  return adicionarEspirro(adicionarCostas(adicionarSentado(pessoa(p), { q }), opCostas(p), { q }), [frente(p, { espirro: 'antes' }), frente(p, { espirro: 'atchim' })]);
+  const s = adicionarEspirro(adicionarCostas(adicionarSentado(pessoa(p), { q }), opCostas(p), { q }), [frente(p, { espirro: 'antes' }), frente(p, { espirro: 'atchim' })]);
+  if (p.cao) return s;   // cachorro: sem expressões de rosto humano
+  return adicionarExpressoes(s, (e) => [aplicarRosto(frente(p), rostoDe(p, 0), e), aplicarRosto(frente(p, { resp: 1 }), rostoDe(p, 1), e)]);
 };
 
 export const MORADORES = {
