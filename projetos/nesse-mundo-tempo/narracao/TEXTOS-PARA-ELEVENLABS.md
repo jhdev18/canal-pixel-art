@@ -1,7 +1,7 @@
 # Narração — Nessa cidade, cada um carrega o próprio tempo (narrado por Narrador)
 
 Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como
-**`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac). Sugestão: velocidade ~1,1 no ElevenLabs.
+**`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac).
 
 O texto vem com um parágrafo por cena. O gerador corta o áudio nas pausas naturais entre as frases (0,2 s ou mais)
 e escolhe as que combinam com cada cena; confira com `npm run narracao -- nesse-mundo-tempo --verificar`.
