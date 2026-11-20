@@ -130,7 +130,7 @@ function meninaV2() {
 // sentada: a capa cobre o colo
 // de costas: o capuz cobre a cabeça e a capa cobre as costas
 const rostoMenina = (r) => ({ olhos: [[11, Math.round(11 - r)], [16, Math.round(11 - r)]], w: 2, h: 2,   // nas expressões a Bia usa olho de 2 px (fica visível sob a franja)
-  boca: [14, Math.round(14.6 - r)], sobr: null,
+  boca: [14, Math.round(14.6 - r)], sobr: Math.round(10 - r), sobrCor: PAL_MENINA.cabelo[3], sobrPorCima: true,   // sobrancelha escura na beira da franja
   bochechas: [[10, Math.round(13 - r)], [18, Math.round(13 - r)]], pele: PAL_MENINA.pele[1], sombra: PAL_MENINA.pele[2], olho: '#2a1410' });
 const meninaComSentado = () => adicionarExpressoes(adicionarEspirro(adicionarCostas(adicionarSentado(meninaV2(), { q: 33, coxa: PAL_MENINA.capa[1] }), {
   cabeca: { cx: 14.2, cy: 11.4, rx: 6.8, ry: 6 }, de: [...PAL_MENINA.pele, ...PAL_MENINA.cabelo], para: [...PAL_MENINA.capa.slice(0, 4), ...PAL_MENINA.capa.slice(0, 4)], tudo: true,

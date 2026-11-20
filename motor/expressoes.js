@@ -12,7 +12,7 @@ const BRANCO = '#ffffff', BOCA = '#5a2020', BOCA2 = '#3a1414', LINGUA = '#c84a5a
 
 // L: { olhos: [[x, y], [x, y]] (canto de cima/esquerda), w (largura do olho: 2 ou 1), h (altura: 2),
 //      boca: [x, y] (centro, linha da boca), sobr: y | null (linha das sobrancelhas), sobrCor, bochechas: [[x, y], ...],
-//      pele, sombra, olho (cor), oculos (não pintar acima do olho), semOlhos (óculos escuros), semBoca (cachorro) }
+//      pele, sombra, olho (cor), oculos (não pintar acima do olho), sobrPorCima (sobrancelha pintada por cima da franja, sem apagar), semOlhos (óculos escuros), semBoca (cachorro) }
 export function aplicarRosto(pix, L, expr) {
   const q = new pix.constructor(pix.w, pix.h); q.d.set(pix.d);
   const set = (x, y, c) => q.set(Math.round(x), Math.round(y), c);
@@ -20,12 +20,17 @@ export function aplicarRosto(pix, L, expr) {
   // limpa olhos e boca
   if (!L.semOlhos) for (const [ex, ey] of L.olhos) for (let y = ey; y < ey + h; y++) for (let x = ex - (w === 1 ? 1 : 0); x < ex + w + (w === 1 ? 1 : 0); x++) set(x, y, L.pele);
   if (!L.semBoca) for (let x = mx - 2; x <= mx + 2; x++) for (const y of [my, my + 1]) set(x, y, L.pele);
+  // expressões que redesenham a sobrancelha: apaga a original ANTES de pintar os olhos (senão apagava o topo do olho)
+  if (L.sobr != null && !L.sobrPorCima && ['triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'pensativo'].includes(expr)) {
+    const top = Math.min(...L.olhos.map(([, ey]) => ey));
+    for (const [ax] of L.olhos) for (let k = -1; k < 3; k++) for (const dy of [-1, 0, 1]) { const yy = L.sobr + dy, xx = ax + k; if (yy < top && q.d[(yy * q.w + xx) * 4 + 3]) set(xx, yy, L.pele); }
+  }
   const olho = L.olho;
   const olhos = {
     normal: (ex, ey) => { for (let x = ex; x < ex + w; x++) { set(x, ey, olho); set(x, ey + 1, olho); } if (w === 2) set(ex + 1, ey, BRANCO); },
     arco: (ex, ey) => { if (w === 2) { set(ex - 1, ey + 1, olho); set(ex, ey, olho); set(ex + 1, ey, olho); set(ex + 2, ey + 1, olho); } else { set(ex - 1, ey + 1, olho); set(ex, ey, olho); set(ex + 1, ey + 1, olho); } },
     bravo: (ex, ey, lado) => { for (let x = ex; x < ex + w; x++) { set(x, ey + 1, olho); set(x, ey, L.sombra); } set(lado < 0 ? ex + w - 1 : ex, ey, olho); },
-    arregalado: (ex, ey) => { for (let x = ex; x < ex + w; x++) for (let y = ey - (L.oculos ? 0 : 1); y < ey + 2; y++) set(x, y, olho); set(ex, ey - (L.oculos ? 0 : 1), BRANCO); },
+    arregalado: (ex, ey) => { const t = (L.oculos || L.sobr != null) ? 0 : 1; for (let x = ex; x < ex + w; x++) for (let y = ey - t; y < ey + 2; y++) set(x, y, olho); set(ex, ey - t, BRANCO); },   // sem sobrancelha: olho cresce para cima
     susto: (ex, ey, lado) => { const t = L.oculos ? 0 : 1; for (let x = ex - (w === 1 ? 1 : 0); x < ex + w; x++) for (let y = ey - t; y < ey + 2; y++) set(x, y, BRANCO); const px = w === 2 ? (lado < 0 ? ex + 1 : ex) : ex; set(px, ey, olho); set(px, ey + 1, olho); },   // branco grande, pupila pequena no meio
     baixo: (ex, ey) => { for (let x = ex; x < ex + w; x++) { set(x, ey + 1, olho); set(x, ey, L.sombra); } },
     // triste: olho aberto, pálpebra caída por fora e brilho embaixo (olho molhado)
@@ -50,11 +55,9 @@ export function aplicarRosto(pix, L, expr) {
     if (L.sobr == null) return;
     const [[ax], [bx]] = L.olhos, y = L.sobr, c = L.sobrCor;
     const par = (x0, dir, ys) => ys.forEach((dy, k) => set(x0 + k * dir, y + dy, c));
-    // limpa as sobrancelhas originais
-    for (const x0 of [ax - 1, bx - 1]) for (let k = 0; k < 4; k++) for (const dy of [-1, 0, 1]) if (q.d[((y + dy) * q.w + x0 + k) * 4 + 3]) set(x0 + k, y + dy, L.pele);
     if (forma === 'triste') { par(ax - 1, 1, [1, 0, -1]); par(bx + w, -1, [1, 0, -1]); }
     else if (forma === 'bravo') { par(ax - 1, 1, [-1, 0, 1]); par(bx + w, -1, [-1, 0, 1]); }
-    else if (forma === 'alta') { par(ax - 1, 1, [-1, -1, -1]); par(bx + w, -1, [-1, -1, -1]); }
+    else if (forma === 'alta') { par(ax - 1, 1, [-1, -1, -1]); par(bx + w, -1, [-1, -1, -1]); }   // levantadas, com 1 px de pele até o olho
     else if (forma === 'uma') { par(ax - 1, 1, [0, 0, 0]); par(bx + w, -1, [-1, -2, -1]); }
   };
   const lados = [-1, 1];
