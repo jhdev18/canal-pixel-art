@@ -321,7 +321,7 @@ export function gerarRuaDiagonal(opc = {}) {
       });
     }
     if (E?.caixotes) {
-      for (let k = 0; k < 2; k++) {   // 2 caixotes no canto direito da fachada (x ≈ 13.2–15.3): o meio (x ~16.2) fica livre para as pessoas
+      for (let k = 1; k >= 0; k--) {   // (do mais longe para o mais perto: quem é desenhado depois fica na frente) 2 caixotes no canto direito da fachada (x ≈ 13.2–15.3): o meio (x ~16.2) fica livre para as pessoas
         const cj = P.j1 - 1.05 - k * 1.05, [fr, frE, frC] = [['#e83a3a', '#9a2028', '#ff9a8a'], ['#5ac84a', '#2e7a2e', '#b8f098']][k];   // fruta, sombra, brilho
         prisma(0.15, 0.75, cj, cj + 1.0, 0, 14, {
           frente: (x, y, u, t) => pintar(x, y, t === 7 || u % 8 === 0 ? '#6a4a1a' : '#a0702a', 0.75, cj, t, 1, 1),
