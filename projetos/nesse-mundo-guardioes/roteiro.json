@@ -66,6 +66,20 @@
      "alvo": "gp",
      "icone": "zzz",
      "inicio": 3.48
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.53,
+     "duracao": 4.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.53,
+     "duracao": 4.32
     }
    ],
    "vertical": {
@@ -178,6 +192,13 @@
      "alvo": "bia",
      "icone": "...",
      "inicio": 2.25
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 1.6,
+     "duracao": 1.95
     }
    ],
    "vertical": {
@@ -328,6 +349,27 @@
      "alvo": "bia",
      "icone": "...",
      "inicio": 4.23
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "assustado",
+     "inicio": 1.84,
+     "duracao": 3.6
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "assustado",
+     "inicio": 2.1,
+     "duracao": 3.33
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 3.38,
+     "duracao": 2.05
     }
    ],
    "vertical": {
@@ -480,6 +522,13 @@
      "intensidade": 0.2,
      "inicio": 2.99,
      "duracao": 1.57
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.54,
+     "duracao": 2.25
     }
    ],
    "vertical": {
@@ -571,6 +620,27 @@
      "tipo": "som",
      "som": "revelar",
      "inicio": 4.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "assustado",
+     "inicio": 2.51,
+     "duracao": 3.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "assustado",
+     "inicio": 2.51,
+     "duracao": 3.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "assustado",
+     "inicio": 2.51,
+     "duracao": 3.32
     }
    ],
    "vertical": {
@@ -620,6 +690,13 @@
      "alvo": "bia",
      "direcao": "esquerda",
      "inicio": 4.15
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 1.84,
+     "duracao": 3.6
     }
    ],
    "vertical": {
@@ -716,6 +793,13 @@
      "para": -2.2,
      "duracao": 0.05,
      "inicio": 2.69
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 0.47,
+     "duracao": 3.14
     }
    ],
    "vertical": {
@@ -790,6 +874,13 @@
      "tipo": "som",
      "som": "sombra-surge",
      "inicio": 3.71
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 0.52,
+     "duracao": 4.27
     }
    ],
    "vertical": {

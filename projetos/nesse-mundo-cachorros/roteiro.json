@@ -46,6 +46,13 @@
      "alvo": "caixa",
      "icone": "!",
      "inicio": 3.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "envergonhado",
+     "inicio": 2.17,
+     "duracao": 2.81
     }
    ],
    "vertical": {
@@ -94,6 +101,13 @@
      "alvo": "prof",
      "icone": "...",
      "inicio": 3.26
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "envergonhado",
+     "inicio": 2.38,
+     "duracao": 2.08
     }
    ],
    "vertical": {
@@ -145,6 +159,13 @@
      "alvo": "caixa",
      "icone": "!",
      "inicio": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "cand",
+     "rosto": "assustado",
+     "inicio": 1.78,
+     "duracao": 2.22
     }
    ],
    "vertical": {
@@ -215,6 +236,20 @@
      "alvo": "caixa",
      "icone": "!",
      "inicio": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "envergonhado",
+     "inicio": 1.78,
+     "duracao": 2.22
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 2.15,
+     "duracao": 1.86
     }
    ],
    "vertical": {
@@ -301,6 +336,13 @@
      "alvo": "policial",
      "texto": "* Não penso!",
      "inicio": 2.12
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "envergonhado",
+     "inicio": 1.76,
+     "duracao": 2.18
     }
    ],
    "vertical": {
@@ -357,6 +399,20 @@
      "alvo": "caio",
      "icone": "...",
      "inicio": 3.46
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "triste",
+     "inicio": 2.48,
+     "duracao": 2.18
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "rindo",
+     "inicio": 2.04,
+     "duracao": 2.62
     }
    ],
    "vertical": {
@@ -412,6 +468,20 @@
      "alvo": "prof",
      "icone": "?",
      "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.55,
+     "duracao": 4.76
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "pensativo",
+     "inicio": 1.8,
+     "duracao": 3.51
     }
    ],
    "vertical": {
@@ -531,6 +601,20 @@
      "alvo": "prof",
      "icone": "?",
      "inicio": 3.52
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "pensativo",
+     "inicio": 1.63,
+     "duracao": 3.09
     }
    ],
    "vertical": {
@@ -588,6 +672,13 @@
      "alvo": "c2",
      "icone": "?",
      "inicio": 3.39
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "rindo",
+     "inicio": 0.51,
+     "duracao": 4.08
     }
    ],
    "vertical": {
@@ -694,6 +785,13 @@
      "alvo": "caixa",
      "icone": "coracao",
      "inicio": 3.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.08
     }
    ],
    "vertical": {
@@ -801,6 +899,20 @@
      "alvo": "cpref",
      "texto": "* Quero ir pra casa dormir.",
      "inicio": 2.64
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "surpreso",
+     "inicio": 2.9,
+     "duracao": 2.6
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "cpref",
+     "rosto": "triste",
+     "inicio": 1.86,
+     "duracao": 3.64
     }
    ],
    "vertical": {
@@ -926,6 +1038,34 @@
      "intensidade": 0.3,
      "inicio": 1.29,
      "duracao": 0.49
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 0.42,
+     "duracao": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "surpreso",
+     "inicio": 0.42,
+     "duracao": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "surpreso",
+     "inicio": 0.42,
+     "duracao": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 0.42,
+     "duracao": 2.35
     }
    ],
    "vertical": {
@@ -1032,6 +1172,13 @@
      "alvo": "tonho",
      "icone": "!",
      "inicio": 4.04
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 2.77,
+     "duracao": 2.47
     }
    ],
    "vertical": {
@@ -1162,6 +1309,20 @@
      "alvo": "ctonho",
      "texto": "* Usa peruca!",
      "inicio": 4.71
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "assustado",
+     "inicio": 0.62,
+     "duracao": 5.99
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 0.62,
+     "duracao": 5.99
     }
    ],
    "vertical": {
@@ -1269,6 +1430,20 @@
      "alvo": "prof",
      "icone": "gota",
      "inicio": 4.53
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "chorando",
+     "inicio": 3.93,
+     "duracao": 2.41
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "cprof",
+     "rosto": "envergonhado",
+     "inicio": 3.93,
+     "duracao": 2.41
     }
    ],
    "vertical": {
@@ -1370,6 +1545,13 @@
      "alvo": "bolota",
      "texto": "* Hora do lanche.",
      "inicio": 2.48
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "envergonhado",
+     "inicio": 1.99,
+     "duracao": 2.54
     }
    ],
    "vertical": {
@@ -1482,6 +1664,13 @@
      "intensidade": 0.4,
      "inicio": 3.34,
      "duracao": 1.11
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "bravo",
+     "inicio": 0.58,
+     "duracao": 5.25
     }
    ],
    "vertical": {
@@ -1607,6 +1796,20 @@
      "alvo": "bolota",
      "icone": "...",
      "inicio": 2.42
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "triste",
+     "inicio": 1.29,
+     "duracao": 2.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "triste",
+     "inicio": 1.29,
+     "duracao": 2.32
     }
    ],
    "vertical": {
@@ -1732,6 +1935,13 @@
      "alvo": "caio",
      "icone": "...",
      "inicio": 3.39
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "triste",
+     "inicio": 2.44,
+     "duracao": 2.15
     }
    ],
    "vertical": {
@@ -1859,6 +2069,20 @@
      "alvo": "vira",
      "texto": "* Eu gosto desse menino.",
      "inicio": 3.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "surpreso",
+     "inicio": 3,
+     "duracao": 2.7
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vira",
+     "rosto": "feliz",
+     "inicio": 3,
+     "duracao": 2.7
     }
    ],
    "vertical": {
@@ -1974,6 +2198,13 @@
      "alvo": "caio",
      "texto": "Pizza...",
      "inicio": 2.28
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 2.28,
+     "duracao": 1.99
     }
    ],
    "vertical": {
@@ -2097,6 +2328,13 @@
      "tipo": "flash",
      "intensidade": 0.4,
      "inicio": 1.9
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 2.97,
+     "duracao": 2.66
     }
    ],
    "vertical": {
@@ -2143,6 +2381,13 @@
      "alvo": "prof",
      "texto": "* É... verdade.",
      "inicio": 3.68
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "envergonhado",
+     "inicio": 0.57,
+     "duracao": 5.06
     }
    ],
    "vertical": {
@@ -2189,6 +2434,13 @@
      "alvo": "policial",
      "icone": "!",
      "inicio": 3.91
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 2.22,
+     "duracao": 2.89
     }
    ],
    "vertical": {
@@ -2334,6 +2586,20 @@
      "alvo": "cprof",
      "icone": "!",
      "inicio": 3.85
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "bravo",
+     "inicio": 0.77,
+     "duracao": 4.28
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "surpreso",
+     "inicio": 2.67,
+     "duracao": 2.38
     }
    ],
    "vertical": {
@@ -2454,6 +2720,20 @@
      "alvo": "cpref",
      "icone": "zzz",
      "inicio": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.46,
+     "duracao": 3.09
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vira",
+     "rosto": "feliz",
+     "inicio": 0.46,
+     "duracao": 3.09
     }
    ],
    "vertical": {
@@ -2581,6 +2861,20 @@
      "alvo": "prof",
      "icone": "coracao",
      "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 1.8,
+     "duracao": 3.51
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "rindo",
+     "inicio": 3.3,
+     "duracao": 2.01
     }
    ],
    "vertical": {
@@ -2719,6 +3013,27 @@
      "alvo": "bolota",
      "icone": "...",
      "inicio": 3.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.27
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.27
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.27
     }
    ],
    "vertical": {
@@ -2771,6 +3086,13 @@
      "tipo": "coletar",
      "alvo": "sand",
      "inicio": 2.4
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.44,
+     "duracao": 2.66
     }
    ],
    "vertical": {
@@ -2824,6 +3146,13 @@
      "tipo": "som",
      "som": "sucesso",
      "inicio": 5.33
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "rindo",
+     "inicio": 3.1,
+     "duracao": 2.79
     }
    ],
    "vertical": {

@@ -33,6 +33,7 @@
   "cachorro-chique":   { "sprite": "cachorro-chique", "voz": 1.6 },
   "vira-lata":         { "sprite": "vira-lata", "voz": 1.2 },
   "padeiro-pregador":  { "sprite": "padeiro-pregador", "voz": 0.85 },
+  "cao-policial":      { "sprite": "cao-policial", "voz": 1.2 },
 
   // ---- família da casa em diorama (motor/assets/casa.js)
   "mae":           { "sprite": "mae", "voz": 1.1 },

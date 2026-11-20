@@ -218,6 +218,13 @@
      "alvo": "aluna",
      "icone": "zzz",
      "inicio": 4.25
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "bravo",
+     "inicio": 2.41,
+     "duracao": 3.16
     }
    ],
    "vertical": {
@@ -314,6 +321,13 @@
      "alvo": "aluna",
      "icone": "...",
      "inicio": 4.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "assustado",
+     "inicio": 1.96,
+     "duracao": 3.87
     }
    ],
    "vertical": {
@@ -413,6 +427,13 @@
      "alvo": "pombo",
      "icone": "?",
      "inicio": 3.13
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 1.91,
+     "duracao": 2.42
     }
    ],
    "vertical": {
@@ -491,6 +512,13 @@
      "alvo": "bia",
      "texto": "* Atchim!",
      "inicio": 1.9
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "envergonhado",
+     "inicio": 1.93,
+     "duracao": 1.62
     }
    ],
    "vertical": {
@@ -750,6 +778,41 @@
      "alvo": "tonho",
      "icone": "coracao",
      "inicio": 3.26
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
     }
    ],
    "vertical": {
@@ -851,6 +914,13 @@
      "alvo": "cao",
      "icone": "zzz",
      "inicio": 2.42
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 1.29,
+     "duracao": 2.32
     }
    ],
    "vertical": {
@@ -971,6 +1041,20 @@
      "alvo": "caixa",
      "icone": "!",
      "inicio": 3.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.61,
+     "duracao": 2.31
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "assustado",
+     "inicio": 2.61,
+     "duracao": 2.31
     }
    ],
    "vertical": {
@@ -1184,6 +1268,20 @@
      "alvo": "aluno",
      "texto": "* Silêncio, turma!",
      "inicio": 2.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "surpreso",
+     "inicio": 2.25,
+     "duracao": 1.95
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "surpreso",
+     "inicio": 2.25,
+     "duracao": 1.95
     }
    ],
    "vertical": {
@@ -1604,6 +1702,20 @@
      "alvo": "bia",
      "icone": "!",
      "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "assustado",
+     "inicio": 1.8,
+     "duracao": 3.51
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "assustado",
+     "inicio": 1.8,
+     "duracao": 3.51
     }
    ],
    "vertical": {
@@ -1812,6 +1924,13 @@
      "alvo": "prefeito",
      "texto": "* Au! Au! Auuu!",
      "inicio": 3.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 2.3,
+     "duracao": 3.01
     }
    ],
    "vertical": {
@@ -1914,6 +2033,20 @@
      "alvo": "tonho",
      "icone": "!",
      "inicio": 4.63
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "bravo",
+     "inicio": 2.51,
+     "duracao": 3.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 1.96,
+     "duracao": 3.87
     }
    ],
    "vertical": {
@@ -2116,6 +2249,20 @@
      "alvo": "prefeito",
      "texto": "* Por que eu tô de terno?!",
      "inicio": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "surpreso",
+     "inicio": 2.12,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 2.12,
+     "duracao": 2.73
     }
    ],
    "vertical": {
@@ -2219,6 +2366,13 @@
      "alvo": "bia",
      "icone": "!",
      "inicio": 3.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.44,
+     "duracao": 2.15
     }
    ],
    "vertical": {
@@ -2433,6 +2587,13 @@
      "alvo": "tonho",
      "texto": "* Eu tô cheirando a pão!",
      "inicio": 0.76
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 1.73,
+     "duracao": 1.43
     }
    ],
    "vertical": {
@@ -2545,6 +2706,13 @@
      "intensidade": 0.3,
      "inicio": 2.22,
      "duracao": 2.41
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 1.74,
+     "duracao": 3.37
     }
    ],
    "vertical": {
@@ -2760,6 +2928,13 @@
      "alvo": "bia",
      "altura": 0.5,
      "inicio": 3.28
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 2.44,
+     "duracao": 1.44
     }
    ],
    "vertical": {
@@ -2866,6 +3041,13 @@
      "tipo": "flash",
      "intensidade": 0.4,
      "inicio": 1.57
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.41,
+     "duracao": 2.12
     }
    ],
    "vertical": {
@@ -2918,6 +3100,20 @@
      "alvo": "bia",
      "texto": "* Atchim! Atchim!",
      "inicio": 1.99
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "rindo",
+     "inicio": 2.41,
+     "duracao": 2.12
     }
    ],
    "vertical": {
@@ -3069,6 +3265,13 @@
      "alvo": "pombo",
      "icone": "?",
      "inicio": 4.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "triste",
+     "inicio": 2.38,
+     "duracao": 3.12
     }
    ],
    "vertical": {
@@ -3171,6 +3374,13 @@
      "alvo": "pombo",
      "texto": "* Até que enfim!",
      "inicio": 1.29
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.2,
+     "duracao": 2.09
     }
    ],
    "vertical": {
@@ -3294,6 +3504,13 @@
      "estado": "aberto",
      "som": "papel",
      "inicio": 2.76
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "bravo",
+     "inicio": 1,
+     "duracao": 2.81
     }
    ],
    "vertical": {
@@ -3421,6 +3638,13 @@
      "alvo": "caixa",
      "icone": "!",
      "inicio": 1.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "rindo",
+     "inicio": 1,
+     "duracao": 1.64
     }
    ],
    "vertical": {
@@ -3737,6 +3961,13 @@
      "alvo": "prof",
      "altura": 0.4,
      "inicio": 2.8
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 2.8,
+     "duracao": 2.51
     }
    ],
    "vertical": {
@@ -3941,6 +4172,13 @@
      "alvo": "cao",
      "icone": "?",
      "inicio": 2.99
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 1.86,
+     "duracao": 2.34
     }
    ],
    "vertical": {
@@ -4068,6 +4306,27 @@
      "alvo": "pombo",
      "icone": "...",
      "inicio": 3.46
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.14
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.14
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.14
     }
    ],
    "vertical": {
@@ -4170,6 +4429,13 @@
      "alvo": "pombo",
      "direcao": "esquerda",
      "inicio": 2.55
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "pensativo",
+     "inicio": 0.5,
+     "duracao": 3.89
     }
    ],
    "vertical": {
@@ -4291,6 +4557,20 @@
      "alvo": "bia",
      "icone": "...",
      "inicio": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 2.15,
+     "duracao": 1.86
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.49,
+     "duracao": 3.51
     }
    ],
    "vertical": {
@@ -4356,6 +4636,13 @@
      "tipo": "som",
      "som": "sucesso",
      "inicio": 3.95
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.08
     }
    ],
    "vertical": {

@@ -13,6 +13,7 @@ import { desenharTexto } from './fonte.js';
 import { distanciaCamera, FOV, PIXELS_POR_UNIDADE as PPU } from './compartilhado/util.js';
 import { cenaNoTempo, estadoCamera, estadoElemento, efeitosTela, elementoPorId, estadoSombra, raioNoAngulo } from './compartilhado/linhaDoTempo.js';
 import { ruido1, hashTexto } from './compartilhado/util.js';
+import { rostoEquivalente } from './expressoes.js';
 
 THREE.ColorManagement.enabled = false;
 
@@ -333,7 +334,7 @@ class Motor {
       // A caminhada nova (passada sincronizada) só vale nas vistas que pedem (avenida);
       // nas outras o sprite usa a caminhada clássica, se tiver.
       const conjunto = !vista.caminhadaSincronizada && e.sprite.animsClassicas?.[st.anim] ? e.sprite.animsClassicas : e.sprite.anims;
-      const anim = conjunto[st.anim] || e.sprite.anims.parado;
+      const anim = conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);

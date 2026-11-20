@@ -123,9 +123,10 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 
 ## 4. Efeitos que dão vida (ações e climas)
 
-- **Expressão no rosto** 🧪 (moradores e Bia): ação `expressao` (`rosto`: feliz, rindo, triste, bravo, surpreso, assustado,
-  envergonhado, pensativo) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o rosto junto (`!` surpreso, `?` pensativo,
-  coração feliz, gota triste, raiva bravo, `...` envergonhado).
+- **Expressão no rosto** 🧪 (moradores, Bia, cão policial e cachorros de estimação): ação `expressao` (`rosto`: feliz, rindo, triste,
+  chorando, bravo, surpreso, assustado, envergonhado, pensativo) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o
+  rosto junto (`!` surpreso, `?` pensativo, coração feliz, gota chorando, raiva bravo, `...` envergonhado). Guardiões e fantasmas usam o
+  estado mais parecido. Só vale parado e sem `pose`. Triste = olho molhado (sem lágrima); choro forte = `chorando`.
 - **Ícone de emoção:** `emocao` com `!`, `?`, `coracao`, `...` e `zzz` (✅); `lampada`, `gota`, `raiva` e `nota` (🧪). Balão: `falar`. Pensamento: `pensar` 🧪.
 - **Corpo:** `andar`, `correr`, `pular`, `virar`, `sentar`/`levantar`, `espirrar` 🧪 ("ah... ah..." + ATCHIM com gotinhas).
 - **Aparecer e sumir:** `aparecer`/`sumir` (com fumaça), `desaparecer` 🧪 (some devagar, ótimo no terror), `coletar`.

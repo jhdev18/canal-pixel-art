@@ -1,0 +1,582 @@
+// TESTE: fotos dos rostos (npm run fotos -- teste-rostos)
+{
+ "titulo": "Teste — rostos de perto",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "normal",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-feliz"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "feliz",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-triste"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "triste",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-chorando"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "chorando",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-bravo"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "bravo",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-surpreso"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "surpreso",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-assustado"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "assustado",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "prefeito",
+     "x": -2.375,
+     "z": -6.225,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p1",
+     "personagem": "cao-policial",
+     "x": -1.4249999999999998,
+     "z": -7.175,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p2",
+     "personagem": "cachorro-caramelo",
+     "x": -0.475,
+     "z": -8.125,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p3",
+     "personagem": "vovo",
+     "x": 0.475,
+     "z": -9.075,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p4",
+     "personagem": "menino-coroa",
+     "x": 1.4249999999999998,
+     "z": -10.024999999999999,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p5",
+     "personagem": "guardiao-azul",
+     "x": 2.375,
+     "z": -10.975,
+     "pose": "rosto-pensativo"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "pensativo",
+   "narracao": false
+  }
+ ]
+}

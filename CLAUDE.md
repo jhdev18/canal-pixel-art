@@ -390,10 +390,15 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   Regras que vieram dos ajustes do usuário: praça → tirar `arvore3`/`arvore4` (árvores da frente) quando houver gente na frente
   (o `nm.mjs` do Claude já faz isso por padrão); sentar → `banco-frente`; continuidade → numa cena longa no mesmo lugar (festa),
   o mesmo público fica nas mesmas posições em todas as cenas; quem segue algo anda até o fim da fala.
-- **Expressões faciais (PROTÓTIPO)** (`motor/expressoes.js`): moradores, Bia e todos do gerador de pessoas têm `rosto-feliz`,
-  `rosto-rindo`, `rosto-triste`, `rosto-bravo`, `rosto-surpreso`, `rosto-assustado`, `rosto-envergonhado`, `rosto-pensativo`
-  (2 quadros, com respiração). Ação `expressao` (`rosto`, `duracao`), pose fixa `"pose": "rosto-x"`, e automático com o ícone de
-  `emocao` (`"rosto": false` desliga). Cachorros e sprites RPG não têm. Teste: `projetos/vitrine` (cena 33).
+- **Expressões faciais (PROTÓTIPO, v2 conferida com fotos)** (`motor/expressoes.js`): `rosto-feliz`, `rosto-rindo`, `rosto-triste`
+  (olho aberto e molhado, sobrancelha caída), `rosto-chorando` (olho apertado + duas lágrimas escorrendo + boca aberta), `rosto-bravo`,
+  `rosto-surpreso`, `rosto-assustado`, `rosto-envergonhado`, `rosto-pensativo` (olhar de lado). Têm: todos os moradores e o gerador
+  de pessoas (inclui `cao-policial`, que muda só os olhos), a Bia e os cachorros de estimação (`cachorro-*`, `vira-lata`).
+  Guardiões, fantasmas e RPG usam o estado parecido que tiverem (feliz/tímido/alerta/tremendo...); sem nada parecido, ficam parados.
+  Ação `expressao` (`rosto`, `duracao`), pose fixa `"pose": "rosto-x"`, e automático com o ícone de `emocao` (`gota` → chorando;
+  `"rosto": false` desliga). Só aparece com o personagem parado e sem `pose` (andando/sentado não muda). **Usar em todo vídeo** nas
+  reações da narração (já aplicado nos 7 vídeos da leva 2/terror; nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])` do `nm.mjs`).
+  Teste: `projetos/teste-rostos` e `teste-rostos2` (`npm run fotos -- teste-rostos`), `projetos/vitrine` (cena 33).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de

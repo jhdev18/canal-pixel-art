@@ -186,6 +186,20 @@
      "tipo": "som",
      "som": "fantasma",
      "inicio": 4.77
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "assustado",
+     "inicio": 1.98,
+     "duracao": 3.91
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "assustado",
+     "inicio": 2.54,
+     "duracao": 3.35
     }
    ],
    "vertical": {
@@ -338,6 +352,13 @@
      "alvo": "fant",
      "estado": "timido",
      "inicio": 4.66
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 2.35,
+     "duracao": 3.08
     }
    ],
    "vertical": {
@@ -541,6 +562,13 @@
      "intensidade": 0.3,
      "inicio": 2.45,
      "duracao": 0.43
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.73,
+     "duracao": 1.43
     }
    ],
    "vertical": {
@@ -651,6 +679,13 @@
      "alvo": "bia",
      "altura": 0.4,
      "inicio": 1.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "rindo",
+     "inicio": 1.04,
+     "duracao": 1.73
     }
    ],
    "vertical": {
@@ -696,6 +731,13 @@
      "alvo": "fant",
      "icone": "coracao",
      "inicio": 1.89
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.46,
+     "duracao": 3.03
     }
    ],
    "vertical": {

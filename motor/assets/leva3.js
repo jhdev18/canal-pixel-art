@@ -3,6 +3,7 @@
 //   pão e saquinho de pimenta.
 import { Pix } from '../pixel.js';
 import { registrarSprites } from '../sprites.js';
+import { adicionarExpressoes } from '../expressoes.js';
 
 const K = '#0a0a12';
 
@@ -28,11 +29,26 @@ function cachorro(cores, { mancha = false, coleira = true } = {}) {
   if (mancha) for (const [x, y] of [[4, 13], [5, 13], [4, 14], [14, 4], [15, 4], [15, 5]]) corpo[y][x] = 'C';
   const linhas = corpo.map((l) => l.join(''));
   const q = (pernas, fechado = false) => Pix.deAscii([...linhas, ...pernas], fechado ? { ...pal, e: pal.c } : pal);
-  return {
+  // expressões (PROTÓTIPO): muda olhos/boca no desenho (metade esquerda + espelho). Olho em (6,5), língua em (9,9).
+  const palR = { ...pal, W: '#ffffff', t: '#9ad8ff', T: '#5aa8e8', r: '#f06a6a', m: '#3a1414' };
+  const rosto = (e) => {
+    const g = corpo.map((l) => [...l]);
+    const pt = (x, y, c) => { g[y][x] = c; g[y][19 - x] = c; };
+    const OLHO = { feliz: [[6, 5, 'c'], [5, 5, 'e'], [6, 4, 'e'], [7, 5, 'e']], rindo: [[6, 5, 'c'], [5, 5, 'e'], [6, 4, 'e'], [7, 5, 'e']],
+      triste: [[5, 4, 'e'], [6, 6, 't']], chorando: [[5, 5, 'e'], [6, 5, 'e'], [7, 4, 'e'], [6, 6, 't'], [6, 7, 'T'], [4, 4, 'e']],
+      bravo: [[7, 4, 'k'], [6, 4, 'k'], [5, 3, 'k']], surpreso: [[6, 4, 'e']], assustado: [[6, 4, 'W'], [5, 4, 'W'], [5, 5, 'W']],
+      envergonhado: [[6, 5, 'c'], [5, 6, 'e'], [6, 6, 'e'], [4, 7, 'r'], [5, 7, 'r']], pensativo: [[6, 5, 'W'], [6, 4, 'e'], [5, 3, 'k']] }[e] || [];
+    const BOCA = { feliz: [[9, 10, 'p']], rindo: [[8, 9, 'm'], [9, 10, 'p'], [8, 10, 'p']], triste: [[9, 9, 'w']], chorando: [[8, 9, 'm'], [9, 9, 'm']],
+      bravo: [[8, 9, 'W'], [9, 9, 'k'], [7, 9, 'W']], surpreso: [[9, 9, 'm'], [8, 9, 'm']], assustado: [[8, 9, 'm'], [9, 9, 'W']],
+      envergonhado: [[9, 9, 'w']], pensativo: [[9, 9, 'w']] }[e] || [];
+    [...OLHO, ...BOCA].forEach(([x, y, c]) => pt(x, y, c));
+    return Pix.deAscii([...g.map((l) => l.join('')), ...PERNAS_CAO.parado], palR);
+  };
+  return adicionarExpressoes({
     quadros: [q(PERNAS_CAO.parado), q(PERNAS_CAO.parado, true), q(PERNAS_CAO.passoA), q(PERNAS_CAO.passoB)],
     anims: { parado: { q: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1], fps: 5 }, andando: { q: [2, 0, 3, 0], fps: 6 }, correndo: { q: [2, 0, 3, 0], fps: 10 }, pulando: { q: [2], fps: 1 } },
     sombra: true, personagem: true,
-  };
+  }, (e) => { const f = rosto(e); return [f, f]; });
 }
 export const CACHORROS = {
   'cachorro-caramelo': [{ c: '#d89a50', C: '#9a5a24', w: '#f4e4c8', n: K, L: '#d83a3a' }],

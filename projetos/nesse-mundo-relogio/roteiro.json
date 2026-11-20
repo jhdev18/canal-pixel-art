@@ -156,6 +156,27 @@
      "alvo": "prof",
      "altura": 0.5,
      "inicio": 2.27
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 1.2,
+     "duracao": 2.09
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 1.35,
+     "duracao": 1.94
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 1.5,
+     "duracao": 1.79
     }
    ],
    "vertical": {
@@ -204,6 +225,20 @@
      "alvo": "caixa",
      "icone": "coracao",
      "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 0.55,
+     "duracao": 4.82
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 2.84,
+     "duracao": 2.53
     }
    ],
    "vertical": {
@@ -236,6 +271,13 @@
      "alvo": "vovo",
      "icone": "...",
      "inicio": 2.25
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "triste",
+     "inicio": 1.6,
+     "duracao": 1.95
     }
    ],
    "vertical": {
@@ -294,6 +336,27 @@
      "alvo": "vovo",
      "icone": "...",
      "inicio": 3.26
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "rindo",
+     "inicio": 1.96,
+     "duracao": 2.5
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "rindo",
+     "inicio": 2.38,
+     "duracao": 2.08
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "envergonhado",
+     "inicio": 2.38,
+     "duracao": 2.08
     }
    ],
    "vertical": {
@@ -434,6 +497,13 @@
      "alvo": "vovo",
      "icone": "...",
      "inicio": 2.87
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "triste",
+     "inicio": 2,
+     "duracao": 2.07
     }
    ],
    "vertical": {
@@ -573,6 +643,27 @@
      ],
      "cor": "azul",
      "inicio": 2.68
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 1.49,
+     "duracao": 2.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 1.49,
+     "duracao": 2.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 1.49,
+     "duracao": 2.78
     }
    ],
    "vertical": {
@@ -656,6 +747,13 @@
      "alvo": "bia",
      "icone": "!",
      "inicio": 3.21
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "triste",
+     "inicio": 2.59,
+     "duracao": 1.87
     }
    ],
    "vertical": {
@@ -730,6 +828,13 @@
      "tipo": "som",
      "som": "revelar",
      "inicio": 1.36
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "triste",
+     "inicio": 0.51,
+     "duracao": 4.02
     }
    ],
    "vertical": {
@@ -800,6 +905,13 @@
      "alvo": "vovo",
      "texto": "* Alguém tem que ficar.",
      "inicio": 2.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "chorando",
+     "inicio": 2.66,
+     "duracao": 1.93
     }
    ],
    "vertical": {
@@ -896,6 +1008,20 @@
      ],
      "cor": "verde",
      "inicio": 2.66
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "feliz",
+     "inicio": 2.44,
+     "duracao": 2.15
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.87,
+     "duracao": 1.72
     }
    ],
    "vertical": {

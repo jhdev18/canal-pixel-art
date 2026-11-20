@@ -168,7 +168,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   // pose de quando está parado: "pose": "sentado" (de frente) ou "sentado-lado"; muda com as ações sentar/levantar
   let pose = el.pose || null;
   let espirro = null, rosto = null;
-  const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'triste', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
+  const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
   let animInicio = 0;   // quando começou o estado atual (para animações que tocam uma vez só)
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
