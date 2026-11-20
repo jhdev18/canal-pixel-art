@@ -254,7 +254,7 @@ gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de 
   (12 cenas, fala ~45 s; protótipo `sombraPessoa`), `nesse-mundo-fantasminha` (13 cenas, ~47 s; fantasmas protótipo),
   `nesse-mundo-relogio` (12 cenas, ~48 s; `vovo`/`relogio-praca` protótipo); longos `nesse-mundo-espirro` (33 cenas,
   ~2:22; só aprovados) e `nesse-mundo-cachorros` (32 cenas, ~2:24; cães = `cao-guarda`). Cada um tem `ROTEIRO.md`
-  (com assets novos sugeridos, ainda NÃO criados: som `espirro`, clima `polen`, fogos de artifício, variações de cachorro)
+  (assets novos sugeridos, ainda NÃO criados: clima `polen`, fogos de artifício, variações de cachorro; o espirro já foi feito)
   e `PUBLICACAO.md`.
 - **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
   `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).
@@ -291,6 +291,11 @@ gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de 
     `"chao": "terra"`, `"rio": true`, `"semPredios": true`, `"pocas": true`, `"cerca": false`; sprites `ponte-madeira`
     (em cima `"y": 0.45`), `fogueira-junina` (animada, com luz), `caixote`, `cerca-madeira`, `mato`, `placa-saida`,
     `cadeado-numero` (fechado/tentando/aberto; close com `"tela": true`); som `sininho` (sorveteiro).
+- **Espirro (PROTÓTIPO)** (`motor/espirro.js` + quadros em `moradores.js`/`personagens-detalhados.js`): todos os moradores e a
+  `menina-capa` têm as poses `espirro-antes` (inspira: cabeça sobe, olhos semicerrados, boca em "o") e `espirro` (ATCHIM: curva
+  para a frente, olhos > <, boca aberta e gotinhas). Ação `{ "tipo": "espirrar", "alvo", "inicio", "duracao": 1, "inspira": 0.6 }`
+  (não aparece se o personagem estiver sentado) com sons sintetizados `espirro-inspira` e `espirro` (um `biblioteca/sfx/espirro.mp3`
+  substitui). Usado no `nesse-mundo-espirro`. Teste: `projetos/vitrine` (cena 26).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de

@@ -121,13 +121,13 @@
      "virado": "esquerda"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "cand",
+     "personagem": "policial-oculos",
      "x": 15.4,
      "z": 5.2
     },
     {
-     "id": "caluno",
+     "id": "ccand",
      "personagem": "cao-guarda",
      "x": 14.2,
      "z": 5.2
@@ -136,7 +136,7 @@
    "acoes": [
     {
      "tipo": "falar",
-     "alvo": "caluno",
+     "alvo": "ccand",
      "texto": "* Ele mentiu no currículo.",
      "inicio": 1.51
     },

@@ -4,6 +4,7 @@ import { Boneco, passada } from '../boneco.js';
 import { registrarSprites } from '../sprites.js';
 import { hexParaRgb } from '../pixel.js';
 import { adicionarSentado, adicionarCostas } from '../sentado.js';
+import { adicionarEspirro, gotinhas } from '../espirro.js';
 
 const W = 28, H = 44;
 
@@ -22,9 +23,11 @@ function materiais(b, p) {
 }
 
 // ------------------------------------------------------------------ FRENTE
-function frente(p, { resp = 0, piscar = false } = {}) {
+// espirro: 'antes' (inspira: cabeça sobe, olhos semicerrados, boca em "o") | 'atchim' (curva para a frente, olhos
+// apertados, boca aberta e gotinhas). PROTÓTIPO.
+function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   const b = new Boneco(W, H); const M = materiais(b, p);
-  const r = resp;
+  const r = espirro === 'antes' ? 1 : espirro === 'atchim' ? -1 : resp;
   const largT = p.corpo === 'largo' ? 1.2 : p.corpo === 'crianca' ? -0.6 : 0;
   const yC = p.corpo === 'crianca' ? 2 : 0;          // crianças: corpo um pouco mais baixo
   const yP = p.pernasLongas ? 0 : yC;                 // pernasLongas: o tronco encurta e as pernas ficam do tamanho normal
@@ -97,19 +100,28 @@ function frente(p, { resp = 0, piscar = false } = {}) {
   // ---- detalhes
   const o = (y) => Math.round(y - r + yC);
   const olho = '#2a1810';
-  if (piscar) { for (const x of [11, 12, 16, 17]) b.pinta(x, o(10), p.cores.pele === undefined ? '#a06a58' : tons(p.cores.pele)[2]); }
+  if (espirro === 'antes') { for (const x of [11, 12, 16, 17]) { b.pinta(x, o(9), tons(p.cores.pele)[2]); b.pinta(x, o(10), olho); } }
+  else if (espirro === 'atchim') { for (const [x, y] of [[11, 9], [12, 10], [11, 11], [17, 9], [16, 10], [17, 11]]) b.pinta(x, o(y), olho); }
+  else if (piscar) { for (const x of [11, 12, 16, 17]) b.pinta(x, o(10), p.cores.pele === undefined ? '#a06a58' : tons(p.cores.pele)[2]); }
   else for (const x of [11, 16]) { b.pinta(x, o(9), olho); b.pinta(x, o(10), olho); b.pinta(x + 1, o(9), '#ffffff'); b.pinta(x + 1, o(10), olho); }
   const sobr = tons(p.cores.cabelo)[3];
-  if (p.sobrancelhaBrava) { for (const [x, y] of [[10, 7.2], [11, 7.6], [12, 8.2], [15, 8.2], [16, 7.6], [17, 7.2]]) b.pinta(x, o(y), sobr); }
+  if (p.sobrancelhaBrava || espirro === 'atchim') { for (const [x, y] of [[10, 7.2], [11, 7.6], [12, 8.2], [15, 8.2], [16, 7.6], [17, 7.2]]) b.pinta(x, o(y), sobr); }
   else if (!p.chapeu || p.chapeu === 'bone') { for (const x of [10, 11, 12]) b.pinta(x, o(7.6), sobr); for (const x of [15, 16, 17]) b.pinta(x, o(7.6), sobr); }
   if (p.presilha) for (const [x, y] of [[9, 4], [8, 5], [9, 5], [10, 5], [9, 6]]) b.pinta(x, o(y), (x === 9 && y === 5) ? '#fff8d0' : p.presilha);
   if (p.oculos) { const f = '#2a2a3a'; for (const [x0] of [[10], [15]]) { for (let x = x0; x < x0 + 4; x++) { b.pinta(x, o(8), f); b.pinta(x, o(11), f); } b.pinta(x0, o(9), f); b.pinta(x0, o(10), f); b.pinta(x0 + 3, o(9), f); b.pinta(x0 + 3, o(10), f); } b.pinta(14, o(9), f); }
   if (p.oculosEscuros) { const f = '#14141e', l = '#3a3a52'; for (const x0 of [10, 15]) for (let x = x0; x < x0 + 4; x++) for (let y = 8; y <= 10; y++) b.pinta(x, o(y), y === 8 && x === x0 + 1 ? l : f); b.pinta(14, o(8), f); }
   if (p.bigode) { for (const x of [12, 13, 14, 15, 16]) b.pinta(x, o(12.6), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(11, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); b.pinta(17, o(13), tons(p.cores.bigode || p.cores.cabelo)[2]); }
+  else if (espirro) { /* boca do espirro: desenhada abaixo */ }
   else if (p.sorrisoLado) { b.pinta(12, o(13.2), '#9a4a3a'); b.pinta(13, o(13.6), '#9a4a3a'); b.pinta(14, o(13.6), '#9a4a3a'); b.pinta(15, o(13.2), '#9a4a3a'); b.pinta(16, o(12.6), '#9a4a3a'); }
   else if (!p.cao) { b.pinta(13, o(13.4), '#9a4a3a'); b.pinta(14, o(13.4), '#9a4a3a'); b.pinta(15, o(13), '#9a4a3a'); }
+  if (espirro && !p.cao) {
+    const my = p.bigode ? 14 : 13;
+    if (espirro === 'antes') { for (const x of [13, 14]) { b.pinta(x, o(my), '#5a2020'); b.pinta(x, o(my + 1), '#7a3030'); } }
+    else { for (let x = 12; x <= 16; x++) b.pinta(x, o(my), '#4a1414'); for (const x of [13, 14, 15]) b.pinta(x, o(my + 1), '#c84a5a'); }
+  }
+  if (espirro === 'atchim') gotinhas(b, 14, o(p.bigode ? 14 : 13));
   if (p.meiasListradas) for (const x of [10, 11, 12, 15, 16, 17]) for (const y of [36, 38]) b.tom(x, y, 'sombra');
-  if (!p.cao) { b.pinta(9, o(12), '#e8907a'); b.pinta(19, o(12), '#e8907a'); }
+  if (!p.cao) { const bc = espirro ? '#f07a6a' : '#e8907a'; b.pinta(9, o(12), bc); b.pinta(19, o(12), bc); if (espirro) { b.pinta(14, o(11.4), '#e8907a'); } }
   else {   // nariz, boca e língua do cachorro
     for (const x of [13, 14, 15]) b.pinta(x, o(11.2), '#1a1014');
     b.pinta(14, o(12.2), '#1a1014'); b.pinta(13, o(10.6), '#6a5a60');
@@ -270,7 +282,7 @@ function opCostas(p) {
 }
 export const pessoaComSentado = (p) => {
   const q = p.corpo === 'crianca' ? 32 : 30;
-  return adicionarCostas(adicionarSentado(pessoa(p), { q }), opCostas(p), { q });
+  return adicionarEspirro(adicionarCostas(adicionarSentado(pessoa(p), { q }), opCostas(p), { q }), [frente(p, { espirro: 'antes' }), frente(p, { espirro: 'atchim' })]);
 };
 
 export const MORADORES = {

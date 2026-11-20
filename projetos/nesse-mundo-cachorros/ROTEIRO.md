@@ -17,7 +17,7 @@
 **2.** `rua-comercial` — Funciona assim: o dono pensa, e o cachorro late a frase inteira.  
    _Balões:_ cprof: "Que preguiça de segunda."
 **3.** `rua-comercial` — Por isso, ninguém leva cachorro em entrevista de emprego.  
-   _Balões:_ caluno: "Ele mentiu no currículo."
+   _Balões:_ ccand: "Ele mentiu no currículo."
 **4.** `praca` — E primeiro encontro é sempre sem cachorro, por segurança.  
    _Balões:_ cpol: "Ela tem chulé."
 **5.** `rua-comercial` — O Bolota, cachorro da delegacia, há quinze anos só fala uma frase.

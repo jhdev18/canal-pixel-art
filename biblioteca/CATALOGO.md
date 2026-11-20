@@ -66,25 +66,25 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `menina-capa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `menina-capa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `robo-semaforo` | ✅ | parado | 28×44 |
-| `menina-capa-detalhada` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `menina-capa-detalhada` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `robo-semaforo-detalhado` | ✅ | parado | 28×44 |
 
 ### Moradores da cidade
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `policial` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `prefeito` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `aluno` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `aluna` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `professora` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `padeiro` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `caixa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `policial-oculos` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `prefeito-careca` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `cao-policial` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `policial` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `prefeito` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `aluno` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `aluna` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `professora` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `padeiro` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `caixa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `policial-oculos` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `prefeito-careca` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `cao-policial` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 
 ### Cidade (vista lateral)
 
@@ -206,11 +206,11 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `carteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `vovo` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `sorveteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `carteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `vovo` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `sorveteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `gato-chapeu` | 🧪 protótipo | parado | 20×16 |
 | `bilhete` | 🧪 protótipo | parado, brilhando | 9×7 |
 | `carta` | 🧪 protótipo | parado, fechada, aberta | 11×6 |
@@ -245,9 +245,9 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `casa-banheiro-noite` | 🧪 protótipo | parado | 212×174 |
 | `casa-corte` | 🧪 protótipo | parado | 452×472 |
 | `casa-corte-noite` | 🧪 protótipo | parado | 452×472 |
-| `mae` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
-| `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `mae` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 
 ## Personagens
 
@@ -369,10 +369,10 @@ Uso: `{ "cenario": "nome" }`
 
 ## Ações
 
-`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `sentar`, `levantar`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
+`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `sentar`, `levantar`, `espirrar`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `miau`, `trovao`, `suspense`, `fantasma`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

@@ -4,7 +4,7 @@
 
 **Ideia:** Todo mundo tem um número na cabeça; a cidade acha que são os amigos. O prefeito Arlindo faz a praça gritar o nome dele em todo comício (3 mil). A Nina, "a menina zero", ninguém chama pelo nome. Numa noite de neblina, uma voz chama nomes pela rua, do maior número para o menor, e quem é chamado abre a porta e some. A virada: o número conta quantas vezes disseram o seu nome. O da Nina ninguém disse... até a voz sussurrar "Nina" e o número virar 1.
 
-**Pista plantada:** cena 2 (o aluno diz "Oi, Duda!" e o número dela sobe de 9 para 10) e cena 4 (a praça grita o nome do prefeito e o número dele sobe).
+**Pista plantada:** cena 2 (o aluno diz "Oi, Bia!" e o número dela sobe de 9 para 10) e cena 4 (a praça grita o nome do prefeito e o número dele sobe).
 
 **Assets usados:** números no estilo placa (`numero` + ação `numero`); protótipo `fantasma-sombra` como a voz; resto aprovado. A Nina usa o sprite `aluna`.
 
@@ -14,7 +14,7 @@
 
 **1.** `rua-comercial` — Nessa cidade, todo mundo tem um número em cima da cabeça.
 **2.** `rua-comercial` — A cidade acredita que é o número de amigos de cada um.  
-   _Balões:_ aluno: "Oi, Duda!"
+   _Balões:_ aluno: "Oi, Bia!"
 **3.** `praca-decorada` — Por isso, o prefeito Arlindo, com três mil, é o mais querido da cidade.
 **4.** `praca-decorada` — Em todo comício, ele faz a praça inteira gritar o nome dele.  
    _Balões:_ tonho: "AR-LIN-DO!"

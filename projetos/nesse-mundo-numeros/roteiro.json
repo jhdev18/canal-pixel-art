@@ -79,8 +79,8 @@
      "numero": 12
     },
     {
-     "id": "aluna",
-     "personagem": "aluna",
+     "id": "bia",
+     "personagem": "menina-capa",
      "x": 2,
      "z": 0.6,
      "numero": 9,
@@ -98,18 +98,18 @@
     {
      "tipo": "falar",
      "alvo": "aluno",
-     "texto": "* Oi, Duda!",
+     "texto": "* Oi, Bia!",
      "inicio": 2.06
     },
     {
      "tipo": "numero",
-     "alvo": "aluna",
+     "alvo": "bia",
      "valor": 10,
      "inicio": 2.76
     },
     {
      "tipo": "emocao",
-     "alvo": "aluna",
+     "alvo": "bia",
      "icone": "coracao",
      "inicio": 2.61
     }

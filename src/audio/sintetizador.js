@@ -146,6 +146,17 @@ const SONS = {
   papel: () => misturar([0, 0.07, 0.15, 0.21, 0.3].map((t0, k) => [ruido({ dur: 0.06 + (k % 2) * 0.03, vol: 0.35, f0: 2500 + k * 400, filtro: 'passa-banda', q: 0.6, curva: 1.5, semente: 7 + k }), t0])),
   sininho: () => misturar([0, 0.16, 0.32].map((t0) => [tom({ tipo: 'seno', f0: 2093, dur: 0.35, vol: 0.18, curva: 2.4 }), t0]).concat([0, 0.16, 0.32].map((t0) => [tom({ tipo: 'seno', f0: 3136, dur: 0.2, vol: 0.08, curva: 3 }), t0]))),
   sombra: () => misturar([[ruido({ dur: 3.2, vol: 0.7, f0: 120, f1: 380, filtro: 'passa-baixa', ataque: 0.6, curva: 1.2, semente: 21 })], [tom({ tipo: 'seno', f0: 55, f1: 42, dur: 3.2, vol: 0.5, ataque: 0.5, curva: 1.4 })], [ruido({ dur: 2.4, vol: 0.18, filtro: 'passa-banda', q: 0.6, corteFn: (t, p) => 600 + 1800 * p, envFn: (t, p) => Math.sin(Math.PI * p) }), 0.4]]),
+  // espirro: "ah... ah..." (inspira subindo) e "TCHIM!" (estouro de ar agudo + tom curto)
+  'espirro-inspira': () => misturar([
+    [ruido({ dur: 0.5, vol: 0.22, filtro: 'passa-banda', q: 0.7, corteFn: (t, p) => 700 + 1400 * p, envFn: (t, p) => Math.min(1, p * 3) * (1 - p * 0.3), semente: 31 })],
+    [tom({ tipo: 'triangulo', f0: 330, f1: 520, dur: 0.18, vol: 0.18, ataque: 0.03, curva: 1 })],
+    [tom({ tipo: 'triangulo', f0: 380, f1: 640, dur: 0.22, vol: 0.2, ataque: 0.03, curva: 1 }), 0.26],
+  ]),
+  espirro: () => misturar([
+    [ruido({ dur: 0.06, vol: 0.5, f0: 1800, filtro: 'passa-banda', q: 0.8, curva: 1.2, semente: 41 })],
+    [ruido({ dur: 0.38, vol: 0.75, f0: 6500, f1: 3000, filtro: 'passa-alta', ataque: 0.004, curva: 1.8, semente: 43 }), 0.05],
+    [tom({ tipo: 'quadrada', f0: 760, f1: 520, dur: 0.12, vol: 0.14, duty: 0.25, curva: 1.4 }), 0.05],
+  ]),
   miau: () => tom({ tipo: 'triangulo', f0: 700, f1: 520, dur: 0.45, vol: 0.35, ataque: 0.05, curva: 1.2, vibrato: 0.04, vibratoHz: 7 }),
   trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
   suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),

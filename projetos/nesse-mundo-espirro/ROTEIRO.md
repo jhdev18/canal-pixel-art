@@ -8,7 +8,7 @@
 
 **Assets usados:** só aprovados (`praca-decorada`, `rua-comercial`, `sala-de-aula-diorama`, `quarto-menino-diorama`, moradores, `menina-capa`, `pombo-fofoqueiro`, `cao-guarda`, `sanduiche`). Troca de corpo = flash + faíscas + "?" nos dois e balões com a fala do outro.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** **som `espirro`** (gravar no ElevenLabs Sound Effects e salvar em `biblioteca/sfx/espirro.mp3`; hoje o atchim usa `puf`) e **clima `polen`** (partículas amarelas de primavera; hoje usa `folhas`/`poeira`).
+**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** FEITO (protótipo): pose de espirro (`espirro-antes`/`espirro`), ação `espirrar` e sons `espirro-inspira`/`espirro` (um `biblioteca/sfx/espirro.mp3` do ElevenLabs substitui o sintetizado). Falta: **clima `polen`** (hoje `folhas`/`poeira`).
 
 ---
 

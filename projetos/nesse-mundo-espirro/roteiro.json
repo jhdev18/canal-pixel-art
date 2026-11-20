@@ -37,15 +37,15 @@
    ],
    "acoes": [
     {
-     "tipo": "falar",
+     "tipo": "espirrar",
      "alvo": "aluno",
-     "texto": "* Atchim!",
      "inicio": 0.53
     },
     {
-     "tipo": "som",
-     "som": "puf",
-     "inicio": 0.76
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Atchim!",
+     "inicio": 1.07
     },
     {
      "tipo": "flash",
@@ -181,15 +181,15 @@
    ],
    "acoes": [
     {
-     "tipo": "falar",
+     "tipo": "espirrar",
      "alvo": "aluno",
-     "texto": "* Atchim!",
      "inicio": 1.68
     },
     {
-     "tipo": "som",
-     "som": "puf",
-     "inicio": 1.96
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Atchim!",
+     "inicio": 2.34
     },
     {
      "tipo": "emocao",
@@ -375,15 +375,15 @@
      "duracao": 1.63
     },
     {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "inicio": 2.58
+    },
+    {
      "tipo": "falar",
      "alvo": "bia",
      "texto": "* Atchim!",
      "inicio": 1.9
-    },
-    {
-     "tipo": "som",
-     "som": "puf",
-     "inicio": 2.74
     }
    ],
    "vertical": {
@@ -418,10 +418,22 @@
    ],
    "acoes": [
     {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 0.3
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 1.29
+    },
+    {
      "tipo": "falar",
      "alvo": "bia",
      "texto": "* Atchim! Atchim!",
-     "inicio": 0.55
+     "inicio": 0.79
     },
     {
      "tipo": "emocao",
@@ -686,15 +698,15 @@
    ],
    "acoes": [
     {
-     "tipo": "falar",
+     "tipo": "espirrar",
      "alvo": "prof",
-     "texto": "* Atchim!",
      "inicio": 0.3
     },
     {
-     "tipo": "som",
-     "som": "puf",
-     "inicio": 0.5
+     "tipo": "falar",
+     "alvo": "prof",
+     "texto": "* Atchim!",
+     "inicio": 0.77
     },
     {
      "tipo": "flash",
@@ -1134,15 +1146,15 @@
    ],
    "acoes": [
     {
-     "tipo": "falar",
+     "tipo": "espirrar",
      "alvo": "bia",
-     "texto": "* Atchim!",
      "inicio": 0.3
     },
     {
-     "tipo": "som",
-     "som": "puf",
-     "inicio": 0.44
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* Atchim!",
+     "inicio": 0.64
     },
     {
      "tipo": "flash",
@@ -1258,10 +1270,15 @@
    ],
    "acoes": [
     {
+     "tipo": "espirrar",
+     "alvo": "tonho",
+     "inicio": 0.66
+    },
+    {
      "tipo": "falar",
      "alvo": "tonho",
      "texto": "* Atchim!",
-     "inicio": 1.02
+     "inicio": 1.19
     },
     {
      "tipo": "flash",
@@ -1371,6 +1388,18 @@
    ],
    "acoes": [
     {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 1.78
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 2.84
+    },
+    {
      "tipo": "falar",
      "alvo": "bia",
      "texto": "* Atchim! Atchim!",
@@ -1411,10 +1440,15 @@
    ],
    "acoes": [
     {
+     "tipo": "espirrar",
+     "alvo": "tonho",
+     "inicio": 2.9
+    },
+    {
      "tipo": "falar",
      "alvo": "tonho",
      "texto": "* Atchim!",
-     "inicio": 3.42
+     "inicio": 3.52
     },
     {
      "tipo": "flash",

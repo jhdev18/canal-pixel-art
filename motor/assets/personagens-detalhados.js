@@ -3,6 +3,7 @@
 import { Boneco, passada } from '../boneco.js';
 import { registrarSprites } from '../sprites.js';
 import { adicionarSentado, adicionarCostas } from '../sentado.js';
+import { adicionarEspirro, gotinhas } from '../espirro.js';
 
 const W = 28, H = 44;
 
@@ -16,7 +17,8 @@ const PAL_MENINA = {
   guarda: ['#6ac0f0', '#2a7cc8', '#1a4a8a', '#08183a'],
 };
 
-function meninaFrente({ resp = 0, piscar = false, passo = 0 } = {}) {
+function meninaFrente({ resp = 0, piscar = false, passo = 0, espirro = null } = {}) {
+  if (espirro) resp = espirro === 'antes' ? 1 : -1;   // PROTÓTIPO: espirro (ver motor/espirro.js)
   const b = new Boneco(W, H);
   const C = b.material(PAL_MENINA.capa, { sombraLarga: true }), B = b.material(PAL_MENINA.bota), S = b.material(PAL_MENINA.pele);
   const Hh = b.material(PAL_MENINA.cabelo), M = b.material(PAL_MENINA.meia), U = b.material(PAL_MENINA.guarda);
@@ -41,10 +43,15 @@ function meninaFrente({ resp = 0, piscar = false, passo = 0 } = {}) {
   b.poli([[7.6, 6.5 - r], [19.8, 6.2 - r], [20.6, 10 - r], [18.4, 8.6 - r], [16.6, 10.6 - r], [14.6, 8.4 - r], [11.6, 11.2 - r], [9.6, 9 - r], [7.8, 10.8 - r]], Hh);
   // detalhes
   const o = (y) => Math.round(y - r);
-  if (piscar) { b.pinta(11, o(12), '#a06a58'); b.pinta(12, o(12), '#a06a58'); b.pinta(16, o(12), '#a06a58'); b.pinta(17, o(12), '#a06a58'); }
+  if (espirro === 'antes') { for (const x of [11, 12, 16, 17]) b.pinta(x, o(12), '#2a1410'); }
+  else if (espirro === 'atchim') { for (const [x, y] of [[11, 11], [12, 12], [11, 13], [17, 11], [16, 12], [17, 13]]) b.pinta(x, o(y), '#2a1410'); }
+  else if (piscar) { b.pinta(11, o(12), '#a06a58'); b.pinta(12, o(12), '#a06a58'); b.pinta(16, o(12), '#a06a58'); b.pinta(17, o(12), '#a06a58'); }
   else { for (const x of [12, 16]) { b.pinta(x, o(11), '#2a1410'); b.pinta(x, o(12), '#2a1410'); } b.pinta(16, o(11), '#5a3830'); }
-  b.pinta(10, o(13), '#f39080'); b.pinta(18, o(13), '#f39080');
-  b.pinta(14, o(14.6), '#a04a3a'); b.pinta(15, o(14.6), '#a04a3a');
+  const bc = espirro ? '#f0705e' : '#f39080';
+  b.pinta(10, o(13), bc); b.pinta(18, o(13), bc);
+  if (espirro === 'antes') { for (const x of [14, 15]) { b.pinta(x, o(15), '#5a2020'); b.pinta(x, o(16), '#7a3030'); } }
+  else if (espirro === 'atchim') { for (let x = 13; x <= 16; x++) b.pinta(x, o(15), '#4a1414'); b.pinta(14, o(16), '#c84a5a'); b.pinta(15, o(16), '#c84a5a'); gotinhas(b, 14.5, o(15)); }
+  else { b.pinta(14, o(14.6), '#a04a3a'); b.pinta(15, o(14.6), '#a04a3a'); }
   for (const [x, y] of [[11, 17], [11, 18], [17, 17], [17, 18]]) b.pinta(x, o(y), '#f4f4f0');
   b.pinta(11, o(19), '#8a8a98'); b.pinta(17, o(19), '#8a8a98');
   for (let y = 19; y < 33; y++) b.tom(13, o(y), 'sombra');            // abertura da capa
@@ -121,10 +128,10 @@ function meninaV2() {
 }
 // sentada: a capa cobre o colo
 // de costas: o capuz cobre a cabeça e a capa cobre as costas
-const meninaComSentado = () => adicionarCostas(adicionarSentado(meninaV2(), { q: 33, coxa: PAL_MENINA.capa[1] }), {
+const meninaComSentado = () => adicionarEspirro(adicionarCostas(adicionarSentado(meninaV2(), { q: 33, coxa: PAL_MENINA.capa[1] }), {
   cabeca: { cx: 14.2, cy: 11.4, rx: 6.8, ry: 6 }, de: [...PAL_MENINA.pele, ...PAL_MENINA.cabelo], para: [...PAL_MENINA.capa.slice(0, 4), ...PAL_MENINA.capa.slice(0, 4)], tudo: true,
   tronco: { x0: 9, x1: 18, y0: 17, y1: 32, tons: PAL_MENINA.capa },
-}, { q: 33, coxa: PAL_MENINA.capa[1] });
+}, { q: 33, coxa: PAL_MENINA.capa[1] }), [meninaFrente({ espirro: 'antes' }), meninaFrente({ espirro: 'atchim' })]);
 
 // ======================= ROBÔ SEMÁFORO (v2) =======================
 const PAL_ROBO = {

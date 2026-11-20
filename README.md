@@ -301,6 +301,7 @@ Toda ação tem `inicio` (segundos desde o começo da cena) e, opcionalmente, `d
 | `pular` | `alvo`, `altura`, `para` | pulo em arco + poeira ao cair | pulo + aterrissar |
 | `virar` | `alvo`, `direcao` | — | — |
 | `sentar` | `alvo`, `lado` (true = de lado) ou `pose` (`sentado`, `sentado-lado`, `sentado-costas`) | personagem fica sentado (de frente ou de lado) | — |
+| `espirrar` | `alvo`, `inspira` (fração da duração inspirando, padrão 0.6); duração padrão 1 s | **protótipo**: "ah... ah..." (pose `espirro-antes`) e "ATCHIM!" com gotinhas (pose `espirro`) — moradores e `menina-capa` | `espirro-inspira` + `espirro` |
 | `levantar` | `alvo` | volta a ficar em pé | — |
 | `trocar` | `alvo`, `estado` | muda o estado de um objeto (ex.: `tempo-pessoal` de `sol` para `chuva`; estrela vira `olho`) | — |
 | `falar` | `alvo`, `texto`, `velocidade` | balão com texto letra a letra | "blips" de fala |
