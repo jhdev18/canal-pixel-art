@@ -312,11 +312,18 @@ export function gerarRuaDiagonal(opc = {}) {
     }
     if (E?.caixotes) {
       for (let k = 0; k < 2; k++) {   // 2 caixotes no canto direito da fachada (x ≈ 13.2–15.3): o meio (x ~16.2) fica livre para as pessoas
-        const cj = P.j1 - 1.05 - k * 1.05, fr = ['#e83a3a', '#5ac84a'][k];
+        const cj = P.j1 - 1.05 - k * 1.05, [fr, frE, frC] = [['#e83a3a', '#9a2028', '#ff9a8a'], ['#5ac84a', '#2e7a2e', '#b8f098']][k];   // fruta, sombra, brilho
         prisma(0.15, 0.75, cj, cj + 1.0, 0, 14, {
           frente: (x, y, u, t) => pintar(x, y, t === 7 || u % 8 === 0 ? '#6a4a1a' : '#a0702a', 0.75, cj, t, 1, 1),
           lado: (x, y, u, t, s) => pintar(x, y, '#7a5220', s, cj + 1.0, t, 1, 0.8),
-          topo: (x, y, i, j) => pintar(x, y, (Math.floor(i * 9) + Math.floor(j * 9)) % 2 ? fr : '#2a1a10', i, j, 14, 1, 1.1),
+          topo: (x, y, i, j) => {   // borda de madeira + frutas redondas (2 x 3) com brilho
+            const di = (i - 0.15) / 0.6, dj = (j - cj) / 1.0;
+            let c;
+            if (di < 0.1 || di > 0.9 || dj < 0.06 || dj > 0.94) c = '#c08a40';
+            else { const fi = ((di - 0.1) / 0.8 * 2) % 1, fj = ((dj - 0.06) / 0.88 * 3) % 1, d = (fi - 0.5) ** 2 + (fj - 0.5) ** 2;
+              c = d < 0.16 ? (fi < 0.42 && fj < 0.42 ? frC : fr) : frE; }
+            pintar(x, y, c, i, j, 14, 1, 1.1);
+          },
         });
       }
     }
