@@ -517,18 +517,17 @@
     },
     {
      "id": "cao",
-     "sprite": "cao-policial",
      "x": -3.4,
      "z": -8.6,
-     "voz": 0.9,
-     "virado": "esquerda"
+     "virado": "esquerda",
+     "personagem": "cao-guarda"
     },
     {
      "id": "tcao",
      "sprite": "tempo-pessoal",
      "sobre": {
       "id": "cao",
-      "dy": 2.75
+      "dy": 1.6
      },
      "pose": "nada"
     }
@@ -1549,17 +1548,16 @@
    "elementos": [
     {
      "id": "cao",
-     "sprite": "cao-policial",
      "x": -4,
      "z": -9.6,
-     "voz": 0.9
+     "personagem": "cao-guarda"
     },
     {
      "id": "tcao",
      "sprite": "tempo-pessoal",
      "sobre": {
       "id": "cao",
-      "dy": 2.75
+      "dy": 1.6
      },
      "pose": "sol"
     },
