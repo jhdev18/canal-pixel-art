@@ -134,6 +134,17 @@ function corDecor(d, pos, t, noite) {
     const painel = u > 7 && u < U - 8 && ((t > 8 && t < 32) || (t > 40 && t < h - 8));
     return painel ? ((t === 31 || t === h - 9 || u === U - 9) ? c[2] : c[0]) : c[1];
   }
+  if (d.tipo === 'espelho') {   // espelho de banheiro (moldura + reflexo claro com faixas)
+    const y0 = d.altura ?? 50, h = d.h ?? 22, tt = t - y0;
+    if (tt < 0 || tt >= h) return null;
+    if (u < 2 || u > U - 3 || tt < 2 || tt > h - 3) return u === 0 || tt === h - 1 ? '#8a8aa0' : '#c8ccd8';
+    return ((u + tt) % 9 < 2) ? '#f4fbff' : noite ? '#5a6a8a' : '#b8d8ec';
+  }
+  if (d.tipo === 'azulejos') {  // faixa de azulejos atrás da pia/fogão
+    const y0 = d.altura ?? 14, h = d.h ?? 18, tt = t - y0;
+    if (tt < 0 || tt >= h) return null;
+    return (u % 6 === 0 || tt % 6 === 0) ? (d.cores?.[1] || '#b8c8d8') : (d.cores?.[0] || '#f4f8fc');
+  }
   if (d.tipo === 'lousa') {
     const y0 = d.altura ?? 28, h = d.h ?? 42, tt = t - y0;
     if (tt < -2 || tt >= h) return null;

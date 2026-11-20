@@ -639,5 +639,13 @@
   "rua-chuva-noite": {
     "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "clima": "chuva",
     "rua": { "periodo": "noite", "faixaPedestre": -3, "pocas": true, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
-  }
+  },
+
+  // ---- Casa em diorama (cômodo enche a tela; sala e quarto usam os aprovados sala-de-estar-diorama / quarto-menino-diorama)
+  // Personagens: z de 0 (frente) a ~3 (perto da parede do fundo).
+  "cozinha-diorama":        { "vista": "diorama", "comodo": { "tipo": "cozinha" } },
+  "cozinha-noite-diorama":  { "vista": "diorama", "comodo": { "tipo": "cozinha-noite" } },
+  "banheiro-diorama":       { "vista": "diorama", "comodo": { "tipo": "banheiro" } },
+  "banheiro-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "banheiro-noite" } },
+  "sala-de-estar-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-estar-noite" } }
 }

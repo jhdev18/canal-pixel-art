@@ -351,3 +351,117 @@ registrarSprites({
   ...Object.fromEntries(Object.entries(COMODOS).flatMap(([k, f]) => [[`casa-${k}`, comoSprite(f, false)], [`casa-${k}-noite`, comoSprite(f, true)]])),
   ...Object.fromEntries(Object.entries(MORADORES_CASA).map(([k, p]) => [k, () => pessoa(p)])),
 }, { grupo: 'Casa (cômodos em diorama) e família', status: 'protótipo' });
+
+// ======================================================================================================
+// PROTÓTIPO: cozinha e banheiro no sistema de CÔMODOS EM DIORAMA (o mesmo da sala de aula / quarto aprovados):
+// o cômodo enche a tela (sem fundo vazio em volta). Cenários: cozinha-diorama, banheiro-diorama (+ -noite).
+// A sala e o quarto da casa usam os cômodos aprovados sala-de-estar-diorama e quarto-menino-diorama.
+import { MOVEIS, COMODOS_DIAGONAL } from '../cenarios/comodoDiagonal.js';
+import { PRESETS_INTERIORES } from '../cenarios/interiores.js';
+
+const BR = ['#fafafc', '#e4e6ee', '#b8bcca'], INOX = ['#e8ecf2', '#c4cad4', '#8a92a2'], MAD2 = ['#c89060', '#a8703e', '#7a4e2a'];
+Object.assign(MOVEIS, {
+  geladeira: { di: 0.8, dj: 0.9, f(L, m) {
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 48, { frente: (u, t) => (t === 30 || t === 0 ? BR[2] : (u > 0.12 && u < 0.18 && ((t > 34 && t < 44) || (t > 14 && t < 26))) ? '#8a92a2' : BR[0]), lado: (u, t) => (t === 30 ? BR[2] : BR[1]), topo: BR[1] });
+  } },
+  fogao: { di: 0.8, dj: 0.9, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, acesa = ctx.op.aceso;
+    L.caixa(i0, i1, j0, j1, 0, 15, { frente: (u, t) => (t > 3 && t < 10 && u > 0.12 && u < 0.78 ? '#2a2a34' : t > 12 ? BR[1] : BR[0]), lado: BR[1],
+      topo: (a, b) => { const q = [[0.25, 0.25], [0.25, 0.65], [0.6, 0.25], [0.6, 0.65]].some(([x, y]) => Math.hypot(a - x, b - y) < 0.12); return q ? (acesa ? ['#5aa0ff', 2] : '#3a3a44') : '#1e1e26'; } });
+    L.caixa(i0, i0 + 0.12, j0, j1, 15, 8, { frente: (u, t) => (t > 2 && t < 5 && Math.floor(u * 16) % 3 === 0 ? '#e8b040' : BR[1]), lado: BR[2], topo: BR[0] });
+  } },
+  'balcao-pia': { di: 0.8, dj: 1.8, f(L, m) {
+    const { i0, i1, j0, j1 } = m, cj = (j0 + j1) / 2;
+    L.caixa(i0, i1, j0, j1, 0, 14, { frente: (u, t) => (t < 2 ? MAD2[2] : Math.abs(u - (j1 - j0) / 2) < 0.03 || t === 13 ? MAD2[2] : (u > 0.1 && u < 0.16 && t > 6 && t < 10) ? '#e8c060' : MAD2[0]), lado: MAD2[1], topo: MAD2[1] });
+    L.caixa(i0, i1 + 0.04, j0, j1, 14, 2, { frente: '#d8d4cc', lado: '#b8b4ac', topo: (a, b) => (Math.abs(b - (cj - j0)) < 0.32 && a > 0.2 && a < 0.65 ? '#8a92a2' : '#ece8e0') });
+    L.caixa(i0 + 0.08, i0 + 0.14, cj - 0.04, cj + 0.04, 16, 8, INOX[1]); L.caixa(i0 + 0.1, i0 + 0.3, cj - 0.03, cj + 0.03, 23, 2, INOX[0]);
+  } },
+  'armario-alto': { di: 0.45, dj: 1.8, f(L, m) {   // armário de parede (fica no alto: use "h0": 30)
+    const { i0, i1, j0, j1 } = m, h0 = m.h0 ?? 30;
+    L.caixa(i0, i1, j0, j1, h0, 16, { frente: (u, t) => (t === 0 || t === 15 || Math.abs(u - (j1 - j0) / 2) < 0.03 ? MAD2[2] : (u > 0.1 && u < 0.15 && t > 4 && t < 8) ? '#e8c060' : MAD2[0]), lado: MAD2[1], topo: MAD2[0] });
+  } },
+  'mesa-cozinha': { di: 1.2, dj: 1.6, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, toalha = ctx.op.toalha ?? ['#f4f0e8', '#d83a3a'];
+    for (const [a, b] of [[i0 + 0.1, j0 + 0.1], [i1 - 0.18, j0 + 0.1], [i0 + 0.1, j1 - 0.18], [i1 - 0.18, j1 - 0.18]]) L.caixa(a, a + 0.08, b, b + 0.08, 0, 13, MAD2[1]);
+    L.caixa(i0, i1, j0, j1, 13, 2, { frente: (u, t) => (Math.floor(u * 6) % 2 ? toalha[1] : toalha[0]), lado: (u) => (Math.floor(u * 6) % 2 ? toalha[1] : toalha[0]), topo: (a, b) => ((Math.floor(a * 6) + Math.floor(b * 6)) % 2 ? toalha[1] : toalha[0]) });
+    const ci = (i0 + i1) / 2, cj = (j0 + j1) / 2;   // bolo em cima
+    L.caixa(ci - 0.18, ci + 0.18, cj - 0.18, cj + 0.18, 15, 5, { frente: (u, t) => (t > 3 ? '#fff0f4' : '#8a4a2a'), lado: '#6a3a20', topo: '#fff0f4' });
+    L.caixa(ci - 0.03, ci + 0.03, cj - 0.03, cj + 0.03, 20, 3, ['#f8d040', 2]);
+  } },
+  banqueta: { di: 0.45, dj: 0.45, f(L, m) {
+    const { i0, i1, j0, j1 } = m;
+    for (const [a, b] of [[i0 + 0.05, j0 + 0.05], [i1 - 0.1, j0 + 0.05], [i0 + 0.05, j1 - 0.1], [i1 - 0.1, j1 - 0.1]]) L.caixa(a, a + 0.05, b, b + 0.05, 0, 9, MAD2[2]);
+    L.caixa(i0, i1, j0, j1, 9, 2, { frente: MAD2[1], lado: MAD2[2], topo: MAD2[0] });
+  } },
+  vaso: { di: 0.7, dj: 0.5, f(L, m) {
+    const { i0, i1, j0, j1 } = m, cj = (j0 + j1) / 2;
+    L.caixa(i0, i0 + 0.22, j0, j1, 8, 14, { frente: (u, t) => (t === 13 ? BR[2] : BR[0]), lado: BR[1], topo: BR[1] });       // caixa d'água
+    L.caixa(i0 + 0.2, i1 - 0.2, cj - 0.12, cj + 0.12, 0, 6, { frente: BR[1], lado: BR[2], topo: BR[0] });
+    L.caixa(i0 + 0.18, i1, j0 + 0.02, j1 - 0.02, 6, 4, { frente: BR[0], lado: BR[1], topo: (a, b, d) => (d > 0.1 ? '#a8d0ec' : BR[0]) });
+  } },
+  'pia-banheiro': { di: 0.55, dj: 0.8, f(L, m) {
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2;
+    L.caixa(ci - 0.08, ci + 0.08, cj - 0.1, cj + 0.1, 0, 14, { frente: BR[0], lado: BR[1], topo: BR[0] });
+    L.caixa(i0, i1, j0, j1, 14, 4, { frente: BR[0], lado: BR[1], topo: (a, b, d) => (d > 0.1 ? '#c8d8e4' : BR[0]) });
+    L.caixa(i0 + 0.03, i0 + 0.09, cj - 0.03, cj + 0.03, 18, 5, INOX[1]);
+  } },
+  banheira: { di: 1.0, dj: 2.2, f(L, m, ctx) {
+    const { i0, i1, j0, j1 } = m, espuma = ctx.op.espuma ?? true;
+    L.caixa(i0, i1, j0, j1, 0, 12, { frente: (u, t) => (t < 2 ? BR[2] : BR[0]), lado: BR[1], topo: (a, b, d) => (d < 0.1 ? BR[0] : espuma && ((Math.floor(a * 9) * 7 + Math.floor(b * 9)) % 5 === 0) ? '#ffffff' : '#7ac0ec') });
+    L.caixa(i0 + 0.05, i0 + 0.12, j1 - 0.35, j1 - 0.28, 12, 8, INOX[1]);
+  } },
+});
+
+PRESETS_INTERIORES.cozinha = {
+  ceu: { cores: ['#f4ecd8'] },
+  camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true,
+    cor: ['#fff4c8', '#f4e4a8', '#d8c488'], padrao: 'liso', teto: ['#fffaf0', '#ece4d0', '#b8ac90'],
+    meiaParede: { altura: 30, padrao: 'azulejo', cores: ['#ffffff', '#e8f0f8', '#9ab8d0'] },
+    rodape: ['#9ab8d0', '#7a9ab4', '#5a7a94'], janelas: [], portas: [], quadros: [] }],
+  chao: { estilo: 'piso', topo: ['#f4f0e8', '#d8d0c4', '#8a3a3a'], terra: ['#c8b8a8', '#a89888'] },
+  ambiente: ['#ffffff', 1.0],
+};
+PRESETS_INTERIORES.banheiro = {
+  ceu: { cores: ['#e4f0f8'] },
+  camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true,
+    cor: ['#e8f4fc', '#cfe6f4', '#a8c8dc'], padrao: 'liso', teto: ['#fafcff', '#e4ecf4', '#a8b4c4'],
+    meiaParede: { altura: 56, padrao: 'azulejo', cores: ['#ffffff', '#f4f8fc', '#9ac8d8'] },
+    rodape: ['#5aa0b8', '#3a8aa0', '#2a6a80'], janelas: [], portas: [], quadros: [] }],
+  chao: { estilo: 'piso', topo: ['#eef2f4', '#d4dce2', '#5aa0b8'], terra: ['#b8c8d0', '#a0b0b8'] },
+  ambiente: ['#ffffff', 1.0],
+};
+
+// Cozinha: geladeira, pia, fogão e armários na parede do fundo; mesa com bolo no meio; porta para a sala na lateral.
+// Personagens: z de 0 (frente) a ~2.6; mesa em x 3 (banquetas em x 1.6 e 4.4); pia em x -2.4, fogão x -0.8.
+COMODOS_DIAGONAL.cozinha = {
+  estilo: 'cozinha', inicio: -9, fim: 9,
+  paredes: [
+    { tipo: 'janela', x: 2.8, w: 2.4, cortina: ['#f0c040', '#c89a20'], peitoril: 40 },
+    { tipo: 'azulejos', x: -1.9, w: 4.6, altura: 16, h: 14 }, { tipo: 'relogio', x: 5.4, w: 0.9, altura: 62, h: 14 },
+    { tipo: 'porta', lateral: true, x: 2.6, w: 1.8 },
+  ],
+  moveis: [
+    { tipo: 'geladeira', x: -4.6, i: 0 }, { tipo: 'balcao-pia', x: -2.4, i: 0 }, { tipo: 'fogao', x: -0.8, i: 0 },
+    { tipo: 'armario-alto', x: -1.9, i: 0, h0: 34 }, { tipo: 'planta', x: 6.4, i: 0.1 },
+    { tipo: 'mesa-cozinha', x: 3.0, i: 1.4 }, { tipo: 'banqueta', x: 1.6, i: 1.8 }, { tipo: 'banqueta', x: 4.4, i: 1.8 },
+  ],
+  piso: [],
+};
+COMODOS_DIAGONAL['cozinha-noite'] = { ...COMODOS_DIAGONAL.cozinha, noite: true,
+  moveis: COMODOS_DIAGONAL.cozinha.moveis.map((mv) => (mv.tipo === 'fogao' ? { ...mv, aceso: true } : mv)).concat([{ tipo: 'luminaria', x: 4.4, i: 0.2 }]) };
+// Banheiro: banheira, vaso e pia com espelho; tapete. Personagens: z de 0 a ~2.6.
+COMODOS_DIAGONAL.banheiro = {
+  estilo: 'banheiro', inicio: -9, fim: 9,
+  paredes: [
+    { tipo: 'espelho', x: 1.4, w: 1.2, altura: 46, h: 22 }, { tipo: 'janela', x: -3.2, w: 1.6, peitoril: 60, h: 18 },
+    { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#f4f0e8', '#e0d8c8', '#a8a090'] },
+  ],
+  moveis: [
+    { tipo: 'banheira', x: -3.2, i: 0 }, { tipo: 'vaso', x: -0.6, i: 0 }, { tipo: 'pia-banheiro', x: 1.4, i: 0 },
+    { tipo: 'planta', x: 4.4, i: 0.1 },
+  ],
+  piso: [{ x: 1.4, i0: 1.0, i1: 2.2, dj: 1.8, cor: ['#7ac8d8', '#5aa8c0', '#ffffff'] }],
+};
+COMODOS_DIAGONAL['banheiro-noite'] = { ...COMODOS_DIAGONAL.banheiro, noite: true };
+COMODOS_DIAGONAL['sala-estar-noite'] = { ...COMODOS_DIAGONAL['sala-estar'], noite: true };

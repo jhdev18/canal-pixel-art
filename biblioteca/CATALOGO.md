@@ -326,6 +326,11 @@ Uso: `{ "cenario": "nome" }`
 | `rua-junina` | 🧪 protótipo | diorama | 7 |
 | `rua-chuva` | 🧪 protótipo | diorama | 0 |
 | `rua-chuva-noite` | 🧪 protótipo | diorama | 0 |
+| `cozinha-diorama` | 🧪 protótipo | diorama (cômodo cozinha) | 0 |
+| `cozinha-noite-diorama` | 🧪 protótipo | diorama (cômodo cozinha-noite) | 0 |
+| `banheiro-diorama` | 🧪 protótipo | diorama (cômodo banheiro) | 0 |
+| `banheiro-noite-diorama` | 🧪 protótipo | diorama (cômodo banheiro-noite) | 0 |
+| `sala-de-estar-noite-diorama` | 🧪 protótipo | diorama (cômodo sala-estar-noite) | 0 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |
