@@ -327,9 +327,16 @@ export function gerarRuaDiagonal(opc = {}) {
   }
 
   // ---------- iluminação pixel a pixel ----------
+  // Postes em LUGAR FIXO NO MUNDO (não dependem do comprimento da rua, que muda de cena para cena):
+  // calçada dos prédios em x = 6.5 + 8k (entre as fachadas: padaria 0.6, escola 4.6, delegacia 10.4, mercado 16.2)
+  // e calçada da frente em x = 2.5 + 8k. (x = -j)
   const postes = [];
-  const passo = opc.distanciaPostes ?? 8;
-  for (let j = J0 + 3; j < J1 - 1; j += passo) { postes.push({ i: FAIXA.calcadaFundo, j }); postes.push({ i: FAIXA.calcadaFrente, j: j + passo / 2 }); }
+  const passo = opc.distanciaPostes ?? 8, fase = opc.fasePostes ?? 6.5;
+  for (let k = Math.ceil((-J1 + 1 - fase) / passo); fase + k * passo < -J0 - 3; k++) {
+    const xF = fase + k * passo, xT = xF - passo / 2;
+    postes.push({ i: FAIXA.calcadaFundo, j: -xF });
+    if (xT > -J1 + 1) postes.push({ i: FAIXA.calcadaFrente, j: -xT });
+  }
   // luz dos postes da praça (os postes são sprites "poste-iso"; a luz no chão vem daqui)
   const luzPraca = PR && noite ? (op.luzes ? op.luzes.map(([x, z]) => [FAIXA.calcadaFrente - z, -x]) : [[PR.i0 + 1.5, PR.j0 + 2], [PR.i0 + 1.5, PR.j1 - 2], [PR.i1 - 3, PR.j0 + 2], [PR.i1 - 3, PR.j1 - 2]]).map(([i, j]) => ({ i, j, h: 40, raio: 4.6, forca: 1 })) : [];
   const luzes = noite ? [...postes.map((p) => ({ ...p, h: 40, raio: 4.2, forca: 1 })), ...lojas, ...luzPraca] : [];

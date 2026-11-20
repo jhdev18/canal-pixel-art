@@ -50,14 +50,12 @@ export async function conferir(nome) {
     if (c.vista !== 'diorama' && c.vista !== 'diagonal') continue;
     if (c.comodo) continue;
     const altos = c.elementos.filter((e) => e.sprite && ALTOS.test(e.sprite) && !e.oculto && tam(e.sprite));
-    // postes da RUA (gerados pelo desenho da rua, não estão nos elementos): mesma conta de motor/cenarios/ruaDiagonal.js
+    // postes da RUA (gerados pelo desenho da rua, não estão nos elementos): lugar fixo no mundo (motor/cenarios/ruaDiagonal.js)
     if (c.rua?.postes !== false) {
-      let alcance = 0;
-      for (let t = 0; t <= c.duracao; t += 0.25) { alcance = Math.max(alcance, Math.abs(estadoCamera(c, t).x)); for (const el of c.elementos) alcance = Math.max(alcance, Math.abs(estadoElemento(c, el, t).x)); }
-      const comp = Math.max(c.rua?.comprimento ?? 44, Math.ceil(2 * (alcance + 20))), passo = c.rua?.distanciaPostes ?? 8, J0 = -comp / 2, J1 = comp / 2;
-      for (let j = J0 + 3; j < J1 - 1; j += passo) {
-        altos.push({ id: 'poste da rua (calçada dos prédios)', sprite: 'poste-iso', x: -j, z: 5.35 });
-        altos.push({ id: 'poste da rua (calçada da frente)', sprite: 'poste-iso', x: -(j + passo / 2), z: 0 });
+      const passo = c.rua?.distanciaPostes ?? 8, fase = c.rua?.fasePostes ?? 6.5;
+      for (let k = -8; k <= 8; k++) {
+        altos.push({ id: 'poste da rua (calçada dos prédios)', sprite: 'poste-iso', x: fase + k * passo, z: 5.35 });
+        altos.push({ id: 'poste da rua (calçada da frente)', sprite: 'poste-iso', x: fase + k * passo - passo / 2, z: 0 });
       }
     }
     const pessoas = c.elementos.filter((e) => ehPessoa(e, tam));

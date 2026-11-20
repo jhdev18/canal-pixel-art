@@ -217,10 +217,12 @@ vários vídeos diferentes:
    - Personagem importante **nunca** atrás de algo: se a história pede "escondido atrás da árvore", ele fica **ao lado/na frente**
      da árvore, visível (o espectador precisa ver).
    - Quem sobe no palanque usa `"y": 0.75` (não conta como coberto).
-   - **Postes da rua** não estão nos elementos: o desenho da rua põe um a cada `distanciaPostes` (8), alternando a calçada dos
-     prédios (z 5.35) e a da frente (z 0), a partir de x = comprimento/2 − 3. Quem está/anda numa calçada pode ficar atrás ou
-     na frente de um poste. O `nm.mjs` do Claude escolhe sozinho `"rua": { "comprimento", "distanciaPostes" }` para deixar os
-     postes a ≥ 1.6 de todo mundo; o `npm run conferir` calcula os postes e acusa.
+   - **Postes da rua** não estão nos elementos e têm **lugar fixo no mundo** (iguais em todas as cenas e vídeos —
+     `motor/cenarios/ruaDiagonal.js`): calçada dos prédios (z 5.35) em **x = 6.5 + 8k** (…-9.5, -1.5, 6.5, 14.5…) e calçada da
+     frente (z 0) em **x = 2.5 + 8k** (…-5.5, 2.5, 10.5…). **Nunca mudar** `comprimento`/`distanciaPostes`/`fasePostes` cena a
+     cena para "fugir" de poste (os postes pulariam de lugar entre cenas). Quem se ajusta é a pessoa: ela continua na calçada,
+     só **não para atrás de um poste** (poste um pouco à esquerda dela, que fica na frente). Passar por um poste andando, ou
+     ficar na frente dele, tudo bem. O `npm run conferir` calcula os postes e acusa.
    - **Ninguém em pé em cima de objeto baixo** (canteiro, fonte, banco, barraca): os pés ficam fora da base do objeto
      (`x`..`x + largura`, `z`..`z + profundidade`). O `npm run conferir` acusa ("em cima").
 2. **Continuidade de elenco — escrever a intenção no roteiro.** A conferência não entende a história: ela só cobra o que

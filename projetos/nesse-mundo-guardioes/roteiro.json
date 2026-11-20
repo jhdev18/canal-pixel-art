@@ -74,37 +74,6 @@
      "z": 2.2,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "dia",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 64,
-    "distanciaPostes": 8
    }
   },
   {
@@ -175,37 +144,6 @@
      "z": 0,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "dia",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 67,
-    "distanciaPostes": 8
    }
   },
   {
@@ -248,37 +186,6 @@
      "z": 0,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "dia",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 50,
-    "distanciaPostes": 8
    },
    "momento": "bia-rua"
   },
@@ -326,37 +233,6 @@
      "zoom": 2
     }
    },
-   "rua": {
-    "periodo": "dia",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 50,
-    "distanciaPostes": 8
-   },
    "momento": "bia-rua"
   },
   {
@@ -387,7 +263,7 @@
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 3,
+     "x": 4.6,
      "z": 0.6,
      "virado": "esquerda"
     },
@@ -404,7 +280,7 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 4.4,
+     "x": 6,
      "z": 0.6,
      "virado": "esquerda"
     },
@@ -436,14 +312,14 @@
     {
      "tipo": "andar",
      "alvo": "prof",
-     "para": 8,
+     "para": 8.4,
      "inicio": 2.87,
      "duracao": 2.31
     },
     {
      "tipo": "andar",
      "alvo": "tonho",
-     "para": 9.4,
+     "para": 9,
      "inicio": 3.12,
      "duracao": 2.05
     },
@@ -460,37 +336,6 @@
      "z": 0,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "dia",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 69,
-    "distanciaPostes": 14
    }
   },
   {
@@ -734,37 +579,6 @@
      "z": 2.2,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 76,
-    "distanciaPostes": 9
    }
   },
   {

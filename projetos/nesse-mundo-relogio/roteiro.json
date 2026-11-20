@@ -244,37 +244,6 @@
      "z": 0,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 52,
-    "distanciaPostes": 8
    }
   },
   {
@@ -289,20 +258,20 @@
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -1.4,
+     "x": -3,
      "z": 0.6
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 1.4,
+     "x": -0.4,
      "z": 0.6,
      "virado": "esquerda"
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": 2.8,
+     "x": 0.9,
      "z": 0.6,
      "virado": "esquerda"
     }
@@ -333,37 +302,6 @@
      "z": 0,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "dia",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 55,
-    "distanciaPostes": 8
    }
   },
   {
@@ -379,13 +317,13 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -3,
+     "x": -2.2,
      "z": 0.6
     },
     {
      "id": "vovo",
      "personagem": "vovo",
-     "x": -4.4,
+     "x": -3.6,
      "z": 0.6
     }
    ],
@@ -393,14 +331,14 @@
     {
      "tipo": "andar",
      "alvo": "bia",
-     "para": 3,
+     "para": 4.6,
      "inicio": 0.69,
      "duracao": 3.32
     },
     {
      "tipo": "andar",
      "alvo": "vovo",
-     "para": 1.6,
+     "para": 3.9,
      "inicio": 0.77,
      "duracao": 3.32
     }
@@ -411,37 +349,6 @@
      "z": 0,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 76,
-    "distanciaPostes": 12
    }
   },
   {

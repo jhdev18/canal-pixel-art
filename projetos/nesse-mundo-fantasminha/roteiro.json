@@ -194,37 +194,6 @@
      "z": 2.2,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 83,
-    "distanciaPostes": 14
    }
   },
   {
@@ -311,37 +280,6 @@
      "y": 2.4
     }
    },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 67,
-    "distanciaPostes": 9
-   },
    "momento": "padaria"
   },
   {
@@ -409,37 +347,6 @@
      "y": 2.4
     }
    },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 61,
-    "distanciaPostes": 8
-   },
    "momento": "padaria"
   },
   {
@@ -488,37 +395,6 @@
      "z": 2.2,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 79,
-    "distanciaPostes": 8
    },
    "momento": "delegacia"
   },
@@ -573,37 +449,6 @@
      "z": 2.2,
      "y": 2.4
     }
-   },
-   "rua": {
-    "periodo": "noite",
-    "faixaPedestre": -3,
-    "predios": [
-     {
-      "tipo": "comum"
-     },
-     {
-      "tipo": "padaria",
-      "largura": 4
-     },
-     {
-      "tipo": "escola",
-      "largura": 6
-     },
-     {
-      "tipo": "delegacia",
-      "largura": 5
-     },
-     {
-      "tipo": "mercado",
-      "largura": 6
-     },
-     {
-      "tipo": "farmacia",
-      "largura": 4
-     }
-    ],
-    "comprimento": 79,
-    "distanciaPostes": 8
    },
    "momento": "delegacia"
   },

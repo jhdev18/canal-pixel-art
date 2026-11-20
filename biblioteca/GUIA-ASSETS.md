@@ -56,6 +56,8 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
 **escola (x 4.6)**, **delegacia (x 10.4)**, **mercado (x 16.2)**, farmácia.
 - Calçada dos prédios: `z` ~5.2–5.6, câmera `{ "x": <prédio>, "z": 2.2, "y": 2.4 }`. Use para "na frente da padaria" etc.
 - Calçada da frente: `z` ~0.6, câmera `{ "x", "z": 0, "y": 2.4 }`. Use para caminhar e conversar.
+- **Postes fixos:** calçada dos prédios em x = 6.5 + 8k, calçada da frente em x = 2.5 + 8k. Não pare ninguém logo à direita de um
+  poste (o poste fica na frente e esconde); um pouco à esquerda ou longe, tudo bem.
 - Close: `"zoom": 2` com `"z": 3.4, "y": 2.6`. Céu acima dos telhados: câmera `"y"` ~3.5.
 - Variações 🧪: `rua-chuva`/`-noite` (poças), `rua-alagada`, `rua-junina` (fogueira + barracas, festa junina),
   `rua-estrelas` (palanque no meio da rua), `rua-festa` ✅ (bandeirinhas e fonte).
