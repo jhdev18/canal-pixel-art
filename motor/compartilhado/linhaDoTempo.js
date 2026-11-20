@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
   pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
@@ -440,6 +440,11 @@ export function eventosSonoros(roteiro) {
           break;
         case 'numero':
           if (!semSom) add(somManual || 'clique', a.inicio, { volume: 0.5 * vol, pan: panEl(a.alvo, a.inicio) });
+          break;
+        case 'fogos':   // PROTÓTIPO: assobio subindo + estouro
+          if (semSom) break;
+          if ((a.subida ?? 0.5) > 0) add('fogos-sobe', a.inicio, { volume: 0.6 * vol, pan: a.posicao ? pan(a.posicao[0], a.inicio) : 0 });
+          add(somManual || 'fogos', a.inicio + (a.subida ?? 0.5), { volume: vol, pan: a.posicao ? pan(a.posicao[0], a.inicio) : 0 });
           break;
         case 'espirrar':   // PROTÓTIPO: inspira no começo, atchim no meio da ação
           if (semSom) break;

@@ -1,6 +1,6 @@
 // NESSE MUNDO (curto, terror) — "Nessa cidade, todo mundo tem um número em cima da cabeça."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-numeros
-// Números no estilo placa ("numero" + ação numero). Usa protótipo fantasma-sombra (a "voz"). "vertical" = enquadramento do Shorts.
+// Números no estilo placa ("numero" + ação numero). Protótipos: rival (a Nina), vulto (a voz), clima neblina, quarto-menina. "vertical" = enquadramento do Shorts.
 {
  "titulo": "Nessa cidade, todo mundo tem um número na cabeça",
  "narrador": "Narrador",
@@ -241,7 +241,7 @@
    }
   },
   {
-   "narracaoTexto": "Mas essa menina sempre teve o número zero.",
+   "narracaoTexto": "Mas a rival da Bia sempre teve o número zero.",
    "cenario": "rua-comercial",
    "camera": {
     "x": 0,
@@ -251,7 +251,7 @@
    "elementos": [
     {
      "id": "nina",
-     "personagem": "aluna",
+     "personagem": "rival",
      "x": -2,
      "z": 0.6,
      "numero": 0
@@ -262,14 +262,14 @@
      "tipo": "andar",
      "alvo": "nina",
      "para": 0.4,
-     "inicio": 0.44,
-     "duracao": 1.64
+     "inicio": 0.45,
+     "duracao": 1.76
     },
     {
      "tipo": "emocao",
      "alvo": "nina",
      "icone": "...",
-     "inicio": 1.83
+     "inicio": 2.03
     }
    ],
    "vertical": {
@@ -281,7 +281,7 @@
    }
   },
   {
-   "narracaoTexto": "Ninguém sabe o nome dela. Na escola, ela é só a menina zero.",
+   "narracaoTexto": "Ninguém sabe o nome dela. Na escola, ela é só a rival.",
    "cenario": "sala-de-aula-diorama",
    "camera": {
     "x": 1.5,
@@ -290,7 +290,7 @@
    "elementos": [
     {
      "id": "nina",
-     "personagem": "aluna",
+     "personagem": "rival",
      "x": 1.4,
      "z": 0.75,
      "numero": 0,
@@ -317,14 +317,14 @@
     {
      "tipo": "falar",
      "alvo": "aluno",
-     "texto": "* Ei, zero!",
-     "inicio": 2.25
+     "texto": "* Ei, rival!",
+     "inicio": 2.01
     },
     {
      "tipo": "emocao",
      "alvo": "nina",
      "icone": "...",
-     "inicio": 3
+     "inicio": 2.61
     }
    ],
    "vertical": {
@@ -338,7 +338,7 @@
    "narracaoTexto": "Até que, numa noite de neblina, uma voz começou a chamar nomes pela rua.",
    "cenario": "rua-comercial-noite",
    "transicao": "iris",
-   "clima": "poeira",
+   "clima": "neblina",
    "paleta": "fria",
    "camera": {
     "x": 4,
@@ -348,11 +348,9 @@
    "elementos": [
     {
      "id": "s1",
-     "personagem": "fantasma-sombra",
+     "sprite": "vulto",
      "x": -2,
      "z": 3,
-     "escala": 2,
-     "y": 0.4,
      "oculto": true
     }
    ],
@@ -364,11 +362,10 @@
      "inicio": 2.41
     },
     {
-     "tipo": "mover",
+     "tipo": "trocar",
      "alvo": "s1",
-     "para": 3,
-     "inicio": 2.87,
-     "duracao": 1.87
+     "estado": "olhos",
+     "inicio": 4.04
     }
    ],
    "vertical": {
@@ -399,11 +396,10 @@
     },
     {
      "id": "s1",
-     "personagem": "fantasma-sombra",
+     "sprite": "vulto",
      "x": 8,
      "z": 4.4,
-     "escala": 2,
-     "y": 0.4
+     "pose": "olhos"
     }
    ],
    "acoes": [
@@ -448,7 +444,7 @@
   {
    "narracaoTexto": "Depois o padeiro, a professora, a rua inteira. Ninguém resiste ao próprio nome.",
    "cenario": "rua-comercial-noite",
-   "clima": "poeira",
+   "clima": "neblina",
    "paleta": "fria",
    "camera": {
     "x": 2,
@@ -472,11 +468,10 @@
     },
     {
      "id": "s1",
-     "personagem": "fantasma-sombra",
+     "sprite": "vulto",
      "x": 2.6,
      "z": 4.2,
-     "escala": 2,
-     "y": 0.4
+     "pose": "olhos"
     }
    ],
    "acoes": [
@@ -513,8 +508,8 @@
    }
   },
   {
-   "narracaoTexto": "A menina congelou. O número não contava amigos. Contava quantas vezes disseram seu nome.",
-   "cenario": "quarto-menino-noite-diorama",
+   "narracaoTexto": "Ela congelou. O número não contava amigos. Contava quantas vezes disseram seu nome.",
+   "cenario": "quarto-menina-noite-diorama",
    "paleta": "fria",
    "camera": {
     "x": 0,
@@ -523,7 +518,7 @@
    "elementos": [
     {
      "id": "nina",
-     "personagem": "aluna",
+     "personagem": "rival",
      "x": 0,
      "z": 1.4,
      "numero": 0
@@ -534,17 +529,17 @@
      "tipo": "emocao",
      "alvo": "nina",
      "icone": "!",
-     "inicio": 1.16
+     "inicio": 1.11
     },
     {
      "tipo": "som",
      "som": "revelar",
-     "inicio": 2.59
+     "inicio": 2.46
     },
     {
      "tipo": "flash",
      "intensidade": 0.3,
-     "inicio": 2.59
+     "inicio": 2.46
     }
    ],
    "vertical": {
@@ -556,7 +551,7 @@
   },
   {
    "narracaoTexto": "E o dela, ninguém nunca tinha dito.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "paleta": "fria",
    "camera": {
     "x": 0,
@@ -566,7 +561,7 @@
    "elementos": [
     {
      "id": "nina",
-     "personagem": "aluna",
+     "personagem": "rival",
      "x": 0,
      "z": 1.4,
      "numero": 0
@@ -590,7 +585,7 @@
   },
   {
    "narracaoTexto": "Até que, do lado de fora da janela, a voz sussurrou: Nina.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "paleta": "noir",
    "camera": {
     "x": 0,
@@ -600,7 +595,7 @@
    "elementos": [
     {
      "id": "nina",
-     "personagem": "aluna",
+     "personagem": "rival",
      "x": 0,
      "z": 1.4,
      "numero": 0

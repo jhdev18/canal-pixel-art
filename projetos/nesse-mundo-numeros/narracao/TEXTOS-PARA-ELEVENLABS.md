@@ -14,12 +14,12 @@ São **12 falas** (uma por cena com narração):
 | 2 | A cidade acredita que é o número de amigos de cada um. |
 | 3 | Por isso, o prefeito Arlindo, com três mil, é o mais querido da cidade. |
 | 4 | Em todo comício, ele faz a praça inteira gritar o nome dele. |
-| 5 | Mas essa menina sempre teve o número zero. |
-| 6 | Ninguém sabe o nome dela. Na escola, ela é só a menina zero. |
+| 5 | Mas a rival da Bia sempre teve o número zero. |
+| 6 | Ninguém sabe o nome dela. Na escola, ela é só a rival. |
 | 7 | Até que, numa noite de neblina, uma voz começou a chamar nomes pela rua. |
 | 8 | Primeiro, o maior número: Arlindo. E o prefeito abriu a porta, sorrindo. |
 | 9 | Depois o padeiro, a professora, a rua inteira. Ninguém resiste ao próprio nome. |
-| 10 | A menina congelou. O número não contava amigos. Contava quantas vezes disseram seu nome. |
+| 10 | Ela congelou. O número não contava amigos. Contava quantas vezes disseram seu nome. |
 | 11 | E o dela, ninguém nunca tinha dito. |
 | 12 | Até que, do lado de fora da janela, a voz sussurrou: Nina. |
 

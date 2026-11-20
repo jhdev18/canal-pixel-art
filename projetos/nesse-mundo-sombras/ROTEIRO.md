@@ -8,7 +8,7 @@
 
 **Assets usados:** protótipo `sombraPessoa` (sombras sem dono, `olhos` na última praça); resto aprovado.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** —
+**Assets novos (protótipos, aguardando o "pode salvar"):** —
 
 ---
 

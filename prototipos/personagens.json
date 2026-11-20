@@ -23,6 +23,15 @@
   "fantasma-sombra": { "sprite": "fantasma-sombra", "voz": 0.5, "y": 0.4 },
   "fantasma-cachorro": { "sprite": "fantasma-cachorro", "voz": 1.3, "y": 0.4 },
 
+  // ---- leva 3 (motor/assets/leva3.js e moradores.js): cachorros de estimação e o seu Tonho com pregador
+  "cachorro-caramelo": { "sprite": "cachorro-caramelo", "voz": 1.3 },
+  "cachorro-preto":    { "sprite": "cachorro-preto", "voz": 1.0 },
+  "cachorro-branco":   { "sprite": "cachorro-branco", "voz": 1.4 },
+  "cachorro-cinza":    { "sprite": "cachorro-cinza", "voz": 1.1 },
+  "cachorro-chique":   { "sprite": "cachorro-chique", "voz": 1.6 },
+  "vira-lata":         { "sprite": "vira-lata", "voz": 1.2 },
+  "padeiro-pregador":  { "sprite": "padeiro-pregador", "voz": 0.85 },
+
   // ---- família da casa em diorama (motor/assets/casa.js)
   "mae":           { "sprite": "mae", "voz": 1.1 },
   "mae-avental":   { "sprite": "mae-avental", "voz": 1.1 },

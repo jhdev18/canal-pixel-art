@@ -157,6 +157,13 @@ const SONS = {
     [ruido({ dur: 0.38, vol: 0.75, f0: 6500, f1: 3000, filtro: 'passa-alta', ataque: 0.004, curva: 1.8, semente: 43 }), 0.05],
     [tom({ tipo: 'quadrada', f0: 760, f1: 520, dur: 0.12, vol: 0.14, duty: 0.25, curva: 1.4 }), 0.05],
   ]),
+  // fogos de artifício: assobio subindo e estouro com estalinhos
+  'fogos-sobe': () => tom({ tipo: 'seno', f0: 900, f1: 2400, dur: 0.5, vol: 0.12, ataque: 0.05, curva: 0.6 }),
+  fogos: () => misturar([
+    [ruido({ dur: 0.5, vol: 0.8, f0: 2500, f1: 200, curva: 2, semente: 51 })],
+    [tom({ tipo: 'seno', f0: 120, f1: 50, dur: 0.3, vol: 0.5, curva: 1.6 })],
+    ...[0.25, 0.33, 0.4, 0.5, 0.56, 0.7, 0.8].map((t0, k) => [ruido({ dur: 0.02, vol: 0.25, f0: 4000 + k * 500, filtro: 'passa-banda', q: 0.5, curva: 2, semente: 60 + k }), t0]),
+  ]),
   miau: () => tom({ tipo: 'triangulo', f0: 700, f1: 520, dur: 0.45, vol: 0.35, ataque: 0.05, curva: 1.2, vibrato: 0.04, vibratoHz: 7 }),
   trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
   suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),

@@ -1,6 +1,6 @@
 // NESSE MUNDO (curto, emocional) — "Nessa cidade, na virada do ano, o relógio da praça anda para trás."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-relogio
-// Usa protótipos: vovo, relogio-praca. "vertical" = enquadramento do Shorts.
+// Usa protótipos: vovo, relogio-praca, ação fogos. "vertical" = enquadramento do Shorts.
 {
  "titulo": "Nessa cidade, o relógio da virada anda para trás",
  "narrador": "Narrador",
@@ -483,6 +483,36 @@
      "intensidade": 0.3,
      "inicio": 2.48,
      "duracao": 1.19
+    },
+    {
+     "tipo": "fogos",
+     "posicao": [
+      -2,
+      7,
+      -9
+     ],
+     "cor": "dourado",
+     "inicio": 1.29
+    },
+    {
+     "tipo": "fogos",
+     "posicao": [
+      4,
+      8,
+      -9
+     ],
+     "cor": "rosa",
+     "inicio": 2.08
+    },
+    {
+     "tipo": "fogos",
+     "posicao": [
+      0.5,
+      7.5,
+      -9
+     ],
+     "cor": "azul",
+     "inicio": 2.68
     }
    ],
    "vertical": {
@@ -670,9 +700,24 @@
      "inicio": 3.09
     },
     {
-     "tipo": "som",
-     "som": "sino",
-     "inicio": 3.73
+     "tipo": "fogos",
+     "posicao": [
+      -3,
+      7,
+      -9
+     ],
+     "cor": "dourado",
+     "inicio": 1.8
+    },
+    {
+     "tipo": "fogos",
+     "posicao": [
+      -6.5,
+      7.5,
+      -9
+     ],
+     "cor": "verde",
+     "inicio": 2.66
     }
    ],
    "vertical": {

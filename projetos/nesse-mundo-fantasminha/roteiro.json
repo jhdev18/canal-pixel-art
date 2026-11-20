@@ -295,7 +295,7 @@
     },
     {
      "id": "pao",
-     "sprite": "sanduiche",
+     "sprite": "pao",
      "x": 0.9,
      "z": 5.3,
      "y": 0.9,
@@ -438,7 +438,7 @@
   },
   {
    "narracaoTexto": "Faltando um minuto, só restava uma pessoa acordada: a Bia.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "camera": {
     "x": 0,
     "y": 3
@@ -484,7 +484,7 @@
   },
   {
    "narracaoTexto": "Ele fez a cara mais feia que sabia e gritou.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "camera": {
     "x": 0,
     "y": 3
@@ -535,7 +535,7 @@
   },
   {
    "narracaoTexto": "E a Bia gritou. Bem alto.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "camera": {
     "x": 0,
     "y": 3,
@@ -592,7 +592,7 @@
   },
   {
    "narracaoTexto": "Só que não era de medo. Era de fofura.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "camera": {
     "x": 0,
     "y": 3
@@ -643,7 +643,7 @@
   },
   {
    "narracaoTexto": "Grito é grito. E agora ele mora no quarto dela.",
-   "cenario": "quarto-menino-diorama",
+   "cenario": "quarto-menina-diorama",
    "camera": {
     "x": 0,
     "y": 3

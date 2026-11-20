@@ -8,7 +8,7 @@
 
 **Assets usados:** protótipos `vovo` e `relogio-praca` (estados h12 → h11-55 → h9 → h6 → h3 fazem os ponteiros "voltarem"); resto aprovado.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** **fogos de artifício** na meia-noite (hoje: flash + faíscas `magia`).
+**Assets novos (protótipos, aguardando o "pode salvar"):** FEITO (protótipo): ação `fogos` na meia-noite e no final.
 
 ---
 

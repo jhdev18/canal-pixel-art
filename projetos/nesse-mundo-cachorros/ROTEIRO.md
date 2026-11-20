@@ -6,9 +6,9 @@
 
 **Pista plantada:** os cachorros respondem ao Caio coisas que ninguém entende (cena 10); o Bolota e o "hora do lanche" (cenas 5–6).
 
-**Assets usados:** aprovados; todos os cachorros são `cao-guarda`. Protótipos: ícone `gota` e ação `pensar` (balão de pensamento "Pizza...").
+**Assets usados:** cada dono tem seu cão (protótipos `cachorro-caramelo`/`-preto`/`-branco`/`-cinza`/`-chique` e `vira-lata`); o Bolota é o `cao-guarda` (de uniforme, da delegacia). Protótipos também: ícone `gota` e ação `pensar`.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** **variações de cachorro** (cores/raças, 4–5 tipos, para distinguir o cão de cada dono; reusável em qualquer vídeo de rua).
+**Assets novos (protótipos, aguardando o "pode salvar"):** FEITO (protótipo): variações de cachorro.
 
 ---
 
@@ -19,7 +19,7 @@
 **3.** `rua-comercial` — Por isso, ninguém leva cachorro em entrevista de emprego.  
    _Balões:_ ccand: "Ele mentiu no currículo."
 **4.** `praca` — E primeiro encontro é sempre sem cachorro, por segurança.  
-   _Balões:_ cpol: "Ela tem chulé."
+   _Balões:_ ctonho: "Ela tem chulé."
 **5.** `rua-comercial` — O Bolota, cachorro da delegacia, há quinze anos só fala uma frase.
 **6.** `rua-comercial` — Hora do lanche. E o policial jura que nunca pensa nisso.  
    _Balões:_ bolota: "Hora do lanche." · policial: "Não penso!"

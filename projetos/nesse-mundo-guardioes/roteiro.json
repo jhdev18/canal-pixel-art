@@ -1,6 +1,6 @@
 // NESSE MUNDO (curto, terror) — "Nessa cidade, cada pessoa tem um guardião que só acorda no perigo."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-guardioes
-// Usa protótipos: guardiões (guardiao-azul, guardia-verde, guardiao-noturno, guardiao-chefe) e fantasma-sombra. "vertical" = enquadramento do Shorts.
+// Usa protótipos: guardiões (guardiao-azul, guardia-verde, guardiao-noturno, guardiao-chefe) + estados tremendo/olhando-lado, vulto e quarto-menina-noite-diorama. "vertical" = enquadramento do Shorts.
 {
  "titulo": "Nessa cidade, o guardião só acorda no perigo",
  "narrador": "Narrador",
@@ -212,7 +212,7 @@
       "dx": -0.9,
       "dy": 1.55
      },
-     "pose": "alerta",
+     "pose": "olhando-lado",
      "virado": "esquerda"
     }
    ],
@@ -399,7 +399,7 @@
   },
   {
    "narracaoTexto": "Até que, numa noite, a Bia acordou e o guardião dela estava tremendo.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "transicao": "iris",
    "camera": {
     "x": 0,
@@ -431,11 +431,10 @@
      "inicio": 1.42
     },
     {
-     "tipo": "piscar",
+     "tipo": "trocar",
      "alvo": "gb",
-     "som": null,
-     "inicio": 2.99,
-     "duracao": 1.57
+     "estado": "tremendo",
+     "inicio": 2.77
     },
     {
      "tipo": "tremer",
@@ -544,7 +543,7 @@
   },
   {
    "narracaoTexto": "A Bia congelou. E, pela primeira vez, olhou para onde o guardião sempre olhava.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "paleta": "fria",
    "camera": {
     "x": 0,
@@ -565,7 +564,7 @@
       "dx": -0.9,
       "dy": 1.55
      },
-     "pose": "alerta",
+     "pose": "olhando-lado",
      "virado": "esquerda"
     }
    ],
@@ -592,7 +591,7 @@
   },
   {
    "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "paleta": "fria",
    "camera": {
     "x": -0.8,
@@ -614,16 +613,14 @@
       "dx": -0.9,
       "dy": 1.55
      },
-     "pose": "alerta",
+     "pose": "olhando-lado",
      "virado": "esquerda"
     },
     {
      "id": "sombra",
-     "personagem": "fantasma-sombra",
+     "sprite": "vulto",
      "x": -1.8,
      "z": 2.6,
-     "escala": 2,
-     "y": 0.4,
      "oculto": true
     }
    ],
@@ -649,7 +646,7 @@
   },
   {
    "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
-   "cenario": "quarto-menino-noite-diorama",
+   "cenario": "quarto-menina-noite-diorama",
    "paleta": "noir",
    "camera": {
     "x": -0.8,
@@ -666,18 +663,16 @@
     },
     {
      "id": "sombra",
-     "personagem": "fantasma-sombra",
+     "sprite": "vulto",
      "x": -1.8,
-     "z": 2.6,
-     "escala": 2,
-     "y": 0.4
+     "z": 2.6
     }
    ],
    "acoes": [
     {
      "tipo": "trocar",
      "alvo": "sombra",
-     "estado": "assustar",
+     "estado": "olhos",
      "inicio": 3.66
     },
     {

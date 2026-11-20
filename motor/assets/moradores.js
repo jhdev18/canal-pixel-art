@@ -128,6 +128,7 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
     b.pinta(12, o(13.4), '#3a2420'); b.pinta(13, o(13.6), '#3a2420'); b.pinta(15, o(13.6), '#3a2420'); b.pinta(16, o(13.4), '#3a2420');
     b.pinta(14, o(13.8), '#e8708a'); b.pinta(14, o(14.6), '#c84a68');
   }
+  if (p.pregador) { for (const y of [9, 10, 11, 12]) { b.pinta(13, o(y), y === 9 ? '#8a5226' : '#c8823e'); b.pinta(15, o(y), y === 9 ? '#8a5226' : '#c8823e'); } for (const x of [13, 14, 15]) b.pinta(x, o(11), '#4a4a5a'); b.pinta(14, o(10), '#f0b898'); }   // PROTÓTIPO: pregador no nariz
   if (p.mecha) for (const [x, y] of [[13, 1], [13, 2], [14, 2], [14, 3], [15, 4]]) b.pinta(x, o(y), p.mecha);
   if (p.curativo) for (const x of [16, 17, 18, 19]) for (const y of [11.2, 12.2]) b.pinta(x, o(y), x === 17 || x === 18 ? '#e0b888' : '#f6dcae');
   if (p.sardas) for (const [x, y] of [[10, 11.6], [11, 12.4], [12, 11.6]]) b.pinta(x, o(y), '#c8784a');
@@ -309,7 +310,8 @@ export const VARIACOES = {
   'policial-oculos': { ...MORADORES.policial, oculosEscuros: true },   // policial Ronaldo, óculos escuros
   'prefeito-careca': { ...MORADORES.prefeito, cabelo: 'careca' },      // prefeito depois que a peruca voa
   // PROTÓTIPO: cão policial detalhado (versão nova do "cao-guarda" do estilo RPG)
+  'padeiro-pregador': { ...MORADORES.padeiro, pregador: true },   // PROTÓTIPO: seu Tonho com pregador no nariz
   'cao-policial': { ...MORADORES.policial, cao: true, cabelo: 'nenhum',
     cores: { ...MORADORES.policial.cores, pele: '#c8884a', cabelo: '#7a4a24', orelha: '#6a3a1c', focinho: '#f0dcc0' } },
 };
-registrarSprites(Object.fromEntries(Object.entries(VARIACOES).map(([k, p]) => [k, () => pessoaComSentado(p)])), { grupo: 'Moradores da cidade', prototipos: ['cao-policial'] });
+registrarSprites(Object.fromEntries(Object.entries(VARIACOES).map(([k, p]) => [k, () => pessoaComSentado(p)])), { grupo: 'Moradores da cidade', prototipos: ['cao-policial', 'padeiro-pregador'] });

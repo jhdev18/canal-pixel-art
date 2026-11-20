@@ -8,7 +8,7 @@
 
 **Assets usados:** só aprovados (`praca-decorada`, `rua-comercial`, `sala-de-aula-diorama`, `quarto-menino-diorama`, moradores, `menina-capa`, `pombo-fofoqueiro`, `cao-guarda`, `sanduiche`). Troca de corpo = flash + faíscas + "?" nos dois e balões com a fala do outro.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** FEITO (protótipo): pose de espirro (`espirro-antes`/`espirro`), ação `espirrar` e sons `espirro-inspira`/`espirro` (um `biblioteca/sfx/espirro.mp3` do ElevenLabs substitui o sintetizado). Falta: **clima `polen`** (hoje `folhas`/`poeira`).
+**Assets novos (protótipos, aguardando o "pode salvar"):** FEITO (protótipo): pose de espirro (`espirro-antes`/`espirro`), ação `espirrar` e sons `espirro-inspira`/`espirro` (um `biblioteca/sfx/espirro.mp3` do ElevenLabs substitui o sintetizado). Também FEITOS (protótipo): clima `polen`, `saquinho-pimenta`, `pao`, `padeiro-pregador` e o quarto da Bia em `quarto-menina-diorama`.
 
 ---
 
@@ -21,7 +21,7 @@
    _Balões:_ tonho: "Pão quentinho!"
 **5.** `rua-comercial` — E tem uma mania estranha: adora ciscar as migalhas da calçada.
 **6.** `rua-comercial` — E o pombo da padaria passa o dia olhando para o forno, com saudade.
-**7.** `quarto-menino-diorama` — E tinha a Bia, de dez anos, alérgica a quase tudo.  
+**7.** `quarto-menina-diorama` — E tinha a Bia, de dez anos, alérgica a quase tudo.  
    _Balões:_ bia: "Atchim!"
 **8.** `rua-comercial` — Ela espirra sempre duas vezes seguidas. E nunca trocou de corpo com ninguém.  
    _Balões:_ bia: "Atchim! Atchim!"

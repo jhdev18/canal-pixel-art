@@ -1,6 +1,6 @@
 // NESSE MUNDO (longo, cômico) — "Nessa cidade, todo cachorro fala em voz alta o que o dono está pensando."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-cachorros
-// Todos os cachorros usam cao-guarda (aprovado). Ícone "gota" e ação "pensar" são protótipos. "vertical" = enquadramento do Shorts.
+// Cães: protótipos cachorro-* e vira-lata (leva3); Bolota = cao-guarda. Ícone "gota" e ação "pensar" são protótipos. "vertical" = enquadramento do Shorts.
 {
  "titulo": "Nessa cidade, todo cachorro fala o que o dono pensa",
  "narrador": "Narrador",
@@ -28,7 +28,7 @@
     },
     {
      "id": "ccaixa",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-caramelo",
      "x": 17,
      "z": 5.4,
      "virado": "esquerda"
@@ -76,7 +76,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 5.4,
      "z": 5.4,
      "virado": "esquerda"
@@ -128,7 +128,7 @@
     },
     {
      "id": "ccand",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-cinza",
      "x": 14.2,
      "z": 5.2
     }
@@ -164,24 +164,24 @@
    },
    "elementos": [
     {
-     "id": "prof",
-     "personagem": "professora",
+     "id": "caixa",
+     "personagem": "caixa",
      "x": -5.8,
      "z": -4.05,
      "y": 0,
      "pose": "sentado"
     },
     {
-     "id": "policial",
-     "personagem": "policial",
+     "id": "tonho",
+     "personagem": "padeiro",
      "x": -4.4,
      "z": -4.05,
      "y": 0,
      "pose": "sentado"
     },
     {
-     "id": "cpol",
-     "personagem": "cao-guarda",
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
      "x": -3,
      "z": -8.6,
      "virado": "esquerda"
@@ -190,13 +190,13 @@
    "acoes": [
     {
      "tipo": "falar",
-     "alvo": "cpol",
+     "alvo": "ctonho",
      "texto": "* Ela tem chulé.",
      "inicio": 1.41
     },
     {
      "tipo": "emocao",
-     "alvo": "prof",
+     "alvo": "caixa",
      "icone": "!",
      "inicio": 2.81
     }
@@ -319,7 +319,7 @@
     },
     {
      "id": "caluna",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-cinza",
      "x": 1.8,
      "z": 4.4,
      "virado": "esquerda"
@@ -364,7 +364,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.8,
      "z": -8.4,
      "virado": "esquerda"
@@ -465,7 +465,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.8,
      "z": -8.4,
      "virado": "esquerda"
@@ -516,14 +516,14 @@
     },
     {
      "id": "c1",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-caramelo",
      "x": 1,
      "z": 0.6,
      "virado": "esquerda"
     },
     {
      "id": "c2",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-cinza",
      "x": 2.4,
      "z": 0.6,
      "virado": "esquerda"
@@ -575,7 +575,7 @@
     },
     {
      "id": "cpref",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-chique",
      "x": 6.4,
      "z": -6.7,
      "y": 0.75,
@@ -589,7 +589,7 @@
     },
     {
      "id": "ctonho",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-preto",
      "x": -2.4,
      "z": -8.2
     },
@@ -601,7 +601,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     },
@@ -652,7 +652,7 @@
     },
     {
      "id": "cpref",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-chique",
      "x": 6.4,
      "z": -6.7,
      "y": 0.75,
@@ -697,7 +697,7 @@
     },
     {
      "id": "ctonho",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-preto",
      "x": -2.4,
      "z": -8.2
     },
@@ -709,7 +709,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     },
@@ -769,7 +769,7 @@
     },
     {
      "id": "ctonho",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-preto",
      "x": -2.4,
      "z": -8.2
     },
@@ -781,7 +781,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     },
@@ -829,7 +829,7 @@
     },
     {
      "id": "ctonho",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-preto",
      "x": -2.4,
      "z": -8.2
     },
@@ -841,7 +841,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     },
@@ -853,14 +853,14 @@
     },
     {
      "id": "c3",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-cinza",
      "x": 3.6,
      "z": -8.4,
      "virado": "esquerda"
     },
     {
      "id": "c4",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-caramelo",
      "x": -5,
      "z": -8.4
     }
@@ -927,7 +927,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     }
@@ -1015,7 +1015,7 @@
     },
     {
      "id": "cpref",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-chique",
      "x": 6.4,
      "z": -6.7,
      "y": 0.75,
@@ -1066,19 +1066,19 @@
     },
     {
      "id": "c1",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-caramelo",
      "x": 2.8,
      "z": 5.2
     },
     {
      "id": "c2",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-cinza",
      "x": 1.6,
      "z": 5.2
     },
     {
      "id": "c3",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-cinza",
      "x": 0.4,
      "z": 5.2
     }
@@ -1207,7 +1207,7 @@
     },
     {
      "id": "vira",
-     "personagem": "cao-guarda",
+     "personagem": "vira-lata",
      "x": -4,
      "z": -8.4
     }
@@ -1259,7 +1259,7 @@
     },
     {
      "id": "vira",
-     "personagem": "cao-guarda",
+     "personagem": "vira-lata",
      "x": -1.8,
      "z": -8.4
     }
@@ -1296,7 +1296,7 @@
     },
     {
      "id": "vira",
-     "personagem": "cao-guarda",
+     "personagem": "vira-lata",
      "x": -1.8,
      "z": -8.4
     }
@@ -1344,7 +1344,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 5.4,
      "z": 5.4,
      "virado": "esquerda"
@@ -1442,7 +1442,7 @@
     },
     {
      "id": "ctonho",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-preto",
      "x": -2.4,
      "z": -8.2
     },
@@ -1454,7 +1454,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     },
@@ -1528,7 +1528,7 @@
     },
     {
      "id": "cpref",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-chique",
      "x": 6.4,
      "z": -6.7,
      "y": 0.75,
@@ -1572,7 +1572,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4,
      "virado": "esquerda"
@@ -1586,7 +1586,7 @@
     },
     {
      "id": "cpref",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-chique",
      "x": 3.8,
      "z": -8.4
     }
@@ -1635,7 +1635,7 @@
     },
     {
      "id": "ctonho",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-preto",
      "x": -2.4,
      "z": -8.2
     },
@@ -1647,7 +1647,7 @@
     },
     {
      "id": "cprof",
-     "personagem": "cao-guarda",
+     "personagem": "cachorro-branco",
      "x": 0.6,
      "z": -8.4
     },
@@ -1665,7 +1665,7 @@
     },
     {
      "id": "vira",
-     "personagem": "cao-guarda",
+     "personagem": "vira-lata",
      "x": -6,
      "z": -8.4
     }

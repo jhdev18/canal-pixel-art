@@ -18,7 +18,7 @@ function guardiao(d, estado, f) {
   for (let y = 14; y < 20; y++) { const w = Math.max(0, 3 - (y - 14) * 0.55), cx = 9 + Math.round(Math.sin(f * 1.6 + y * 0.7)); for (let x = Math.round(cx - w); x <= cx + w; x++) p.set(x, y, d.cauda); }
   // corpinho (túnica) e bracinhos
   p.elipse(9, 13, 3.6, 2.8, (x, y, dx, dy) => Pix.tom([d.tunica[2], d.tunica[1], d.tunica[0]], 0.75 - dx * 0.35 - dy * 0.3, x, y));
-  const by = estado === 'alerta' ? 10 : 13;
+  const by = estado === 'alerta' || estado === 'tremendo' ? 10 : 13;
   p.set(5, by, d.pele); p.set(13, by, d.pele); p.set(5, by + 1, d.pele); p.set(13, by + 1, d.pele);
   // cabeça
   p.elipse(9, 7, 4.2, 4, (x, y, dx, dy) => Pix.tom(['#d49a78', '#f2c4a0', '#ffe0c8'].map((c, i) => d.peles?.[i] || c), 0.7 - dx * 0.3 - dy * 0.3, x, y));
@@ -35,15 +35,24 @@ function guardiao(d, estado, f) {
   // rosto
   const ol = K;
   if (estado === 'feliz' || estado === 'dormindo') { p.set(7, 8, ol); p.set(8, 7, ol); p.set(10, 7, ol); p.set(11, 8, ol); }
-  else if (estado === 'alerta') { p.ret(7, 6, 2, 3, ol); p.ret(10, 6, 2, 3, ol); p.set(7, 6, '#ffffff'); p.set(10, 6, '#ffffff'); }
+  else if (estado === 'alerta' || estado === 'tremendo') { p.ret(7, 6, 2, 3, ol); p.ret(10, 6, 2, 3, ol); p.set(7, 6, '#ffffff'); p.set(10, 6, '#ffffff'); }
+  else if (estado === 'olhando-lado') { p.ret(5, 7, 2, 2, ol); p.ret(8, 7, 2, 2, ol); p.set(5, 7, '#ffffff'); p.set(8, 7, '#ffffff'); }
   else { p.ret(7, 7, 2, 2, ol); p.ret(10, 7, 2, 2, ol); p.set(7, 7, '#ffffff'); p.set(10, 7, '#ffffff'); }
   if (estado === 'feliz') { p.set(8, 10, '#9a3a3a'); p.set(9, 10, '#9a3a3a'); p.set(10, 10, '#9a3a3a'); }
-  else if (estado === 'alerta') { p.set(9, 10, '#5a2a2a'); p.set(9, 9, '#5a2a2a'); }
+  else if (estado === 'alerta' || estado === 'tremendo') { p.set(9, 10, '#5a2a2a'); p.set(9, 9, '#5a2a2a'); if (estado === 'tremendo') { p.set(13, 4, '#8ad0ff'); p.set(13, 5, '#5aa8e8'); } }
+  else if (estado === 'olhando-lado') p.set(7, 10, '#9a3a3a');
   else if (estado !== 'dormindo') p.set(9, 10, '#9a3a3a');
   p.set(6, 9, '#f0a0a0'); p.set(12, 9, '#f0a0a0');
   // a ponta da cauda some em pontilhado
   for (let y = 17; y < H; y++) for (let x = 0; x < W; x++) if ((x + y) % 2 === 0) p.d[(y * W + x) * 4 + 3] = 0;
   return p;
+}
+
+// desloca o desenho dx pixels na horizontal (tremedeira)
+function deslocar(p, dx) {
+  const q = new Pix(p.w, p.h);
+  for (let y = 0; y < p.h; y++) for (let x = 0; x < p.w; x++) { const nx = x + dx; if (nx < 0 || nx >= p.w) continue; const i = (y * p.w + x) * 4, j = (y * p.w + nx) * 4; q.d.set(p.d.subarray(i, i + 4), j); }
+  return q;
 }
 
 export const GUARDIOES = {
@@ -58,10 +67,11 @@ export const GUARDIOES = {
 
 registrarSprites(Object.fromEntries(Object.entries(GUARDIOES).map(([k, d]) => [k, () => {
   const quadros = [], anims = {};
-  for (const est of ['parado', 'feliz', 'alerta', 'dormindo']) {
+  // tremendo e olhando-lado: PROTÓTIPO (leva 3)
+  for (const est of ['parado', 'feliz', 'alerta', 'dormindo', 'tremendo', 'olhando-lado']) {
     const ini = quadros.length;
-    for (let f = 0; f < 4; f++) quadros.push(guardiao(d, est, f));
-    anims[est] = { q: [ini, ini + 1, ini + 2, ini + 3], fps: est === 'dormindo' ? 3 : est === 'alerta' ? 10 : 6 };
+    for (let f = 0; f < 4; f++) quadros.push(est === 'tremendo' ? deslocar(guardiao(d, est, f), f % 2 ? 1 : -1) : guardiao(d, est, f));
+    anims[est] = { q: [ini, ini + 1, ini + 2, ini + 3], fps: est === 'dormindo' ? 3 : est === 'alerta' ? 10 : est === 'tremendo' ? 16 : 6 };
   }
   anims.andando = anims.correndo = anims.parado;
   const s = { quadros, anims, sombra: false, flutua: true };

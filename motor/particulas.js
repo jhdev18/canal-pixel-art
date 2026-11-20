@@ -26,8 +26,10 @@ const CLIMAS = {
   poeira: { n: 70, cor: '#c8b8a0', tam: 1, alpha: 0.5 },
   folhas: { n: 30, cor: '#e89040', tam: 2, alpha: 1 },
   calor: { n: 60, cor: '#fff4d0', tam: 1, alpha: 0.45 },   // ar quente subindo (Dia do Sol)
+  neblina: { n: 150, cor: '#c8d0e0', tam: 8, alpha: 0.09 },  // PROTÓTIPO: bancos de névoa baixos e lentos (terror)
+  polen: { n: 70, cor: '#f8e060', tam: 1, alpha: 0.95 },     // PROTÓTIPO: pólen amarelo flutuando (primavera)
 };
-const ID_CLIMA = { chuva: 0, neve: 1, vagalumes: 2, brasas: 3, poeira: 4, folhas: 5, calor: 6 };
+const ID_CLIMA = { chuva: 0, neve: 1, vagalumes: 2, brasas: 3, poeira: 4, folhas: 5, calor: 6, neblina: 7, polen: 8 };
 
 const VERT_CLIMA = /* glsl */ `
 attribute vec4 aSeed;
@@ -58,6 +60,13 @@ void main() {
     float v = 10.0 + aSeed.z * 14.0;
     p = vec2(aSeed.x * W + sin(uT * 5.0 + aSeed.w * 6.28) * 1.5 - uCam.x, aSeed.y * H + uT * v - uCam.y);
     vBrilho = 0.35 + 0.65 * abs(sin(uT * 2.0 + aSeed.w * 12.0));
+  } else if (uTipo == 7) { // neblina: manchas grandes e transparentes, mais densas na parte de baixo, andando devagar
+    p = vec2(aSeed.x * W + uT * (2.0 + aSeed.z * 3.0) - uCam.x * 0.6, uRes.y * (0.25 + 0.75 * pow(aSeed.y, 0.6)) - 12.0 + sin(uT * 0.3 + aSeed.w * 6.28) * 3.0 - uCam.y * 0.6);
+    vBrilho = 0.6 + 0.4 * sin(uT * 0.5 + aSeed.w * 6.28);
+  } else if (uTipo == 8) { // pólen: pontinhos subindo e descendo devagar, com brilho
+    p = vec2(aSeed.x * W + uT * (4.0 + aSeed.z * 4.0) + sin(uT * 1.1 + aSeed.w * 6.28) * 6.0 - uCam.x * 0.9,
+             aSeed.y * H + sin(uT * 0.8 + aSeed.z * 6.28) * 8.0 - uT * 2.0 - uCam.y * 0.9);
+    vBrilho = 0.5 + 0.5 * sin(uT * 3.0 + aSeed.w * 25.0);
   } else {                 // folhas
     float v = 16.0 + aSeed.z * 14.0;
     p = vec2(aSeed.x * W + uT * 12.0 + sin(uT * 1.5 + aSeed.w * 6.28) * 10.0 - uCam.x, aSeed.y * H - uT * v - uCam.y);
@@ -73,8 +82,10 @@ varying float vBrilho;
 void main() {
   if (uTipo == 0) { if (floor(gl_PointCoord.x * uTam) != 1.0) discard; }
   if (vBrilho < 0.02) discard;
+  if (uTipo == 7 && length(gl_PointCoord - 0.5) > 0.5) discard;
   vec3 c = uCor;
   if (uTipo == 2) c = mix(vec3(0.3, 0.5, 0.1), uCor, vBrilho);
+  if (uTipo == 7) { gl_FragColor = vec4(c, uAlpha * vBrilho); return; }
   gl_FragColor = vec4(c, uAlpha * max(vBrilho, uTipo == 2 ? vBrilho : 0.6));
 }`;
 
@@ -104,6 +115,12 @@ export const RAJADAS = {
   magia: { n: 36, vel: [20, 80], ang: [0, 6.283], grav: 18, arrasto: 2, vida: [0.5, 1.2], tam: 1, cintila: 1, cores: ['#ffffff', '#c8a8ff', '#80c8ff', '#ff88e0'] },
   poeira: { n: 12, vel: [18, 40], ang: [0, 6.283], achatar: 0.25, grav: -20, arrasto: 5, vida: [0.25, 0.5], tam: 1, cores: ['#e0d8c8', '#c0b4a0', '#a09480', '#807460'] },
   brasas: { n: 14, vel: [8, 22], ang: [1.2, 1.94], grav: 30, arrasto: 0.5, vida: [0.8, 1.6], tam: 1, loop: 1, cintila: 1, cores: ['#fff4c0', '#ffb040', '#f07020', '#c83018'] },
+  // PROTÓTIPO: fogos de artifício (rastro subindo + estouro colorido que cai devagar e pisca)
+  rastro: { n: 10, vel: [70, 90], ang: [1.5, 1.64], grav: -40, arrasto: 1, vida: [0.35, 0.55], tam: 1, cores: ['#fff8e0', '#f8d890', '#c89a50', '#6a5030'] },
+  'fogos-dourado': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#fff0a0', '#f8c040', '#c87020'] },
+  'fogos-rosa': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#ffc0e0', '#ff60a8', '#a02a70'] },
+  'fogos-azul': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#c0e8ff', '#50a8ff', '#2a4ab0'] },
+  'fogos-verde': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#d0ffc0', '#60e070', '#1e8a3a'] },
   coracoes: { n: 8, vel: [15, 35], ang: [1.0, 2.14], grav: 10, arrasto: 1.5, vida: [0.7, 1.2], tam: 2, cores: ['#ff6a80', '#e83a4a', '#e83a4a', '#c82a3a'] },
 };
 

@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (174)
+## Sprites (184)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -84,6 +84,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `caixa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `policial-oculos` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `prefeito-careca` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `padeiro-pregador` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `cao-policial` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 
 ### Cidade (vista lateral)
@@ -186,10 +187,10 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `guardiao-azul` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
-| `guardia-verde` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
-| `guardiao-chefe` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
-| `guardiao-noturno` | 🧪 protótipo | parado, feliz, alerta, dormindo | 18×20 |
+| `guardiao-azul` | 🧪 protótipo | parado, feliz, alerta, dormindo, tremendo, olhando-lado | 18×20 |
+| `guardia-verde` | 🧪 protótipo | parado, feliz, alerta, dormindo, tremendo, olhando-lado | 18×20 |
+| `guardiao-chefe` | 🧪 protótipo | parado, feliz, alerta, dormindo, tremendo, olhando-lado | 18×20 |
+| `guardiao-noturno` | 🧪 protótipo | parado, feliz, alerta, dormindo, tremendo, olhando-lado | 18×20 |
 
 ### Fantasmas
 
@@ -249,6 +250,25 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 
+### Cachorros (leva 3)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `cachorro-caramelo` | 🧪 protótipo | parado | 20×19 |
+| `cachorro-preto` | 🧪 protótipo | parado | 20×19 |
+| `cachorro-branco` | 🧪 protótipo | parado | 20×19 |
+| `cachorro-cinza` | 🧪 protótipo | parado | 20×19 |
+| `cachorro-chique` | 🧪 protótipo | parado | 20×19 |
+| `vira-lata` | 🧪 protótipo | parado | 20×19 |
+
+### Terror e objetos (leva 3)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `vulto` | 🧪 protótipo | parado, olhos | 24×56 |
+| `pao` | 🧪 protótipo | parado | 14×7 |
+| `saquinho-pimenta` | 🧪 protótipo | parado, fechado, aberto | 10×12 |
+
 ## Personagens
 
 Uso: `{ "id": "x", "personagem": "nome" }`
@@ -270,6 +290,13 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `fantasma-vovo` | 🧪 protótipo | `fantasma-vovo` | 0.8 |
 | `fantasma-sombra` | 🧪 protótipo | `fantasma-sombra` | 0.5 |
 | `fantasma-cachorro` | 🧪 protótipo | `fantasma-cachorro` | 1.3 |
+| `cachorro-caramelo` | 🧪 protótipo | `cachorro-caramelo` | 1.3 |
+| `cachorro-preto` | 🧪 protótipo | `cachorro-preto` | 1 |
+| `cachorro-branco` | 🧪 protótipo | `cachorro-branco` | 1.4 |
+| `cachorro-cinza` | 🧪 protótipo | `cachorro-cinza` | 1.1 |
+| `cachorro-chique` | 🧪 protótipo | `cachorro-chique` | 1.6 |
+| `vira-lata` | 🧪 protótipo | `vira-lata` | 1.2 |
+| `padeiro-pregador` | 🧪 protótipo | `padeiro-pregador` | 0.85 |
 | `mae` | 🧪 protótipo | `mae` | 1.1 |
 | `mae-avental` | 🧪 protótipo | `mae-avental` | 1.1 |
 | `menino-topete` | 🧪 protótipo | `menino-topete` | 1.4 |
@@ -369,10 +396,10 @@ Uso: `{ "cenario": "nome" }`
 
 ## Ações
 
-`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `sentar`, `levantar`, `espirrar`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
+`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `sentar`, `levantar`, `espirrar`, `fogos`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `miau`, `trovao`, `suspense`, `fantasma`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

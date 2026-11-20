@@ -6,9 +6,9 @@
 
 **Pista plantada:** cena 4 (o guardião olha fixo para as costas dela).
 
-**Assets usados:** protótipos: guardiões (`guardiao-azul`, `guardia-verde`, `guardiao-noturno`, `guardiao-chefe`, estados dormindo/alerta/feliz) e `fantasma-sombra` (escala 2) como a presença; resto aprovado.
+**Assets usados:** protótipos: guardiões (`guardiao-azul`, `guardia-verde`, `guardiao-noturno`, `guardiao-chefe`, estados dormindo/alerta/feliz) , estados novos `olhando-lado` e `tremendo`, `vulto` como a presença e `quarto-menina-noite-diorama`; resto aprovado.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** —
+**Assets novos (protótipos, aguardando o "pode salvar"):** —
 
 ---
 
@@ -19,10 +19,10 @@
 **5.** `rua-comercial` — A cidade decidiu que o perigo era ela. Todos atravessam a rua quando ela passa.
 **6.** `sala-de-aula-diorama` — Na escola, ninguém senta do lado da menina do perigo.  
    _Balões:_ aluna: "Não chega perto."
-**7.** `quarto-menino-noite-diorama` — Até que, numa noite, a Bia acordou e o guardião dela estava tremendo.
+**7.** `quarto-menina-noite-diorama` — Até que, numa noite, a Bia acordou e o guardião dela estava tremendo.
 **8.** `rua-comercial-noite` — Pela janela, ela viu os guardiões da rua inteira acordados. Olhando para a casa dela.
-**9.** `quarto-menino-noite-diorama` — A Bia congelou. E, pela primeira vez, olhou para onde o guardião sempre olhava.
-**10.** `quarto-menino-noite-diorama` — Ela nunca foi o perigo. O perigo estava atrás dela.
-**11.** `quarto-menino-noite-diorama` — Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.
+**9.** `quarto-menina-noite-diorama` — A Bia congelou. E, pela primeira vez, olhou para onde o guardião sempre olhava.
+**10.** `quarto-menina-noite-diorama` — Ela nunca foi o perigo. O perigo estava atrás dela.
+**11.** `quarto-menina-noite-diorama` — Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

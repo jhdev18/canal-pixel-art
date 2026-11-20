@@ -258,6 +258,12 @@ class Motor {
           add('poeira', fim, () => { const d = porId.get(a.alvo).def, st = estadoElemento(c, d, fim); return vista.paraMundo(d, { ...st, y: st.yBase }, 0.1); });
         } break;
         case 'emocao': if (a.icone === 'coracao' && a.alvo) add('coracoes', a.inicio, fixo(centroEl(a.alvo, a.inicio))); break;
+        case 'fogos': {   // PROTÓTIPO: rastro subindo (subida s) e estouro na posição [x, y, z]
+          const pos = daPosicao(a) || { x: 0, y: 5, z: 0 }, sub = a.subida ?? 0.5;
+          if (sub > 0) add('rastro', a.inicio, fixo({ ...pos, y: pos.y - sub * 2.6 }));
+          add('fogos-' + (a.cor || 'dourado'), a.inicio + sub, fixo(pos));
+          break;
+        }
         default: break;
       }
     });

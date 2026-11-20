@@ -218,7 +218,7 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              casa (diorama): casa-sala, casa-cozinha, casa-quarto, casa-banheiro (+ -noite); mae, mae-avental, menino-topete
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
-CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum
+CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, calor, neblina, polen, nenhum
 VISTAS:      diorama (padrão: rua desenhada 2:1; com "comodo" = interior), lateral, 3d (guardado), avenida (perspectiva)
 TRANSIÇÕES:  dither, fade, iris, pixelizar, corte
 PALETAS:     nenhuma (padrão), posterizar, retro32, verde4, sepia, noir, quente, fria

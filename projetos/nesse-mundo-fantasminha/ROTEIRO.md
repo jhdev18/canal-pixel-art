@@ -6,9 +6,9 @@
 
 **Pista plantada:** cena 2 (a regra diz "um grito", não "um susto").
 
-**Assets usados:** protótipos `fantasma-crianca`, `fantasma-lencol`, `fantasma-vovo`, `relogio-praca`; resto aprovado.
+**Assets usados:** protótipos `fantasma-crianca`, `fantasma-lencol`, `fantasma-vovo`, `relogio-praca`, `pao` e `quarto-menina-(noite-)diorama`; resto aprovado.
 
-**Assets novos sugeridos (NÃO criados — aguardando o "pode"):** —
+**Assets novos (protótipos, aguardando o "pode salvar"):** —
 
 ---
 
@@ -24,13 +24,13 @@
 **7.** `rua-comercial-noite` — A segunda foi o policial, de plantão na delegacia.
 **8.** `rua-comercial-noite` — Porém, o policial dormia em pé tão bem que nem abriu o olho.  
    _Balões:_ fant: "BU! BU!"
-**9.** `quarto-menino-noite-diorama` — Faltando um minuto, só restava uma pessoa acordada: a Bia.
-**10.** `quarto-menino-noite-diorama` — Ele fez a cara mais feia que sabia e gritou.  
+**9.** `quarto-menina-noite-diorama` — Faltando um minuto, só restava uma pessoa acordada: a Bia.
+**10.** `quarto-menina-noite-diorama` — Ele fez a cara mais feia que sabia e gritou.  
    _Balões:_ fant: "BUUU!"
-**11.** `quarto-menino-noite-diorama` — E a Bia gritou. Bem alto.  
+**11.** `quarto-menina-noite-diorama` — E a Bia gritou. Bem alto.  
    _Balões:_ bia: "AAAAH!"
-**12.** `quarto-menino-noite-diorama` — Só que não era de medo. Era de fofura.  
+**12.** `quarto-menina-noite-diorama` — Só que não era de medo. Era de fofura.  
    _Balões:_ bia: "Que fofinho!"
-**13.** `quarto-menino-diorama` — Grito é grito. E agora ele mora no quarto dela.
+**13.** `quarto-menina-diorama` — Grito é grito. E agora ele mora no quarto dela.
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

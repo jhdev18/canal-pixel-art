@@ -310,6 +310,43 @@
         { "tipo": "espirrar", "alvo": "tonho", "inicio": 0.3 },
         { "tipo": "espirrar", "alvo": "aluno", "inicio": 2.2, "duracao": 1.4 },
         { "tipo": "falar", "alvo": "aluno", "texto": "* Atchim!", "inicio": 3.05 }
+      ] },
+
+    // 27. PROTÓTIPO leva 3: cachorros de estimação, seu Tonho com pregador, pão e saquinho de pimenta (com pólen)
+    { "cenario": "praca", "duracao": 5, "transicao": "dither", "foto": [1.2, 3.6], "camera": { "x": 0, "z": -10.1, "zoom": 2 }, "clima": "polen",
+      "legenda": "27. Cães, pregador, pão, pimenta e pólen.",
+      "elementos": [
+        { "id": "c1", "personagem": "cachorro-caramelo", "x": -4.2, "z": -8.4 },
+        { "id": "c2", "personagem": "cachorro-preto", "x": -3.1, "z": -8.4 },
+        { "id": "c3", "personagem": "cachorro-branco", "x": -2.0, "z": -8.4 },
+        { "id": "c4", "personagem": "cachorro-cinza", "x": -0.9, "z": -8.4 },
+        { "id": "c5", "personagem": "cachorro-chique", "x": 0.2, "z": -8.4 },
+        { "id": "c6", "personagem": "vira-lata", "x": 1.3, "z": -8.4 },
+        { "id": "tonho", "personagem": "padeiro-pregador", "x": 2.8, "z": -8.6 },
+        { "id": "pao", "sprite": "pao", "x": 3.9, "y": 0.9, "z": -8.5 },
+        { "id": "pimenta", "sprite": "saquinho-pimenta", "x": 4.6, "y": 0.9, "z": -8.5, "pose": "fechado" }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "c6", "para": 2, "inicio": 0.4, "duracao": 1.4 },
+        { "tipo": "trocar", "alvo": "pimenta", "estado": "aberto", "inicio": 3, "som": "papel" }
+      ] },
+
+    // 28. PROTÓTIPO leva 3: neblina, vulto (parado/olhos), guardião tremendo e olhando para o lado, fogos de artifício
+    { "cenario": "praca-noite", "duracao": 6, "transicao": "dither", "foto": [1.4, 3.2, 4.8], "camera": { "x": 0, "z": -8.5 }, "clima": "neblina", "paleta": "fria",
+      "legenda": "28. Neblina, vulto, guardiões e fogos.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -2, "z": -8.6 },
+        { "id": "g1", "personagem": "guardiao-azul", "sobre": { "id": "bia", "dx": 0.9, "dy": 1.55 }, "pose": "tremendo" },
+        { "id": "prof", "personagem": "professora", "x": 1, "z": -8.6 },
+        { "id": "g2", "personagem": "guardia-verde", "sobre": { "id": "prof", "dx": 0.9, "dy": 1.55 }, "pose": "olhando-lado" },
+        { "id": "vulto", "sprite": "vulto", "x": 4.4, "z": -7.4, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "aparecer", "alvo": "vulto", "inicio": 1, "som": "sombra-surge" },
+        { "tipo": "trocar", "alvo": "vulto", "estado": "olhos", "inicio": 2.4 },
+        { "tipo": "fogos", "posicao": [-3, 7, -9], "cor": "dourado", "inicio": 3.6 },
+        { "tipo": "fogos", "posicao": [2, 8, -9], "cor": "rosa", "inicio": 4.0 },
+        { "tipo": "fogos", "posicao": [-0.5, 7.5, -9], "cor": "azul", "inicio": 4.4 }
       ] }
   ]
 }
