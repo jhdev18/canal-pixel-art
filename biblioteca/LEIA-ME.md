@@ -1,5 +1,6 @@
 # Biblioteca de assets (compartilhada por todos os projetos)
 
+**Quem é quem e quando usar:** [`GUIA-ASSETS.md`](GUIA-ASSETS.md) (escrito à mão).
 **Lista de tudo que existe:** [`CATALOGO.md`](CATALOGO.md) (atualize com `npm run catalogo`).
 
 ## Onde cada coisa fica

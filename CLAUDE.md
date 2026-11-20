@@ -67,7 +67,7 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 **Como criar (passo a passo):**
 1. Ler as referências (regra 11) e os vídeos nossos já feitos (`projetos/nesse-mundo-*`, texto em
    `narracao/TEXTO-COMPLETO.txt`) — anotar as premissas usadas para **não repetir**.
-2. Ler `biblioteca/CATALOGO.md` (seção "Biblioteca de assets") e escolher uma regra que **dê pra mostrar** com o que já existe.
+2. Ler `biblioteca/GUIA-ASSETS.md` e `biblioteca/CATALOGO.md` (seção "Biblioteca de assets") e escolher uma regra que **dê pra mostrar** com o que já existe.
 3. Escolher o **tom** (comédia, terror ou emocional) e se vai ter **alguém usando a regra a favor** (só às vezes).
    Escrever a narração frase a frase seguindo a linha do tempo do formato (abaixo). Uma frase = uma cena.
 4. Se uma ideia boa pedir um asset que **não existe**, **falar com o usuário antes de criar** (o que é, onde seria reusado);
@@ -194,8 +194,10 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 
 ## Biblioteca de assets (o que é e como usar)
 **O que é:** tudo o que se repete entre vídeos — personagens, cenários, sprites, objetos e sons — fica num lugar só e
-serve para **qualquer projeto** pelo nome. Antes de escrever um roteiro, **consultar `biblioteca/CATALOGO.md`** (lista
-gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de sprite/cenário.
+serve para **qualquer projeto** pelo nome. Antes de escrever um roteiro, **ler `biblioteca/GUIA-ASSETS.md`** (escrito à mão:
+quem é cada personagem, para que serve cada lugar/objeto, posições e combinações) e conferir nomes em `biblioteca/CATALOGO.md`
+(gerado: nome, status ✅/🧪, estados e tamanho) — não inventar nomes de sprite/cenário. Asset novo, aprovado ou com papel
+fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 
 | Onde | O quê |
 |---|---|
