@@ -321,13 +321,13 @@ export function gerarRuaDiagonal(opc = {}) {
       });
     }
     if (E?.caixotes) {
-      for (let k = 1; k >= 0; k--) {   // (do mais longe para o mais perto: quem é desenhado depois fica na frente) 2 caixotes no canto direito da fachada (x ≈ 13.2–15.3): o meio (x ~16.2) fica livre para as pessoas
-        const cj = P.j1 - 1.05 - k * 1.05, [fr, frE, frC] = [['#e83a3a', '#9a2028', '#ff9a8a'], ['#5ac84a', '#2e7a2e', '#b8f098']][k];   // fruta, sombra, brilho
-        prisma(0.15, 0.75, cj, cj + 1.0, 0, 14, {
+      for (let k = 0; k < 2; k++) {   // 2 caixotes encostados na vitrine (x ≈ 15.6–17.4): na tela não encostam no poste fixo (x 14.5) e não tapam a porta (x ~18–19); do mais longe para o mais perto
+        const cj = P.j1 - 4.2 + k * 0.9, [fr, frE, frC] = [['#5ac84a', '#2e7a2e', '#b8f098'], ['#e83a3a', '#9a2028', '#ff9a8a']][k];   // fruta, sombra, brilho
+        prisma(0.15, 0.75, cj, cj + 0.85, 0, 14, {
           frente: (x, y, u, t) => pintar(x, y, t === 7 || u % 8 === 0 ? '#6a4a1a' : '#a0702a', 0.75, cj, t, 1, 1),
-          lado: (x, y, u, t, s) => pintar(x, y, '#7a5220', s, cj + 1.0, t, 1, 0.8),
+          lado: (x, y, u, t, s) => pintar(x, y, '#7a5220', s, cj + 0.85, t, 1, 0.8),
           topo: (x, y, i, j) => {   // borda de madeira + frutas redondas (2 x 3) com brilho
-            const di = (i - 0.15) / 0.6, dj = (j - cj) / 1.0;
+            const di = (i - 0.15) / 0.6, dj = (j - cj) / 0.85;
             let c;
             if (di < 0.1 || di > 0.9 || dj < 0.06 || dj > 0.94) c = '#c08a40';
             else { const fi = ((di - 0.1) / 0.8 * 2) % 1, fj = ((dj - 0.06) / 0.88 * 3) % 1, d = (fi - 0.5) ** 2 + (fj - 0.5) ** 2;

@@ -484,7 +484,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   Os postes de TODA a rua diagonal são o `poste-iso` (aceso à noite); `"rua": { "postes": "antigo" }` volta ao chapado.
   **Fachadas v2 (proporção, pedido do usuário):** as pessoas eram o dobro da porta; agora o térreo tem 58 px (porta ~46 px,
   vitrine 8–40, toldo/marquise 46–56, acima da cabeça), letreiro em 62–74, andares de 32 px a partir de 80; prédios comuns 112/144/176 px, escola 144, delegacia 112; padaria, mercado e farmácia são térreos (82 px, sem janelas em cima — pedido do usuário).
-  As pessoas NÃO mudaram de tamanho. Caixotes do mercado no canto direito da fachada (x ≈ 13.2–15.3). Teste: `projetos/teste-escala`.
+  As pessoas NÃO mudaram de tamanho. Caixotes do mercado encostados na vitrine (x ≈ 15.6–17.4, sem encostar no poste fixo x 14.5 nem tapar a porta); quem para ali fica na frente deles. Teste: `projetos/teste-escala`.
 - **Protótipos NÃO aprovados** (definidos em `prototipos/cenarios.json`; teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
   `praca-seca` (decorada com fonte seca etc., para a história do Dia do Sol) e `quarto-menina` / `quarto-menina-noite`
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
