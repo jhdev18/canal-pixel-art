@@ -393,6 +393,22 @@
         { "tipo": "mover", "alvo": "a2", "para": [-1.75, 2.2], "inicio": 2.3, "duracao": 0.5 },
         { "tipo": "desaparecer", "alvo": "a1", "inicio": 2.9, "duracao": 0.3 },
         { "tipo": "desaparecer", "alvo": "a2", "inicio": 2.9, "duracao": 0.3 }
+      ] },
+
+    // 32. PROTÓTIPO: menino da coroa (coroa dourada + capa vermelha): de frente, andando, de costas e sentado, ao lado da Bia
+    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.4, 4.6], "camera": { "x": 0, "z": -9.6, "zoom": 2 },
+      "legenda": "32. Menino da coroa.", "remover": ["arvore3", "arvore4"],
+      "elementos": [
+        { "id": "coroa", "personagem": "menino-coroa", "x": 0.6, "z": -8.6 },
+        { "id": "bia", "personagem": "menina-capa", "x": -1.2, "z": -8.6 },
+        { "id": "banco", "sprite": "banco-frente", "x": 2.6, "z": -8.35 }
+      ],
+      "acoes": [
+        { "tipo": "falar", "alvo": "coroa", "texto": "* Eu sou o príncipe!", "inicio": 0.3 },
+        { "tipo": "andar", "alvo": "coroa", "para": 3.35, "inicio": 1.8, "duracao": 1.2 },
+        { "tipo": "trocar", "alvo": "coroa", "estado": "costas", "inicio": 3.0 },
+        { "tipo": "sentar", "alvo": "coroa", "inicio": 3.8 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "...", "inicio": 4.2 }
       ] }
   ]
 }

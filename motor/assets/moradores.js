@@ -91,6 +91,8 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   if (p.cabelo === 'cacheado') { for (const [x, y] of [[9, 3.6], [12.4, 2.2], [15.8, 2.2], [19, 3.6]]) b.elipse(x, y + yc, 2.6, 2.2, M.cabelo); b.elipse(7.6, 10 + yc, 1.8, 3.2, M.cabelo); b.elipse(20.4, 10 + yc, 1.8, 3.2, M.cabelo); }
   if (p.cabelo === 'topete') b.poli([[7.2, 10.4], [6.6, 6.4], [3.6, 5.2], [7, 3.4], [7.4, 0.4], [10.6, 1.6], [12.6, -2.2], [14.8, 1], [17.6, -1.8], [18.6, 1.8], [22.4, 0.8], [20.8, 4.2], [24.2, 5.6], [20.8, 7], [21, 10.4], [19.2, 7.2], [16.6, 7.8], [15.2, 6], [13.2, 7.8], [11, 6.4], [9.2, 7.8]].map(([x, y]) => [x, y + yc]), M.cabelo);
   if (p.cachecol) { b.poli([[8.4, 15.2 + yc], [19.6, 15.2 + yc], [20, 18.4 + yc], [8, 18.4 + yc]], M.cachecol); b.ret(15.4, 18 + yc, 3.2, 8, M.cachecol); }
+  // coroa (PROTÓTIPO): aro dourado com 3 pontas, assentado no alto da cabeça
+  if (p.chapeu === 'coroa') { b.poli([[8.8, 5.4 + yc], [8.4, 0.6 + yc], [10.8, 2.6 + yc], [12.4, -1 + yc], [14, 2.2 + yc], [15.6, -1 + yc], [17.2, 2.6 + yc], [19.6, 0.6 + yc], [19.2, 5.4 + yc]], M.chapeu); b.ret(8.8, 4 + yc, 10.4, 1.4, M.aba); }
   if (p.chapeu === 'quepe') { b.poli([[7.4, 6.2 + yc], [8.4, 1.2 + yc], [19.6, 1.2 + yc], [20.6, 6.2 + yc]], M.chapeu); b.poli([[7, 6 + yc], [21, 6 + yc], [20.4, 7.6 + yc], [7.6, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8, 5.6 + yc], [7.2, -0.4 + yc], [10, -2 + yc], [14, -1 + yc], [18, -2 + yc], [20.8, -0.4 + yc], [20, 5.6 + yc]], M.chapeu); b.ret(8, 4.4 + yc, 12, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[7.6, 6.4 + yc], [8.6, 2 + yc], [19.4, 2 + yc], [20.4, 6.4 + yc]], M.chapeu); b.poli([[12, 5.6 + yc], [22.4, 5.6 + yc], [22, 7.2 + yc], [12, 7.2 + yc]], M.aba); }
@@ -108,7 +110,7 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   else for (const x of [11, 16]) { b.pinta(x, o(9), olho); b.pinta(x, o(10), olho); b.pinta(x + 1, o(9), '#ffffff'); b.pinta(x + 1, o(10), olho); }
   const sobr = tons(p.cores.cabelo)[3];
   if (p.sobrancelhaBrava || espirro === 'atchim') { for (const [x, y] of [[10, 7.2], [11, 7.6], [12, 8.2], [15, 8.2], [16, 7.6], [17, 7.2]]) b.pinta(x, o(y), sobr); }
-  else if (!p.chapeu || p.chapeu === 'bone') { for (const x of [10, 11, 12]) b.pinta(x, o(7.6), sobr); for (const x of [15, 16, 17]) b.pinta(x, o(7.6), sobr); }
+  else if (!p.chapeu || p.chapeu === 'bone' || p.chapeu === 'coroa') { for (const x of [10, 11, 12]) b.pinta(x, o(7.6), sobr); for (const x of [15, 16, 17]) b.pinta(x, o(7.6), sobr); }
   if (p.presilha) for (const [x, y] of [[9, 4], [8, 5], [9, 5], [10, 5], [9, 6]]) b.pinta(x, o(y), (x === 9 && y === 5) ? '#fff8d0' : p.presilha);
   if (p.oculos) { const f = '#2a2a3a'; for (const [x0] of [[10], [15]]) { for (let x = x0; x < x0 + 4; x++) { b.pinta(x, o(8), f); b.pinta(x, o(11), f); } b.pinta(x0, o(9), f); b.pinta(x0, o(10), f); b.pinta(x0 + 3, o(9), f); b.pinta(x0 + 3, o(10), f); } b.pinta(14, o(9), f); }
   if (p.oculosEscuros) { const f = '#14141e', l = '#3a3a52'; for (const x0 of [10, 15]) for (let x = x0; x < x0 + 4; x++) for (let y = 8; y <= 10; y++) b.pinta(x, o(y), y === 8 && x === x0 + 1 ? l : f); b.pinta(14, o(8), f); }
@@ -145,6 +147,7 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   if (p.brincos) for (const x of [7, 20]) { b.pinta(x, o(12.4), '#f0c840'); b.pinta(x, o(13.4), '#c89020'); }
   if (p.colar) for (const [x, y] of [[11, 17.4], [12, 18.4], [13, 19], [14, 19.4], [15, 19], [16, 18.4], [17, 17.4]]) b.pinta(x, o(y), p.colar);
   if (p.cachecol) { const c = tons(p.cores.cachecol); for (const y of [20, 23]) for (const x of [16, 17]) b.pinta(x, o(y), c[2]); for (const x of [15, 17]) b.pinta(x, o(26), c[0]); }
+  if (p.chapeu === 'coroa') { b.pinta(14, o(3.2), '#e83a5a'); b.pinta(14, o(2.2), '#ff8aa0'); b.pinta(11, o(3.6), '#3a8ae8'); b.pinta(17, o(3.6), '#3ad870'); for (const x of [12, 15]) b.pinta(x, o(-0.2), '#fff4b0'); }
   if (p.chapeu === 'quepe') { b.pinta(13, o(3.4), '#f0c840'); b.pinta(14, o(3.4), '#f0c840'); b.pinta(13, o(4.4), '#c89020'); b.pinta(14, o(4.4), '#c89020'); }
   if (p.emblema) { const ce = p.cores.emblema || '#f0c840'; for (const [x, y] of [[13, 21], [14, 21], [13, 22], [14, 22]]) b.pinta(x, o(y), ce); b.pinta(13, o(20), ce); b.pinta(14, o(23), ce); }
   if (p.escudo) { const ce = p.cores.emblema || '#f0c840'; for (const [x, y] of [[6, 25], [6, 26], [5, 25.5], [7, 25.5]]) b.pinta(Math.round(x - largT), o(y), ce); }
@@ -224,6 +227,7 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (p.cabelo === 'cacheado') { b.elipse(11 + x, 3.4 + yc, 3, 2.4, M.cabelo); b.elipse(15.4 + x, 2.4 + yc, 3, 2, M.cabelo); b.elipse(9 + x, 8 + yc, 2.6, 3, M.cabelo); }
   if (p.cabelo === 'topete') b.poli([[8, 11], [7.4, 7.6], [4.6, 6.4], [7.6, 4.8], [6.6, 1.6], [10.2, 2.4], [11.4, -0.8], [13.6, 1.6], [16.2, -0.6], [16.8, 2.2], [20.6, 2.4], [20.6, 5.6], [17.4, 5.4], [14.6, 6.8], [13.2, 7.8], [12.6, 11.6]].map(([px, py]) => [px + x, py + yc]), M.cabelo);
   if (p.cachecol) b.poli([[11.6 + x, 15 + yc], [18.4 + x, 15 + yc], [18.6 + x, 18.2 + yc], [11.4 + x, 18.2 + yc]], M.cachecol);
+  if (p.chapeu === 'coroa') { b.poli([[9.2 + x, 5.4 + yc], [9 + x, 0.8 + yc], [11.4 + x, 2.6 + yc], [13.4 + x, -0.8 + yc], [15.4 + x, 2.6 + yc], [17.6 + x, 0.4 + yc], [19.6 + x, 2.8 + yc], [19.8 + x, 5.4 + yc]], M.chapeu); b.ret(Math.round(9.2 + x), Math.round(4 + yc), 11, 1, M.aba); b.pinta(Math.round(14.6 + x), Math.round(3.2 + yc), '#e83a5a'); }
   if (p.chapeu === 'quepe') { b.poli([[8.4 + x, 6.4 + yc], [9.4 + x, 1.2 + yc], [19.4 + x, 1.2 + yc], [20 + x, 6.4 + yc]], M.chapeu); b.poli([[14 + x, 5.8 + yc], [23 + x, 6.2 + yc], [22.4 + x, 7.6 + yc], [14 + x, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8.6 + x, 5.8 + yc], [8 + x, -0.4 + yc], [12 + x, -2 + yc], [17 + x, -1.6 + yc], [20.4 + x, -0.2 + yc], [20 + x, 5.8 + yc]], M.chapeu); b.ret(8.6 + x, 4.4 + yc, 11.6, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[8.4 + x, 6.6 + yc], [9.4 + x, 2 + yc], [19.4 + x, 2 + yc], [20 + x, 6.6 + yc]], M.chapeu); b.poli([[16 + x, 5.8 + yc], [24 + x, 6 + yc], [23.6 + x, 7.4 + yc], [16 + x, 7.4 + yc]], M.aba); }

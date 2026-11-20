@@ -29,6 +29,11 @@ export const NOVOS_MORADORES = {
     meia: '#f4f4f4', sapato: '#e0407a', capa: '#4a2a8a', emblema: '#f8d040' },
     cabelo: 'rabo-alto', franja: true, presilha: '#f8d040', sobrancelhaBrava: true, sorrisoLado: true,
     casaco: true, capa: true, emblema: true, baixo: 'saia', meias: true, meiasListradas: true, corpo: 'crianca', golaCor: '#f8d040' },
+  // menino da coroa (PROTÓTIPO): mesma idade da Bia, coroa dourada com pedrinhas, capa vermelha, túnica azul-real com
+  // faixa e cinto dourados, calça escura e botinhas; cabelo loiro bagunçado e sorriso de canto (confiante)
+  'menino-coroa': { cores: { pele: '#f0c4a0', cabelo: '#d8a03a', tronco: '#3a5ad8', calca: '#2a2a48', sapato: '#6a3a20', capa: '#c8283a',
+    chapeu: '#f0c030', aba: '#c8901e', cinto: '#f0c030', emblema: '#f0c030' },
+    cabelo: 'bagunçado', chapeu: 'coroa', capa: true, cinto: true, emblema: true, sorrisoLado: true, baixo: 'calca', corpo: 'crianca', golaCor: '#f0c030' },
   // garoto fantasma em vida? não: menino comum de pijama (para cenas à noite com fantasmas)
   'menino-pijama': { cores: { pele: '#f0c4a0', cabelo: '#6a4a2a', tronco: '#8ad0f0', calca: '#8ad0f0', sapato: '#e8e8f0' },
     cabelo: 'bagunçado', baixo: 'calca', corpo: 'crianca', golaCor: '#f4f4f4' },

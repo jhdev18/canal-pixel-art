@@ -358,6 +358,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   estados parado/olhos); objetos `pao` e `saquinho-pimenta` (fechado/aberto); `padeiro-pregador` (seu Tonho com pregador no
   nariz); guardiões com estados novos `tremendo` e `olhando-lado`; climas `neblina` e `polen`; ação `fogos`
   (`posicao` [x, y, z], `cor` dourado/rosa/azul/verde, `subida`) com sons `fogos-sobe`/`fogos`. Teste: `projetos/vitrine` (cenas 27–28).
+  `menino-coroa` (PROTÓTIPO, leva 4): menino com coroa (novo `"chapeu": "coroa"` no gerador de moradores) e capa vermelha;
+  teste na `projetos/vitrine` (cena 32).
   **Nina** = a rival da Bia (protótipo `rival`, também `"personagem": "nina"`): nome oficial, decidido pelo usuário. No vídeo dos
   números ninguém sabe o nome dela até o fim; nos outros vídeos pode ser chamada de Nina normalmente.
 - **Leva 4 (PROTÓTIPOS, aguardando "pode salvar")**: interior da delegacia `delegacia-diorama`/`-noite-diorama`

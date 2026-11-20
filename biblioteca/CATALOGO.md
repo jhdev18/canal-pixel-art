@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (186)
+## Sprites (187)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -211,6 +211,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `vovo` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `sorveteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
+| `menino-coroa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 | `gato-chapeu` | 🧪 protótipo | parado | 20×16 |
 | `bilhete` | 🧪 protótipo | parado, brilhando | 9×7 |
@@ -283,6 +284,7 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `rival` | 🧪 protótipo | `rival` | 1.35 |
 | `nina` | 🧪 protótipo | `rival` | 1.35 |
 | `menino-pijama` | 🧪 protótipo | `menino-pijama` | 1.45 |
+| `menino-coroa` | 🧪 protótipo | `menino-coroa` | 1.3 |
 | `gato-chapeu` | 🧪 protótipo | `gato-chapeu` | 1.8 |
 | `guardiao-azul` | 🧪 protótipo | `guardiao-azul` | 1 |
 | `guardia-verde` | 🧪 protótipo | `guardia-verde` | 1.25 |
