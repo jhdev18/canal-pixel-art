@@ -306,7 +306,7 @@
    "camera": {
     "x": 10.6,
     "z": 3.4,
-    "y": 2.6,
+    "y": 1.5,
     "zoom": 2
    },
    "elementos": [
@@ -349,7 +349,7 @@
     "camera": {
      "x": 10.6,
      "z": 3.4,
-     "y": 2.6,
+     "y": 1.5,
      "zoom": 2
     }
    },
@@ -2419,7 +2419,7 @@
    "camera": {
     "x": 10.6,
     "z": 3.4,
-    "y": 2.6,
+    "y": 1.5,
     "zoom": 2
    },
    "elementos": [
@@ -2462,7 +2462,7 @@
     "camera": {
      "x": 10.6,
      "z": 3.4,
-     "y": 2.6,
+     "y": 1.5,
      "zoom": 2
     }
    }
@@ -3069,7 +3069,7 @@
    "camera": {
     "x": 10.6,
     "z": 3.4,
-    "y": 2.6,
+    "y": 1.5,
     "zoom": 2
    },
    "elementos": [
@@ -3089,9 +3089,9 @@
     {
      "id": "sand",
      "sprite": "sanduiche",
-     "x": 10.4,
-     "z": 5.4,
-     "y": 0.5,
+     "x": 10.15,
+     "z": 4.9,
+     "y": 1,
      "oculto": true
     }
    ],
@@ -3099,12 +3099,39 @@
     {
      "tipo": "aparecer",
      "alvo": "sand",
-     "inicio": 1.28
+     "inicio": 0.52
+    },
+    {
+     "tipo": "magia",
+     "alvo": "sand",
+     "inicio": 0.58
+    },
+    {
+     "tipo": "mover",
+     "alvo": "sand",
+     "para": [
+      10.75,
+      1
+     ],
+     "inicio": 1.28,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bolota",
+     "icone": "coracao",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "pular",
+     "alvo": "bolota",
+     "altura": 0.4,
+     "inicio": 2.14
     },
     {
      "tipo": "coletar",
      "alvo": "sand",
-     "inicio": 2.4
+     "inicio": 2.49
     },
     {
      "tipo": "expressao",
@@ -3118,7 +3145,7 @@
     "camera": {
      "x": 10.6,
      "z": 3.4,
-     "y": 2.6,
+     "y": 1.5,
      "zoom": 2
     }
    },
@@ -3130,7 +3157,7 @@
    "camera": {
     "x": 10.6,
     "z": 3.4,
-    "y": 2.6,
+    "y": 1.5,
     "zoom": 2
    },
    "elementos": [
@@ -3178,7 +3205,7 @@
     "camera": {
      "x": 10.6,
      "z": 3.4,
-     "y": 2.6,
+     "y": 1.5,
      "zoom": 2
     }
    },
