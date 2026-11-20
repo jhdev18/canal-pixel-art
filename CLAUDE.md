@@ -78,7 +78,9 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 
 **Premissas já usadas (não repetir):** mentira acende estrela no céu (`nesse-mundo-estrelas`); toda noite alguém some /
 caderno que escolhe (`nesse-mundo-caderno`); cada um carrega o próprio tempo na cabeça (`nesse-mundo-tempo`); cada rua tem
-um monstro (`rua-monstros`, substituído). Atualizar esta lista a cada vídeo novo.
+um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse-mundo-sombras`); todo fantasma precisa
+de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
+corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -206,6 +208,12 @@ gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de 
   alguém some": o caderno da Bia escolhe quem some; substituiu o dos monstros), `projetos/nesse-mundo-tempo` (longo,
   28 cenas, ~2:36 — a 1ª versão deu 3:04, foram tiradas 5 frases; usa `praca-seca`, `quarto-menina-noite-diorama` e `rua-alagada` do `cenarios.json` do projeto).
   Texto do ElevenLabs em `narracao/TEXTO-COMPLETO.txt` de cada um.
+- **Leva 2 "Nesse Mundo" — roteiros prontos (diorama), aguardando narração/render:** curtos `nesse-mundo-sombras`
+  (12 cenas, fala ~45 s; protótipo `sombraPessoa`), `nesse-mundo-fantasminha` (13 cenas, ~47 s; fantasmas protótipo),
+  `nesse-mundo-relogio` (12 cenas, ~48 s; `vovo`/`relogio-praca` protótipo); longos `nesse-mundo-espirro` (33 cenas,
+  ~2:22; só aprovados) e `nesse-mundo-cachorros` (32 cenas, ~2:24; cães = `cao-guarda`). Cada um tem `ROTEIRO.md`
+  (com assets novos sugeridos, ainda NÃO criados: som `espirro`, clima `polen`, fogos de artifício, variações de cachorro)
+  e `PUBLICACAO.md`.
 - **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
   reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no
   centro, fundo escurecido com `"escurecer"`); `"rua": { "alagada": true }`; sprites `viatura-iso` (parado/sirene),

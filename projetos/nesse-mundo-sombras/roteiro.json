@@ -1,0 +1,857 @@
+// NESSE MUNDO (curto, sombrio) — "Nessa cidade, a sua sombra chega um minuto antes de você."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-sombras
+// Usa o protótipo sombraPessoa (sombras sem dono). "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, a sua sombra chega antes de você",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, a sua sombra sempre chega um minuto antes de você.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 1,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": -2,
+     "z": 5.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -5,
+     "z": 5.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "s1",
+     "para": 3,
+     "inicio": 0.3,
+     "duracao": 2.29
+    },
+    {
+     "tipo": "andar",
+     "alvo": "tonho",
+     "para": 2.4,
+     "inicio": 1.96,
+     "duracao": 2.5
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, ninguém se perde. É só seguir a própria sombra.",
+   "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, A SUA SOMBRA CHEGA ANTES",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.6,
+   "camera": {
+    "x": 5,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": 3.4,
+     "z": 5.6
+    },
+    {
+     "id": "s2",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": 5,
+     "z": 5.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1.6,
+     "z": 5.2
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 3.2,
+     "z": 5.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "s1",
+     "para": 6.6,
+     "inicio": 0.3,
+     "duracao": 2.59
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s2",
+     "para": 8.2,
+     "inicio": 0.3,
+     "duracao": 2.59
+    },
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 4.8,
+     "inicio": 1.04,
+     "duracao": 2.78
+    },
+    {
+     "tipo": "andar",
+     "alvo": "aluno",
+     "para": 6.4,
+     "inicio": 1.23,
+     "duracao": 2.59
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas a sombra da Bia sempre vai para o lado contrário.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1,
+     "z": 0.6
+    },
+    {
+     "id": "sb",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 90
+     },
+     "x": -1.4,
+     "z": 1.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 2,
+     "inicio": 0.47,
+     "duracao": 1.72
+    },
+    {
+     "tipo": "andar",
+     "alvo": "sb",
+     "para": -4.4,
+     "inicio": 0.47,
+     "duracao": 1.72
+    },
+    {
+     "tipo": "virar",
+     "alvo": "bia",
+     "direcao": "esquerda",
+     "inicio": 2.37
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 2.54
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ela chega atrasada em tudo. Na escola, a chamam de perdida.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -8,
+     "z": 0.75
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "bia",
+     "para": -1.6,
+     "inicio": 0.3,
+     "duracao": 1.34
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 1.83
+    },
+    {
+     "tipo": "falar",
+     "alvo": "aluna",
+     "texto": "* Perdida!",
+     "inicio": 2.41
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 2.93
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.6,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, num domingo, todas as sombras saíram andando sozinhas.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": 0,
+     "z": 5.6
+    },
+    {
+     "id": "s2",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": 2.6,
+     "z": 4.2
+    },
+    {
+     "id": "s3",
+     "sombraPessoa": {
+      "tamanho": 3,
+      "direcao": 0
+     },
+     "x": 5,
+     "z": 5.6
+    },
+    {
+     "id": "s4",
+     "sombraPessoa": {
+      "tamanho": 2.4,
+      "direcao": 0
+     },
+     "x": 7.4,
+     "z": 3.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "s1",
+     "para": 6,
+     "inicio": 0.91,
+     "duracao": 3.28
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s2",
+     "para": 8.6,
+     "inicio": 1.12,
+     "duracao": 3.07
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s3",
+     "para": 11,
+     "inicio": 1.32,
+     "duracao": 2.87
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s4",
+     "para": 13,
+     "inicio": 1.53,
+     "duracao": 2.66
+    },
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 0.79
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E os moradores foram atrás delas, sorrindo, um atrás do outro.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 8,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 2,
+     "z": 5.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 3.4,
+     "z": 5.2
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 4.8,
+     "z": 5.2
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 6.2,
+     "z": 5.2
+    },
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": 8,
+     "z": 5.6
+    },
+    {
+     "id": "s2",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": 10,
+     "z": 5.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "s1",
+     "para": 14,
+     "inicio": 0.3,
+     "duracao": 3.63
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s2",
+     "para": 16,
+     "inicio": 0.3,
+     "duracao": 3.63
+    },
+    {
+     "tipo": "andar",
+     "alvo": "tonho",
+     "para": 7,
+     "inicio": 0.5,
+     "duracao": 3.22
+    },
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 8.4,
+     "inicio": 0.66,
+     "duracao": 3.22
+    },
+    {
+     "tipo": "andar",
+     "alvo": "aluno",
+     "para": 9.8,
+     "inicio": 0.82,
+     "duracao": 3.22
+    },
+    {
+     "tipo": "andar",
+     "alvo": "policial",
+     "para": 11.2,
+     "inicio": 0.99,
+     "duracao": 3.22
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "coracao",
+     "inicio": 2.32
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 8,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Só a sombra da Bia puxava para o outro lado. Com força.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 0.6
+    },
+    {
+     "id": "sb",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 90
+     },
+     "x": -0.4,
+     "z": 1.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 3,
+     "z": 0.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "aluno",
+     "para": 7,
+     "inicio": 0.3,
+     "duracao": 2.5
+    },
+    {
+     "tipo": "andar",
+     "alvo": "sb",
+     "para": -2.4,
+     "inicio": 0.66,
+     "duracao": 1.79
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 2.8,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.68
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A Bia parou na esquina. E, pela primeira vez, seguiu a própria sombra.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": -3,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1,
+     "z": 0.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "sb",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 90
+     },
+     "x": -2.6,
+     "z": 1.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "sb",
+     "para": -7,
+     "inicio": 2.35,
+     "duracao": 2.28
+    },
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": -5.4,
+     "inicio": 2.57,
+     "duracao": 2.28
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Lá de longe, ela olhou para trás e congelou.",
+   "cenario": "praca",
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -6.4,
+     "z": -8.6,
+     "virado": "direita"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0,
+     "z": -6.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1.6,
+     "z": -6.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 3.2,
+     "z": -6.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 1.96
+    },
+    {
+     "tipo": "som",
+     "som": "surpresa",
+     "inicio": 2.02
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "As sombras não mostravam o caminho. Elas levavam.",
+   "cenario": "praca",
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.6,
+     "z": -6.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 0,
+     "z": -6.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 1.6,
+     "z": -6.6
+    },
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": -1.6,
+     "z": -7.4
+    },
+    {
+     "id": "s2",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": 0,
+     "z": -7.2
+    },
+    {
+     "id": "s3",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": 1.6,
+     "z": -7.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "sombra",
+     "inicio": 2.05
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "tonho",
+     "inicio": 2.21,
+     "duracao": 0.96
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "prof",
+     "inicio": 2.37,
+     "duracao": 0.96
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "aluno",
+     "inicio": 2.53,
+     "duracao": 0.89
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.4,
+     "inicio": 2.21,
+     "duracao": 0.64
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Na segunda, a praça amanheceu cheia de sombras. Sem ninguém em cima.",
+   "cenario": "praca",
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": -4,
+     "z": -7.6
+    },
+    {
+     "id": "s2",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": -1.6,
+     "z": -6.8
+    },
+    {
+     "id": "s3",
+     "sombraPessoa": {
+      "tamanho": 3,
+      "direcao": 0,
+      "olhos": true
+     },
+     "x": 0.8,
+     "z": -7.4
+    },
+    {
+     "id": "s4",
+     "sombraPessoa": {
+      "tamanho": 2.4,
+      "direcao": 0
+     },
+     "x": 3.4,
+     "z": -6.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 3.62
+    },
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 3.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E a sombra da Bia, colada nos pés dela, ainda tremia.",
+   "cenario": "praca",
+   "camera": {
+    "x": -5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": -2,
+     "z": -7.6
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.4,
+     "z": -8.6
+    },
+    {
+     "id": "sb",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": -5.4,
+     "z": -7.9
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 2.02,
+     "duracao": 1.38
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 2.19
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5,
+     "z": -8.5
+    }
+   }
+  }
+ ]
+}

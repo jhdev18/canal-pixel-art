@@ -1,0 +1,686 @@
+// NESSE MUNDO (curto, emocional) — "Nessa cidade, na virada do ano, o relógio da praça anda para trás."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-relogio
+// Usa protótipos: vovo, relogio-praca. "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, o relógio da virada anda para trás",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, na virada do ano, o relógio da praça anda para trás.",
+   "cenario": "praca-decorada-noite",
+   "transicao": "fade",
+   "camera": {
+    "x": 2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "relogio",
+     "sprite": "relogio-praca",
+     "x": 2.6,
+     "z": -9.2,
+     "pose": "h12"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.4,
+     "z": -8.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h11-55",
+     "inicio": 2.23
+    },
+    {
+     "tipo": "som",
+     "som": "sino-relogio",
+     "inicio": 2.23
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h9",
+     "inicio": 2.96
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h6",
+     "inicio": 3.65
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": 3.39
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2.6,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E quem estiver na praça fica um ano mais novo.",
+   "cenario": "praca-decorada-noite",
+   "titulo": "NESSA CIDADE, O RELÓGIO ANDA PARA TRÁS",
+   "tituloInicio": 0.2,
+   "tituloDuracao": 2.4,
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 4.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "relogio",
+     "sprite": "relogio-praca",
+     "x": 2.6,
+     "z": -9.2,
+     "pose": "h6"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "magia",
+     "alvo": "tonho",
+     "inicio": 1.2
+    },
+    {
+     "tipo": "magia",
+     "alvo": "prof",
+     "inicio": 1.44
+    },
+    {
+     "tipo": "magia",
+     "alvo": "aluno",
+     "inicio": 1.68
+    },
+    {
+     "tipo": "magia",
+     "alvo": "caixa",
+     "inicio": 1.91
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.5,
+     "inicio": 2.09
+    },
+    {
+     "tipo": "pular",
+     "alvo": "prof",
+     "altura": 0.5,
+     "inicio": 2.27
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, a festa vive lotada. O prefeito tem noventa anos e cara de quarenta.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": 4,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 2.4,
+     "z": -8.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Feliz ano novo!",
+     "inicio": 0.81
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "coracao",
+     "inicio": 4.1
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas a vovó da Bia nunca foi na festa. Nem uma vez.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": -2,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -2,
+     "z": 0.6,
+     "virado": "direita"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "vovo",
+     "icone": "...",
+     "inicio": 2.25
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -2,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ela é a mais velha da cidade, e as crianças riem das rugas dela.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -1.4,
+     "z": 0.6
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 1.4,
+     "z": 0.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 2.8,
+     "z": 0.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Uva-passa!",
+     "inicio": 2.17
+    },
+    {
+     "tipo": "pular",
+     "alvo": "aluna",
+     "altura": 0.4,
+     "inicio": 3.21
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "vovo",
+     "icone": "...",
+     "inicio": 3.26
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, nesse ano, a Bia puxou a vovó pela mão até a festa.",
+   "cenario": "rua-comercial-noite",
+   "seguir": "bia",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 0.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.4,
+     "z": 0.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 3,
+     "inicio": 0.69,
+     "duracao": 3.32
+    },
+    {
+     "tipo": "andar",
+     "alvo": "vovo",
+     "para": 1.6,
+     "inicio": 0.77,
+     "duracao": 3.32
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas, na beirada da praça, a vovó parou. E não quis entrar.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": -3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -4,
+     "z": -8.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -6,
+     "z": -9.4
+    },
+    {
+     "id": "relogio",
+     "sprite": "relogio-praca",
+     "x": 2.6,
+     "z": -9.2,
+     "pose": "h11-55"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": -2.6,
+     "inicio": 0.49,
+     "duracao": 1.51
+    },
+    {
+     "tipo": "virar",
+     "alvo": "bia",
+     "direcao": "esquerda",
+     "inicio": 2.19
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 2.37
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "vovo",
+     "icone": "...",
+     "inicio": 2.87
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "O relógio bateu meia-noite, e os ponteiros giraram para trás.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": 1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3,
+     "z": -8.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 4.4,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "relogio",
+     "sprite": "relogio-praca",
+     "x": 2.6,
+     "z": -9.2,
+     "pose": "h11-55"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h12",
+     "inicio": 1.09
+    },
+    {
+     "tipo": "som",
+     "som": "sino-relogio",
+     "inicio": 1.09
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h9",
+     "inicio": 2.48
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h6",
+     "inicio": 3.08
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "relogio",
+     "estado": "h3",
+     "inicio": 3.67
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 2.48,
+     "duracao": 1.19
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2.6,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A cidade inteira ficou mais nova. E a vovó ganhou mais uma ruga.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": -3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -6,
+     "z": -9.4
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": -8.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "magia",
+     "alvo": "tonho",
+     "inicio": 0.51
+    },
+    {
+     "tipo": "magia",
+     "alvo": "bia",
+     "inicio": 0.72
+    },
+    {
+     "tipo": "piscar",
+     "alvo": "vovo",
+     "inicio": 2.8
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 3.21
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Foi aí que a Bia entendeu: o ano que a cidade perde, alguém leva.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": -4.3,
+    "z": -9.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -6,
+     "z": -9.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 1.36
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 1.36
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.3,
+     "z": -9.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A vovó sempre ficou de fora de propósito. Há cento e oitenta anos.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": -4.3,
+    "z": -9.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -6,
+     "z": -9.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "vovo",
+     "texto": "* Alguém tem que ficar.",
+     "inicio": 2.02
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.3,
+     "z": -9.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E, nesse ano, pela primeira vez, ela não ficou sozinha na calçada.",
+   "cenario": "praca-decorada-noite",
+   "camera": {
+    "x": -4,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -6,
+     "z": -9.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": -5,
+     "inicio": 0.94,
+     "duracao": 1.72
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "vovo",
+     "icone": "coracao",
+     "inicio": 3.09
+    },
+    {
+     "tipo": "som",
+     "som": "sino",
+     "inicio": 3.73
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5,
+     "z": -8.5
+    }
+   }
+  }
+ ]
+}
