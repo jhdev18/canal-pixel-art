@@ -20,7 +20,8 @@
     "narracao": "node src/cli.js narracao",
     "fotos": "node src/cli.js fotos",
     "vitrine": "node src/cli.js vitrine",
-    "catalogo": "node src/cli.js catalogo"
+    "catalogo": "node src/cli.js catalogo",
+    "conferir": "node src/cli.js conferir"
   },
   "engines": {
     "node": ">=18"

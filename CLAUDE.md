@@ -75,7 +75,8 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 5. Montar `projetos/nesse-mundo-<tema>/`: `roteiro.json` (diorama, `vertical` em toda cena com personagem,
    `"volumeBaloes": 0.4`), `ROTEIRO.md` (resumo por cena + assets usados), `PUBLICACAO.md` (título, descrição, tags),
    e rodar `npm run narracao -- <projeto>`.
-6. Conferir por texto: JSON válido, duração estimada total, e regra 10 (ações terminam junto com a fala).
+6. Conferir por texto: JSON válido, duração estimada total, regra 10 (ações terminam junto com a fala) e
+   **`npm run conferir -- <projeto>`** sem avisos (ver "Regras de cena").
 
 **Premissas já usadas (não repetir):** mentira acende estrela no céu (`nesse-mundo-estrelas`); toda noite alguém some /
 caderno que escolhe (`nesse-mundo-caderno`); cada um carrega o próprio tempo na cabeça (`nesse-mundo-tempo`); cada rua tem
@@ -193,6 +194,37 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   "Foi aí que... entendeu tudo", "Só faltava um".
 - **Tom:** cômico com um momento de aperto (parte 5); termina leve, sem moral explícita.
 
+## Regras de cena (erros que se repetiram — evitar em TODO vídeo)
+Antes de entregar qualquer roteiro (novo ou ajustado), rodar **`npm run conferir -- <projeto>`** (`src/conferir.js`, não
+renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um problema. Os erros abaixo aconteceram em
+vários vídeos diferentes:
+
+1. **Ninguém coberto por objeto alto.** No diorama de rua/praça fica na frente quem tem **`x + z` menor**. Árvores, barracas,
+   fonte, palanque, relógio e postes na frente de alguém escondem o personagem.
+   - Praça: as árvores da frente `arvore3`/`arvore4` (z -10.25) cobrem a fileira da frente → `"remover": ["arvore3", "arvore4"]`
+     sempre que houver gente na frente (padrão do `nm.mjs`).
+   - Personagem importante **nunca** atrás de algo: se a história pede "escondido atrás da árvore", ele fica **ao lado/na frente**
+     da árvore, visível (o espectador precisa ver).
+   - Quem sobe no palanque usa `"y": 0.75` (não conta como coberto).
+2. **Continuidade de elenco.** Quem está num lugar continua lá enquanto a história estiver no mesmo lugar e momento.
+   - Antes de escrever cenas seguidas no mesmo lugar (festa, debate, sala de aula), definir **o elenco do lugar com posições
+     fixas** (uma função/lista única, como `FESTA()` no espirro) e usar em todas as cenas; cada cena só muda câmera e ações.
+   - Ninguém some e reaparece sem motivo: para tirar alguém, mostrar a **saída** (andar para fora, `desaparecer`) e, para voltar,
+     a **entrada**.
+   - Quem se moveu (ex.: a Bia correu até o seu Tonho) **fica na posição nova** nas cenas seguintes.
+   - Pulo de tempo ou montagem de exemplos: marcar a cena com `"salto": true` (libera a conferência).
+3. **Um sprite = um personagem por vídeo.** Dois personagens diferentes nunca usam o mesmo sprite (aluna "Duda" e Nina, Caio
+   e o candidato). Figurantes iguais só no fundo, sem nome.
+4. **Dentro dos limites do lugar.** Cômodo: `x` entre -9 e 9 e `z` entre 0 e ~3.8 — nada de "andar na parede"; para fugir,
+   pular/recuar dentro do cômodo ou cortar para outro lugar.
+5. **Quem anda seguindo algo anda até o fim da fala.** Personagem que para fica de frente para a câmera (pose parado). Se
+   precisar parar, parar no fim e na posição que faz sentido (atrás da própria sombra, na frente de quem chama).
+6. **Coisas que acompanham cada pessoa existem para todas.** Ex.: cada pessoa que segue a sombra tem a SUA sombra (máx. 4
+   `sombraPessoa` por cena); guardião para cada um que tem guardião; número para cada um, se a regra é de todos.
+7. **Gênero e nome coerentes** com o sprite e com o que foi dito antes (a fantasminha é ela; a rival é a Nina).
+8. **Monstro/ameaça com presença:** tamanho grande (`"escala": 2`), entrada com luz piscando e câmera que mostre o rosto (sem
+   zoom que corte a cabeça).
+
 ## Biblioteca de assets (o que é e como usar)
 **O que é:** tudo o que se repete entre vídeos — personagens, cenários, sprites, objetos e sons — fica num lugar só e
 serve para **qualquer projeto** pelo nome. Antes de escrever um roteiro, **ler `biblioteca/GUIA-ASSETS.md`** (escrito à mão:
@@ -234,6 +266,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (320×180 × 6), 30 fps (`config.json` → `"final": { "resolucao": 1080, "fps": 30 }`). Não mudar sem o usuário pedir.
 - Texto para o ElevenLabs: `npm run narracao -- <ep>` (usa `"narracaoTexto"` de cada cena)
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
+- Conferir erros de cena sem renderizar (gente coberta, continuidade, elenco, limites): `npm run conferir -- <ep>`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
 - Transições curtas (0,2 s); cenas sem duração fixa (duram o tempo da fala/ações).
 - Narração sem `<break>` (um parágrafo por cena). Com o áudio, o corte é automático **pelo que é falado**
