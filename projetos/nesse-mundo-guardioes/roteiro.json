@@ -1,0 +1,708 @@
+// NESSE MUNDO (curto, terror) — "Nessa cidade, cada pessoa tem um guardião que só acorda no perigo."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-guardioes
+// Usa protótipos: guardiões (guardiao-azul, guardia-verde, guardiao-noturno, guardiao-chefe) e fantasma-sombra. "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, o guardião só acorda no perigo",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, cada pessoa tem um guardião que dorme ao lado da cabeça.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 2,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0.6,
+     "z": 5.4
+    },
+    {
+     "id": "gt",
+     "personagem": "guardiao-noturno",
+     "sobre": {
+      "id": "tonho",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "dormindo"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 3.4,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gp",
+     "personagem": "guardia-verde",
+     "sobre": {
+      "id": "prof",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "dormindo"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "gt",
+     "icone": "zzz",
+     "inicio": 2.58
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "gp",
+     "icone": "zzz",
+     "inicio": 3.48
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ele só acorda quando o dono está em perigo.",
+   "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, O GUARDIÃO SÓ ACORDA NO PERIGO",
+   "tituloInicio": 0.2,
+   "tituloDuracao": 2.4,
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -3,
+     "z": 0.6
+    },
+    {
+     "id": "ga",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "aluno",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "dormindo"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "aluno",
+     "para": 0.6,
+     "inicio": 0.3,
+     "duracao": 1.12
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "ga",
+     "estado": "alerta",
+     "inicio": 1.42
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": 1.47
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 1.47,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "ga",
+     "estado": "dormindo",
+     "inicio": 2.68
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas o guardião da Bia nunca dormiu. Nem uma noite.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 0.6
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 2.25
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ele vive acordado, olhando fixo para as costas dela.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0.4,
+    "y": 2.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0.4,
+     "z": 0.6
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": -0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta",
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "volume": 0.6,
+     "inicio": 2.16
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0.4,
+     "y": 2.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A cidade decidiu que o perigo era ela. Todos atravessam a rua quando ela passa.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2,
+     "z": 0.6
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 3,
+     "z": 0.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gp",
+     "personagem": "guardia-verde",
+     "sobre": {
+      "id": "prof",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "dormindo"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 4.4,
+     "z": 0.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gt",
+     "personagem": "guardiao-noturno",
+     "sobre": {
+      "id": "tonho",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "dormindo"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 0.6,
+     "inicio": 0.56,
+     "duracao": 3.08
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 2.35
+    },
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 8,
+     "inicio": 2.87,
+     "duracao": 2.31
+    },
+    {
+     "tipo": "andar",
+     "alvo": "tonho",
+     "para": 9.4,
+     "inicio": 3.12,
+     "duracao": 2.05
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 4.23
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Na escola, ninguém senta do lado da menina do perigo.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.4,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": 0.9,
+      "dy": 1.2
+     },
+     "pose": "alerta"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "aluna",
+     "texto": "* Não chega perto.",
+     "inicio": 1.65
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 2.55
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, numa noite, a Bia acordou e o guardião dela estava tremendo.",
+   "cenario": "quarto-menino-noite-diorama",
+   "transicao": "iris",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.4
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 1.42
+    },
+    {
+     "tipo": "piscar",
+     "alvo": "gb",
+     "som": null,
+     "inicio": 2.99,
+     "duracao": 1.57
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.2,
+     "inicio": 2.99,
+     "duracao": 1.57
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Pela janela, ela viu os guardiões da rua inteira acordados. Olhando para a casa dela.",
+   "cenario": "rua-comercial-noite",
+   "paleta": "fria",
+   "camera": {
+    "x": 3,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0.6,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gt",
+     "personagem": "guardiao-noturno",
+     "sobre": {
+      "id": "tonho",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta",
+     "virado": "esquerda"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 3.4,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gp",
+     "personagem": "guardia-verde",
+     "sobre": {
+      "id": "prof",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta",
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 6.2,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gpol",
+     "personagem": "guardiao-chefe",
+     "sobre": {
+      "id": "policial",
+      "dx": 0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta",
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 0.85
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 4.44,
+     "duracao": 1.11
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 4.44
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 3,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A Bia congelou. E, pela primeira vez, olhou para onde o guardião sempre olhava.",
+   "cenario": "quarto-menino-noite-diorama",
+   "paleta": "fria",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.4
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": -0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta",
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 1.07
+    },
+    {
+     "tipo": "virar",
+     "alvo": "bia",
+     "direcao": "esquerda",
+     "inicio": 4.15
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
+   "cenario": "quarto-menino-noite-diorama",
+   "paleta": "fria",
+   "camera": {
+    "x": -0.8,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "gb",
+     "personagem": "guardiao-azul",
+     "sobre": {
+      "id": "bia",
+      "dx": -0.9,
+      "dy": 1.55
+     },
+     "pose": "alerta",
+     "virado": "esquerda"
+    },
+    {
+     "id": "sombra",
+     "personagem": "fantasma-sombra",
+     "x": -1.8,
+     "z": 2.6,
+     "escala": 2,
+     "y": 0.4,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "sombra",
+     "som": "sombra-surge",
+     "inicio": 2.12
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 2.12
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.8,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
+   "cenario": "quarto-menino-noite-diorama",
+   "paleta": "noir",
+   "camera": {
+    "x": -0.8,
+    "y": 3,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0,
+     "z": 1.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "sombra",
+     "personagem": "fantasma-sombra",
+     "x": -1.8,
+     "z": 2.6,
+     "escala": 2,
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "alvo": "sombra",
+     "estado": "assustar",
+     "inicio": 3.66
+    },
+    {
+     "tipo": "flash",
+     "inicio": 3.66
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.8,
+     "inicio": 3.66,
+     "duracao": 0.9
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "inicio": 3.66
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.8,
+     "y": 3,
+     "zoom": 2
+    }
+   }
+  }
+ ]
+}

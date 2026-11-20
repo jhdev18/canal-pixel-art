@@ -1,0 +1,641 @@
+// NESSE MUNDO (curto, terror) — "Nessa cidade, todo mundo tem um número em cima da cabeça."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-numeros
+// Números no estilo placa ("numero" + ação numero). Usa protótipo fantasma-sombra (a "voz"). "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, todo mundo tem um número na cabeça",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, todo mundo tem um número em cima da cabeça.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 2,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0.6,
+     "z": 5.4,
+     "numero": 85
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 2.6,
+     "z": 5.4,
+     "numero": 140,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 4.6,
+     "z": 5.2,
+     "numero": 12
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": 2.52
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A cidade acredita que é o número de amigos de cada um.",
+   "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, TODO MUNDO TEM UM NÚMERO",
+   "tituloInicio": 0.2,
+   "tituloDuracao": 2.4,
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -2.4,
+     "z": 0.6,
+     "numero": 12
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 2,
+     "z": 0.6,
+     "numero": 9,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "aluno",
+     "para": -0.6,
+     "inicio": 0.65,
+     "duracao": 1.4
+    },
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Oi, Duda!",
+     "inicio": 2.06
+    },
+    {
+     "tipo": "numero",
+     "alvo": "aluna",
+     "valor": 10,
+     "inicio": 2.76
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "coracao",
+     "inicio": 2.61
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, o prefeito Arlindo, com três mil, é o mais querido da cidade.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 4,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "numero": 3000,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 2.4,
+     "z": -8.6,
+     "numero": 51
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "coracao",
+     "inicio": 3.53
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Em todo comício, ele faz a praça inteira gritar o nome dele.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "numero": 3000,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1,
+     "z": -8.4,
+     "numero": 85
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 0.8,
+     "z": -8.6,
+     "numero": 140
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 2.6,
+     "z": -8.6,
+     "numero": 51
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* AR-LIN-DO!",
+     "inicio": 2.06
+    },
+    {
+     "tipo": "pular",
+     "alvo": "prof",
+     "altura": 0.4,
+     "inicio": 2.25
+    },
+    {
+     "tipo": "pular",
+     "alvo": "caixa",
+     "altura": 0.4,
+     "inicio": 2.45
+    },
+    {
+     "tipo": "numero",
+     "alvo": "prefeito",
+     "valor": 3003,
+     "inicio": 2.84
+    },
+    {
+     "tipo": "numero",
+     "alvo": "prefeito",
+     "valor": 3010,
+     "inicio": 3.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas essa menina sempre teve o número zero.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "nina",
+     "personagem": "aluna",
+     "x": -2,
+     "z": 0.6,
+     "numero": 0
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "nina",
+     "para": 0.4,
+     "inicio": 0.44,
+     "duracao": 1.64
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "...",
+     "inicio": 1.83
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ninguém sabe o nome dela. Na escola, ela é só a menina zero.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "nina",
+     "personagem": "aluna",
+     "x": 1.4,
+     "z": 0.75,
+     "numero": 0,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 0.75,
+     "numero": 12,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "menina",
+     "personagem": "menina-capa",
+     "x": -4.6,
+     "z": 2.45,
+     "numero": 20,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Ei, zero!",
+     "inicio": 2.25
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "...",
+     "inicio": 3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, numa noite de neblina, uma voz começou a chamar nomes pela rua.",
+   "cenario": "rua-comercial-noite",
+   "transicao": "iris",
+   "clima": "poeira",
+   "paleta": "fria",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "s1",
+     "personagem": "fantasma-sombra",
+     "x": -2,
+     "z": 3,
+     "escala": 2,
+     "y": 0.4,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "s1",
+     "som": "sombra-surge",
+     "inicio": 2.41
+    },
+    {
+     "tipo": "mover",
+     "alvo": "s1",
+     "para": 3,
+     "inicio": 2.87,
+     "duracao": 1.87
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Primeiro, o maior número: Arlindo. E o prefeito abriu a porta, sorrindo.",
+   "cenario": "rua-comercial-noite",
+   "paleta": "fria",
+   "camera": {
+    "x": 10.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 10.4,
+     "z": 5.6,
+     "numero": 3010,
+     "oculto": true
+    },
+    {
+     "id": "s1",
+     "personagem": "fantasma-sombra",
+     "x": 8,
+     "z": 4.4,
+     "escala": 2,
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "porta",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "prefeito",
+     "som": null,
+     "inicio": 1.7
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prefeito",
+     "icone": "coracao",
+     "inicio": 3.11
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "prefeito",
+     "inicio": 3.81,
+     "duracao": 1.03
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.4,
+     "inicio": 3.81,
+     "duracao": 0.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Depois o padeiro, a professora, a rua inteira. Ninguém resiste ao próprio nome.",
+   "cenario": "rua-comercial-noite",
+   "clima": "poeira",
+   "paleta": "fria",
+   "camera": {
+    "x": 2,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0.6,
+     "z": 5.6,
+     "numero": 85
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 4.6,
+     "z": 5.6,
+     "numero": 140
+    },
+    {
+     "id": "s1",
+     "personagem": "fantasma-sombra",
+     "x": 2.6,
+     "z": 4.2,
+     "escala": 2,
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "desaparecer",
+     "alvo": "tonho",
+     "inicio": 1.07,
+     "duracao": 1.03
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "prof",
+     "inicio": 2.35,
+     "duracao": 1.03
+    },
+    {
+     "tipo": "som",
+     "som": "porta",
+     "inicio": 2.35
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 4.41,
+     "duracao": 0.77
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A menina congelou. O número não contava amigos. Contava quantas vezes disseram seu nome.",
+   "cenario": "quarto-menino-noite-diorama",
+   "paleta": "fria",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "nina",
+     "personagem": "aluna",
+     "x": 0,
+     "z": 1.4,
+     "numero": 0
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "!",
+     "inicio": 1.16
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 2.59
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.3,
+     "inicio": 2.59
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E o dela, ninguém nunca tinha dito.",
+   "cenario": "quarto-menino-noite-diorama",
+   "paleta": "fria",
+   "camera": {
+    "x": 0,
+    "y": 3,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "nina",
+     "personagem": "aluna",
+     "x": 0,
+     "z": 1.4,
+     "numero": 0
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "...",
+     "inicio": 1.37
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, do lado de fora da janela, a voz sussurrou: Nina.",
+   "cenario": "quarto-menino-noite-diorama",
+   "paleta": "noir",
+   "camera": {
+    "x": 0,
+    "y": 3,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "nina",
+     "personagem": "aluna",
+     "x": 0,
+     "z": 1.4,
+     "numero": 0
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "sombra",
+     "inicio": 1.62
+    },
+    {
+     "tipo": "numero",
+     "alvo": "nina",
+     "valor": 1,
+     "inicio": 3.69
+    },
+    {
+     "tipo": "flash",
+     "inicio": 3.69
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.8,
+     "inicio": 3.62,
+     "duracao": 0.45
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3,
+     "zoom": 2
+    }
+   }
+  }
+ ]
+}

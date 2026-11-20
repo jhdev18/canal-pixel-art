@@ -81,7 +81,8 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 caderno que escolhe (`nesse-mundo-caderno`); cada um carrega o próprio tempo na cabeça (`nesse-mundo-tempo`); cada rua tem
 um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse-mundo-sombras`); todo fantasma precisa
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
-corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`). Atualizar esta lista a cada vídeo novo.
+corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
+dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -255,6 +256,8 @@ gerada com nome, status ✅/🧪, estados e tamanho) — não inventar nomes de 
   ~2:22; só aprovados) e `nesse-mundo-cachorros` (32 cenas, ~2:24; cães = `cao-guarda`). Cada um tem `ROTEIRO.md`
   (com assets novos sugeridos, ainda NÃO criados: som `espirro`, clima `polen`, fogos de artifício, variações de cachorro)
   e `PUBLICACAO.md`.
+- **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
+  `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).
 - **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
   reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no
   centro, fundo escurecido com `"escurecer"`); `"rua": { "alagada": true }`; sprites `viatura-iso` (parado/sirene),
