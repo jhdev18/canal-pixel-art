@@ -359,5 +359,5 @@ export function gerarRuaDiagonal(opc = {}) {
     }
     saida.set([Math.min(255, R * 255), Math.min(255, G * 255), Math.min(255, B * 255), 255], k * 4);
   }
-  return { W, H, imagem: saida, brilho, proj, postes, J0, J1, noite };
+  return { W, H, imagem: saida, brilho, proj, postes, J0, J1, noite, pi, pj, ph, tipo };
 }

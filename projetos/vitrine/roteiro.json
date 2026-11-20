@@ -261,6 +261,23 @@
         { "tipo": "andar", "alvo": "rival2", "para": 4.2, "inicio": 0.2, "duracao": 3.4 },
         { "tipo": "emocao", "alvo": "rival", "icone": "raiva", "inicio": 0.4, "duracao": 3 },
         { "tipo": "falar", "alvo": "rival", "texto": "Desta vez eu ganho!", "inicio": 2.4 }
+      ] },
+
+    // 24. Sombra que se alastra: nasce no canto da praça, cobre o chão e sobe pelos objetos, prédios e pessoas
+    { "cenario": "praca-decorada-noite", "duracao": 7, "transicao": "dither", "foto": [1.6, 3.6, 6.4],
+      "legenda": "24. Sombra que se alastra pelo cenário.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 1.4, "z": -8.6 },
+        { "id": "vovo", "personagem": "vovo", "x": 5.1, "y": 0, "z": -4.05, "pose": "sentado" },
+        { "id": "tonho", "personagem": "padeiro", "x": -5.2, "z": -2.4 }
+      ],
+      "acoes": [
+        { "tipo": "sombra", "origem": [-8, -11], "raio": 20, "inicio": 0.4, "duracao": 5.6 },
+        { "tipo": "emocao", "alvo": "tonho", "icone": "!", "inicio": 1.6 },
+        { "tipo": "virar", "alvo": "bia", "direcao": "esquerda", "inicio": 2.2 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 2.4 },
+        { "tipo": "correr", "alvo": "bia", "para": 6, "inicio": 3, "duracao": 1.6 },
+        { "tipo": "tremer", "intensidade": 0.4, "inicio": 4.6, "duracao": 0.6 }
       ] }
   ]
 }

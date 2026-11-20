@@ -109,6 +109,56 @@ function ceuDiagonal(W, H, noite) {
   return tex(cv);
 }
 
+// ---------------------------------------------------------------- sombra que se alastra (diorama de rua)
+export const GLSL_BAYER = /* glsl */ `
+float bayer4(vec2 p) {
+  int x = int(mod(p.x, 4.0)), y = int(mod(p.y, 4.0)), i = x + y * 4;
+  float m[16] = float[16](0., 8., 2., 10., 12., 4., 14., 6., 3., 11., 1., 9., 15., 7., 13., 5.);
+  for (int k = 0; k < 16; k++) if (k == i) return (m[k] + 0.5) / 16.0;
+  return 0.5;
+}`;
+function criarSombraChao(rua) {
+  const { W, H, pi, pj, ph, tipo } = rua;
+  const dados = new Float32Array(W * H * 4);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const k = y * W + x, d = ((H - 1 - y) * W + x) * 4;   // textura de baixo para cima
+    if (!tipo[k]) continue;
+    dados[d] = pi[k]; dados[d + 1] = pj[k]; dados[d + 2] = ph[k]; dados[d + 3] = 1;
+  }
+  const tPos = new THREE.DataTexture(dados, W, H, THREE.RGBAFormat, THREE.FloatType);
+  tPos.magFilter = tPos.minFilter = THREE.NearestFilter; tPos.needsUpdate = true;
+  const u = { tPos: { value: tPos }, uTam: { value: new THREE.Vector2(W, H) }, uO: { value: new THREE.Vector3(0, 0, -1) }, uT: { value: 0 },
+    uCor: { value: new THREE.Color('#0c0816') }, uBorda: { value: new THREE.Color('#4a2a7a') } };
+  const mat = new THREE.ShaderMaterial({ uniforms: u, transparent: true, depthWrite: false, depthTest: false,
+    vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: GLSL_BAYER + `
+      uniform sampler2D tPos; uniform vec2 uTam; uniform vec3 uO; uniform float uT; uniform vec3 uCor, uBorda; varying vec2 vUv;
+      void main() {
+        if (uO.z <= 0.0) discard;
+        vec2 px = floor(vUv * uTam);
+        vec4 p = texture2D(tPos, (px + 0.5) / uTam);
+        if (p.a < 0.5) discard;
+        vec2 dd = p.xy - uO.xy; float d = length(dd), ang = atan(dd.y, dd.x);
+        float rr = uO.z * (0.8 + 0.14 * sin(ang * 5.0 + 1.3) + 0.06 * sin(ang * 13.0 + uT * 1.7));
+        float m = rr - (d + p.z / 24.0);            // altura: a sombra precisa avançar mais para subir a parede
+        if (m < 0.0) discard;
+        if (m < 0.55 && bayer4(px) > m / 0.55) discard;   // borda esfiapada (pontilhado)
+        float veia = step(0.93, fract(sin(dot(floor(px / 3.0), vec2(12.9898, 78.233))) * 43758.5453 + uT * 0.15));
+        vec3 c = m < 0.3 ? uBorda : mix(uCor, uBorda, veia * 0.45);
+        gl_FragColor = vec4(c, m < 0.3 ? 0.95 : 0.9);
+      }` });
+  const malha = new THREE.Mesh(new THREE.PlaneGeometry(W / PPU, H / PPU), mat);
+  return {
+    malha,
+    atualizar(s) {
+      if (!s) { u.uO.value.z = -1; return; }
+      u.uO.value.set(s.i, s.j, s.R); u.uT.value = s.t;
+      if (s.cor) u.uCor.value.set(s.cor); if (s.borda) u.uBorda.value.set(s.borda);
+    },
+    liberar() { tPos.dispose(); mat.dispose(); },
+  };
+}
+
 // ---------------------------------------------------------------- diorama
 // Coordenadas dos elementos: x = posição AO LONGO da rua (cresce para a direita/cima);
 // z = distância a partir da calçada da frente (0 = calçada da frente, ~2.7 = meio da rua,
@@ -138,6 +188,10 @@ function vistaDiagonal(c, motor) {
   cena.add(plano);
 
   const iDe = (el, st) => FAIXA.calcadaFrente - (st?.z ?? el.z ?? 0);
+  // Sombra que se alastra (ação "sombra"): camada por cima do chão/prédios que usa a posição 3D de cada pixel,
+  // então a sombra cobre o chão e SOBE pelas paredes conforme passa.
+  const sombraChao = c.acoes.some((a) => a.tipo === 'sombra') ? criarSombraChao(rua) : null;
+  if (sombraChao) { sombraChao.malha.position.copy(plano.position); sombraChao.malha.position.z = 0.01; sombraChao.malha.renderOrder = 1; cena.add(sombraChao.malha); }
   const ponto = (i, j, altura = 0) => {
     const p = rua.proj(i, j);
     return new THREE.Vector3(Math.round(p.x) / PPU, (rua.H - Math.round(p.y)) / PPU + altura, 0.5);
@@ -163,8 +217,12 @@ function vistaDiagonal(c, motor) {
     ambiente: rua.noite ? ['#9aa0d0', 0.78] : ['#ffffff', 1.0],
     climaPadrao: null,
     atualizar: () => {},
-    liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); },
+    liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); },
     ordemInicial: (el) => ordem(iDe(el), -(el.x ?? 0)),
+    // sombra: posição (i, j) do centro do elemento e o estado da sombra no chão
+    centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), -st.x - (c ? (c.dj ?? 1) / 2 : 0)]; },
+    sombraIJ: (s) => [FAIXA.calcadaFrente - s.z, -s.x],
+    atualizarSombra: (s) => sombraChao?.atualizar(s ? { i: FAIXA.calcadaFrente - s.z, j: -s.x, R: s.R, t: s.t, cor: s.cor, borda: s.borda } : null),
     paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), -st.x, snap(st.y) + dy),
     posicionar(e, st, bob) {
       const i = iDe(e.def, st), j = -st.x;

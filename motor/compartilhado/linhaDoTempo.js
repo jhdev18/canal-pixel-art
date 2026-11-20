@@ -7,7 +7,7 @@ export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
   piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, trocar: 0, desaparecer: 1.2, numero: 0.3,
-  pensar: null, destaque: 1.5, contador: 3, placar: 3, continua: 2,
+  pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -287,6 +287,22 @@ export function estadoCamera(cena, t) {
 }
 
 // Efeitos de tela: tremor, flash e transição.
+// Sombra que se alastra (ação "sombra"): { "origem": [x, z], "raio": 14, "inicio", "duracao", "recolher": s }.
+// Devolve { x, z, R, t } (R = raio atual, em unidades) ou null. A borda é irregular: raioNoAngulo().
+export function estadoSombra(cena, t) {
+  let r = null;
+  for (const a of cena.acoes) {
+    if (a.tipo !== 'sombra' || t < a.inicio) continue;
+    const p = clamp((t - a.inicio) / Math.max(0.1, a.duracao));
+    let R = (a.raio ?? 14) * (1 - (1 - p) * (1 - p));
+    if (a.recolher != null && t > a.recolher) R *= 1 - clamp((t - a.recolher) / 1.2);
+    const [x, z] = a.origem || [0, 0];
+    r = { x, z, R, t, cor: a.cor, borda: a.corBorda, personagens: a.personagens !== false };
+  }
+  return r;
+}
+export const raioNoAngulo = (R, ang, t) => R * (0.8 + 0.14 * Math.sin(ang * 5 + 1.3) + 0.06 * Math.sin(ang * 13 + t * 1.7));
+
 export function efeitosTela(cena, t) {
   let tremor = 0, flash = 0;
   for (const a of cena.acoes) {
@@ -409,6 +425,9 @@ export function eventosSonoros(roteiro) {
           if (semSom) break;
           for (let k = 0; k < Math.round(a.de ?? a.duracao); k++) add(somManual || 'clique', a.inicio + k * (a.duracao / Math.round(a.de ?? a.duracao)), { volume: 0.7 * vol });
           add('sino', a.inicio + a.duracao, { volume: 0.5 * vol });
+          break;
+        case 'sombra':
+          if (!semSom) add(somManual || 'sombra', a.inicio, { volume: 0.9 * vol });
           break;
         case 'destaque':
           if (!semSom) add(somManual || 'revelar', a.inicio, { volume: 0.6 * vol });

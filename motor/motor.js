@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './assets/index.js';   // todos os assets (motor/assets/)
-import { criarVista } from './vistas.js';
+import { criarVista, GLSL_BAYER } from './vistas.js';
 import { criarMonstro, Composicao, TIPOS_TRANSICAO } from './monstros3d.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
@@ -11,7 +11,7 @@ import { PosProcessamento } from './pos.js';
 import { Pix } from './pixel.js';
 import { desenharTexto } from './fonte.js';
 import { distanciaCamera, FOV, PIXELS_POR_UNIDADE as PPU } from './compartilhado/util.js';
-import { cenaNoTempo, estadoCamera, estadoElemento, efeitosTela, elementoPorId } from './compartilhado/linhaDoTempo.js';
+import { cenaNoTempo, estadoCamera, estadoElemento, efeitosTela, elementoPorId, estadoSombra, raioNoAngulo } from './compartilhado/linhaDoTempo.js';
 import { ruido1, hashTexto } from './compartilhado/util.js';
 
 THREE.ColorManagement.enabled = false;
@@ -169,6 +169,7 @@ class Motor {
       (this.hd ? cenaHD : cena).add(m.grupo);
       return { def: el, m };
     });
+    const temSombra = c.acoes.some((a) => a.tipo === 'sombra');
     const elementos = c.elementos.filter((el) => !el.monstro).map((el, i) => {
       const { sprite, texturas } = this.sprite(el, c);
       const esc = el.escala ?? 1;
@@ -185,6 +186,8 @@ class Motor {
       const malha = new THREE.Mesh(geo, mat);
       malha.renderOrder = vista.ordemInicial(el, i);
       const obj = { def: el, sprite, texturas, malha, mat, h: h * esc, esc, realce: el.realce ?? realce };
+      // sombra que se alastra: o sprite escurece de baixo para cima quando a sombra chega nele
+      if (temSombra && !el.tela && vista.centroIJ) obj.somU = sombraNoSprite(mat, texturas[0].image.height, vazio);
       // "tela": true — detalhe em close (ex.: página de um caderno), no centro da tela, por cima da cena,
       // com o fundo escurecido ("escurecer": 0..1, padrão 0.6). "telaX"/"telaY" deslocam em pixels.
       if (el.tela) {
@@ -303,6 +306,8 @@ class Motor {
     obj.camera.updateProjectionMatrix();
     obj.camera.updateMatrixWorld();
 
+    const somb = vista.atualizarSombra ? estadoSombra(c, t) : null;
+    vista.atualizarSombra?.(somb);
     for (const e of obj.elementos) {
       const st = estadoElemento(c, e.def, t);
       const vis = st.visivel && st.alpha > 0.01 && st.escala > 0.01;
@@ -344,6 +349,16 @@ class Motor {
       // "balancar": true — boia na água (sobe e desce devagar, em pixels inteiros)
       if (e.def.balancar) bob = Math.round(Math.sin(tAnim * 2.2) * 1.5) / PPU;
       e.mat.map = e.texturas[q] || e.texturas[0]; if ('emissiveMap' in e.mat) e.mat.emissiveMap = e.mat.map;
+      if (e.somU) {
+        let nivel = -1;
+        if (somb && (somb.personagens || !e.sprite.personagem)) {
+          const [i, j] = vista.centroIJ(e, st), [oi, oj] = vista.sombraIJ(somb);
+          const d = Math.hypot(i - oi, j - oj), rr = raioNoAngulo(somb.R, Math.atan2(j - oj, i - oi), somb.t);
+          nivel = (rr - d) * 24;
+          if (somb.cor) e.somU.uSomCor.value.set(somb.cor); if (somb.borda) e.somU.uSomBorda.value.set(somb.borda);
+        }
+        e.somU.uSomNivel.value = nivel;
+      }
       const s = e.esc * st.escala;
       if (e.def.tela) {         // em pixels da tela (a malha está em unidades do mundo: x16)
         e.malha.position.set(Math.round(this.W / 2 + (e.def.telaX ?? 0)), Math.round(this.H / 2 - e.h * PPU / 2 + (e.def.telaY ?? 0)), 0);
@@ -569,6 +584,24 @@ class Motor {
     };
     loop();
   }
+}
+
+// Injeta no material do sprite a sombra que sobe de baixo para cima (uSomNivel = px cobertos, a partir da base).
+function sombraNoSprite(mat, alturaPx, vazio = 0) {
+  const u = { uSomNivel: { value: -1 }, uSomAlt: { value: alturaPx }, uSomVazio: { value: vazio },
+    uSomCor: { value: new THREE.Color('#0c0816') }, uSomBorda: { value: new THREE.Color('#4a2a7a') } };
+  mat.onBeforeCompile = (sh) => {
+    Object.assign(sh.uniforms, u);
+    sh.fragmentShader = 'uniform float uSomNivel, uSomAlt, uSomVazio; uniform vec3 uSomCor, uSomBorda;\n' + GLSL_BAYER + '\n' +
+      sh.fragmentShader.replace('#include <dithering_fragment>', `#include <dithering_fragment>
+        if (uSomNivel > 0.0) {
+          float hp = vMapUv.y * uSomAlt - uSomVazio, m = uSomNivel - hp;
+          if (m > 0.0 && !(m < 3.0 && bayer4(floor(gl_FragCoord.xy)) > m / 3.0)) gl_FragColor.rgb = m < 2.0 ? uSomBorda : uSomCor;
+        }`);
+  };
+  mat.customProgramCacheKey = () => 'sombra-sprite';
+  mat.needsUpdate = true;
+  return u;
 }
 
 window.motor = new Motor();
