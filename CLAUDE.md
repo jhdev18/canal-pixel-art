@@ -385,7 +385,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   números ninguém sabe o nome dela até o fim; nos outros vídeos pode ser chamada de Nina normalmente.
 - **Leva 4 (PROTÓTIPOS, aguardando "pode salvar")**: interior da delegacia `delegacia-diorama`/`-noite-diorama`
   (`motor/assets/delegacia.js`: balcao-delegacia, mesa-escritorio, cadeira-escritorio, arquivo, cela, bebedouro); `relogio-praca`
-  v2 (mais detalhado); `cao-policial` v2; `alma` (azul/rosa: troca de corpo do espirro) e `banco-frente` (banco visto de frente
+  v2 (mais detalhado); `cao-policial` (v2 desfeita: o usuário pediu o desenho antigo de volta); `alma` (azul/rosa: troca de corpo do espirro) e `banco-frente` (banco visto de frente
   para cenas sentadas) em `motor/assets/leva3.js`. Teste: `projetos/vitrine` (cenas 29–31).
   Regras que vieram dos ajustes do usuário: praça → tirar `arvore3`/`arvore4` (árvores da frente) quando houver gente na frente
   (o `nm.mjs` do Claude já faz isso por padrão); sentar → `banco-frente`; continuidade → numa cena longa no mesmo lugar (festa),
@@ -393,8 +393,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 - **Expressões faciais (PROTÓTIPO, v2 conferida com fotos)** (`motor/expressoes.js`): `rosto-feliz`, `rosto-rindo`, `rosto-triste`
   (olho aberto e molhado, sobrancelha caída), `rosto-chorando` (olho apertado + duas lágrimas escorrendo + boca aberta), `rosto-bravo`,
   `rosto-surpreso`, `rosto-assustado`, `rosto-envergonhado`, `rosto-pensativo` (olhar de lado). Têm: todos os moradores e o gerador
-  de pessoas (inclui `cao-policial`, que muda só os olhos), a Bia e os cachorros de estimação (`cachorro-*`, `vira-lata`).
-  Guardiões, fantasmas e RPG usam o estado parecido que tiverem (feliz/tímido/alerta/tremendo...); sem nada parecido, ficam parados.
+  de pessoas, a Bia e os cachorros de estimação (`cachorro-*`, `vira-lata`).
+  O `cao-policial` NÃO tem (a expressão deformava o rosto; usuário não gostou). Guardiões, fantasmas e RPG usam o estado parecido que tiverem (feliz/tímido/alerta/tremendo...); sem nada parecido, ficam parados.
   Ação `expressao` (`rosto`, `duracao`), pose fixa `"pose": "rosto-x"`, e automático com o ícone de `emocao` (`gota` → chorando;
   `"rosto": false` desliga). Só aparece com o personagem parado e sem `pose` (andando/sentado não muda). **Usar em todo vídeo** nas
   reações da narração (já aplicado nos 7 vídeos da leva 2/terror; nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])` do `nm.mjs`).
