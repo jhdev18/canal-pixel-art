@@ -6,7 +6,7 @@
 
 **Pista plantada:** cena 3 (a sombra dela puxa para o outro lado) e cena 7 ("com força").
 
-**Assets usados:** protótipo `sombraPessoa` (sombras sem dono, `olhos` na última praça); resto aprovado.
+**Assets usados:** protótipos `sombraPessoa` (sombras sem dono) e ação `sombra` (cena 10: a escuridão nasce no meio do grupo, sobe pelas pessoas e elas desaparecem). Das cenas 9 a 12 a Bia fica escondida atrás de uma árvore (`arvore-iso-grande` em x -7.4, z -9.9; Bia em x -5.7, z -8.5); resto aprovado.
 
 **Assets novos (protótipos, aguardando o "pode salvar"):** —
 

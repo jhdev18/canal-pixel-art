@@ -591,16 +591,122 @@
   {
    "narracaoTexto": "Lá de longe, ela olhou para trás e congelou.",
    "cenario": "praca",
+   "remover": [
+    "arvore3"
+   ],
    "camera": {
-    "x": -1,
+    "x": -2,
     "z": -8.5
    },
    "elementos": [
     {
+     "id": "arvoreBia",
+     "sprite": "arvore-iso-grande",
+     "x": -7.4,
+     "z": -9.9
+    },
+    {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -6.4,
-     "z": -8.6,
+     "x": -5.7,
+     "z": -8.5,
+     "virado": "direita"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0,
+     "z": -6.6
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 1.6,
+     "z": -6.4
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 3.2,
+     "z": -6.6
+    },
+    {
+     "id": "s1",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": 0,
+     "z": -7.4
+    },
+    {
+     "id": "s2",
+     "sombraPessoa": {
+      "tamanho": 2.6,
+      "direcao": 0
+     },
+     "x": 1.6,
+     "z": -7.2
+    },
+    {
+     "id": "s3",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": 3.2,
+     "z": -7.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 1.73
+    },
+    {
+     "tipo": "som",
+     "som": "surpresa",
+     "inicio": 1.73
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "coracao",
+     "inicio": 1.96
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5.7,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "As sombras não mostravam o caminho. Elas levavam.",
+   "cenario": "praca",
+   "paleta": "fria",
+   "remover": [
+    "arvore3"
+   ],
+   "camera": {
+    "x": -2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "arvoreBia",
+     "sprite": "arvore-iso-grande",
+     "x": -7.4,
+     "z": -9.9
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.7,
+     "z": -8.5,
      "virado": "direita"
     },
     {
@@ -624,112 +730,49 @@
    ],
    "acoes": [
     {
-     "tipo": "emocao",
-     "alvo": "bia",
-     "icone": "!",
-     "inicio": 1.96
-    },
-    {
-     "tipo": "som",
-     "som": "surpresa",
-     "inicio": 2.02
-    }
-   ],
-   "vertical": {
-    "camera": {
-     "x": -1,
-     "z": -8.5
-    }
-   }
-  },
-  {
-   "narracaoTexto": "As sombras não mostravam o caminho. Elas levavam.",
-   "cenario": "praca",
-   "camera": {
-    "x": 0,
-    "z": -8.5
-   },
-   "elementos": [
-    {
-     "id": "tonho",
-     "personagem": "padeiro",
-     "x": -1.6,
-     "z": -6.6
-    },
-    {
-     "id": "prof",
-     "personagem": "professora",
-     "x": 0,
-     "z": -6.4
-    },
-    {
-     "id": "aluno",
-     "personagem": "aluno",
-     "x": 1.6,
-     "z": -6.6
-    },
-    {
-     "id": "s1",
-     "sombraPessoa": {
-      "tamanho": 2.6,
-      "direcao": 0
-     },
-     "x": -1.6,
-     "z": -7.4
-    },
-    {
-     "id": "s2",
-     "sombraPessoa": {
-      "tamanho": 2.6,
-      "direcao": 0
-     },
-     "x": 0,
-     "z": -7.2
-    },
-    {
-     "id": "s3",
-     "sombraPessoa": {
-      "tamanho": 2.2,
-      "direcao": 0
-     },
-     "x": 1.6,
-     "z": -7.4
-    }
-   ],
-   "acoes": [
-    {
-     "tipo": "som",
-     "som": "sombra",
-     "inicio": 2.05
+     "tipo": "sombra",
+     "origem": [
+      1.6,
+      -6.9
+     ],
+     "raio": 3.6,
+     "inicio": 0.46,
+     "duracao": 2.39
     },
     {
      "tipo": "desaparecer",
      "alvo": "tonho",
-     "inicio": 2.21,
-     "duracao": 0.96
+     "inicio": 1.89,
+     "duracao": 0.8
     },
     {
      "tipo": "desaparecer",
      "alvo": "prof",
-     "inicio": 2.37,
-     "duracao": 0.96
+     "inicio": 2.15,
+     "duracao": 0.8
     },
     {
      "tipo": "desaparecer",
      "alvo": "aluno",
-     "inicio": 2.53,
-     "duracao": 0.89
+     "inicio": 2.4,
+     "duracao": 0.8
     },
     {
      "tipo": "tremer",
      "intensidade": 0.4,
-     "inicio": 2.21,
+     "inicio": 2.05,
      "duracao": 0.64
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.21
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 1.6,
      "z": -8.5
     }
    }
@@ -737,18 +780,34 @@
   {
    "narracaoTexto": "Na segunda, a praça amanheceu cheia de sombras. Sem ninguém em cima.",
    "cenario": "praca",
+   "remover": [
+    "arvore3"
+   ],
    "camera": {
-    "x": 0,
+    "x": -2,
     "z": -8.5
    },
    "elementos": [
+    {
+     "id": "arvoreBia",
+     "sprite": "arvore-iso-grande",
+     "x": -7.4,
+     "z": -9.9
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.7,
+     "z": -8.5,
+     "virado": "direita"
+    },
     {
      "id": "s1",
      "sombraPessoa": {
       "tamanho": 2.6,
       "direcao": 0
      },
-     "x": -4,
+     "x": -2.4,
      "z": -7.6
     },
     {
@@ -757,7 +816,7 @@
       "tamanho": 2.2,
       "direcao": 0
      },
-     "x": -1.6,
+     "x": 0,
      "z": -6.8
     },
     {
@@ -767,7 +826,7 @@
       "direcao": 0,
       "olhos": true
      },
-     "x": 0.8,
+     "x": 1.6,
      "z": -7.4
     },
     {
@@ -790,11 +849,17 @@
      "tipo": "som",
      "som": "suspense",
      "inicio": 3.62
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 3.52
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": -2,
      "z": -8.5
     }
    }
@@ -802,11 +867,37 @@
   {
    "narracaoTexto": "E a sombra da Bia, colada nos pés dela, ainda tremia.",
    "cenario": "praca",
+   "remover": [
+    "arvore3"
+   ],
    "camera": {
-    "x": -5,
-    "z": -8.5
+    "x": -6,
+    "z": -9.6,
+    "zoom": 2
    },
    "elementos": [
+    {
+     "id": "arvoreBia",
+     "sprite": "arvore-iso-grande",
+     "x": -7.4,
+     "z": -9.9
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.7,
+     "z": -8.5,
+     "virado": "direita"
+    },
+    {
+     "id": "sb",
+     "sombraPessoa": {
+      "tamanho": 2.2,
+      "direcao": 0
+     },
+     "x": -5.7,
+     "z": -7.8
+    },
     {
      "id": "s1",
      "sombraPessoa": {
@@ -815,21 +906,6 @@
      },
      "x": -2,
      "z": -7.6
-    },
-    {
-     "id": "bia",
-     "personagem": "menina-capa",
-     "x": -5.4,
-     "z": -8.6
-    },
-    {
-     "id": "sb",
-     "sombraPessoa": {
-      "tamanho": 2.2,
-      "direcao": 0
-     },
-     "x": -5.4,
-     "z": -7.9
     }
    ],
    "acoes": [
@@ -848,8 +924,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5,
-     "z": -8.5
+     "x": -6,
+     "z": -9.6,
+     "zoom": 2
     }
    }
   }
