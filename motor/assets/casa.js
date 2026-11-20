@@ -388,7 +388,7 @@ export const MORADORES_CASA = {
     cabelo: 'cacheado', baixo: 'saia-longa', brincos: true, colar: '#f0d070' },
   'mae-avental': { cores: { pele: '#b07450', cabelo: '#2a1a14', tronco: '#b8405a', calca: '#2e4a7a', sapato: '#5a3424', avental: '#f4ecd8' },
     cabelo: 'cacheado', baixo: 'saia-longa', brincos: true, colar: '#f0d070', avental: true },
-  'menino-topete': { cores: { pele: '#f0c4a0', cabelo: '#e0602a', tronco: '#2a2a3a', casaco: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cachecol: '#f0b830' },
+  'menino-topete': { cores: { pele: '#f0c4a0', cabelo: '#e0602a', tronco: '#2a2a3a', casaco: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cachecol: '#3a7ad8' },
     cabelo: 'topete', mecha: '#fff4e0', casaco: true, cachecol: true, curativo: true, sardas: true, baixo: 'calca', corpo: 'crianca', pernasLongas: true },
 };
 
