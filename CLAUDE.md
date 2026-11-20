@@ -263,7 +263,8 @@ vários vídeos diferentes:
    "limpar" o aviso, nem adicionar alguém que a história tirou.
    Quem se moveu (ex.: a Bia correu até o seu Tonho) fica na posição nova nas cenas seguintes do mesmo momento.
 3. **Um sprite = um personagem por vídeo.** Dois personagens diferentes nunca usam o mesmo sprite (aluna "Duda" e Nina, Caio
-   e o candidato). Figurantes iguais só no fundo, sem nome.
+   e o candidato). Figurantes iguais só no fundo, sem nome — marcar o elemento com `"figurante": true` (a conferência
+   não cobra). Cuidado: bicho/pessoa que aparece ao lado de um dono já mostrado é o MESMO personagem (usar o mesmo id e sprite).
 4. **Dentro dos limites do lugar.** Cômodo: `x` entre -9 e 9 e `z` entre 0 e ~3.8 — nada de "andar na parede"; para fugir,
    pular/recuar dentro do cômodo ou cortar para outro lugar.
 5. **Quem anda seguindo algo anda até o fim da fala.** Personagem que para fica de frente para a câmera (pose parado). Se

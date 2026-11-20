@@ -148,7 +148,7 @@ export async function conferir(nome) {
 
   // ---------- 3. mesmo sprite para personagens diferentes
   const porSprite = new Map();
-  for (const c of r.cenas) for (const e of c.elementos) if (ehPessoa(e, tam)) {
+  for (const c of r.cenas) for (const e of c.elementos) if (ehPessoa(e, tam) && !e.figurante) {   // "figurante": true = fundo, sem nome (pode repetir)
     if (!porSprite.has(e.sprite)) porSprite.set(e.sprite, new Set());
     porSprite.get(e.sprite).add(e.id.replace(/\d+$/, ''));
   }
