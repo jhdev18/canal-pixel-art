@@ -279,7 +279,8 @@
      "z": 2.2,
      "y": 2.4
     }
-   }
+   },
+   "momento": "padaria"
   },
   {
    "narracaoTexto": "Ela gritou BU com toda a força. Porém, o seu Tonho só deu um pãozinho para ela.",
@@ -345,7 +346,8 @@
      "z": 2.2,
      "y": 2.4
     }
-   }
+   },
+   "momento": "padaria"
   },
   {
    "narracaoTexto": "A segunda foi o policial, de plantão na delegacia.",
@@ -393,7 +395,8 @@
      "z": 2.2,
      "y": 2.4
     }
-   }
+   },
+   "momento": "delegacia"
   },
   {
    "narracaoTexto": "Porém, o policial dormia em pé tão bem que nem abriu o olho.",
@@ -446,7 +449,8 @@
      "z": 2.2,
      "y": 2.4
     }
-   }
+   },
+   "momento": "delegacia"
   },
   {
    "narracaoTexto": "Faltando um minuto, só restava uma pessoa acordada: a Bia.",
@@ -492,7 +496,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "Ela fez a cara mais feia que sabia e gritou.",
@@ -543,7 +548,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "E a Bia gritou. Bem alto.",
@@ -600,7 +606,8 @@
      "y": 3,
      "zoom": 2
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "Só que não era de medo. Era de fofura.",
@@ -651,7 +658,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "Grito é grito. E agora ela mora no quarto da Bia.",
@@ -695,7 +703,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "salto": true
   }
  ]
 }

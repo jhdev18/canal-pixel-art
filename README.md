@@ -112,6 +112,7 @@ Outros comandos:
 |---|---|
 | `npm run previa -- meu-video` | Prévia em tempo real no navegador (sem áudio); recarrega quando o `roteiro.json` muda |
 | `npm run conferir -- meu-video` | Confere o roteiro sem renderizar: personagem coberto por objeto, continuidade (some e reaparece), mesmo sprite para dois personagens, fora do cômodo, sombras demais, quem para de andar antes do fim |
+| campos de continuidade | `"momento": "festa"` (cenas do mesmo instante: mesmo elenco), `"saiDeCena": ["tonho"]` (saiu pela história), `"salto": true` (pulo de tempo) — usados pelo `npm run conferir` |
 | `npm run lista` | Lista fundos, sprites, ações, efeitos sonoros, paletas e a biblioteca |
 | `npm run sprites` | Gera `sprites-disponiveis.png` com todos os sprites |
 | `npm run fotos -- meu-video` | Imagens paradas de cada cena (sem vídeo) em `saida/fotos/` + `folha.png`. Na cena, `"foto": 2.5` (ou `[1, 4]`) escolhe o momento |

@@ -586,7 +586,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "momento": "quarto-nina"
   },
   {
    "narracaoTexto": "E o dela, ninguém nunca tinha dito.",
@@ -620,7 +621,8 @@
      "y": 3,
      "zoom": 2
     }
-   }
+   },
+   "momento": "quarto-nina"
   },
   {
    "narracaoTexto": "Até que, do lado de fora da janela, a voz sussurrou: Nina.",
@@ -669,7 +671,8 @@
      "y": 3,
      "zoom": 2
     }
-   }
+   },
+   "momento": "quarto-nina"
   }
  ]
 }

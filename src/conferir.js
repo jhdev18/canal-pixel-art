@@ -1,8 +1,8 @@
 // npm run conferir -- <projeto>
 // Confere o roteiro SEM renderizar e avisa dos erros que mais se repetiram nos vídeos:
 //   1. personagem coberto por árvore/objeto alto (diorama de rua e praça)
-//   2. continuidade: alguém some de uma cena e reaparece logo depois, no mesmo lugar, sem sair/voltar ("salto": true
-//      na cena marca pulo de tempo e libera)
+//   2. continuidade: com "momento" nas cenas, cobra o elenco de cada momento ("saiDeCena" libera quem sai pela história);
+//      sem "momento", acusa quem some e reaparece logo depois no mesmo lugar ("salto": true libera)
 //   3. o mesmo sprite fazendo dois personagens diferentes no mesmo vídeo
 //   4. personagem fora do cômodo (andando "na parede") ou da praça/rua
 //   5. sombras de pessoa demais na cena (máx. 4) e quem segue algo e para antes do fim da fala (vira para a câmera)
@@ -80,21 +80,44 @@ export async function conferir(nome) {
   const presentes = r.cenas.map((c) => new Set(c.elementos.filter((e) => ehPessoa(e, tam) && naTela(c, e)).map((e) => e.id)));
   const saiu = (c, id) => c.acoes.some((a) => a.alvo === id && ['sumir', 'desaparecer', 'coletar'].includes(a.tipo))
     || c.acoes.some((a) => a.alvo === id && (a.tipo === 'andar' || a.tipo === 'correr') && Math.abs((typeof a.para === 'number' ? a.para : a.para?.[0] ?? 0) - camX(c)) > largura(c));
-  // mesmo lugar + mesmo enquadramento + sem pulo de tempo ("salto": true na cena, ou transição iris/pixelizar)
-  const mesmoLugar = (a, b) => local(a) === local(b) && Math.abs(camX(a) - camX(b)) < 6
-    && !bruto.cenas[b.indice]?.salto && b.transicao !== 'iris' && b.transicao !== 'pixelizar';
-  // erro clássico: a pessoa está na cena, SOME na seguinte (sem sair) e REAPARECE logo depois, no mesmo lugar
-  for (let i = 0; i + 2 < r.cenas.length; i++) {
-    const a = r.cenas[i];
-    for (const id of presentes[i]) {
-      if (saiu(a, id)) continue;
-      for (let k = i + 1; k <= Math.min(i + 3, r.cenas.length - 2); k++) {
-        if (!mesmoLugar(r.cenas[k - 1], r.cenas[k])) break;
-        if (r.cenas[k].elementos.some((e) => e.id === id)) break;
-        const volta = r.cenas[k + 1];
-        if (mesmoLugar(r.cenas[k], volta) && volta.elementos.some((e) => e.id === id)) {
-          aviso(r.cenas[k].numero, 'continuidade', `"${id}" está na cena ${a.numero}, some aqui e reaparece na cena ${volta.numero} (mesmo lugar) — deixe na cena (mesma posição) ou mostre a saída/volta`);
-          break;
+  // Intenção escrita no roteiro (evita "corrigir" o que é da história):
+  //   "momento": "festa"     → cenas com o mesmo momento são o MESMO instante da história: quem já apareceu nele
+  //                            precisa estar em todas as cenas seguintes desse momento (como elemento, mesmo fora da tela)
+  //   "saiDeCena": ["tonho"] → saiu por causa da história depois desta cena (não precisa voltar)
+  //   "salto": true          → pulo de tempo / montagem (sem "momento", a heurística não compara esta cena com a anterior)
+  const saiDeCena = (i) => new Set(bruto.cenas[i]?.saiDeCena || []);
+  const usaMomentos = bruto.cenas.some((c) => c.momento);
+  if (usaMomentos) {
+    const elenco = new Map();   // momento → Map(id → cena em que entrou)
+    r.cenas.forEach((c, i) => {
+      const m = bruto.cenas[i].momento;
+      if (!m) return;
+      if (!elenco.has(m)) elenco.set(m, new Map());
+      const E = elenco.get(m), aqui = new Set(c.elementos.filter((e) => ehPessoa(e, tam)).map((e) => e.id));
+      const faltam = [...E].filter(([id]) => !aqui.has(id));
+      if (faltam.length) aviso(c.numero, 'continuidade', `momento "${m}": faltam ${faltam.map(([id, d]) => `${id} (desde a cena ${d})`).join(', ')} — inclua nas mesmas posições (podem ficar fora da tela) ou marque "saiDeCena" na cena em que saem`);
+      for (const [id] of faltam) E.delete(id);   // avisa uma vez só (se voltar depois, entra de novo)
+      for (const id of aqui) if (!E.has(id)) E.set(id, c.numero);
+      for (const id of saiDeCena(i)) E.delete(id);
+      for (const id of aqui) if (saiu(c, id)) E.delete(id);
+    });
+  } else {
+    // sem "momento": heurística — mesmo lugar + mesmo enquadramento + sem pulo de tempo ("salto" ou iris/pixelizar)
+    const mesmoLugar = (a, b) => local(a) === local(b) && Math.abs(camX(a) - camX(b)) < 6
+      && !bruto.cenas[b.indice]?.salto && b.transicao !== 'iris' && b.transicao !== 'pixelizar';
+    // erro clássico: a pessoa está na cena, SOME na seguinte (sem sair) e REAPARECE logo depois, no mesmo lugar
+    for (let i = 0; i + 2 < r.cenas.length; i++) {
+      const a = r.cenas[i];
+      for (const id of presentes[i]) {
+        if (saiu(a, id) || saiDeCena(i).has(id)) continue;
+        for (let k = i + 1; k <= Math.min(i + 3, r.cenas.length - 2); k++) {
+          if (!mesmoLugar(r.cenas[k - 1], r.cenas[k])) break;
+          if (r.cenas[k].elementos.some((e) => e.id === id)) break;
+          const volta = r.cenas[k + 1];
+          if (mesmoLugar(r.cenas[k], volta) && volta.elementos.some((e) => e.id === id)) {
+            aviso(r.cenas[k].numero, 'continuidade', `"${id}" está na cena ${a.numero}, some aqui e reaparece na cena ${volta.numero} (mesmo lugar) — deixe na cena, mostre a saída/volta, ou marque "momento"/"saiDeCena"/"salto"`);
+            break;
+          }
         }
       }
     }

@@ -415,7 +415,8 @@
      "x": -3,
      "z": -8.5
     }
-   }
+   },
+   "momento": "virada"
   },
   {
    "narracaoTexto": "O relógio bateu meia-noite, e os ponteiros giraram para trás.",
@@ -540,7 +541,8 @@
      "x": 2.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "virada"
   },
   {
    "narracaoTexto": "A cidade inteira ficou mais nova. E a vovó ganhou mais uma ruga.",
@@ -602,7 +604,8 @@
      "x": -5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "virada"
   },
   {
    "narracaoTexto": "Foi aí que a Bia entendeu: o ano que a cidade perde, alguém leva.",
@@ -650,7 +653,8 @@
      "z": -9.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "virada"
   },
   {
    "narracaoTexto": "A vovó sempre ficou de fora de propósito. Há cento e oitenta anos.",
@@ -693,7 +697,8 @@
      "z": -9.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "virada"
   },
   {
    "narracaoTexto": "E, nesse ano, pela primeira vez, ela não ficou sozinha na calçada.",
@@ -761,7 +766,8 @@
      "x": -5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "virada"
   }
  ]
 }

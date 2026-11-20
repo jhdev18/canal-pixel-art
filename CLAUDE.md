@@ -65,6 +65,7 @@ cada vídeo é **independente** (não depende do episódio 1 nem de outro vídeo
 Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** (Shorts, 30–45 s) ou **longo** (1:30–2:30).
 
 **Como criar (passo a passo):**
+0. Ver "Regras de cena" (cobertura, continuidade com `momento`/`saiDeCena`, elenco) — valem para todo vídeo.
 1. Ler as referências (regra 11) e os vídeos nossos já feitos (`projetos/nesse-mundo-*`, texto em
    `narracao/TEXTO-COMPLETO.txt`) — anotar as premissas usadas para **não repetir**.
 2. Ler `biblioteca/GUIA-ASSETS.md` e `biblioteca/CATALOGO.md` (seção "Biblioteca de assets") e escolher uma regra que **dê pra mostrar** com o que já existe.
@@ -206,13 +207,22 @@ vários vídeos diferentes:
    - Personagem importante **nunca** atrás de algo: se a história pede "escondido atrás da árvore", ele fica **ao lado/na frente**
      da árvore, visível (o espectador precisa ver).
    - Quem sobe no palanque usa `"y": 0.75` (não conta como coberto).
-2. **Continuidade de elenco.** Quem está num lugar continua lá enquanto a história estiver no mesmo lugar e momento.
-   - Antes de escrever cenas seguidas no mesmo lugar (festa, debate, sala de aula), definir **o elenco do lugar com posições
-     fixas** (uma função/lista única, como `FESTA()` no espirro) e usar em todas as cenas; cada cena só muda câmera e ações.
-   - Ninguém some e reaparece sem motivo: para tirar alguém, mostrar a **saída** (andar para fora, `desaparecer`) e, para voltar,
-     a **entrada**.
-   - Quem se moveu (ex.: a Bia correu até o seu Tonho) **fica na posição nova** nas cenas seguintes.
-   - Pulo de tempo ou montagem de exemplos: marcar a cena com `"salto": true` (libera a conferência).
+2. **Continuidade de elenco — escrever a intenção no roteiro.** A conferência não entende a história: ela só cobra o que
+   o roteiro DECLARA. Por isso, todo roteiro marca a continuidade com três campos de cena:
+   - **`"momento": "<nome>"`** — cenas que são o **mesmo instante da história** (a mesma festa, o mesmo debate, a mesma noite
+     no quarto) recebem o mesmo nome, mesmo que haja outras cenas no meio (flashback, outro lugar). Dentro de um momento, quem
+     já apareceu precisa estar **em todas as cenas seguintes desse momento**, como elemento na **mesma posição** (pode ficar
+     fora do enquadramento). Cenas sem `momento` (montagem de exemplos, apresentação) não são comparadas.
+   - **`"saiDeCena": ["id", ...]`** — na cena em que alguém **sai pela história** (foi embora, foi levado, foi engolido): a
+     partir dela, ele não é mais cobrado. Mostrar a saída na tela também (andar para fora, `desaparecer`).
+   - **`"salto": true`** — pulo de tempo/montagem (usado quando o roteiro não tem `momento`).
+   Ao **escrever** um roteiro: definir os momentos antes das cenas e montar o elenco de cada momento com posições fixas
+   numa função/lista única (como `FESTA()` no espirro; nos scripts do Claude, `marcar(C, { festa: [[10, 22]] })` do `nm.mjs`).
+   Ao **corrigir** um aviso de continuidade, primeiro ler a narração da cena e decidir:
+   (a) a pessoa deveria estar lá → incluir na mesma posição; (b) ela saiu pela história → marcar `saiDeCena` (e mostrar a
+   saída); (c) a cena é outro instante → corrigir o `momento`. **Nunca** apagar alguém que a história precisa só para
+   "limpar" o aviso, nem adicionar alguém que a história tirou.
+   Quem se moveu (ex.: a Bia correu até o seu Tonho) fica na posição nova nas cenas seguintes do mesmo momento.
 3. **Um sprite = um personagem por vídeo.** Dois personagens diferentes nunca usam o mesmo sprite (aluna "Duda" e Nina, Caio
    e o candidato). Figurantes iguais só no fundo, sem nome.
 4. **Dentro dos limites do lugar.** Cômodo: `x` entre -9 e 9 e `z` entre 0 e ~3.8 — nada de "andar na parede"; para fugir,

@@ -186,7 +186,8 @@
      "z": 0,
      "y": 2.4
     }
-   }
+   },
+   "momento": "bia-rua"
   },
   {
    "narracaoTexto": "Ele vive acordado, olhando fixo para as costas dela.",
@@ -231,7 +232,8 @@
      "y": 2.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "bia-rua"
   },
   {
    "narracaoTexto": "A cidade decidiu que o perigo era ela. Todos atravessam a rua quando ela passa.",
@@ -448,7 +450,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "Pela janela, ela viu os guardiões da rua inteira acordados. Olhando para a casa dela.",
@@ -587,7 +590,8 @@
      "x": 0,
      "y": 3
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "Ela nunca foi o perigo. O perigo estava atrás dela.",
@@ -682,7 +686,8 @@
      "x": -1.2,
      "y": 3.6
     }
-   }
+   },
+   "momento": "quarto-noite"
   },
   {
    "narracaoTexto": "Em pé, quietinho, há dez anos. E agora ele sabia que ela tinha visto.",
@@ -755,7 +760,8 @@
      "x": -1.2,
      "y": 3.6
     }
-   }
+   },
+   "momento": "quarto-noite"
   }
  ]
 }

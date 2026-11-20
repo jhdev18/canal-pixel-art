@@ -147,8 +147,8 @@ Um arquivo com o mesmo nome em `biblioteca/sfx/` (ex.: `espirro.mp3` do ElevenLa
 ---
 
 ## Erros comuns (ver "Regras de cena" no `CLAUDE.md`)
-Rode `npm run conferir -- <projeto>` antes de entregar: acusa gente coberta por árvore/objeto, gente que some e reaparece no
-mesmo lugar, o mesmo sprite fazendo dois personagens, gente fora do cômodo e quem para de andar antes do fim da fala.
+Rode `npm run conferir -- <projeto>` antes de entregar: acusa gente coberta por árvore/objeto, gente que falta num `"momento"` (mesmo instante da
+história; `"saiDeCena"` libera quem sai pela história), o mesmo sprite fazendo dois personagens, gente fora do cômodo e quem para de andar antes do fim da fala.
 
 ## Como manter este guia
 - Asset novo aprovado ou criado: acrescente uma linha aqui (o que é, quando usar, como posicionar) e rode `npm run catalogo`.

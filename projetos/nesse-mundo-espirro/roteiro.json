@@ -715,7 +715,8 @@
      "x": -1,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "O prefeito subiu no palanque para fazer o discurso.",
@@ -815,7 +816,8 @@
      "x": 5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Bem na hora, uma ventania soprou o pólen de todas as flores de uma vez.",
@@ -934,7 +936,8 @@
      "x": -1,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Primeiro espirrou a professora. E acordou no corpo do aluno.",
@@ -1146,7 +1149,8 @@
      "x": -0.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Depois, cinco de uma vez. Em um minuto, doze pessoas estavam no corpo errado.",
@@ -1565,7 +1569,8 @@
      "x": -1,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "O prefeito trocou com o cachorro da delegacia, e terminou o discurso latindo.",
@@ -1772,7 +1777,8 @@
      "x": 4.2,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "O policial foi parar no corpo da moça do caixa, e multava todo mundo com voz fininha.",
@@ -1873,7 +1879,8 @@
      "x": -4.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "E a aluna, melhor amiga da Bia, acordou em cima do palanque. De terno.",
@@ -2074,7 +2081,8 @@
      "x": 5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "A Bia correu para ajudar, mas o pólen entrou direto no nariz dela.",
@@ -2176,7 +2184,8 @@
      "x": -5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Atchim! E ela acordou no corpo do seu Tonho.",
@@ -2390,7 +2399,8 @@
      "z": -9.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Com medo de trocar de novo, ela tapou o nariz e segurou o segundo espirro.",
@@ -2501,7 +2511,8 @@
      "z": -9.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Mas não deu. Atchim! E ela voltou para o próprio corpo.",
@@ -2715,7 +2726,8 @@
      "z": -9.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Foi aí que a Bia entendeu tudo: o segundo espirro desfaz a troca.",
@@ -2819,7 +2831,8 @@
      "x": -5.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Ela nunca teve sorte nenhuma. Ela só espirrava sempre duas vezes.",
@@ -3124,7 +3137,8 @@
      "z": -9.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "A Bia subiu no palanque e abriu o saquinho de pimenta.",
@@ -3245,7 +3259,8 @@
      "x": 4.4,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "E soprou a pimenta na praça inteira.",
@@ -3371,7 +3386,8 @@
      "x": 1,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Atchim, atchim! A professora voltou para o próprio corpo. Depois, o policial.",
@@ -3686,7 +3702,8 @@
      "x": -0.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Depois, o prefeito, que parou de latir bem no meio da frase.",
@@ -3889,7 +3906,8 @@
      "x": 4.2,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Um por um, os doze voltaram para o próprio corpo. Só faltavam dois.",
@@ -4015,7 +4033,8 @@
      "x": -3.5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "O seu Tonho olhou para o pombo. O pombo olhou para o seu Tonho.",
@@ -4117,7 +4136,8 @@
      "z": -9.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "A Bia ofereceu a pimenta. Os dois disseram não, obrigado.",
@@ -4237,7 +4257,8 @@
      "z": -9.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "festa"
   },
   {
    "narracaoTexto": "Até hoje, quem faz o pão da cidade é o pombo. E nunca foi tão bom.",

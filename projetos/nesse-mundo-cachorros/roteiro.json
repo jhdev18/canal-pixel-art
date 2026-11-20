@@ -257,7 +257,8 @@
      "z": 2.2,
      "y": 2.4
     }
-   }
+   },
+   "momento": "bolota-rua"
   },
   {
    "narracaoTexto": "Hora do lanche. E o policial jura que nunca pensa nisso.",
@@ -304,7 +305,8 @@
      "y": 2.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "bolota-rua"
   },
   {
    "narracaoTexto": "E tinha o Caio, de dez anos, o único menino da cidade sem cachorro.",
@@ -655,7 +657,8 @@
      "x": 4,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "E, no meio do discurso, o cachorro do prefeito latiu: quero ir para casa dormir.",
@@ -707,7 +710,8 @@
      "z": -7.8,
      "zoom": 2
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "A praça inteira olhou para o prefeito.",
@@ -783,7 +787,8 @@
      "x": 0,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Primeiro, o cachorro do seu Tonho contou que o pão de hoje era de anteontem.",
@@ -847,7 +852,8 @@
      "x": -3,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Depois, cinco cachorros falaram de uma vez. Em um minuto, doze segredos estavam no meio da praça.",
@@ -948,7 +954,8 @@
      "x": 0,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "O cachorro da professora latiu que ela odiava a escola. E ela chorou na frente de todo mundo.",
@@ -996,7 +1003,8 @@
      "z": -9.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "E o Bolota, no meio da confusão, lembrou a todos: hora do lanche.",
@@ -1043,7 +1051,8 @@
      "x": -4,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "O prefeito ficou vermelho de vergonha e decretou: todo cachorro vai para a delegacia.",
@@ -1099,7 +1108,8 @@
      "x": 5,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "O policial começou a levar os cachorros, um por um.",
@@ -1243,7 +1253,8 @@
      "x": 0,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Até que um cachorro sem dono se escondeu atrás dele e latiu: eu gosto desse menino.",
@@ -1299,7 +1310,8 @@
      "z": -9.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Mas o Caio não tinha dono nenhum. E estava pensando em pizza.",
@@ -1342,7 +1354,8 @@
      "z": -9.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Foi aí que o Caio entendeu tudo: os cachorros nunca falaram o que os donos pensam.",
@@ -1392,7 +1405,8 @@
      "x": -1,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Eles falam o que eles mesmos pensam. E os donos, com vergonha, sempre concordaram.",
@@ -1581,7 +1595,8 @@
      "x": 4.4,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "E perguntou a cada um o que ele queria de verdade.",
@@ -1630,7 +1645,8 @@
      "x": 5.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "O do prefeito só queria dormir. O da professora só odiava o apito do recreio.",
@@ -1697,7 +1713,8 @@
      "x": 0,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "Um por um, os segredos viraram só opinião de cachorro. Só faltava um.",
@@ -1785,7 +1802,8 @@
      "x": -3,
      "z": -8.5
     }
-   }
+   },
+   "momento": "debate"
   },
   {
    "narracaoTexto": "O Caio ofereceu um sanduíche para o Bolota.",
@@ -1838,7 +1856,8 @@
      "y": 2.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "final"
   },
   {
    "narracaoTexto": "E, pela primeira vez em quinze anos, o Bolota disse outra frase: agora, hora da janta.",
@@ -1890,7 +1909,8 @@
      "y": 2.6,
      "zoom": 2
     }
-   }
+   },
+   "momento": "final"
   }
  ]
 }

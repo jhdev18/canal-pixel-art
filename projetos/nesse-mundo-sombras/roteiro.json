@@ -501,7 +501,13 @@
      "z": 2.2,
      "y": 2.4
     }
-   }
+   },
+   "momento": "domingo-rua",
+   "saiDeCena": [
+    "tonho",
+    "prof",
+    "policial"
+   ]
   },
   {
    "narracaoTexto": "Só a sombra da Bia puxava para o outro lado. Com força.",
@@ -568,7 +574,11 @@
      "z": 0,
      "y": 2.4
     }
-   }
+   },
+   "momento": "domingo-rua",
+   "saiDeCena": [
+    "aluno"
+   ]
   },
   {
    "narracaoTexto": "A Bia parou na esquina. E, pela primeira vez, seguiu a própria sombra.",
@@ -618,7 +628,8 @@
      "z": 0,
      "y": 2.4
     }
-   }
+   },
+   "momento": "domingo-rua"
   },
   {
    "narracaoTexto": "Lá de longe, ela olhou para trás e congelou.",
@@ -715,7 +726,8 @@
      "x": -5.7,
      "z": -8.5
     }
-   }
+   },
+   "momento": "domingo-praca"
   },
   {
    "narracaoTexto": "As sombras não mostravam o caminho. Elas levavam.",
@@ -809,7 +821,8 @@
      "x": 1.6,
      "z": -8.5
     }
-   }
+   },
+   "momento": "domingo-praca"
   },
   {
    "narracaoTexto": "Na segunda, a praça amanheceu cheia de sombras. Sem ninguém em cima.",
@@ -897,7 +910,8 @@
      "x": -2,
      "z": -8.5
     }
-   }
+   },
+   "momento": "segunda"
   },
   {
    "narracaoTexto": "E a sombra da Bia, colada nos pés dela, ainda tremia.",
@@ -964,7 +978,8 @@
      "z": -11.3,
      "zoom": 2
     }
-   }
+   },
+   "momento": "segunda"
   }
  ]
 }
