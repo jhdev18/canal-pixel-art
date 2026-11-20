@@ -1,0 +1,685 @@
+// TESTE: npm run fotos -- teste-praca-rostos
+{
+ "titulo": "Teste — expressões na praça",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "teste das expressões na praça, enquadramento normal.",
+   "cenario": "praca",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.3,
+    "z": -7.6
+   },
+   "elementos": [
+    {
+     "id": "f0",
+     "personagem": "menina-capa",
+     "x": -7.35,
+     "z": -4.65,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "f1",
+     "personagem": "nina",
+     "x": -6.45,
+     "z": -5.550000000000001,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "f2",
+     "personagem": "aluno",
+     "x": -5.550000000000001,
+     "z": -6.45,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "f3",
+     "personagem": "aluna",
+     "x": -4.65,
+     "z": -7.35,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "f4",
+     "personagem": "menino-topete",
+     "x": -3.75,
+     "z": -8.25,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "f5",
+     "personagem": "menino-coroa",
+     "x": -2.85,
+     "z": -9.15,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "f6",
+     "personagem": "cachorro-caramelo",
+     "x": -1.9500000000000002,
+     "z": -10.05,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "f7",
+     "personagem": "professora",
+     "x": -1.0500000000000003,
+     "z": -10.95,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "t0",
+     "personagem": "padeiro",
+     "x": -6.35,
+     "z": -4.050000000000001,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "t1",
+     "personagem": "caixa",
+     "x": -5.45,
+     "z": -4.95,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "t2",
+     "personagem": "policial",
+     "x": -4.550000000000001,
+     "z": -5.85,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "t3",
+     "personagem": "prefeito",
+     "x": -3.6500000000000004,
+     "z": -6.75,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "t4",
+     "personagem": "vovo",
+     "x": -2.75,
+     "z": -7.65,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "t5",
+     "personagem": "mae",
+     "x": -1.85,
+     "z": -8.55,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "t6",
+     "personagem": "sorveteiro",
+     "x": -0.9500000000000002,
+     "z": -9.45,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "t7",
+     "personagem": "carteiro",
+     "x": -0.050000000000000266,
+     "z": -10.35,
+     "pose": "rosto-triste"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": -3.3,
+     "z": -7.6
+    }
+   },
+   "foto": 1,
+   "legenda": "praca 0",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste das expressões na praça, enquadramento normal.",
+   "cenario": "praca-noite",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.3,
+    "z": -7.6
+   },
+   "elementos": [
+    {
+     "id": "f0",
+     "personagem": "menina-capa",
+     "x": -7.35,
+     "z": -4.65,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "f1",
+     "personagem": "nina",
+     "x": -6.45,
+     "z": -5.550000000000001,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "f2",
+     "personagem": "aluno",
+     "x": -5.550000000000001,
+     "z": -6.45,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "f3",
+     "personagem": "aluna",
+     "x": -4.65,
+     "z": -7.35,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "f4",
+     "personagem": "menino-topete",
+     "x": -3.75,
+     "z": -8.25,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "f5",
+     "personagem": "menino-coroa",
+     "x": -2.85,
+     "z": -9.15,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "f6",
+     "personagem": "cachorro-caramelo",
+     "x": -1.9500000000000002,
+     "z": -10.05,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "f7",
+     "personagem": "professora",
+     "x": -1.0500000000000003,
+     "z": -10.95,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "t0",
+     "personagem": "padeiro",
+     "x": -6.35,
+     "z": -4.050000000000001,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "t1",
+     "personagem": "caixa",
+     "x": -5.45,
+     "z": -4.95,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "t2",
+     "personagem": "policial",
+     "x": -4.550000000000001,
+     "z": -5.85,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "t3",
+     "personagem": "prefeito",
+     "x": -3.6500000000000004,
+     "z": -6.75,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "t4",
+     "personagem": "vovo",
+     "x": -2.75,
+     "z": -7.65,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "t5",
+     "personagem": "mae",
+     "x": -1.85,
+     "z": -8.55,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "t6",
+     "personagem": "sorveteiro",
+     "x": -0.9500000000000002,
+     "z": -9.45,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "t7",
+     "personagem": "carteiro",
+     "x": -0.050000000000000266,
+     "z": -10.35,
+     "pose": "rosto-surpreso"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": -3.3,
+     "z": -7.6
+    }
+   },
+   "foto": 1,
+   "legenda": "praca-noite 3",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste das expressões na praça, enquadramento normal.",
+   "cenario": "praca",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.3,
+    "z": -7.6
+   },
+   "elementos": [
+    {
+     "id": "f0",
+     "personagem": "menina-capa",
+     "x": -7.35,
+     "z": -4.65,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "f1",
+     "personagem": "nina",
+     "x": -6.45,
+     "z": -5.550000000000001,
+     "pose": "rosto-envergonhado",
+     "virado": "esquerda"
+    },
+    {
+     "id": "f2",
+     "personagem": "aluno",
+     "x": -5.550000000000001,
+     "z": -6.45,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "f3",
+     "personagem": "aluna",
+     "x": -4.65,
+     "z": -7.35,
+     "pose": "rosto-feliz",
+     "virado": "esquerda"
+    },
+    {
+     "id": "f4",
+     "personagem": "menino-topete",
+     "x": -3.75,
+     "z": -8.25,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "f5",
+     "personagem": "menino-coroa",
+     "x": -2.85,
+     "z": -9.15,
+     "pose": "rosto-triste",
+     "virado": "esquerda"
+    },
+    {
+     "id": "f6",
+     "personagem": "cachorro-caramelo",
+     "x": -1.9500000000000002,
+     "z": -10.05,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "f7",
+     "personagem": "professora",
+     "x": -1.0500000000000003,
+     "z": -10.95,
+     "pose": "rosto-bravo",
+     "virado": "esquerda"
+    },
+    {
+     "id": "t0",
+     "personagem": "padeiro",
+     "x": -6.35,
+     "z": -4.050000000000001,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "t1",
+     "personagem": "caixa",
+     "x": -5.45,
+     "z": -4.95,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "t2",
+     "personagem": "policial",
+     "x": -4.550000000000001,
+     "z": -5.85,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "t3",
+     "personagem": "prefeito",
+     "x": -3.6500000000000004,
+     "z": -6.75,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "t4",
+     "personagem": "vovo",
+     "x": -2.75,
+     "z": -7.65,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "t5",
+     "personagem": "mae",
+     "x": -1.85,
+     "z": -8.55,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "t6",
+     "personagem": "sorveteiro",
+     "x": -0.9500000000000002,
+     "z": -9.45,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "t7",
+     "personagem": "carteiro",
+     "x": -0.050000000000000266,
+     "z": -10.35,
+     "pose": "rosto-pensativo"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": -3.3,
+     "z": -7.6
+    }
+   },
+   "foto": 1,
+   "legenda": "praca 6",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste das expressões na praça, enquadramento normal.",
+   "cenario": "praca-decorada",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.3,
+    "z": -7.6
+   },
+   "elementos": [
+    {
+     "id": "f0",
+     "personagem": "menina-capa",
+     "x": -7.35,
+     "z": -4.65,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "f1",
+     "personagem": "nina",
+     "x": -6.45,
+     "z": -5.550000000000001,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "f2",
+     "personagem": "aluno",
+     "x": -5.550000000000001,
+     "z": -6.45,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "f3",
+     "personagem": "aluna",
+     "x": -4.65,
+     "z": -7.35,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "f4",
+     "personagem": "menino-topete",
+     "x": -3.75,
+     "z": -8.25,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "f5",
+     "personagem": "menino-coroa",
+     "x": -2.85,
+     "z": -9.15,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "f6",
+     "personagem": "cachorro-caramelo",
+     "x": -1.9500000000000002,
+     "z": -10.05,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "f7",
+     "personagem": "professora",
+     "x": -1.0500000000000003,
+     "z": -10.95,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "t0",
+     "personagem": "padeiro",
+     "x": -6.35,
+     "z": -4.050000000000001,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "t1",
+     "personagem": "caixa",
+     "x": -5.45,
+     "z": -4.95,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "t2",
+     "personagem": "policial",
+     "x": -4.550000000000001,
+     "z": -5.85,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "t3",
+     "personagem": "prefeito",
+     "x": -3.6500000000000004,
+     "z": -6.75,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "t4",
+     "personagem": "vovo",
+     "x": -2.75,
+     "z": -7.65,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "t5",
+     "personagem": "mae",
+     "x": -1.85,
+     "z": -8.55,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "t6",
+     "personagem": "sorveteiro",
+     "x": -0.9500000000000002,
+     "z": -9.45,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "t7",
+     "personagem": "carteiro",
+     "x": -0.050000000000000266,
+     "z": -10.35,
+     "pose": "rosto-chorando"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": -3.3,
+     "z": -7.6
+    }
+   },
+   "foto": 1,
+   "legenda": "praca-decorada 1",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "Agora com ações: o ícone muda o rosto, a expressão dura um tempo e quem anda não muda o rosto.",
+   "cenario": "praca-decorada",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -0.8,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -6,
+     "z": -8.6
+    },
+    {
+     "id": "nina",
+     "personagem": "nina",
+     "x": -4.2,
+     "z": -8.6,
+     "virado": "direita"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -2.2,
+     "z": -8.6
+    },
+    {
+     "id": "pref",
+     "personagem": "prefeito",
+     "x": 0.2,
+     "z": -8.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 2.2,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 4.2,
+     "z": -8.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 0.61
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "raiva",
+     "inicio": 0.61
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "gota",
+     "inicio": 0.61
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "pref",
+     "rosto": "rindo",
+     "inicio": 0.61,
+     "duracao": 4.89
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vovo",
+     "rosto": "triste",
+     "inicio": 0.61,
+     "duracao": 4.89
+    },
+    {
+     "tipo": "andar",
+     "alvo": "aluno",
+     "para": 5.6,
+     "inicio": 0.61,
+     "duracao": 1.83
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.61,
+     "duracao": 4.89
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "tonho",
+     "inicio": 3.36
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.8,
+     "z": -8.5
+    }
+   },
+   "legenda": "acoes",
+   "narracao": false,
+   "foto": [
+    0.6,
+    1.6025,
+    2.564,
+    3.5255000000000005,
+    4.487
+   ]
+  }
+ ]
+}

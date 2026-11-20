@@ -40,7 +40,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "dito", "rosto": "feliz", "inicio": 0.44, "duracao": 2.72 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 0.44, "duracao": 2.72 },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -94,7 +94,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 0.49, "duracao": 3.58 }, { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 0.49, "duracao": 3.58 },
     {
      "tipo": "falar",
      "inicio": 1.43,
@@ -141,7 +141,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 0.5, "duracao": 3.83 }, { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.5, "duracao": 3.83 },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -187,7 +187,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "triste", "inicio": 1.14, "duracao": 1.95 }, { "tipo": "expressao", "alvo": "prof", "rosto": "pensativo", "inicio": 1.14, "duracao": 1.95 },
     {
      "tipo": "emocao",
      "inicio": 0.72,
@@ -239,7 +239,7 @@
      "x": -5.4
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 1.72, "duracao": 3.33 },
     {
      "tipo": "emocao",
      "inicio": 2.91,
@@ -331,7 +331,7 @@
      "x": -5.4
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 2.09, "duracao": 1.79 },
     {
      "tipo": "emocao",
      "inicio": 2.44,
@@ -379,7 +379,7 @@
      "x": -5.4
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 2.44, "duracao": 1.44 },
     {
      "tipo": "som",
      "inicio": 2.8,
@@ -410,7 +410,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "rita", "rosto": "feliz", "inicio": 0.52, "duracao": 4.27 },
     {
      "tipo": "desaparecer",
      "inicio": 2.77,
@@ -456,7 +456,7 @@
      "x": -5.4
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 1.09, "duracao": 3.18 },
     {
      "tipo": "emocao",
      "inicio": 0.7,
@@ -502,7 +502,7 @@
      "x": -5.4
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 0.46, "duracao": 2.96 },
     {
      "tipo": "flash",
      "inicio": 2.17,
@@ -555,7 +555,7 @@
      "x": -5.4
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 1.88, "duracao": 3.69 },
     {
      "tipo": "trocar",
      "inicio": 3.99,

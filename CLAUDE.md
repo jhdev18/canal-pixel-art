@@ -76,7 +76,7 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
    enquanto isso, escrever a cena com o que existe (substituto) e marcar no `ROTEIRO.md`.
 5. Montar `projetos/nesse-mundo-<tema>/`: `roteiro.json` (diorama, `vertical` em toda cena com personagem,
    `"volumeBaloes": 0.4`), `ROTEIRO.md` (resumo por cena + assets usados), `PUBLICACAO.md` (título, descrição, tags),
-   e rodar `npm run narracao -- <projeto>`.
+   e rodar `npm run narracao -- <projeto>`. Pôr **expressões no rosto** nas reações (ver "Expressões no rosto").
 6. Conferir por texto: JSON válido, duração estimada total, regra 10 (ações terminam junto com a fala) e
    **`npm run conferir -- <projeto>`** sem avisos (ver "Regras de cena").
 
@@ -205,6 +205,25 @@ O usuário gostou de como os itens foram usados no vídeo do espirro — usar es
 - **Mostrar o invisível com um objeto pequeno:** o que a regra faz e não se vê vira um sprite (as almas azul/rosa trocando de
   corpo, o número na cabeça, o guardião do lado).
 - Cada objeto importante aparece **pelo menos 3 vezes**: apresentação, uso, fechamento. Objeto que aparece uma vez só, cortar.
+
+## Expressões no rosto (usar em TODO vídeo — pedido do usuário)
+Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expressão na reação que a narração descreve.
+- **Como:** ação `{ "tipo": "expressao", "alvo": "<id>", "rosto": "<x>", "inicio", "duracao" }` (termina junto com a fala — regra 10),
+  ou a cena toda com `"pose": "rosto-<x>"`. O ícone de `emocao` já muda o rosto sozinho (`!` surpreso, `?` pensativo, `coracao`
+  feliz, `gota` chorando, `raiva` bravo, `...` envergonhado; `"rosto": false` desliga). Nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])`
+  do `nm.mjs` (f = fração da fala em que começa).
+- **Rostos:** `feliz`, `rindo`, `triste` (olho molhado, sem lágrima), `chorando` (lágrimas; choro forte), `bravo`, `surpreso`, `assustado`,
+  `envergonhado`, `pensativo` (olhar de lado).
+- **Quem tem:** moradores, protótipos de pessoas, Bia, Nina e cachorros de estimação (`cachorro-*`, `vira-lata`). **O `cao-policial` não tem**
+  (deformava o rosto; o usuário pediu o desenho antigo). Guardiões/fantasmas usam o estado parecido; RPG e robô não mudam.
+- **Só aparece parado e sem `pose`:** andando, correndo, sentado ou com `pose` fixa o rosto não muda. Para reagir, a pessoa para antes
+  (ou a reação fica para a cena seguinte).
+- **Escolha pelo tom:** comédia → `rindo`/`envergonhado`/`bravo` em quem é ridicularizado, `surpreso` na entrega da piada; terror →
+  começa `feliz` (a cidade gosta da regra) e vira `assustado` na virada; sorriso que continua enquanto algo ruim acontece também assusta;
+  emocional → `triste` antes, `chorando` só no ponto mais forte, `feliz` no gesto final.
+- **Bia:** rosto pequeno e claro; nas reações importantes dela usar enquadramento mais perto (`zoom` 2) para a expressão aparecer.
+- **Conferir:** ao mudar o desenho dos rostos, testar com fotos (`projetos/teste-rostos`, `projetos/teste-praca-rostos`:
+  `npm run fotos -- <projeto>`) só quando o usuário permitir; procurar olho apagado, sobrancelha grudada no olho e lágrima que vira mancha.
 
 ## Regras de cena (erros que se repetiram — evitar em TODO vídeo)
 Antes de entregar qualquer roteiro (novo ou ajustado), rodar **`npm run conferir -- <projeto>`** (`src/conferir.js`, não
@@ -397,7 +416,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   O `cao-policial` NÃO tem (a expressão deformava o rosto; usuário não gostou). Guardiões, fantasmas e RPG usam o estado parecido que tiverem (feliz/tímido/alerta/tremendo...); sem nada parecido, ficam parados.
   Ação `expressao` (`rosto`, `duracao`), pose fixa `"pose": "rosto-x"`, e automático com o ícone de `emocao` (`gota` → chorando;
   `"rosto": false` desliga). Só aparece com o personagem parado e sem `pose` (andando/sentado não muda). **Usar em todo vídeo** nas
-  reações da narração (já aplicado nos 7 vídeos da leva 2/terror; nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])` do `nm.mjs`).
+  reações da narração (já aplicado em todos os vídeos: episódio 1 e os 10 "Nesse Mundo"; nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])` do `nm.mjs`).
   Teste: `projetos/teste-rostos` e `teste-rostos2` (`npm run fotos -- teste-rostos`), `projetos/vitrine` (cena 33).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).

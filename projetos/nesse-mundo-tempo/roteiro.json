@@ -84,7 +84,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -158,7 +158,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.92, "duracao": 2.78 }, { "tipo": "expressao", "alvo": "aluna", "rosto": "triste", "inicio": 4.01, "duracao": 2.47 },
     {
      "tipo": "pular",
      "inicio": 1.23,
@@ -217,7 +217,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "feliz", "inicio": 0.54, "duracao": 4.51 },
     {
      "tipo": "aparecer",
      "inicio": 1.72,
@@ -266,7 +266,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "bravo", "inicio": 2.13, "duracao": 4.28 },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -360,7 +360,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 1.61, "duracao": 3.05 },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -402,7 +402,7 @@
      "x": 0
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "chorando", "inicio": 2.23, "duracao": 4.51 },
     {
      "tipo": "trocar",
      "inicio": 1.27,
@@ -563,7 +563,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "rindo", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -646,7 +646,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "rindo", "inicio": 1.17, "duracao": 3.49 }, { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 2.91, "duracao": 1.75 },
     {
      "tipo": "falar",
      "inicio": 1.17,
@@ -709,7 +709,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "aluno", "rosto": "surpreso", "inicio": 1.7, "duracao": 3.28 },
     {
      "tipo": "trocar",
      "inicio": 0.53,
@@ -790,7 +790,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "rindo", "inicio": 0.72, "duracao": 3.81 },
     {
      "tipo": "trocar",
      "inicio": 0,
@@ -974,7 +974,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "chorando", "inicio": 1.57, "duracao": 2.96 },
     {
      "tipo": "trocar",
      "inicio": 1.78,
@@ -1027,7 +1027,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 1.89, "duracao": 2.38 },
     {
      "tipo": "trocar",
      "inicio": 2.68,
@@ -1095,7 +1095,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 2.32, "duracao": 2.01 },
     {
      "tipo": "levantar",
      "inicio": 1.51,
@@ -1141,7 +1141,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 1.52, "duracao": 4.89 },
     {
      "tipo": "emocao",
      "inicio": 1.52,
@@ -1208,7 +1208,7 @@
      "z": 1.2
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "triste", "inicio": 2.85, "duracao": 3.82 },
     {
      "tipo": "emocao",
      "inicio": 4.76,
@@ -1293,7 +1293,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "triste", "inicio": 1.42, "duracao": 4.47 },
     {
      "tipo": "falar",
      "inicio": 1.42,
@@ -1360,7 +1360,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "prof", "rosto": "chorando", "inicio": 2.33, "duracao": 3.04 }, { "tipo": "expressao", "alvo": "tonho", "rosto": "chorando", "inicio": 3.34, "duracao": 2.03 },
     {
      "tipo": "trocar",
      "inicio": 0.81,
@@ -1424,7 +1424,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 1.86, "duracao": 3.64 }, { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 1.86, "duracao": 3.64 },
     {
      "tipo": "trocar",
      "inicio": 1.9,
@@ -1513,7 +1513,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "chorando", "inicio": 0.54, "duracao": 4.57 },
     {
      "tipo": "mover",
      "inicio": 2.46,
@@ -1598,7 +1598,7 @@
      "z": -8.5
     }
    },
-   "acoes": []
+   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "envergonhado", "inicio": 0.35, "duracao": 0.86 }, { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 0.35, "duracao": 0.86 }]
   },
   {
    "narracaoTexto": "O policial Ronaldo olhou para a Bia, respirou fundo e fechou o guarda-chuva.",
@@ -1656,7 +1656,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "triste", "inicio": 2.28, "duracao": 2.96 }, { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 3.26, "duracao": 1.98 },
     {
      "tipo": "trocar",
      "inicio": 3.26,
@@ -1722,7 +1722,7 @@
      "z": -8.5
     }
    },
-   "acoes": [
+   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "chorando", "inicio": 0.44, "duracao": 2.59 }, { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.44, "duracao": 2.59 },
     {
      "tipo": "trocar",
      "inicio": 0.57,
