@@ -643,6 +643,10 @@
 
   // ---- Casa em diorama (cômodo enche a tela; sala e quarto usam os aprovados sala-de-estar-diorama / quarto-menino-diorama)
   // Personagens: z de 0 (frente) a ~3 (perto da parede do fundo).
+  // Delegacia por dentro (motor/assets/delegacia.js): balcão com distintivo, mesa com computador, arquivos, cela com grade.
+  // Policial atrás do balcão x ~0.6, z ~2.6; quem chega x ~0.6, z ~0.8; mesa x ~-4.4, z ~2.4; dentro da cela x ~7.4, z ~2.6.
+  "delegacia-diorama":       { "vista": "diorama", "comodo": { "tipo": "delegacia" } },
+  "delegacia-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "delegacia-noite" } },
   "cozinha-diorama":        { "vista": "diorama", "comodo": { "tipo": "cozinha" } },
   "cozinha-noite-diorama":  { "vista": "diorama", "comodo": { "tipo": "cozinha-noite" } },
   "banheiro-diorama":       { "vista": "diorama", "comodo": { "tipo": "banheiro" } },

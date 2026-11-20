@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (184)
+## Sprites (186)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -219,7 +219,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `cadeado` | 🧪 protótipo | parado, fechado, aberto | 8×9 |
 | `pegadas-brilhantes` | 🧪 protótipo | parado | 40×14 |
 | `cartaz-procura-se` | 🧪 protótipo | parado, vazio, foto | 48×56 |
-| `relogio-praca` | 🧪 protótipo | h3, h6, h9, h12, h11-55, parado | 25×75 |
+| `relogio-praca` | 🧪 protótipo | h3, h6, h9, h12, h11-55, parado | 29×89 |
 | `caixa-correio` | 🧪 protótipo | parado | 21×37 |
 | `lixeira-praca` | 🧪 protótipo | parado | 19×24 |
 | `placa-praca` | 🧪 protótipo | parado | 83×49 |
@@ -267,6 +267,8 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 |---|---|---|---|
 | `vulto` | 🧪 protótipo | parado, olhos | 24×56 |
 | `pao` | 🧪 protótipo | parado | 14×7 |
+| `alma` | 🧪 protótipo | azul, rosa | 12×15 |
+| `banco-frente` | 🧪 protótipo | parado | 50×28 |
 | `saquinho-pimenta` | 🧪 protótipo | parado, fechado, aberto | 10×12 |
 
 ## Personagens
@@ -356,6 +358,8 @@ Uso: `{ "cenario": "nome" }`
 | `rua-junina` | 🧪 protótipo | diorama | 7 |
 | `rua-chuva` | 🧪 protótipo | diorama | 0 |
 | `rua-chuva-noite` | 🧪 protótipo | diorama | 0 |
+| `delegacia-diorama` | 🧪 protótipo | diorama (cômodo delegacia) | 0 |
+| `delegacia-noite-diorama` | 🧪 protótipo | diorama (cômodo delegacia-noite) | 0 |
 | `cozinha-diorama` | 🧪 protótipo | diorama (cômodo cozinha) | 0 |
 | `cozinha-noite-diorama` | 🧪 protótipo | diorama (cômodo cozinha-noite) | 0 |
 | `banheiro-diorama` | 🧪 protótipo | diorama (cômodo banheiro) | 0 |

@@ -26,7 +26,7 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 
 **Outros moradores 🧪:** `vovo` (vovó de xale roxo; banco da praça), `carteiro`, `sorveteiro` (com `carrinho-sorvete`),
 `menino-pijama` (cenas à noite), `mae`, `mae-avental`, `menino-topete` (família da casa), `cao-policial` (cão em pé,
-de uniforme, com poses). Todos os moradores andam, correm, sentam, ficam de costas e espirram.
+de uniforme, com poses; v2 com focinho maior, manchas nos olhos, patas e rabo que abana). Todos os moradores andam, correm, sentam, ficam de costas e espirram.
 
 **Bichos e criaturas:** `pombo-fofoqueiro` ✅ (fofoca, aparece em toda praça), `coruja-banca` ✅ (vende jornal),
 `lixeira-timida` ✅, `fantasma-metro` ✅, `cone-agressivo`/`bueiro-olhos` ✅ (inimigos brancos de batalha),
@@ -40,7 +40,9 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
   tremendo e olhando-lado.
 - **Fantasmas** (flutuam, use `"y": 0.4`): `fantasma-lencol`, `fantasma-crianca` (tímido, fofo), `fantasma-vovo`,
   `fantasma-sombra` (escala 2), `fantasma-cachorro` e `fogo-fatuo`.
-- **Terror:** `vulto` (silhueta alta e escura em pé; estados parado e olhos). É o melhor para "algo atrás de você".
+- **Terror:** `vulto` (silhueta alta e escura em pé; estados parado e olhos). É o melhor para "algo atrás de você"; com `"escala": 2`
+  fica bem mais assustador (câmera sem zoom para caber a cabeça). Entrada assustadora: luz piscando (`flash` curtos) e ele
+  `aparecer` durante um clarão, depois `mover` mais perto no próximo.
   `sombraPessoa` é a sombra no chão, que sobe a parede (elemento `{ "sombraPessoa": { "tamanho": 2.6 } }`).
 
 ---
@@ -60,7 +62,10 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
 `praca` ✅ / `praca-noite` ✅ (uso normal) e `praca-decorada` ✅ / `praca-decorada-noite` ✅ (festas, discursos, eleição).
 Câmera `{ "x", "z": -8.5 }`; pessoas na frente em `z` ~-8.6.
 - **Palanque** (só na decorada): suba em `x` ~3.4–5, `z` -6.7, com `"y": 0.75`.
-- Banco: sentar com `"pose": "sentado"`, `"y": 0`, `"z": -4.05` (bancos em x ~-5.85 e 4.15).
+- **Sentar:** use o **`banco-frente`** 🧪 (banco visto de frente, no mesmo ângulo de quem senta). Banco em `z` = Z + 0.2 e as pessoas
+  em `z` = Z, `"y": 0`, `"pose": "sentado"`, a ±0.75 do centro do banco (cabem 2 ou 3). Ex.: banco x -1, z -8.35; pessoas x -1.75 e -0.25, z -8.55.
+  O banco isométrico do cenário (`banco1`/`banco2`) com gente sentada de frente fica estranho: tire com `"remover"`.
+- **Árvores da frente** (`arvore3`, `arvore4`, z -10.25) cobrem quem está na fileira da frente: tire com `"remover"` quando houver gente ali.
 - Fonte em x -0.9, z -6.9 (estados cheia/seca). Árvores, canteiros e postes já vêm no cenário.
 - Variações 🧪: `praca-feira` (barracas de frutas, verduras, flores e sorvete) e `praca-seca` (Dia do Sol).
 
@@ -70,6 +75,11 @@ Câmera `{ "x", "z": -8.5 }`; pessoas na frente em `z` ~-8.6.
 - `z` 0 = frente, ~3.8 = parede do fundo; câmera padrão `{ "x", "y": 3 }`.
 - **Sala de aula:** a lousa fica na parede da direita. Alunos `"pose": "sentado-lado"` em x = -4.6, -1.6, 1.4 × z = 2.45 e 0.75;
   professora em x 8.1, z 1.6, virada para a esquerda.
+
+### Delegacia por dentro (diorama, 🧪)
+`delegacia-diorama` / `delegacia-noite-diorama`: balcão com distintivo, mesa com computador, arquivos, bebedouro e **cela com
+grade** (dá para ver quem está dentro). Policial atrás do balcão x ~0.6, z ~2.6; quem chega x ~0.6, z ~0.8; mesa x ~-4.4,
+z ~2.4; dentro da cela x ~7.4, z ~2.6.
 
 ### Fora da cidade (diorama, 🧪)
 `estrada-terra` (placa "VILA SERENA 1 KM"; pessoas z ~1.4–4.4), `ponte-rio` / `-noite` (em cima da ponte: `"y": 0.45`).
@@ -84,7 +94,7 @@ do canal é o diorama.
 
 | Objeto | Estados | Para quê |
 |---|---|---|
-| `relogio-praca` 🧪 | h3, h6, h9, h12, h11-55 | hora marcada, meia-noite, relógio andando para trás (troque os estados em sequência) |
+| `relogio-praca` 🧪 (v2: base de pedra, coluna com anéis, 2 mostradores, cúpula) | h3, h6, h9, h12, h11-55 | hora marcada, meia-noite, relógio andando para trás (troque os estados em sequência) |
 | `palanque-iso` / `bandeirinhas-iso` ✅ | — | festa, discurso, eleição (já vêm na `praca-decorada`) |
 | `barraca-pipoca`/`-doces`/`-jogos` ✅, `-sorvete`/`-frutas`/`-verduras`/`-flores` 🧪 | parado, acesa, fechada | feira, festa |
 | `fonte-iso` ✅ | cheia, seca | calor, seca, inundação |
@@ -96,6 +106,8 @@ do canal é o diorama.
 | `carta`, `bilhete`, `mapa`, `cadeado`, `cadeado-numero`, `cartaz-procura-se` 🧪 | vários | mistério e pistas (close com `"tela": true`) |
 | `sanduiche` ✅, `pao` 🧪, `sorvete` ✅ (derretendo) | — | comida, oferta, suborno |
 | `saquinho-pimenta` 🧪 | fechado, aberto | provocar espirros |
+| `alma` 🧪 | azul, rosa | almas trocando de corpo (sobem das cabeças, cruzam e entram no outro) |
+| `banco-frente` 🧪 | — | banco de praça visto de frente para cenas sentadas |
 | `peruca` ✅, `fogo-chapeu` ✅, `bloco-multas` ✅, `placa-lei` ✅ | — | piadas com autoridades |
 | `viatura-iso` 🧪 | parado, sirene | polícia na rua |
 | `fogueira-junina`, `ponte-madeira`, `cerca-madeira`, `caixote`, `mato` 🧪 | — | festa junina, campo, beco |
@@ -117,6 +129,9 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 
 **Combinações que funcionam:**
 - Terror: `-noite` + `neblina` + `fria` + `vulto`/sombras + `desaparecer` + som `suspense`/`sombra-surge`.
+- Alguém "engolido pela escuridão" (rua/praça): ação `sombra` com `origem` nos pés da pessoa e `raio` pequeno (~2–3,6) e, quando
+  ela já estiver coberta, `desaparecer`. Só a última `sombra` iniciada aparece: para várias pessoas, uma depois da outra.
+- Quem segue algo andando (sombra, cortejo): andar até o fim da fala; se parar antes, o personagem vira de frente para a câmera.
 - Comédia: balão curto + `pular` + `!`/`?` + `tremer` leve + som `sucesso`/`puf`.
 - Revelação: `flash` + som `revelar` + `emocao !`.
 

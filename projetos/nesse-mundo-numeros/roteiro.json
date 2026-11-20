@@ -125,6 +125,10 @@
   {
    "narracaoTexto": "Por isso, o prefeito Arlindo, com três mil, é o mais querido da cidade.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 4,
     "z": -8.5
@@ -165,6 +169,10 @@
   {
    "narracaoTexto": "Em todo comício, ele faz a praça inteira gritar o nome dele.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 2,
     "z": -8.5
@@ -412,24 +420,34 @@
      "tipo": "aparecer",
      "alvo": "prefeito",
      "som": null,
-     "inicio": 1.7
+     "inicio": 1.47
     },
     {
      "tipo": "emocao",
      "alvo": "prefeito",
      "icone": "coracao",
-     "inicio": 3.11
+     "inicio": 2.41
+    },
+    {
+     "tipo": "sombra",
+     "origem": [
+      10.4,
+      5.4
+     ],
+     "raio": 2.4,
+     "inicio": 2.87,
+     "duracao": 1.4
     },
     {
      "tipo": "desaparecer",
      "alvo": "prefeito",
-     "inicio": 3.81,
-     "duracao": 1.03
+     "inicio": 3.95,
+     "duracao": 0.94
     },
     {
      "tipo": "tremer",
      "intensidade": 0.4,
-     "inicio": 3.81,
+     "inicio": 3.95,
      "duracao": 0.7
     }
    ],
@@ -476,16 +494,37 @@
    ],
    "acoes": [
     {
+     "tipo": "sombra",
+     "origem": [
+      0.6,
+      5.4
+     ],
+     "raio": 2.2,
+     "som": null,
+     "inicio": 0.4,
+     "duracao": 1.28
+    },
+    {
      "tipo": "desaparecer",
      "alvo": "tonho",
-     "inicio": 1.07,
-     "duracao": 1.03
+     "inicio": 1.43,
+     "duracao": 0.77
+    },
+    {
+     "tipo": "sombra",
+     "origem": [
+      4.6,
+      5.4
+     ],
+     "raio": 2.2,
+     "inicio": 2.46,
+     "duracao": 1.28
     },
     {
      "tipo": "desaparecer",
      "alvo": "prof",
-     "inicio": 2.35,
-     "duracao": 1.03
+     "inicio": 3.38,
+     "duracao": 0.77
     },
     {
      "tipo": "som",

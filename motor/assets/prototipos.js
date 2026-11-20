@@ -102,18 +102,36 @@ function mascara(t) {
 }
 Object.assign(MOVEIS, {
   // relógio da praça: coluna alta com mostrador. op.hora 0..11 (ponteiro das horas), op.minuto 0..59
-  'relogio-praca': { di: 0.5, dj: 0.5, f(L, m, ctx) {
+  // relógio de praça (v2, mais detalhado): base de pedra em degraus, coluna de ferro com anéis dourados, caixa com
+  // DOIS mostradores (frente e lado, marcação das 12 horas, aro dourado), cúpula em degraus com ponta dourada.
+  'relogio-praca': { di: 0.7, dj: 0.7, f(L, m, ctx) {
     const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2, cj = (j0 + j1) / 2, h = ctx.op.hora ?? 3, mi = ctx.op.minuto ?? 0;
-    L.caixa(ci - 0.22, ci + 0.22, cj - 0.22, cj + 0.22, 0, 4, '#8a8aa0');
-    L.caixa(ci - 0.06, ci + 0.06, cj - 0.06, cj + 0.06, 4, 46, FERRO);
-    L.caixa(ci - 0.34, ci + 0.34, cj - 0.34, cj + 0.34, 50, 14, { frente: (u, t) => (t === 0 || t === 13 ? FERRO : '#f4f0e0'), lado: (u, t) => (t === 0 || t === 13 ? FERRO : '#d8d0b8'), topo: FERRO });
-    L.caixa(ci - 0.2, ci + 0.2, cj - 0.2, cj + 0.2, 64, 3, FERRO);
-    // mostrador (face da frente): ponteiros desenhados a partir do centro
-    const cfx = ci + 0.34, c = L.proj(cfx, cj, 57);
-    const pont = (ang, comp, cor) => { for (let k = 1; k <= comp; k++) L.pintar(c.x - Math.sin(ang) * k * 0.9, c.y - Math.cos(ang) * k + Math.sin(ang) * k * 0.45, cor, cfx + 0.01, cj, 57, 1, 1); };
-    pont(((h % 12) + mi / 60) / 12 * Math.PI * 2, 3, K); pont(mi / 60 * Math.PI * 2, 5, '#c83c4c');
-    L.pintar(c.x, c.y, K, cfx + 0.01, cj, 57, 1, 1);
-    for (let k = 0; k < 12; k += 3) { const a = k / 12 * Math.PI * 2; L.pintar(c.x - Math.sin(a) * 5.4, c.y - Math.cos(a) * 6 + Math.sin(a) * 2.7, '#6a6a80', cfx + 0.01, cj, 57, 1, 1); }
+    const OURO = '#d8b040', OURO2 = '#a8801e', PEDRA = ['#b4b4c4', '#9494a8', '#6a6a80'];
+    const deg = (r, h0, alt, cores) => L.caixa(ci - r, ci + r, cj - r, cj + r, h0, alt, { frente: cores[1], lado: cores[2], topo: cores[0] });
+    deg(0.34, 0, 3, PEDRA); deg(0.27, 3, 3, PEDRA); deg(0.2, 6, 2, [OURO, OURO2, OURO2]);
+    L.caixa(ci - 0.07, ci + 0.07, cj - 0.07, cj + 0.07, 8, 38, { frente: (u, t) => (t % 12 === 0 ? OURO : FERRO), lado: (u, t) => (t % 12 === 0 ? OURO2 : '#22222c'), topo: FERRO });
+    deg(0.17, 46, 2, [OURO, OURO2, OURO2]);
+    // caixa do relógio: mostrador redondo em cada face visível (coordenadas da face: u em unidades, t em px)
+    const H0 = 48, ALT = 17, R = 6.2;
+    const face = (u, t, l) => {
+      const dx = (u - l / 2) * 16, dy = t - ALT / 2 + 0.5, r = Math.hypot(dx, dy);
+      if (t === 0 || t === ALT - 1) return FERRO;
+      if (r > R + 1.2) return '#3a3a4a';
+      if (r > R) return OURO;
+      const ang = Math.atan2(dx, dy), k = Math.round(ang / (Math.PI / 6));
+      if (r > R - 1.6 && Math.abs(ang - k * Math.PI / 6) < 0.16) return k % 3 === 0 ? '#1a1c2c' : '#6a6a80';   // marcas das horas
+      return ['#fbf6e2', 2];                                                                                  // mostrador (acende à noite)
+    };
+    L.caixa(ci - 0.36, ci + 0.36, cj - 0.36, cj + 0.36, H0, ALT, { frente: face, lado: face, topo: FERRO });
+    // cúpula
+    deg(0.42, H0 + ALT, 2, [OURO, OURO2, OURO2]); deg(0.3, H0 + ALT + 2, 3, ['#4a5aa0', '#3a4a8a', '#2a3468']);
+    deg(0.2, H0 + ALT + 5, 3, ['#4a5aa0', '#3a4a8a', '#2a3468']); deg(0.1, H0 + ALT + 8, 3, ['#4a5aa0', '#3a4a8a', '#2a3468']);
+    L.caixa(ci - 0.03, ci + 0.03, cj - 0.03, cj + 0.03, H0 + ALT + 11, 4, OURO); deg(0.06, H0 + ALT + 15, 2, [OURO, OURO, OURO2]);
+    // ponteiros na face da frente
+    const cfx = ci + 0.36, c = L.proj(cfx, cj, H0 + ALT / 2);
+    const pont = (ang, comp, cor) => { for (let k = 1; k <= comp; k++) L.pintar(c.x - Math.sin(ang) * k * 0.9, c.y - Math.cos(ang) * k + Math.sin(ang) * k * 0.45, cor, cfx + 0.01, cj, H0 + ALT / 2, 1, 1); };
+    pont(((h % 12) + mi / 60) / 12 * Math.PI * 2, 3.4, '#1a1c2c'); pont(mi / 60 * Math.PI * 2, 5.2, '#c83c4c');
+    L.pintar(c.x, c.y, OURO, cfx + 0.01, cj, H0 + ALT / 2, 1, 1);
   } },
   // caixa de correio (azul e amarela) num pé
   'caixa-correio': { di: 0.5, dj: 0.6, f(L, m) {

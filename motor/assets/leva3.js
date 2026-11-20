@@ -83,6 +83,29 @@ function saquinho(aberto) {   // saquinho de papel com pimenta
   return p.contorno('#4a3220');
 }
 
+// banco de praça VISTO DE FRENTE (mesmo ângulo dos personagens sentados "de frente"): encosto de 2 ripas, assento a
+// 12 px do chão (como as poses sentadas), pés e braços de ferro. 48 px = 3 lugares. Use "z" um pouco atrás de quem senta.
+function bancoFrente() {
+  const W = 50, H = 28, p = new Pix(W, H), M = ['#d8a068', '#b07a44', '#7a4e2a'], F = '#2e2e3a', F2 = '#4a4a5a';
+  for (const y0 of [3, 9]) { p.ret(3, y0, 44, 4, M[1]); p.ret(3, y0, 44, 1, M[0]); p.ret(3, y0 + 3, 44, 1, M[2]); }   // ripas do encosto
+  for (const x of [6, 43]) p.ret(x, 2, 2, 13, F);                                                                    // suportes do encosto
+  p.ret(2, 15, 46, 2, M[0]); p.ret(2, 17, 46, 2, M[1]); p.ret(2, 19, 46, 1, M[2]);                                    // assento: topo a 12 px do chão
+  for (let x = 2; x < 48; x += 6) p.set(x, 17, M[2]);
+  for (const x of [4, 44]) { p.ret(x, 20, 2, 8, F); p.set(x, 20, F2); }                                              // pés
+  for (const x of [1, 47]) { p.ret(x, 11, 2, 9, F); p.ret(x - 1, 11, 4, 1, F2); }                                     // braços
+  return p.contorno('#3a2416');
+}
+
+// alma (espirro: as almas trocam de corpo): bolinha luminosa com rostinho e cauda ondulada. Estados azul e rosa.
+function alma(cores) {
+  const p = new Pix(12, 15), [cl, cb, cs] = cores;
+  for (let y = 8; y < 15; y++) { const w = Math.max(0, 3 - (y - 8) * 0.45), cx = 6 + Math.round(Math.sin(y * 0.9) * 1.2); for (let x = Math.round(cx - w); x <= cx + w; x++) p.set(x, y, y > 11 ? cs : cb); }
+  p.elipse(6, 5, 4.4, 4.4, (x, y, dx, dy) => Pix.tom([cs, cb, cl], 0.8 - dx * 0.25 - dy * 0.4, x, y));
+  p.set(4, 5, '#2a2a4a'); p.set(8, 5, '#2a2a4a'); p.set(4, 4, '#ffffff'); p.set(8, 4, '#ffffff'); p.set(6, 7, '#5a5a8a');
+  for (let y = 13; y < 15; y++) for (let x = 0; x < 12; x++) if ((x + y) % 2) p.d[(y * 12 + x) * 4 + 3] = 0;
+  return p.contorno(cs);
+}
+
 const est = (pares) => {   // { estado: Pix } → sprite com estados (anims)
   const quadros = [], anims = {};
   for (const [k, q] of Object.entries(pares)) { anims[k] = { q: [quadros.length], fps: 1 }; quadros.push(q); }
@@ -93,5 +116,7 @@ registrarSprites(Object.fromEntries(Object.entries(CACHORROS).map(([k, [c, op]])
 registrarSprites({
   vulto: () => ({ ...est({ parado: vulto(false), olhos: vulto(true) }), sombra: false }),
   pao: () => est({ parado: pao() }),
+  alma: () => ({ ...est({ azul: alma(['#e8f6ff', '#a8d8ff', '#5a9ae0']), rosa: alma(['#fff0f8', '#ffb8dc', '#e070a8']) }), sombra: false, flutua: true, brilho: null }),
+  'banco-frente': () => ({ ...est({ parado: bancoFrente() }), sombra: true }),
   'saquinho-pimenta': () => est({ parado: saquinho(false), fechado: saquinho(false), aberto: saquinho(true) }),
 }, { grupo: 'Terror e objetos (leva 3)', status: 'protótipo' });

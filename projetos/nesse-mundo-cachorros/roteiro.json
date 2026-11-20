@@ -158,32 +158,43 @@
   {
    "narracaoTexto": "E primeiro encontro é sempre sem cachorro, por segurança.",
    "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
-    "x": -5,
-    "z": -8.5
+    "x": -1,
+    "z": -9.6,
+    "zoom": 2
    },
    "elementos": [
     {
+     "id": "banco",
+     "sprite": "banco-frente",
+     "x": -1,
+     "z": -8.35
+    },
+    {
      "id": "caixa",
      "personagem": "caixa",
-     "x": -5.8,
-     "z": -4.05,
+     "x": -1.75,
+     "z": -8.55,
      "y": 0,
      "pose": "sentado"
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -4.4,
-     "z": -4.05,
+     "x": -0.25,
+     "z": -8.55,
      "y": 0,
      "pose": "sentado"
     },
     {
      "id": "ctonho",
      "personagem": "cachorro-preto",
-     "x": -3,
-     "z": -8.6,
+     "x": 1.3,
+     "z": -8.8,
      "virado": "esquerda"
     }
    ],
@@ -203,8 +214,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5,
-     "z": -8.5
+     "x": -1,
+     "z": -9.6,
+     "zoom": 2
     }
    }
   },
@@ -351,6 +363,10 @@
   {
    "narracaoTexto": "Ele tem mania de conversar com os cachorros dos outros, como se fossem gente.",
    "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -452,6 +468,10 @@
   {
    "narracaoTexto": "E os cachorros sempre respondem para ele coisas que ninguém entende.",
    "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -560,6 +580,10 @@
   {
    "narracaoTexto": "Até que chegou o grande debate da eleição para prefeito, na praça.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 2,
     "z": -8.5
@@ -636,6 +660,10 @@
   {
    "narracaoTexto": "E, no meio do discurso, o cachorro do prefeito latiu: quero ir para casa dormir.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 5.7,
     "z": -7.8,
@@ -684,6 +712,10 @@
   {
    "narracaoTexto": "A praça inteira olhou para o prefeito.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -756,6 +788,10 @@
   {
    "narracaoTexto": "Primeiro, o cachorro do seu Tonho contou que o pão de hoje era de anteontem.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": -3,
     "z": -8.5
@@ -816,6 +852,10 @@
   {
    "narracaoTexto": "Depois, cinco cachorros falaram de uma vez. Em um minuto, doze segredos estavam no meio da praça.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -913,6 +953,10 @@
   {
    "narracaoTexto": "O cachorro da professora latiu que ela odiava a escola. E ela chorou na frente de todo mundo.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -9.6,
@@ -957,6 +1001,10 @@
   {
    "narracaoTexto": "E o Bolota, no meio da confusão, lembrou a todos: hora do lanche.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": -4,
     "z": -8.5
@@ -1000,6 +1048,10 @@
   {
    "narracaoTexto": "O prefeito ficou vermelho de vergonha e decretou: todo cachorro vai para a delegacia.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 4.6,
     "z": -8.5
@@ -1130,6 +1182,10 @@
   {
    "narracaoTexto": "O Caio tentou explicar, mas ninguém escuta um menino sem cachorro.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -1192,6 +1248,10 @@
   {
    "narracaoTexto": "Até que um cachorro sem dono se escondeu atrás dele e latiu: eu gosto desse menino.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": -1.2,
     "z": -9.6,
@@ -1244,6 +1304,10 @@
   {
    "narracaoTexto": "Mas o Caio não tinha dono nenhum. E estava pensando em pizza.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": -1.2,
     "z": -9.6,
@@ -1283,6 +1347,10 @@
   {
    "narracaoTexto": "Foi aí que o Caio entendeu tudo: os cachorros nunca falaram o que os donos pensam.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": -1,
     "z": -8.5
@@ -1422,6 +1490,10 @@
   {
    "narracaoTexto": "O Caio subiu no palanque e latiu tão alto que todos os cachorros pararam.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 3,
     "z": -8.5
@@ -1514,6 +1586,10 @@
   {
    "narracaoTexto": "E perguntou a cada um o que ele queria de verdade.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 5,
     "z": -8.5
@@ -1559,6 +1635,10 @@
   {
    "narracaoTexto": "O do prefeito só queria dormir. O da professora só odiava o apito do recreio.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -1622,6 +1702,10 @@
   {
    "narracaoTexto": "Um por um, os segredos viraram só opinião de cachorro. Só faltava um.",
    "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5

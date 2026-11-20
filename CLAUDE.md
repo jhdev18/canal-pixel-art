@@ -311,6 +311,13 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (`posicao` [x, y, z], `cor` dourado/rosa/azul/verde, `subida`) com sons `fogos-sobe`/`fogos`. Teste: `projetos/vitrine` (cenas 27–28).
   **Nina** = a rival da Bia (protótipo `rival`, também `"personagem": "nina"`): nome oficial, decidido pelo usuário. No vídeo dos
   números ninguém sabe o nome dela até o fim; nos outros vídeos pode ser chamada de Nina normalmente.
+- **Leva 4 (PROTÓTIPOS, aguardando "pode salvar")**: interior da delegacia `delegacia-diorama`/`-noite-diorama`
+  (`motor/assets/delegacia.js`: balcao-delegacia, mesa-escritorio, cadeira-escritorio, arquivo, cela, bebedouro); `relogio-praca`
+  v2 (mais detalhado); `cao-policial` v2; `alma` (azul/rosa: troca de corpo do espirro) e `banco-frente` (banco visto de frente
+  para cenas sentadas) em `motor/assets/leva3.js`. Teste: `projetos/vitrine` (cenas 29–31).
+  Regras que vieram dos ajustes do usuário: praça → tirar `arvore3`/`arvore4` (árvores da frente) quando houver gente na frente
+  (o `nm.mjs` do Claude já faz isso por padrão); sentar → `banco-frente`; continuidade → numa cena longa no mesmo lugar (festa),
+  o mesmo público fica nas mesmas posições em todas as cenas; quem segue algo anda até o fim da fala.
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).
 - **Casa (protótipo) — formato escolhido pelo usuário: cômodo ENCHENDO A TELA, igual ao quarto da Bia** (sistema de

@@ -420,14 +420,21 @@
   {
    "narracaoTexto": "E contava histórias tão tristes que até o cachorro da praça chorava. Escondido, claro.",
    "cenario": "praca",
+   "remover": ["banco1"],
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
      "x": -5.2,
-     "z": -4.05,
+     "z": -4.1,
      "y": 0,
      "pose": "sentado"
+    },
+    {
+     "id": "bancoFrente",
+     "sprite": "banco-frente",
+     "x": -5.2,
+     "z": -3.9
     },
     {
      "id": "tbia",

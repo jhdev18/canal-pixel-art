@@ -16,7 +16,7 @@
    _Balões:_ aluno: "Atchim!" · policial: "Cadê minha mochila?"
 **2.** `rua-comercial` — Por isso, ninguém chega perto de ninguém. A fila do mercado tem três quarteirões.
 **3.** `sala-de-aula-diorama` — E em dia de gripe a escola fecha, para a professora não acordar no corpo de um aluno.  
-   _Balões:_ aluno: "Atchim!"
+   _Balões:_ aluno: "Atchim!" · prof: "Ninguém chega perto!"
 **4.** `rua-comercial` — O seu Tonho, o padeiro, não espirra há trinta anos. Faz pão com um pregador no nariz.  
    _Balões:_ tonho: "Pão quentinho!"
 **5.** `rua-comercial` — E tem uma mania estranha: adora ciscar as migalhas da calçada.

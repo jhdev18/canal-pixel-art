@@ -14,6 +14,10 @@
    "narracaoTexto": "Nessa cidade, todo fantasma precisa arrancar um grito de alguém até a meia-noite.",
    "cenario": "praca-noite",
    "transicao": "fade",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 0,
     "z": -8.5
@@ -80,6 +84,10 @@
    "titulo": "NESSA CIDADE, TODO FANTASMA PRECISA DE UM GRITO",
    "tituloInicio": 0.2,
    "tituloDuracao": 2.4,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": -4,
     "z": -8.5
@@ -189,8 +197,12 @@
    }
   },
   {
-   "narracaoTexto": "Mas esse fantasminha é tímido demais. Nunca assustou ninguém.",
+   "narracaoTexto": "Mas essa fantasminha é tímida demais. Nunca assustou ninguém.",
    "cenario": "praca-noite",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
    "camera": {
     "x": 1,
     "z": -8.5
@@ -270,7 +282,7 @@
    }
   },
   {
-   "narracaoTexto": "Ele gritou BU com toda a força. Porém, o seu Tonho só deu um pãozinho para ele.",
+   "narracaoTexto": "Ela gritou BU com toda a força. Porém, o seu Tonho só deu um pãozinho para ela.",
    "cenario": "rua-comercial-noite",
    "camera": {
     "x": 0.6,
@@ -483,7 +495,7 @@
    }
   },
   {
-   "narracaoTexto": "Ele fez a cara mais feia que sabia e gritou.",
+   "narracaoTexto": "Ela fez a cara mais feia que sabia e gritou.",
    "cenario": "quarto-menina-noite-diorama",
    "camera": {
     "x": 0,
@@ -642,7 +654,7 @@
    }
   },
   {
-   "narracaoTexto": "Grito é grito. E agora ele mora no quarto dela.",
+   "narracaoTexto": "Grito é grito. E agora ela mora no quarto da Bia.",
    "cenario": "quarto-menina-diorama",
    "camera": {
     "x": 0,
@@ -669,13 +681,13 @@
     {
      "tipo": "som",
      "som": "sucesso",
-     "inicio": 0.91
+     "inicio": 0.94
     },
     {
      "tipo": "emocao",
      "alvo": "fant",
      "icone": "coracao",
-     "inicio": 1.83
+     "inicio": 1.89
     }
    ],
    "vertical": {

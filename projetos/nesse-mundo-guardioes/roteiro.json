@@ -594,15 +594,15 @@
    "cenario": "quarto-menina-noite-diorama",
    "paleta": "fria",
    "camera": {
-    "x": -0.8,
-    "y": 3
+    "x": -1.2,
+    "y": 3.6
    },
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
      "x": 0,
-     "z": 1.4,
+     "z": 1.2,
      "virado": "esquerda"
     },
     {
@@ -613,34 +613,74 @@
       "dx": -0.9,
       "dy": 1.55
      },
-     "pose": "olhando-lado",
+     "pose": "tremendo",
      "virado": "esquerda"
     },
     {
      "id": "sombra",
      "sprite": "vulto",
-     "x": -1.8,
-     "z": 2.6,
+     "x": -3.2,
+     "z": 3.2,
+     "escala": 2,
      "oculto": true
     }
    ],
    "acoes": [
     {
-     "tipo": "aparecer",
-     "alvo": "sombra",
-     "som": "sombra-surge",
-     "inicio": 2.12
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "som",
+     "som": "trovao",
+     "volume": 0.6,
+     "inicio": 1.29
     },
     {
      "tipo": "flash",
-     "intensidade": 0.4,
-     "inicio": 2.12
+     "intensidade": 0.9,
+     "duracao": 0.12,
+     "inicio": 1.96
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "sombra",
+     "som": "sombra-surge",
+     "duracao": 0.05,
+     "inicio": 1.96
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 2.02,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.29
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.7,
+     "duracao": 0.1,
+     "inicio": 2.69
+    },
+    {
+     "tipo": "mover",
+     "alvo": "sombra",
+     "para": -2.2,
+     "duracao": 0.05,
+     "inicio": 2.69
     }
    ],
    "vertical": {
     "camera": {
-     "x": -0.8,
-     "y": 3
+     "x": -1.2,
+     "y": 3.6
     }
    }
   },
@@ -649,53 +689,71 @@
    "cenario": "quarto-menina-noite-diorama",
    "paleta": "noir",
    "camera": {
-    "x": -0.8,
-    "y": 3,
-    "zoom": 2
+    "x": -1.2,
+    "y": 3.6
    },
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
      "x": 0,
-     "z": 1.4,
+     "z": 1.2,
      "virado": "esquerda"
     },
     {
      "id": "sombra",
      "sprite": "vulto",
-     "x": -1.8,
-     "z": 2.6
+     "x": -2.2,
+     "z": 3.2,
+     "escala": 2
     }
    ],
    "acoes": [
     {
-     "tipo": "trocar",
-     "alvo": "sombra",
-     "estado": "olhos",
-     "inicio": 3.66
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 1.87
     },
     {
      "tipo": "flash",
-     "inicio": 3.66
+     "intensidade": 1,
+     "duracao": 0.15,
+     "inicio": 3.53
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "sombra",
+     "estado": "olhos",
+     "inicio": 3.53
+    },
+    {
+     "tipo": "mover",
+     "alvo": "sombra",
+     "para": -1.2,
+     "duracao": 0.05,
+     "inicio": 3.53
     },
     {
      "tipo": "tremer",
-     "intensidade": 0.8,
-     "inicio": 3.66,
-     "duracao": 0.9
+     "intensidade": 1,
+     "inicio": 3.62,
+     "duracao": 0.99
     },
     {
      "tipo": "som",
      "som": "trovao",
-     "inicio": 3.66
+     "inicio": 3.62
+    },
+    {
+     "tipo": "som",
+     "som": "sombra-surge",
+     "inicio": 3.71
     }
    ],
    "vertical": {
     "camera": {
-     "x": -0.8,
-     "y": 3,
-     "zoom": 2
+     "x": -1.2,
+     "y": 3.6
     }
    }
   }

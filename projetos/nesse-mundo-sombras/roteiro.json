@@ -21,35 +21,35 @@
    },
    "elementos": [
     {
-     "id": "s1",
-     "sombraPessoa": {
-      "tamanho": 2.6,
-      "direcao": 0
-     },
-     "x": -2,
-     "z": 5.6
-    },
-    {
      "id": "tonho",
      "personagem": "padeiro",
      "x": -5,
      "z": 5.2
+    },
+    {
+     "id": "s-tonho",
+     "sombraPessoa": {
+      "tamanho": 1.8,
+      "direcao": 90
+     },
+     "x": -4.5,
+     "z": 5.4
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "s1",
-     "para": 3,
+     "alvo": "s-tonho",
+     "para": 3.5,
      "inicio": 0.3,
-     "duracao": 2.29
+     "duracao": 4.16
     },
     {
      "tipo": "andar",
      "alvo": "tonho",
-     "para": 2.4,
-     "inicio": 1.96,
-     "duracao": 2.5
+     "para": 3,
+     "inicio": 0.42,
+     "duracao": 4.04
     }
    ],
    "vertical": {
@@ -73,64 +73,64 @@
    },
    "elementos": [
     {
-     "id": "s1",
-     "sombraPessoa": {
-      "tamanho": 2.6,
-      "direcao": 0
-     },
-     "x": 3.4,
-     "z": 5.6
-    },
-    {
-     "id": "s2",
-     "sombraPessoa": {
-      "tamanho": 2.2,
-      "direcao": 0
-     },
-     "x": 5,
-     "z": 5.6
-    },
-    {
      "id": "prof",
      "personagem": "professora",
-     "x": 1.6,
+     "x": 0.6,
      "z": 5.2
+    },
+    {
+     "id": "s-prof",
+     "sombraPessoa": {
+      "tamanho": 1.8,
+      "direcao": 90
+     },
+     "x": 1.1,
+     "z": 5.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 3.2,
-     "z": 5.2
+     "x": 3,
+     "z": 5.4
+    },
+    {
+     "id": "s-aluno",
+     "sombraPessoa": {
+      "tamanho": 1.8,
+      "direcao": 90
+     },
+     "x": 3.5,
+     "z": 5.6000000000000005
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "s1",
-     "para": 6.6,
-     "inicio": 0.3,
-     "duracao": 2.59
-    },
-    {
-     "tipo": "andar",
-     "alvo": "s2",
-     "para": 8.2,
-     "inicio": 0.3,
-     "duracao": 2.59
+     "alvo": "s-prof",
+     "para": 5.5,
+     "inicio": 0.29,
+     "duracao": 3.71
     },
     {
      "tipo": "andar",
      "alvo": "prof",
-     "para": 4.8,
-     "inicio": 1.04,
-     "duracao": 2.78
+     "para": 5,
+     "inicio": 0.41,
+     "duracao": 3.59
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s-aluno",
+     "para": 7.9,
+     "inicio": 0.48,
+     "duracao": 3.52
     },
     {
      "tipo": "andar",
      "alvo": "aluno",
-     "para": 6.4,
-     "inicio": 1.23,
-     "duracao": 2.59
+     "para": 7.4,
+     "inicio": 0.59,
+     "duracao": 3.41
     }
    ],
    "vertical": {
@@ -160,10 +160,10 @@
      "id": "sb",
      "sombraPessoa": {
       "tamanho": 2.2,
-      "direcao": 90
+      "direcao": 270
      },
-     "x": -1.4,
-     "z": 1.4
+     "x": -1.6,
+     "z": 0.8
     }
    ],
    "acoes": [
@@ -365,7 +365,7 @@
    "narracaoTexto": "E os moradores foram atrás delas, sorrindo, um atrás do outro.",
    "cenario": "rua-comercial",
    "camera": {
-    "x": 8,
+    "x": 6.5,
     "z": 2.2,
     "y": 2.4
    },
@@ -373,88 +373,120 @@
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 2,
+     "x": -1,
      "z": 5.2
+    },
+    {
+     "id": "s-tonho",
+     "sombraPessoa": {
+      "tamanho": 1.6,
+      "direcao": 90
+     },
+     "x": -0.5,
+     "z": 5.4
     },
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 3.4,
+     "x": 1.4,
      "z": 5.2
+    },
+    {
+     "id": "s-prof",
+     "sombraPessoa": {
+      "tamanho": 1.6,
+      "direcao": 90
+     },
+     "x": 1.9,
+     "z": 5.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 4.8,
+     "x": 3.8,
      "z": 5.2
+    },
+    {
+     "id": "s-aluno",
+     "sombraPessoa": {
+      "tamanho": 1.6,
+      "direcao": 90
+     },
+     "x": 4.3,
+     "z": 5.4
     },
     {
      "id": "policial",
      "personagem": "policial",
-     "x": 6.2,
+     "x": 6.199999999999999,
      "z": 5.2
     },
     {
-     "id": "s1",
+     "id": "s-policial",
      "sombraPessoa": {
-      "tamanho": 2.6,
-      "direcao": 0
+      "tamanho": 1.6,
+      "direcao": 90
      },
-     "x": 8,
-     "z": 5.6
-    },
-    {
-     "id": "s2",
-     "sombraPessoa": {
-      "tamanho": 2.2,
-      "direcao": 0
-     },
-     "x": 10,
-     "z": 5.6
+     "x": 6.699999999999999,
+     "z": 5.4
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "s1",
-     "para": 14,
+     "alvo": "s-tonho",
+     "para": 6.5,
      "inicio": 0.3,
-     "duracao": 3.63
-    },
-    {
-     "tipo": "andar",
-     "alvo": "s2",
-     "para": 16,
-     "inicio": 0.3,
-     "duracao": 3.63
+     "duracao": 4.03
     },
     {
      "tipo": "andar",
      "alvo": "tonho",
-     "para": 7,
-     "inicio": 0.5,
-     "duracao": 3.22
+     "para": 6,
+     "inicio": 0.42,
+     "duracao": 3.91
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s-prof",
+     "para": 8.9,
+     "inicio": 0.38,
+     "duracao": 3.95
     },
     {
      "tipo": "andar",
      "alvo": "prof",
      "para": 8.4,
-     "inicio": 0.66,
-     "duracao": 3.22
+     "inicio": 0.5,
+     "duracao": 3.83
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s-aluno",
+     "para": 11.3,
+     "inicio": 0.46,
+     "duracao": 3.87
     },
     {
      "tipo": "andar",
      "alvo": "aluno",
-     "para": 9.8,
-     "inicio": 0.82,
-     "duracao": 3.22
+     "para": 10.8,
+     "inicio": 0.58,
+     "duracao": 3.75
+    },
+    {
+     "tipo": "andar",
+     "alvo": "s-policial",
+     "para": 13.7,
+     "inicio": 0.54,
+     "duracao": 3.79
     },
     {
      "tipo": "andar",
      "alvo": "policial",
-     "para": 11.2,
-     "inicio": 0.99,
-     "duracao": 3.22
+     "para": 13.2,
+     "inicio": 0.66,
+     "duracao": 3.67
     },
     {
      "tipo": "emocao",
@@ -465,7 +497,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 8,
+     "x": 6.5,
      "z": 2.2,
      "y": 2.4
     }
@@ -558,26 +590,26 @@
      "id": "sb",
      "sombraPessoa": {
       "tamanho": 2.2,
-      "direcao": 90
+      "direcao": 270
      },
-     "x": -2.6,
-     "z": 1.4
+     "x": -1.5,
+     "z": 0.8
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
      "alvo": "sb",
-     "para": -7,
-     "inicio": 2.35,
-     "duracao": 2.28
+     "para": -6.5,
+     "inicio": 2.12,
+     "duracao": 2.73
     },
     {
      "tipo": "andar",
      "alvo": "bia",
-     "para": -5.4,
-     "inicio": 2.57,
-     "duracao": 2.28
+     "para": -6,
+     "inicio": 2.26,
+     "duracao": 2.59
     }
    ],
    "vertical": {
@@ -592,7 +624,8 @@
    "narracaoTexto": "Lá de longe, ela olhou para trás e congelou.",
    "cenario": "praca",
    "remover": [
-    "arvore3"
+    "arvore3",
+    "arvore4"
    ],
    "camera": {
     "x": -2,
@@ -602,14 +635,14 @@
     {
      "id": "arvoreBia",
      "sprite": "arvore-iso-grande",
-     "x": -7.4,
-     "z": -9.9
+     "x": -9.2,
+     "z": -9.6
     },
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -5.7,
-     "z": -8.5,
+     "x": -5.4,
+     "z": -10.3,
      "virado": "direita"
     },
     {
@@ -689,7 +722,8 @@
    "cenario": "praca",
    "paleta": "fria",
    "remover": [
-    "arvore3"
+    "arvore3",
+    "arvore4"
    ],
    "camera": {
     "x": -2,
@@ -699,14 +733,14 @@
     {
      "id": "arvoreBia",
      "sprite": "arvore-iso-grande",
-     "x": -7.4,
-     "z": -9.9
+     "x": -9.2,
+     "z": -9.6
     },
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -5.7,
-     "z": -8.5,
+     "x": -5.4,
+     "z": -10.3,
      "virado": "direita"
     },
     {
@@ -781,7 +815,8 @@
    "narracaoTexto": "Na segunda, a praça amanheceu cheia de sombras. Sem ninguém em cima.",
    "cenario": "praca",
    "remover": [
-    "arvore3"
+    "arvore3",
+    "arvore4"
    ],
    "camera": {
     "x": -2,
@@ -791,14 +826,14 @@
     {
      "id": "arvoreBia",
      "sprite": "arvore-iso-grande",
-     "x": -7.4,
-     "z": -9.9
+     "x": -9.2,
+     "z": -9.6
     },
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -5.7,
-     "z": -8.5,
+     "x": -5.4,
+     "z": -10.3,
      "virado": "direita"
     },
     {
@@ -868,25 +903,26 @@
    "narracaoTexto": "E a sombra da Bia, colada nos pés dela, ainda tremia.",
    "cenario": "praca",
    "remover": [
-    "arvore3"
+    "arvore3",
+    "arvore4"
    ],
    "camera": {
-    "x": -6,
-    "z": -9.6,
+    "x": -5.4,
+    "z": -11.3,
     "zoom": 2
    },
    "elementos": [
     {
      "id": "arvoreBia",
      "sprite": "arvore-iso-grande",
-     "x": -7.4,
-     "z": -9.9
+     "x": -9.2,
+     "z": -9.6
     },
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -5.7,
-     "z": -8.5,
+     "x": -5.4,
+     "z": -10.3,
      "virado": "direita"
     },
     {
@@ -895,8 +931,8 @@
       "tamanho": 2.2,
       "direcao": 0
      },
-     "x": -5.7,
-     "z": -7.8
+     "x": -5.4,
+     "z": -10.1
     },
     {
      "id": "s1",
@@ -924,8 +960,8 @@
    ],
    "vertical": {
     "camera": {
-     "x": -6,
-     "z": -9.6,
+     "x": -5.4,
+     "z": -11.3,
      "zoom": 2
     }
    }

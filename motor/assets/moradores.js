@@ -71,10 +71,12 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   b.ret(12.5, 14.5 - r + yC, 3, 3, M.pele);
   b.elipse(14, 9.4 - r + yC, 6.2, 6.6, M.pele);
   // cachorro: orelhas caídas dos lados e focinho claro
-  if (p.cao) {
-    b.poli([[8.2, 5.4 - r + yC], [5, 7.6 - r + yC], [4.8, 15.4 - r + yC], [7, 17 - r + yC], [9, 11 - r + yC]], M.orelha);
-    b.poli([[19.8, 5.4 - r + yC], [23, 7.6 - r + yC], [23.2, 15.4 - r + yC], [21, 17 - r + yC], [19, 11 - r + yC]], M.orelha);
-    b.elipse(14, 12.6 - r + yC, 3.6, 2.6, M.focinho);
+  if (p.cao) {   // v2: rabo atrás, orelhas compridas com a parte de dentro, bochechas e focinho maior
+    b.poli([[19, 27 - r + yC], [23.4, 22 - r + yC], [25.2, 18.6 - r + yC], [24.6, 22.6 - r + yC], [21.4, 28.4 - r + yC]], M.orelha);
+    b.elipse(14, 10.2 - r + yC, 7, 6.2, M.pele);
+    b.poli([[8.4, 4.8 - r + yC], [4.6, 7.2 - r + yC], [4, 16.4 - r + yC], [6.4, 18.4 - r + yC], [9.2, 11 - r + yC]], M.orelha);
+    b.poli([[19.6, 4.8 - r + yC], [23.4, 7.2 - r + yC], [24, 16.4 - r + yC], [21.6, 18.4 - r + yC], [18.8, 11 - r + yC]], M.orelha);
+    b.elipse(14, 13 - r + yC, 4.4, 3.1, M.focinho);
   }
   // cabelo / chapéu
   const yc = -r + yC;
@@ -122,11 +124,19 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   if (espirro === 'atchim') gotinhas(b, 14, o(p.bigode ? 14 : 13));
   if (p.meiasListradas) for (const x of [10, 11, 12, 15, 16, 17]) for (const y of [36, 38]) b.tom(x, y, 'sombra');
   if (!p.cao) { const bc = espirro ? '#f07a6a' : '#e8907a'; b.pinta(9, o(12), bc); b.pinta(19, o(12), bc); if (espirro) { b.pinta(14, o(11.4), '#e8907a'); } }
-  else {   // nariz, boca e língua do cachorro
-    for (const x of [13, 14, 15]) b.pinta(x, o(11.2), '#1a1014');
-    b.pinta(14, o(12.2), '#1a1014'); b.pinta(13, o(10.6), '#6a5a60');
-    b.pinta(12, o(13.4), '#3a2420'); b.pinta(13, o(13.6), '#3a2420'); b.pinta(15, o(13.6), '#3a2420'); b.pinta(16, o(13.4), '#3a2420');
-    b.pinta(14, o(13.8), '#e8708a'); b.pinta(14, o(14.6), '#c84a68');
+  else {   // nariz (com brilho), boca em "w", língua, manchas acima dos olhos, dentro das orelhas e dedinhos das patas
+    const nariz = '#1a1014';
+    for (const x of [12, 13, 14, 15, 16]) b.pinta(x, o(11.2), nariz);
+    for (const x of [13, 14, 15]) b.pinta(x, o(12.2), nariz);
+    b.pinta(13, o(10.4), nariz); b.pinta(14, o(10.4), nariz); b.pinta(15, o(10.4), nariz); b.pinta(13, o(10.4), '#8a7a84');
+    b.pinta(14, o(13.2), '#3a2420');
+    for (const [x, y] of [[12, 14], [13, 14.6], [15, 14.6], [16, 14]]) b.pinta(x, o(y), '#3a2420');
+    b.pinta(14, o(14.4), '#e8708a'); b.pinta(14, o(15.4), '#c84a68'); b.pinta(13, o(15.2), '#e8708a');
+    const sobr = tons(p.cores.focinho || '#f0dcc0')[1];
+    for (const x of [11, 16]) { b.pinta(x, o(7.4), sobr); b.pinta(x + 1, o(7.4), sobr); }
+    const dentro = tons(p.cores.orelha || p.cores.cabelo)[2];
+    for (const y of [9, 10, 11, 12, 13]) { b.pinta(6, o(y), dentro); b.pinta(22, o(y), dentro); }
+    for (const [x, y] of [[6, 30.4], [7, 30.4], [21, 30.4], [22, 30.4]]) b.pinta(Math.round(x - largT * (x < 14 ? 1 : -1)), o(y), tons(p.cores.pele)[3]);
   }
   if (p.pregador) { for (const y of [9, 10, 11, 12]) { b.pinta(13, o(y), y === 9 ? '#8a5226' : '#c8823e'); b.pinta(15, o(y), y === 9 ? '#8a5226' : '#c8823e'); } for (const x of [13, 14, 15]) b.pinta(x, o(11), '#4a4a5a'); b.pinta(14, o(10), '#f0b898'); }   // PROTÓTIPO: pregador no nariz
   if (p.mecha) for (const [x, y] of [[13, 1], [13, 2], [14, 2], [14, 3], [15, 4]]) b.pinta(x, o(y), p.mecha);
@@ -195,8 +205,10 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   // pescoço e cabeça de perfil
   b.ret(13 + incl, 14.5 + y0 + yC, 3, 3, M.pele);
   b.elipse(14.6 + incl, 9.4 + y0 + yC, 5.8, 6.6, M.pele);
-  if (p.cao) {                                                        // focinho para a frente e orelha caída atrás
-    b.elipse(20.6 + incl, 12 + y0 + yC, 3.6, 2.4, M.focinho);
+  if (p.cao) {                                                        // focinho comprido para a frente, orelha caída e rabo abanando
+    const abana = Math.sin(t * Math.PI * 4) * 1.4;
+    b.poli([[10.4 + incl, 26 + y0 + yP], [6.4 + incl, 22 + abana + y0 + yP], [4.8 + incl, 18.4 + abana + y0 + yP], [5.6 + incl, 22.6 + abana + y0 + yP], [9.4 + incl, 28.4 + y0 + yP]], M.orelha);
+    b.elipse(21 + incl, 12.2 + y0 + yC, 4.2, 2.6, M.focinho);
     b.poli([[11.6 + incl, 4.6 + y0 + yC], [8.6 + incl, 6.6 + y0 + yC], [8.4 + incl, 14 + y0 + yC], [10.6 + incl, 15.6 + y0 + yC], [12.8 + incl, 9 + y0 + yC]], M.orelha);
   } else b.elipse(20.2 + incl, 10.6 + y0 + yC, 1, 1.2, M.pele);       // nariz
   const yc = y0 + yC, x = incl;
@@ -232,7 +244,8 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (p.oculos) { const f = '#2a2a3a'; for (let k = -1; k <= 2; k++) { b.pinta(ex + k, ey - 1, f); b.pinta(ex + k, ey + 2, f); } b.pinta(ex + 2, ey, f); b.pinta(ex + 2, ey + 1, f); b.pinta(ex - 2, ey, f); }
   if (p.oculosEscuros) { const f = '#14141e'; for (let k = -1; k <= 2; k++) for (let j = -1; j <= 1; j++) b.pinta(ex + k, ey + j, f); b.pinta(ex, ey - 1, '#3a3a52'); b.pinta(ex - 2, ey - 1, f); b.pinta(ex - 3, ey - 1, f); }
   if (p.cao) {
-    b.pinta(ex + 5, ey + 1, '#1a1014'); b.pinta(ex + 6, ey + 1, '#1a1014'); b.pinta(ex + 6, ey + 2, '#1a1014'); b.pinta(ex + 5, ey, '#6a5a60');
+    for (const [dx, dy] of [[5, 0], [6, 0], [6, 1], [7, 1], [6, 2], [7, 2]]) b.pinta(ex + dx, ey + dy, '#1a1014'); b.pinta(ex + 6, ey, '#8a7a84');
+    b.pinta(ex - 1, ey - 2, tons(p.cores.focinho || '#f0dcc0')[1]); b.pinta(ex, ey - 2, tons(p.cores.focinho || '#f0dcc0')[1]);
     for (const k of [2, 3, 4]) b.pinta(ex + k, ey + 4, '#3a2420');
     b.pinta(ex + 3, ey + 5, '#e8708a');
   } else {
