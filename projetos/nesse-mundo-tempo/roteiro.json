@@ -50,7 +50,7 @@
      "id": "prof",
      "personagem": "professora",
      "x": -3,
-     "z": -5.2
+     "z": -7.2
     },
     {
      "id": "tprof",
@@ -84,7 +84,35 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -106,6 +134,10 @@
      "para": 1,
      "duracao": 3.54
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -158,7 +190,21 @@
      "z": 1.2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.92, "duracao": 2.78 }, { "tipo": "expressao", "alvo": "aluna", "rosto": "triste", "inicio": 4.01, "duracao": 2.47 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.92,
+     "duracao": 2.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "triste",
+     "inicio": 4.01,
+     "duracao": 2.47
+    },
     {
      "tipo": "pular",
      "inicio": 1.23,
@@ -173,7 +219,7 @@
     },
     {
      "tipo": "emocao",
-     "inicio": 4.0,
+     "inicio": 4,
      "alvo": "aluna",
      "icone": "..."
     }
@@ -207,7 +253,7 @@
      "id": "placa",
      "sprite": "placa-lei",
      "x": 12.4,
-     "z": 5.0,
+     "z": 5,
      "oculto": true
     }
    ],
@@ -217,7 +263,14 @@
      "z": 1.2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "feliz", "inicio": 0.54, "duracao": 4.51 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 0.54,
+     "duracao": 4.51
+    },
     {
      "tipo": "aparecer",
      "inicio": 1.72,
@@ -256,7 +309,7 @@
      "sobre": {
       "id": "ronaldo",
       "dx": 0.45,
-      "dy": 1.0
+      "dy": 1
      }
     }
    ],
@@ -266,7 +319,14 @@
      "z": 1.2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "bravo", "inicio": 2.13, "duracao": 4.28 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "bravo",
+     "inicio": 2.13,
+     "duracao": 4.28
+    },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -360,7 +420,14 @@
      "z": 1.2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 1.61, "duracao": 3.05 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 1.61,
+     "duracao": 3.05
+    },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -402,7 +469,14 @@
      "x": 0
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "chorando", "inicio": 2.23, "duracao": 4.51 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "chorando",
+     "inicio": 2.23,
+     "duracao": 4.51
+    },
     {
      "tipo": "trocar",
      "inicio": 1.27,
@@ -420,21 +494,17 @@
   {
    "narracaoTexto": "E contava histórias tão tristes que até o cachorro da praça chorava. Escondido, claro.",
    "cenario": "praca",
-   "remover": ["banco1"],
+   "remover": [
+    "banco1",
+    "arvore3",
+    "arvore4"
+   ],
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
      "x": -5.2,
-     "z": -4.1,
-     "y": 0,
-     "pose": "sentado"
-    },
-    {
-     "id": "bancoFrente",
-     "sprite": "banco-frente",
-     "x": -5.2,
-     "z": -3.9
+     "z": -8.6
     },
     {
      "id": "tbia",
@@ -449,7 +519,7 @@
      "id": "cao",
      "sprite": "cao-policial",
      "x": -3.4,
-     "z": -4.6,
+     "z": -8.6,
      "voz": 0.9,
      "virado": "esquerda"
     },
@@ -487,8 +557,19 @@
      "inicio": 4.49,
      "alvo": "cao",
      "icone": "..."
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 2.2,
+     "duracao": 3.4
     }
-   ]
+   ],
+   "camera": {
+    "x": -4.4,
+    "z": -8.5
+   }
   },
   {
    "narracaoTexto": "Até que chegou o Dia do Sol, a festa mais importante de Vila Serena.",
@@ -563,7 +644,35 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "rindo", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "aluno", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 }, { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.52, "duracao": 4.2 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -597,6 +706,10 @@
      "inicio": 4.06,
      "intensidade": 0.5
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -646,7 +759,21 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "rindo", "inicio": 1.17, "duracao": 3.49 }, { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 2.91, "duracao": 1.75 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 1.17,
+     "duracao": 3.49
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 2.91,
+     "duracao": 1.75
+    },
     {
      "tipo": "falar",
      "inicio": 1.17,
@@ -657,6 +784,10 @@
      "tipo": "flash",
      "inicio": 3.57
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -709,7 +840,14 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "aluno", "rosto": "surpreso", "inicio": 1.7, "duracao": 3.28 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "surpreso",
+     "inicio": 1.7,
+     "duracao": 3.28
+    },
     {
      "tipo": "trocar",
      "inicio": 0.53,
@@ -746,7 +884,12 @@
      "duracao": 0.3,
      "intensidade": 0.5
     }
-   ]
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true
   },
   {
    "narracaoTexto": "O seu Tonho sorria tanto que o chapéu de padeiro dele pegou fogo.",
@@ -790,7 +933,14 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "rindo", "inicio": 0.72, "duracao": 3.81 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 0.72,
+     "duracao": 3.81
+    },
     {
      "tipo": "trocar",
      "inicio": 0,
@@ -813,7 +963,12 @@
      "alvo": "tonho",
      "icone": "!"
     }
-   ]
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true
   },
   {
    "narracaoTexto": "As flores da praça murcharam. Todas, menos as do canteiro da delegacia.",
@@ -923,6 +1078,10 @@
      "alvo": "tonho",
      "icone": "..."
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -974,7 +1133,14 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "chorando", "inicio": 1.57, "duracao": 2.96 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "chorando",
+     "inicio": 1.57,
+     "duracao": 2.96
+    },
     {
      "tipo": "trocar",
      "inicio": 1.78,
@@ -994,6 +1160,10 @@
      "icone": "...",
      "duracao": 1.06
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1019,6 +1189,22 @@
       "dy": 2.75
      },
      "pose": "garoa"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.4,
+     "z": -8.6,
+     "pose": "sentado"
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "nada"
     }
    ],
    "vertical": {
@@ -1027,7 +1213,14 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 1.89, "duracao": 2.38 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.89,
+     "duracao": 2.38
+    },
     {
      "tipo": "trocar",
      "inicio": 2.68,
@@ -1046,6 +1239,10 @@
      "icone": "?",
      "duracao": 1.19
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1095,7 +1292,14 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 2.32, "duracao": 2.01 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.32,
+     "duracao": 2.01
+    },
     {
      "tipo": "levantar",
      "inicio": 1.51,
@@ -1113,6 +1317,10 @@
      "alvo": "tonho",
      "icone": "coracao"
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1141,7 +1349,14 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 1.52, "duracao": 4.89 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.52,
+     "duracao": 4.89
+    },
     {
      "tipo": "emocao",
      "inicio": 1.52,
@@ -1158,6 +1373,10 @@
      "duracao": 0.3,
      "intensidade": 0.5
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1191,7 +1410,7 @@
      "sobre": {
       "id": "ronaldo",
       "dx": 0.45,
-      "dy": 1.0
+      "dy": 1
      },
      "pose": "fechado"
     },
@@ -1208,7 +1427,14 @@
      "z": 1.2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "triste", "inicio": 2.85, "duracao": 3.82 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "triste",
+     "inicio": 2.85,
+     "duracao": 3.82
+    },
     {
      "tipo": "emocao",
      "inicio": 4.76,
@@ -1259,6 +1485,10 @@
      "altura": 1.2,
      "duracao": 0.7
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1293,13 +1523,24 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "triste", "inicio": 1.42, "duracao": 4.47 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 1.42,
+     "duracao": 4.47
+    },
     {
      "tipo": "falar",
      "inicio": 1.42,
      "alvo": "bia",
      "texto": "* Era uma vez um pãozinho... que ninguém quis."
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1360,7 +1601,21 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prof", "rosto": "chorando", "inicio": 2.33, "duracao": 3.04 }, { "tipo": "expressao", "alvo": "tonho", "rosto": "chorando", "inicio": 3.34, "duracao": 2.03 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "chorando",
+     "inicio": 2.33,
+     "duracao": 3.04
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "chorando",
+     "inicio": 3.34,
+     "duracao": 2.03
+    },
     {
      "tipo": "trocar",
      "inicio": 0.81,
@@ -1379,6 +1634,10 @@
      "alvo": "ttonho",
      "estado": "chuva"
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1424,7 +1683,21 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 1.86, "duracao": 3.64 }, { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 1.86, "duracao": 3.64 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 1.86,
+     "duracao": 3.64
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 1.86,
+     "duracao": 3.64
+    },
     {
      "tipo": "trocar",
      "inicio": 1.9,
@@ -1472,6 +1745,10 @@
      "alvo": "arvore4",
      "estado": "verde"
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1479,7 +1756,7 @@
    "cenario": "praca-decorada",
    "camera": {
     "x": 1,
-    "z": -6.5
+    "z": -7.9
    },
    "clima": "chuva",
    "elementos": [
@@ -1487,7 +1764,7 @@
      "id": "prefeito",
      "personagem": "prefeito-careca",
      "x": 1.8,
-     "z": -5.8,
+     "z": -7.2,
      "virado": "esquerda"
     },
     {
@@ -1503,23 +1780,30 @@
      "id": "peruca",
      "sprite": "peruca",
      "x": 1.8,
-     "z": -5.8,
+     "z": -7.2,
      "y": 2.8
     }
    ],
    "vertical": {
     "camera": {
      "x": 1,
-     "z": -8.5
+     "z": -7.9
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "chorando", "inicio": 0.54, "duracao": 4.57 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "chorando",
+     "inicio": 0.54,
+     "duracao": 4.57
+    },
     {
      "tipo": "mover",
      "inicio": 2.46,
      "alvo": "peruca",
      "para": [
-      1.0,
+      1,
       3.6
      ],
      "duracao": 0.8
@@ -1532,7 +1816,7 @@
       0.2,
       0.6
      ],
-     "duracao": 1.0
+     "duracao": 1
     },
     {
      "tipo": "emocao",
@@ -1540,6 +1824,10 @@
      "alvo": "prefeito",
      "icone": "!"
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1572,7 +1860,7 @@
      "sobre": {
       "id": "ronaldo",
       "dx": 0.45,
-      "dy": 1.0
+      "dy": 1
      }
     },
     {
@@ -1598,7 +1886,26 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "envergonhado", "inicio": 0.35, "duracao": 0.86 }, { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 0.35, "duracao": 0.86 }]
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "envergonhado",
+     "inicio": 0.35,
+     "duracao": 0.86
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 0.35,
+     "duracao": 0.86
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
   },
   {
    "narracaoTexto": "O policial Ronaldo olhou para a Bia, respirou fundo e fechou o guarda-chuva.",
@@ -1631,7 +1938,7 @@
      "sobre": {
       "id": "ronaldo",
       "dx": 0.45,
-      "dy": 1.0
+      "dy": 1
      }
     },
     {
@@ -1656,13 +1963,31 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "triste", "inicio": 2.28, "duracao": 2.96 }, { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 3.26, "duracao": 1.98 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "triste",
+     "inicio": 2.28,
+     "duracao": 2.96
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 3.26,
+     "duracao": 1.98
+    },
     {
      "tipo": "trocar",
      "inicio": 3.26,
      "alvo": "guarda",
      "estado": "fechando"
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {
@@ -1696,7 +2021,7 @@
      "sobre": {
       "id": "ronaldo",
       "dx": 0.45,
-      "dy": 1.0
+      "dy": 1
      },
      "pose": "fechado"
     },
@@ -1722,7 +2047,21 @@
      "z": -8.5
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "ronaldo", "rosto": "chorando", "inicio": 0.44, "duracao": 2.59 }, { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.44, "duracao": 2.59 },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "chorando",
+     "inicio": 0.44,
+     "duracao": 2.59
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.44,
+     "duracao": 2.59
+    },
     {
      "tipo": "trocar",
      "inicio": 0.57,
@@ -1744,6 +2083,10 @@
      "alvo": "bia",
      "icone": "!"
     }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
    ]
   },
   {

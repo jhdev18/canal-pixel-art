@@ -221,7 +221,8 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
 - **Escolha pelo tom:** comédia → `rindo`/`envergonhado`/`bravo` em quem é ridicularizado, `surpreso` na entrega da piada; terror →
   começa `feliz` (a cidade gosta da regra) e vira `assustado` na virada; sorriso que continua enquanto algo ruim acontece também assusta;
   emocional → `triste` antes, `chorando` só no ponto mais forte, `feliz` no gesto final.
-- **Bia:** rosto pequeno e claro; nas reações importantes dela usar enquadramento mais perto (`zoom` 2) para a expressão aparecer.
+- **Bia:** não usar `"realce"` nela (estourava a pele de branco e apagava o rosto; foi tirado da biblioteca). O rosto é pequeno: nas
+  reações importantes dela, enquadramento mais perto (`zoom` 2) ajuda.
 - **Conferir:** ao mudar o desenho dos rostos, testar com fotos (`projetos/teste-rostos`, `projetos/teste-praca-rostos`:
   `npm run fotos -- <projeto>`) só quando o usuário permitir; procurar olho apagado, sobrancelha grudada no olho e lágrima que vira mancha.
 
@@ -416,7 +417,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   O `cao-policial` NÃO tem (a expressão deformava o rosto; usuário não gostou). Guardiões, fantasmas e RPG usam o estado parecido que tiverem (feliz/tímido/alerta/tremendo...); sem nada parecido, ficam parados.
   Ação `expressao` (`rosto`, `duracao`), pose fixa `"pose": "rosto-x"`, e automático com o ícone de `emocao` (`gota` → chorando;
   `"rosto": false` desliga). Só aparece com o personagem parado e sem `pose` (andando/sentado não muda). **Usar em todo vídeo** nas
-  reações da narração (já aplicado em todos os vídeos: episódio 1 e os 10 "Nesse Mundo"; nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])` do `nm.mjs`).
+  reações da narração (já aplicado no episódio 1, no tempo e nos 7 da leva 2/terror; estrelas e caderno já foram postados — não mexer; nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])` do `nm.mjs`).
   Teste: `projetos/teste-rostos` e `teste-rostos2` (`npm run fotos -- teste-rostos`), `projetos/vitrine` (cena 33).
 - **Praça melhorada (no motor/biblioteca):** toldo das barracas acima da cabeça das pessoas (vendedor aparece), placa com
   ícone em cima, barracas da `praca-decorada` mais espaçadas (x -6.0, -3.7, -1.4; vendedor x +0.8, z -2.4).

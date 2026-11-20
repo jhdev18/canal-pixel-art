@@ -46,7 +46,7 @@
      "x": 1.2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "feliz", "inicio": 1.76, "duracao": 3.42 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 2.74, "duracao": 2.43 },
+   "acoes": [
     {
      "tipo": "falar",
      "inicio": 0.3,
@@ -159,7 +159,7 @@
      "x": 4
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 0.47, "duracao": 3.28 }, { "tipo": "expressao", "alvo": "prof", "rosto": "feliz", "inicio": 0.47, "duracao": 3.28 }, { "tipo": "expressao", "alvo": "aluna", "rosto": "feliz", "inicio": 0.47, "duracao": 3.28 },
+   "acoes": [
     {
      "tipo": "emocao",
      "inicio": 0.99,
@@ -258,7 +258,7 @@
      "x": 1
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "rindo", "inicio": 1.05, "duracao": 3.02 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 2.19, "duracao": 1.88 },
+   "acoes": [
     {
      "tipo": "emocao",
      "inicio": 2.37,
@@ -292,7 +292,7 @@
      "z": 0
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "caio", "rosto": "pensativo", "inicio": 1.47, "duracao": 1.76 },
+   "acoes": [
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -459,7 +459,7 @@
      "x": 0
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "feliz", "inicio": 0.5, "duracao": 3.83 }, { "tipo": "expressao", "alvo": "aluna", "rosto": "feliz", "inicio": 0.5, "duracao": 3.83 }, { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 0.5, "duracao": 3.83 },
+   "acoes": [
     {
      "tipo": "andar",
      "inicio": 0.3,
@@ -608,7 +608,7 @@
      "x": 0.9
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "rindo", "inicio": 1.43, "duracao": 2.64 }, { "tipo": "expressao", "alvo": "caio", "rosto": "pensativo", "inicio": 2.19, "duracao": 1.88 },
+   "acoes": [
     {
      "tipo": "falar",
      "inicio": 1.12,
@@ -736,7 +736,7 @@
      "x": 1
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "aluna", "rosto": "surpreso", "inicio": 1.39, "duracao": 1.64 }, { "tipo": "expressao", "alvo": "prof", "rosto": "surpreso", "inicio": 1.39, "duracao": 1.64 },
+   "acoes": [
     {
      "tipo": "aparecer",
      "inicio": 0.98,
@@ -871,7 +871,7 @@
      "x": -2
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "tonho", "rosto": "feliz", "inicio": 0.45, "duracao": 2.78 }, { "tipo": "expressao", "alvo": "aluna", "rosto": "feliz", "inicio": 0.45, "duracao": 2.78 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "feliz", "inicio": 0.45, "duracao": 2.78 }, { "tipo": "expressao", "alvo": "caio", "rosto": "assustado", "inicio": 1.76, "duracao": 1.47 },
+   "acoes": [
     {
      "tipo": "pular",
      "inicio": 0.3,
@@ -1022,7 +1022,7 @@
      "x": 1
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "caio", "rosto": "assustado", "inicio": 0.47, "duracao": 3.21 }, { "tipo": "expressao", "alvo": "prefeito", "rosto": "surpreso", "inicio": 2.33, "duracao": 1.35 },
+   "acoes": [
     {
      "tipo": "trocar",
      "inicio": 1.15,
@@ -1155,7 +1155,7 @@
      "x": 1
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "assustado", "inicio": 1.43, "duracao": 2.64 }, { "tipo": "expressao", "alvo": "tonho", "rosto": "assustado", "inicio": 1.62, "duracao": 2.45 }, { "tipo": "expressao", "alvo": "prof", "rosto": "assustado", "inicio": 1.62, "duracao": 2.45 }, { "tipo": "expressao", "alvo": "aluna", "rosto": "assustado", "inicio": 1.81, "duracao": 2.26 }, { "tipo": "expressao", "alvo": "caixa", "rosto": "assustado", "inicio": 1.81, "duracao": 2.26 },
+   "acoes": [
     {
      "tipo": "trocar",
      "inicio": 0.87,
@@ -1325,7 +1325,7 @@
      "x": -3.6
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "caio", "rosto": "surpreso", "inicio": 1.42, "duracao": 1.67 },
+   "acoes": [
     {
      "tipo": "camera",
      "inicio": 1.42,
@@ -1463,7 +1463,7 @@
      "x": 1
     }
    },
-   "acoes": [ { "tipo": "expressao", "alvo": "prefeito", "rosto": "assustado", "inicio": 0.53, "duracao": 4.32 }, { "tipo": "expressao", "alvo": "caio", "rosto": "surpreso", "inicio": 1.67, "duracao": 3.18 },
+   "acoes": [
     {
      "tipo": "emocao",
      "inicio": 0.53,

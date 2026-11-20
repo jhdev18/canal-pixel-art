@@ -17,6 +17,10 @@ export function aplicarRosto(pix, L, expr) {
   const q = new pix.constructor(pix.w, pix.h); q.d.set(pix.d);
   const set = (x, y, c) => q.set(Math.round(x), Math.round(y), c);
   const [mx, my] = L.boca, w = L.w ?? 2, h = L.h ?? 2;
+  if (L.peleDaFoto) {   // usa a cor de pele que está de fato no desenho (entre os olhos), em vez da cor da paleta
+    const [px, py] = L.peleDaFoto, i = (py * pix.w + px) * 4, h2 = (v) => v.toString(16).padStart(2, '0');
+    L = { ...L, pele: '#' + h2(pix.d[i]) + h2(pix.d[i + 1]) + h2(pix.d[i + 2]) };
+  }
   // limpa olhos e boca
   if (!L.semOlhos) for (const [ex, ey] of L.olhos) for (let y = ey; y < ey + h; y++) for (let x = ex - (w === 1 ? 1 : 0); x < ex + w + (w === 1 ? 1 : 0); x++) set(x, y, L.pele);
   if (!L.semBoca) for (let x = mx - 2; x <= mx + 2; x++) for (const y of [my, my + 1]) set(x, y, L.pele);
