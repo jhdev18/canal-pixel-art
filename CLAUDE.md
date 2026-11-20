@@ -212,6 +212,10 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   "recolher": s, "cor", "corBorda", "personagens": false }` — só no diorama de rua/praça: cobre o chão com borda
   esfiapada, sobe paredes/prédios pela altura de cada pixel e sobe pelos objetos e pessoas de baixo para cima; som `sombra`.
   Teste: `projetos/vitrine` (cena 24).
+- **Sombra em forma de pessoa (protótipo)**: elemento `{ "id": "s1", "sombraPessoa": { "tamanho": 2.6, "direcao": 0, "olhos": false },
+  "x", "z" }` (só no diorama de rua/praça; até 4 por cena): silhueta deitada no chão a partir dos pés que sobe a parede
+  quando chega nela; `direcao` em graus (0 = para os prédios, 90 = ao longo de +x). Funciona com `andar`/`mover`,
+  `aparecer` (surge em pontilhado), `sumir`/`desaparecer`, `"oculto"`. Teste: `projetos/vitrine` (cena 25).
 - **Interiores APROVADOS (na biblioteca):** lateral `sala-de-aula`, `quarto-menino`, `quarto-menino-noite`,
   `sala-de-estar` (fundos + móveis de `motor/assets/interiores.js`) e modo **`diorama`** (diagonal dos cômodos,
   `motor/cenarios/comodoDiagonal.js`): `sala-de-aula-diorama`, `quarto-menino-diorama`,

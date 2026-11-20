@@ -283,6 +283,7 @@ Comentários com `//` são permitidos.
 | `voz` | Tom dos "blips" de fala (1 = normal, 1.3 = mais agudo) |
 | `luz` | `{ "cor": "#ff9933", "intensidade": 2, "alcance": 6 }` — ou `false` para tirar a luz da fogueira/tocha/poste |
 | `semente` | Variação de árvores/arbustos procedurais |
+| `sombraPessoa` | (diorama de rua) em vez de sprite: sombra em forma de pessoa no chão/parede. `{ "tamanho": 2.6, "direcao": 0, "olhos": true }` |
 | `numero` | Número sobre a cabeça a cena toda (`1`, `10`, `"?"`, `"#"`, `"-"`); acompanha o personagem. `numeroCor` (`"#f8d040"`) e `numeroEstilo` (`"placa"` padrão ou `"solto"`, algarismos grandes sem placa) |
 
 Sprites PNG próprios: fundo transparente, quadros lado a lado; `"quadros": 4`, `"fps": 8` e, para

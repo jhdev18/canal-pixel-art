@@ -170,7 +170,7 @@ class Motor {
       return { def: el, m };
     });
     const temSombra = c.acoes.some((a) => a.tipo === 'sombra');
-    const elementos = c.elementos.filter((el) => !el.monstro).map((el, i) => {
+    const elementos = c.elementos.filter((el) => !el.monstro && !el.sombraPessoa).map((el, i) => {
       const { sprite, texturas } = this.sprite(el, c);
       const esc = el.escala ?? 1;
       const w = texturas[0].image.width / PPU, h = texturas[0].image.height / PPU;
@@ -308,6 +308,13 @@ class Motor {
 
     const somb = vista.atualizarSombra ? estadoSombra(c, t) : null;
     vista.atualizarSombra?.(somb);
+    if (vista.atualizarSombrasPessoa) vista.atualizarSombrasPessoa(c.elementos.filter((el) => el.sombraPessoa).map((el) => {
+      const st = estadoElemento(c, el, t);
+      // "aparecer" surge em pontilhado durante a duração da ação (padrão 1 s)
+      const ap = c.acoes.find((a) => a.tipo === 'aparecer' && a.alvo === el.id && t >= a.inicio && t < a.inicio + Math.max(a.duracao, 1));
+      const surge = ap ? Math.min(1, (t - ap.inicio) / Math.max(ap.duracao, 1)) : 1;
+      return { x: st.x, z: st.z ?? el.z ?? 0, alpha: st.visivel ? st.alpha * surge : 0, def: el };
+    }), t);
     for (const e of obj.elementos) {
       const st = estadoElemento(c, e.def, t);
       const vis = st.visivel && st.alpha > 0.01 && st.escala > 0.01;

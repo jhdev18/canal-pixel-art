@@ -278,6 +278,22 @@
         { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 2.4 },
         { "tipo": "correr", "alvo": "bia", "para": 6, "inicio": 3, "duracao": 1.6 },
         { "tipo": "tremer", "intensidade": 0.4, "inicio": 4.6, "duracao": 0.6 }
+      ] },
+
+    // 25. Sombras em forma de pessoa paradas no cenário (sem dono): no chão e subindo a parede dos prédios
+    { "cenario": "rua-comercial-noite", "duracao": 6, "transicao": "dither", "foto": [1.8, 5],
+      "legenda": "25. Sombras de pessoa no cenário, sem dono.",
+      "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "elementos": [
+        { "id": "s1", "sombraPessoa": { "tamanho": 3.2, "direcao": 0 }, "x": -3.2, "z": 3.6 },
+        { "id": "s2", "sombraPessoa": { "tamanho": 2.4, "direcao": 20, "olhos": true }, "x": 3.4, "z": 2.2, "oculto": true },
+        { "id": "bia", "personagem": "menina-capa", "x": -7, "z": 1.0 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": -1.4, "inicio": 0.2, "duracao": 2.6 },
+        { "tipo": "aparecer", "alvo": "s2", "inicio": 2.6, "duracao": 1.4 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 3.4 },
+        { "tipo": "andar", "alvo": "s1", "para": -1.8, "inicio": 4.2, "duracao": 1.6 }
       ] }
   ]
 }

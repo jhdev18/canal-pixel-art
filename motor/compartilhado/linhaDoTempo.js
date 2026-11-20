@@ -394,7 +394,7 @@ export function eventosSonoros(roteiro) {
           if (!semSom) add(somManual || SOM_COLETAR[el?.sprite] || 'item', a.inicio, { volume: vol, pan: panEl(a.alvo, a.inicio) });
           break;
         case 'aparecer': case 'sumir':
-          if (!semSom) add(somManual || (el?.monstro ? (a.tipo === 'aparecer' ? 'sombra-surge' : 'sombra-some') : 'puf'), a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
+          if (!semSom) add(somManual || ((el?.monstro || el?.sombraPessoa) ? (a.tipo === 'aparecer' ? 'sombra-surge' : 'sombra-some') : 'puf'), a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
           break;
         case 'explosao': {
           if (semSom) break;

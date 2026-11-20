@@ -128,16 +128,41 @@ function criarSombraChao(rua) {
   const tPos = new THREE.DataTexture(dados, W, H, THREE.RGBAFormat, THREE.FloatType);
   tPos.magFilter = tPos.minFilter = THREE.NearestFilter; tPos.needsUpdate = true;
   const u = { tPos: { value: tPos }, uTam: { value: new THREE.Vector2(W, H) }, uO: { value: new THREE.Vector3(0, 0, -1) }, uT: { value: 0 },
+    uPes: { value: [0, 1, 2, 3].map(() => new THREE.Vector4(0, 0, 0, 0)) }, uDir: { value: [0, 1, 2, 3].map(() => new THREE.Vector4(-1, 0, 2.6, 0)) },
     uCor: { value: new THREE.Color('#0c0816') }, uBorda: { value: new THREE.Color('#4a2a7a') } };
   const mat = new THREE.ShaderMaterial({ uniforms: u, transparent: true, depthWrite: false, depthTest: false,
     vertexShader: 'varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
     fragmentShader: GLSL_BAYER + `
       uniform sampler2D tPos; uniform vec2 uTam; uniform vec3 uO; uniform float uT; uniform vec3 uCor, uBorda; varying vec2 vUv;
+      uniform vec4 uPes[4]; uniform vec4 uDir[4];   // pessoa k: pés (i, j), alpha, olhos | direção (di, dj), tamanho
+      // silhueta de pessoa em coordenadas normalizadas: u = 0 (pés) .. 1 (cabeça), w = lado
+      float silhueta(float u, float w, float t) {
+        w += sin(t * 3.0 + u * 9.0) * 0.006;                       // tremula de leve (está viva)
+        float aw = abs(w);
+        if (u < 0.0 || u > 1.0) return 0.0;
+        if (length(vec2(w, (u - 0.9) * 0.9)) < 0.075) return 1.0;   // cabeça
+        if (u > 0.8 && u < 0.84 && aw < 0.035) return 1.0;           // pescoço
+        if (u > 0.44 && u < 0.81 && aw < mix(0.085, 0.12, smoothstep(0.6, 0.8, u))) return 1.0;   // tronco e ombros
+        if (u > 0.47 && u < 0.79 && aw > 0.125 && aw < 0.165 - (0.79 - u) * 0.05) return 1.0;      // braços
+        if (u < 0.46 && aw > 0.012 && aw < 0.072 - u * 0.03) return 1.0;                            // pernas
+        return 0.0;
+      }
       void main() {
-        if (uO.z <= 0.0) discard;
         vec2 px = floor(vUv * uTam);
         vec4 p = texture2D(tPos, (px + 0.5) / uTam);
         if (p.a < 0.5) discard;
+        // sombras em forma de pessoa (deitadas no chão a partir dos pés; sobem a parede quando chegam nela)
+        for (int k = 0; k < 4; k++) {
+          if (uPes[k].z <= 0.0) continue;
+          vec2 v = p.xy - uPes[k].xy, d = uDir[k].xy, n = vec2(-d.y, d.x);
+          float L = uDir[k].z, u = (dot(v, d) + p.z / 16.0) / L, w = dot(v, n) / L;
+          if (silhueta(u, w, uT) > 0.5) {
+            if (uPes[k].z < 0.999 && bayer4(px) > uPes[k].z) continue;       // aparecendo/sumindo em pontilhado
+            if (uPes[k].w > 0.5 && abs(u - 0.915) < 0.012 && abs(abs(w) - 0.03) < 0.014) { gl_FragColor = vec4(1.0, 0.35, 0.42, 1.0); return; }
+            gl_FragColor = vec4(uCor, 0.88); return;
+          }
+        }
+        if (uO.z <= 0.0) discard;
         vec2 dd = p.xy - uO.xy; float d = length(dd), ang = atan(dd.y, dd.x);
         float rr = uO.z * (0.8 + 0.14 * sin(ang * 5.0 + 1.3) + 0.06 * sin(ang * 13.0 + uT * 1.7));
         float m = rr - (d + p.z / 24.0);            // altura: a sombra precisa avançar mais para subir a parede
@@ -154,6 +179,14 @@ function criarSombraChao(rua) {
       if (!s) { u.uO.value.z = -1; return; }
       u.uO.value.set(s.i, s.j, s.R); u.uT.value = s.t;
       if (s.cor) u.uCor.value.set(s.cor); if (s.borda) u.uBorda.value.set(s.borda);
+    },
+    pessoas(lista, t) {
+      u.uT.value = t;
+      for (let k = 0; k < 4; k++) {
+        const p = lista[k];
+        if (!p) { u.uPes.value[k].set(0, 0, 0, 0); continue; }
+        u.uPes.value[k].set(p.i, p.j, p.alpha, p.olhos ? 1 : 0); u.uDir.value[k].set(p.di, p.dj, p.L, 0);
+      }
     },
     liberar() { tPos.dispose(); mat.dispose(); },
   };
@@ -190,7 +223,7 @@ function vistaDiagonal(c, motor) {
   const iDe = (el, st) => FAIXA.calcadaFrente - (st?.z ?? el.z ?? 0);
   // Sombra que se alastra (ação "sombra"): camada por cima do chão/prédios que usa a posição 3D de cada pixel,
   // então a sombra cobre o chão e SOBE pelas paredes conforme passa.
-  const sombraChao = c.acoes.some((a) => a.tipo === 'sombra') ? criarSombraChao(rua) : null;
+  const sombraChao = (c.acoes.some((a) => a.tipo === 'sombra') || c.elementos.some((el) => el.sombraPessoa)) ? criarSombraChao(rua) : null;
   if (sombraChao) { sombraChao.malha.position.copy(plano.position); sombraChao.malha.position.z = 0.01; sombraChao.malha.renderOrder = 1; cena.add(sombraChao.malha); }
   const ponto = (i, j, altura = 0) => {
     const p = rua.proj(i, j);
@@ -223,6 +256,12 @@ function vistaDiagonal(c, motor) {
     centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), -st.x - (c ? (c.dj ?? 1) / 2 : 0)]; },
     sombraIJ: (s) => [FAIXA.calcadaFrente - s.z, -s.x],
     atualizarSombra: (s) => sombraChao?.atualizar(s ? { i: FAIXA.calcadaFrente - s.z, j: -s.x, R: s.R, t: s.t, cor: s.cor, borda: s.borda } : null),
+    // sombras em forma de pessoa: [{ x, z, alpha, def }] (def.sombraPessoa: { tamanho, direcao, olhos })
+    atualizarSombrasPessoa: (lista, t) => sombraChao?.pessoas(lista.map((p) => {
+      const o = typeof p.def.sombraPessoa === 'object' ? p.def.sombraPessoa : {};
+      const a = ((o.direcao ?? 0) * Math.PI) / 180;
+      return { i: FAIXA.calcadaFrente - p.z, j: -p.x, di: -Math.cos(a), dj: -Math.sin(a), L: o.tamanho ?? 2.6, alpha: p.alpha, olhos: !!o.olhos };
+    }), t),
     paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), -st.x, snap(st.y) + dy),
     posicionar(e, st, bob) {
       const i = iDe(e.def, st), j = -st.x;
