@@ -174,7 +174,7 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - **Protótipos aguardando aprovação** (após o "pode salvar", cadastrar personagens em `biblioteca/personagens.json`):
   - guardiões = **pequenas criaturas** (elmo, rostinho, asinhas, cauda de fumaça) que **flutuam ao lado da cabeça** de uma
     pessoa: `"personagem": "guardiao-azul"` (ou `guardia-verde`, `guardiao-chefe`, `guardiao-noturno` com lanterna) e
-    `"sobre": { "id": "<pessoa>", "dx": 0.95, "dy": 2.0 }`; estados parado/feliz/alerta/dormindo (`motor/assets/guardioes.js`).
+    `"sobre": { "id": "<pessoa>", "dx": 0.9, "dy": 1.55 }`; estados parado/feliz/alerta/dormindo (`motor/assets/guardioes.js`).
     Números sobre a cabeça **das pessoas**, sempre no estilo placa (não usar `"numeroEstilo": "solto"`; o usuário achou
     estranho); guardiões sem número. Teste: `projetos/vitrine` (cenas 1 e 1b).
   - fantasmas (`motor/assets/fantasmas.js`): `fantasma-lencol` (parado/assustar/timido), `fantasma-crianca`

@@ -21,5 +21,10 @@
   "fantasma-crianca": { "sprite": "fantasma-crianca", "voz": 1.5, "y": 0.4 },
   "fantasma-vovo": { "sprite": "fantasma-vovo", "voz": 0.8, "y": 0.4 },
   "fantasma-sombra": { "sprite": "fantasma-sombra", "voz": 0.5, "y": 0.4 },
-  "fantasma-cachorro": { "sprite": "fantasma-cachorro", "voz": 1.3, "y": 0.4 }
+  "fantasma-cachorro": { "sprite": "fantasma-cachorro", "voz": 1.3, "y": 0.4 },
+
+  // ---- família da casa em diorama (motor/assets/casa.js)
+  "mae":           { "sprite": "mae", "voz": 1.1 },
+  "mae-avental":   { "sprite": "mae-avental", "voz": 1.1 },
+  "menino-topete": { "sprite": "menino-topete", "voz": 1.4 }
 }

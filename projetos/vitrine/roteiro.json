@@ -14,13 +14,13 @@
       "camera": { "x": -2, "z": 2.2, "y": 2.4 }, "cameraFim": { "x": 1 },
       "elementos": [
         { "id": "bia",      "personagem": "menina-capa", "x": -7,  "z": 1.2, "numero": 1 },
-        { "id": "gBia",     "personagem": "guardiao-azul",    "sobre": { "id": "bia", "dx": 0.95, "dy": 2.0 } },
+        { "id": "gBia",     "personagem": "guardiao-azul",    "sobre": { "id": "bia", "dx": 0.9, "dy": 1.55 } },
         { "id": "prof",     "personagem": "professora",  "x": -2,  "z": 5.6, "numero": 2 },
-        { "id": "gProf",    "personagem": "guardia-verde",    "sobre": { "id": "prof", "dx": 0.95, "dy": 2.0 } },
+        { "id": "gProf",    "personagem": "guardia-verde",    "sobre": { "id": "prof", "dx": 0.9, "dy": 1.55 } },
         { "id": "padeiro",  "personagem": "padeiro",     "x": 2.4, "z": 5.6, "numero": 3, "virado": "esquerda" },
-        { "id": "gPadeiro", "personagem": "guardiao-noturno", "sobre": { "id": "padeiro", "dx": 0.95, "dy": 2.0 } },
+        { "id": "gPadeiro", "personagem": "guardiao-noturno", "sobre": { "id": "padeiro", "dx": 0.9, "dy": 1.55 } },
         { "id": "prefeito", "personagem": "prefeito",    "x": 6,   "z": 5.6, "numero": "?", "virado": "esquerda" },
-        { "id": "gPref",    "personagem": "guardiao-chefe",   "sobre": { "id": "prefeito", "dx": 1.0, "dy": 2.1 } }
+        { "id": "gPref",    "personagem": "guardiao-chefe",   "sobre": { "id": "prefeito", "dx": 0.95, "dy": 1.65 } }
       ],
       "acoes": [
         { "tipo": "andar", "alvo": "bia", "para": 0.5, "inicio": 0.2, "duracao": 4 },
@@ -33,17 +33,17 @@
       "vertical": { "camera": { "x": -3, "z": 2.2, "y": 2.4, "zoom": 2 }, "cameraFim": { "x": 0 } } },
 
     // 1b. Guardiões de perto: parado, feliz, alerta, dormindo
-    { "cenario": "praca", "duracao": 4, "transicao": "dither", "foto": [1, 3], "camera": { "x": 0, "z": -7.6, "zoom": 2 },
+    { "cenario": "praca", "duracao": 4, "transicao": "dither", "foto": [1, 3], "camera": { "x": 0.4, "z": -10.3, "zoom": 2 },
       "legenda": "1b. Guardiões: parado, feliz, alerta, dormindo.",
       "elementos": [
         { "id": "p1", "personagem": "aluno",     "x": -3,  "z": -7.6, "numero": 5 },
-        { "id": "g1", "personagem": "guardiao-azul",    "sobre": { "id": "p1", "dx": 0.95, "dy": 2.0 } },
+        { "id": "g1", "personagem": "guardiao-azul",    "sobre": { "id": "p1", "dx": 0.9, "dy": 1.55 } },
         { "id": "p2", "personagem": "aluna",     "x": -0.6, "z": -7.6, "numero": 6 },
-        { "id": "g2", "personagem": "guardia-verde",    "sobre": { "id": "p2", "dx": 0.95, "dy": 2.0 }, "pose": "feliz" },
+        { "id": "g2", "personagem": "guardia-verde",    "sobre": { "id": "p2", "dx": 0.9, "dy": 1.55 }, "pose": "feliz" },
         { "id": "p3", "personagem": "policial",  "x": 1.8, "z": -7.6, "numero": 7 },
-        { "id": "g3", "personagem": "guardiao-noturno", "sobre": { "id": "p3", "dx": 0.95, "dy": 2.0 }, "pose": "dormindo" },
+        { "id": "g3", "personagem": "guardiao-noturno", "sobre": { "id": "p3", "dx": 0.9, "dy": 1.55 }, "pose": "dormindo" },
         { "id": "p4", "personagem": "caixa",     "x": 4.2, "z": -7.6, "numero": 8 },
-        { "id": "g4", "personagem": "guardiao-chefe",   "sobre": { "id": "p4", "dx": 0.95, "dy": 2.0 }, "pose": "alerta" }
+        { "id": "g4", "personagem": "guardiao-chefe",   "sobre": { "id": "p4", "dx": 0.9, "dy": 1.55 }, "pose": "alerta" }
       ],
       "acoes": [
         { "tipo": "trocar", "alvo": "g1", "estado": "feliz", "inicio": 2 },
@@ -135,7 +135,7 @@
       ] },
 
     // 8. Pistas de perto: lupa no mapa, carta, cadeado, cartaz "procura-se" e selo "CONTINUA..."
-    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [1, 5.2], "camera": { "x": -1, "z": -7.4, "zoom": 2 },
+    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [1, 5.2], "camera": { "x": -1, "z": -10.1, "zoom": 2 },
       "legenda": "8. Lupa, pistas, cartaz e CONTINUA.",
       "elementos": [
         { "id": "bia", "personagem": "menina-capa", "x": -2.6, "z": -7.4 },
@@ -154,7 +154,7 @@
       ] },
 
     // 9. Galeria dos fantasmas (todos os estados principais lado a lado)
-    { "cenario": "praca-noite", "duracao": 4, "transicao": "dither", "foto": [1.2, 3.2], "camera": { "x": 0, "z": -7.6, "zoom": 2 },
+    { "cenario": "praca-noite", "duracao": 4, "transicao": "dither", "foto": [1.2, 3.2], "camera": { "x": 0.4, "z": -10.3, "zoom": 2 },
       "legenda": "9. Fantasmas: estados.",
       "elementos": [
         { "id": "f1", "personagem": "fantasma-lencol",   "x": -3.4, "z": -7.6 },
@@ -220,6 +220,41 @@
       "acoes": [ { "tipo": "andar", "alvo": "prof", "para": 0, "inicio": 0.2, "duracao": 3 }, { "tipo": "correr", "alvo": "carteiro", "para": -2, "inicio": 0.4, "duracao": 2 }, { "tipo": "som", "som": "trovao", "inicio": 2.2 }, { "tipo": "flash", "inicio": 2.2 } ] },
     { "cenario": "rua-chuva-noite", "duracao": 3, "transicao": "dither", "foto": 1.5,
       "legenda": "16. Chuva à noite.",
-      "elementos": [ { "id": "menino", "personagem": "menino-pijama", "x": -1, "z": 1.2 }, { "id": "gc", "sprite": "guarda-chuva", "sobre": { "id": "menino", "dx": 0.45, "dy": 1.0 } } ] }
+      "elementos": [ { "id": "menino", "personagem": "menino-pijama", "x": -1, "z": 1.2 }, { "id": "gc", "sprite": "guarda-chuva", "sobre": { "id": "menino", "dx": 0.45, "dy": 1.0 } } ] },
+
+    // 17-21. Casa em diorama (sala, cozinha, quarto, banheiro) com a mãe e o menino do topete
+    { "fundo": "diorama", "duracao": 4, "transicao": "dither", "foto": 3, "camera": { "x": -0.5, "y": 1.6875 }, "cameraFim": { "x": 0.5 },
+      "legenda": "17. Casa: sala, com a mãe e o menino.",
+      "elementos": [ { "id": "comodo", "sprite": "casa-sala", "x": 0, "y": -3.75 }, { "id": "mae", "personagem": "mae", "x": -2.5 }, { "id": "filho", "personagem": "menino-topete", "x": 5 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "filho", "para": 1.2, "inicio": 0.2, "duracao": 2 }, { "tipo": "falar", "alvo": "mae", "texto": "Tira o tênis!", "inicio": 2.3 } ] },
+    { "fundo": "diorama", "duracao": 3, "transicao": "dither", "foto": 2.4, "camera": { "x": 0, "y": 1.6875 },
+      "legenda": "18. Casa: cozinha.",
+      "elementos": [ { "id": "comodo", "sprite": "casa-cozinha", "x": 0, "y": -3.75 }, { "id": "mae", "personagem": "mae-avental", "x": 2.5, "virado": "esquerda" }, { "id": "filho", "personagem": "menino-topete", "x": -1 } ],
+      "acoes": [ { "tipo": "falar", "alvo": "filho", "texto": "Tem bolo?", "inicio": 0.6 } ] },
+    { "fundo": "diorama", "duracao": 3, "transicao": "dither", "foto": 1.5, "camera": { "x": 0, "y": 1.6875 },
+      "legenda": "19. Casa: quarto do menino.",
+      "elementos": [ { "id": "comodo", "sprite": "casa-quarto", "x": 0, "y": -3.75 }, { "id": "filho", "personagem": "menino-topete", "x": 0.5 } ] },
+    { "fundo": "diorama", "duracao": 3, "transicao": "dither", "foto": 1.5, "camera": { "x": 0, "y": 1.6875 },
+      "legenda": "20. Casa: banheiro.",
+      "elementos": [ { "id": "comodo", "sprite": "casa-banheiro", "x": 0, "y": -3.75 }, { "id": "filho", "personagem": "menino-topete", "x": -1.5 } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "filho", "icone": "!", "inicio": 0.6 } ] },
+    { "fundo": "diorama-noite", "duracao": 3, "transicao": "dither", "foto": 1.5, "camera": { "x": 0, "y": 1.6875 },
+      "legenda": "21. Casa à noite.",
+      "elementos": [ { "id": "comodo", "sprite": "casa-quarto-noite", "x": 0, "y": -3.75 }, { "id": "mae", "personagem": "mae", "x": -3.5 }, { "id": "filho", "personagem": "menino-topete", "x": 1.4, "pose": "sentado" } ],
+      "acoes": [ { "tipo": "falar", "alvo": "mae", "texto": "Hora de dormir.", "inicio": 0.5 } ] },
+
+    // 22. Rival da Bia (novo visual): de frente, andando e ao lado da Bia
+    { "cenario": "praca", "duracao": 4, "transicao": "dither", "foto": [1.2, 3.4], "camera": { "x": 0.4, "z": -10.3, "zoom": 2 },
+      "legenda": "22. Rival da Bia: novo visual.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -1.6, "z": -7.6 },
+        { "id": "rival", "personagem": "rival", "x": 0.4, "z": -7.6 },
+        { "id": "rival2", "personagem": "rival", "x": 1.6, "z": -8.2 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "rival2", "para": 4.2, "inicio": 0.2, "duracao": 3.4 },
+        { "tipo": "emocao", "alvo": "rival", "icone": "raiva", "inicio": 0.4, "duracao": 3 },
+        { "tipo": "falar", "alvo": "rival", "texto": "Desta vez eu ganho!", "inicio": 2.4 }
+      ] }
   ]
 }

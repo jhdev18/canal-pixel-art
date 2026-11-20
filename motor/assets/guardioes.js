@@ -1,6 +1,6 @@
 // PROTÓTIPO (aguardando aprovação): guardiões — pequenas criaturas com jeito de gente (elmo, rostinho, bracinhos)
 // que FLUTUAM ao lado da cabeça de uma pessoa, com asinhas batendo e cauda de fumaça no lugar das pernas.
-// Uso: { "id": "g", "personagem": "guardiao-azul", "sobre": { "id": "bia", "dx": 0.95, "dy": 2.0 } }
+// Uso: { "id": "g", "personagem": "guardiao-azul", "sobre": { "id": "bia", "dx": 0.9, "dy": 1.55 } }
 //   (dx segue o lado para onde a pessoa está virada). Estados: parado, feliz, alerta, dormindo.
 import { Pix } from '../pixel.js';
 import { registrarSprites } from '../sprites.js';

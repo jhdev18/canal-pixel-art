@@ -22,9 +22,13 @@ export const NOVOS_MORADORES = {
   // sorveteiro: boné e avental brancos, camisa listrada (azul)
   sorveteiro: { cores: { pele: '#c88a64', cabelo: '#2a1e1a', bigode: '#2a1e1a', tronco: '#5ab8e0', avental: '#fafaf4', calca: '#3a4a6a', sapato: '#2a2a30', chapeu: '#fafaf4', aba: '#e0e0e8' },
     cabelo: 'curto', chapeu: 'bone', baixo: 'calca', avental: true, mangaCurta: true, bigode: true, corpo: 'largo' },
-  // rival da Bia: mesma idade, capa azul, rabo de cavalo
-  rival: { cores: { pele: '#e0a882', cabelo: '#2a1a12', tronco: '#f4f4f4', calca: '#3a3a5a', sapato: '#c83c4c', capa: '#2a5ad8' },
-    cabelo: 'rabo', baixo: 'calca', capa: true, corpo: 'crianca', golaCor: '#2a5ad8' },
+  // rival da Bia: mesma idade, confiante — rabo de cavalo alto que balança, franja pontuda, presilha de estrela,
+  // sobrancelhas de quem quer ganhar, sorriso de canto; jaqueta roxa com estrela, capa roxa (a "anti-capa" da Bia),
+  // saia escura, meias listradas e botinhas pink
+  rival: { cores: { pele: '#f0c8a8', cabelo: '#2e1a3e', prende: '#f8d040', tronco: '#f4f4f4', casaco: '#7a3ad0', calca: '#2a2448',
+    meia: '#f4f4f4', sapato: '#e0407a', capa: '#4a2a8a', emblema: '#f8d040' },
+    cabelo: 'rabo-alto', franja: true, presilha: '#f8d040', sobrancelhaBrava: true, sorrisoLado: true,
+    casaco: true, capa: true, emblema: true, baixo: 'saia', meias: true, meiasListradas: true, corpo: 'crianca', golaCor: '#f8d040' },
   // garoto fantasma em vida? não: menino comum de pijama (para cenas à noite com fantasmas)
   'menino-pijama': { cores: { pele: '#f0c4a0', cabelo: '#6a4a2a', tronco: '#8ad0f0', calca: '#8ad0f0', sapato: '#e8e8f0' },
     cabelo: 'bagunçado', baixo: 'calca', corpo: 'crianca', golaCor: '#f4f4f4' },

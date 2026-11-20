@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (161)
+## Sprites (172)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -231,6 +231,22 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `fogueira-junina` | 🧪 protótipo | parado | 35×40 |
 | `cadeado-numero` | 🧪 protótipo | parado, fechado, tentando, aberto | 40×44 |
 
+### Casa (cômodos em diorama) e família
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `casa-sala` | 🧪 protótipo | parado | 212×174 |
+| `casa-sala-noite` | 🧪 protótipo | parado | 212×174 |
+| `casa-cozinha` | 🧪 protótipo | parado | 212×174 |
+| `casa-cozinha-noite` | 🧪 protótipo | parado | 212×174 |
+| `casa-quarto` | 🧪 protótipo | parado | 212×174 |
+| `casa-quarto-noite` | 🧪 protótipo | parado | 212×174 |
+| `casa-banheiro` | 🧪 protótipo | parado | 212×174 |
+| `casa-banheiro-noite` | 🧪 protótipo | parado | 212×174 |
+| `mae` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+| `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas | 28×44 |
+
 ## Personagens
 
 Uso: `{ "id": "x", "personagem": "nome" }`
@@ -252,6 +268,9 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `fantasma-vovo` | 🧪 protótipo | `fantasma-vovo` | 0.8 |
 | `fantasma-sombra` | 🧪 protótipo | `fantasma-sombra` | 0.5 |
 | `fantasma-cachorro` | 🧪 protótipo | `fantasma-cachorro` | 1.3 |
+| `mae` | 🧪 protótipo | `mae` | 1.1 |
+| `mae-avental` | 🧪 protótipo | `mae-avental` | 1.1 |
+| `menino-topete` | 🧪 protótipo | `menino-topete` | 1.4 |
 | `protagonista` | ✅ | `heroi` | 1 |
 | `companheira` | ✅ | `amiga` | 1.3 |
 | `anciao` | ✅ | `velho` | 0.8 |
@@ -347,6 +366,6 @@ Uso: `{ "cenario": "nome" }`
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `miau`, `trovao`, `suspense`, `fantasma`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`
