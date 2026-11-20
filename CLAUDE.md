@@ -93,7 +93,8 @@ dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu
 - **Regra visual:** tem que dar pra mostrar na tela (algo no ombro, relógio flutuando, gente inchando).
 - **Virada justa:** plantar uma pista no começo que, depois da virada, passa a fazer sentido.
 - **Narração:** terceira pessoa, frases curtas (8–15 palavras, ~3,5 s cada), uma frase = uma cena.
-- **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
+- **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca. Normalmente a Bia,
+  mas a **Nina** também pode protagonizar quando a história pedir (ex.: alguém excluído, confiante demais, rival); variar.
 - Segue também as regras de ritmo acima (diorama, `vertical` no Shorts, sem pausa entre cenas).
 
 ### Tons: comédia e terror
@@ -266,7 +267,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `caderno` (fechado/aberto), `pagina-caderno` (cheia/ultima/bia). Postes da frente da praça foram para as laterais.
   `cao-policial` (PROTÓTIPO): versão detalhada do `cao-guarda`, no padrão dos moradores (com poses), usado no longo.
   Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
-- **Elenco fixo:** Bia (`menina-capa`, protagonista), **Nina** (`rival`/`nina`, a rival da Bia), seu Tonho (`padeiro`),
+- **Elenco fixo:** Bia (`menina-capa`, protagonista principal), **Nina** (`rival`/`nina`, a rival da Bia — também pode ser a
+  protagonista, dependendo da história), seu Tonho (`padeiro`),
   prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia).
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG

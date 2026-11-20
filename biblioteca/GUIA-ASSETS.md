@@ -13,8 +13,8 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 
 | Nome na história | Personagem | Status | Quem é / como usar |
 |---|---|---|---|
-| **Bia** | `menina-capa` | ✅ | Protagonista do canal, ~10 anos, capa de chuva amarela e galochas. Curiosa, sente que "nada acontece". Use na maioria dos vídeos. Poses: sentado, sentado-lado, costas, sentado-costas, espirro. Voz 1.2 |
-| **Nina** | `nina` (= `rival`) | 🧪 | A rival da Bia: mesma idade, confiante, rabo de cavalo alto, jaqueta e capa roxas, sorriso de canto. Pode ser antagonista leve, competição ou aliada relutante. No `nesse-mundo-numeros` ninguém sabe o nome dela até o fim |
+| **Bia** | `menina-capa` | ✅ | Protagonista principal do canal, ~10 anos, capa de chuva amarela e galochas. Curiosa, sente que "nada acontece". Use na maioria dos vídeos. Poses: sentado, sentado-lado, costas, sentado-costas, espirro. Voz 1.2 |
+| **Nina** | `nina` (= `rival`) | 🧪 | A rival da Bia: mesma idade, confiante, rabo de cavalo alto, jaqueta e capa roxas, sorriso de canto. **Também pode ser a protagonista**, dependendo da história (ex.: `nesse-mundo-numeros`, em que ninguém sabe o nome dela até o fim). Quando a Bia aparece junto, a Nina pode ser rival, competição ou aliada relutante |
 | **Seu Tonho** | `padeiro` | ✅ | Padeiro gordinho de bigode e chapéu branco; coração da cidade. Ótimo "secundário marcante". Variação `padeiro-pregador` 🧪 (pregador no nariz) |
 | **Prefeito Arlindo** | `prefeito` | ✅ | Grisalho, bigode, terno e faixa verde. Autoridade vaidosa, fácil de ridicularizar; às vezes usa a regra a favor (fama, poder). Variação `prefeito-careca` ✅ (depois que a peruca voa) |
 | **Policial** | `policial` | ✅ | Policial da delegacia, dorme em pé (`zzz`). Variação `policial-oculos` ✅ (o policial Ronaldo, de óculos escuros) |
