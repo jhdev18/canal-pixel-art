@@ -230,6 +230,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 ## Produção de um episódio
 - Rascunho (16:9): `npm run rascunho -- <ep>`
 - Final (gera `final.mp4` 16:9 e `final-shorts.mp4` 9:16): `npm run final -- <ep>`
+- **Qualidade dos vídeos finais: Full HD** — Shorts **1080×1920** (pixels internos 180×320 × 6) e longo 1920×1080
+  (320×180 × 6), 30 fps (`config.json` → `"final": { "resolucao": 1080, "fps": 30 }`). Não mudar sem o usuário pedir.
 - Texto para o ElevenLabs: `npm run narracao -- <ep>` (usa `"narracaoTexto"` de cada cena)
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
