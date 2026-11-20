@@ -244,8 +244,18 @@ export function gerarRuaDiagonal(opc = {}) {
           }
           if (E.vitrine === 'frutas' && t >= 8 && t < 40 && u >= 22 && u < larg - 5) {
             const borda = u === 22 || u === larg - 6 || t === 8 || t === 39;
-            const fr = ['#e83a3a', '#f0a030', '#f0e040', '#5ac84a'][Math.floor(u / 6) % 4];
-            pintar(x, y, borda ? '#2a3a2a' : (t < 18 ? fr : (t > 28 ? '#d8f0f8' : '#a8d0e0')), 0, s, t, !borda && noite && t >= 18 ? 2 : 1, 1); return;
+            // 2 prateleiras com frutas redondas (maçã, laranja, banana, limão), com brilho; vidro em cima
+            const FR = [['#e83a3a', '#9a2028', '#ff9a8a'], ['#f0a030', '#a8601a', '#ffd08a'], ['#f0e040', '#a89a20', '#fff8b0'], ['#5ac84a', '#2e7a2e', '#b8f098']];
+            let cc, emis = false;
+            if (borda) cc = '#2a3a2a';
+            else if (t === 10 || t === 22) cc = '#8a6a3a';                                   // prateleira
+            else if ((t > 10 && t < 18) || (t > 22 && t < 30)) {
+              const fila = t < 22 ? 0 : 1, fu = (u - 23) % 5, ft = (t - (fila ? 23 : 11)) % 7, d = (fu - 2) ** 2 + (ft - 3) ** 2;
+              const [f0, f1, f2] = FR[(Math.floor((u - 23) / 5) + fila * 2) % 4];
+              cc = d <= 4 ? (fu === 1 && ft === 2 ? f2 : (ft >= 5 ? f1 : f0)) : (noite ? '#c8b070' : '#6a8a9a');
+              emis = noite && d > 4;
+            } else { cc = t > 30 ? '#d8f0f8' : '#a8d0e0'; emis = noite; }
+            pintar(x, y, cc, 0, s, t, emis ? 2 : 1, 1); return;
           }
           if (E.grade && t >= 80 && (u % 3 === 0)) { const ty = (t - 80) % 32; if (ty >= 9 && ty < 25) { pintar(x, y, '#3a3a4a', 0, s, t, 1, 1); return; } }
           if (!E.toldo && t >= 46 && t < 56) { pintar(x, y, t === 46 ? E.pal[3] : E.pal[2], 0, s, t, 1, 1); return; }   // marquise lisa
