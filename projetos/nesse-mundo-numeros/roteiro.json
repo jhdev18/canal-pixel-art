@@ -419,7 +419,6 @@
    "cenario": "rua-comercial-noite",
    "transicao": "iris",
    "clima": "neblina",
-   "paleta": "fria",
    "camera": {
     "x": 4,
     "z": 2.2,
@@ -459,7 +458,6 @@
   {
    "narracaoTexto": "Primeiro, o maior número: Arlindo. E o prefeito abriu a porta, sorrindo.",
    "cenario": "rua-comercial-noite",
-   "paleta": "fria",
    "camera": {
     "x": 10.4,
     "z": 2.2,
@@ -542,7 +540,6 @@
    "narracaoTexto": "Depois o padeiro, a professora, a rua inteira. Ninguém resiste ao próprio nome.",
    "cenario": "rua-comercial-noite",
    "clima": "neblina",
-   "paleta": "fria",
    "camera": {
     "x": 2,
     "z": 2.2,

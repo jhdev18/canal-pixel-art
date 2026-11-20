@@ -118,7 +118,8 @@ vídeos seguidos.
 - Começa **normal e até fofo** (a cidade gosta da regra) e vai esfriando: frases mais curtas, menos balões, silêncio.
 - **Reação antes da virada** (alguém congela, fica sério) e **última frase concreta e gelada** — termina seco, sem explicar demais.
 - Pode virar contra o protagonista (consequência inesperada) ou poupá-lo (exceção sortuda).
-- Na tela: noite (`-noite`), `paleta` `noir`/`fria` na virada, `desaparecer`, sombras, `flash` + `tremer` na palavra forte,
+- Na tela: noite (`-noite`), `paleta` `noir`/`fria` só na virada final (nunca junto da ação `sombra`/alguém sendo engolido — o
+  usuário achou o filtro azul feio nessa hora; a sombra já escurece sozinha), `desaparecer`, sombras, `flash` + `tremer` na palavra forte,
   sons `suspense`/`revelar`/`sombra`/`trovao`; nada de sustos com sangue, morte explícita ou violência mostrada.
 
 **Emocional** (às vezes, curto): a virada mostra um sacrifício ou um carinho escondido (a vovó que fica de fora); termina
