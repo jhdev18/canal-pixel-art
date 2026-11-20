@@ -68,7 +68,8 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 1. Ler as referências (regra 11) e os vídeos nossos já feitos (`projetos/nesse-mundo-*`, texto em
    `narracao/TEXTO-COMPLETO.txt`) — anotar as premissas usadas para **não repetir**.
 2. Ler `biblioteca/CATALOGO.md` (seção "Biblioteca de assets") e escolher uma regra que **dê pra mostrar** com o que já existe.
-3. Escrever a narração frase a frase seguindo a linha do tempo do formato (abaixo). Uma frase = uma cena.
+3. Escolher o **tom** (comédia, terror ou emocional) e se vai ter **alguém usando a regra a favor** (só às vezes).
+   Escrever a narração frase a frase seguindo a linha do tempo do formato (abaixo). Uma frase = uma cena.
 4. Se uma ideia boa pedir um asset que **não existe**, **falar com o usuário antes de criar** (o que é, onde seria reusado);
    enquanto isso, escrever a cena com o que existe (substituto) e marcar no `ROTEIRO.md`.
 5. Montar `projetos/nesse-mundo-<tema>/`: `roteiro.json` (diorama, `vertical` em toda cena com personagem,
@@ -94,6 +95,45 @@ corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-ca
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca.
 - Segue também as regras de ritmo acima (diorama, `vertical` no Shorts, sem pausa entre cenas).
 
+### Tons: comédia e terror
+Cada vídeo escolhe **um tom principal** (dá para misturar um pouco do outro, mas um manda). Variar o tom entre
+vídeos seguidos.
+
+**Comédia** (a maioria dos longos e o curto "lista de 3"):
+- A graça vem de **levar a regra a sério até o absurdo**: como a cidade se adapta ("fila de três quarteirões",
+  "piada só com receita", "ninguém leva cachorro em entrevista").
+- **Autoridade ridicularizada** (prefeito latindo, peruca voando, policial dormindo em pé), **exagero concreto**
+  (números, comparações visuais) e **imagem cômica a cada ~10 s**.
+- **Ritmo de piada:** a frase arma, a cena seguinte (ou o balão) entrega; o melhor fica no fim da lista ou no callback.
+- Na tela: balões curtos com a reação errada, `pular`, ícones `!`/`?`/`...`, `tremer` leve, som `sucesso`/`puf`.
+- Termina leve: última piada curta, sem moral e sem ninguém sair machucado de verdade.
+
+**Terror** (curtos, normalmente; nunca gore):
+- **Medo pela sugestão**, não pelo sangue: o que some, o que olha de volta, o que estava errado desde o começo.
+- Começa **normal e até fofo** (a cidade gosta da regra) e vai esfriando: frases mais curtas, menos balões, silêncio.
+- **Reação antes da virada** (alguém congela, fica sério) e **última frase concreta e gelada** — termina seco, sem explicar demais.
+- Pode virar contra o protagonista (consequência inesperada) ou poupá-lo (exceção sortuda).
+- Na tela: noite (`-noite`), `paleta` `noir`/`fria` na virada, `desaparecer`, sombras, `flash` + `tremer` na palavra forte,
+  sons `suspense`/`revelar`/`sombra`/`trovao`; nada de sustos com sangue, morte explícita ou violência mostrada.
+
+**Emocional** (às vezes, curto): a virada mostra um sacrifício ou um carinho escondido (a vovó que fica de fora); termina
+num gesto simples, sem discurso.
+
+### Quando alguém usa a regra a favor (só em algumas histórias)
+Às vezes a história fica melhor com **alguém tirando vantagem da regra** — riqueza, poder, fama. **Geralmente é o
+prefeito** (ou outra autoridade/rico da cidade), mas **não é obrigatório**: a maioria dos vídeos continua sem vilão,
+com a regra como única ameaça. Usar em mais ou menos **1 a cada 3 ou 4 vídeos**, quando ajudar a virada.
+- **Como aparece:** lei que se aproveita da regra ("Lei do Céu Limpo"), discurso que explora a crença da cidade, alguém que
+  enriquece em segredo com ela.
+- **Pista:** o abuso é plantado cedo como detalhe engraçado ou estranho ("o prefeito já acendeu metade do céu", "o homem
+  mais rico da cidade").
+- **Virada:** a regra **se volta contra quem abusou** (comédia: ele vira piada; terror: ele é o primeiro a pagar) ou
+  revela que o "benefício" era o preço de outra pessoa.
+- **Tom do abuso:** na comédia é um vilão bobo e ridículo, nunca cruel de verdade; no terror pode ser frio, mas o castigo
+  continua sugerido, não mostrado.
+- Não repetir o mesmo esquema seguido (prefeito mentiroso, prefeito com lei): variar quem abusa (comerciante, rival,
+  a própria cidade inteira) ou deixar sem.
+
 ### Nesse Mundo curto (um choque só, 30–45 s)
 Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no fim e o vídeo acaba nela.
 
@@ -118,7 +158,7 @@ Extraído das 4 referências curtas (30–43 s, 9–14 frases). A virada fica no
 - **Reação antes da virada:** alguém congela, fica horrorizado ou fica sério ("ele congelou", "olhou seriamente").
 - **Última frase concreta e visual** (esmagada no quarto, levou o homem vivo, "você foi o único que não foi consumido").
 - **Balões:** quase nenhum. No máximo uma fala marcante na virada (ex.: sussurro do forasteiro).
-- **Tons possíveis:** sombrio (virada de terror), cômico (lista de 3) ou emocional.
+- **Tons possíveis:** sombrio (virada de terror), cômico (lista de 3) ou emocional — ver "Tons: comédia e terror".
 
 ### Nesse Mundo longo (história completa, normalmente cômica, 1:30–2:30)
 Extraído da referência "quem ri vira balão" (2:15, ~38 frases, ~3,5 s por frase). Não é um choque só:
@@ -144,7 +184,8 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
 - **Concreto e exagerado:** números e datas ("preso desde 2023", "12 pessoas", "40 anos", "três quarteirões")
   e comparações visuais ("redondas feito melancia", "feito bexiga solta").
 - **Uma imagem cômica a cada ~10 s** (peruca voando, gente boiando, choveu gente, pouso na barraca de pipoca) — é a quebra de padrão.
-- **Sem vilão:** a ameaça é a própria regra; o humor vem de autoridades ridicularizadas (prefeito, juiz).
+- **Normalmente sem vilão:** a ameaça é a própria regra; o humor vem de autoridades ridicularizadas (prefeito, juiz).
+  Às vezes alguém usa a regra a favor (ver "Quando alguém usa a regra a favor").
 - **Elenco pequeno:** protagonista, 1 pessoa querida, 1 secundário marcante, 1 autoridade, multidão (pode usar moradores da biblioteca).
 - **Conectores do narrador:** "Funciona assim", "Por isso", "Até que", "Bem na hora", "Primeiro... depois...",
   "Foi aí que... entendeu tudo", "Só faltava um".
