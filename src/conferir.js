@@ -97,6 +97,24 @@ export async function conferir(nome) {
     }
   }
 
+  // ---------- 1c. objetos FIXOS desenhados na rua (não estão nos elementos): caixotes do mercado (motor/cenarios/ruaDiagonal.js)
+  // ficam no desenho de fundo, então quem para em cima/atrás deles parece "bugado" dentro dos caixotes.
+  const FIXOS_RUA = [{ nome: 'caixotes do mercado', tipo: 'mercado', x0: 13.0, x1: 14.6, z0: 4.9 }];
+  for (const c of r.cenas) {
+    if ((c.vista !== 'diorama' && c.vista !== 'diagonal') || c.comodo || c.rua?.semPredios) continue;
+    const tipos = new Set((c.rua?.predios || []).map((p) => p.tipo));
+    for (const f of FIXOS_RUA) {
+      if (!tipos.has(f.tipo)) continue;
+      for (const p of c.elementos.filter((e) => ehPessoa(e, tam))) {
+        for (const t of [0, c.duracao * 0.5, c.duracao - 0.05]) {
+          const sp = estadoElemento(c, p, t);
+          if (!sp.visivel || sp.yBase > 0.3) continue;
+          if (sp.x > f.x0 && sp.x < f.x1 && (p.z ?? 0) > f.z0) { aviso(c.numero, 'em cima', `"${p.id}" está nos ${f.nome} (x ${f.x0}–${f.x1}) em ~${t.toFixed(1)} s — pare em outro x da calçada`); break; }
+        }
+      }
+    }
+  }
+
   // ---------- 2. continuidade: mesmo lugar E mesmo enquadramento (câmera perto) em cenas seguidas
   const camX = (c) => c.camera?.x ?? 0, largura = (c) => 10 / (c.camera?.zoom ?? 1);
   const naTela = (c, e) => Math.abs((e.x ?? 0) - camX(c)) < largura(c);

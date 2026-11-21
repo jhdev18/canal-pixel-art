@@ -437,7 +437,7 @@
     {
      "id": "prof",
      "personagem": "professora",
-     "x": 1.7999999999999998,
+     "x": 1.4,
      "z": 5.2
     },
     {
@@ -446,13 +446,13 @@
       "tamanho": 1.6,
       "direcao": 90
      },
-     "x": 2.3,
+     "x": 1.9,
      "z": 5.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": 4.2,
+     "x": 3.4,
      "z": 5.2
     },
     {
@@ -461,13 +461,13 @@
       "tamanho": 1.6,
       "direcao": 90
      },
-     "x": 4.7,
+     "x": 3.9,
      "z": 5.4
     },
     {
      "id": "policial",
      "personagem": "policial",
-     "x": 6.6,
+     "x": 5.4,
      "z": 5.2
     },
     {
@@ -476,7 +476,7 @@
       "tamanho": 1.6,
       "direcao": 90
      },
-     "x": 7.1,
+     "x": 5.9,
      "z": 5.4
     }
    ],
@@ -498,42 +498,42 @@
     {
      "tipo": "andar",
      "alvo": "s-prof",
-     "para": 9.3,
+     "para": 8.9,
      "inicio": 0.38,
      "duracao": 3.95
     },
     {
      "tipo": "andar",
      "alvo": "prof",
-     "para": 8.8,
+     "para": 8.4,
      "inicio": 0.5,
      "duracao": 3.83
     },
     {
      "tipo": "andar",
      "alvo": "s-aluno",
-     "para": 11.7,
+     "para": 10.9,
      "inicio": 0.46,
      "duracao": 3.87
     },
     {
      "tipo": "andar",
      "alvo": "aluno",
-     "para": 11.2,
+     "para": 10.4,
      "inicio": 0.58,
      "duracao": 3.75
     },
     {
      "tipo": "andar",
      "alvo": "s-policial",
-     "para": 14.1,
+     "para": 12.9,
      "inicio": 0.54,
      "duracao": 3.79
     },
     {
      "tipo": "andar",
      "alvo": "policial",
-     "para": 13.6,
+     "para": 12.4,
      "inicio": 0.66,
      "duracao": 3.67
     },
