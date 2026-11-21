@@ -39,7 +39,7 @@ function ruido({ dur, vol = 0.4, f0 = 2000, f1 = f0, filtro = 'passa-baixa', q =
   let low = 0, band = 0;
   for (let i = 0; i < out.length; i++) {
     const t = i / SR, p = t / dur;
-    const fc = Math.min(SR / 6.5, corteFn ? corteFn(t, p) : f0 * Math.pow(f1 / f0, p));
+    const fc = Math.max(40, Math.min(SR / 6.5, corteFn ? corteFn(t, p) : f0 * Math.pow(f1 / f0, p)));   // nunca abaixo de 40 Hz (corte negativo explodia o filtro → som inválido)
     const fk = 2 * Math.sin((Math.PI * fc) / SR);
     const x = r() * 2 - 1;
     low += fk * band;
@@ -217,6 +217,11 @@ export const AMBIENTES = ['chuva', 'vento', 'grilos', 'passaros', 'fogo', 'caver
 const cache = new Map();
 export function gerarSom(nome) {
   if (!SONS[nome]) return null;
-  if (!cache.has(nome)) cache.set(nome, SONS[nome]());
+  if (!cache.has(nome)) {
+    const d = SONS[nome]();
+    let pico = 0; for (let i = 0; i < d.length; i++) { if (!Number.isFinite(d[i])) d[i] = 0; else if (Math.abs(d[i]) > pico) pico = Math.abs(d[i]); }
+    if (pico > 0.95) for (let i = 0; i < d.length; i++) d[i] *= 0.95 / pico;   // som alto demais não estoura (o limitador abafava a narração)
+    cache.set(nome, d);
+  }
   return cache.get(nome);
 }
