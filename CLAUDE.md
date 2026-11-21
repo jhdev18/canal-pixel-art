@@ -229,7 +229,14 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
 
 ## Regras de cena (erros que se repetiram — evitar em TODO vídeo)
 Antes de entregar qualquer roteiro (novo ou ajustado), rodar **`npm run conferir -- <projeto>`** (`src/conferir.js`, não
-renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um problema. Os erros abaixo aconteceram em
+renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um problema.
+**O que o `npm run conferir` acusa** (cada aviso diz a cena, quem e o que fazer): `[coberto]` atrás de objeto alto ou poste fixo
+da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barraca) ou dos caixotes do mercado; `[continuidade]`
+quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
+`[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala. **Ao criar um objeto novo desenhado
+no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
+**Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
+(nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
 vários vídeos diferentes:
 
 1. **Ninguém coberto por objeto alto.** No diorama de rua/praça fica na frente quem tem **`x + z` menor**. Árvores, barracas,

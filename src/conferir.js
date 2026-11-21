@@ -1,9 +1,11 @@
 // npm run conferir -- <projeto>
 // Confere o roteiro SEM renderizar e avisa dos erros que mais se repetiram nos vídeos:
 //   1. personagem coberto por árvore/objeto alto ou poste da rua (diorama de rua e praça); 1b. em pé em cima de canteiro/fonte/banco
+//   1c. parado em cima de objeto FIXO desenhado na rua (caixotes do mercado) — lista FIXOS_RUA: ao desenhar um objeto novo
+//       no fundo da rua (ruaDiagonal.js), acrescentar a área dele lá
 //   2. continuidade: com "momento" nas cenas, cobra o elenco de cada momento ("saiDeCena" libera quem sai pela história);
 //      sem "momento", acusa quem some e reaparece logo depois no mesmo lugar ("salto": true libera)
-//   3. o mesmo sprite fazendo dois personagens diferentes no mesmo vídeo
+//   3. o mesmo sprite fazendo dois personagens diferentes no mesmo vídeo ("figurante": true libera os de fundo)
 //   4. personagem fora do cômodo (andando "na parede") ou da praça/rua
 //   5. sombras de pessoa demais na cena (máx. 4) e quem segue algo e para antes do fim da fala (vira para a câmera)
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
