@@ -39,7 +39,7 @@ function ruido({ dur, vol = 0.4, f0 = 2000, f1 = f0, filtro = 'passa-baixa', q =
   let low = 0, band = 0;
   for (let i = 0; i < out.length; i++) {
     const t = i / SR, p = t / dur;
-    const fc = Math.min(SR / 6.5, corteFn ? corteFn(t, p) : f0 * Math.pow(f1 / f0, p));
+    const fc = Math.max(40, Math.min(SR / 6.5, corteFn ? corteFn(t, p) : f0 * Math.pow(f1 / f0, p)));   // nunca abaixo de 40 Hz (corte negativo explodia o filtro → som inválido)
     const fk = 2 * Math.sin((Math.PI * fc) / SR);
     const x = r() * 2 - 1;
     low += fk * band;
@@ -129,7 +129,51 @@ const SONS = {
   erro: () => misturar([[tom({ f0: 220, f1: 160, dur: 0.14, vol: 0.3 })], [tom({ f0: 200, f1: 140, dur: 0.2, vol: 0.3, curva: 1.5 }), 0.17]]),
   soco: () => misturar([[ruido({ dur: 0.12, vol: 0.8, f0: 2500, f1: 300, curva: 2 })], [tom({ tipo: 'seno', f0: 160, f1: 60, dur: 0.12, vol: 0.7, curva: 2 })]]),
   espada: () => ruido({ dur: 0.22, vol: 0.5, filtro: 'passa-banda', q: 0.3, corteFn: (t, p) => 1500 + 5000 * p, envFn: (t, p) => Math.sin(Math.PI * p) }),
+  // monstros de sombra: grave que cresce + sussurro de ruído (surge) / sopro que se desfaz (some)
+  'sombra-surge': () => misturar([
+    [tom({ tipo: 'seno', f0: 38, f1: 52, dur: 2.2, vol: 0.7, ataque: 0.9, curva: 1.4 })],
+    [ruido({ dur: 2.0, vol: 0.45, filtro: 'passa-banda', q: 0.35, corteFn: (t, p) => 250 + 900 * p, envFn: (t, p) => Math.sin(Math.PI * p) ** 2 * (0.6 + 0.4 * Math.sin(TAU * 7 * t)), semente: 13 })],
+    [ruido({ dur: 1.6, vol: 0.18, f0: 3500, filtro: 'passa-alta', envFn: (t, p) => Math.sin(Math.PI * p) ** 3 * (0.5 + 0.5 * Math.sin(TAU * 11 * t)), semente: 17 }), 0.3],
+  ]),
+  'sombra-some': () => misturar([
+    [ruido({ dur: 1.3, vol: 0.5, f0: 2200, f1: 140, filtro: 'passa-banda', q: 0.4, ataque: 0.05, curva: 1.6, semente: 19 })],
+    [tom({ tipo: 'seno', f0: 60, f1: 30, dur: 1.2, vol: 0.5, curva: 1.5 })],
+  ]),
   sino: () => misturar([[tom({ tipo: 'seno', f0: 1760, dur: 1.2, vol: 0.25, curva: 3 })], [tom({ tipo: 'seno', f0: 2637, dur: 0.8, vol: 0.12, curva: 3 })]]),
+  // ---- protótipos (aguardando aprovação)
+  'sino-relogio': () => misturar([0, 1.1, 2.2].flatMap((t0) => [[tom({ tipo: 'seno', f0: 196, dur: 1.6, vol: 0.4, curva: 2.2 }), t0], [tom({ tipo: 'seno', f0: 392, dur: 1.2, vol: 0.18, curva: 2.5 }), t0], [tom({ tipo: 'seno', f0: 523, dur: 0.8, vol: 0.08, curva: 3 }), t0]])),
+  cadeado: () => misturar([[tom({ f0: 2400, dur: 0.02, vol: 0.3 })], [ruido({ dur: 0.08, vol: 0.45, f0: 3500, filtro: 'passa-banda', q: 2, curva: 2 }), 0.05], [tom({ tipo: 'triangulo', f0: 1400, f1: 1200, dur: 0.12, vol: 0.25, curva: 2 }), 0.06]]),
+  papel: () => misturar([0, 0.07, 0.15, 0.21, 0.3].map((t0, k) => [ruido({ dur: 0.06 + (k % 2) * 0.03, vol: 0.35, f0: 2500 + k * 400, filtro: 'passa-banda', q: 0.6, curva: 1.5, semente: 7 + k }), t0])),
+  sininho: () => misturar([0, 0.16, 0.32].map((t0) => [tom({ tipo: 'seno', f0: 2093, dur: 0.35, vol: 0.18, curva: 2.4 }), t0]).concat([0, 0.16, 0.32].map((t0) => [tom({ tipo: 'seno', f0: 3136, dur: 0.2, vol: 0.08, curva: 3 }), t0]))),
+  sombra: () => misturar([[ruido({ dur: 3.2, vol: 0.7, f0: 120, f1: 380, filtro: 'passa-baixa', ataque: 0.6, curva: 1.2, semente: 21 })], [tom({ tipo: 'seno', f0: 55, f1: 42, dur: 3.2, vol: 0.5, ataque: 0.5, curva: 1.4 })], [ruido({ dur: 2.4, vol: 0.18, filtro: 'passa-banda', q: 0.6, corteFn: (t, p) => 600 + 1800 * p, envFn: (t, p) => Math.sin(Math.PI * p) }), 0.4]]),
+  // espirro: "ah... ah..." (inspira subindo) e "TCHIM!" (estouro de ar agudo + tom curto)
+  'espirro-inspira': () => misturar([
+    [ruido({ dur: 0.5, vol: 0.22, filtro: 'passa-banda', q: 0.7, corteFn: (t, p) => 700 + 1400 * p, envFn: (t, p) => Math.min(1, p * 3) * (1 - p * 0.3), semente: 31 })],
+    [tom({ tipo: 'triangulo', f0: 330, f1: 520, dur: 0.18, vol: 0.18, ataque: 0.03, curva: 1 })],
+    [tom({ tipo: 'triangulo', f0: 380, f1: 640, dur: 0.22, vol: 0.2, ataque: 0.03, curva: 1 }), 0.26],
+  ]),
+  espirro: () => misturar([
+    [ruido({ dur: 0.06, vol: 0.5, f0: 1800, filtro: 'passa-banda', q: 0.8, curva: 1.2, semente: 41 })],
+    [ruido({ dur: 0.38, vol: 0.75, f0: 6500, f1: 3000, filtro: 'passa-alta', ataque: 0.004, curva: 1.8, semente: 43 }), 0.05],
+    [tom({ tipo: 'quadrada', f0: 760, f1: 520, dur: 0.12, vol: 0.14, duty: 0.25, curva: 1.4 }), 0.05],
+  ]),
+  // fogos de artifício: assobio subindo e estouro com estalinhos
+  'fogos-sobe': () => tom({ tipo: 'seno', f0: 900, f1: 2400, dur: 0.5, vol: 0.12, ataque: 0.05, curva: 0.6 }),
+  fogos: () => misturar([
+    [ruido({ dur: 0.5, vol: 0.8, f0: 2500, f1: 200, curva: 2, semente: 51 })],
+    [tom({ tipo: 'seno', f0: 120, f1: 50, dur: 0.3, vol: 0.5, curva: 1.6 })],
+    ...[0.25, 0.33, 0.4, 0.5, 0.56, 0.7, 0.8].map((t0, k) => [ruido({ dur: 0.02, vol: 0.25, f0: 4000 + k * 500, filtro: 'passa-banda', q: 0.5, curva: 2, semente: 60 + k }), t0]),
+  ]),
+  // guardião se assustando (PROTÓTIPO): "iiip!" agudo que sobe + batidas rápidas de asinha
+  'guardiao-susto': () => misturar([
+    [tom({ tipo: 'quadrada', f0: 900, f1: 2200, dur: 0.12, vol: 0.16, duty: 0.25, curva: 0.6 })],
+    [tom({ tipo: 'triangulo', f0: 2000, f1: 2600, dur: 0.1, vol: 0.14, curva: 1.4 }), 0.1],
+    ...[0.08, 0.13, 0.18, 0.23, 0.28].map((t0, k) => [ruido({ dur: 0.03, vol: 0.18, f0: 2600 + k * 200, filtro: 'passa-banda', q: 0.6, curva: 2, semente: 70 + k }), t0]),
+  ]),
+  miau: () => tom({ tipo: 'triangulo', f0: 700, f1: 520, dur: 0.45, vol: 0.35, ataque: 0.05, curva: 1.2, vibrato: 0.04, vibratoHz: 7 }),
+  trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
+  suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),
+  fantasma: () => misturar([[tom({ tipo: 'seno', f0: 420, f1: 640, dur: 1.1, vol: 0.28, ataque: 0.25, curva: 1.4, vibrato: 0.06, vibratoHz: 5 })], [tom({ tipo: 'seno', f0: 630, f1: 960, dur: 0.9, vol: 0.12, ataque: 0.3, curva: 1.6, vibrato: 0.05, vibratoHz: 6 }), 0.15], [ruido({ dur: 1.2, vol: 0.12, f0: 900, filtro: 'passa-banda', q: 0.5, ataque: 0.3 })]]),
   // ---- Ambientes (loops) ----
   chuva: () => emLoop((L) => misturar([
     [ruido({ dur: L, vol: 0.28, f0: 5000, envFn: () => 1, semente: 21 })],
@@ -173,6 +217,11 @@ export const AMBIENTES = ['chuva', 'vento', 'grilos', 'passaros', 'fogo', 'caver
 const cache = new Map();
 export function gerarSom(nome) {
   if (!SONS[nome]) return null;
-  if (!cache.has(nome)) cache.set(nome, SONS[nome]());
+  if (!cache.has(nome)) {
+    const d = SONS[nome]();
+    let pico = 0; for (let i = 0; i < d.length; i++) { if (!Number.isFinite(d[i])) d[i] = 0; else if (Math.abs(d[i]) > pico) pico = Math.abs(d[i]); }
+    if (pico > 0.95) for (let i = 0; i < d.length; i++) d[i] *= 0.95 / pico;   // som alto demais não estoura (o limitador abafava a narração)
+    cache.set(nome, d);
+  }
   return cache.get(nome);
 }

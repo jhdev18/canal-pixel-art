@@ -1,0 +1,216 @@
+// TESTE: npm run fotos -- teste-escala
+{
+ "titulo": "Teste — tamanho das pessoas x cenário",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "rua-comercial",
+   "salto": true,
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "padeiro",
+     "x": -0.09999999999999998,
+     "z": 5.5
+    },
+    {
+     "id": "b",
+     "personagem": "menina-capa",
+     "x": 1.6,
+     "z": 5.5
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "foto": 0.6,
+   "legenda": "rua padaria",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "rua-comercial",
+   "salto": true,
+   "camera": {
+    "x": 4.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "padeiro",
+     "x": 3.8999999999999995,
+     "z": 5.5
+    },
+    {
+     "id": "b",
+     "personagem": "menina-capa",
+     "x": 5.6,
+     "z": 5.5
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 4.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "foto": 0.6,
+   "legenda": "rua escola",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "rua-comercial-noite",
+   "salto": true,
+   "camera": {
+    "x": 10.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "padeiro",
+     "x": 9.700000000000001,
+     "z": 5.5
+    },
+    {
+     "id": "b",
+     "personagem": "menina-capa",
+     "x": 11.4,
+     "z": 5.5
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 10.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "foto": 0.6,
+   "legenda": "rua delegacia",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "rua-comercial",
+   "salto": true,
+   "camera": {
+    "x": 16.2,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "padeiro",
+     "x": 16.2,
+     "z": 5.4
+    },
+    {
+     "id": "b",
+     "personagem": "menina-capa",
+     "x": 17.4,
+     "z": 5.4
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 16.2,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "foto": 0.6,
+   "legenda": "rua mercado",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "rua-comercial-noite",
+   "salto": true,
+   "camera": {
+    "x": -8,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "padeiro",
+     "x": -8.7,
+     "z": 5.5
+    },
+    {
+     "id": "b",
+     "personagem": "menina-capa",
+     "x": -7,
+     "z": 5.5
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": -8,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "foto": 0.6,
+   "legenda": "rua predios",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "rua-comercial",
+   "salto": true,
+   "camera": {
+    "x": 4,
+    "z": 3.5,
+    "y": 3.6
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "aluno",
+     "x": 4,
+     "z": 5.5
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": 3.5,
+     "y": 3.6
+    }
+   },
+   "foto": 0.6,
+   "legenda": "rua ceu",
+   "narracao": false
+  }
+ ]
+}

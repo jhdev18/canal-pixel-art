@@ -24,7 +24,7 @@
   //      ou usando o cenário "cidade-rpg" / "batalha".
   //      menina-capa e robo-semaforo são as versões DETALHADAS (28x44, andar de lado e correr).
   //      As versões antigas (simples): "sprite": "menina-capa-antigo" / "robo-semaforo-antigo".
-  "menina-capa":      { "sprite": "menina-capa", "voz": 1.2, "realce": 0.15 },
+  "menina-capa":      { "sprite": "menina-capa", "voz": 1.2 },
   "robo-semaforo":    { "sprite": "robo-semaforo", "voz": 0.7, "realce": 0.15 },
   "pombo-fofoqueiro": { "sprite": "pombo-fofoqueiro", "voz": 1.6 },
   "lixeira-timida":   { "sprite": "lixeira-timida", "voz": 1.2 },
@@ -41,5 +41,9 @@
   "aluna":      { "sprite": "aluna", "voz": 1.5 },
   "professora": { "sprite": "professora", "voz": 1.15 },
   "padeiro":    { "sprite": "padeiro", "voz": 0.85 },
-  "caixa":      { "sprite": "caixa", "voz": 1.1 }
+  "caixa":      { "sprite": "caixa", "voz": 1.1 },
+  // Nesse Mundo
+  "policial-oculos": { "sprite": "policial-oculos", "voz": 0.9 },
+  "prefeito-careca": { "sprite": "prefeito-careca", "voz": 0.7 },
+  "cone-monstro":    { "sprite": "cone-monstro", "voz": 0.6 }
 }

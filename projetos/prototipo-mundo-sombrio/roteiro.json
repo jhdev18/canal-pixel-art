@@ -1,0 +1,26 @@
+{
+  // PROTÓTIPO do mundo sombrio (só para conferir na prévia: npm run previa -- prototipo-mundo-sombrio)
+  "titulo": "Protótipo — mundo sombrio",
+  "resolucao": [320, 180],
+  "cenas": [
+    { // o quarto normal...
+      "vista": "diagonal", "comodo": { "tipo": "quarto-menino" }, "camera": { "x": 0, "y": 3 }, "cameraFim": { "x": 1 },
+      "duracao": 3, "transicao": "fade",
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -1.5, "z": 0.8 } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "aluno", "icone": "?", "inicio": 1.5 } ] },
+    { // ...vira sombrio
+      "cenario": "quarto-sombrio-diagonal", "duracao": 4, "transicao": "pixelizar", "cameraFim": { "x": 1.5 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -1.5, "z": 0.8 } ],
+      "acoes": [ { "tipo": "flash", "inicio": 0 }, { "tipo": "emocao", "alvo": "aluno", "icone": "!", "inicio": 0.5 } ] },
+    { "cenario": "mundo-sombrio", "duracao": 5, "transicao": "dither",
+      "camera": { "x": -2 }, "cameraFim": { "x": 3 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": -8 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": 3, "inicio": 0.3, "duracao": 4 } ] },
+    { "cenario": "sala-de-aula-sombria-diagonal", "duracao": 4, "transicao": "dither", "cameraFim": { "x": 1.5 },
+      "elementos": [ { "id": "prof", "personagem": "professora", "x": -1.4, "z": 2.4 }, { "id": "bia", "personagem": "menina-capa", "x": 3, "z": 0.2, "virado": "esquerda" } ],
+      "acoes": [] },
+    { "cenario": "sala-de-estar-sombria-diagonal", "duracao": 4, "transicao": "dither", "cameraFim": { "x": 1.5 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 4, "z": 0.4, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -1, "inicio": 0.3, "duracao": 3 } ] }
+  ]
+}

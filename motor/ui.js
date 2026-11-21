@@ -14,6 +14,56 @@ function caixa(ctx, x, y, w, h, fundo, borda) {
   ctx.fillRect(x + 1, y + 1, w - 2, h - 2);
 }
 
+// Algarismos 5x7 (mais grossos que a fonte do texto) para os números sobre a cabeça.
+const DIGITOS = {
+  0: ['.###.', '##.##', '##.##', '##.##', '##.##', '##.##', '.###.'],
+  1: ['.##..', '###..', '.##..', '.##..', '.##..', '.##..', '####.'],
+  2: ['.###.', '##.##', '...##', '..##.', '.##..', '##...', '#####'],
+  3: ['####.', '...##', '...##', '.###.', '...##', '...##', '####.'],
+  4: ['...##', '..###', '.#.##', '#..##', '#####', '...##', '...##'],
+  5: ['#####', '##...', '####.', '...##', '...##', '##.##', '.###.'],
+  6: ['.###.', '##...', '##...', '####.', '##.##', '##.##', '.###.'],
+  7: ['#####', '...##', '..##.', '..##.', '.##..', '.##..', '.##..'],
+  8: ['.###.', '##.##', '##.##', '.###.', '##.##', '##.##', '.###.'],
+  9: ['.###.', '##.##', '##.##', '.####', '...##', '...##', '.###.'],
+  '?': ['.###.', '##.##', '...##', '..##.', '.##..', '.....', '.##..'],
+  '#': ['.#.#.', '#####', '.#.#.', '.#.#.', '#####', '.#.#.', '.....'],
+  '-': ['.....', '.....', '.....', '####.', '.....', '.....', '.....'],
+};
+function desenharDigito(ctx, c, x, y, e, cor, contorno) {
+  const m = DIGITOS[c];
+  if (contorno) {
+    ctx.fillStyle = contorno;
+    for (let j = 0; j < 7; j++) for (let i = 0; i < 5; i++) if (m[j][i] === '#') ctx.fillRect(x + (i - 1) * e, y + (j - 1) * e, 3 * e, 3 * e);
+  }
+  ctx.fillStyle = cor;
+  for (let j = 0; j < 7; j++) for (let i = 0; i < 5; i++) if (m[j][i] === '#') ctx.fillRect(x + i * e, y + j * e, e, e);
+}
+function clarear(hex, t) {
+  const n = parseInt(hex.replace('#', ''), 16), rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  return 'rgb(' + rgb.map((v) => Math.round(t > 0 ? v + (255 - v) * t : v * (1 + t))).join(',') + ')';
+}
+// Ícones de emoção desenhados (além de ! ? coracao ... zzz, que usam a fonte)
+const ICONES_EMOCAO = {
+  lampada: ['..yyy..', '.yYYYy.', 'yYYyYYy', 'yYYYYYy', '.yYYYy.', '..ggg..', '..ggg..', '...g...'],
+  gota: ['...b...', '..bBb..', '..bBb..', '.bBBBb.', '.bBWBb.', '.bBBBb.', '..bbb..'],
+  raiva: ['r.r.r.r', '.rr.rr.', 'rr...rr', '.......', 'rr...rr', '.rr.rr.', 'r.r.r.r'],
+  nota: ['...kkk.', '...k.kk', '...k..k', '...k...', '.kkk...', 'kkkk...', '.kk....'],
+};
+const CORES_ICONE = { y: '#e8a820', Y: '#f8e060', g: '#6a6a80', b: '#2a6ac8', B: '#6ab8f8', W: '#ffffff', r: '#d83a3a', k: '#1a1c2c' };
+
+// Número ativo de um elemento no tempo t: a última ação "numero" que já começou vence o campo "numero" do elemento.
+function numeroAtual(cena, el, t) {
+  let n = el.numero != null ? { valor: el.numero, inicio: 0, cor: el.numeroCor, estilo: el.numeroEstilo } : null;
+  let ultimo = -1;
+  for (const a of cena.acoes) {
+    if (a.tipo !== 'numero' || a.alvo !== el.id || a.inicio > t || a.inicio < ultimo) continue;
+    ultimo = a.inicio;
+    n = a.valor == null ? null : { valor: a.valor, inicio: a.inicio, cor: a.cor ?? el.numeroCor, estilo: a.estilo ?? el.numeroEstilo };
+  }
+  return n;
+}
+
 export class UI {
   constructor(W, H) {
     this.W = W; this.H = H;
@@ -35,10 +85,29 @@ export class UI {
     ctx.clearRect(0, 0, W, H);
     ctx.globalAlpha = 1;
 
+    // números sobre a cabeça (campo "numero" do elemento / ação "numero"); balões e emoções sobem acima deles
+    const acima = new Map();
+    for (const el of cena.elementos || []) {
+      const n = numeroAtual(cena, el, t);
+      if (!n) continue;
+      const pos = cabeca(el.id, t);
+      if (!pos || pos.visivel === false) continue;
+      acima.set(el.id, this.numero(n, t, pos));
+    }
+    const cab = (id, tt) => { const p = cabeca(id, tt); return p && acima.has(id) ? { ...p, y: p.y - acima.get(id) } : p; };
     for (const a of cena.acoes) {
       if (t < a.inicio || t > a.inicio + a.duracao) continue;
-      if (a.tipo === 'falar') this.balao(a, t, cabeca(a.alvo, t));
-      if (a.tipo === 'emocao') this.emocao(a, t, cabeca(a.alvo, t));
+      if (a.tipo === 'falar') this.balao(a, t, cab(a.alvo, t));
+      if (a.tipo === 'emocao') this.emocao(a, t, cab(a.alvo, t));
+      if (a.tipo === 'pensar') this.balao(a, t, cab(a.alvo, t), true);
+    }
+    // efeitos de tela (por cima de tudo, menos legenda e título)
+    for (const a of cena.acoes) {
+      if (t < a.inicio || t > a.inicio + a.duracao) continue;
+      if (a.tipo === 'destaque') this.destaque(a, t, a.alvo ? cabeca(a.alvo, t) : null);
+      if (a.tipo === 'contador') this.contador(a, t);
+      if (a.tipo === 'placar') this.placar(a, t);
+      if (a.tipo === 'continua') this.continua(a, t);
     }
     if (cena.legendasNarracao) {
       const b = cena.legendasNarracao.find((l) => t >= l.ini && t < l.fim + 0.12);
@@ -55,7 +124,7 @@ export class UI {
     this.textura.needsUpdate = true;
   }
 
-  balao(a, t, pos) {
+  balao(a, t, pos, pensamento = false) {
     if (!pos) return;
     const { ctx, W } = this;
     const linhas = quebrarLinhas(a.texto || '', a.largura || 110);
@@ -68,11 +137,20 @@ export class UI {
     y = Math.max(2, y);
     const pulo = t - a.inicio < 0.08 ? 1 : 0;
     y += pulo;
-    caixa(ctx, x, y, larg, alt, BRANCO, K);
-    // rabinho
     const rx = clamp(Math.round(pos.x), x + 4, x + larg - 5);
-    ctx.fillStyle = K; ctx.fillRect(rx - 2, y + alt - 1, 5, 1); ctx.fillRect(rx - 1, y + alt, 3, 1); ctx.fillRect(rx, y + alt + 1, 1, 2);
-    ctx.fillStyle = BRANCO; ctx.fillRect(rx - 1, y + alt - 1, 3, 1); ctx.fillRect(rx, y + alt, 1, 1);
+    if (pensamento) {   // nuvem: borda com "ondas" e bolinhas descendo até a cabeça
+      caixa(ctx, x, y, larg, alt, BRANCO, K);
+      ctx.fillStyle = K;
+      for (let k = x + 3; k < x + larg - 3; k += 5) { ctx.fillRect(k, y - 1, 3, 1); ctx.fillRect(k, y + alt, 3, 1); }
+      for (let k = y + 3; k < y + alt - 3; k += 5) { ctx.fillRect(x - 1, k, 1, 3); ctx.fillRect(x + larg, k, 1, 3); }
+      const bola = (bx, by, r) => { ctx.fillStyle = K; ctx.fillRect(bx - r, by - r + 1, 2 * r + 1, 2 * r - 1); ctx.fillRect(bx - r + 1, by - r, 2 * r - 1, 2 * r + 1); ctx.fillStyle = BRANCO; ctx.fillRect(bx - r + 1, by - r + 1, 2 * r - 1, 2 * r - 1); };
+      bola(rx, y + alt + 3, 2); bola(rx + 1, y + alt + 7, 1);
+    } else {
+      caixa(ctx, x, y, larg, alt, BRANCO, K);
+      // rabinho
+      ctx.fillStyle = K; ctx.fillRect(rx - 2, y + alt - 1, 5, 1); ctx.fillRect(rx - 1, y + alt, 3, 1); ctx.fillRect(rx, y + alt + 1, 1, 2);
+      ctx.fillStyle = BRANCO; ctx.fillRect(rx - 1, y + alt - 1, 3, 1); ctx.fillRect(rx, y + alt, 1, 1);
+    }
     linhas.forEach((l, i) => {
       const n = Math.min(l.length, visiveis);
       visiveis -= l.length + 1;
@@ -84,6 +162,14 @@ export class UI {
     if (!pos) return;
     const { ctx } = this;
     const ic = a.icone || '!';
+    if (ICONES_EMOCAO[ic]) {
+      const m = ICONES_EMOCAO[ic], p0 = clamp((t - a.inicio) / 0.25), sal = Math.round((1 - easeOutBack(p0)) * 6);
+      const larg = m[0].length + 6, alt = m.length + 6, x = Math.round(pos.x - larg / 2), y = Math.round(pos.y - alt - 5 + sal);
+      caixa(ctx, x, y, larg, alt, BRANCO, K);
+      ctx.fillStyle = K; ctx.fillRect(Math.round(pos.x), y + alt, 1, 2);
+      m.forEach((l, j) => [...l].forEach((c, i) => { if (CORES_ICONE[c]) { ctx.fillStyle = CORES_ICONE[c]; ctx.fillRect(x + 3 + i, y + 3 + j, 1, 1); } }));
+      return;
+    }
     const txt = ic === 'coracao' ? '♥' : ic;
     const p = clamp((t - a.inicio) / 0.25);
     const salto = Math.round((1 - easeOutBack(p)) * 6);
@@ -92,6 +178,93 @@ export class UI {
     caixa(ctx, x, y, larg, alt, BRANCO, K);
     ctx.fillStyle = K; ctx.fillRect(Math.round(pos.x), y + alt, 1, 2);
     desenharTexto(ctx, txt, x + 3, y, ic === 'coracao' ? '#e83a4a' : ic === '!' ? '#c83c4c' : K);
+  }
+
+  // Número sobre a cabeça. estilo "placa" (padrão: plaquinha com borda) ou "solto" (algarismos grandes com contorno).
+  // Devolve quantos pixels ocupa acima da cabeça.
+  numero(n, t, pos) {
+    const { ctx } = this;
+    const txt = String(n.valor).toUpperCase().split('').filter((c) => DIGITOS[c]);
+    if (!txt.length) return 0;
+    const pop = clamp((t - n.inicio) / 0.25);
+    const salto = n.inicio > 0 ? Math.round((1 - easeOutBack(pop)) * 5) : 0;
+    const flut = Math.floor(t * 2.5) % 2;                     // sobe e desce 1 px (nada parado)
+    const cor = n.cor || '#f8d040';
+    if (n.estilo === 'solto') {
+      const e = 2, larg = txt.length * 6 * e - e, alt = 7 * e;
+      const x = Math.round(pos.x - larg / 2), y = Math.round(pos.y - alt - 4 - flut + salto);
+      txt.forEach((c, i) => desenharDigito(ctx, c, x + i * 6 * e, y, e, cor, K));
+      return alt + 6;
+    }
+    const larg = txt.length * 6 + 5, alt = 11;
+    const x = Math.round(pos.x - larg / 2), y = Math.round(pos.y - alt - 5 - flut + salto);
+    caixa(ctx, x, y, larg, alt, cor, K);
+    ctx.fillStyle = clarear(cor, 0.45); ctx.fillRect(x + 2, y + 1, larg - 4, 1);       // brilho em cima
+    ctx.fillStyle = clarear(cor, -0.35); ctx.fillRect(x + 2, y + alt - 2, larg - 4, 1); // sombra embaixo
+    ctx.fillStyle = K; ctx.fillRect(Math.round(pos.x) - 1, y + alt, 3, 1); ctx.fillRect(Math.round(pos.x), y + alt + 1, 1, 2);
+    txt.forEach((c, i) => desenharDigito(ctx, c, x + 3 + i * 6, y + 2, 1, n.corTexto || K));
+    return alt + 7;
+  }
+
+  // Lupa/destaque: escurece a tela e deixa um círculo claro no alvo (ou em "posicao" [x, y] em px da tela).
+  destaque(a, t, pos) {
+    const { ctx, W, H } = this;
+    const p = pos ? { x: pos.x, y: pos.y + (a.dy ?? 14) } : { x: a.posicao?.[0] ?? W / 2, y: a.posicao?.[1] ?? H / 2 };
+    const ent = clamp((t - a.inicio) / 0.2), sai = clamp((a.inicio + a.duracao - t) / 0.2);
+    const R = Math.round((a.raio ?? 22) * (0.6 + 0.4 * easeOutBack(ent)));
+    ctx.globalAlpha = (a.escurecer ?? 0.7) * Math.min(ent, sai);
+    ctx.fillStyle = '#06060c';
+    for (let y = 0; y < H; y++) {
+      const dy = y + 0.5 - p.y, meia = dy * dy < R * R ? Math.floor(Math.sqrt(R * R - dy * dy)) : -1;
+      if (meia < 0) { ctx.fillRect(0, y, W, 1); continue; }
+      ctx.fillRect(0, y, Math.round(p.x - meia), 1); ctx.fillRect(Math.round(p.x + meia), y, W, 1);
+    }
+    ctx.globalAlpha = Math.min(ent, sai);
+    ctx.fillStyle = a.cor || '#f8e040';
+    for (let k = 0; k < 48; k++) { const ang = k / 48 * Math.PI * 2; ctx.fillRect(Math.round(p.x + Math.cos(ang) * R), Math.round(p.y + Math.sin(ang) * R), 1, 1); }
+    ctx.globalAlpha = 1;
+  }
+
+  // Contagem regressiva grande no alto da tela: "de" (padrão = duração) até 0.
+  contador(a, t) {
+    const { ctx, W } = this;
+    const de = Math.round(a.de ?? a.duracao), passo = a.duracao / de, dt = t - a.inicio;
+    const n = Math.max(0, de - Math.floor(dt / passo)), pulso = clamp((dt % passo) / 0.15);
+    const e = (n <= 3 ? 4 : 3) + (pulso < 1 ? 1 : 0), txt = String(n).split('');
+    const larg = txt.length * 6 * e - e, x = Math.round((W - larg) / 2), y = a.y ?? 8;
+    txt.forEach((c, i) => desenharDigito(ctx, c, x + i * 6 * e, y, e, n <= 3 ? '#f05a4a' : (a.cor || '#f8e040'), K));
+  }
+
+  // Placar de votação: "opcoes": ["AJUDAR", "FUGIR"], "votos": [62, 38] (opcional, as barras enchem).
+  placar(a, t) {
+    const { ctx, W } = this;
+    const ops = a.opcoes || ['1', '2'], cores = a.cores || ['#3a8ae8', '#e8503a'];
+    const p = clamp((t - a.inicio) / 0.3), cheio = clamp((t - a.inicio - 0.3) / Math.max(0.5, a.duracao - 0.8));
+    const w = Math.floor((W - 24 - (ops.length - 1) * 8) / ops.length), alt = a.votos ? 30 : 20;
+    const y = Math.round((a.y ?? 10) - (1 - easeOutBack(p)) * 30);
+    ops.forEach((o, i) => {
+      const x = 12 + i * (w + 8);
+      caixa(ctx, x, y, w, alt, '#10101c', cores[i % cores.length]);
+      desenharDigito(ctx, String(i + 1), x + 4, y + 4, 1, cores[i % cores.length], null);
+      desenharTexto(ctx, normalizar(String(o)).toUpperCase(), x + 12, y + 2, BRANCO);
+      if (a.votos) {
+        const pct = (a.votos[i] ?? 0) * cheio, bw = Math.round((w - 8) * pct / 100);
+        ctx.fillStyle = '#2a2a3a'; ctx.fillRect(x + 4, y + 16, w - 8, 6);
+        ctx.fillStyle = cores[i % cores.length]; ctx.fillRect(x + 4, y + 16, bw, 6);
+        desenharTexto(ctx, `${Math.round(pct)}%`, x + 4, y + 20, BRANCO);
+      }
+    });
+  }
+
+  // Selo "CONTINUA..." no canto (gancho do fim do episódio). "texto" troca a palavra.
+  continua(a, t) {
+    const { ctx, W, H } = this;
+    const txt = normalizar(a.texto || 'CONTINUA...'), p = clamp((t - a.inicio) / 0.25), esc = 2;
+    const larg = larguraTexto(txt, esc) + 10, alt = 11 * esc + 4;
+    const x = W - larg - 8, y = H - alt - 18 + Math.round((1 - easeOutBack(p)) * -12);
+    caixa(ctx, x, y, larg, alt, '#c83c4c', '#f4f4f4');
+    desenharTexto(ctx, txt, x + 5 + esc, y + 1 + esc, '#5a1a24', esc);
+    desenharTexto(ctx, txt, x + 5, y + 1, '#f4f4f4', esc);
   }
 
   legenda(cena, t) {

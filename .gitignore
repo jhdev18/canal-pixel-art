@@ -4,3 +4,5 @@ biblioteca/sfx/_gerados/
 *.log
 .DS_Store
 Thumbs.db
+.modelos/
+projetos/*/narracao/.alinhamento.json

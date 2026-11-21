@@ -1,0 +1,752 @@
+// NESSE MUNDO (curto, cômico, lista de 3) — "Nessa cidade, todo fantasma precisa arrancar um grito até a meia-noite."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-fantasminha
+// Usa protótipos: fantasma-crianca, fantasma-lencol, fantasma-vovo, relogio-praca. "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, todo fantasma precisa de um grito",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, todo fantasma precisa arrancar um grito de alguém até a meia-noite.",
+   "cenario": "praca-noite",
+   "transicao": "fade",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "lencol",
+     "personagem": "fantasma-lencol",
+     "x": 1.6,
+     "z": -8.4,
+     "y": 0.4,
+     "virado": "esquerda",
+     "oculto": true
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -1.2,
+     "z": -8.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "lencol",
+     "som": "fantasma",
+     "inicio": 1.62
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "lencol",
+     "estado": "assustar",
+     "inicio": 2.67
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "!",
+     "inicio": 2.93
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.4,
+     "inicio": 3.2,
+     "duracao": 0.63
+    },
+    {
+     "tipo": "falar",
+     "alvo": "policial",
+     "texto": "* AAAH!",
+     "inicio": 3.46
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Quem não consegue, desaparece para sempre.",
+   "cenario": "praca-noite",
+   "titulo": "NESSA CIDADE, TODO FANTASMA PRECISA DE UM GRITO",
+   "tituloInicio": 0.2,
+   "tituloDuracao": 2.4,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -4,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "lencol2",
+     "personagem": "fantasma-lencol",
+     "x": -4,
+     "z": -8.4,
+     "y": 0.4,
+     "pose": "timido"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "desaparecer",
+     "alvo": "lencol2",
+     "inicio": 1.67,
+     "duracao": 1.23
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, as noites daqui são barulhentas. Lençol correndo, vovó fantasma gargalhando.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "lencol",
+     "personagem": "fantasma-lencol",
+     "x": -1,
+     "z": 5.2,
+     "y": 0.4
+    },
+    {
+     "id": "vovof",
+     "personagem": "fantasma-vovo",
+     "x": 6.6,
+     "z": 5.2,
+     "y": 0.4,
+     "pose": "rindo",
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 4,
+     "z": 5.2
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 8.4,
+     "z": 5.2,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "mover",
+     "alvo": "lencol",
+     "para": 3,
+     "inicio": 2.26,
+     "duracao": 1.68
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": 3.37
+    },
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Socorro!",
+     "inicio": 3.37
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 4.49
+    },
+    {
+     "tipo": "som",
+     "som": "fantasma",
+     "inicio": 4.77
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "assustado",
+     "inicio": 1.98,
+     "duracao": 3.91
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "assustado",
+     "inicio": 2.54,
+     "duracao": 3.35
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas essa fantasminha é tímida demais. Nunca assustou ninguém.",
+   "cenario": "praca-noite",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": 1,
+     "z": -8.4,
+     "pose": "timido",
+     "y": 0.4
+    },
+    {
+     "id": "relogio",
+     "sprite": "relogio-praca",
+     "x": 2.6,
+     "z": -9.2,
+     "pose": "h11-55"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "fant",
+     "icone": "...",
+     "inicio": 2.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A primeira tentativa foi o seu Tonho, fechando a padaria.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 1.6,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -3,
+     "z": 5.2,
+     "pose": "timido",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "mover",
+     "alvo": "fant",
+     "para": -0.2,
+     "inicio": 1.04,
+     "duracao": 2.04
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "momento": "padaria"
+  },
+  {
+   "narracaoTexto": "Ela gritou BU com toda a força. Porém, o seu Tonho só deu um pãozinho para ela.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 1.6,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -0.2,
+     "z": 5.2,
+     "pose": "assustar",
+     "y": 0.4
+    },
+    {
+     "id": "pao",
+     "sprite": "pao",
+     "x": 0.9,
+     "z": 5.3,
+     "y": 0.9,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "fant",
+     "texto": "* Bu!",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* Tá com fome?",
+     "inicio": 2.61
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "pao",
+     "inicio": 3.89
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "fant",
+     "estado": "timido",
+     "inicio": 4.66
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 2.35,
+     "duracao": 3.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "momento": "padaria"
+  },
+  {
+   "narracaoTexto": "A segunda foi o policial, de plantão na delegacia.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 10.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 10.8,
+     "z": 5.4
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": 7,
+     "z": 5.2,
+     "pose": "timido",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "zzz",
+     "inicio": 0.3,
+     "duracao": 2.93
+    },
+    {
+     "tipo": "mover",
+     "alvo": "fant",
+     "para": 9.6,
+     "inicio": 0.95,
+     "duracao": 1.79
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "momento": "delegacia"
+  },
+  {
+   "narracaoTexto": "Porém, o policial dormia em pé tão bem que nem abriu o olho.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 10.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 10.8,
+     "z": 5.4
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": 9.6,
+     "z": 5.2,
+     "pose": "assustar",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "fant",
+     "texto": "* BU! BU!",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "zzz",
+     "inicio": 2.06,
+     "duracao": 1.95
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "fant",
+     "estado": "timido",
+     "inicio": 3.42
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "momento": "delegacia"
+  },
+  {
+   "narracaoTexto": "Faltando um minuto, só restava uma pessoa acordada: a Bia.",
+   "cenario": "quarto-menina-noite-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -2.4,
+     "z": 1.4,
+     "pose": "timido",
+     "y": 0.4,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "fant",
+     "som": "fantasma",
+     "inicio": 2
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 2.87
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   },
+   "momento": "quarto-noite"
+  },
+  {
+   "narracaoTexto": "Ela fez a cara mais feia que sabia e gritou.",
+   "cenario": "quarto-menina-noite-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -0.6,
+     "z": 1.4,
+     "pose": "timido",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "alvo": "fant",
+     "estado": "assustar",
+     "inicio": 1.16
+    },
+    {
+     "tipo": "falar",
+     "alvo": "fant",
+     "texto": "* BUUU!",
+     "inicio": 1.61
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 2.45,
+     "duracao": 0.43
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.73,
+     "duracao": 1.43
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   },
+   "momento": "quarto-noite"
+  },
+  {
+   "narracaoTexto": "E a Bia gritou. Bem alto.",
+   "cenario": "quarto-menina-noite-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -0.6,
+     "z": 1.4,
+     "pose": "assustar",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* AAAAH!",
+     "inicio": 0.32
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.6,
+     "inicio": 0.46
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.8,
+     "inicio": 0.46,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "som",
+     "som": "surpresa",
+     "inicio": 0.46
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3,
+     "zoom": 2
+    }
+   },
+   "momento": "quarto-noite"
+  },
+  {
+   "narracaoTexto": "Só que não era de medo. Era de fofura.",
+   "cenario": "quarto-menina-noite-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -0.6,
+     "z": 1.4,
+     "pose": "timido",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* Que fofinho!",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "coracao",
+     "inicio": 1.16
+    },
+    {
+     "tipo": "pular",
+     "alvo": "bia",
+     "altura": 0.4,
+     "inicio": 1.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "rindo",
+     "inicio": 1.04,
+     "duracao": 1.73
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   },
+   "momento": "quarto-noite"
+  },
+  {
+   "narracaoTexto": "Grito é grito. E agora ela mora no quarto da Bia.",
+   "cenario": "quarto-menina-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "fant",
+     "personagem": "fantasma-crianca",
+     "x": -0.6,
+     "z": 1.4,
+     "pose": "acenar",
+     "y": 0.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 0.94
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "fant",
+     "icone": "coracao",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.46,
+     "duracao": 3.03
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   },
+   "salto": true
+  }
+ ]
+}

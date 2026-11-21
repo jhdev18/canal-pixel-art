@@ -1,0 +1,281 @@
+// TESTE: npm run fotos -- teste-escala2
+{
+ "titulo": "Teste — tamanho: praça e cômodos",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca-decorada",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "professora",
+     "x": -5.2,
+     "z": -8.6
+    },
+    {
+     "id": "b",
+     "personagem": "aluno",
+     "x": -0.6,
+     "z": -4.2
+    },
+    {
+     "id": "c",
+     "personagem": "prefeito",
+     "x": 3.6,
+     "z": -6.6,
+     "y": 0.75
+    },
+    {
+     "id": "d",
+     "personagem": "menina-capa",
+     "x": -1.6,
+     "z": -8.6
+    },
+    {
+     "id": "e",
+     "personagem": "padeiro",
+     "x": 1.6,
+     "z": -8.6
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": -2,
+     "z": -8.5
+    }
+   },
+   "foto": 0.6,
+   "legenda": "praca decorada",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "salto": true,
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "caixa",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "b",
+     "personagem": "vovo",
+     "x": 3.2,
+     "z": -7.4
+    },
+    {
+     "id": "c",
+     "personagem": "nina",
+     "x": 5,
+     "z": -8.6
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 2,
+     "z": -8.5
+    }
+   },
+   "foto": 0.6,
+   "legenda": "praca",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "sala-de-aula-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "p",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "a",
+     "personagem": "menina-capa",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "b",
+     "personagem": "aluno",
+     "x": 1.4,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "c",
+     "personagem": "aluna",
+     "x": 4.6,
+     "z": 2.8
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "sala-de-aula-diorama",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "quarto-menino-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "menino-topete",
+     "x": -2,
+     "z": 2
+    },
+    {
+     "id": "b",
+     "personagem": "mae",
+     "x": 3,
+     "z": 2.6
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "quarto-menino-diorama",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "sala-de-estar-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "mae",
+     "x": -2,
+     "z": 2
+    },
+    {
+     "id": "b",
+     "personagem": "padeiro",
+     "x": 3,
+     "z": 2.6
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "sala-de-estar-diorama",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "cozinha-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "mae-avental",
+     "x": -2,
+     "z": 2.4
+    },
+    {
+     "id": "b",
+     "personagem": "menino-topete",
+     "x": 2,
+     "z": 1.4
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "cozinha-diorama",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "banheiro-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 2
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "banheiro-diorama",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "delegacia-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "policial",
+     "x": -2,
+     "z": 2.4
+    },
+    {
+     "id": "b",
+     "personagem": "prefeito",
+     "x": 3,
+     "z": 1.4
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "delegacia-diorama",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "quarto-menina-diorama",
+   "salto": true,
+   "elementos": [
+    {
+     "id": "a",
+     "personagem": "menina-capa",
+     "x": -1,
+     "z": 2
+    },
+    {
+     "id": "b",
+     "personagem": "vovo",
+     "x": 3,
+     "z": 2.6
+    }
+   ],
+   "acoes": [],
+   "foto": 0.6,
+   "legenda": "quarto-menina-diorama",
+   "narracao": false
+  }
+ ]
+}
