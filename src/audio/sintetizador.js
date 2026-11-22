@@ -52,6 +52,25 @@ function ruido({ dur, vol = 0.4, f0 = 2000, f1 = f0, filtro = 'passa-baixa', q =
   return out;
 }
 
+// miado sintetizado (soma de harmônicos com "boca" que abre e fecha) — monstro: o tom despenca e ganha rosnado/distorção
+function miado({ dur = 0.5, f = 720, vol = 0.32, monstro = false }) {
+  const out = amostras(dur);
+  let fase = 0;
+  for (let i = 0; i < out.length; i++) {
+    const t = i / SR, p = t / dur;
+    let fr = f * (p < 0.3 ? 0.85 + 0.45 * (p / 0.3) : 1.3 - 0.45 * ((p - 0.3) / 0.7));   // sobe até 30% e desce
+    let boca = Math.sin(Math.PI * Math.min(1, p * 1.15));                                    // abre e fecha ("i" → "a" → "u")
+    if (monstro && p > 0.3) { const q = (p - 0.3) / 0.7; fr *= Math.pow(0.22, Math.min(1, q * 1.6)); boca = 0.9; }
+    fr *= 1 + 0.02 * Math.sin(TAU * 6 * t);
+    fase += fr / SR;
+    let v = 0;
+    for (let h = 1; h <= 6; h++) v += Math.sin(TAU * fase * h) * (h === 1 ? 1 : boca * 0.55 / h) * (h >= 3 && h <= 4 ? 1.6 * boca : 1);
+    if (monstro && p > 0.3) { const q = Math.min(1, (p - 0.3) / 0.4); v = Math.tanh(v * (1 + 5 * q)) * (1 - 0.45 * q * (0.5 + 0.5 * Math.sin(TAU * 34 * t))); }
+    const env = Math.min(1, t / 0.04) * Math.pow(Math.max(0, 1 - p), monstro ? 0.7 : 1.4);
+    out[i] = v * env * vol;
+  }
+  return out;
+}
 function misturar(partes, dur = null) {
   const total = dur ?? Math.max(...partes.map(([b, off = 0]) => off + b.length / SR));
   const out = amostras(total);
@@ -170,7 +189,10 @@ const SONS = {
     [tom({ tipo: 'triangulo', f0: 2000, f1: 2600, dur: 0.1, vol: 0.14, curva: 1.4 }), 0.1],
     ...[0.08, 0.13, 0.18, 0.23, 0.28].map((t0, k) => [ruido({ dur: 0.03, vol: 0.18, f0: 2600 + k * 200, filtro: 'passa-banda', q: 0.6, curva: 2, semente: 70 + k }), t0]),
   ]),
-  miau: () => tom({ tipo: 'triangulo', f0: 700, f1: 520, dur: 0.45, vol: 0.35, ataque: 0.05, curva: 1.2, vibrato: 0.04, vibratoHz: 7 }),
+  // miado fofo: "mi-aau" — o tom sobe e desce, a boca abre (mais harmônicos) e fecha; ataque suave
+  miau: () => miado({}),
+  // miado que vira monstro (só nos relances do vídeo dos gatos): começa fofo e entorta num rosnado grave e áspero
+  'miau-monstro': () => misturar([[miado({ dur: 0.9, monstro: true })], [ruido({ dur: 0.7, vol: 0.18, f0: 300, filtro: 'passa-banda', q: 0.8, ataque: 0.25, curva: 1.2, semente: 77 }), 0.25]]),
   trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
   suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),
   fantasma: () => misturar([[tom({ tipo: 'seno', f0: 420, f1: 640, dur: 1.1, vol: 0.28, ataque: 0.25, curva: 1.4, vibrato: 0.06, vibratoHz: 5 })], [tom({ tipo: 'seno', f0: 630, f1: 960, dur: 0.9, vol: 0.12, ataque: 0.3, curva: 1.6, vibrato: 0.05, vibratoHz: 6 }), 0.15], [ruido({ dur: 1.2, vol: 0.12, f0: 900, filtro: 'passa-banda', q: 0.5, ataque: 0.3 })]]),

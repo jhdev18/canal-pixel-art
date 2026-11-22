@@ -160,7 +160,7 @@ sombras andando (`sombraPessoa`) não fazem barulho. Para calar alguém: `"som":
 
 **Caixotes do mercado** (desenho fixo da rua, não é elemento): x ≈ 13.3–14.4 na calçada do mercado. Ninguém para em x 13–14.6 ali.
 
-**Gatos:** `gato-chapeu` (fofo; estado `monstro` mostra olhos vermelhos e presas, `pior` = 3 olhos e bocarra com baba — relance de terror: `trocar` para `monstro` e de volta para `parado`; funciona andando também) e `gato-monstro` (sempre monstruoso, também andando; tem `pior`). **Truque:** o gato fica monstro enquanto a pessoa que ele segue está de costas e volta ao normal quando ela vira de frente. Usados no `nesse-mundo-gatos`.
+**Gatos:** `gato-chapeu` (fofo; estado `monstro` mostra olhos vermelhos e presas, `pior` = 3 olhos e bocarra com baba — relance de terror: `trocar` para `monstro` e de volta para `parado`; funciona andando também) e `gato-monstro` (sempre monstruoso, também andando; tem `pior`). **Truque:** o gato fica monstro enquanto a pessoa que ele segue está de costas e volta ao normal quando ela vira de frente. Sons: `miau` (fofo) e `miau-monstro` (começa fofo e vira rosnado; usar só na transformação). Usados no `nesse-mundo-gatos`.
 
 ## Erros comuns (ver "Regras de cena" no `CLAUDE.md`)
 Rode `npm run conferir -- <projeto>` antes de entregar: acusa gente coberta por árvore/objeto, gente que falta num `"momento"` (mesmo instante da

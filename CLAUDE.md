@@ -496,7 +496,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
     `pegadas-brilhantes`, `cartaz-procura-se` (vazio/foto; bom com `"tela": true`); isométricos `relogio-praca`
     (h3/h6/h9/h12/h11-55), `caixa-correio`, `lixeira-praca`, `placa-praca`, `carrinho-sorvete`.
   - ações novas: `pensar`, `destaque`, `contador`, `placar`, `continua`; ícones `lampada`/`gota`/`raiva`/`nota`;
-    sons `sino-relogio`, `cadeado`, `papel`, `miau`, `trovao`, `suspense`, `fantasma`. Teste: `projetos/vitrine`
+    sons `sino-relogio`, `cadeado`, `papel`, `miau` (miado fofo "mi-aau", refeito), `miau-monstro` (miado que entorta num rosnado — só nos relances de gato virando monstro), `trovao`, `suspense`, `fantasma`. Teste: `projetos/vitrine`
     (personagens em `prototipos/personagens.json`).
   - barracas novas `barraca-sorvete`/`-frutas`/`-verduras`/`-flores`/`-vazia` (estados parado/acesa/fechada) e cenário
     `praca-feira` (em `prototipos/cenarios.json`).

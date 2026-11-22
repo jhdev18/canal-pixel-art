@@ -62,6 +62,12 @@
      "inicio": 2.92
     },
     {
+     "tipo": "som",
+     "som": "miau-monstro",
+     "volume": 0.7,
+     "inicio": 1.7
+    },
+    {
      "tipo": "virar",
      "alvo": "tonho",
      "direcao": "esquerda",
@@ -173,6 +179,12 @@
      "alvo": "g2",
      "estado": "parado",
      "inicio": 2.89
+    },
+    {
+     "tipo": "som",
+     "som": "miau-monstro",
+     "volume": 0.7,
+     "inicio": 1.78
     },
     {
      "tipo": "trocar",
@@ -644,7 +656,7 @@
     {
      "tipo": "som",
      "som": "miau",
-     "taxa": 0.8,
+     "taxa": 0.9,
      "inicio": 3.86
     },
     {
@@ -792,7 +804,7 @@
     {
      "tipo": "som",
      "som": "miau",
-     "taxa": 0.7,
+     "taxa": 0.95,
      "inicio": 2.13
     },
     {
@@ -1534,8 +1546,7 @@
     },
     {
      "tipo": "som",
-     "som": "miau",
-     "taxa": 0.6,
+     "som": "miau-monstro",
      "inicio": 3.62
     },
     {
