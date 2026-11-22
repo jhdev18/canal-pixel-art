@@ -9,6 +9,7 @@
 //   4. personagem fora do cômodo (andando "na parede") ou da praça/rua
 //   5. sombras de pessoa demais na cena (máx. 4) e quem segue algo e para antes do fim da fala (vira para a câmera)
 //   6. gancho: a 1ª cena precisa ter algo se mexendo antes de 0,6 s e não ser de noite
+//   7. retenção no meio: cena parada antes de 70% do vídeo; "Até que..." depois de 40% do vídeo
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
@@ -125,6 +126,21 @@ export async function conferir(nome) {
     const prim = (c?.acoes || []).filter((a) => MEXE.includes(a.tipo)).sort((a, b) => a.inicio - b.inicio)[0];
     if (c && (!prim || prim.inicio > 0.6)) aviso(1, 'gancho', `a 1ª cena não tem nada se mexendo até ${prim ? prim.inicio.toFixed(1) + ' s' : 'o fim'} — o elemento da regra precisa se mexer na tela antes de 0,6 s (o público decide se passa o vídeo no 1º segundo)`);
     if (c && /noite/.test(c.cenarioBruto || c.cenario || '')) aviso(1, 'gancho', 'a 1ª cena é de noite — abrir de dia (imagem escura no celular perde o público no 1º segundo)');
+  }
+
+  // ---------- 7. RETENÇÃO NO MEIO (dados do canal: sombras segurou 0:43 de 0:50; guardiões só 0:26 — o público saiu nas cenas
+  // paradas e no evento que demorou): cena sem nada se mexendo antes da virada, e o "Até que..." tarde demais
+  {
+    const MEXE = ['andar', 'correr', 'mover', 'pular', 'trocar', 'aparecer', 'sombra', 'tremer', 'flash', 'magia', 'explosao', 'fogos', 'espirrar', 'desaparecer', 'sumir', 'coletar'];
+    const total = r.cenas.reduce((a, c) => a + c.duracao, 0);
+    let t0 = 0;
+    for (const c of r.cenas) {
+      if (t0 < total * 0.7 && !/congel/i.test(c.narracaoTexto || '') && !(c.acoes || []).some((a) => MEXE.includes(a.tipo)))   // "congelou" parado é de propósito
+        aviso(c.numero, 'parada', `cena sem nada se mexendo aos ${Math.round(t0)} s (antes da virada) — é onde o público sai; faça o elemento da regra ou alguém se mexer`);
+      t0 += c.duracao;
+    }
+    let t1 = 0; const ev = r.cenas.find((c) => { if (/^\s*Até que/i.test(c.narracaoTexto || '')) return true; t1 += c.duracao; return false; });
+    if (ev && t1 > total * 0.4) aviso(ev.numero, 'parada', `o evento ("Até que...") só começa aos ${Math.round(t1)} s (${Math.round(100 * t1 / total)}% do vídeo) — traga para antes de 40% (no das sombras foi aos 35%)`);
   }
 
   // ---------- 2. continuidade: mesmo lugar E mesmo enquadramento (câmera perto) em cenas seguidas

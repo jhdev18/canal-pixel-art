@@ -129,6 +129,24 @@ O usuário relatou que o vídeo das sombras foi o único com alta retenção. Co
 → **Regra do gancho:** na 1ª cena, o elemento da regra **se mexe antes de 0,6 s**, grande e visível, **de dia**. Nada de
 abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run conferir` acusa `[gancho]`.
 
+**Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
+justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:
+1. **Nunca uma cena parada antes da virada.** As 8 primeiras cenas (0–32 s) têm gente ou sombra andando; a única parada é a
+   reação "congelou", de propósito, já perto do fim. Guardiões: 5 cenas sem nada se mexendo (a 4ª sem NENHUMA ação).
+2. **O elemento da regra muda em toda cena:** 1 sombra → 2 → a da Bia ao contrário → 4 sozinhas → 8 andando juntas → a da Bia
+   puxando "com força" → engolindo → praça cheia. Guardiões: o guardião é o mesmo, parado, das cenas 3 a 6.
+3. **O evento estranho chega cedo:** "Até que... as sombras saíram andando sozinhas" aos 16 s (35%). Guardiões: o perigo
+   só aparece aos 39 s (87%), quando a maioria já saiu.
+4. **O sofrimento do protagonista dura 1 cena** (a escola, 4 s). Guardiões: 3 cenas seguidas de exclusão (atravessam a rua,
+   ninguém senta do lado) sem a regra agir.
+5. **Pico de movimento no MEIO** (8 pessoas e sombras andando juntas aos 20 s), não só no fim: é a "segunda isca" para quem ia sair.
+6. **Mistério que se vê, aberto aos 8 s e só respondido no fim:** a sombra da Bia vai para o lado errado. O espectador fica
+   para saber por quê. Nos guardiões o mistério ("olhando para as costas dela") não tem imagem até o fim.
+7. **Escuro nunca** (tudo de dia). Guardiões mudou para a noite aos 23 s, e a duração média é 0:26.
+8. **A ameaça aparece em pedaços antes da virada** (sombras andando sozinhas no meio; gente sumindo antes da revelação). Não
+   guardar o monstro/a ameaça para a última cena.
+O `npm run conferir` acusa `[parada]`: cena sem nada se mexendo antes de 70% do vídeo, e o "Até que..." depois de 40%.
+
 **Comparação com os postados de baixa retenção** (`guardioes`, `numeros`, `relogio`, `caderno`, `estrelas` — mesma estrutura,
 mesma duração ~45–48 s, mesma virada "exceção sortuda" em vários): a estrutura NÃO explica a diferença. O que só o das sombras tinha:
 - **É de DIA do começo ao fim** (0 cenas de noite). Os outros tinham 4 a 11 cenas de noite: imagem escura no celular, pixel
@@ -282,7 +300,8 @@ renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um
 da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barraca) ou dos caixotes do mercado; `[continuidade]`
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
-tem nada se mexendo antes de 0,6 s ou é de noite. **Ao criar um objeto novo desenhado
+tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
+depois de 40%. **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
