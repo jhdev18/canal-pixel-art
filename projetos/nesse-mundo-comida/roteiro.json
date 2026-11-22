@@ -14,17 +14,20 @@
    "narracaoTexto": "Nessa cidade, a comida que você deixa no prato sai correndo.",
    "cenario": "rua-comercial",
    "transicao": "corte",
+   "seguir": "pao1",
    "camera": {
     "x": 4,
     "z": 2.2,
-    "y": 2.4
+    "y": 1.5,
+    "zoom": 2
    },
    "elementos": [
     {
      "id": "aluno",
      "personagem": "aluno",
      "x": 2.8,
-     "z": 5.2
+     "z": 5.2,
+     "pose": "rosto-surpreso"
     },
     {
      "id": "pao1",
@@ -38,83 +41,77 @@
     {
      "tipo": "pular",
      "alvo": "pao1",
-     "altura": 0.5,
-     "para": 4.63,
-     "inicio": 0.3,
-     "duracao": 0.48
+     "altura": 0.6,
+     "para": 4.5,
+     "inicio": null,
+     "duracao": 0.4
+    },
+    {
+     "tipo": "som",
+     "som": "pulo",
+     "inicio": null
     },
     {
      "tipo": "pular",
      "alvo": "pao1",
      "altura": 0.5,
-     "para": 5.56,
-     "inicio": 0.8,
-     "duracao": 0.48
+     "para": 5.45,
+     "inicio": 0.38,
+     "duracao": 0.54
     },
     {
      "tipo": "pular",
      "alvo": "pao1",
      "altura": 0.5,
-     "para": 6.49,
-     "inicio": 1.3,
-     "duracao": 0.48
+     "para": 6.4,
+     "inicio": 0.95,
+     "duracao": 0.54
     },
     {
      "tipo": "pular",
      "alvo": "pao1",
      "altura": 0.5,
-     "para": 7.41,
-     "inicio": 1.8,
-     "duracao": 0.48
+     "para": 7.35,
+     "inicio": 1.52,
+     "duracao": 0.54
     },
     {
      "tipo": "pular",
      "alvo": "pao1",
      "altura": 0.5,
-     "para": 8.34,
-     "inicio": 2.31,
-     "duracao": 0.48
+     "para": 8.3,
+     "inicio": 2.09,
+     "duracao": 0.54
     },
     {
      "tipo": "pular",
      "alvo": "pao1",
      "altura": 0.5,
-     "para": 9.27,
-     "inicio": 2.81,
-     "duracao": 0.48
+     "para": 9.25,
+     "inicio": 2.67,
+     "duracao": 0.54
     },
     {
      "tipo": "pular",
      "alvo": "pao1",
      "altura": 0.5,
      "para": 10.2,
-     "inicio": 3.31,
-     "duracao": 0.48
+     "inicio": 3.24,
+     "duracao": 0.54
     },
     {
      "tipo": "emocao",
      "alvo": "aluno",
      "icone": "!",
-     "inicio": 1.08
-    },
-    {
-     "tipo": "som",
-     "som": "pulo",
-     "inicio": 1.08
-    },
-    {
-     "tipo": "expressao",
-     "alvo": "aluno",
-     "rosto": "surpreso",
-     "inicio": 1.08,
-     "duracao": 3.12
+     "inicio": null
     }
    ],
    "vertical": {
     "camera": {
      "x": 4,
      "z": 2.2,
-     "y": 2.4
+     "y": 1.5,
+     "zoom": 2
     }
    }
   },

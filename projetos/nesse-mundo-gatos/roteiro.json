@@ -14,22 +14,24 @@
    "narracaoTexto": "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira.",
    "cenario": "rua-comercial",
    "transicao": "corte",
+   "seguir": "g1",
    "camera": {
-    "x": 1.4,
+    "x": -1.2,
     "z": 2.2,
-    "y": 2.4
+    "y": 1.5,
+    "zoom": 2
    },
    "elementos": [
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -2.6,
+     "x": -1.6,
      "z": 5.2
     },
     {
      "id": "g1",
      "personagem": "gato-chapeu",
-     "x": -4.4,
+     "x": -3.2,
      "z": 4.75,
      "figurante": true
     }
@@ -39,32 +41,32 @@
      "tipo": "andar",
      "alvo": "tonho",
      "para": 3.4,
-     "inicio": 0.3,
-     "duracao": 2.9
+     "inicio": null,
+     "duracao": 3.1
     },
     {
      "tipo": "correr",
      "alvo": "g1",
      "para": 2.4,
-     "inicio": 0.3,
-     "duracao": 2.81
+     "inicio": null,
+     "duracao": 3
     },
     {
      "tipo": "trocar",
      "alvo": "g1",
      "estado": "monstro",
-     "inicio": 1.7
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "g1",
-     "estado": "parado",
-     "inicio": 2.92
+     "inicio": null
     },
     {
      "tipo": "som",
      "som": "miau-monstro",
      "volume": 0.7,
+     "inicio": null
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g1",
+     "estado": "parado",
      "inicio": 1.7
     },
     {
@@ -94,9 +96,10 @@
    ],
    "vertical": {
     "camera": {
-     "x": 1.4,
+     "x": -1.2,
      "z": 2.2,
-     "y": 2.4
+     "y": 1.5,
+     "zoom": 2
     }
    }
   },
