@@ -77,8 +77,8 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 5. Montar `projetos/nesse-mundo-<tema>/`: `roteiro.json` (diorama, `vertical` em toda cena com personagem,
    `"volumeBaloes": 0.4`), `ROTEIRO.md` (resumo por cena + assets usados), `PUBLICACAO.md` (título, descrição, tags),
    e rodar `npm run narracao -- <projeto>`. Pôr **expressões no rosto** nas reações (ver "Expressões no rosto").
-6. Conferir por texto: JSON válido, duração estimada total, regra 10 (ações terminam junto com a fala) e
-   **`npm run conferir -- <projeto>`** sem avisos (ver "Regras de cena").
+6. Conferir por texto: JSON válido, duração estimada total, regra 10 (ações terminam junto com a fala),
+   **checklist de retenção do vídeo das sombras** (abaixo) e **`npm run conferir -- <projeto>`** sem avisos (ver "Regras de cena").
 
 **Premissas já usadas (não repetir):** mentira acende estrela no céu (`nesse-mundo-estrelas`); toda noite alguém some /
 caderno que escolhe (`nesse-mundo-caderno`); cada um carrega o próprio tempo na cabeça (`nesse-mundo-tempo`); cada rua tem
@@ -99,6 +99,33 @@ dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu
 - **Protagonista:** "esse garoto / essa menina" ou um nome simples; pode ser personagem da biblioteca. Normalmente a Bia,
   mas a **Nina** também pode protagonizar quando a história pedir (ex.: alguém excluído, confiante demais, rival); variar.
 - Segue também as regras de ritmo acima (diorama, `vertical` no Shorts, sem pausa entre cenas).
+
+### Táticas de retenção do `nesse-mundo-sombras` (o vídeo de mais sucesso — usar em TODO "Nesse Mundo")
+O usuário relatou que o vídeo das sombras foi o único com alta retenção. Comparado aos postados com retenção baixa
+(`estrelas`, `caderno`), o roteiro dele fez isto (tratar como regras, até outro vídeo mostrar o contrário):
+1. **A regra fala com o espectador e usa algo que todo mundo tem:** "a **sua** sombra chega antes de **você**". Objeto do
+   dia a dia (sombra, nome, reflexo, voz, passos), não algo distante (estrela no céu, caderno de alguém). A 1ª frase usa
+   "você/sua" e o espectador se imagina na hora.
+2. **A regra aparece NA TELA em quase toda cena** (10 de 12 tinham sombra visível): o espectador vê a regra funcionando,
+   não só ouve. Cada cena mostra o elemento da regra fazendo algo.
+3. **Movimento em quase toda cena** (8 de 12 com gente/sombra andando; nos de baixa retenção, 2–3 de 12). Cena parada com
+   narração é onde o público sai.
+4. **Contraste visual simples do protagonista:** a sombra de todos vai para um lado, a da Bia para o outro — dá para
+   entender a diferença dela **sem som**, só olhando.
+5. **Escalada em números na tela:** 1 sombra → 2 → 4 → todas andando sozinhas → as pessoas somem → a praça cheia de sombras
+   sem ninguém. Cada cena tem mais do elemento da regra que a anterior.
+6. **Curto e uniforme:** ~45 s, 12 frases de 8–13 palavras (~3–4,5 s cada), sem frase longa. Duas frases curtíssimas na
+   virada ("Elas levavam." / "Com força.") — o ritmo acelera quando a história esquenta.
+7. **Quase sem balão** (1 no vídeo todo): a atenção fica na imagem e no narrador.
+8. **A virada transforma o "defeito" do protagonista em salvação** (exceção sortuda): o que a cidade zombava (sombra do
+   contra, "perdida") era o que a protegia. A pista é visual e aparece 2 vezes antes (cena 3 e "com força" na cena 7).
+9. **Reação antes da virada** ("olhou para trás e congelou") e **última imagem com o elemento da regra ainda vivo** ("a sombra
+   colada nos pés dela, ainda tremia"): termina inquietante, sem explicar, com o objeto da regra na tela — dá vontade de rever.
+10. **Lugares conhecidos e poucos** (rua, escola, praça): nada de cenário novo para o público decifrar.
+**Checklist ao escrever um "Nesse Mundo" novo:** a 1ª frase fala com "você" e usa algo do dia a dia? A regra aparece na tela
+em ≥ 80% das cenas? ≥ 2/3 das cenas têm movimento? A diferença do protagonista se entende sem som? O elemento da regra
+aumenta em quantidade até a virada? Frases de 8–13 palavras, 2 curtíssimas na virada? No máximo 1–2 balões? A última imagem
+mostra o elemento da regra? Anotar no `ROTEIRO.md` como o vídeo cumpre cada item.
 
 ### Tons: comédia e terror
 Cada vídeo escolhe **um tom principal** (dá para misturar um pouco do outro, mas um manda). Variar o tom entre
