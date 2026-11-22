@@ -326,7 +326,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%. **Ao criar um objeto novo desenhado
+depois de 40%; `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
@@ -385,6 +385,12 @@ vários vídeos diferentes:
    da Bia" → `livres`). Se a regra do vídeo dá algo a cada pessoa (número, guardião), os colegas também recebem.
 9. **Sentar em banco de praça:** o usuário achou estranho (tanto no banco isométrico quanto no `banco-frente`). Até o
    asset ser refeito, **não pôr gente sentada em banco**: encontros e conversas na praça acontecem em pé.
+11. **Ninguém atravessa ninguém** (o usuário viu o pão passando por dentro do policial e gente correndo uma através da outra).
+   Cada um anda na **sua faixa de `z`** (diferença ≥ 0,4 entre faixas: ex. calçada dos prédios 4.2 / 4.6 / 5.0 / 5.25 — na frente dos
+   postes, que ficam em 5.35; praça -9.8 / -9.2 / -8.6 / -8.0 / -7.6), e na mesma faixa **quem sai na frente chega na frente**
+   (ninguém ultrapassa). Objeto grande correndo (o pão gigante) vai pela rua/asfalto ou pela faixa mais da frente. **Comida e
+   objetos que "fogem" pulam** (sequência de `pular` com `para`, como `saltos()` do `c12-comida.mjs`), não deslizam com `andar`.
+   O `npm run conferir` acusa `[atravessa]`.
 10. **Monstro/ameaça com presença:** tamanho grande (`"escala": 2`), entrada com luz piscando e câmera que mostre o rosto (sem
    zoom que corte a cabeça).
 

@@ -9,6 +9,7 @@
 //   4. personagem fora do cômodo (andando "na parede") ou da praça/rua
 //   5. sombras de pessoa demais na cena (máx. 4) e quem segue algo e para antes do fim da fala (vira para a câmera)
 //   6. gancho: a 1ª cena precisa ter algo se mexendo antes de 0,6 s e não ser de noite
+//   8. atravessa: pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo)
 //   7. retenção no meio: cena parada antes de 70% do vídeo; "Até que..." depois de 40% do vídeo
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
@@ -114,6 +115,28 @@ export async function conferir(nome) {
           const sp = estadoElemento(c, p, t);
           if (!sp.visivel || sp.yBase > 0.3) continue;
           if (sp.x > f.x0 && sp.x < f.x1 && (p.z ?? 0) > f.z0) { aviso(c.numero, 'em cima', `"${p.id}" está nos ${f.nome} (x ${f.x0}–${f.x1}) em ~${t.toFixed(1)} s — pare em outro x da calçada`); break; }
+        }
+      }
+    }
+  }
+
+  // ---------- 8. ATRAVESSA: duas coisas no chão ocupando o mesmo lugar ao mesmo tempo (o pão passando "por dentro" do policial,
+  // alguém correndo através de outro). Compara pessoas e objetos que se mexem, de 0,25 em 0,25 s.
+  for (const c of r.cenas) {
+    if ((c.vista !== 'diorama' && c.vista !== 'diagonal')) continue;
+    const mexe = new Set((c.acoes || []).filter((a) => ['andar', 'correr', 'mover'].includes(a.tipo) || (a.tipo === 'pular' && a.para != null)).map((a) => a.alvo));   // pulo no lugar não conta
+    const corpos = c.elementos.filter((e) => e.sprite && !e.sobre && !e.oculto !== undefined && tam(e.sprite) && (ehPessoa(e, tam) || mexe.has(e.id)) && !tam(e.sprite).iso);
+    const ja = new Set();
+    for (let t = 0; t < c.duracao; t += 0.25) {
+      const st = corpos.map((e) => ({ e, s: estadoElemento(c, e, t) })).filter(({ s }) => s.visivel && (s.yBase ?? 0) < 0.5);
+      for (let i = 0; i < st.length; i++) for (let j = i + 1; j < st.length; j++) {
+        const A = st[i], B = st[j];
+        if (!mexe.has(A.e.id) && !mexe.has(B.e.id)) continue;             // dois parados juntos = posição de propósito
+        const chave = A.e.id + '|' + B.e.id;
+        if (ja.has(chave)) continue;
+        const wa = tam(A.e.sprite).w * (A.e.escala || 1) / PPU, wb = tam(B.e.sprite).w * (B.e.escala || 1) / PPU;
+        if (Math.abs(A.s.x - B.s.x) < (wa + wb) * 0.3 && Math.abs((A.e.z ?? 0) - (B.e.z ?? 0)) < 0.35) {
+          ja.add(chave); aviso(c.numero, 'atravessa', `"${A.e.id}" e "${B.e.id}" ocupam o mesmo lugar em ~${t.toFixed(1)} s (um passa por dentro do outro) — use outra faixa de "z" ou outro caminho`);
         }
       }
     }
