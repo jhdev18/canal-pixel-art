@@ -147,6 +147,30 @@ justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena po
    guardar o monstro/a ameaça para a última cena.
 O `npm run conferir` acusa `[parada]`: cena sem nada se mexendo antes de 70% do vídeo, e o "Até que..." depois de 40%.
 
+**Como a história é contada (texto da narração, sombras × guardiões/números/caderno):**
+1. **Regra sobre algo que o público já conhece** (sombra): zero aprendizado, o cérebro aceita na hora. Guardião, número na
+   cabeça, caderno mágico e relógio que rejuvenesce são **conceitos novos** que o público precisa aprender antes de se importar.
+2. **A crença é um comportamento, não uma explicação:** "É só seguir a própria sombra" (o que as pessoas FAZEM). Nos outros, o
+   narrador explica: "A cidade acredita que...", "A cidade decidiu que o perigo era ela" — é contar em vez de mostrar.
+3. **Toda frase é uma ação** (chega, segue, vai, saíram andando, foram atrás, puxava, parou, seguiu, olhou, levavam, tremia).
+   Nos outros, muitas frases são estado ("tem um guardião", "vive acordado", "é a mais velha", "ninguém sabe o nome").
+4. **A anomalia é a própria regra agindo errado no protagonista** ("a sombra DELA vai para o lado contrário") — o mesmo objeto
+   que o público acabou de aprender, se comportando diferente. Gera a pergunta "por quê?" em uma frase.
+5. **O evento atinge a cidade inteira, não só o protagonista** ("TODAS as sombras saíram andando"; "os moradores foram atrás
+   delas"): a aposta é grande e se vê. Nos guardiões, o perigo é só da Bia, no quarto, de noite.
+6. **O protagonista ESCOLHE na hora H** ("A Bia parou na esquina. E, pela primeira vez, seguiu a própria sombra"): ela age e a
+   escolha dela a salva. Nos guardiões e nos números ela só acorda, vê e congela (passiva).
+7. **A virada repete a frase da crença ao contrário:** crença "É só seguir a própria sombra" → virada "As sombras não mostravam o
+   caminho. Elas levavam." O público sente a virada na hora, sem explicação.
+8. **Relógio da história andando:** "num domingo" → "na segunda". Começo, meio e fim claros, em poucos dias.
+9. **Detalhe sinistro dentro de algo feliz:** "foram atrás delas, **sorrindo**, um atrás do outro" — a frase mais assustadora do
+   vídeo não tem monstro nenhum.
+10. **A última frase devolve o objeto da regra ao protagonista, ainda vivo e com emoção:** "a sombra da Bia, colada nos pés
+    dela, ainda tremia". Ela também estava com medo: o defeito era carinho. Fecha o mistério e deixa um sentimento.
+**Ao escrever:** regra sobre algo do dia a dia; crença como ação ("é só..."); cada frase com verbo de ação; o evento atinge todo
+mundo; o protagonista toma uma decisão ativa antes da virada; a virada inverte a frase da crença; marcadores de tempo
+("num domingo... na segunda"); um detalhe feliz que fica sinistro; a última frase mostra o objeto da regra com emoção.
+
 **Comparação com os postados de baixa retenção** (`guardioes`, `numeros`, `relogio`, `caderno`, `estrelas` — mesma estrutura,
 mesma duração ~45–48 s, mesma virada "exceção sortuda" em vários): a estrutura NÃO explica a diferença. O que só o das sombras tinha:
 - **É de DIA do começo ao fim** (0 cenas de noite). Os outros tinham 4 a 11 cenas de noite: imagem escura no celular, pixel
