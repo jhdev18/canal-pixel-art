@@ -458,7 +458,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (os assets novos sugeridos já foram feitos como protótipo — leva 3 e espirro)
   e `PUBLICACAO.md`.
 - **Leva 3 (feita com as táticas de retenção do vídeo das sombras), aguardando narração/render:** curtos `nesse-mundo-gatos`
-  (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
+  (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes; monstro 3D `rastejante` na cena 11, pedido do usuário) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
   `cadeado`). Cada um tem `ROTEIRO.md` com o checklist de retenção cumprido e `PUBLICACAO.md`; `npm run conferir` sem avisos.
 - **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
   `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).

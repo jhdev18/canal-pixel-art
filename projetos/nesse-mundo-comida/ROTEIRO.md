@@ -10,7 +10,7 @@
 
 **Assets novos (protótipos, aguardando o "pode salvar"):** —
 
-**Checklist de retenção (táticas do vídeo das sombras):** gancho: o pão já pula e foge aos 0,3 s, de dia · 1ª frase com "você" · a comida se mexe em quase toda cena · a diferença da Bia se vê sem som (o lanche dela fica, o da Nina foge) · escalada (1 pão → 3 pães → o gigante → a cidade inteira correndo) · "Até que" aos ~33% · pico de movimento no meio · a Bia AGE (para e abre a mão) · virada inverte a crença · callback da piada ("quatro segundos" → "quatro horas") · nenhum balão.
+**Checklist de retenção (táticas do vídeo das sombras):** gancho: o pão já pula e foge aos 0,3 s, de dia · 1ª frase com "você" · a comida se mexe em quase toda cena · a diferença da Bia se vê sem som (o lanche dela fica, o da Nina foge) · escalada (1 pão → 3 pães → o gigante → a cidade inteira correndo) · "Até que" aos ~33% · pico de movimento no meio · a Bia AGE (para e abre a mão) · virada inverte a crença · callback da piada ("quatro segundos" → "quatro horas") · 1 balão a menos: nenhum balão.
 
 ---
 

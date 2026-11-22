@@ -6,7 +6,7 @@
 
 **Pista plantada:** cena 3 (os gatos fogem da Bia: ela não era para ser levada) e cena 2 ("devagarinho", que volta na cena 10 nos gatos sem pressa).
 
-**Assets usados:** protótipos `gato-chapeu` (os gatos, marcados como figurantes) e `rival` (Nina); resto aprovado. Tudo de dia (rua, escola, praça).
+**Assets usados:** protótipos `gato-chapeu` (os gatos, marcados como figurantes), `rival` (Nina) e o **monstro 3D `rastejante`** (`motor/monstros3d.js`, pedido do usuário: surge no clarão atrás dos gatos na cena 11 e engatinha até a Bia); resto aprovado. Tudo de dia (rua, escola, praça).
 
 **Assets novos (protótipos, aguardando o "pode salvar"):** —
 

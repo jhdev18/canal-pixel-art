@@ -1,6 +1,6 @@
 // NESSE MUNDO (curto, terror DE DIA) — "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-gatos
-// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu, rival (Nina).
+// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu, rival (Nina) e o monstro 3D rastejante (cena 11, pedido do usuário).
 {
  "titulo": "Nessa cidade, gato que segue você é sorte",
  "narrador": "Narrador",
@@ -1224,6 +1224,14 @@
      "x": -1.4000000000000004,
      "z": 4.6,
      "figurante": true
+    },
+    {
+     "id": "monstro",
+     "monstro": "rastejante",
+     "x": 2.4,
+     "z": 4.8,
+     "olhar": "bia",
+     "oculto": true
     }
    ],
    "acoes": [
@@ -1269,20 +1277,48 @@
      "inicio": 0.8
     },
     {
+     "tipo": "flash",
+     "intensidade": 0.9,
+     "inicio": 1.96,
+     "duracao": 0.13
+    },
+    {
      "tipo": "som",
-     "som": "revelar",
-     "inicio": 2.12
+     "som": "trovao",
+     "volume": 0.6,
+     "inicio": 1.96
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "monstro",
+     "som": "sombra-surge",
+     "inicio": 2.02,
+     "duracao": 0.66
     },
     {
      "tipo": "flash",
-     "intensidade": 0.4,
-     "inicio": 2.29
+     "intensidade": 0.9,
+     "inicio": 2.29,
+     "duracao": 0.13
     },
     {
      "tipo": "tremer",
-     "intensidade": 0.3,
-     "inicio": 2.29,
+     "intensidade": 0.4,
+     "inicio": 2.36,
      "duracao": 0.4
+    },
+    {
+     "tipo": "andar",
+     "alvo": "monstro",
+     "para": 6.2,
+     "inicio": 2.49,
+     "duracao": 1.09
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.42
     },
     {
      "tipo": "expressao",
