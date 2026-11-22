@@ -1,6 +1,6 @@
 // NESSE MUNDO (curto, terror DE DIA) — "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-gatos
-// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu, rival (Nina) e o monstro 3D rastejante (cena 11, pedido do usuário).
+// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu (com relances da cara monstruosa), gato-monstro (cenas 10–12) e rival (Nina).
 {
  "titulo": "Nessa cidade, gato que segue você é sorte",
  "narrador": "Narrador",
@@ -65,6 +65,18 @@
      "tipo": "som",
      "som": "miau",
      "inicio": 3.67
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g1",
+     "estado": "monstro",
+     "inicio": 4.42
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g1",
+     "estado": "parado",
+     "inicio": 4.7
     },
     {
      "tipo": "expressao",
@@ -190,6 +202,18 @@
      "para": 1.4,
      "inicio": 0.3,
      "duracao": 1.55
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g4",
+     "estado": "monstro",
+     "inicio": 1.33
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g4",
+     "estado": "parado",
+     "inicio": 1.57
     },
     {
      "tipo": "emocao",
@@ -760,6 +784,18 @@
      "inicio": 2.13
     },
     {
+     "tipo": "trocar",
+     "alvo": "p4",
+     "estado": "monstro",
+     "inicio": 2.68
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p4",
+     "estado": "parado",
+     "inicio": 2.87
+    },
+    {
      "tipo": "expressao",
      "alvo": "prefeito",
      "rosto": "rindo",
@@ -897,6 +933,30 @@
      "intensidade": 0.25,
      "inicio": 3,
      "duracao": 0.65
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p0",
+     "estado": "monstro",
+     "inicio": 3
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p0",
+     "estado": "parado",
+     "inicio": 3.35
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p5",
+     "estado": "monstro",
+     "inicio": 3.09
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p5",
+     "estado": "parado",
+     "inicio": 3.44
     },
     {
      "tipo": "expressao",
@@ -1043,6 +1103,71 @@
      "para": 7.8,
      "inicio": 1.76,
      "duracao": 2.19
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p0",
+     "estado": "monstro",
+     "inicio": 3.06
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p1",
+     "estado": "monstro",
+     "inicio": 3.12
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p2",
+     "estado": "monstro",
+     "inicio": 3.18
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p3",
+     "estado": "monstro",
+     "inicio": 3.23
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p4",
+     "estado": "monstro",
+     "inicio": 3.29
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p5",
+     "estado": "monstro",
+     "inicio": 3.35
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p6",
+     "estado": "monstro",
+     "inicio": 3.41
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p7",
+     "estado": "monstro",
+     "inicio": 3.46
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "p8",
+     "estado": "monstro",
+     "inicio": 3.52
+    },
+    {
+     "tipo": "som",
+     "som": "sombra",
+     "inicio": 3.06
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 3.14,
+     "duracao": 0.38
     }
    ],
    "vertical": {
@@ -1076,35 +1201,35 @@
     },
     {
      "id": "r0",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -3.6,
      "z": 4.25,
      "figurante": true
     },
     {
      "id": "r1",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -4.7,
      "z": 4.75,
      "figurante": true
     },
     {
      "id": "r2",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -5.800000000000001,
      "z": 4.25,
      "figurante": true
     },
     {
      "id": "r3",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -6.9,
      "z": 4.75,
      "figurante": true
     },
     {
      "id": "r4",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -8,
      "z": 4.25,
      "figurante": true
@@ -1192,46 +1317,38 @@
     },
     {
      "id": "r0",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": 3,
      "z": 4.25,
      "figurante": true
     },
     {
      "id": "r1",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": 1.9,
      "z": 4.75,
      "figurante": true
     },
     {
      "id": "r2",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": 0.7999999999999998,
      "z": 4.25,
      "figurante": true
     },
     {
      "id": "r3",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -0.30000000000000027,
      "z": 4.75,
      "figurante": true
     },
     {
      "id": "r4",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -1.4000000000000004,
      "z": 4.25,
      "figurante": true
-    },
-    {
-     "id": "monstro",
-     "monstro": "rastejante",
-     "x": 2.4,
-     "z": 4.8,
-     "olhar": "bia",
-     "oculto": true
     }
    ],
    "acoes": [
@@ -1277,42 +1394,20 @@
      "inicio": 0.8
     },
     {
-     "tipo": "flash",
-     "intensidade": 0.9,
-     "inicio": 1.96,
-     "duracao": 0.13
-    },
-    {
      "tipo": "som",
-     "som": "trovao",
-     "volume": 0.6,
-     "inicio": 1.96
-    },
-    {
-     "tipo": "aparecer",
-     "alvo": "monstro",
-     "som": "sombra-surge",
-     "inicio": 2.02,
-     "duracao": 0.66
+     "som": "revelar",
+     "inicio": 2.12
     },
     {
      "tipo": "flash",
-     "intensidade": 0.9,
-     "inicio": 2.29,
-     "duracao": 0.13
+     "intensidade": 0.4,
+     "inicio": 2.29
     },
     {
      "tipo": "tremer",
-     "intensidade": 0.4,
-     "inicio": 2.36,
+     "intensidade": 0.3,
+     "inicio": 2.29,
      "duracao": 0.4
-    },
-    {
-     "tipo": "andar",
-     "alvo": "monstro",
-     "para": 6.2,
-     "inicio": 2.49,
-     "duracao": 1.09
     },
     {
      "tipo": "emocao",
@@ -1360,7 +1455,7 @@
     },
     {
      "id": "ultimo",
-     "personagem": "gato-chapeu",
+     "personagem": "gato-monstro",
      "x": -4,
      "z": 0.6,
      "figurante": true

@@ -160,6 +160,8 @@ sombras andando (`sombraPessoa`) não fazem barulho. Para calar alguém: `"som":
 
 **Caixotes do mercado** (desenho fixo da rua, não é elemento): x ≈ 13.3–14.4 na calçada do mercado. Ninguém para em x 13–14.6 ali.
 
+**Gatos:** `gato-chapeu` (fofo; estado `monstro` mostra olhos vermelhos e presas — relance de terror: `trocar` para `monstro` e de volta para `parado` em ~0,3 s, sem som) e `gato-monstro` (sempre monstruoso, também andando). Usados no `nesse-mundo-gatos`.
+
 ## Erros comuns (ver "Regras de cena" no `CLAUDE.md`)
 Rode `npm run conferir -- <projeto>` antes de entregar: acusa gente coberta por árvore/objeto, gente que falta num `"momento"` (mesmo instante da
 história; `"saiDeCena"` libera quem sai pela história), o mesmo sprite fazendo dois personagens, gente fora do cômodo e quem para de andar antes do fim da fala.

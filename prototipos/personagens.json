@@ -11,6 +11,7 @@
   "menino-pijama": {"sprite": "menino-pijama", "voz": 1.45},
   "menino-coroa": {"sprite": "menino-coroa", "voz": 1.3},   // PROTÓTIPO: menino com coroa e capa
   "gato-chapeu": {"sprite": "gato-chapeu", "voz": 1.8},
+  "gato-monstro": {"sprite": "gato-monstro", "voz": 0.7},
 
   // ---- guardiões (motor/assets/guardioes.js)
   "guardiao-azul": { "sprite": "guardiao-azul", "voz": 1 },

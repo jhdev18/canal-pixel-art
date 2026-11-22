@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (187)
+## Sprites (188)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -213,7 +213,8 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
 | `menino-coroa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
 | `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
-| `gato-chapeu` | 🧪 protótipo | parado | 20×16 |
+| `gato-chapeu` | 🧪 protótipo | parado, monstro | 20×16 |
+| `gato-monstro` | 🧪 protótipo | parado, monstro | 20×16 |
 | `bilhete` | 🧪 protótipo | parado, brilhando | 9×7 |
 | `carta` | 🧪 protótipo | parado, fechada, aberta | 11×6 |
 | `mapa` | 🧪 protótipo | parado | 12×9 |
@@ -286,6 +287,7 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `menino-pijama` | 🧪 protótipo | `menino-pijama` | 1.45 |
 | `menino-coroa` | 🧪 protótipo | `menino-coroa` | 1.3 |
 | `gato-chapeu` | 🧪 protótipo | `gato-chapeu` | 1.8 |
+| `gato-monstro` | 🧪 protótipo | `gato-monstro` | 0.7 |
 | `guardiao-azul` | 🧪 protótipo | `guardiao-azul` | 1 |
 | `guardia-verde` | 🧪 protótipo | `guardia-verde` | 1.25 |
 | `guardiao-chefe` | 🧪 protótipo | `guardiao-chefe` | 0.75 |

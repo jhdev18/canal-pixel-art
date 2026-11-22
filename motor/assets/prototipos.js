@@ -40,7 +40,17 @@ export const NOVOS_MORADORES = {
 };
 
 // ---------------------------------------------------------------- gato de rua com chapéu (de lado, anda)
-function gato(f, { andando = false, piscar = false } = {}) {
+// monstro (PROTÓTIPO, vídeo dos gatos): olhos vermelhos que brilham + boca larga de dentes; brilho = camada que acende
+function gatoMonstroCara(p, b) {
+  for (const [x, y, c] of [[15, 6, '#ff5a3a'], [15, 7, '#c80a0a'], [17, 6, '#ff5a3a'], [17, 7, '#c80a0a'], [16, 6, '#1a0a0a'], [16, 7, '#1a0a0a'], [18, 7, '#1a0a0a']]) { p.set(x, y, c); }
+  for (const [x, y] of [[15, 6], [15, 7], [17, 6], [17, 7]]) b.set(x, y, '#ff3a2a');
+  for (let x = 14; x <= 18; x++) { p.set(x, 9, '#1a0a0a'); }                            // boca aberta, dentro do rosto
+  for (let x = 15; x <= 17; x++) p.set(x, 10, '#3a0a0a');
+  for (const x of [14, 16, 18]) p.set(x, 9, '#f4f0e8');                                  // presas de cima
+  for (const x of [15, 17]) p.set(x, 10, '#f4f0e8');                                     // presas de baixo
+  p.set(18, 8, '#1a0a0a');
+}
+function gato(f, { andando = false, piscar = false, monstro = false, brilho = null } = {}) {
   const p = new Pix(20, 16), pel = ['#4a4a5a', '#5a5a6e', '#7a7a90'], ch = '#2a2a36';
   p.elipse(8, 10.5, 6, 3.2, (x, y, dx, dy) => Pix.tom([pel[0], pel[1], pel[2]], 0.65 - dy * 0.5, x, y));   // corpo
   p.elipse(15, 7.5, 3.4, 3, (x, y, dx, dy) => Pix.tom([pel[0], pel[1], pel[2]], 0.7 - dy * 0.5, x, y));   // cabeça
@@ -52,9 +62,17 @@ function gato(f, { andando = false, piscar = false } = {}) {
   // chapéu-coco
   p.ret(13, 1, 4, 3, ch); p.ret(12, 3, 6, 1, ch); p.set(14, 2, '#c83c4c'); p.set(15, 2, '#c83c4c');
   p.contorno(K);
-  if (piscar) { p.set(16, 7, '#3a3a48'); p.set(17, 7, '#3a3a48'); } else { p.set(16, 7, '#f8e040'); p.set(17, 7, '#3a3a10'); }
-  p.set(18, 8, '#f0a0b0');
+  if (monstro) gatoMonstroCara(p, brilho || new Pix(20, 16));
+  else { if (piscar) { p.set(16, 7, '#3a3a48'); p.set(17, 7, '#3a3a48'); } else { p.set(16, 7, '#f8e040'); p.set(17, 7, '#3a3a10'); } p.set(18, 8, '#f0a0b0'); }
   return p;
+}
+// sprite do gato: normal (estado "monstro" = a cara monstruosa por um instante) ou todo monstruoso (gato-monstro)
+function spriteGato(todoMonstro = false) {
+  const quadros = [], brilho = [];
+  const add = (f, op) => { const b = new Pix(20, 16); quadros.push(gato(f, { ...op, monstro: op.monstro || todoMonstro, brilho: b })); brilho.push(b); return quadros.length - 1; };
+  const par = [0, 1, 2, 3].map((f) => add(f, {})), pisc = add(0, { piscar: !todoMonstro }), and = [0, 1, 2, 3].map((f) => add(f, { andando: true }));
+  const mon = [0, 1, 2, 3].map((f) => add(f, { monstro: true }));
+  return { quadros, brilho, anims: { parado: { q: [...par, par[0], pisc], fps: 4 }, andando: { q: and, fps: 8 }, correndo: { q: and, fps: 14 }, monstro: { q: mon, fps: 4 } }, sombra: true, personagem: true };
 }
 
 // ---------------------------------------------------------------- objetos pequenos (de pé ou no chão)
@@ -242,10 +260,8 @@ const estados = (n) => Object.fromEntries(n.map((x) => [x, { q: [0], fps: 1 }]))
 
 registrarSprites({
   ...Object.fromEntries(Object.entries(NOVOS_MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])),
-  'gato-chapeu': () => {
-    const q = [0, 1, 2, 3].map((f) => gato(f)), a = [0, 1, 2, 3].map((f) => gato(f, { andando: true }));
-    return { quadros: [...q, gato(0, { piscar: true }), ...a], anims: { parado: { q: [0, 1, 2, 3, 0, 4], fps: 4 }, andando: { q: [5, 6, 7, 8], fps: 8 }, correndo: { q: [5, 6, 7, 8], fps: 14 } }, sombra: true, personagem: true };
-  },
+  'gato-chapeu': () => spriteGato(false),     // estados: parado / monstro (cara monstruosa — "trocar" por um instante)
+  'gato-monstro': () => spriteGato(true),     // PROTÓTIPO: o mesmo gato, com a cara monstruosa sempre (andando também)
   bilhete: () => { const p = objeto(...O.bilhete); const b = new Pix(p.w, p.h); b.d.set(p.d); return { quadros: [p, p], brilho: [new Pix(p.w, p.h), b], anims: { parado: { q: [0] }, brilhando: { q: [1], fps: 1 } }, sombra: true, flutua: false }; },
   carta: () => ({ quadros: [objeto(...O['carta-fechada']), objeto(...O['carta-aberta'])], anims: { parado: { q: [0] }, fechada: { q: [0] }, aberta: { q: [1] } }, sombra: true }),
   mapa: () => ({ quadros: [objeto(...O.mapa)], anims: { parado: { q: [0] } }, sombra: true }),
