@@ -122,6 +122,13 @@ O usuário relatou que o vídeo das sombras foi o único com alta retenção. Co
 9. **Reação antes da virada** ("olhou para trás e congelou") e **última imagem com o elemento da regra ainda vivo** ("a sombra
    colada nos pés dela, ainda tremia"): termina inquietante, sem explicar, com o objeto da regra na tela — dá vontade de rever.
 10. **Lugares conhecidos e poucos** (rua, escola, praça): nada de cenário novo para o público decifrar.
+**Dados reais do canal (YouTube Studio, "Como os visitantes interagiram"):** sombras → **68,5% continuaram a ver**, duração média
+0:43 de ~0:50 (gente revendo); guardiões → **só 34,4% continuaram** (65,6% passaram o vídeo). A perda é no **1º segundo**:
+- **Sombras:** aos 0,3 s a sombra já está andando na frente do seu Tonho (a regra acontecendo na tela).
+- **Guardiões:** abre com duas pessoas paradas e guardiões pequenos dormindo; a 1ª coisa só acontece aos 2,6 s.
+→ **Regra do gancho:** na 1ª cena, o elemento da regra **se mexe antes de 0,6 s**, grande e visível, **de dia**. Nada de
+abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run conferir` acusa `[gancho]`.
+
 **Comparação com os postados de baixa retenção** (`guardioes`, `numeros`, `relogio`, `caderno`, `estrelas` — mesma estrutura,
 mesma duração ~45–48 s, mesma virada "exceção sortuda" em vários): a estrutura NÃO explica a diferença. O que só o das sombras tinha:
 - **É de DIA do começo ao fim** (0 cenas de noite). Os outros tinham 4 a 11 cenas de noite: imagem escura no celular, pixel
@@ -274,7 +281,8 @@ renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um
 **O que o `npm run conferir` acusa** (cada aviso diz a cena, quem e o que fazer): `[coberto]` atrás de objeto alto ou poste fixo
 da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barraca) ou dos caixotes do mercado; `[continuidade]`
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
-`[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala. **Ao criar um objeto novo desenhado
+`[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
+tem nada se mexendo antes de 0,6 s ou é de noite. **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em

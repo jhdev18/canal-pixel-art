@@ -8,6 +8,7 @@
 //   3. o mesmo sprite fazendo dois personagens diferentes no mesmo vídeo ("figurante": true libera os de fundo)
 //   4. personagem fora do cômodo (andando "na parede") ou da praça/rua
 //   5. sombras de pessoa demais na cena (máx. 4) e quem segue algo e para antes do fim da fala (vira para a câmera)
+//   6. gancho: a 1ª cena precisa ter algo se mexendo antes de 0,6 s e não ser de noite
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
@@ -115,6 +116,15 @@ export async function conferir(nome) {
         }
       }
     }
+  }
+
+  // ---------- 6. GANCHO: o 1º segundo decide se o público passa o vídeo (dados do canal: sombras abriu com a sombra andando
+  // aos 0,3 s → 68,5% continuaram; guardiões abriu parado, 1ª ação aos 2,6 s → só 34,4% continuaram)
+  {
+    const c = r.cenas[0], MEXE = ['andar', 'correr', 'mover', 'pular', 'trocar', 'aparecer', 'sombra', 'tremer', 'flash', 'magia', 'explosao', 'fogos', 'espirrar', 'desaparecer'];
+    const prim = (c?.acoes || []).filter((a) => MEXE.includes(a.tipo)).sort((a, b) => a.inicio - b.inicio)[0];
+    if (c && (!prim || prim.inicio > 0.6)) aviso(1, 'gancho', `a 1ª cena não tem nada se mexendo até ${prim ? prim.inicio.toFixed(1) + ' s' : 'o fim'} — o elemento da regra precisa se mexer na tela antes de 0,6 s (o público decide se passa o vídeo no 1º segundo)`);
+    if (c && /noite/.test(c.cenarioBruto || c.cenario || '')) aviso(1, 'gancho', 'a 1ª cena é de noite — abrir de dia (imagem escura no celular perde o público no 1º segundo)');
   }
 
   // ---------- 2. continuidade: mesmo lugar E mesmo enquadramento (câmera perto) em cenas seguidas

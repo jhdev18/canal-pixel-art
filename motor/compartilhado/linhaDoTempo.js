@@ -105,7 +105,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;
     cena.inicio = inicio;
-    cena.transicao = cena.transicao || (indice === 0 ? 'fade' : 'dither');
+    cena.transicao = cena.transicao || (indice === 0 ? 'corte' : 'dither')   // 1ª cena começa já com imagem (sem fade do preto: o 1º segundo decide se o público fica);
     cena.transicaoDuracao = cena.transicaoDuracao ?? roteiro.transicaoDuracao ?? TRANSICAO_DURACAO;
     inicio += cena.duracao;
     return cena;

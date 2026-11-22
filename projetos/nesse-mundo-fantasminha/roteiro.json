@@ -26,11 +26,10 @@
     {
      "id": "lencol",
      "personagem": "fantasma-lencol",
-     "x": 1.6,
+     "x": 4.2,
      "z": -8.4,
      "y": 0.4,
-     "virado": "esquerda",
-     "oculto": true
+     "virado": "esquerda"
     },
     {
      "id": "policial",
@@ -41,34 +40,43 @@
    ],
    "acoes": [
     {
-     "tipo": "aparecer",
+     "tipo": "mover",
      "alvo": "lencol",
+     "para": [
+      1.6,
+      0.4
+     ],
+     "inicio": 0.3,
+     "duracao": 1.05
+    },
+    {
+     "tipo": "som",
      "som": "fantasma",
-     "inicio": 1.62
+     "inicio": 0.3
     },
     {
      "tipo": "trocar",
      "alvo": "lencol",
      "estado": "assustar",
-     "inicio": 2.67
+     "inicio": 1.46
     },
     {
      "tipo": "emocao",
      "alvo": "policial",
      "icone": "!",
-     "inicio": 2.93
+     "inicio": 1.72
     },
     {
      "tipo": "tremer",
      "intensidade": 0.4,
-     "inicio": 3.2,
+     "inicio": 1.88,
      "duracao": 0.63
     },
     {
      "tipo": "falar",
      "alvo": "policial",
      "texto": "* AAAH!",
-     "inicio": 3.46
+     "inicio": 2.14
     }
    ],
    "vertical": {

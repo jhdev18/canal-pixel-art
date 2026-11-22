@@ -29,23 +29,30 @@
     {
      "id": "ccaixa",
      "personagem": "cachorro-caramelo",
-     "x": 17,
+     "x": 19.4,
      "z": 5.4,
      "virado": "esquerda"
     }
    ],
    "acoes": [
     {
+     "tipo": "correr",
+     "alvo": "ccaixa",
+     "para": 17,
+     "inicio": 0.3,
+     "duracao": 0.84
+    },
+    {
      "tipo": "falar",
      "alvo": "ccaixa",
      "texto": "* Que fome de pastel.",
-     "inicio": 2.17
+     "inicio": 1.24
     },
     {
      "tipo": "emocao",
      "alvo": "caixa",
      "icone": "!",
-     "inicio": 3.78
+     "inicio": 3.58
     },
     {
      "tipo": "expressao",
