@@ -122,7 +122,20 @@ O usuário relatou que o vídeo das sombras foi o único com alta retenção. Co
 9. **Reação antes da virada** ("olhou para trás e congelou") e **última imagem com o elemento da regra ainda vivo** ("a sombra
    colada nos pés dela, ainda tremia"): termina inquietante, sem explicar, com o objeto da regra na tela — dá vontade de rever.
 10. **Lugares conhecidos e poucos** (rua, escola, praça): nada de cenário novo para o público decifrar.
-**Checklist ao escrever um "Nesse Mundo" novo:** a 1ª frase fala com "você" e usa algo do dia a dia? A regra aparece na tela
+**Comparação com os postados de baixa retenção** (`guardioes`, `numeros`, `relogio`, `caderno`, `estrelas` — mesma estrutura,
+mesma duração ~45–48 s, mesma virada "exceção sortuda" em vários): a estrutura NÃO explica a diferença. O que só o das sombras tinha:
+- **É de DIA do começo ao fim** (0 cenas de noite). Os outros tinham 4 a 11 cenas de noite: imagem escura no celular, pixel
+  art apagado, menos coisa para ver. → **Preferir dia**; noite no máximo em 1–2 cenas no fim. O terror vem da situação
+  (sorrisos indo embora, praça vazia em plena luz), não do escuro.
+- **O elemento da regra SE MEXE sozinho** (sombras andando). Guardião dormindo, número parado, relógio na torre, caderno na
+  mesa e estrela no céu ficam parados. → A regra precisa ser algo que **anda, cresce, puxa ou muda na tela**.
+- **Muito mais movimento:** 8 de 12 cenas (os outros 2 a 4).
+- **Só ele falou com "você"** na 1ª frase.
+- **A regra se entende numa imagem**, sem explicação extra: os números precisaram de 3 frases (número, crença, prefeito);
+  as sombras, de uma.
+
+**Checklist ao escrever um "Nesse Mundo" novo:** é de dia (noite só em 1–2 cenas no fim)? O elemento da regra se mexe sozinho
+na tela? A 1ª frase fala com "você" e usa algo do dia a dia? A regra se entende numa imagem? A regra aparece na tela
 em ≥ 80% das cenas? ≥ 2/3 das cenas têm movimento? A diferença do protagonista se entende sem som? O elemento da regra
 aumenta em quantidade até a virada? Frases de 8–13 palavras, 2 curtíssimas na virada? No máximo 1–2 balões? A última imagem
 mostra o elemento da regra? Anotar no `ROTEIRO.md` como o vídeo cumpre cada item.
@@ -145,7 +158,8 @@ vídeos seguidos.
 - Começa **normal e até fofo** (a cidade gosta da regra) e vai esfriando: frases mais curtas, menos balões, silêncio.
 - **Reação antes da virada** (alguém congela, fica sério) e **última frase concreta e gelada** — termina seco, sem explicar demais.
 - Pode virar contra o protagonista (consequência inesperada) ou poupá-lo (exceção sortuda).
-- Na tela: noite (`-noite`), **sem filtro de cor** (`paleta` fria/noir/sépia/quente: o usuário pediu para tirar de todos os
+- Na tela: **de dia** (ver "Táticas de retenção": os terrores noturnos tiveram retenção baixa; noite só em 1–2 cenas no fim),
+  **sem filtro de cor** (`paleta` fria/noir/sépia/quente: o usuário pediu para tirar de todos os
   vídeos por enquanto; só usar se ele pedir), `desaparecer`, sombras, `flash` + `tremer` na palavra forte,
   sons `suspense`/`revelar`/`sombra`/`trovao`; nada de sustos com sangue, morte explícita ou violência mostrada.
 
