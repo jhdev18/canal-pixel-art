@@ -1,6 +1,6 @@
 // NESSE MUNDO (curto, terror DE DIA) — "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira."
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-gatos
-// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu (com relances da cara monstruosa), gato-monstro (cenas 10–12) e rival (Nina).
+// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu (relances da cara monstruosa: estados monstro/pior), gato-monstro (cenas 10–12), ação sombra e rival (Nina).
 {
  "titulo": "Nessa cidade, gato que segue você é sorte",
  "narrador": "Narrador",
@@ -50,6 +50,18 @@
      "duracao": 2.81
     },
     {
+     "tipo": "trocar",
+     "alvo": "g1",
+     "estado": "monstro",
+     "inicio": 1.7
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g1",
+     "estado": "parado",
+     "inicio": 2.92
+    },
+    {
      "tipo": "virar",
      "alvo": "tonho",
      "direcao": "esquerda",
@@ -65,18 +77,6 @@
      "tipo": "som",
      "som": "miau",
      "inicio": 3.67
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "g1",
-     "estado": "monstro",
-     "inicio": 4.42
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "g1",
-     "estado": "parado",
-     "inicio": 4.7
     },
     {
      "tipo": "expressao",
@@ -139,28 +139,52 @@
      "alvo": "prof",
      "para": 10.6,
      "inicio": 0.37,
-     "duracao": 3.56
+     "duracao": 2.96
     },
     {
      "tipo": "andar",
      "alvo": "g2",
      "para": 9.6,
      "inicio": 0.37,
-     "duracao": 3.56
+     "duracao": 2.96
     },
     {
      "tipo": "andar",
      "alvo": "caixa",
      "para": 12.4,
      "inicio": 0.49,
-     "duracao": 3.45
+     "duracao": 2.85
     },
     {
      "tipo": "andar",
      "alvo": "g3",
      "para": 11.4,
      "inicio": 0.49,
-     "duracao": 3.45
+     "duracao": 2.85
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g2",
+     "estado": "monstro",
+     "inicio": 1.78
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g2",
+     "estado": "parado",
+     "inicio": 2.89
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g3",
+     "estado": "monstro",
+     "inicio": 1.93
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "g3",
+     "estado": "parado",
+     "inicio": 2.97
     }
    ],
    "vertical": {
@@ -1297,6 +1321,9 @@
   {
    "narracaoTexto": "Os gatos nunca trouxeram sorte. Eles vinham buscar.",
    "cenario": "rua-comercial",
+   "saiDeCena": [
+    "prefeito"
+   ],
    "camera": {
     "x": 9,
     "z": 2.2,
@@ -1354,60 +1381,108 @@
    "acoes": [
     {
      "tipo": "correr",
+     "alvo": "bia",
+     "para": 12.4,
+     "inicio": 0.3,
+     "duracao": 0.83
+    },
+    {
+     "tipo": "correr",
      "alvo": "r0",
-     "para": 11.4,
-     "inicio": 0.47,
-     "duracao": 1.82
+     "para": 9.2,
+     "inicio": 0.37,
+     "duracao": 0.99
     },
     {
      "tipo": "correr",
      "alvo": "r1",
-     "para": 10.6,
-     "inicio": 0.6,
-     "duracao": 1.82
+     "para": 8.4,
+     "inicio": 0.47,
+     "duracao": 0.99
     },
     {
      "tipo": "correr",
      "alvo": "r2",
-     "para": 9.6,
-     "inicio": 0.73,
-     "duracao": 1.82
+     "para": 7.6,
+     "inicio": 0.57,
+     "duracao": 0.99
     },
     {
      "tipo": "correr",
      "alvo": "r3",
-     "para": 8,
-     "inicio": 0.86,
-     "duracao": 1.82
+     "para": 6.4,
+     "inicio": 0.66,
+     "duracao": 0.99
     },
     {
      "tipo": "correr",
      "alvo": "r4",
-     "para": 6.6,
-     "inicio": 1,
-     "duracao": 1.82
+     "para": 5.8,
+     "inicio": 0.76,
+     "duracao": 0.99
     },
     {
      "tipo": "emocao",
      "alvo": "prefeito",
-     "icone": "?",
-     "inicio": 0.8
+     "icone": "!",
+     "inicio": 0.63
+    },
+    {
+     "tipo": "sombra",
+     "origem": [
+      7.4,
+      4.8
+     ],
+     "raio": 2.6,
+     "inicio": 1.69,
+     "duracao": 0.99
     },
     {
      "tipo": "som",
-     "som": "revelar",
-     "inicio": 2.12
-    },
-    {
-     "tipo": "flash",
-     "intensidade": 0.4,
-     "inicio": 2.29
+     "som": "sombra",
+     "inicio": 1.69
     },
     {
      "tipo": "tremer",
-     "intensidade": 0.3,
-     "inicio": 2.29,
+     "intensidade": 0.35,
+     "inicio": 1.96,
      "duracao": 0.4
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "prefeito",
+     "inicio": 2.36,
+     "duracao": 0.66
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "r0",
+     "inicio": 2.42,
+     "duracao": 0.66
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "r1",
+     "inicio": 2.49,
+     "duracao": 0.66
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "r2",
+     "inicio": 2.55,
+     "duracao": 0.66
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "r3",
+     "inicio": 2.62,
+     "duracao": 0.66
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "r4",
+     "inicio": 2.69,
+     "duracao": 0.66
     },
     {
      "tipo": "emocao",
@@ -1418,16 +1493,16 @@
     {
      "tipo": "expressao",
      "alvo": "prefeito",
-     "rosto": "surpreso",
-     "inicio": 0.8,
-     "duracao": 2.81
+     "rosto": "assustado",
+     "inicio": 0.7,
+     "duracao": 2.92
     },
     {
      "tipo": "expressao",
      "alvo": "bia",
      "rosto": "assustado",
-     "inicio": 2.29,
-     "duracao": 1.32
+     "inicio": 1.29,
+     "duracao": 2.32
     }
    ],
    "vertical": {
@@ -1480,12 +1555,35 @@
      "tipo": "virar",
      "alvo": "bia",
      "direcao": "esquerda",
+     "inicio": 3.34
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "ultimo",
+     "estado": "pior",
      "inicio": 3.42
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 3.42,
+     "duracao": 0.16
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 3.42
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.35,
+     "inicio": 3.5,
+     "duracao": 0.47
     },
     {
      "tipo": "som",
      "som": "miau",
-     "taxa": 0.8,
+     "taxa": 0.6,
      "inicio": 3.62
     },
     {

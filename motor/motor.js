@@ -334,7 +334,8 @@ class Motor {
       // A caminhada nova (passada sincronizada) só vale nas vistas que pedem (avenida);
       // nas outras o sprite usa a caminhada clássica, se tiver.
       const conjunto = !vista.caminhadaSincronizada && e.sprite.animsClassicas?.[st.anim] ? e.sprite.animsClassicas : e.sprite.anims;
-      const anim = conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
+      // estado + caminhada: se o sprite tiver "<estado>-andando" (ex.: gato com a cara de monstro andando), usa
+      const anim = (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);

@@ -226,7 +226,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   if (espirro && anim === 'parado' && !pose) anim = espirro;
   else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
   if (dono && !dono.visivel) visivel = false;
-  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, animInicio, alpha, escala, vermelho, alturaPulo: offY };
+  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY };
 }
 
 export function elementoPorId(cena, id) {

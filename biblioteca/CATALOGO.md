@@ -213,8 +213,8 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
 | `menino-coroa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
 | `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
-| `gato-chapeu` | 🧪 protótipo | parado, monstro | 20×16 |
-| `gato-monstro` | 🧪 protótipo | parado, monstro | 20×16 |
+| `gato-chapeu` | 🧪 protótipo | parado, monstro, monstro-andando, monstro-correndo, pior, pior-andando, pior-correndo | 20×16 |
+| `gato-monstro` | 🧪 protótipo | parado, monstro, monstro-andando, monstro-correndo, pior, pior-andando, pior-correndo | 20×16 |
 | `bilhete` | 🧪 protótipo | parado, brilhando | 9×7 |
 | `carta` | 🧪 protótipo | parado, fechada, aberta | 11×6 |
 | `mapa` | 🧪 protótipo | parado | 12×9 |

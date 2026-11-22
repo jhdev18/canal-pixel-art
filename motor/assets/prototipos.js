@@ -50,7 +50,15 @@ function gatoMonstroCara(p, b) {
   for (const x of [15, 17]) p.set(x, 10, '#f4f0e8');                                     // presas de baixo
   p.set(18, 8, '#1a0a0a');
 }
-function gato(f, { andando = false, piscar = false, monstro = false, brilho = null } = {}) {
+function gatoPiorCara(p, b) {
+  for (const [x, y] of [[14, 5], [15, 5], [14, 6], [15, 6], [17, 5], [18, 5], [17, 6], [18, 6], [16, 4]]) { p.set(x, y, '#ff2a1a'); b.set(x, y, '#ff2a1a'); }
+  p.set(15, 6, '#1a0000'); p.set(17, 6, '#1a0000'); p.set(16, 4, '#fff0a0'); b.set(16, 4, '#fff0a0');      // pupilas e o 3º olho
+  for (let x = 13; x <= 19; x++) { p.set(x, 8, '#1a0a0a'); p.set(x, 9, '#5a0a0a'); p.set(x, 10, '#1a0a0a'); }   // bocarra
+  for (const x of [13, 15, 17, 19]) p.set(x, 8, '#f4f0e8');                                                     // presas de cima
+  for (const x of [14, 16, 18]) p.set(x, 10, '#f4f0e8');                                                        // presas de baixo
+  for (const [x, y] of [[15, 11], [15, 12], [18, 11]]) p.set(x, y, '#3a0a0a');                                  // baba escura
+}
+function gato(f, { andando = false, piscar = false, monstro = false, pior = false, brilho = null } = {}) {
   const p = new Pix(20, 16), pel = ['#4a4a5a', '#5a5a6e', '#7a7a90'], ch = '#2a2a36';
   p.elipse(8, 10.5, 6, 3.2, (x, y, dx, dy) => Pix.tom([pel[0], pel[1], pel[2]], 0.65 - dy * 0.5, x, y));   // corpo
   p.elipse(15, 7.5, 3.4, 3, (x, y, dx, dy) => Pix.tom([pel[0], pel[1], pel[2]], 0.7 - dy * 0.5, x, y));   // cabeça
@@ -62,7 +70,8 @@ function gato(f, { andando = false, piscar = false, monstro = false, brilho = nu
   // chapéu-coco
   p.ret(13, 1, 4, 3, ch); p.ret(12, 3, 6, 1, ch); p.set(14, 2, '#c83c4c'); p.set(15, 2, '#c83c4c');
   p.contorno(K);
-  if (monstro) gatoMonstroCara(p, brilho || new Pix(20, 16));
+  if (pior) gatoPiorCara(p, brilho || new Pix(20, 16));
+  else if (monstro) gatoMonstroCara(p, brilho || new Pix(20, 16));
   else { if (piscar) { p.set(16, 7, '#3a3a48'); p.set(17, 7, '#3a3a48'); } else { p.set(16, 7, '#f8e040'); p.set(17, 7, '#3a3a10'); } p.set(18, 8, '#f0a0b0'); }
   return p;
 }
@@ -71,8 +80,11 @@ function spriteGato(todoMonstro = false) {
   const quadros = [], brilho = [];
   const add = (f, op) => { const b = new Pix(20, 16); quadros.push(gato(f, { ...op, monstro: op.monstro || todoMonstro, brilho: b })); brilho.push(b); return quadros.length - 1; };
   const par = [0, 1, 2, 3].map((f) => add(f, {})), pisc = add(0, { piscar: !todoMonstro }), and = [0, 1, 2, 3].map((f) => add(f, { andando: true }));
-  const mon = [0, 1, 2, 3].map((f) => add(f, { monstro: true }));
-  return { quadros, brilho, anims: { parado: { q: [...par, par[0], pisc], fps: 4 }, andando: { q: and, fps: 8 }, correndo: { q: and, fps: 14 }, monstro: { q: mon, fps: 4 } }, sombra: true, personagem: true };
+  const mon = [0, 1, 2, 3].map((f) => add(f, { monstro: true })), monA = [0, 1, 2, 3].map((f) => add(f, { andando: true, monstro: true }));
+  const pior = [0, 1, 2, 3].map((f) => add(f, { pior: true })), piorA = [0, 1, 2, 3].map((f) => add(f, { andando: true, pior: true }));
+  return { quadros, brilho, anims: { parado: { q: [...par, par[0], pisc], fps: 4 }, andando: { q: and, fps: 8 }, correndo: { q: and, fps: 14 },
+    monstro: { q: mon, fps: 4 }, 'monstro-andando': { q: monA, fps: 8 }, 'monstro-correndo': { q: monA, fps: 14 },
+    pior: { q: pior, fps: 6 }, 'pior-andando': { q: piorA, fps: 8 }, 'pior-correndo': { q: piorA, fps: 14 } }, sombra: true, personagem: true };
 }
 
 // ---------------------------------------------------------------- objetos pequenos (de pé ou no chão)
@@ -260,7 +272,7 @@ const estados = (n) => Object.fromEntries(n.map((x) => [x, { q: [0], fps: 1 }]))
 
 registrarSprites({
   ...Object.fromEntries(Object.entries(NOVOS_MORADORES).map(([k, p]) => [k, () => pessoaComSentado(p)])),
-  'gato-chapeu': () => spriteGato(false),     // estados: parado / monstro (cara monstruosa — "trocar" por um instante)
+  'gato-chapeu': () => spriteGato(false),     // estados: parado / monstro (cara monstruosa — "trocar" ida e volta; vale andando) / pior (ainda mais assustadora)
   'gato-monstro': () => spriteGato(true),     // PROTÓTIPO: o mesmo gato, com a cara monstruosa sempre (andando também)
   bilhete: () => { const p = objeto(...O.bilhete); const b = new Pix(p.w, p.h); b.d.set(p.d); return { quadros: [p, p], brilho: [new Pix(p.w, p.h), b], anims: { parado: { q: [0] }, brilhando: { q: [1], fps: 1 } }, sombra: true, flutua: false }; },
   carta: () => ({ quadros: [objeto(...O['carta-fechada']), objeto(...O['carta-aberta'])], anims: { parado: { q: [0] }, fechada: { q: [0] }, aberta: { q: [1] } }, sombra: true }),

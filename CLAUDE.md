@@ -464,7 +464,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (os assets novos sugeridos já foram feitos como protótipo — leva 3 e espirro)
   e `PUBLICACAO.md`.
 - **Leva 3 (feita com as táticas de retenção do vídeo das sombras), aguardando narração/render:** curtos `nesse-mundo-gatos`
-  (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes com relances da cara monstruosa nas cenas 1, 3, 7 e 8; todos viram `gato-monstro` depois que a Bia leva o prefeito — o monstro 3D foi tirado, o usuário não gostou) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
+  (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes que viram monstros enquanto as pessoas estão de costas (cenas 1–2) e em relances (3, 7, 8); todos viram `gato-monstro` depois que a Bia leva o prefeito; cena 11 = a sombra leva o prefeito; cena 12 = cara `pior` — o monstro 3D foi tirado, o usuário não gostou) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
   `cadeado`). Cada um tem `ROTEIRO.md` com o checklist de retenção cumprido e `PUBLICACAO.md`; `npm run conferir` sem avisos.
 - **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
   `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).
@@ -492,7 +492,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
     (parado/timido/acenar/assustar), `fantasma-vovo` (parado/rindo/acenar), `fantasma-sombra` (parado/assustar; use `escala` 2),
     `fantasma-cachorro` (parado/feliz), `fogo-fatuo` (azul/verde/roxo, com luz). Flutuam sozinhos; use `"y"` ~0.4.
   - `motor/assets/prototipos.js`: moradores `carteiro`, `vovo`, `sorveteiro`, `rival`, `menino-pijama` (andam e sentam);
-    `gato-chapeu` (estado `monstro` = cara monstruosa por um instante, use `trocar` ida e volta) e `gato-monstro` (sempre monstruoso, anda também); objetos `bilhete` (brilhando), `carta` (fechada/aberta), `mapa`, `cadeado` (fechado/aberto),
+    `gato-chapeu` (estados `monstro` = cara monstruosa e `pior` = ainda mais assustadora, 3 olhos e bocarra; use `trocar` ida e volta; valem andando — o motor usa `<estado>-andando` quando o sprite tem) e `gato-monstro` (sempre monstruoso, anda também; também tem `pior`); objetos `bilhete` (brilhando), `carta` (fechada/aberta), `mapa`, `cadeado` (fechado/aberto),
     `pegadas-brilhantes`, `cartaz-procura-se` (vazio/foto; bom com `"tela": true`); isométricos `relogio-praca`
     (h3/h6/h9/h12/h11-55), `caixa-correio`, `lixeira-praca`, `placa-praca`, `carrinho-sorvete`.
   - ações novas: `pensar`, `destaque`, `contador`, `placar`, `continua`; ícones `lampada`/`gota`/`raiva`/`nota`;
