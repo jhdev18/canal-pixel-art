@@ -6,7 +6,7 @@
 
 **Pista plantada:** cena 3 (os gatos fogem da Bia: ela não era para ser levada) e cena 2 ("devagarinho", que volta na cena 10 nos gatos sem pressa).
 
-**Assets usados:** protótipos `gato-chapeu` (os gatos, marcados como figurantes), `rival` (Nina); **cara monstruosa** (pedido do usuário): relances da cara monstruosa: nas cenas 1 e 2 os gatos que seguem as pessoas viram monstros por ~1 s enquanto elas estão de costas e voltam ao normal quando elas viram de frente; relances nas cenas 3, 7 e 8; todos viram monstros no fim da cena 9; cena 11 = os gatos se reúnem na frente do prefeito e a ação `sombra` leva ele; na cena 12 o gato que segue a Bia vira a cara ainda pior (estado `pior`); resto aprovado. Tudo de dia (rua, escola, praça).
+**Assets usados:** protótipos `gato-chapeu` (os gatos, marcados como figurantes), `rival` (Nina); **cara monstruosa** (pedido do usuário): relances da cara monstruosa: nas cenas 1 e 2 os gatos que seguem as pessoas viram monstros por ~1 s enquanto elas estão de costas e voltam ao normal quando elas viram de frente; todos viram monstros no fim da cena 9; cena 11 = os gatos se reúnem na frente do prefeito e a ação `sombra` leva ele; na cena 12 o gato que segue a Bia vira a cara ainda pior (estado `pior`); resto aprovado. Tudo de dia (rua, escola, praça).
 
 **Assets novos (protótipos, aguardando o "pode salvar"):** —
 

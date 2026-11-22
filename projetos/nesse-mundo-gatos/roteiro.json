@@ -228,18 +228,6 @@
      "duracao": 1.55
     },
     {
-     "tipo": "trocar",
-     "alvo": "g4",
-     "estado": "monstro",
-     "inicio": 1.33
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "g4",
-     "estado": "parado",
-     "inicio": 1.57
-    },
-    {
      "tipo": "emocao",
      "alvo": "g4",
      "icone": "!",
@@ -808,18 +796,6 @@
      "inicio": 2.13
     },
     {
-     "tipo": "trocar",
-     "alvo": "p4",
-     "estado": "monstro",
-     "inicio": 2.68
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "p4",
-     "estado": "parado",
-     "inicio": 2.87
-    },
-    {
      "tipo": "expressao",
      "alvo": "prefeito",
      "rosto": "rindo",
@@ -957,30 +933,6 @@
      "intensidade": 0.25,
      "inicio": 3,
      "duracao": 0.65
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "p0",
-     "estado": "monstro",
-     "inicio": 3
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "p0",
-     "estado": "parado",
-     "inicio": 3.35
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "p5",
-     "estado": "monstro",
-     "inicio": 3.09
-    },
-    {
-     "tipo": "trocar",
-     "alvo": "p5",
-     "estado": "parado",
-     "inicio": 3.44
     },
     {
      "tipo": "expressao",

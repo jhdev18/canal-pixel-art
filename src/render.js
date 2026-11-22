@@ -86,6 +86,25 @@ function paraVertical(roteiro) {
   return r;
 }
 
+function destinoLivre(arq) {
+  if (!fs.existsSync(arq)) return arq;
+  try { fs.unlinkSync(arq); return arq; } catch (e) {
+    if (!['EPERM', 'EBUSY', 'EACCES'].includes(e.code)) throw e;
+    const h = new Date().toTimeString().slice(0, 8).replace(/:/g, '');
+    const novo = arq.replace(/\.mp4$/, `-${h}.mp4`);
+    console.log(`  ⚠ ${path.basename(arq)} está aberto em outro programa (player/OneDrive) e não pode ser substituído.\n    O vídeo NOVO vai ser salvo como: ${path.basename(novo)}  (feche o player para a próxima vez sobrescrever)`);
+    return novo;
+  }
+}
+function renomearComTentativas(de, para) {
+  for (let i = 0; ; i++) {
+    try { fs.renameSync(de, para); return; } catch (e) {
+      if (i >= 5 || !['EPERM', 'EBUSY', 'EACCES'].includes(e.code)) throw e;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 400);   // espera 0,4 s e tenta de novo (antivírus/OneDrive soltando o arquivo)
+    }
+  }
+}
+
 export async function renderizar(nome, modo, opc = {}) {
   const t0 = Date.now();
   const cfg = carregarConfig();
@@ -117,7 +136,7 @@ export async function renderizar(nome, modo, opc = {}) {
   const saidaDir = path.join(dir, 'saida');
   fs.mkdirSync(saidaDir, { recursive: true });
   const videoTmp = path.join(saidaDir, `.${modo}${sufixo}-video.mp4`);
-  const saidaFinal = path.join(saidaDir, `${modo}${sufixo}.mp4`);
+  let saidaFinal = path.join(saidaDir, `${modo}${sufixo}.mp4`);
   if (vertical && roteiro.duracaoTotal > 180) avisos.push(`A versão Shorts tem ${roteiro.duracaoTotal.toFixed(0)}s; o YouTube aceita Shorts de até 3 minutos.`);
 
   const servidor = await iniciarServidor({ projetoDir: dir });
@@ -174,8 +193,11 @@ export async function renderizar(nome, modo, opc = {}) {
     console.log(`  Efeitos sonoros: ${eventos.length} eventos, ${ambientes.length} trechos de ambiente`);
   }
 
+  // No Windows, se o vídeo antigo estiver aberto (player, OneDrive sincronizando), ele não pode ser substituído (EPERM/EBUSY).
+  // Em vez de falhar, salva com outro nome e avisa — assim ninguém assiste ao vídeo velho achando que é o novo.
+  saidaFinal = destinoLivre(saidaFinal);
   if (!narracoes.length && !eventos.length && !ambientes.length) {
-    fs.renameSync(videoTmp, saidaFinal);
+    renomearComTentativas(videoTmp, saidaFinal);
   } else {
     const { L, R } = mixar({ duracao: roteiro.duracaoTotal, narracoes, eventos, ambientes, cfg: cfg.audio });
     const wav = path.join(saidaDir, `${modo}${sufixo}-audio.wav`);
