@@ -1,0 +1,1377 @@
+// NESSE MUNDO (curto, terror DE DIA) — "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-gatos
+// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu, rival (Nina).
+{
+ "titulo": "Nessa cidade, gato que segue você é sorte",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira.",
+   "cenario": "rua-comercial",
+   "transicao": "corte",
+   "camera": {
+    "x": 1.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -2.6,
+     "z": 5.2
+    },
+    {
+     "id": "g1",
+     "personagem": "gato-chapeu",
+     "x": -4.4,
+     "z": 5.4,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "tonho",
+     "para": 3.4,
+     "inicio": 0.3,
+     "duracao": 2.9
+    },
+    {
+     "tipo": "correr",
+     "alvo": "g1",
+     "para": 2.4,
+     "inicio": 0.3,
+     "duracao": 2.81
+    },
+    {
+     "tipo": "virar",
+     "alvo": "tonho",
+     "direcao": "esquerda",
+     "inicio": 3.39
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "g1",
+     "icone": "coracao",
+     "inicio": 3.58
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "inicio": 3.67
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 3.58,
+     "duracao": 1.4
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, todo mundo anda devagarinho, pro gato alcançar.",
+   "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, GATO QUE SEGUE É SORTE",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.6,
+   "camera": {
+    "x": 9,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 7.2,
+     "z": 5.2
+    },
+    {
+     "id": "g2",
+     "personagem": "gato-chapeu",
+     "x": 5,
+     "z": 4.9,
+     "figurante": true
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 9,
+     "z": 5.4
+    },
+    {
+     "id": "g3",
+     "personagem": "gato-chapeu",
+     "x": 7.6,
+     "z": 4.9,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 10.6,
+     "inicio": 0.37,
+     "duracao": 3.56
+    },
+    {
+     "tipo": "andar",
+     "alvo": "g2",
+     "para": 9.6,
+     "inicio": 0.37,
+     "duracao": 3.56
+    },
+    {
+     "tipo": "andar",
+     "alvo": "caixa",
+     "para": 12.4,
+     "inicio": 0.49,
+     "duracao": 3.45
+    },
+    {
+     "tipo": "andar",
+     "alvo": "g3",
+     "para": 11.4,
+     "inicio": 0.49,
+     "duracao": 3.45
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 9,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas nenhum gato nunca seguiu a Bia. Todos fogem dela.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.4,
+     "z": 0.6
+    },
+    {
+     "id": "g4",
+     "personagem": "gato-chapeu",
+     "x": 4.2,
+     "z": 0.6,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 1.4,
+     "inicio": 0.3,
+     "duracao": 1.55
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "g4",
+     "icone": "!",
+     "inicio": 1.68
+    },
+    {
+     "tipo": "correr",
+     "alvo": "g4",
+     "para": 7.4,
+     "inicio": 1.85,
+     "duracao": 1.03
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 2.55
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 2.78,
+     "duracao": 0.97
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Na escola, ninguém empresta nem lápis pra azarada.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.4,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 5.2,
+     "inicio": 0.46,
+     "duracao": 1.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "nina",
+     "texto": "* Sai, azarada!",
+     "inicio": 1.6
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "gota",
+     "inicio": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 1.93,
+     "duracao": 1.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, numa segunda, todos os gatos da cidade saíram atrás do prefeito.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 8.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5.6,
+     "z": 5.2
+    },
+    {
+     "id": "c1",
+     "personagem": "gato-chapeu",
+     "x": 1.6,
+     "z": 4.9,
+     "figurante": true
+    },
+    {
+     "id": "c2",
+     "personagem": "gato-chapeu",
+     "x": 2.6,
+     "z": 4.6,
+     "figurante": true
+    },
+    {
+     "id": "c3",
+     "personagem": "gato-chapeu",
+     "x": 0.6,
+     "z": 4.8,
+     "figurante": true
+    },
+    {
+     "id": "c4",
+     "personagem": "gato-chapeu",
+     "x": 3.4,
+     "z": 4.9,
+     "figurante": true
+    },
+    {
+     "id": "c5",
+     "personagem": "gato-chapeu",
+     "x": -0.4,
+     "z": 4.6,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "prefeito",
+     "para": 11.8,
+     "inicio": 0.3,
+     "duracao": 4.51
+    },
+    {
+     "tipo": "correr",
+     "alvo": "c1",
+     "para": 10.8,
+     "inicio": 0.54,
+     "duracao": 4.03
+    },
+    {
+     "tipo": "correr",
+     "alvo": "c2",
+     "para": 10.100000000000001,
+     "inicio": 0.77,
+     "duracao": 3.8
+    },
+    {
+     "tipo": "correr",
+     "alvo": "c3",
+     "para": 9.4,
+     "inicio": 1.01,
+     "duracao": 3.56
+    },
+    {
+     "tipo": "correr",
+     "alvo": "c4",
+     "para": 8.700000000000001,
+     "inicio": 1.25,
+     "duracao": 3.32
+    },
+    {
+     "tipo": "correr",
+     "alvo": "c5",
+     "para": 8,
+     "inicio": 1.49,
+     "duracao": 3.08
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "inicio": 1.72
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "taxa": 1.2,
+     "inicio": 2.91
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 4.86,
+     "duracao": 0.18
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 8.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Primeiro cinco, depois vinte. A praça inteira ficou miando em volta dele.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 0,
+     "z": -8.4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "p0",
+     "personagem": "gato-chapeu",
+     "x": -7.8,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p1",
+     "personagem": "gato-chapeu",
+     "x": 7.8,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p2",
+     "personagem": "gato-chapeu",
+     "x": -8.4,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p3",
+     "personagem": "gato-chapeu",
+     "x": 8.4,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p4",
+     "personagem": "gato-chapeu",
+     "x": 8.7,
+     "z": -8.8,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p5",
+     "personagem": "gato-chapeu",
+     "x": -9.3,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p6",
+     "personagem": "gato-chapeu",
+     "x": 9.3,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p7",
+     "personagem": "gato-chapeu",
+     "x": -9.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p8",
+     "personagem": "gato-chapeu",
+     "x": 9.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "p0",
+     "para": -2,
+     "inicio": 0.39,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p1",
+     "para": 2,
+     "inicio": 0.68,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p2",
+     "para": -1.3,
+     "inicio": 0.96,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p3",
+     "para": 1.3,
+     "inicio": 1.25,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p4",
+     "para": 3.6,
+     "inicio": 1.53,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p5",
+     "para": -2.8,
+     "inicio": 1.82,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p6",
+     "para": 2.8,
+     "inicio": 2.1,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p7",
+     "para": -0.9,
+     "inicio": 2.39,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "correr",
+     "alvo": "p8",
+     "para": 0.9,
+     "inicio": 2.67,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "inicio": 1.25
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "taxa": 1.3,
+     "inicio": 2.67
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "taxa": 0.8,
+     "inicio": 3.86
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 2.67,
+     "duracao": 2.38
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 3.15,
+     "duracao": 1.9
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "O prefeito ria. Ninguém nunca teve tanta sorte.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -0.4,
+    "z": -9.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 0,
+     "z": -8.4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "p0",
+     "personagem": "gato-chapeu",
+     "x": -2,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p1",
+     "personagem": "gato-chapeu",
+     "x": 2,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p2",
+     "personagem": "gato-chapeu",
+     "x": -1.3,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p3",
+     "personagem": "gato-chapeu",
+     "x": 1.3,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p4",
+     "personagem": "gato-chapeu",
+     "x": 3.6,
+     "z": -8.8,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p5",
+     "personagem": "gato-chapeu",
+     "x": -2.8,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p6",
+     "personagem": "gato-chapeu",
+     "x": 2.8,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p7",
+     "personagem": "gato-chapeu",
+     "x": -0.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p8",
+     "personagem": "gato-chapeu",
+     "x": 0.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "prefeito",
+     "altura": 0.4,
+     "inicio": 0.45
+    },
+    {
+     "tipo": "andar",
+     "alvo": "p2",
+     "para": -0.9,
+     "inicio": 1.52,
+     "duracao": 0.92
+    },
+    {
+     "tipo": "andar",
+     "alvo": "p3",
+     "para": 0.9,
+     "inicio": 1.67,
+     "duracao": 0.92
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "taxa": 0.7,
+     "inicio": 2.13
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 0.45,
+     "duracao": 2.91
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "zoom": 2
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "Só a Bia percebeu. Os gatos não estavam felizes. Estavam esperando.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 0,
+     "z": -8.4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.6
+    },
+    {
+     "id": "p0",
+     "personagem": "gato-chapeu",
+     "x": -2,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p1",
+     "personagem": "gato-chapeu",
+     "x": 2,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p2",
+     "personagem": "gato-chapeu",
+     "x": -1.3,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p3",
+     "personagem": "gato-chapeu",
+     "x": 1.3,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p4",
+     "personagem": "gato-chapeu",
+     "x": 3.6,
+     "z": -8.8,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p5",
+     "personagem": "gato-chapeu",
+     "x": -2.8,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p6",
+     "personagem": "gato-chapeu",
+     "x": 2.8,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p7",
+     "personagem": "gato-chapeu",
+     "x": -0.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p8",
+     "personagem": "gato-chapeu",
+     "x": 0.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": -4.2,
+     "inicio": 0.52,
+     "duracao": 1.31
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 2.04
+    },
+    {
+     "tipo": "som",
+     "som": "suspense",
+     "inicio": 2.26
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.25,
+     "inicio": 3,
+     "duracao": 0.65
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.04,
+     "duracao": 2.62
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 0.52,
+     "duracao": 4.14
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3.4,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "Ela correu, puxou o prefeito pela mão e tirou ele da praça.",
+   "cenario": "praca",
+   "saiDeCena": [
+    "bia",
+    "prefeito"
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 0,
+     "z": -8.4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -4.2,
+     "z": -8.6
+    },
+    {
+     "id": "p0",
+     "personagem": "gato-chapeu",
+     "x": -2,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p1",
+     "personagem": "gato-chapeu",
+     "x": 2,
+     "z": -8.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p2",
+     "personagem": "gato-chapeu",
+     "x": -1.3,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p3",
+     "personagem": "gato-chapeu",
+     "x": 1.3,
+     "z": -7.4,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p4",
+     "personagem": "gato-chapeu",
+     "x": 3.6,
+     "z": -8.8,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p5",
+     "personagem": "gato-chapeu",
+     "x": -2.8,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p6",
+     "personagem": "gato-chapeu",
+     "x": 2.8,
+     "z": -7.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "p7",
+     "personagem": "gato-chapeu",
+     "x": -0.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "direita"
+    },
+    {
+     "id": "p8",
+     "personagem": "gato-chapeu",
+     "x": 0.9,
+     "z": -9.4,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "bia",
+     "para": -0.8,
+     "inicio": 0.3,
+     "duracao": 1.15
+    },
+    {
+     "tipo": "correr",
+     "alvo": "bia",
+     "para": 8.6,
+     "inicio": 1.64,
+     "duracao": 2.3
+    },
+    {
+     "tipo": "correr",
+     "alvo": "prefeito",
+     "para": 7.8,
+     "inicio": 1.76,
+     "duracao": 2.19
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "Mas os gatos foram atrás. Devagarinho. Sem pressa nenhuma.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 3,
+     "z": 5.2
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 2.2,
+     "z": 5.4
+    },
+    {
+     "id": "r0",
+     "personagem": "gato-chapeu",
+     "x": -3.6,
+     "z": 4.6,
+     "figurante": true
+    },
+    {
+     "id": "r1",
+     "personagem": "gato-chapeu",
+     "x": -4.7,
+     "z": 4.8999999999999995,
+     "figurante": true
+    },
+    {
+     "id": "r2",
+     "personagem": "gato-chapeu",
+     "x": -5.800000000000001,
+     "z": 4.6,
+     "figurante": true
+    },
+    {
+     "id": "r3",
+     "personagem": "gato-chapeu",
+     "x": -6.9,
+     "z": 4.8999999999999995,
+     "figurante": true
+    },
+    {
+     "id": "r4",
+     "personagem": "gato-chapeu",
+     "x": -8,
+     "z": 4.6,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 8.2,
+     "inicio": 0.3,
+     "duracao": 3.58
+    },
+    {
+     "tipo": "andar",
+     "alvo": "prefeito",
+     "para": 7.4,
+     "inicio": 0.3,
+     "duracao": 3.58
+    },
+    {
+     "tipo": "andar",
+     "alvo": "r0",
+     "para": 3,
+     "inicio": 0.38,
+     "duracao": 3.62
+    },
+    {
+     "tipo": "andar",
+     "alvo": "r1",
+     "para": 1.9,
+     "inicio": 0.38,
+     "duracao": 3.62
+    },
+    {
+     "tipo": "andar",
+     "alvo": "r2",
+     "para": 0.7999999999999998,
+     "inicio": 0.38,
+     "duracao": 3.62
+    },
+    {
+     "tipo": "andar",
+     "alvo": "r3",
+     "para": -0.30000000000000027,
+     "inicio": 0.38,
+     "duracao": 3.62
+    },
+    {
+     "tipo": "andar",
+     "alvo": "r4",
+     "para": -1.4000000000000004,
+     "inicio": 0.38,
+     "duracao": 3.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Os gatos nunca trouxeram sorte. Eles vinham buscar.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 9,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 9,
+     "z": 5.2
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 7.4,
+     "z": 5.4
+    },
+    {
+     "id": "r0",
+     "personagem": "gato-chapeu",
+     "x": 3,
+     "z": 4.6,
+     "figurante": true
+    },
+    {
+     "id": "r1",
+     "personagem": "gato-chapeu",
+     "x": 1.9,
+     "z": 4.8999999999999995,
+     "figurante": true
+    },
+    {
+     "id": "r2",
+     "personagem": "gato-chapeu",
+     "x": 0.7999999999999998,
+     "z": 4.6,
+     "figurante": true
+    },
+    {
+     "id": "r3",
+     "personagem": "gato-chapeu",
+     "x": -0.30000000000000027,
+     "z": 4.8999999999999995,
+     "figurante": true
+    },
+    {
+     "id": "r4",
+     "personagem": "gato-chapeu",
+     "x": -1.4000000000000004,
+     "z": 4.6,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "r0",
+     "para": 11.6,
+     "inicio": 0.47,
+     "duracao": 1.82
+    },
+    {
+     "tipo": "correr",
+     "alvo": "r1",
+     "para": 11.049999999999999,
+     "inicio": 0.6,
+     "duracao": 1.82
+    },
+    {
+     "tipo": "correr",
+     "alvo": "r2",
+     "para": 10.5,
+     "inicio": 0.73,
+     "duracao": 1.82
+    },
+    {
+     "tipo": "correr",
+     "alvo": "r3",
+     "para": 9.95,
+     "inicio": 0.86,
+     "duracao": 1.82
+    },
+    {
+     "tipo": "correr",
+     "alvo": "r4",
+     "para": 9.399999999999999,
+     "inicio": 1,
+     "duracao": 1.82
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prefeito",
+     "icone": "?",
+     "inicio": 0.8
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 2.12
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 2.29
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 2.29,
+     "duracao": 0.4
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "surpreso",
+     "inicio": 0.8,
+     "duracao": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.29,
+     "duracao": 1.32
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 8.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E, pela primeira vez na vida, um gato estava seguindo a Bia.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": 0.6
+    },
+    {
+     "id": "ultimo",
+     "personagem": "gato-chapeu",
+     "x": -4,
+     "z": 0.6,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 1.4,
+     "inicio": 0.3,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "andar",
+     "alvo": "ultimo",
+     "para": -0.4,
+     "inicio": 0.5,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "virar",
+     "alvo": "bia",
+     "direcao": "esquerda",
+     "inicio": 3.42
+    },
+    {
+     "tipo": "som",
+     "som": "miau",
+     "taxa": 0.8,
+     "inicio": 3.62
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 3.5,
+     "duracao": 0.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  }
+ ]
+}
