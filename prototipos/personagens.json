@@ -41,9 +41,9 @@
   "mae-avental":   { "sprite": "mae-avental", "voz": 1.1 },
   "menino-topete": { "sprite": "menino-topete", "voz": 1.4 },
 
-  // ---- animatrônicos de terror (motor/assets/animatronicos.js)
-  "animatronico-pao":       { "sprite": "animatronico-pao", "voz": 0.8 },
-  "animatronico-sapo":      { "sprite": "animatronico-sapo", "voz": 0.7 },
-  "animatronico-vaca":      { "sprite": "animatronico-vaca", "voz": 0.9 },
-  "animatronico-bailarina": { "sprite": "animatronico-bailarina", "voz": 1.3 }
+  // ---- animatrônicos de brinquedo, terror (motor/assets/animatronicos.js)
+  "brinquedo-soldadinho": { "sprite": "brinquedo-soldadinho", "voz": 0.8 },
+  "brinquedo-boneca":     { "sprite": "brinquedo-boneca", "voz": 1.4 },
+  "brinquedo-robo":       { "sprite": "brinquedo-robo", "voz": 0.6 },
+  "brinquedo-caixa":      { "sprite": "brinquedo-caixa", "voz": 1.6 }
 }

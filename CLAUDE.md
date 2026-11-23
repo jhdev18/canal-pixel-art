@@ -623,10 +623,11 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
-- **Animatrônicos (PROTÓTIPO, aguardando "pode salvar")** (`motor/assets/animatronicos.js`; o usuário pediu foco em terror):
-  `animatronico-pao`, `-sapo`, `-vaca`, `-bailarina` (estados parado/desligado/cantando/acenar/virado/olhos/sem-rosto/falha, andam duros)
-  e sons `servo`, `caixinha-musica`, `falha-eletrica`. Originais (mascotes das lojas da Vila Serena; nada de urso/coelho/galinha/raposa
-  de jogo conhecido). Teste: `projetos/vitrine` (cenas 34–35).
+- **Animatrônicos de brinquedo (PROTÓTIPO, aguardando "pode salvar")** (`motor/assets/animatronicos.js`; o usuário pediu foco em
+  terror e escolheu o tema "brinquedos de corda gigantes" — os mascotes de loja pão/sapo/vaca/bailarina foram rejeitados e apagados):
+  `brinquedo-soldadinho`, `brinquedo-boneca`, `brinquedo-robo`, `brinquedo-caixa` (estados parado/desligado/cantando/acenar/virado/olhos/
+  rachado/falha; caixa também `fechada`; andam travados) e sons `corda`, `servo`, `caixinha-musica`, `falha-eletrica`. O usuário pediu
+  "parecidos com FNAF": é o mesmo gênero, mas nada copiado do jogo (regra 6). Teste: `projetos/vitrine` (cenas 34–35).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,

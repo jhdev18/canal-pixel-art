@@ -200,6 +200,8 @@ const SONS = {
   // servo: motorzinho zumbindo + estalo da junta (cabeça virando, braço mexendo)
   servo: () => misturar([[tom({ tipo: 'quadrada', f0: 180, f1: 260, dur: 0.35, vol: 0.08, duty: 0.3, vibrato: 0.08, vibratoHz: 40 })],
     [ruido({ dur: 0.35, vol: 0.12, f0: 1400, filtro: 'passa-banda', q: 2, semente: 61 })], [tom({ f0: 2200, dur: 0.02, vol: 0.25 }), 0.34], [ruido({ dur: 0.05, vol: 0.3, f0: 3000, f1: 800, curva: 2 }), 0.35]]),
+  // corda sendo dada (catraca: tec-tec-tec acelerando)
+  corda: () => misturar([0, 0.16, 0.3, 0.42, 0.52, 0.61, 0.69, 0.76].map((t0, k) => [misturar([[tom({ f0: 2600 - k * 60, dur: 0.012, vol: 0.3 })], [ruido({ dur: 0.04, vol: 0.35, f0: 3200, filtro: 'passa-banda', q: 3, curva: 2, semente: 90 + k })]]), t0])),
   // caixinha de música que desafina e perde a corda no fim
   'caixinha-musica': () => misturar([72, 76, 79, 76, 74, 77, 81, 77, 72, 71].map((n, k) => {
     const lento = Math.max(0, k - 6) * 0.06, des = 1 - Math.max(0, k - 6) * 0.018;

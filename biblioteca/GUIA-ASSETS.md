@@ -46,14 +46,14 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
   fica bem mais assustador (câmera sem zoom para caber a cabeça). Entrada assustadora: luz piscando (`flash` curtos) e ele
   `aparecer` durante um clarão, depois `mover` mais perto no próximo.
   `sombraPessoa` é a sombra no chão, que sobe a parede (elemento `{ "sombraPessoa": { "tamanho": 2.6 } }`).
-- **Animatrônicos 🧪** (`motor/assets/animatronicos.js`, terror de dia): bonecos mecânicos do tamanho de um adulto, mascotes das
-  lojas de Vila Serena — `animatronico-pao` (Pãozito, da padaria do seu Tonho), `animatronico-sapo` (Sapo Bandinha, da festa da praça),
-  `animatronico-vaca` (Mimosa, do mercado) e `animatronico-bailarina` (boneca de caixinha de música). Juntas de metal no pescoço, cotovelos
-  e joelhos. Estados: `parado` (ligado, sorriso fixo, tique de cabeça), `desligado` (cabeça caída, olhos fechados), `cantando`, `acenar`,
-  `virado` (cabeça torta), `olhos` (vermelhos, brilham), `sem-rosto` (a máscara abre e mostra o crânio de metal), `falha` (pisca entre rosto
-  e esqueleto). Andam duros (`andar`/`correr`); `olhos`, `virado` e `sem-rosto` valem andando. Sons `servo` (junta mexendo),
-  `caixinha-musica` (desafina no fim) e `falha-eletrica`. Posição: calçada dos prédios (z ~5.0, na frente da loja de cada um) ou praça.
-  Truque de terror: mudam de estado só quando ninguém olha / na palavra forte (`trocar` + `servo`); de dia, sem escuro.
+- **Animatrônicos de brinquedo 🧪** (`motor/assets/animatronicos.js`, terror de dia): brinquedos de corda gigantes, do tamanho de um
+  adulto — `brinquedo-soldadinho` (madeira, barretina, bigode pintado, maxilar de quebra-nozes), `brinquedo-boneca` (pano, olhos de botão,
+  boca costurada, remendos), `brinquedo-robo` (lata, antena, visor de luz, ferrugem) e `brinquedo-caixa` (caixa-surpresa; o bobo sai na mola).
+  A chave de corda gira nas costas enquanto estão ligados. Estados: `parado`, `desligado` (sem corda, cabeça caída), `cantando`, `acenar`,
+  `virado` (cabeça torta), `olhos` (buracos pretos com pontinho branco que brilha; o robô fica com o visor vermelho), `rachado` (o rosto
+  racha e mostra engrenagem/enchimento), `falha`; andam travados e `olhos`/`virado`/`rachado` valem andando. Caixa: `fechada` (manivela
+  girando), `parado` (aberta, balançando), anda aos pulinhos. Sons `corda` (catraca), `servo`, `caixinha-musica`, `falha-eletrica`.
+  Truque de terror: mudam de estado na palavra forte (`trocar` + som); de dia, sem escuro.
 
 ---
 
