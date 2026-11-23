@@ -45,7 +45,7 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
 - **Terror:** `vulto` (silhueta alta e escura em pé; estados parado e olhos). É o melhor para "algo atrás de você"; com `"escala": 2`
   fica bem mais assustador (câmera sem zoom para caber a cabeça). Entrada assustadora: luz piscando (`flash` curtos) e ele
   `aparecer` durante um clarão, depois `mover` mais perto no próximo.
-  **Monstros de sombra em pixel art** (no lugar dos 3D): `sombra-alta` (vulto alto de braços compridos; `olhos` vermelhos, `sorriso` de
+  **Monstros de sombra em pixel art** (v2 simples, como o `vulto`; no lugar dos 3D): `sombra-alta` (vulto alto de braços compridos; `olhos` vermelhos, `sorriso` de
   dentes, `agarrar`; anda balançando), `sombra-tentaculos` (poça no chão; `subindo`, `agarrar`), `sombra-olhos` (massa com 8 olhos piscando;
   `olhando`), `sombra-rastejante` (de lado, anda de quatro; `olhos`). Use `"escala": 2` (ou 1.5) e entrada com `flash` + `aparecer`.
   `sombraPessoa` é a sombra no chão, que sobe a parede (elemento `{ "sombraPessoa": { "tamanho": 2.6 } }`).

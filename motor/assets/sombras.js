@@ -1,6 +1,6 @@
 // PROTÓTIPO — monstros de SOMBRA em PIXEL ART 2D (substituem os monstros 3D, que o usuário achou esquisitos).
-// Mesmo estilo dos outros sprites: silhueta quase preta, borda roxa apagada, contorno que "ferve" (os pixels da borda somem e
-// aparecem a cada quadro), fumaça subindo e olhos brancos que brilham. Use "escala": 2 para dar presença (regra 10 das cenas).
+// v2 (o usuário não gostou da textura da v1): simples como o "vulto" — preto chapado, luz fraca na borda, pés sumindo em
+// pontilhado e olhos brancos que brilham; o movimento vem da forma (braços, tentáculos, passos). Use "escala": 2 para dar presença (regra 10 das cenas).
 //   sombra-alta        vulto alto e magro de braços compridos. parado, olhos, sorriso (boca de dentes brancos), agarrar
 //                      (braços para a frente), andando (balança, os pés viram fumaça)
 //   sombra-tentaculos  poça escura no chão com tentáculos que balançam. parado (baixos), subindo (altos), agarrar (curvados para a frente)
@@ -10,30 +10,20 @@
 import { Pix } from '../pixel.js';
 import { registrarSprites } from '../sprites.js';
 
-const BASE = '#0b0912', MEIO = '#16121f', BORDA = '#2a2240', BRILHO = '#3e3260', OLHO = '#f4f0ff', K = '#05040a';
+const BASE = '#0c0a14', MEIO = '#16121f', BORDA = '#1e1a2c', OLHO = '#f4f0ff', K = '#05040a';
 const hash = (a, b, c = 0) => { let h = (a * 374761393 + b * 668265263 + c * 2147483647) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
 
-// pinta uma máscara (função dentro(x, y)) como sombra: miolo escuro com manchas, borda roxa que ferve no quadro f e fumaça subindo
-function pintarSombra(W, H, dentro, f, { fumaca = 6, base = H } = {}) {
+// pinta uma máscara (função dentro(x, y)) como sombra SIMPLES, no estilo do "vulto": preto chapado, uma luz fraca só na
+// borda da esquerda e de cima, e a base sumindo em pontilhado (sem manchas, sem borda fervendo — pedido do usuário).
+function pintarSombra(W, H, dentro, f, { base = H } = {}) {
   const p = new Pix(W, H), b = new Pix(W, H);
   const em = (x, y) => x >= 0 && y >= 0 && x < W && y < H && dentro(x, y);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     if (!em(x, y)) continue;
-    const borda = !em(x - 1, y) || !em(x + 1, y) || !em(x, y - 1) || !em(x, y + 1);
-    if (borda && hash(x, y, f) < 0.32) continue;                                           // a borda ferve
-    const r = hash(x >> 1, y >> 1, 7);
-    p.set(x, y, borda ? BORDA : r < 0.06 ? BRILHO : r < 0.3 ? MEIO : BASE);
+    p.set(x, y, (!em(x - 1, y) || !em(x, y - 1)) ? BORDA : BASE);
   }
-  // fumaça: bolinhas que saem da borda de cima e sobem com o tempo
-  for (let k = 0; k < fumaca; k++) {
-    const x0 = Math.floor(hash(k, 1) * W), fase = (f / 8 + hash(k, 2)) % 1;
-    let topo = -1; for (let y = 0; y < H; y++) if (em(x0, y)) { topo = y; break; }
-    if (topo < 0) continue;
-    const y = Math.round(topo - 2 - fase * 10), x = Math.round(x0 + Math.sin(fase * 6 + k) * 2);
-    if (y >= 0 && y < H && x >= 0 && x < W) { p.set(x, y, BORDA, Math.round(255 * (1 - fase))); if (fase < 0.5) p.set(x + 1, y, MEIO, Math.round(200 * (1 - fase))); }
-  }
-  // base que vira fumaça (pontilhado nas últimas linhas)
-  for (let y = base - 4; y < base; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4; if (p.d[i + 3] && hash(x, y, f + 3) < (y - (base - 5)) / 5) p.d[i + 3] = 0; }
+  for (let y = base - 5; y < base; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4; if (p.d[i + 3] && ((x + y) % 2 === 0 || y >= base - 2) && (y - (base - 6)) / 5 > ((x * 7 + y * 3) % 5) / 5) p.d[i + 3] = 0; }
+  void f;
   return { p, b };
 }
 const olho = (p, b, x, y, cor = OLHO, w = 1) => { for (let k = 0; k < w; k++) { p.set(x + k, y, cor); b.set(x + k, y, cor); } };
@@ -55,7 +45,7 @@ function sombraAlta(f, { olhos = false, sorriso = false, agarrar = false, andar 
     if (y >= 40) { for (const s of [-1, 1]) if (Math.abs(x - (cx + s * 3.2) - s * (passo && s === Math.sign(passo) ? 1 : 0)) < 1.6) return true; }   // pernas finas
     return false;
   };
-  const { p, b } = pintarSombra(W, H, dentro, f, { fumaca: 8 });
+  const { p, b } = pintarSombra(W, H, dentro, f);
   const pisca = !olhos && f % 12 === 11;
   if (!pisca) { olho(p, b, cx - 2, 6, olhos ? '#ff3a4a' : OLHO); olho(p, b, cx + 1, 6, olhos ? '#ff3a4a' : OLHO); if (olhos) { olho(p, b, cx - 2, 5, '#ffb0b8'); olho(p, b, cx + 1, 5, '#ffb0b8'); } }
   if (sorriso) { for (let x = cx - 3; x <= cx + 3; x++) { olho(p, b, x, 9 + (Math.abs(x - cx) === 3 ? -1 : 0), (x + f) % 2 ? OLHO : '#c8c4d8'); } for (let x = cx - 2; x <= cx + 2; x += 2) olho(p, b, x, 10, OLHO); }
@@ -76,7 +66,7 @@ function sombraTentaculos(f, { alto = false, agarrar = false } = {}) {
     }
     return false;
   };
-  const r = pintarSombra(W, H, dentro, f, { fumaca: 6, base: H + 4 });
+  const r = pintarSombra(W, H, dentro, f, { base: H + 4 });
   for (const [x, y] of [[24, cy - 1], [32, cy - 1]]) olho(r.p, r.b, x, y, f % 16 < 14 ? OLHO : MEIO);    // dois olhinhos na poça
   return r;
 }
@@ -84,7 +74,7 @@ function sombraTentaculos(f, { alto = false, agarrar = false } = {}) {
 function sombraOlhos(f, { olhando = false } = {}) {
   const W = 44, H = 38;
   const dentro = (x, y) => { const dx = x - 22, dy = y - 21 - Math.sin(x * 0.4 + f * 0.6) * 1.2; return (dx * dx) / 400 + (dy * dy) / 260 < 1 || (y > 30 && Math.abs(dx) < 20 && hash(x, 3) > 0.2); };
-  const { p, b } = pintarSombra(W, H, dentro, f, { fumaca: 6, base: H });
+  const { p, b } = pintarSombra(W, H, dentro, f, { base: H });
   const OLHOS = [[10, 14, 2], [18, 9, 3], [27, 12, 2], [33, 18, 2], [14, 22, 3], [24, 20, 3], [30, 26, 2], [8, 27, 2]];
   OLHOS.forEach(([x, y, w], k) => {
     if ((f + k * 5) % 22 < 2) { olho(p, b, x, y + 1, BORDA, w); return; }                    // pisca (cada um num tempo)
@@ -108,7 +98,7 @@ function sombraRastejante(f, { andando = false, olhos = false } = {}) {
     || ((x - 38) ** 2) / 12 + ((y - 15 - (andando ? 0 : (f % 9 === 0 ? 2 : 0))) ** 2) / 9 < 1   // cabeça baixa na frente (aos trancos)
     || membro(x, y, 33, 12, 36 + passos[0], 4, 40 + passos[0] * 1.5, ch) || membro(x, y, 31, 12, 30 - passos[1], 5, 34 - passos[1], ch)   // braços (cotovelos para cima)
     || membro(x, y, 14, 12, 10 + passos[1], 3, 16 + passos[1] * 1.5, ch) || membro(x, y, 13, 12, 6 - passos[0], 5, 9 - passos[0], ch);    // pernas (joelhos para cima)
-  const { p, b } = pintarSombra(W, H, dentro, f, { fumaca: 5, base: H + 4 });
+  const { p, b } = pintarSombra(W, H, dentro, f, { base: H + 4 });
   if (olhos || f % 10 < 9) { olho(p, b, 39, 14, olhos ? '#ff3a4a' : OLHO); olho(p, b, 41, 14, olhos ? '#ff3a4a' : OLHO); }
   return { p, b };
 }

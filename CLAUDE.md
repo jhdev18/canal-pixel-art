@@ -572,8 +572,12 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   o teste com os monstros 3D fica guardado em `projetos/teste-monstro-guardioes` (A vulto, B sombra-alta, C rastejante), sem uso.
 - **Monstros de sombra em PIXEL ART (PROTÓTIPO, no lugar dos 3D — o usuário achou o 3D esquisito)** (`motor/assets/sombras.js`):
   personagens `sombra-alta` (parado/olhos/sorriso/agarrar, anda), `sombra-tentaculos` (parado/subindo/agarrar), `sombra-olhos`
-  (parado/olhando) e `sombra-rastejante` (de lado, anda de quatro; olhos). Borda que ferve, fumaça subindo, olhos que brilham;
-  usar `"escala": 2` (ou 1.5). **Usar estes nos vídeos**, não o `"monstro"` 3D. Teste: `projetos/vitrine` (cenas 64–65).
+  (parado/olhando) e `sombra-rastejante` (de lado, anda de quatro; olhos). v2 simples como o `vulto` (o usuário não gostou da textura
+  da v1): preto chapado, luz fraca na borda, pés em pontilhado, olhos brilhando; usar `"escala": 2` (ou 1.5). Teste: `projetos/vitrine` (cenas 64–65).
+  **Tentativas 3D (o usuário ainda quer testar 3D):** `"estilo3d"` no elemento `"monstro"` — `toon` (desenho em 3 tons + contorno roxo, HD),
+  `pixel` (o mesmo na resolução do pixel art, sem HD) e `silhueta` (preto chapado, borda e olhos, sem HD); sem estilo = o 3D "realista" antigo.
+  Testes: `projetos/teste-sombras-3d-toon` e `projetos/teste-sombras-3d-pixel` (`npm run fotos -- <projeto>`). Não misturar `toon` com
+  `pixel`/`silhueta` no mesmo roteiro (o `toon` deixa o vídeo todo em HD).
 - **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
   "tentaculos" | "massa-olhos" | "rastejante"`, em alta resolução sobre o pixel art. `rastejante` = humano de sombra
   andando de quatro (membros longos, joelhos/cotovelos para cima, cabeça aos trancos; anda com `andar`/`correr`/`mover`,

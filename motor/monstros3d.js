@@ -64,6 +64,39 @@ void main(){
   gl_FragColor = vec4(c, a);
 }`;
 
+// TENTATIVAS 3D (PROTÓTIPO, o usuário achou o 3D "realista" esquisito): "estilo3d" no elemento
+//   "toon"     — sombreado de desenho (3 tons chapados) e contorno roxo nítido; continua em HD
+//   "pixel"    — o mesmo sombreado, desenhado NA RESOLUÇÃO do pixel art (combina com o resto), com pontilhado na luz
+//   "silhueta" — preto chapado com só a borda roxa e os olhos acesos, na resolução do pixel art
+// Sem transparência nem textura de fumaça no corpo (aparece/some em pontilhado).
+const FRAG_TOON = /* glsl */ `
+${RUIDO}
+uniform float uTempo, uPresenca, uFase, uEstilo;
+uniform vec3 uCor, uBorda, uBrasa;
+varying vec3 vN, vPW, vL;
+float bayer4(vec2 p){ int x=int(mod(p.x,4.0)), y=int(mod(p.y,4.0)), i=x+y*4;
+  float m[16]=float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.); return (m[i]+0.5)/16.0; }
+void main(){
+  vec3 n = normalize(vN);
+  vec3 v = normalize(cameraPosition - vPW);
+  float lim = uPresenca*1.25 - 0.05, fum = fbm(vL*2.0 + vec3(0.0, 0.0, uFase))*0.5 + 0.5;
+  if (fum > lim) discard;                                           // aparece/some
+  if (uPresenca < 0.999 && bayer4(gl_FragCoord.xy) > uPresenca) discard;
+  vec3 L = normalize(vec3(-0.45, 0.75, 0.5));
+  float dif = max(dot(n, L), 0.0), rim = 1.0 - abs(dot(n, v));
+  vec3 c;
+  if (uEstilo > 1.5) {                                              // silhueta
+    c = uCor; if (rim > 0.78) c = uBorda * 0.55;
+  } else {
+    float d = uEstilo > 0.5 ? dif + (bayer4(gl_FragCoord.xy) - 0.5) * 0.25 : dif;   // pixel: pontilhado entre os tons
+    float tom = d > 0.62 ? 1.0 : d > 0.25 ? 0.55 : 0.2;
+    c = mix(uCor, uBorda * 0.45, tom * 0.55);
+    if (rim > 0.74) c = uBorda * 0.8;                                // contorno roxo nítido
+  }
+  gl_FragColor = vec4(c, 1.0);
+}`;
+const ESTILOS_3D = { toon: 0, pixel: 1, silhueta: 2 };
+
 const VERT_CORPO = /* glsl */ `
 ${RUIDO}
 attribute float aBalanco;
@@ -85,6 +118,14 @@ void main(){
 const cor = (h) => new THREE.Color(h);
 
 function materialSombra(U, extra = {}, vert = VERT_CORPO) {
+  if (U.estilo != null) return new THREE.ShaderMaterial({   // tentativa 3D em desenho (toon / pixel / silhueta)
+    uniforms: {
+      uTempo: U.uTempo, uPresenca: U.uPresenca, uEstilo: { value: U.estilo },
+      uAmp: { value: (extra.amp ?? 0.05) * 0.3 }, uFase: { value: extra.fase ?? 0 }, uBalanco: { value: extra.balanco ?? 0 },
+      uCor: { value: cor(U.cor) }, uBorda: { value: cor(U.borda) }, uBrasa: { value: cor(U.brasa) }, ...(extra.uniforms || {}),
+    },
+    vertexShader: vert, fragmentShader: FRAG_TOON, transparent: false, depthWrite: true,
+  });
   return new THREE.ShaderMaterial({
     uniforms: {
       uTempo: U.uTempo, uPresenca: U.uPresenca,
@@ -163,6 +204,7 @@ function poca(U, { rx = 1.6, ry = 0.7, fase = 0 } = {}) {
   });
   const m = new THREE.Mesh(new THREE.PlaneGeometry(rx * 2, ry * 2), mat);
   m.renderOrder = -1;
+  m.userData.poca = true;
   return m;
 }
 
@@ -521,13 +563,17 @@ const TIPOS = { 'sombra-alta': sombraAlta, tentaculos, 'massa-olhos': massaOlhos
 export const NOMES_MONSTROS = Object.keys(TIPOS);
 
 // Cria um monstro para um elemento do roteiro: { "id": "vulto", "monstro": "sombra-alta", "x": 2 }
+// monstros desenhados na resolução do pixel art (não precisam da camada em HD)
+export const ehMonstroPixel = (def) => def.estilo3d === 'pixel' || def.estilo3d === 'silhueta';
 export function criarMonstro(def, uTempo, uMeiaAltura) {
   const U = {
     uTempo, uMeiaAltura, uPresenca: { value: 1 }, uEscala: { value: def.escala ?? 1 },
     cor: def.cor || '#050308', borda: def.corBorda || '#5a4a8a', brasa: def.corBrasa || '#b89aff',
+    estilo: ESTILOS_3D[def.estilo3d] ?? null,
   };
   const fab = TIPOS[def.monstro] || sombraAlta;
   const m = fab(U, def);
+  if (U.estilo != null) m.grupo.traverse((o) => { if (o.isPoints || o.userData.poca) o.visible = U.estilo === 0 && o.isPoints; });   // sem a fumaça macia (e sem poça) nas tentativas em desenho
   return {
     ...m,
     atualizar(t, est) {

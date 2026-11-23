@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './assets/index.js';   // todos os assets (motor/assets/)
 import { criarVista, GLSL_BAYER } from './vistas.js';
-import { criarMonstro, Composicao, TIPOS_TRANSICAO } from './monstros3d.js';
+import { criarMonstro, Composicao, TIPOS_TRANSICAO, ehMonstroPixel } from './monstros3d.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
 import { PosProcessamento } from './pos.js';
@@ -70,7 +70,7 @@ class Motor {
     this.renderer.setPixelRatio(1);
     // Monstros 3D: o quadro sai em ALTA resolução (o mundo pixel art é ampliado aqui, sem borrar,
     // e os monstros são desenhados por cima em HD). "monstrosHD": false desenha os monstros em pixel art.
-    const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro));
+    const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro && !ehMonstroPixel(e)));   // "estilo3d": pixel/silhueta não pedem HD
     this.hd = temMonstro && roteiro.monstrosHD !== false;
     this.E = this.hd ? Math.max(1, Math.round(opcoes.escala || (opcoes.larguraTela ? opcoes.larguraTela / W : 3))) : 1;
     this.renderer.setSize(W * this.E, H * this.E, false);
@@ -167,7 +167,7 @@ class Motor {
     const cenaHD = new THREE.Scene();
     const monstros = c.elementos.filter((el) => el.monstro).map((el) => {
       const m = criarMonstro(el, this.uTempo, this.uMeiaAltura);
-      (this.hd ? cenaHD : cena).add(m.grupo);
+      (this.hd && !ehMonstroPixel(el) ? cenaHD : cena).add(m.grupo);
       return { def: el, m };
     });
     const temSombra = c.acoes.some((a) => a.tipo === 'sombra');
