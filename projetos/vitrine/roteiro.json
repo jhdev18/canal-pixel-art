@@ -963,6 +963,15 @@
     { "cenario": "parkour-bloco", "duracao": 3, "transicao": "dither", "foto": [1.4], "camera": { "x": 0, "z": 2.2, "y": 2.8 },
       "legenda": "75. PROTÓTIPO parkour-bloco: pilares saindo da lava com plataformas em cima, início com spawn e chegada xadrez.",
       "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -3.0, "z": 4.0, "y": 2.25 }, { "id": "abia", "personagem": "avatar-bia", "x": 1.8, "z": 3.6, "y": 3.25 }, { "id": "anina", "personagem": "avatar-nina", "x": -8.6, "z": 3.4, "y": 1 } ],
-      "acoes": [] }
+      "acoes": [] },
+    { "cenario": "quarto-leo-diorama", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "76. PROTÓTIPO quarto-leo-diorama: quarto do Léo com o jogo de blocos aberto no computador.",
+      "elementos": [ { "id": "leo", "personagem": "menino-topete", "x": 0.6, "z": 1.6 } ], "acoes": [] },
+    { "cenario": "quarto-nina-diorama", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "77. PROTÓTIPO quarto-nina-diorama: quarto roxo da Nina, computador desligado.",
+      "elementos": [ { "id": "nina", "personagem": "nina", "x": 0.6, "z": 1.6 } ], "acoes": [] },
+    { "cenario": "mundo-bloco-tarde", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "78. PROTÓTIPO mundo-bloco-tarde: o lobby ao pôr do sol.",
+      "elementos": [ { "id": "anina", "personagem": "avatar-nina", "x": -6.4, "z": 2.6, "pose": "acenar" } ], "acoes": [], "camera": { "x": -4, "z": 2.2, "y": 2.6 } },
+    { "cenario": "parkour-campeonato", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "79. PROTÓTIPO parkour-campeonato: parkour na lava com arco de largada.",
+      "camera": { "x": -6, "z": 2.2, "y": 2.8 },
+      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -9.4, "z": 3.0, "y": 1 }, { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -8.0, "z": 3.4, "y": 1 } ], "acoes": [] }
   ]
 }

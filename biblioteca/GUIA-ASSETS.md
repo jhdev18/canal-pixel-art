@@ -156,6 +156,11 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
   `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
   menos — preferir `bug` ou zoom 2 nesses casos.
+- **Lugares dos 3 vídeos de Roblox** 🧪: `quarto-leo-diorama` (quarto do Léo, o jogo aberto no monitor da escrivaninha — opção de móvel
+  `"jogo": true`; cadeira gamer verde), `quarto-nina-diorama` (roxo, computador DESLIGADO: ela parou de jogar), `mundo-bloco-tarde` (o lobby
+  ao pôr do sol: final do emocional), `parkour-campeonato` (parkour na lava com `arco-largada` xadrez no bloco de início; avatares em cima
+  `"y": 1`). Junto com os já existentes: `mundo-bloco` (lobby), `cidade-bloco`, `parkour-bloco`, `escola-patio`, `rua-comercial`,
+  `sala-de-estar-diorama`, `banheiro-diorama`, `quarto-menina-diorama` (Bia), `praca`/`praca-tarde`.
 - **`cidade-bloco`** 🧪 — a cidade do jogo: rua de asfalto com faixa amarela (z 1.3–4.7), calçada dos prédios (z 5.0–6.5) e da frente
   (z -0.5–1.0), gramado; no fundo casas, `loja-bloco-azul`/`-rosa`/`-verde` (toldo listrado e letreiro), `predio-bloco`; `poste-bloco` (luz
   amarela) e `carro-bloco-vermelho`/`-azul`/`-amarelo`. Avatares andam nas calçadas (z ~5.2–6.0 ou ~0.2–0.8). Chão `"chao": "bloco-cidade"`.

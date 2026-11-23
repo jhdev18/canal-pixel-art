@@ -373,6 +373,9 @@
       "tipo": "quarto-menina"
     }
   },
+  // quartos dos vídeos de Roblox (PROTÓTIPO): o do Léo com o jogo aberto no computador; o da Nina com o computador desligado
+  "quarto-leo-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-leo" } },
+  "quarto-nina-diorama": { "vista": "diorama", "comodo": { "tipo": "quarto-nina" } },
   "quarto-menina-noite-diorama": {
     "vista": "diorama",
     "comodo": {
@@ -694,6 +697,24 @@
       { "id": "arv6", "sprite": "arvore-bloco", "x": -12.4, "z": -1.4 }, { "id": "arv7", "sprite": "arvore-bloco", "x": 12.2, "z": -1.6 }
     ]
   },
+  "mundo-bloco-tarde": {
+    // o LOBBY ao pôr do sol (final do vídeo emocional: o servidor fechando no domingo à tarde). Mesmo mapa do mundo-bloco.
+    // v5: o LOBBY do jogo (onde os avatares nascem e se encontram) — praça de baseplate cercada de gramado, spawn no meio,
+    // bairro de casinhas e árvores no fundo (sem peças soltas: o percurso fica só no cenário da corrida).
+    // Para a corrida em si, use "mundo-bloco-corrida" (o percurso com escada, blocos que matam, checkpoint e chegada).
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "tarde", "chao": "baseplate", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "spawn", "sprite": "plataforma-spawn", "x": -6.4, "z": 2.0 },
+      // fundo: bairro do lobby no gramado
+      { "id": "casa1", "sprite": "casa-bloco", "x": -11.0, "z": 8.0 }, { "id": "casa2", "sprite": "casa-bloco", "x": -3.6, "z": 9.0 },
+      { "id": "casa3", "sprite": "casa-bloco", "x": 9.0, "z": 9.0 }, { "id": "casa4", "sprite": "casa-bloco", "x": 15.4, "z": 8.0 },
+      { "id": "arv1", "sprite": "arvore-bloco", "x": -7.2, "z": 7.4 }, { "id": "arv2", "sprite": "arvore-bloco", "x": 0.0, "z": 7.6 },
+      { "id": "arv3", "sprite": "arvore-bloco", "x": 7.0, "z": 7.4 }, { "id": "arv4", "sprite": "arvore-bloco", "x": -14.6, "z": 7.6 },
+      { "id": "arv5", "sprite": "arvore-bloco", "x": 12.6, "z": 7.4 },
+      { "id": "arv6", "sprite": "arvore-bloco", "x": -12.4, "z": -1.4 }, { "id": "arv7", "sprite": "arvore-bloco", "x": 12.2, "z": -1.6 }
+    ]
+  },
   // mundo-bloco-corrida: o percurso de obstáculos (cenas de corrida/campeonato)
   "mundo-bloco-corrida": {
     // a CORRIDA (percurso de obstáculos) — praça de baseplate (z -0.5 a 6.5) cercada de gramado; casinhas e árvores no fundo (grama, z ~7.5–9);
@@ -751,6 +772,23 @@
     "rua": { "periodo": "dia", "chao": "lava", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
     "elementos": [
       { "id": "inicio", "sprite": "plataforma-inicio", "x": -10.0, "z": 2.0 },
+      { "id": "pl1", "sprite": "pilar-bloco-1", "x": -6.0, "z": 2.4 }, { "id": "pl2", "sprite": "pilar-bloco-2", "x": -3.6, "z": 3.6 },
+      { "id": "pl3", "sprite": "pilar-bloco-2", "x": -1.2, "z": 2.2 }, { "id": "pl4", "sprite": "pilar-bloco-3", "x": 1.2, "z": 3.4 },
+      { "id": "check", "sprite": "checkpoint-1", "x": 1.1, "z": 3.3, "y": 3.25 },
+      { "id": "pl5", "sprite": "pilar-bloco-4", "x": 3.8, "z": 2.2 }, { "id": "pl6", "sprite": "pilar-bloco-4", "x": 6.2, "z": 3.6 },
+      { "id": "chegada", "sprite": "plataforma-chegada", "x": 8.6, "z": 2.0 },
+      { "id": "m1", "sprite": "moeda-bloco", "x": -3.0, "z": 4.2, "y": 3.0 }, { "id": "m2", "sprite": "moeda-bloco", "x": 4.4, "z": 2.8, "y": 5.0 },
+      { "id": "f1", "sprite": "pilar-bloco-3", "x": -8.0, "z": 8.0 }, { "id": "f2", "sprite": "pilar-bloco-5", "x": -3.0, "z": 9.4 },
+      { "id": "f3", "sprite": "pilar-bloco-2", "x": 2.4, "z": 8.6 }, { "id": "f4", "sprite": "pilar-bloco-4", "x": 7.4, "z": 9.6 },
+      { "id": "f5", "sprite": "pilar-bloco-1", "x": 12.0, "z": 7.6 }, { "id": "f6", "sprite": "pilar-bloco-3", "x": -13.0, "z": 9.0 }
+    ]
+  },
+  // parkour-campeonato (PROTÓTIPO): o parkour na lava com o ARCO DE LARGADA xadrez em cima do bloco de início (campeonato da escola).
+  "parkour-campeonato": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.8 },
+    "rua": { "periodo": "dia", "chao": "lava", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "inicio", "sprite": "plataforma-inicio", "x": -10.0, "z": 2.0 }, { "id": "arco", "sprite": "arco-largada", "x": -10.0, "z": 4.3, "y": 1 },
       { "id": "pl1", "sprite": "pilar-bloco-1", "x": -6.0, "z": 2.4 }, { "id": "pl2", "sprite": "pilar-bloco-2", "x": -3.6, "z": 3.6 },
       { "id": "pl3", "sprite": "pilar-bloco-2", "x": -1.2, "z": 2.2 }, { "id": "pl4", "sprite": "pilar-bloco-3", "x": 1.2, "z": 3.4 },
       { "id": "check", "sprite": "checkpoint-1", "x": 1.1, "z": 3.3, "y": 3.25 },

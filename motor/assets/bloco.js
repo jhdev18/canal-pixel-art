@@ -278,6 +278,11 @@ MOVEIS['plataforma-chegada'] = { di: 3.0, dj: 3.0, f(L, m) {   // chegada: bloco
   const { i0, i1, j0, j1 } = m;
   L.caixa(i0, i1, j0, j1, 0, 64, { frente: (u, t) => (t < 6 ? '#5a3a2a' : t % 16 === 0 ? '#7e8088' : '#9a9da3'), lado: (u, t) => (t < 6 ? '#4a2a1a' : '#7e8088'), topo: (a, b, d) => (d < 0.06 ? '#c4c6cc' : (Math.floor(a * 2) + Math.floor(b * 2)) % 2 ? '#14121c' : '#f4f4f4') });
 } };
+MOVEIS['arco-largada'] = { di: 0.6, dj: 3.0, f(L, m) {   // arco de largada do campeonato: dois postes brancos e a faixa xadrez em cima
+  const { i0, i1, j0, j1 } = m;
+  for (const j of [j0, j1 - 0.3]) L.caixa(i0 + 0.15, i0 + 0.45, j, j + 0.3, 0, 36, plast('#f4f4f4'));
+  L.caixa(i0 + 0.1, i0 + 0.5, j0, j1, 36, 10, { frente: (u, t) => ((Math.floor(u * 4) + Math.floor(t / 5)) % 2 ? '#14121c' : '#f4f4f4'), lado: '#14121c', topo: '#f4f4f4' });
+} };
 // ------------------------------------------------------------------ tela do jogo (close) e moeda
 function telaJogo(modo) {
   const p = new Pix(96, 64);
@@ -428,6 +433,7 @@ registrarSprites({
   'pilar-bloco-5': () => iso({ parado: { tipo: 'pilar-bloco-5' } }),
   'plataforma-inicio': () => iso({ parado: { tipo: 'plataforma-inicio' } }),
   'plataforma-chegada': () => iso({ parado: { tipo: 'plataforma-chegada' } }),
+  'arco-largada': () => iso({ parado: { tipo: 'arco-largada' } }),
   'checkpoint-1': () => iso({ parado: { tipo: 'checkpoint-1' } }),
   'checkpoint-2': () => iso({ parado: { tipo: 'checkpoint-2' } }),
   'checkpoint-3': () => iso({ parado: { tipo: 'checkpoint-3' } }),
