@@ -86,14 +86,16 @@ A rua comercial normal (`rua-comercial`) **não** tem a loja. Para os vídeos do
 - `rua-brinquedos`: a mesma rua, com a **loja de brinquedos** (fachada amarela, letreiro rosa, toldo azul e amarelo, vitrine com
   brinquedos nas prateleiras) no lugar do prédio comum da esquerda: x ≈ -6.4 a -1.4 (centro -3.9). Padaria, escola etc. no mesmo lugar.
   Calçada da loja z ~5.0, câmera `{ "x": -3.9, "z": 2.2, "y": 2.4 }`. Poste fixo em x -1.5: ninguém para logo à direita dele.
-- `loja-brinquedos-diorama`: a loja por dentro (parede listrada rosa, 2 prateleiras cheias de brinquedos, balcão com caixa
-  registradora, presentes, baú). Brinquedos em pé na frente das prateleiras (x -6.9, -3.4, 0; z ~2.6); pessoas z 0–1.6.
+- `loja-brinquedos-diorama`: a loja por dentro (parede listrada rosa com varal de bandeirinhas, prateleira de parede e cartaz do
+  soldadinho; vitrine de vidro com bonecas de porcelana, 2 prateleiras cheias de brinquedos, balcão com caixa registradora, presentes,
+  baú, cavalinho de balanço e trenzinho no chão). Brinquedos em pé na frente das prateleiras (x -6.9, -3.4, 0; z ~2.6); pessoas z 0–1.6.
 - `fabrica-brinquedos`: a **fábrica** sozinha no campo, na estrada de terra = **fábrica de tijolo com toques de castelo**, envelhecida (duas chaminés listradas com coroa
   de ameias, bandeirinha e **fumaça animada** automática; frontão de pedra com engrenagem dourada; ameias; portão de carga em arco; janelas
   industriais em arco com vidro em grade — uma quebrada, uma tampada —; cano com válvula; fuligem, ferrugem, musgo; faixa "FÁBRICA DE
   BRINQUEDOS"). O usuário achou as torres do castelo ridículas: sem torres, estética de fábrica); centro x ≈ 0.6; câmera alta (y 3.6); pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0; câmera `{ "x": 0.6, "z": 2.2, "y": 2.8 }`.
-- `fabrica-brinquedos-diorama`: a fábrica por dentro (máquina com luzes à esquerda, esteira com cabeças e corpos de brinquedo no meio,
-  prateleira de cabeças de boneca, caixotes de peças). Brinquedos saem da máquina em x ~-6.2, z ~1.0 e andam para a direita.
+- `fabrica-brinquedos-diorama`: a fábrica por dentro, com o mesmo tijolo de fora e faixa de pedra rosa (janelas industriais em arco —
+  uma quebrada —, canos com válvula, engrenagens douradas, placa de aviso; máquina com luzes à esquerda, forno aceso, prateleira de cabeças
+  de boneca, esteira com cabeças e corpos, caixotes de peças, bancada com um boneco pela metade). Brinquedos saem da máquina em x ~-6.2, z ~1.0 e andam para a direita.
 Sugestão: a loja como base do vídeo (de dia, na rua) e a fábrica como revelação no fim, em 1–2 cenas.
 
 ### Cômodos (diorama, enchem a tela)

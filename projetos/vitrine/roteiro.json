@@ -480,7 +480,7 @@
       ] },
     // 36. PROTÓTIPO: interior da loja de brinquedos (loja-brinquedos-diorama): prateleiras, balcão, presentes; brinquedos virando
     { "cenario": "loja-brinquedos-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.0], "camera": { "x": 0, "y": 3 },
-      "legenda": "36. Loja de brinquedos por dentro.",
+      "legenda": "36. Loja de brinquedos por dentro: bandeirinhas, vitrine de bonecas, prateleiras, balcão, cavalinho, trenzinho.",
       "elementos": [
         { "id": "cx", "personagem": "brinquedo-caixa", "x": -6.9, "z": 2.6, "pose": "fechada" },
         { "id": "sold", "personagem": "brinquedo-soldadinho", "x": -3.4, "z": 2.6, "pose": "desligado" },
@@ -512,7 +512,7 @@
 
     // 38. PROTÓTIPO: fábrica de brinquedos por dentro (fabrica-brinquedos-diorama): máquina com luzes, esteira com peças, caixotes de cabeças
     { "cenario": "fabrica-brinquedos-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.0], "camera": { "x": 0, "y": 3 },
-      "legenda": "38. Fábrica por dentro: o soldadinho sai da máquina andando.",
+      "legenda": "38. Fábrica por dentro: tijolo, janelas em arco, canos, engrenagens, forno aceso, esteira, bancada; o soldadinho sai da máquina.",
       "elementos": [
         { "id": "sold", "personagem": "brinquedo-soldadinho", "x": -6.2, "z": 1.0 },
         { "id": "bia", "personagem": "menina-capa", "x": 5.4, "z": 1.0 }

@@ -165,8 +165,11 @@ function corDecor(d, pos, t, noite) {
     if ((u - U + 7) ** 2 + (tt - h + 6) ** 2 < 6) return '#fff0a0';
     return tt < h * 0.35 + Math.sin(u * 0.4) * 2 ? '#5a9a5a' : tt < h * 0.55 + Math.sin(u * 0.25 + 1) * 3 ? '#8ab0d4' : '#c4e0f4';
   }
+  if (DECOR[d.tipo]) return DECOR[d.tipo](d, u, U, t, noite);   // decorações registradas por outros arquivos (motor/assets)
   return null;
 }
+// Decorações de parede extras: DECOR[tipo] = (d, u, U, t, noite) => cor | null  (u: px ao longo da decoração, U: largura em px, t: altura px)
+export const DECOR = {};
 
 // ------------------------------------------------------------------ móveis
 // m: { i0, i1, j0, j1 } (pegada no chão). L: camada. luzes: lista para acender (abajur, TV...).
