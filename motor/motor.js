@@ -69,9 +69,9 @@ class Motor {
     this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true });
     this.renderer.setPixelRatio(1);
     // Monstros 3D: o quadro sai em ALTA resolução (o mundo pixel art é ampliado aqui, sem borrar,
-    // e os monstros são desenhados por cima em HD) só com "monstrosHD": true. Padrão: os monstros 3D saem em pixel art.
+    // e os monstros são desenhados por cima em HD). "monstrosHD": false desenha os monstros em pixel art.
     const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro));
-    this.hd = temMonstro && roteiro.monstrosHD === true;   // padrão: monstros 3D desenhados EM PIXEL (pedido do usuário); HD só com "monstrosHD": true
+    this.hd = temMonstro && roteiro.monstrosHD !== false;
     this.E = this.hd ? Math.max(1, Math.round(opcoes.escala || (opcoes.larguraTela ? opcoes.larguraTela / W : 3))) : 1;
     this.renderer.setSize(W * this.E, H * this.E, false);
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;

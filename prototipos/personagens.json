@@ -50,11 +50,6 @@
   "brinquedo-boneca-sem-rosto":     { "sprite": "brinquedo-boneca-sem-rosto", "voz": 1.2 },
   "brinquedo-robo-sem-rosto":       { "sprite": "brinquedo-robo-sem-rosto", "voz": 0.5 },
   "brinquedo-caixa-sem-rosto":      { "sprite": "brinquedo-caixa-sem-rosto", "voz": 1.4 },
-  // ---- monstros de sombra em pixel art (motor/assets/sombras.js)
-  "sombra-alta": { "sprite": "sombra-alta", "voz": 0.5 },
-  "sombra-tentaculos": { "sprite": "sombra-tentaculos", "voz": 0.5 },
-  "sombra-olhos": { "sprite": "sombra-olhos", "voz": 0.5 },
-  "sombra-rastejante": { "sprite": "sombra-rastejante", "voz": 0.5 },
   // ---- cidade (motor/assets/cidade.js)
   "motorista": { "sprite": "motorista", "voz": 0.85 },
   "gari": { "sprite": "gari", "voz": 0.95 },

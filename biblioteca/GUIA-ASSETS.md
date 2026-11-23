@@ -45,10 +45,6 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
 - **Terror:** `vulto` (silhueta alta e escura em pé; estados parado e olhos). É o melhor para "algo atrás de você"; com `"escala": 2`
   fica bem mais assustador (câmera sem zoom para caber a cabeça). Entrada assustadora: luz piscando (`flash` curtos) e ele
   `aparecer` durante um clarão, depois `mover` mais perto no próximo.
-  **Monstros de sombra em pixel art** (v3, no estilo da `sombraPessoa`/sombra que se alastra: preto arroxeado translúcido, borda roxa
-  esfiapada, veias roxas, tremido): `sombra-alta` (vulto alto de braços compridos; `olhos` vermelhos, `sorriso` de
-  dentes, `agarrar`; anda balançando), `sombra-tentaculos` (poça no chão; `subindo`, `agarrar`), `sombra-olhos` (massa com 8 olhos piscando;
-  `olhando`), `sombra-rastejante` (de lado, anda de quatro; `olhos`). Use `"escala": 2` (ou 1.5) e entrada com `flash` + `aparecer`.
   `sombraPessoa` é a sombra no chão, que sobe a parede (elemento `{ "sombraPessoa": { "tamanho": 2.6 } }`).
 - **Animatrônicos de brinquedo 🧪** (`motor/assets/animatronicos.js`, terror de dia): brinquedos de corda gigantes, do tamanho de um
   adulto — `brinquedo-soldadinho` (madeira, barretina, bigode pintado, maxilar de quebra-nozes), `brinquedo-boneca` (pano, olhos de botão,

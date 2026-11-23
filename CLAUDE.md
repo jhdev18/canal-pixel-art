@@ -570,16 +570,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   formato que enche a tela (ficam no código só como protótipo antigo).
 - **Decisão do usuário (guardiões):** o monstro do final continua o **`vulto` com `"escala": 2`** ("deixe como está por enquanto");
   o teste com os monstros 3D fica guardado em `projetos/teste-monstro-guardioes` (A vulto, B sombra-alta, C rastejante), sem uso.
-- **Monstros de sombra em PIXEL ART (PROTÓTIPO, no lugar dos 3D — o usuário achou o 3D esquisito)** (`motor/assets/sombras.js`):
-  personagens `sombra-alta` (parado/olhos/sorriso/agarrar, anda), `sombra-tentaculos` (parado/subindo/agarrar), `sombra-olhos`
-  (parado/olhando) e `sombra-rastejante` (de lado, anda de quatro; olhos). **v3 no estilo da `sombraPessoa`, do `vulto` e da sombra
-  que se alastra** (o usuário disse que esses tinham o melhor estilo; v1 texturizada e v2 chapada foram recusadas): preto arroxeado
-  translúcido `#0c0816`, borda roxa `#4a2a7a` esfiapada em pontilhado, veias roxas, tremido leve, olhos brancos ou vermelho-rosados.
-  Usar `"escala": 2` (ou 1.5). Teste: `projetos/vitrine` (cenas 64–65).
-  **3D:** as tentativas `toon`/`pixel`/`silhueta` foram recusadas e apagadas. Os monstros 3D antigos (`"monstro": ...`) agora saem
-  **na resolução do pixel art por padrão** (pedido do usuário); `"monstrosHD": true` no roteiro volta à alta resolução.
 - **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
-  "tentaculos" | "massa-olhos" | "rastejante"`, desenhados em pixel art (padrão; `"monstrosHD": true` = alta resolução). `rastejante` = humano de sombra
+  "tentaculos" | "massa-olhos" | "rastejante"`, em alta resolução sobre o pixel art. `rastejante` = humano de sombra
   andando de quatro (membros longos, joelhos/cotovelos para cima, cabeça aos trancos; anda com `andar`/`correr`/`mover`,
   `"passada"`). Teste: `projetos/prototipo-monstros` (cena 6; `npm run fotos -- prototipo-monstros`).
 - **Sombra que se alastra (protótipo)**: ação `{ "tipo": "sombra", "origem": [x, z], "raio": 20, "inicio", "duracao",

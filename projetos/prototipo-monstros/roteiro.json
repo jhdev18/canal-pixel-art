@@ -1,7 +1,7 @@
 {
-  // PROTÓTIPO (não aprovado) — monstros de sombra em 3D, desenhados NA RESOLUÇÃO do pixel art (padrão; "monstrosHD": true volta ao HD).
+  // PROTÓTIPO (não aprovado) — monstros de sombra em 3D, desenhados em alta resolução sobre o mundo pixel art.
   // Ver sem renderizar vídeo: npm run previa -- prototipo-monstros
-  // Imagens paradas (uma por cena): npm run fotos -- prototipo-monstros
+  // Imagens paradas (uma por cena, com os monstros em HD): npm run fotos -- prototipo-monstros
   // Elemento: { "id": "vulto", "monstro": "sombra-alta" | "tentaculos" | "massa-olhos" | "rastejante", "x": 2, "olhar": "filho" }
   //   "rastejante": humano de sombra de quatro; anda com "andar"/"correr"/"mover" ("passada": tamanho do passo)
   //   "aparecer" materializa o monstro (use "duracao" de 1.5 a 2.5 s); "sumir" desfaz em fumaça.

@@ -840,37 +840,6 @@
         { "tipo": "trocar", "alvo": "cel", "estado": "camera", "inicio": 3.6 },
         { "tipo": "trocar", "alvo": "cel", "estado": "rachado", "inicio": 4.6 },
         { "tipo": "trocar", "alvo": "cel", "estado": "sem-sinal", "inicio": 5.4 }
-      ] },
-    // 64. PROTÓTIPO: monstros de sombra em PIXEL ART (no lugar dos 3D): sombra-alta (escala 2) e tentáculos saindo do chão, de dia
-    { "cenario": "rua-comercial", "duracao": 7, "transicao": "dither", "foto": [0.8, 2.6, 4.4, 6.4], "camera": { "x": 0, "z": 2.2, "y": 2.8 },
-      "legenda": "64. Sombras em pixel art: sombra-alta (parado → olhos → sorriso → agarrar) e tentáculos (parado → subindo → agarrar).",
-      "elementos": [
-        { "id": "alta", "personagem": "sombra-alta", "x": -3.4, "z": 5.0, "escala": 2, "oculto": true },
-        { "id": "tent", "personagem": "sombra-tentaculos", "x": 3.6, "z": 3.0 },
-        { "id": "bia", "personagem": "menina-capa", "x": 0.4, "z": 2.0 }
-      ],
-      "acoes": [
-        { "tipo": "flash", "inicio": 0.4, "duracao": 0.15 }, { "tipo": "aparecer", "alvo": "alta", "inicio": 0.45 }, { "tipo": "som", "som": "sombra-surge", "inicio": 0.45 },
-        { "tipo": "trocar", "alvo": "alta", "estado": "olhos", "inicio": 2.0 }, { "tipo": "trocar", "alvo": "tent", "estado": "subindo", "inicio": 2.4 },
-        { "tipo": "trocar", "alvo": "alta", "estado": "sorriso", "inicio": 3.6 }, { "tipo": "som", "som": "suspense", "inicio": 3.6 },
-        { "tipo": "trocar", "alvo": "alta", "estado": "agarrar", "inicio": 5.0 }, { "tipo": "trocar", "alvo": "tent", "estado": "agarrar", "inicio": 5.0 },
-        { "tipo": "tremer", "inicio": 5.0, "duracao": 0.4 },
-        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 1.0, "duracao": 5.8 }
-      ] },
-
-    // 65. PROTÓTIPO: sombra-rastejante andando de quatro pela praça e a massa de olhos (sombra-olhos) piscando
-    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.8, 4.8], "camera": { "x": 0, "z": -9.6, "zoom": 2 },
-      "legenda": "65. Sombras em pixel art: rastejante andando (de quatro) e massa de olhos (piscando → olhando).",
-      "remover": ["arvore3", "arvore4"],
-      "elementos": [
-        { "id": "rast", "personagem": "sombra-rastejante", "x": -6.0, "z": -8.4, "escala": 1.5 },
-        { "id": "olhos", "personagem": "sombra-olhos", "x": 3.6, "z": -7.4, "escala": 1.5 },
-        { "id": "bia", "personagem": "menina-capa", "x": 1.0, "z": -9.4 }
-      ],
-      "acoes": [
-        { "tipo": "andar", "alvo": "rast", "para": -1.6, "inicio": 0.3, "duracao": 4.0, "som": null },
-        { "tipo": "trocar", "alvo": "olhos", "estado": "olhando", "inicio": 3.2 }, { "tipo": "som", "som": "sombra", "inicio": 3.2 },
-        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 2.0, "duracao": 3.8 }
       ] }
   ]
 }
