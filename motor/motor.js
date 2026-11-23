@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
 import './assets/index.js';   // todos os assets (motor/assets/)
 import { criarVista, GLSL_BAYER } from './vistas.js';
-import { criarMonstro, Composicao, TIPOS_TRANSICAO, ehMonstroPixel } from './monstros3d.js';
+import { criarMonstro, Composicao, TIPOS_TRANSICAO } from './monstros3d.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
 import { PosProcessamento } from './pos.js';
@@ -69,9 +69,9 @@ class Motor {
     this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true });
     this.renderer.setPixelRatio(1);
     // Monstros 3D: o quadro sai em ALTA resolução (o mundo pixel art é ampliado aqui, sem borrar,
-    // e os monstros são desenhados por cima em HD). "monstrosHD": false desenha os monstros em pixel art.
-    const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro && !ehMonstroPixel(e)));   // "estilo3d": pixel/silhueta não pedem HD
-    this.hd = temMonstro && roteiro.monstrosHD !== false;
+    // e os monstros são desenhados por cima em HD) só com "monstrosHD": true. Padrão: os monstros 3D saem em pixel art.
+    const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro));
+    this.hd = temMonstro && roteiro.monstrosHD === true;   // padrão: monstros 3D desenhados EM PIXEL (pedido do usuário); HD só com "monstrosHD": true
     this.E = this.hd ? Math.max(1, Math.round(opcoes.escala || (opcoes.larguraTela ? opcoes.larguraTela / W : 3))) : 1;
     this.renderer.setSize(W * this.E, H * this.E, false);
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
@@ -167,7 +167,7 @@ class Motor {
     const cenaHD = new THREE.Scene();
     const monstros = c.elementos.filter((el) => el.monstro).map((el) => {
       const m = criarMonstro(el, this.uTempo, this.uMeiaAltura);
-      (this.hd && !ehMonstroPixel(el) ? cenaHD : cena).add(m.grupo);
+      (this.hd ? cenaHD : cena).add(m.grupo);
       return { def: el, m };
     });
     const temSombra = c.acoes.some((a) => a.tipo === 'sombra');

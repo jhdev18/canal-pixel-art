@@ -1,6 +1,6 @@
 // PROTÓTIPO — monstros de SOMBRA em PIXEL ART 2D (substituem os monstros 3D, que o usuário achou esquisitos).
-// v2 (o usuário não gostou da textura da v1): simples como o "vulto" — preto chapado, luz fraca na borda, pés sumindo em
-// pontilhado e olhos brancos que brilham; o movimento vem da forma (braços, tentáculos, passos). Use "escala": 2 para dar presença (regra 10 das cenas).
+// v3: no estilo da sombra de pessoa (sombraPessoa) e da sombra que se alastra — preto arroxeado translúcido, borda roxa
+// esfiapada, veias roxas e tremido leve; olhos brancos (ou vermelho-rosados). O movimento vem da forma. Use "escala": 2 para dar presença (regra 10 das cenas).
 //   sombra-alta        vulto alto e magro de braços compridos. parado, olhos, sorriso (boca de dentes brancos), agarrar
 //                      (braços para a frente), andando (balança, os pés viram fumaça)
 //   sombra-tentaculos  poça escura no chão com tentáculos que balançam. parado (baixos), subindo (altos), agarrar (curvados para a frente)
@@ -10,20 +10,28 @@
 import { Pix } from '../pixel.js';
 import { registrarSprites } from '../sprites.js';
 
-const BASE = '#0c0a14', MEIO = '#16121f', BORDA = '#1e1a2c', OLHO = '#f4f0ff', K = '#05040a';
+const BASE = '#0c0816', MEIO = '#2e1a4e', BORDA = '#4a2a7a', OLHO = '#f4f0ff', VERMELHO = '#ff5a6b', K = '#05040a';
 const hash = (a, b, c = 0) => { let h = (a * 374761393 + b * 668265263 + c * 2147483647) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
 
-// pinta uma máscara (função dentro(x, y)) como sombra SIMPLES, no estilo do "vulto": preto chapado, uma luz fraca só na
-// borda da esquerda e de cima, e a base sumindo em pontilhado (sem manchas, sem borda fervendo — pedido do usuário).
+// pinta uma máscara (função dentro(x, y)) no estilo da sombraPessoa e da sombra que se alastra (o usuário gosta desse estilo):
+// preto arroxeado um pouco translúcido (#0c0816), borda roxa (#4a2a7a) esfiapada em pontilhado, veias roxas espalhadas em
+// blocos de 3 px e um tremido leve (cada linha balança um pixel com o tempo: está viva). Os pés somem em pontilhado.
+const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+const bayer = (x, y) => (BAYER[(y & 3) * 4 + (x & 3)] + 0.5) / 16;
 function pintarSombra(W, H, dentro, f, { base = H } = {}) {
   const p = new Pix(W, H), b = new Pix(W, H);
-  const em = (x, y) => x >= 0 && y >= 0 && x < W && y < H && dentro(x, y);
+  const treme = (y) => Math.round(Math.sin(f * 0.8 + y * 0.55) * 0.6);
+  const em = (x, y) => { if (y < 0 || y >= H) return false; const xx = x - treme(y); return xx >= 0 && xx < W && dentro(xx, y); };
+  // distância até a borda (0 = borda, 1, 2...) para a borda roxa esfiapada
+  const dist = (x, y) => { for (let r = 1; r <= 2; r++) for (const [dx, dy] of [[r, 0], [-r, 0], [0, r], [0, -r]]) if (!em(x + dx, y + dy)) return r - 1; return 3; };
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     if (!em(x, y)) continue;
-    p.set(x, y, (!em(x - 1, y) || !em(x, y - 1)) ? BORDA : BASE);
+    const d = dist(x, y);
+    if (d === 0 && bayer(x, y) > 0.55) continue;                                            // borda esfiapada (pontilhado)
+    const veia = hash(x / 3 | 0, y / 3 | 0, Math.floor(f / 6)) > 0.93;
+    p.set(x, y, d <= 1 ? BORDA : veia ? MEIO : BASE, d <= 1 ? 242 : 225);
   }
-  for (let y = base - 5; y < base; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4; if (p.d[i + 3] && ((x + y) % 2 === 0 || y >= base - 2) && (y - (base - 6)) / 5 > ((x * 7 + y * 3) % 5) / 5) p.d[i + 3] = 0; }
-  void f;
+  for (let y = base - 5; y < base; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4; if (p.d[i + 3] && bayer(x, y) < (y - (base - 6)) / 5) p.d[i + 3] = 0; }
   return { p, b };
 }
 const olho = (p, b, x, y, cor = OLHO, w = 1) => { for (let k = 0; k < w; k++) { p.set(x + k, y, cor); b.set(x + k, y, cor); } };
@@ -47,7 +55,7 @@ function sombraAlta(f, { olhos = false, sorriso = false, agarrar = false, andar 
   };
   const { p, b } = pintarSombra(W, H, dentro, f);
   const pisca = !olhos && f % 12 === 11;
-  if (!pisca) { olho(p, b, cx - 2, 6, olhos ? '#ff3a4a' : OLHO); olho(p, b, cx + 1, 6, olhos ? '#ff3a4a' : OLHO); if (olhos) { olho(p, b, cx - 2, 5, '#ffb0b8'); olho(p, b, cx + 1, 5, '#ffb0b8'); } }
+  if (!pisca) { olho(p, b, cx - 2, 6, olhos ? VERMELHO : OLHO); olho(p, b, cx + 1, 6, olhos ? VERMELHO : OLHO); if (olhos) { olho(p, b, cx - 2, 5, '#ffb0c0'); olho(p, b, cx + 1, 5, '#ffb0c0'); } }
   if (sorriso) { for (let x = cx - 3; x <= cx + 3; x++) { olho(p, b, x, 9 + (Math.abs(x - cx) === 3 ? -1 : 0), (x + f) % 2 ? OLHO : '#c8c4d8'); } for (let x = cx - 2; x <= cx + 2; x += 2) olho(p, b, x, 10, OLHO); }
   return { p, b };
 }
@@ -99,13 +107,13 @@ function sombraRastejante(f, { andando = false, olhos = false } = {}) {
     || membro(x, y, 33, 12, 36 + passos[0], 4, 40 + passos[0] * 1.5, ch) || membro(x, y, 31, 12, 30 - passos[1], 5, 34 - passos[1], ch)   // braços (cotovelos para cima)
     || membro(x, y, 14, 12, 10 + passos[1], 3, 16 + passos[1] * 1.5, ch) || membro(x, y, 13, 12, 6 - passos[0], 5, 9 - passos[0], ch);    // pernas (joelhos para cima)
   const { p, b } = pintarSombra(W, H, dentro, f, { base: H + 4 });
-  if (olhos || f % 10 < 9) { olho(p, b, 39, 14, olhos ? '#ff3a4a' : OLHO); olho(p, b, 41, 14, olhos ? '#ff3a4a' : OLHO); }
+  if (olhos || f % 10 < 9) { olho(p, b, 39, 14, olhos ? VERMELHO : OLHO); olho(p, b, 41, 14, olhos ? VERMELHO : OLHO); }
   return { p, b };
 }
 
 function sprite(fn, estados) {
   const quadros = [], brilho = [], anims = {};
-  for (const [nome, op, n, fps] of estados) { anims[nome] = { q: [], fps }; for (let f = 0; f < n; f++) { const { p, b } = fn(f, op); anims[nome].q.push(quadros.length); quadros.push(p.contorno(K)); brilho.push(b); } }
+  for (const [nome, op, n, fps] of estados) { anims[nome] = { q: [], fps }; for (let f = 0; f < n; f++) { const { p, b } = fn(f, op); anims[nome].q.push(quadros.length); quadros.push(p); brilho.push(b); } }
   // todos os quadros do mesmo tamanho (alinha pela base) — alguns estados são mais altos
   const Wm = Math.max(...quadros.map((q) => q.w)), Hm = Math.max(...quadros.map((q) => q.h));
   const alinhar = (q) => { if (q.w === Wm && q.h === Hm) return q; const n = new Pix(Wm, Hm), dx = (Wm - q.w) >> 1, dy = Hm - q.h; for (let y = 0; y < q.h; y++) for (let x = 0; x < q.w; x++) { const i = (y * q.w + x) * 4; if (q.d[i + 3]) n.d.set(q.d.subarray(i, i + 4), ((y + dy) * Wm + x + dx) * 4); } return n; };
