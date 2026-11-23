@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (188)
+## Sprites (192)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -273,6 +273,15 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `banco-frente` | 🧪 protótipo | parado | 50×28 |
 | `saquinho-pimenta` | 🧪 protótipo | parado, fechado, aberto | 10×12 |
 
+### Animatrônicos (terror)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `animatronico-pao` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, sem-rosto, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, sem-rosto-andando, sem-rosto-correndo | 30×50 |
+| `animatronico-sapo` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, sem-rosto, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, sem-rosto-andando, sem-rosto-correndo | 30×50 |
+| `animatronico-vaca` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, sem-rosto, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, sem-rosto-andando, sem-rosto-correndo | 30×50 |
+| `animatronico-bailarina` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, sem-rosto, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, sem-rosto-andando, sem-rosto-correndo | 30×50 |
+
 ## Personagens
 
 Uso: `{ "id": "x", "personagem": "nome" }`
@@ -308,6 +317,10 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `mae` | 🧪 protótipo | `mae` | 1.1 |
 | `mae-avental` | 🧪 protótipo | `mae-avental` | 1.1 |
 | `menino-topete` | 🧪 protótipo | `menino-topete` | 1.4 |
+| `animatronico-pao` | 🧪 protótipo | `animatronico-pao` | 0.8 |
+| `animatronico-sapo` | 🧪 protótipo | `animatronico-sapo` | 0.7 |
+| `animatronico-vaca` | 🧪 protótipo | `animatronico-vaca` | 0.9 |
+| `animatronico-bailarina` | 🧪 protótipo | `animatronico-bailarina` | 1.3 |
 | `protagonista` | ✅ | `heroi` | 1 |
 | `companheira` | ✅ | `amiga` | 1.3 |
 | `anciao` | ✅ | `velho` | 0.8 |
@@ -410,6 +423,6 @@ Uso: `{ "cenario": "nome" }`
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `trovao`, `suspense`, `fantasma`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `miau-monstro`, `trovao`, `suspense`, `fantasma`, `servo`, `caixinha-musica`, `falha-eletrica`, `trilha-suspense`, `trilha-comedia`, `trilha-emocional`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

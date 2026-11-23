@@ -39,5 +39,11 @@
   // ---- família da casa em diorama (motor/assets/casa.js)
   "mae":           { "sprite": "mae", "voz": 1.1 },
   "mae-avental":   { "sprite": "mae-avental", "voz": 1.1 },
-  "menino-topete": { "sprite": "menino-topete", "voz": 1.4 }
+  "menino-topete": { "sprite": "menino-topete", "voz": 1.4 },
+
+  // ---- animatrônicos de terror (motor/assets/animatronicos.js)
+  "animatronico-pao":       { "sprite": "animatronico-pao", "voz": 0.8 },
+  "animatronico-sapo":      { "sprite": "animatronico-sapo", "voz": 0.7 },
+  "animatronico-vaca":      { "sprite": "animatronico-vaca", "voz": 0.9 },
+  "animatronico-bailarina": { "sprite": "animatronico-bailarina", "voz": 1.3 }
 }

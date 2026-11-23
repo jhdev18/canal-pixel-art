@@ -196,6 +196,18 @@ const SONS = {
   trovao: () => misturar([[ruido({ dur: 0.25, vol: 0.7, f0: 1800, f1: 300, curva: 1.5 })], [ruido({ dur: 2.6, vol: 0.9, f0: 160, f1: 60, ataque: 0.1, curva: 1.6, semente: 9, envFn: (t, p) => (1 - p) * (0.6 + 0.4 * Math.sin(t * 9) * Math.sin(t * 3.3)) }), 0.1]]),
   suspense: () => misturar([[tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.35, vol: 0.9, curva: 2 })], [tom({ tipo: 'seno', f0: 70, f1: 50, dur: 0.5, vol: 0.9, curva: 2 }), 0.42], [ruido({ dur: 0.1, vol: 0.25, f0: 400, curva: 2 }), 0.42]]),
   fantasma: () => misturar([[tom({ tipo: 'seno', f0: 420, f1: 640, dur: 1.1, vol: 0.28, ataque: 0.25, curva: 1.4, vibrato: 0.06, vibratoHz: 5 })], [tom({ tipo: 'seno', f0: 630, f1: 960, dur: 0.9, vol: 0.12, ataque: 0.3, curva: 1.6, vibrato: 0.05, vibratoHz: 6 }), 0.15], [ruido({ dur: 1.2, vol: 0.12, f0: 900, filtro: 'passa-banda', q: 0.5, ataque: 0.3 })]]),
+  // ---- animatrônicos (PROTÓTIPO) ----
+  // servo: motorzinho zumbindo + estalo da junta (cabeça virando, braço mexendo)
+  servo: () => misturar([[tom({ tipo: 'quadrada', f0: 180, f1: 260, dur: 0.35, vol: 0.08, duty: 0.3, vibrato: 0.08, vibratoHz: 40 })],
+    [ruido({ dur: 0.35, vol: 0.12, f0: 1400, filtro: 'passa-banda', q: 2, semente: 61 })], [tom({ f0: 2200, dur: 0.02, vol: 0.25 }), 0.34], [ruido({ dur: 0.05, vol: 0.3, f0: 3000, f1: 800, curva: 2 }), 0.35]]),
+  // caixinha de música que desafina e perde a corda no fim
+  'caixinha-musica': () => misturar([72, 76, 79, 76, 74, 77, 81, 77, 72, 71].map((n, k) => {
+    const lento = Math.max(0, k - 6) * 0.06, des = 1 - Math.max(0, k - 6) * 0.018;
+    return [tom({ tipo: 'seno', f0: 440 * Math.pow(2, (n - 69) / 12) * des, dur: 0.6, vol: 0.16, curva: 2.6 }), k * 0.26 + lento * k];
+  })),
+  // falha elétrica: chiado com estalos (rosto que pisca para o esqueleto)
+  'falha-eletrica': () => misturar([[ruido({ dur: 0.5, vol: 0.3, f0: 4000, filtro: 'passa-alta', semente: 71, envFn: (t, p) => (Math.sin(t * 90) > 0.2 ? 1 : 0.15) * (1 - p) })],
+    [tom({ tipo: 'quadrada', f0: 120, dur: 0.5, vol: 0.1, duty: 0.5, curva: 1.4 })], ...[0.05, 0.19, 0.31].map((t0, k) => [ruido({ dur: 0.03, vol: 0.5, f0: 2500, curva: 2, semente: 80 + k }), t0])]),
   // ---- Ambientes (loops) ----
   chuva: () => emLoop((L) => misturar([
     [ruido({ dur: L, vol: 0.28, f0: 5000, envFn: () => 1, semente: 21 })],

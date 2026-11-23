@@ -15,6 +15,7 @@
 //   delegacia.js              PROTÓTIPO: interior da delegacia (cômodo em diorama)
 //   leva3.js                  PROTÓTIPO: cachorros de estimação, vulto, pão, saquinho de pimenta
 //   casa.js                   PROTÓTIPO: casa (sala, cozinha, quarto, banheiro), mãe e menino-topete
+//   animatronicos.js          PROTÓTIPO: animatrônicos de terror (Pãozito, Sapo Bandinha, Mimosa, bailarina)
 import './rpg.js';
 import './personagens-detalhados.js';
 import './moradores.js';
@@ -28,3 +29,4 @@ import './prototipos.js';
 import './casa.js';
 import './leva3.js';
 import './delegacia.js';
+import './animatronicos.js';

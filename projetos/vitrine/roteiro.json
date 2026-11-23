@@ -430,6 +430,49 @@
         { "tipo": "emocao", "alvo": "bia", "icone": "?", "inicio": 4.4 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 5.8, "duracao": 1.0 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "triste", "inicio": 6.9, "duracao": 1.0 }
+      ] },
+
+    // 34. PROTÓTIPO: animatrônicos (Pãozito, Sapo Bandinha, Mimosa, bailarina) na calçada da padaria, de dia: estados
+    { "cenario": "rua-comercial", "duracao": 7, "transicao": "dither", "foto": [0.8, 2.6, 4.6, 6.4], "camera": { "x": 1.8, "z": 2.2, "y": 2.4 },
+      "legenda": "34. Animatrônicos: ligado, cantando, acenar, desligado → olhos → virado, sem-rosto, falha.",
+      "elementos": [
+        { "id": "pao", "personagem": "animatronico-pao", "x": 0, "z": 5.0 },
+        { "id": "sapo", "personagem": "animatronico-sapo", "x": 1.2, "z": 5.0, "pose": "cantando" },
+        { "id": "vaca", "personagem": "animatronico-vaca", "x": 2.4, "z": 5.0, "pose": "acenar" },
+        { "id": "bail", "personagem": "animatronico-bailarina", "x": 3.6, "z": 5.0, "pose": "desligado" },
+        { "id": "bia", "personagem": "menina-capa", "x": 1.8, "z": 4.2 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "pao", "estado": "olhos", "inicio": 2.0 },
+        { "tipo": "trocar", "alvo": "sapo", "estado": "olhos", "inicio": 2.0 },
+        { "tipo": "trocar", "alvo": "vaca", "estado": "olhos", "inicio": 2.0 },
+        { "tipo": "trocar", "alvo": "bail", "estado": "olhos", "inicio": 2.0 },
+        { "tipo": "som", "som": "servo", "inicio": 2.0 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 2.2 },
+        { "tipo": "trocar", "alvo": "pao", "estado": "virado", "inicio": 4.0 },
+        { "tipo": "trocar", "alvo": "sapo", "estado": "sem-rosto", "inicio": 4.0 },
+        { "tipo": "trocar", "alvo": "vaca", "estado": "falha", "inicio": 4.0 },
+        { "tipo": "trocar", "alvo": "bail", "estado": "cantando", "inicio": 4.0 },
+        { "tipo": "som", "som": "falha-eletrica", "inicio": 4.0 },
+        { "tipo": "som", "som": "caixinha-musica", "inicio": 4.2 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 4.2, "duracao": 2.6 }
+      ] },
+
+    // 35. PROTÓTIPO: animatrônicos andando (duros) na praça; o Pãozito abre o rosto andando, a bailarina vira a cabeça
+    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.6, 4.6], "camera": { "x": 0, "z": -9.6, "zoom": 2 },
+      "legenda": "35. Animatrônicos andando: normal → sem-rosto andando; bailarina virada andando.", "remover": ["arvore3", "arvore4"],
+      "elementos": [
+        { "id": "pao", "personagem": "animatronico-pao", "x": -4.5, "z": -8.6 },
+        { "id": "bail", "personagem": "animatronico-bailarina", "x": -5.5, "z": -8.0 },
+        { "id": "bia", "personagem": "menina-capa", "x": 3.2, "z": -9.2 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "pao", "para": 1.5, "inicio": 0.2, "duracao": 5.6 },
+        { "tipo": "andar", "alvo": "bail", "para": 0, "inicio": 0.4, "duracao": 5.4 },
+        { "tipo": "trocar", "alvo": "bail", "estado": "virado", "inicio": 1.5 },
+        { "tipo": "trocar", "alvo": "pao", "estado": "sem-rosto", "inicio": 3.0 },
+        { "tipo": "som", "som": "falha-eletrica", "inicio": 3.0 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.2, "duracao": 2.6 }
       ] }
   ]
 }
