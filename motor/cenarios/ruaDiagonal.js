@@ -123,9 +123,11 @@ export function gerarRuaDiagonal(opc = {}) {
       c = junta ? (v === 3 && bayer(x, y) < 0.5 ? '#6a7a4a' : '#6a6050') : (di > 0.75 || dj > 0.85) ? '#8a7e6c' : (di < 0.3 && dj < 0.4 ? '#d4c8b4' : base);
       pintar(x, y, c, i, j, 0); continue;
     }
-    if (opc.chao === 'lava') {   // PROTÓTIPO (parkour de jogo de blocos): mar de lava até o horizonte (brilha), com manchas claras e crosta escura
-      const n = Math.sin(j * 3.1 + i * 1.9) * Math.sin(i * 2.7 - j * 1.3 + 1.7) + Math.sin(j * 1.1 + i * 4.3) * 0.45;   // manchas pequenas (lava borbulhando)
-      c = n > 0.85 ? '#ffe080' : n > 0.45 ? '#ffa030' : n < -0.75 ? '#b8300e' : n < -0.55 ? '#d84a16' : bayer(x, y) < 0.06 ? '#ff7a22' : '#ff6a1a';
+    if (opc.chao === 'lava') {   // PROTÓTIPO (parkour de jogo de blocos): mar de lava até o horizonte (brilha) — v2: mais uniforme, com veios
+      // finos e claros correndo (como a lava lisa dos jogos de bloco), em vez de manchas grandes
+      const v = Math.sin(j * 2.2 + Math.sin(i * 1.3) * 1.6) + Math.sin(i * 2.9 + j * 0.7) * 0.5;
+      const veio = Math.abs(v) < 0.08, borda = Math.abs(v) < 0.16;
+      c = veio ? '#ffd870' : borda ? '#ff9a30' : v > 1.1 ? '#ff7e26' : v < -1.1 ? '#e8501a' : bayer(x, y) < 0.05 ? '#ff7422' : '#ff6a1e';
       pintar(x, y, c, i, j, 0, 2); continue;
     }
     if (opc.chao === 'bloco-cidade') {   // PROTÓTIPO (cidade de jogo de blocos): asfalto liso com faixa amarela, calçadas claras, meio-fio e gramado
