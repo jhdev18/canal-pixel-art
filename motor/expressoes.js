@@ -81,30 +81,49 @@ export function aplicarRosto(pix, L, expr) {
     case 'assustado': cada(olhos.susto); bocas.tremida(); sobr('triste'); { const [bx, by] = L.olhos[1]; set(bx + w + 2, by - 2, SUOR); set(bx + w + 2, by - 1, SUOR); set(bx + w + 1, by - 1, SUOR); } break;
     case 'envergonhado': cada(olhos.baixo); bocas.tremida(); corar(true); break;
     case 'pensativo': cada(olhos.cima); bocas.lado(); sobr('uma'); break;
-    case 'macabro': {   // PROTÓTIPO v2 (terror): olhos pretos fundos com pupila branca minúscula e olheira; sorriso ENORME em meia-lua,
-      // de bochecha a bochecha, com duas fileiras de dentes, boca escura por dentro e vincos subindo das pontas (o rosto "esticado")
-      const PRETO = '#0a0406', DENTE = '#f4f0e4', DENTE2 = '#d8d0bc', VAO = '#5a1a1e', FUNDO = '#1a0608';
-      const lum = (h) => { const n = parseInt(h.slice(1), 16); return ((n >> 16) * 0.3 + ((n >> 8) & 255) * 0.59 + (n & 255) * 0.11) / 255; };
-      const escura = L.pele && lum(L.pele) < 0.45, ARO = '#d8d0c4';   // pele escura: aro claro em volta do olho (senão o olho preto some)
+    case 'macabro': {   // PROTÓTIPO v4 (terror, "mais assustador"): pele pálida e acinzentada, olhos pretos fundos com pupila branca que
+      // treme entre os quadros, escorrido preto embaixo dos olhos, e o sorriso de ponta a ponta com gengiva, dentes desiguais e vincos até os olhos
+      const PRETO = '#0a0406', DENTE = '#f4f0e4', DENTE2 = '#d8d0bc', VAO = '#5a1a1e', FUNDO = '#1a0608', GENGIVA = '#8a2a34', ESCORRE = '#1e0c12';
+      const hex = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; };
+      const lum = (h) => { const [r, g, b] = hex(h); return (r * 0.3 + g * 0.59 + b * 0.11) / 255; };
+      const escura = L.pele && lum(L.pele) < 0.45, ARO = '#d8d0c4';
+      const ey0 = Math.min(...L.olhos.map(([, y]) => y)), treme = ey0 % 2 === 0;   // o quadro da respiração sobe 1 px: a pupila muda de lugar
+      // 1) pele pálida: tudo que tem a cor da pele (ou da sombra/bochecha) no rosto fica acinzentado
+      if (L.pele) {
+        const pl = hex(L.pele), alvo = [pl, hex(L.sombra || L.pele), hex(CORADO), pl.map((v) => Math.min(255, v + 24)), pl.map((v) => Math.min(255, v + 44))];   // inclui os tons claros da pele (testa iluminada)
+        for (let y = Math.max(0, ey0 - 6); y <= Math.min(q.h - 1, my + 6); y++) for (let x = Math.max(0, mx - 8); x <= Math.min(q.w - 1, mx + 8); x++) {
+          const k = (y * q.w + x) * 4; if (!q.d[k + 3]) continue;
+          const c = [q.d[k], q.d[k + 1], q.d[k + 2]];
+          if (!alvo.some((a) => Math.abs(a[0] - c[0]) + Math.abs(a[1] - c[1]) + Math.abs(a[2] - c[2]) < 48)) continue;
+          const l = (c[0] * 0.3 + c[1] * 0.59 + c[2] * 0.11), v = escura ? l * 0.9 + 18 : l * 0.82 + 30;
+          q.d[k] = Math.min(255, v * 0.98); q.d[k + 1] = Math.min(255, v * 1.0); q.d[k + 2] = Math.min(255, v * 0.96);
+        }
+      }
+      const sombra = escura ? '#3a3236' : '#8a8486';
       cada((ex, ey, lado) => {
         const t = L.oculos ? 0 : 1, x0 = ex - (w === 1 ? 1 : 0), x1 = ex + w;
-        for (let x = x0; x < x1; x++) { for (let y = ey - t; y < ey + 2; y++) set(x, y, PRETO); set(x, ey + 2, L.sombra); }
-        if (escura) { for (let x = x0; x < x1; x++) set(x, ey + 2, ARO); set(lado < 0 ? x0 - 1 : x1, ey, ARO); set(lado < 0 ? x0 - 1 : x1, ey + 1, ARO); }
-        set(w === 2 ? (lado < 0 ? ex + 1 : ex) : ex, ey, BRANCO);   // pupila olhando para o meio (para você)
+        for (let x = x0; x < x1; x++) { for (let y = ey - t; y < ey + 2; y++) set(x, y, PRETO); set(x, ey + 2, sombra); }
+        if (escura) { set(lado < 0 ? x0 - 1 : x1, ey, ARO); set(lado < 0 ? x0 - 1 : x1, ey + 1, ARO); }
+        const xp = w === 2 ? ((lado < 0) !== treme ? ex + 1 : ex) : ex;
+        set(xp, ey + (treme ? 0 : 1), BRANCO);                                                         // pupila (treme entre os quadros)
+        const xs = lado < 0 ? x0 : x1 - 1;                                                             // escorrido preto embaixo do olho
+        set(xs, ey + 2, ESCORRE); set(xs, ey + 3, ESCORRE); set(xs, ey + 4, PRETO);
       });
-      if (!L.semBoca) {   // v3 (pedido "sorriso maior"): vai de uma ponta à outra do rosto, 7 linhas de altura, pontas subindo até perto dos olhos
+      if (!L.semBoca) {
         const y0 = my - 2;
         for (const sx of [-1, 1]) {
-          set(mx + sx * 6, y0 - 3, L.sombra); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2);   // ponta puxada para cima + vinco
+          set(mx + sx * 6, y0 - 4, sombra); set(mx + sx * 6, y0 - 3, BOCA2); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2);
           set(mx + sx * 6, y0 + 1, BOCA2); set(mx + sx * 5, y0 + 2, BOCA2); set(mx + sx * 5, y0 + 3, BOCA2); set(mx + sx * 4, y0 + 4, BOCA2);
-          set(mx + sx * 5, y0 - 1, DENTE); set(mx + sx * 5, y0 - 2, BOCA2);
+          set(mx + sx * 5, y0 - 1, GENGIVA); set(mx + sx * 5, y0 - 2, BOCA2);
         }
-        for (let x = mx - 5; x <= mx + 5; x++) set(x, y0, DENTE);                                                    // dentes de cima
-        for (let x = mx - 5; x <= mx + 5; x++) set(x, y0 + 1, (x - mx) % 2 ? VAO : DENTE2);                          // pontas dos dentes
-        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 2, FUNDO);                                                // boca escura
-        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 3, (x - mx) % 2 ? DENTE2 : FUNDO);                        // dentes de baixo (pontudos)
-        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 4, x === mx - 3 || x === mx + 3 ? BOCA2 : DENTE);         // fileira de baixo
-        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 5, BOCA2);                                                // fundo da meia-lua
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 - 1, GENGIVA);                                              // gengiva aparecendo
+        for (let x = mx - 5; x <= mx + 5; x++) set(x, y0, DENTE);                                                   // dentes de cima
+        for (let x = mx - 5; x <= mx + 5; x++) set(x, y0 + 1, (x - mx) % 2 ? VAO : DENTE2);                         // pontas
+        for (const x of [mx - 4, mx - 1, mx + 2, mx + 5]) set(x, y0 + 2, DENTE2);                                   // dentes desiguais (uns mais compridos)
+        for (let x = mx - 4; x <= mx + 4; x++) if (![mx - 4, mx - 1, mx + 2].includes(x)) set(x, y0 + 2, FUNDO);
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 3, (x - mx) % 2 ? DENTE2 : FUNDO);                       // dentes de baixo (pontudos)
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 4, x === mx - 3 || x === mx + 3 ? BOCA2 : DENTE);
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 5, BOCA2);
       }
       break;
     }
@@ -133,7 +152,7 @@ export function adicionarExpressoes(sprite, quadros) {
   for (const e of EXPRESSOES) {
     const n = sprite.quadros.length, [a, b] = quadros(e);
     sprite.quadros.push(a, b);
-    sprite.anims['rosto-' + e] = e === 'bug' ? { q: [n, n + 1, n, n, n + 1, n + 1, n, n + 1], fps: 10 } : { q: [n, n, n + 1, n + 1], fps: 2 };   // a falha pisca rápido e irregular
+    sprite.anims['rosto-' + e] = e === 'macabro' ? { q: [n, n, n, n, n + 1, n, n, n, n, n, n + 1, n + 1], fps: 8 } : e === 'bug' ? { q: [n, n + 1, n, n, n + 1, n + 1, n, n + 1], fps: 10 } : { q: [n, n, n + 1, n + 1], fps: 2 };   // a falha pisca rápido e irregular
   }
   return sprite;
 }
