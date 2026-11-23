@@ -180,7 +180,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       if ((roteiro.legendaEstilo || 'palavra') === 'palavra') {
         // padrão: grupos curtos (até ~3 palavras) com a palavra falada destacada — segura quem assiste sem som
         if (cena.legendaPosicao == null && roteiro.legendaPosicao != null) cena.legendaPosicao = roteiro.legendaPosicao;
-        cena.legendasNarracao = palavrasLegenda(cena.narracaoTexto, cena.narracaoInicio, falaDur, narr?.palavras, roteiro.legendaLetras || 16);
+        cena.legendasNarracao = palavrasLegenda(cena.narracaoTexto, cena.narracaoInicio, falaDur, narr?.palavras, roteiro.legendaLetras || (res[0] < res[1] ? 14 : 16))   // Shorts: 14 letras cabem numa linha no tamanho grande (tamanho fixo);
       } else {
         const blocos = blocosLegenda(cena.narracaoTexto);
         const total = blocos.reduce((s, b) => s + b.length, 0) || 1;

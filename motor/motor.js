@@ -478,7 +478,7 @@ class Motor {
     R.render(obj.cena, obj.camera);
 
     this.ui.desenhar({
-      cena: c, t, rascunho: this.rascunho,
+      cena: c, t, rascunho: this.rascunho, zoom: estadoCamera(c, t).zoom ?? 1,
       info: `RASCUNHO - CENA ${c.numero}/${this.r.cenas.length} - ${formatarTempo(T)}`,
       cabeca: (id, tt) => {
         const e = obj.porId.get(id);

@@ -80,8 +80,8 @@ export class UI {
   }
 
   // cabeca(id, t) -> {x, y} em px da tela (y a partir do topo) do topo do sprite.
-  desenhar({ cena, t, cabeca, rascunho, info, importantes }) {
-    this.importantes = importantes; this.cenaAtual = cena;
+  desenhar({ cena, t, cabeca, rascunho, info, importantes, zoom = 1 }) {
+    this.importantes = importantes; this.cenaAtual = cena; this.zoom = zoom;
     const { ctx, W, H } = this;
     ctx.clearRect(0, 0, W, H);
     ctx.globalAlpha = 1;
@@ -294,8 +294,9 @@ export class UI {
   legendaPalavras(b, t) {
     const { ctx, W, H } = this;
     const vertical = H > W;
+    // tamanho FIXO (pedido do usuário): sempre grande; se não couber numa linha, quebra em duas (só encolhe se UMA palavra não couber)
     let esc = 2;
-    if (larguraTexto(b.texto, esc) > W - 12) esc = 1;
+    if (b.palavras.some((p) => larguraTexto(p.w, esc) > W - 12)) esc = 1;
     const linhas = [];
     let atual = [];
     for (const p of b.palavras) {
@@ -309,7 +310,9 @@ export class UI {
     // posição fixa embaixo (pedido do usuário: legenda que troca de lugar confunde). No Shorts fica logo acima dos ~18% de
     // baixo, onde ficam o título e os botões do YouTube. "legendaPosicao" (0–1) no roteiro/cena muda; "legendaPosicao": "auto"
     // usa lugarLegenda (desvia de quem está na cena).
-    const pos = this.cenaAtual?.legendaPosicao ?? (vertical ? 0.76 : 0.85);
+    // cena com zoom (personagens grandes, no meio da tela): a legenda desce um pouco para não ficar em cima deles
+    const perto = (this.zoom ?? 1) >= 1.5;
+    const pos = this.cenaAtual?.legendaPosicao ?? (vertical ? (perto ? 0.8 : 0.76) : (perto ? 0.88 : 0.85));
     const centro = pos === 'auto' ? this.lugarLegenda(b, altBloco, larguraMax, vertical) : pos;
     const y0 = Math.round(H * centro - altBloco / 2 + (1 - pop) * 2);
     const espaco = larguraTexto(' ', esc) + esc;

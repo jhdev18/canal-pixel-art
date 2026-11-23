@@ -67,7 +67,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Silêncio no começo do áudio é cortado sozinho** (a voz começa no 1º quadro; o `--verificar` mostra quanto foi cortado).
 - **Legenda palavra por palavra (padrão):** grupos de 2–3 palavras grandes, com a palavra falada em amarelo (tempo real das
   palavras pelo alinhamento; sem áudio, estimado). **Posição fixa embaixo** (pedido do usuário: legenda trocando de lugar
-  confunde): Shorts a 76% da altura (logo acima dos 18% de baixo, onde ficam os botões do YouTube), 16:9 a 85%. Por isso, no
+  confunde): Shorts a 76% da altura (logo acima dos 18% de baixo, onde ficam os botões do YouTube), 16:9 a 85%; **em cena com zoom ≥ 1,5**
+  desce para 80% (Shorts) / 88% (16:9), para não ficar em cima dos personagens grandes (pedido do usuário). **Tamanho fixo:** sempre a letra
+  grande (grupos de até 14 letras no Shorts, 16 no 16:9); se não couber, quebra em 2 linhas em vez de encolher. Por isso, no
   enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
   câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
   Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
