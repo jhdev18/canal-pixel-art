@@ -161,6 +161,10 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   ao pôr do sol: final do emocional), `parkour-campeonato` (v2: pilares em linha a cada 2,8 em x, z 2.6, alturas 1→4; o pilar verde é o checkpoint;
   `arco-largada` na beira de trás do bloco de início — avatares na frente dele, z 2.3–3.0, `"y": 1` — e outro arco na chegada, `"y": 4`). Junto com os já existentes: `mundo-bloco` (lobby), `cidade-bloco`, `parkour-bloco`, `escola-patio`, `rua-comercial`,
   `sala-de-estar-diorama`, `banheiro-diorama`, `quarto-menina-diorama` (Bia), `praca`/`praca-tarde`.
+- **Andar e pular dos avatares (v2)** 🧪: o andar tem 6 quadros (perna da frente sobe aos poucos, a de trás fica atrás e mais escura, braço
+  oposto balança junto, corpo sobe 1 px no meio do passo; 9 q/s andando, 14 correndo). O pulo tem fases escolhidas sozinhas pelo motor
+  durante o `pular`: agacha (0–10%: corpo desce, braços para trás) → sobe (braços para cima, como no jogo) → desce (braços meio abertos, uma
+  perna dobrada) → aterrissa (90–100%: braços e pernas abertos). Os outros personagens continuam com o `pulando` de sempre.
 - **`cidade-bloco`** 🧪 — a cidade do jogo: rua de asfalto com faixa amarela (z 1.3–4.7), calçada dos prédios (z 5.0–6.5) e da frente
   (z -0.5–1.0), gramado; no fundo casas, `loja-bloco-azul`/`-rosa`/`-verde` (toldo listrado e letreiro), `predio-bloco`; `poste-bloco` (luz
   amarela) e `carro-bloco-vermelho`/`-azul`/`-amarelo`. Avatares andam nas calçadas (z ~5.2–6.0 ou ~0.2–0.8). Chão `"chao": "bloco-cidade"`.

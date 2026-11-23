@@ -121,6 +121,18 @@
       "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -10.2, "z": 2.4, "y": 1 }, { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -8.6, "z": 2.8, "y": 1 } ], "acoes": [] },
     { "cenario": "parkour-campeonato", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "80. parkour-campeonato (meio).",
       "camera": { "x": 1, "z": 2.2, "y": 2.8 },
-      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": 2.0, "z": 3.0, "y": 3.25 }, { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -3.6, "z": 3.0, "y": 2.25, "pose": "pulando" } ], "acoes": [] }
+      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": 2.0, "z": 3.0, "y": 3.25 }, { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -3.6, "z": 3.0, "y": 2.25, "pose": "pulando" } ], "acoes": [] },
+    { "cenario": "mundo-bloco", "duracao": 2.4, "transicao": "dither", "foto": [1.0, 1.12, 1.24, 1.36], "legenda": "81. andar e pular (fases).",
+      "camera": { "x": -2.4, "z": 1.0, "y": 1.4, "zoom": 2 },
+      "elementos": [
+        { "id": "j1", "personagem": "avatar-bloco-vermelho", "x": -3.0, "z": 2.6 }, { "id": "j2", "personagem": "avatar-bloco-azul", "x": -1.6, "z": 2.6 },
+        { "id": "j3", "personagem": "avatar-bloco-verde", "x": -0.2, "z": 2.6 }, { "id": "j4", "personagem": "avatar-bloco-roxo", "x": 1.2, "z": 2.6 },
+        { "id": "w", "personagem": "avatar-topete", "x": -5.0, "z": 1.4 }, { "id": "w2", "personagem": "avatar-nina", "x": -4.2, "z": 0.8 }, { "id": "w3", "personagem": "avatar-bia", "x": -4.6, "z": 0.2 }
+      ],
+      "acoes": [
+        { "tipo": "pular", "alvo": "j1", "inicio": 0.95, "duracao": 1.0, "som": null }, { "tipo": "pular", "alvo": "j2", "inicio": 0.8, "duracao": 1.0, "som": null },
+        { "tipo": "pular", "alvo": "j3", "inicio": 0.4, "duracao": 1.0, "som": null }, { "tipo": "pular", "alvo": "j4", "inicio": 0.05, "duracao": 1.0, "som": null },
+        { "tipo": "andar", "alvo": "w", "para": -4.6, "inicio": 0, "duracao": 2.4 }, { "tipo": "andar", "alvo": "w2", "para": -3.8, "inicio": 0.03, "duracao": 2.4 }, { "tipo": "andar", "alvo": "w3", "para": -4.2, "inicio": 0.07, "duracao": 2.4 }
+      ] }
   ]
 }

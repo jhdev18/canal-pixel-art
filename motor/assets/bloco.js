@@ -43,15 +43,18 @@ const bloco = (p, x, y, w, h, cor) => { p.ret(x, y, w, h, cor); p.ret(x, y, w, 1
 const WA = 30;
 function avatar(c, f = {}) {
   const p0 = new Pix(WA, H + 6), p = { set: (x, y, cor) => p0.set(x, y + 4, cor), ret: (x, y, w, h, cor) => p0.ret(x, y + 4, w, h, cor) };
-  const pulo = f.pulo ? -2 : 0, bob = f.perna ? 1 : 0, y0 = pulo + bob;
+  const pulo = f.pulo ? -2 : 0, bob = f.bob ?? (f.perna ? 1 : 0), y0 = pulo + bob + (f.agacha ? 2 : 0);
   const plastico = (x, y, w, h, cor, reflexo = true) => {
     p.ret(x, y, w, h, cor); p.ret(x, y, 1, h, claro(cor, 0.3)); p.ret(x + w - 1, y, 1, h, escuro(cor, 0.22)); p.ret(x, y + h - 1, w, 1, escuro(cor, 0.3));
     p.ret(x, y, w, 1, claro(cor, 0.4)); if (reflexo && w > 4) p.set(x + 1, y + 1, '#ffffff');
   };
   // pernas: a que vem para a frente fica mais curta (escorço) e mais clara
+  // f.pernaE / f.pernaD: -1 = para trás (estica e fica atrás), 0 = reta, 0.5/1 = para a frente (encurta e o pé sobe); f.abre: pernas abertas (queda)
   for (const [x, lado] of [[8, -1], [16, 1]]) {
-    const frente = f.perna === lado, alt = frente ? 13 : 16, yy = 30 + y0;
-    plastico(x, yy, 7, alt, frente ? claro(c.calca, 0.1) : c.calca, false); p.ret(x, yy + alt - 3, 7, 3, c.sapato);
+    const v = lado < 0 ? (f.pernaE ?? (f.perna === -1 ? 1 : 0)) : (f.pernaD ?? (f.perna === 1 ? 1 : 0));
+    const alt = v > 0 ? 16 - Math.round(v * 5) : 16, yy = 30 + y0 - (f.agacha ? 2 : 0);   // a perna da frente encurta até 5 px (o pé sobe)
+    const xx = x + (f.abre ? lado * 2 : 0), cor = v > 0 ? claro(c.calca, 0.12) : v < 0 ? escuro(c.calca, 0.12) : c.calca;
+    plastico(xx, yy, 7, alt - (f.agacha ? 0 : 0), cor, false); p.ret(xx, yy + alt - 3, 7, 3, v < 0 ? escuro(c.sapato, 0.15) : c.sapato);
   }
   // tronco
   plastico(7, 14 + y0, 16, 16, c.camisa);
@@ -66,9 +69,12 @@ function avatar(c, f = {}) {
   // braços (manga da camisa em cima, pele embaixo)
   const braco = (x, modo) => {
     if (modo === 'alto' || modo === 'aceno') { const dy = modo === 'aceno' ? -1 : 0; plastico(x, -2 + y0 + dy, 6, 9, c.camisa, false); p.ret(x, -4 + y0 + dy, 6, 3, c.pele); p.ret(x, 7 + y0, 6, 8, c.camisa); return; }
-    const enc = typeof modo === 'number' ? Math.max(0, modo) * 3 : 0;   // >0: o braço vem para a frente (mais curto)
-    plastico(x, 14 + y0, 6, 9 - enc / 2, enc ? claro(c.camisa, 0.1) : c.camisa, false);
-    plastico(x, 23 + y0 - enc / 2, 6, 7 - enc / 2, c.pele, false);
+    if (modo === 'lado') { const dx = x < 15 ? -1 : 1; plastico(x + dx, 8 + y0, 6, 14, c.camisa, false); p.ret(x + dx, 4 + y0, 6, 4, c.pele); return; }   // meio levantado e um pouco aberto, preso no ombro (queda)
+    const v = typeof modo === 'number' ? modo : 0;
+    const enc = Math.round(Math.max(0, v) * 4);   // >0: o braço vem para a frente (mais curto, mais claro)
+    const atras = v < 0, dx = atras ? (x < 15 ? -1 : 1) : 0;   // <0: vai para trás (um pouco para fora, mais escuro)
+    plastico(x + dx, 14 + y0, 6, 9 - enc / 2, enc ? claro(c.camisa, 0.1) : atras ? escuro(c.camisa, 0.12) : c.camisa, false);
+    plastico(x + dx, 23 + y0 - enc / 2, 6, 7 - enc / 2, atras ? escuro(c.pele, 0.1) : c.pele, false);
   };
   braco(1, f.bracoE ?? 0); braco(23, f.braco ?? 0);
   // cabeça arredondada (sem os 4 cantos), plástico
@@ -115,18 +121,26 @@ function bugar(p, k) {
 function spriteAvatar(c) {
   const quadros = [], anims = {};
   const add = (f) => { quadros.push(avatar(c, f)); return quadros.length - 1; };
-  const andar = (f0 = {}) => [-1, 0, 1, 0].map((s) => add({ ...f0, perna: s, bracoE: s > 0 ? 1 : 0, braco: s < 0 ? 1 : 0 }));
+  // andar (v2): 6 quadros — perna que vai para a frente sobe aos poucos, a outra fica atrás; braço oposto balança junto; o corpo sobe
+  // 1 px no meio do passo (quando as pernas se cruzam) e desce no apoio
+  const CICLO = [[1, -1, 0], [0.5, -0.5, -1], [0, 0, 0], [-1, 1, 0], [-0.5, 0.5, -1], [0, 0, 0]];
+  const andar = (f0 = {}) => CICLO.map(([e, d, b]) => add({ ...f0, pernaE: e, pernaD: d, bracoE: d, braco: e, bob: b + (e === 0 ? 0 : 1) }));
   const P = add({}), A = [add({ braco: 'alto' }), add({ braco: 'aceno' })], J = add({ pulo: true, braco: 'alto', bracoE: 'alto' });
+  // pulo (v2) em fases: agacha (corpo desce, braços para trás) → sobe (braços para cima, pernas retas) → desce (braços abertos, uma perna
+  // dobrada) → cai (braços abertos, pernas abertas para aterrissar)
+  const JA = add({ agacha: true, braco: -1, bracoE: -1, bob: 0 }), JS = J;
+  const JD = add({ pulo: true, braco: 'lado', bracoE: 'lado', pernaE: 0.5, pernaD: 0 }), JC = add({ braco: 'lado', bracoE: 'lado', abre: true, bob: 0 });
   const L = add({ rosto: 'liso' }), S = add({ rosto: 'sorriso' });
   const AN = andar(), AL = andar({ rosto: 'liso' }), AS = andar({ rosto: 'sorriso' });
   const B = [0, 1, 2, 3].map((k) => { quadros.push(bugar(avatar(c, {}), k)); return quadros.length - 1; });
   const BA = [0, 1, 2, 3].map((k) => { quadros.push(bugar(avatar(c, { perna: [-1, 0, 1, 0][k] }), k)); return quadros.length - 1; });
   Object.assign(anims, {
     parado: { q: [P], fps: 1 }, acenar: { q: A, fps: 4 }, pulando: { q: [J], fps: 1 },
-    andando: { q: AN, fps: 6 }, correndo: { q: AN, fps: 10 },
+    'pulando-agacha': { q: [JA], fps: 1 }, 'pulando-sobe': { q: [JS], fps: 1 }, 'pulando-desce': { q: [JD], fps: 1 }, 'pulando-cai': { q: [JC], fps: 1 },
+    andando: { q: AN, fps: 9 }, correndo: { q: AN, fps: 14 },
     bug: { q: [B[0], P, B[1], B[2], P, B[3]], fps: 12 }, 'bug-andando': { q: BA, fps: 10 }, 'bug-correndo': { q: BA, fps: 14 },
-    'sem-rosto': { q: [L], fps: 1 }, 'sem-rosto-andando': { q: AL, fps: 6 }, 'sem-rosto-correndo': { q: AL, fps: 10 },
-    sorriso: { q: [S], fps: 1 }, 'sorriso-andando': { q: AS, fps: 6 }, 'sorriso-correndo': { q: AS, fps: 10 },
+    'sem-rosto': { q: [L], fps: 1 }, 'sem-rosto-andando': { q: AL, fps: 9 }, 'sem-rosto-correndo': { q: AL, fps: 14 },
+    sorriso: { q: [S], fps: 1 }, 'sorriso-andando': { q: AS, fps: 9 }, 'sorriso-correndo': { q: AS, fps: 14 },
   });
   return { quadros, anims, sombra: true, personagem: true };
 }

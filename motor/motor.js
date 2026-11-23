@@ -335,7 +335,10 @@ class Motor {
       // nas outras o sprite usa a caminhada clássica, se tiver.
       const conjunto = !vista.caminhadaSincronizada && e.sprite.animsClassicas?.[st.anim] ? e.sprite.animsClassicas : e.sprite.anims;
       // estado + caminhada: se o sprite tiver "<estado>-andando" (ex.: gato com a cara de monstro andando), usa
-      const anim = (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
+      // pulo em fases (PROTÓTIPO, avatares de bloco): o sprite pode ter pulando-agacha / -sobe / -desce / -cai (escolhido pela fase do pulo)
+      const fp = st.anim === 'pulando' ? st.fasePulo : null;
+      const fasePulo = fp == null ? null : fp < 0.1 ? 'pulando-agacha' : fp < 0.45 ? 'pulando-sobe' : fp < 0.9 ? 'pulando-desce' : 'pulando-cai';
+      const anim = (fasePulo && conjunto[fasePulo]) || (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);

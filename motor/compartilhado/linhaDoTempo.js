@@ -262,6 +262,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   let espirro = null, rosto = null;
   const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
   let animInicio = 0;   // quando começou o estado atual (para animações que tocam uma vez só)
+  let fasePulo = null;  // 0..1 durante um pulo (o sprite pode ter quadros de subida/descida)
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
     if (t < a.inicio) break;
@@ -281,7 +282,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
         const [tx, ty] = destino(a, x, y);
         if (Math.abs(tx - x) > 1e-4) virado = tx < x ? -1 : 1;
         x = lerp(x, tx, p); y = lerp(y, ty, p);
-        if (p < 1) { offY += 4 * h * p * (1 - p); anim = 'pulando'; }
+        if (p < 1) { offY += 4 * h * p * (1 - p); anim = 'pulando'; fasePulo = p; }
         break;
       }
       case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
@@ -318,7 +319,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   if (espirro && anim === 'parado' && !pose) anim = espirro;
   else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
   if (dono && !dono.visivel) visivel = false;
-  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY };
+  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY, fasePulo };
 }
 
 export function elementoPorId(cena, id) {
