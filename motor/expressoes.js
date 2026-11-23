@@ -5,7 +5,7 @@
 //     "gota" chorando, "raiva" bravo, "..." envergonhado). Desligar numa ação: { "tipo": "emocao", ..., "rosto": false }.
 //   - por um tempo: { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 1, "duracao": 2 }
 //   - a cena toda: "pose": "rosto-feliz" no elemento (ou ação "trocar" com "estado": "rosto-triste").
-export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro', 'bug'];
+export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro', 'macabro-fechado', 'macabro-boca', 'bug'];
 export const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
 
 const BRANCO = '#ffffff', BOCA = '#5a2020', BOCA2 = '#3a1414', LINGUA = '#c84a5a', LAGRIMA = '#9ad8ff', LAGRIMA2 = '#5aa8e8', SUOR = '#a8e0ff', CORADO = '#f06a6a';
@@ -81,6 +81,8 @@ export function aplicarRosto(pix, L, expr) {
     case 'assustado': cada(olhos.susto); bocas.tremida(); sobr('triste'); { const [bx, by] = L.olhos[1]; set(bx + w + 2, by - 2, SUOR); set(bx + w + 2, by - 1, SUOR); set(bx + w + 1, by - 1, SUOR); } break;
     case 'envergonhado': cada(olhos.baixo); bocas.tremida(); corar(true); break;
     case 'pensativo': cada(olhos.cima); bocas.lado(); sobr('uma'); break;
+    case 'macabro-fechado':
+    case 'macabro-boca':
     case 'macabro': {   // PROTÓTIPO v5 (terror): o sorriso grande da v3 + gengiva, escorrido preto embaixo dos olhos e pupila branca que treme
       // (a v4 com a pele cinza e os dentes desiguais ficou esquisita — o usuário não gostou)
       const PRETO = '#0a0406', DENTE = '#f4f0e4', DENTE2 = '#d8d0bc', VAO = '#5a1a1e', FUNDO = '#1a0608', GENGIVA = '#8a2a34', ESCORRE = '#1e0c12';
@@ -95,10 +97,26 @@ export function aplicarRosto(pix, L, expr) {
         if (escura) { set(lado < 0 ? x0 - 1 : x1, ey, ARO); set(lado < 0 ? x0 - 1 : x1, ey + 1, ARO); }
         const xp = w === 2 ? ((lado < 0) !== treme ? ex + 1 : ex) : ex;
         set(xp, ey + (treme ? 0 : 1), BRANCO);                                                         // pupila (treme entre os quadros)
-        const xs = lado < 0 ? x0 : x1 - 1;                                                             // escorrido preto embaixo do olho
-        set(xs, ey + 2, ESCORRE); set(xs, ey + 3, ESCORRE); set(xs, ey + 4, PRETO);
+        if (expr === 'macabro-boca') { const xs = lado < 0 ? x0 : x1 - 1; set(xs, ey + 2, ESCORRE); set(xs, ey + 3, ESCORRE); set(xs, ey + 4, PRETO); }   // escorrido (só na versão com dentes: no fechado parecia choro)
       });
-      if (!L.semBoca) {
+      if (!L.semBoca && expr === 'macabro') {   // v7 (pedido: "sorriso só mostrando os dentes"): dentes CERRADOS de ponta a ponta, sem boca
+        // escura nem gengiva — duas fileiras brancas encostadas, vãos cinza entre os dentes, contorno fino e as pontas subindo
+        const y0 = my - 1, DT = '#f4f0e4', JUNTA = '#a8a090', VAOD = '#8a8070';
+        for (const sx of [-1, 1]) { set(mx + sx * 6, y0 - 3, L.sombra); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2); set(mx + sx * 6, y0 + 1, BOCA2); set(mx + sx * 5, y0 + 2, BOCA2); set(mx + sx * 5, y0 - 1, DT); set(mx + sx * 5, y0 - 2, BOCA2); }
+        for (let x = mx - 4; x <= mx + 4; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 3, BOCA2); }               // contorno de cima e de baixo
+        for (let x = mx - 5; x <= mx + 5; x++) { set(x, y0, (x - mx) % 2 ? VAOD : DT); set(x, y0 + 1, JUNTA); }   // dentes de cima + a junta (dentes encostados)
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 2, (x - mx) % 2 ? DT : VAOD);                         // dentes de baixo, desencontrados
+      } else if (!L.semBoca && expr === 'macabro-fechado') {   // v6 (pedido: "sorriso sem mostrar a boca"): boca FECHADA esticada de orelha a orelha —
+        // uma linha fina que sobe até perto dos olhos, com o lábio de baixo e os vincos das bochechas marcando o esforço do sorriso
+        const y0 = my;
+        // dentro do rosto (não encosta no contorno da cabeça, senão parece barba): ±5 px, meio reto e pontas subindo 3 px
+        const linha = [[0, 1], [1, 1], [2, 1], [3, 0], [4, -1], [5, -2], [5, -3]];
+        for (const sx of [-1, 1]) for (const [dx, dy] of linha) {
+          set(mx + sx * dx, y0 + dy, BOCA2);
+          if (dx <= 2) set(mx + sx * dx, y0 + dy + 1, L.sombra);                      // lábio de baixo, só no meio
+        }
+        for (const sx of [-1, 1]) { set(mx + sx * 4, y0 - 3, L.sombra); set(mx + sx * 3, y0 - 2, L.sombra); }   // bochechas empurradas para cima
+      } else if (!L.semBoca) {
         const y0 = my - 2;
         for (const sx of [-1, 1]) {
           set(mx + sx * 6, y0 - 4, sombra); set(mx + sx * 6, y0 - 3, BOCA2); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2);
@@ -140,7 +158,7 @@ export function adicionarExpressoes(sprite, quadros) {
   for (const e of EXPRESSOES) {
     const n = sprite.quadros.length, [a, b] = quadros(e);
     sprite.quadros.push(a, b);
-    sprite.anims['rosto-' + e] = e === 'macabro' ? { q: [n, n, n, n, n + 1, n, n, n, n, n, n + 1, n + 1], fps: 8 } : e === 'bug' ? { q: [n, n + 1, n, n, n + 1, n + 1, n, n + 1], fps: 10 } : { q: [n, n, n + 1, n + 1], fps: 2 };   // a falha pisca rápido e irregular
+    sprite.anims['rosto-' + e] = e.startsWith('macabro') ? { q: [n, n, n, n, n + 1, n, n, n, n, n, n + 1, n + 1], fps: 8 } : e === 'bug' ? { q: [n, n + 1, n, n, n + 1, n + 1, n, n + 1], fps: 10 } : { q: [n, n, n + 1, n + 1], fps: 2 };   // a falha pisca rápido e irregular
   }
   return sprite;
 }
@@ -151,6 +169,8 @@ const EQUIVALENTES = {
   bravo: ['assustar', 'alerta', 'agarrar'], surpreso: ['alerta', 'olho-aberto', 'olhos'], assustado: ['tremendo', 'timido', 'alerta'],
   envergonhado: ['timido'], pensativo: ['olhando-lado'],
   bug: ['bug', 'falha', 'sem-rosto'],
+  'macabro-fechado': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
+  'macabro-boca': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
   macabro: ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
 };
 export function rostoEquivalente(anims, nome) {
