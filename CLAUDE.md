@@ -62,6 +62,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
 - **1ª frase curta:** no máximo 12 palavras / ~65 letras (o ideal é ~8 palavras, ~2–3 s). O `npm run conferir` acusa `[gancho]`.
+- **Rascunho sem áudio:** cada cena dura a fala estimada + 0,15 s (antes tinha mínimo de 4 s e parecia parado). Cenas `PARADA` no `npm run mapa`
+  (sem nada se mexendo) são onde o público sai: pôr um passo, um pulo ou alguém chegando.
 - **Silêncio no começo do áudio é cortado sozinho** (a voz começa no 1º quadro; o `--verificar` mostra quanto foi cortado).
 - **Legenda palavra por palavra (padrão):** grupos de 2–3 palavras grandes, com a palavra falada em amarelo (tempo real das
   palavras pelo alinhamento; sem áudio, estimado). **Posição fixa embaixo** (pedido do usuário: legenda trocando de lugar
@@ -69,6 +71,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
   câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
   Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
+  **Centralizar no Shorts (pedido do usuário: personagens descentralizados):** a câmera do diorama NÃO fica em cima de quem tem o mesmo `x`
+  (o `z` também desloca na tela). Medir com `node ferramentas/roteiros/medir-centro-shorts.mjs <projeto> ['{"13":["id"]}']` (só quem tem papel,
+  sem figurantes; o JSON opcional escolhe em quem centrar) e aplicar com `centroShorts(C, { cena: dx })` do `nm.mjs`. Fazer em TODO vídeo novo.
   Praça cheia (várias fileiras) não cabe toda: limitar a -2 e aceitar os pés da fileira da frente sob a legenda.
   `"legendaPosicao"` (0–1, no roteiro ou na cena) muda; `"auto"` desvia sozinho de quem está na cena (`lugarLegenda` em `motor/ui.js`).
   `"legendaEstilo": "caixa"` volta à legenda antiga; `"legendaLetras"` (padrão 16) muda o tamanho dos grupos.

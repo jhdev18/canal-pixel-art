@@ -82,7 +82,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
+     "x": 0.45,
      "z": 2.2,
      "y": 1.3,
      "zoom": 2
@@ -108,13 +108,6 @@
      "z": 2.8
     },
     {
-     "id": "aleo2",
-     "personagem": "avatar-leo-2",
-     "x": -0.8,
-     "z": 3.3,
-     "oculto": true
-    },
-    {
      "id": "a1",
      "personagem": "avatar-bloco-vermelho",
      "x": 3.6,
@@ -126,9 +119,9 @@
     {
      "tipo": "andar",
      "alvo": "aleo1",
-     "para": -0.8,
+     "para": 1.2,
      "inicio": 0.3,
-     "duracao": 1.15
+     "duracao": 2.68
     },
     {
      "tipo": "andar",
@@ -140,41 +133,23 @@
     {
      "tipo": "magia",
      "alvo": "aleo1",
-     "inicio": 1.6
+     "inicio": 1.83
     },
     {
      "tipo": "som",
      "som": "magia",
-     "inicio": 1.6
-    },
-    {
-     "tipo": "sumir",
-     "alvo": "aleo1",
-     "som": null,
      "inicio": 1.83
-    },
-    {
-     "tipo": "aparecer",
-     "alvo": "aleo2",
-     "inicio": 1.83
-    },
-    {
-     "tipo": "andar",
-     "alvo": "aleo2",
-     "para": 2.2,
-     "inicio": 2.68,
-     "duracao": 1.23
     },
     {
      "tipo": "corte",
      "zoom": 2,
      "y": 1.6,
-     "inicio": 3.98
+     "inicio": 3.21
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 2.4,
      "z": 2.2,
      "y": 1.6
     }
@@ -263,7 +238,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0.4,
+     "x": 2.8,
      "z": 2.2,
      "y": 1.35
     }
@@ -286,8 +261,8 @@
      "pose": "sem-rosto"
     },
     {
-     "id": "aleo2",
-     "personagem": "avatar-leo-2",
+     "id": "aleo1",
+     "personagem": "avatar-leo-1",
      "x": -2.6,
      "z": 3.6
     },
@@ -301,7 +276,7 @@
    "acoes": [
     {
      "tipo": "pular",
-     "alvo": "aleo2",
+     "alvo": "aleo1",
      "altura": 0.6,
      "inicio": 0.51
     },
@@ -314,7 +289,7 @@
     },
     {
      "tipo": "pular",
-     "alvo": "aleo2",
+     "alvo": "aleo1",
      "altura": 0.6,
      "inicio": 2.2
     },
@@ -332,7 +307,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.6,
+     "x": -2.55,
      "z": 2.2,
      "y": 1.6
     }
@@ -349,8 +324,8 @@
    },
    "elementos": [
     {
-     "id": "aleo2",
-     "personagem": "avatar-leo-2",
+     "id": "aleo1",
+     "personagem": "avatar-leo-1",
      "x": -1.4,
      "z": 2.8
     },
@@ -365,14 +340,19 @@
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "aleo2",
+     "alvo": "aleo1",
      "para": 0.2,
      "inicio": 0.49,
      "duracao": 1.51
     },
     {
+     "tipo": "magia",
+     "alvo": "aleo1",
+     "inicio": 2.11
+    },
+    {
      "tipo": "flash",
-     "intensidade": 0.6,
+     "intensidade": 0.7,
      "inicio": 2.37
     },
     {
@@ -381,13 +361,8 @@
      "inicio": 2.37
     },
     {
-     "tipo": "magia",
-     "alvo": "aleo2",
-     "inicio": 2.37
-    },
-    {
      "tipo": "sumir",
-     "alvo": "aleo2",
+     "alvo": "aleo1",
      "som": null,
      "inicio": 2.41
     },
@@ -398,6 +373,12 @@
      "inicio": 2.41
     },
     {
+     "tipo": "tremer",
+     "intensidade": 0.2,
+     "inicio": 2.56,
+     "duracao": 0.3
+    },
+    {
      "tipo": "pular",
      "alvo": "atop",
      "altura": 0.5,
@@ -406,7 +387,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 1.6,
      "z": 2.2,
      "y": 1.6,
      "zoom": 2
@@ -415,58 +396,53 @@
   },
   {
    "narracaoTexto": "Piscava igual. Ria igual. E acenou para ele, pela tela.",
-   "cenario": "quarto-leo-diorama",
+   "cenario": "mundo-bloco",
    "camera": {
-    "x": 1.4,
-    "y": 3
+    "x": 0,
+    "z": 1,
+    "y": 1.4,
+    "zoom": 2
    },
    "elementos": [
     {
-     "id": "leo",
-     "personagem": "menino-topete",
-     "x": -1.4,
-     "z": 1.6
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -0.8,
+     "z": 3.6
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "leo",
-     "para": 1,
-     "inicio": 0.48,
-     "duracao": 1.43
+     "alvo": "atop",
+     "para": 0.6,
+     "inicio": 0.3,
+     "duracao": 1.25
     },
     {
-     "tipo": "emocao",
-     "alvo": "leo",
-     "icone": "!",
-     "inicio": 2.68
+     "tipo": "pular",
+     "alvo": "atop",
+     "altura": 0.3,
+     "inicio": 1.73
     },
     {
-     "tipo": "corte",
-     "zoom": 2,
-     "y": 2.2,
-     "inicio": 3.09
+     "tipo": "trocar",
+     "alvo": "atop",
+     "estado": "acenar",
+     "inicio": 2.73
     },
     {
-     "tipo": "expressao",
-     "alvo": "leo",
-     "rosto": "surpreso",
-     "inicio": 2.09,
-     "duracao": 0.72
-    },
-    {
-     "tipo": "expressao",
-     "alvo": "leo",
-     "rosto": "feliz",
-     "inicio": 2.98,
-     "duracao": 0.9
+     "tipo": "som",
+     "som": "chat",
+     "inicio": 2.8
     }
    ],
    "vertical": {
     "camera": {
-     "x": 1.6,
-     "y": 1.75
+     "x": 0.35,
+     "z": 1,
+     "y": 1.4,
+     "zoom": 2
     }
    }
   },
@@ -525,7 +501,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5.6,
+     "x": 4.6,
      "z": 2.2,
      "y": 1.15
     }
@@ -583,7 +559,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0.6,
+     "x": 0.4,
      "y": 1.75
     }
    }
@@ -689,7 +665,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5.6,
+     "x": 4.55,
      "z": 2.2,
      "y": 1.15
     }
@@ -795,7 +771,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": -0.3,
      "z": 1,
      "y": 1.4,
      "zoom": 2
@@ -851,7 +827,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": -1.05,
      "y": 1.75
     }
    }
@@ -869,16 +845,23 @@
     {
      "id": "leo",
      "personagem": "menino-topete",
-     "x": 9.4,
+     "x": 8.8,
      "z": 4.6,
      "pose": "rosto-macabro-abre"
     }
    ],
    "acoes": [
     {
+     "tipo": "andar",
+     "alvo": "leo",
+     "para": 9.4,
+     "inicio": 0.3,
+     "duracao": 0.6
+    },
+    {
      "tipo": "flash",
      "intensidade": 0.7,
-     "inicio": 0.3
+     "inicio": 0.94
     },
     {
      "tipo": "som",
@@ -894,7 +877,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 9,
+     "x": 9.6,
      "z": 2.2,
      "y": 1.6,
      "zoom": 2
@@ -948,7 +931,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 0.55,
      "z": 1,
      "y": 1.4,
      "zoom": 2
@@ -1023,7 +1006,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.4,
+     "x": -2,
      "z": 2.2,
      "y": 1.3,
      "zoom": 2

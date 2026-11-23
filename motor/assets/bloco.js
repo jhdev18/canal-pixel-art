@@ -30,7 +30,7 @@ const AVATARES = {
   // o elenco em bloco (quando "entram no jogo")
   'avatar-bia': { pele: '#f8d8b8', camisa: '#f8c82c', calca: '#4a6ab0', sapato: '#d83a3a', cabelo: '#9a5a36', chapeu: 'capuz-capa', chapeuCor: '#f8c82c', estampa: 'botoes' },
   'avatar-nina': { pele: '#f0c8a8', camisa: '#7a3ad0', calca: '#2a2448', sapato: '#e0407a', cabelo: '#2e1a3e', chapeu: 'rabo', chapeuCor: '#f8d040', estampa: 'emblema' },
-  'avatar-topete': { pele: '#f0c4a0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#e0602a', chapeu: 'topete', chapeuCor: '#3a7ad8', estampa: 'cachecol' },
+  'avatar-topete': { pele: '#f0c4a0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#e0602a', chapeu: 'topete', chapeuCor: '#3a7ad8', estampa: 'leo', sardas: true, curativo: true },   // o mais parecido possível com o Léo
   // o avatar do Léo virando ele aos poucos (vídeo nesse-mundo-avatar): 1 = só a roupa dele (cabelo e pele do avatar azul); 2 = roupa + cabelo
   'avatar-leo-1': { pele: '#f8dcc0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#f8d860', chapeu: 'liso', chapeuCor: '#3a7ad8', estampa: 'cachecol' },
   'avatar-leo-2': { pele: '#f8dcc0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#e0602a', chapeu: 'topete', chapeuCor: '#3a7ad8', estampa: 'cachecol' },
@@ -69,6 +69,10 @@ function avatar(c, f = {}) {
   if (e === 'botoes') { p.ret(cx, 14 + y0, 1, 16, escuro(c.camisa, 0.2)); for (const y of [17, 21, 25]) p.set(cx + 1, y + y0, '#8a6a20'); }
   if (e === 'emblema') { p.ret(cx - 2, cy - 1, 5, 4, '#f8d040'); p.ret(cx - 1, cy, 3, 2, '#7a3ad0'); }
   if (e === 'cachecol') { p.ret(7, 14 + y0, 16, 3, c.chapeuCor); p.ret(17, 17 + y0, 3, 6, c.chapeuCor); }
+  if (e === 'leo') {   // jaqueta aberta (a camiseta escura aparece no meio), zíper, cachecol azul com a ponta caindo
+    p.ret(12, 15 + y0, 6, 15, '#2a2a3a'); p.ret(11, 15 + y0, 1, 15, escuro(c.camisa, 0.25)); p.ret(18, 15 + y0, 1, 15, escuro(c.camisa, 0.25));
+    p.ret(7, 14 + y0, 16, 3, c.chapeuCor); p.ret(7, 14 + y0, 16, 1, claro(c.chapeuCor, 0.3)); p.ret(17, 17 + y0, 3, 6, c.chapeuCor); p.ret(17, 22 + y0, 3, 1, escuro(c.chapeuCor, 0.3));
+  }
   // braços (manga da camisa em cima, pele embaixo)
   const braco = (x, modo) => {
     if (modo === 'alto' || modo === 'aceno') { const dy = modo === 'aceno' ? -1 : 0; plastico(x, -2 + y0 + dy, 6, 9, c.camisa, false); p.ret(x, -4 + y0 + dy, 6, 3, c.pele); p.ret(x, 7 + y0, 6, 8, c.camisa); return; }
@@ -97,11 +101,13 @@ function avatar(c, f = {}) {
   // rosto (nosso desenho): olhos ovais com brilho, sorriso largo; sem-rosto = liso; sorriso = estica até as bordas
   const rosto = f.rosto || 'normal';
   if (c.capuz) { if (rosto !== 'liso') { p.set(12, hy + 5, '#ff3a2a'); p.set(17, hy + 5, '#ff3a2a'); } }
-  else if (rosto === 'normal') {
-    for (const x of [12, 17]) { p.ret(x, hy + 3, 1, 3, K); p.set(x + 1, hy + 3, K); p.set(x + 1, hy + 4, K); p.set(x, hy + 3, '#ffffff'); }
+  else if (rosto === 'normal') {   // olhos: ovais pretos de 2x3 com um brilho branco no canto de cima (antes o formato ficava torto)
+    for (const x of [12, 16]) { p.ret(x, hy + 3, 2, 3, K); p.set(x, hy + 3, '#ffffff'); }
+    if (c.sardas) for (const [x, y] of [[17, 6], [18, 7], [16, 7]]) p.set(x, hy + y, escuro(c.pele, 0.22));
+    if (c.curativo) { p.ret(10, hy + 6, 3, 1, '#f4dcb8'); p.set(11, hy + 6, '#d8b088'); }   // curativo na bochecha, como o Léo
     for (const [x, y] of [[11, 7], [12, 8], [13, 8], [14, 8], [15, 8], [16, 8], [17, 8], [18, 7]]) p.set(x, hy + y, K);
   } else if (rosto === 'sorriso') {
-    for (const x of [12, 17]) { p.ret(x, hy + 2, 2, 3, K); }
+    for (const x of [12, 16]) { p.ret(x, hy + 2, 2, 3, K); }
     for (let x = 10; x <= 19; x++) { p.set(x, hy + 6, K); p.set(x, hy + 7, x % 2 ? '#f4f4f0' : K); p.set(x, hy + 8, K); }
   }
   return p0.contorno(K);

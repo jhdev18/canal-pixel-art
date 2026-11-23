@@ -1,4 +1,4 @@
-import { alturaShorts, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs';
+import { centroShorts, alturaShorts, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs';
 // NESSE MUNDO curto, COMÉDIA de dia (Roblox). "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa."
 // A frase que toda criança ouve ("pausa esse jogo!") e a resposta de sempre ("online não pausa!") viram regra, pista e virada.
 // Gancho: o avatar congela no ar aos 0,3 s. Pico de movimento no meio (a corrida pelos pilares). Imagem cômica a cada ~4 s.
@@ -105,21 +105,24 @@ C.push(cena('Entrou no campeonato do Léo e gritou, lá dentro: pausa!', {
 // 13–14. Virada (2 frases curtas): online não pausa… mas filho online, pausa. Ele fica no ar; ela ganha.
 C.push(cena('Jogo online não pausa.', {
   cenario: 'parkour-campeonato', camera: { x: 0.4, z: 2.2, y: 2.0, zoom: 2 }, foco: 0.4,
-  elementos: [P('atop', 'avatar-topete', topo(2)[0], 3.2, { y: topo(2)[1] }), pausa('p', 'atop'), P('amae', 'avatar-bloco-roxo', topo(2)[0], 3.6, { y: topo(2)[1] })],
+  elementos: [P('atop', 'avatar-topete', topo(2)[0], 3.2, { y: topo(2)[1] }), pausa('p', 'atop'), P('amae', 'avatar-bloco-roxo', -9.4, 2.6, { y: 1 })],   // a mãe ficou lá na largada (fora do quadro)
   acoes: [{ tipo: 'pular', alvo: 'atop', para: topo(3), altura: 1.1, inicio: 0, duracao: 0.8 }, { tipo: 'som', som: 'pulo-bloco', inicio: 0 },
     { tipo: 'congelar', alvo: 'atop', inicio: 0.34 }, { tipo: 'aparecer', alvo: 'p', inicio: 0.38, som: null }, { tipo: 'som', som: 'erro', inicio: 0.38 }],
 }));
 C.push(cena('Mas filho online, pausa. E o Léo ficou no ar até a hora do banho.', {
   cenario: 'parkour-campeonato', camera: PK(4.0), foco: 4.0,
-  elementos: [P('atop', 'avatar-topete', 0.39, 3.2, { y: 3.75, pose: 'pulando-sobe' }), pausa('p', 'atop', { oculto: false }), P('amae', 'avatar-bloco-roxo', topo(2)[0], 3.6, { y: topo(2)[1] })],
-  acoes: [a(0.05, 'pular', { alvo: 'amae', para: topo(3), altura: 0.8, durF: 0.15 }), a(0.22, 'pular', { alvo: 'amae', para: topo(4), altura: 0.8, durF: 0.15 }),
-    a(0.39, 'pular', { alvo: 'amae', para: topo(5), altura: 0.8, durF: 0.15 }), a(0.56, 'pular', { alvo: 'amae', para: [10.6, 4], altura: 0.8, durF: 0.15 }),
+  elementos: [P('atop', 'avatar-topete', 0.39, 3.2, { y: 3.75, pose: 'pulando-sobe' }), pausa('p', 'atop', { oculto: false }), P('amae', 'avatar-bloco-roxo', topo(1)[0], 3.6, { y: topo(1)[1] })],
+  acoes: [a(0.02, 'pular', { alvo: 'amae', para: [topo(3)[0], topo(3)[1]], altura: 1.1, durF: 0.15 }), a(0.2, 'pular', { alvo: 'amae', para: topo(4), altura: 1.1, durF: 0.15 }),
+    a(0.38, 'pular', { alvo: 'amae', para: topo(5), altura: 1.1, durF: 0.15 }), a(0.56, 'pular', { alvo: 'amae', para: [10.6, 4], altura: 1.1, durF: 0.15 }),
     a(0.74, 'fogos', { posicao: [10.6, 6, 3], cor: 'rosa' }), a(0.74, 'som', { som: 'sucesso' }), a(0.85, 'falar', { alvo: 'amae', texto: 'VAI TOMAR BANHO!' })],
 }));
 
 rostos(C, [[2, 'tonho', 'surpreso', 0.3], [4, 'mae', 'bravo', 0.25], [5, 'leo', 'bravo', 0.3], [5, 'mae', 'rindo', 0.35], [9, 'tonho', 'surpreso', 0.3],
   [10, 'leo', 'envergonhado', 0.1], [10, 'mae', 'bravo', 0.4]]);
 alturaShorts(C, { 2: -1.25, 3: -1.25, 4: -1.25, 5: -1.25, 9: -1.25, 10: -0.5 });
+
+// Shorts: centraliza quem conta a história (medido com ferramentas/roteiros/medir-centro-shorts.mjs)
+centroShorts(C, { 3: -0.8, 4: -2.45, 6: 0.75, 7: -2.0, 8: 2.6, 9: -0.35, 10: 0.65, 11: 3.0, 12: -1.4, 13: 0.55, 14: -1.9 });
 
 salvar('nesse-mundo-pausa', ['NESSE MUNDO (curto, COMÉDIA de dia, Roblox) — "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-pausa',

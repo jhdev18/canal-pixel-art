@@ -501,7 +501,8 @@ class Motor {
           const pe = this.projetar(obj, obj.vista.paraMundo(e.def, st, 0));
           const topo = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
           const alt = Math.abs(pe.y - topo.y), larg = Math.max(alt * 0.5, (e.w * PPU * alt) / Math.max(1, e.h * PPU));
-          caixas.push({ x0: (pe.x + topo.x) / 2 - larg / 2, x1: (pe.x + topo.x) / 2 + larg / 2, y0: this.H - Math.max(pe.y, topo.y) - 4, y1: this.H - Math.min(pe.y, topo.y) + 1 });
+          caixas.push({ x0: (pe.x + topo.x) / 2 - larg / 2, x1: (pe.x + topo.x) / 2 + larg / 2, y0: this.H - Math.max(pe.y, topo.y) - 4, y1: this.H - Math.min(pe.y, topo.y) + 1,
+            id: e.def.id, pessoa: !!e.sprite.personagem, figurante: !!e.def.figurante, tela: !!e.def.tela });
         }
         return caixas;
       },

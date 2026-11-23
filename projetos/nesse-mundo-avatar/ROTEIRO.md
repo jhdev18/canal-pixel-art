@@ -17,7 +17,7 @@
 **3.** `escola-patio` — Por isso, a criançada joga o dia inteiro para ter o avatar mais parecido.
 **4.** `mundo-bloco` — Mas a Bia só pode jogar dez minutos. O avatar dela nem tem rosto.
 **5.** `mundo-bloco` — Até que, numa sexta, o avatar do Léo ficou idêntico a ele.
-**6.** `quarto-leo-diorama` — Piscava igual. Ria igual. E acenou para ele, pela tela.
+**6.** `mundo-bloco` — Piscava igual. Ria igual. E acenou para ele, pela tela.
 **7.** `rua-comercial` — No sábado, o Léo voltou da escola andando duro. Sorrindo.
 **8.** `sala-de-estar-diorama` — A mãe achou graça. Ele não piscava mais.
 **9.** `rua-comercial` — Na segunda, a turma inteira voltou do mesmo jeito.

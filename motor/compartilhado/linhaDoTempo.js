@@ -168,7 +168,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       for (const k of ['tituloInicio', 'tituloDuracao']) if (cena[k] != null) cena[k] *= f;
     }
     if (continuo) cena.narracaoInicio = 0;
-    let dur = cena.duracao ?? 4;
+    let dur = cena.duracao ?? (cena.narracaoTexto ? 0 : 4);   // com texto do narrador, a cena dura a fala (sem o mínimo de 4 s)
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };
       dur = continuo ? narr.duracao : Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
@@ -176,7 +176,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     // Legenda do narrador: blocos distribuídos pela duração da fala (real, ou estimada sem áudio).
     if (cena.narracaoTexto && roteiro.legendasNarracao !== false && cena.legendaNarracao !== false) {
       const falaDur = narr ? narr.duracao : cena.narracaoTexto.length * SEG_POR_LETRA;
-      if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + NARRACAO_FOLGA);
+      if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + 0.15);   // sem áudio (rascunho): a fala estimada + um respiro curto, sem silêncio parado
       if ((roteiro.legendaEstilo || 'palavra') === 'palavra') {
         // padrão: grupos curtos (até ~3 palavras) com a palavra falada destacada — segura quem assiste sem som
         if (cena.legendaPosicao == null && roteiro.legendaPosicao != null) cena.legendaPosicao = roteiro.legendaPosicao;
@@ -189,7 +189,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       }
     }
     const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
-    if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + 0.5);
+    if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + (cena.narracaoTexto ? 0.1 : 0.5));
     if (continuo) for (const a of cena.acoes) if (a.inicio + a.duracao > dur) a.duracao = Math.max(0, dur - a.inicio);   // nada passa do fim da fala
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;

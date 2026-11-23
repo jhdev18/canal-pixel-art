@@ -47,7 +47,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5,
+     "x": -1.8,
      "z": 2.2,
      "y": 2,
      "zoom": 1.5
@@ -107,7 +107,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5,
+     "x": -1.2,
      "z": 2.2,
      "y": 2.6
     }
@@ -204,7 +204,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 3.15,
      "z": -8.5,
      "y": 0.45
     }
@@ -254,7 +254,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 1,
+     "x": -0.65,
      "y": 1.75
     }
    }
@@ -315,7 +315,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.6,
+     "x": -2.15,
      "z": 2.2,
      "y": 2,
      "zoom": 1.5
@@ -376,7 +376,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 1,
+     "x": 0.05,
      "y": 1.75
     }
    }
@@ -409,9 +409,8 @@
     {
      "id": "a2",
      "personagem": "avatar-bloco-verde",
-     "x": -2.8,
+     "x": -1.4,
      "z": 3.6,
-     "pose": "acenar",
      "figurante": true
     },
     {
@@ -424,6 +423,13 @@
     }
    ],
    "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "a2",
+     "para": -3.4,
+     "inicio": 0.3,
+     "duracao": 2.4
+    },
     {
      "tipo": "desaparecer",
      "alvo": "a1",
@@ -439,7 +445,7 @@
     {
      "tipo": "desaparecer",
      "alvo": "a2",
-     "inicio": 2.91,
+     "inicio": 3,
      "duracao": 0.87
     },
     {
@@ -460,7 +466,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -4.6,
+     "x": -2.15,
      "z": 2.2,
      "y": 2.6
     }
@@ -496,8 +502,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -6.5,
-     "z": 0.6
+     "x": -10,
+     "z": 4.6
     }
    ],
    "acoes": [
@@ -525,14 +531,14 @@
     {
      "tipo": "correr",
      "alvo": "bia",
-     "para": 13.5,
+     "para": 10,
      "inicio": 0.3,
      "duracao": 3.46
     }
    ],
    "vertical": {
     "camera": {
-     "x": 3,
+     "x": 2.45,
      "z": 2.2,
      "y": 1.15
     }
@@ -633,7 +639,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
+     "x": -1.35,
      "z": -8.5,
      "y": 0.45
     }
@@ -688,7 +694,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.2,
+     "x": -1.35,
      "z": 2.2,
      "y": 2,
      "zoom": 1.5
@@ -735,7 +741,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.6,
+     "x": -1.6,
      "z": 2.2,
      "y": 1.6,
      "zoom": 2
@@ -811,7 +817,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
+     "x": 1.9,
      "z": -8.5,
      "y": 0.9,
      "zoom": 2
@@ -845,10 +851,17 @@
    ],
    "acoes": [
     {
+     "tipo": "andar",
+     "alvo": "avis",
+     "para": -4.6,
+     "inicio": 0.3,
+     "duracao": 0.62
+    },
+    {
      "tipo": "trocar",
      "alvo": "avis",
      "estado": "acenar",
-     "inicio": 0.37
+     "inicio": 0.99
     },
     {
      "tipo": "trocar",
@@ -870,7 +883,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.2,
+     "x": -1.85,
      "z": 2.2,
      "y": 2,
      "zoom": 1.5
@@ -893,7 +906,7 @@
     {
      "id": "avis",
      "personagem": "avatar-bloco-roxo",
-     "x": -4,
+     "x": -4.6,
      "z": 2,
      "pose": "acenar"
     }
@@ -902,7 +915,7 @@
     {
      "tipo": "andar",
      "alvo": "avis",
-     "para": -4.6,
+     "para": -5,
      "inicio": 0.51,
      "duracao": 1.29
     },
@@ -921,7 +934,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5.2,
+     "x": -1.95,
      "z": 2.2,
      "y": 2,
      "zoom": 1.5

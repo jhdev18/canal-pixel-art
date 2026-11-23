@@ -149,3 +149,14 @@ export function alturaShorts(C, ajustes) {
     v.camera = { ...(c.camera || {}), ...(v.camera || {}), y: +(base + dy).toFixed(2) };
   }
 }
+
+// Centraliza no Shorts (9:16): soma dx ao "x" da câmera do bloco "vertical" de cada cena. dx medido com
+// `node ferramentas/roteiros/medir-centro-shorts.mjs <projeto>` (só conta quem tem papel na história, sem figurantes).
+export function centroShorts(C, ajustes) {
+  for (const [n, dx] of Object.entries(ajustes)) {
+    const c = C[Number(n) - 1];
+    const v = (c.vertical ||= {});
+    const cam = { ...(c.camera || {}), ...(v.camera || {}) };
+    v.camera = { ...cam, x: +((cam.x ?? 0) + dx).toFixed(2) };
+  }
+}

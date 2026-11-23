@@ -1,0 +1,19 @@
+Nesse mundo, seu avatar do Roblox vai ficando igual a você — tempos ESTIMADOS (sem narração ainda) — total 0:54.6
+
+  início   fim     %    cena  o que tem               narração
+  0:00.0  0:04.3    0%    1   mov som                 Nesse mundo, seu avatar do Roblox vai ficando igual a você.
+  0:04.3  0:08.6    8%    2   mov corte som           Primeiro a roupa. Depois o cabelo. Depois o jeito de andar.
+  0:08.6  0:13.8   16%    3   mov                     Por isso, a criançada joga o dia inteiro para ter o avatar mais parecido.
+  0:13.8  0:18.5   25%    4   mov corte som           Mas a Bia só pode jogar dez minutos. O avatar dela nem tem rosto.
+  0:18.5  0:22.7   34%    5   mov flash som           Até que, numa sexta, o avatar do Léo ficou idêntico a ele.
+  0:22.7  0:26.8   42%    6   mov corte               Piscava igual. Ria igual. E acenou para ele, pela tela.
+  0:26.8  0:30.9   49%    7   mov som                 No sábado, o Léo voltou da escola andando duro. Sorrindo.
+  0:30.9  0:34.0   57%    8   mov corte               A mãe achou graça. Ele não piscava mais.
+  0:34.0  0:37.7   62%    9   mov flash som           Na segunda, a turma inteira voltou do mesmo jeito.
+  0:37.7  0:41.8   69%   10   mov flash som           E, no jogo, os avatares batiam na tela, pedindo socorro.
+  0:41.8  0:44.7   77%   11   mov                     A Bia chegou perto da tela e congelou.
+  0:44.7  0:47.2   82%   12   mov flash som           O avatar não copiava a criança.
+  0:47.2  0:49.3   86%   13   mov flash som           Trocava de lugar com ela.
+  0:49.3  0:54.6   90%   14   mov som                 Na manhã seguinte, o avatar da Bia ganhou um rosto. E ela nem tinha jogado.
+
+  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.

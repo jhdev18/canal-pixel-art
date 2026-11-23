@@ -1,4 +1,4 @@
-import { alturaShorts, marcar, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs';
+import { centroShorts, alturaShorts, marcar, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs';
 // NESSE MUNDO curto, TERROR de dia (Roblox). "Nesse mundo, seu avatar do Roblox vai ficando igual a você."
 // Táticas do vídeo das sombras: a regra (o avatar virando a pessoa) se mexe aos 0,3 s; 1ª frase com "seu/você"; o "Até que..." aos ~34%;
 // pico de movimento no meio (a turma andando dura, no mesmo passo); a pista (o avatar da Bia sem rosto) volta no fim; a virada inverte
@@ -16,13 +16,12 @@ C.push(cena('Nesse mundo, seu avatar do Roblox vai ficando igual a você.', {
   acoes: [{ tipo: 'andar', alvo: 'a1', para: 4.0, inicio: 0, duracao: 3.2 }, { tipo: 'magia', alvo: 'azul', inicio: 0.15 }, { tipo: 'som', som: 'magia', inicio: 0.15 },
     { tipo: 'sumir', alvo: 'azul', inicio: 0.4, som: null }, { tipo: 'aparecer', alvo: 'aleo1', inicio: 0.4 }, a(0.45, 'andar', { alvo: 'aleo1', para: 0.4, durF: 0.5 })],
 }));
-// 2. A regra mudando NA TELA: a roupa (já é a dele) → na palavra "cabelo" o topete laranja aparece → e ele sai andando igual ao Léo
+// 2. A regra na tela: o avatar (ainda LOIRO) já com a roupa do Léo anda pelo mapa; corte de perto no rosto (ainda não é ele)
 C.push(cena('Primeiro a roupa. Depois o cabelo. Depois o jeito de andar.', {
   cenario: 'mundo-bloco', camera: JOGO(0), foco: 0, titulo: 'SEU AVATAR VAI FICANDO IGUAL A VOCÊ', tituloInicio: 0.3, tituloDuracao: 2.4,
-  elementos: [P('aleo1', 'avatar-leo-1', -3.0, 2.8), P('aleo2', 'avatar-leo-2', -0.8, 3.3, { oculto: true }), P('a1', 'avatar-bloco-vermelho', 3.6, 3.8, { figurante: true })],
-  acoes: [a(0, 'andar', { alvo: 'aleo1', para: -0.8, durF: 0.3 }), a(0.1, 'andar', { alvo: 'a1', para: 6.2, durF: 0.6 }),
-    a(0.34, 'magia', { alvo: 'aleo1' }), a(0.34, 'som', { som: 'magia' }), a(0.4, 'sumir', { alvo: 'aleo1', som: null }), a(0.4, 'aparecer', { alvo: 'aleo2' }),
-    a(0.62, 'andar', { alvo: 'aleo2', para: 2.2, durF: 0.32 }), a(0.96, 'corte', { zoom: 2, y: 1.6 })],
+  elementos: [P('aleo1', 'avatar-leo-1', -3.0, 2.8), P('a1', 'avatar-bloco-vermelho', 3.6, 3.8, { figurante: true })],
+  acoes: [a(0, 'andar', { alvo: 'aleo1', para: 1.2, durF: 0.7 }), a(0.1, 'andar', { alvo: 'a1', para: 6.2, durF: 0.6 }),
+    a(0.4, 'magia', { alvo: 'aleo1' }), a(0.4, 'som', { som: 'magia' }), a(0.76, 'corte', { zoom: 2, y: 1.6 })],
 }));
 // 3. Crença como AÇÃO: a criançada joga o dia inteiro (pátio da escola, todos rindo com o jogo)
 C.push(cena('Por isso, a criançada joga o dia inteiro para ter o avatar mais parecido.', {
@@ -34,22 +33,24 @@ C.push(cena('Por isso, a criançada joga o dia inteiro para ter o avatar mais pa
 // 4. A diferença da Bia (se entende sem som): o avatar dela nem tem rosto, parado no spawn, enquanto os outros pulam
 C.push(cena('Mas a Bia só pode jogar dez minutos. O avatar dela nem tem rosto.', {
   cenario: 'mundo-bloco', camera: JOGO(-5), foco: -5.6,
-  elementos: [P('abiaSem', 'avatar-bloco-verde', -5.6, 1.5, { pose: 'sem-rosto' }), P('aleo2', 'avatar-leo-2', -2.6, 3.6), P('anina', 'avatar-nina', -3.8, 2.0)],
-  acoes: [a(0.05, 'pular', { alvo: 'aleo2', altura: 0.6 }), a(0.2, 'andar', { alvo: 'anina', para: -1.2, durF: 0.5 }), a(0.45, 'pular', { alvo: 'aleo2', altura: 0.6 }),
+  elementos: [P('abiaSem', 'avatar-bloco-verde', -5.6, 1.5, { pose: 'sem-rosto' }), P('aleo1', 'avatar-leo-1', -2.6, 3.6), P('anina', 'avatar-nina', -3.8, 2.0)],
+  acoes: [a(0.05, 'pular', { alvo: 'aleo1', altura: 0.6 }), a(0.2, 'andar', { alvo: 'anina', para: -1.2, durF: 0.5 }), a(0.45, 'pular', { alvo: 'aleo1', altura: 0.6 }),
     a(0.65, 'corte', { zoom: 2, y: 1.6 }), a(0.68, 'som', { som: 'bug-jogo' })],
 }));
 // 5. Evento (~34%): o avatar do Léo ficou idêntico a ele
 C.push(cena('Até que, numa sexta, o avatar do Léo ficou idêntico a ele.', {
   cenario: 'mundo-bloco', camera: PERTO(0, 1.6), foco: 0,
-  elementos: [P('aleo2', 'avatar-leo-2', -1.4, 2.8), P('atop', 'avatar-topete', 0.2, 3.25, { oculto: true })],
-  acoes: [a(0.05, 'andar', { alvo: 'aleo2', para: 0.2, durF: 0.4 }), a(0.55, 'flash', { intensidade: 0.6 }), a(0.55, 'som', { som: 'revelar' }),
-    a(0.55, 'magia', { alvo: 'aleo2' }), a(0.56, 'sumir', { alvo: 'aleo2', som: null }), a(0.56, 'aparecer', { alvo: 'atop', som: null }), a(0.75, 'pular', { alvo: 'atop', altura: 0.5 })],
+  // A GRANDE TRANSFORMAÇÃO: o avatar loiro vira, de uma vez, o avatar mais parecido possível com o Léo (topete, jaqueta, cachecol, sardas, curativo)
+  elementos: [P('aleo1', 'avatar-leo-1', -1.4, 2.8), P('atop', 'avatar-topete', 0.2, 3.25, { oculto: true })],
+  acoes: [a(0.05, 'andar', { alvo: 'aleo1', para: 0.2, durF: 0.4 }), a(0.48, 'magia', { alvo: 'aleo1' }), a(0.55, 'flash', { intensidade: 0.7 }), a(0.55, 'som', { som: 'revelar' }),
+    a(0.56, 'sumir', { alvo: 'aleo1', som: null }), a(0.56, 'aparecer', { alvo: 'atop', som: null }), a(0.6, 'tremer', { intensidade: 0.2, durF: 0.08 }), a(0.75, 'pular', { alvo: 'atop', altura: 0.5 })],
 }));
-// 6. Ele acena pela tela (o Léo no quarto, diante do computador com o jogo aberto) — começa fofo
+// 6. Ele acena PELA TELA: dentro do jogo, o avatar idêntico vem até a frente, pisca, ri e acena para quem joga (a regra na tela, ainda fofa)
 C.push(cena('Piscava igual. Ria igual. E acenou para ele, pela tela.', {
-  cenario: 'quarto-leo-diorama', camera: { x: 1.4, y: 3 }, foco: 1.6,
-  elementos: [P('leo', 'menino-topete', -1.4, 1.6)],
-  acoes: [a(0.05, 'andar', { alvo: 'leo', para: 1.0, durF: 0.4 }), a(0.75, 'emocao', { alvo: 'leo', icone: '!' }), a(0.78, 'corte', { zoom: 2, y: 2.2 })],
+  cenario: 'mundo-bloco', camera: { x: 0, z: 1.0, y: 1.4, zoom: 2 }, foco: 0,
+  elementos: [P('atop', 'avatar-topete', -0.8, 3.6)],
+  acoes: [a(0, 'andar', { alvo: 'atop', para: 0.6, durF: 0.35 }), a(0.4, 'pular', { alvo: 'atop', altura: 0.3 }), a(0.68, 'trocar', { alvo: 'atop', estado: 'acenar' }),
+    a(0.7, 'som', { som: 'chat' })],
 }));
 // 7. A ameaça em pedaços: o Léo volta andando duro, com a sombra QUADRADA de avatar; para de frente e o sorriso cresce
 C.push(cena('No sábado, o Léo voltou da escola andando duro. Sorrindo.', {
@@ -90,8 +91,8 @@ C.push(cena('A Bia chegou perto da tela e congelou.', {
 // 12–13. Virada curta (2 frases curtíssimas): inverte a crença
 C.push(cena('O avatar não copiava a criança.', {
   cenario: 'rua-comercial', camera: { x: 9.0, z: 2.2, y: 1.6, zoom: 2 }, foco: 9.0,
-  elementos: [P('leo', 'menino-topete', 9.4, 4.6, { pose: 'rosto-macabro-abre' })],
-  acoes: [a(0, 'flash', { intensidade: 0.7 }), a(0.02, 'som', { som: 'revelar' }), a(0.05, 'tremer', { intensidade: 0.3, durF: 0.2 })],
+  elementos: [P('leo', 'menino-topete', 8.8, 4.6, { pose: 'rosto-macabro-abre' })],
+  acoes: [a(0, 'andar', { alvo: 'leo', para: 9.4, durF: 0.3 }), a(0.32, 'flash', { intensidade: 0.7 }), a(0.02, 'som', { som: 'revelar' }), a(0.05, 'tremer', { intensidade: 0.3, durF: 0.2 })],
 }));
 C.push(cena('Trocava de lugar com ela.', {
   cenario: 'mundo-bloco', camera: { x: 0, z: 1.0, y: 1.4, zoom: 2 }, foco: 0,
@@ -107,11 +108,14 @@ C.push(cena('Na manhã seguinte, o avatar da Bia ganhou um rosto. E ela nem tinh
 }));
 
 marcar(C, {});
-rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [6, 'leo', 'surpreso', 0.5, 0.2], [6, 'leo', 'feliz', 0.75], [8, 'mae', 'rindo', 0.4],
+rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [8, 'mae', 'rindo', 0.4],
   [11, 'bia', 'assustado', 0.45]]);
 // a sombra do Léo (cena 7): elemento só de sombra
 C[6].elementos[1] = { id: 'sleo', sombraPessoa: { tamanho: 2.6, direcao: 75, bloco: true }, x: 2.2, z: 4.6 };
-alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 6: -1.25, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -0.5 });
+alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -0.5 });
+
+// Shorts: centraliza quem conta a história (medido com ferramentas/roteiros/medir-centro-shorts.mjs)
+centroShorts(C, { 1: 1.45, 2: 2.4, 3: 2.4, 4: 3.05, 5: 1.6, 6: 0.35, 7: -1.0, 8: -0.2, 9: -1.05, 10: -0.3, 11: -1.05, 12: 0.6, 13: 0.55, 14: 3.4 });
 
 salvar('nesse-mundo-avatar', ['NESSE MUNDO (curto, TERROR de dia, Roblox) — "Nesse mundo, seu avatar do Roblox vai ficando igual a você."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-avatar',
