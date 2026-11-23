@@ -5,7 +5,7 @@
 //     "gota" chorando, "raiva" bravo, "..." envergonhado). Desligar numa ação: { "tipo": "emocao", ..., "rosto": false }.
 //   - por um tempo: { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 1, "duracao": 2 }
 //   - a cena toda: "pose": "rosto-feliz" no elemento (ou ação "trocar" com "estado": "rosto-triste").
-export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro', 'macabro-fechado', 'macabro-boca', 'macabro-a', 'macabro-b', 'macabro-c', 'bug'];
+export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro', 'macabro-fechado', 'macabro-boca', 'macabro-a', 'macabro-b', 'macabro-c', 'macabro-v2', 'bug'];
 export const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
 
 const BRANCO = '#ffffff', BOCA = '#5a2020', BOCA2 = '#3a1414', LINGUA = '#c84a5a', LAGRIMA = '#9ad8ff', LAGRIMA2 = '#5aa8e8', SUOR = '#a8e0ff', CORADO = '#f06a6a';
@@ -81,7 +81,7 @@ export function aplicarRosto(pix, L, expr) {
     case 'assustado': cada(olhos.susto); bocas.tremida(); sobr('triste'); { const [bx, by] = L.olhos[1]; set(bx + w + 2, by - 2, SUOR); set(bx + w + 2, by - 1, SUOR); set(bx + w + 1, by - 1, SUOR); } break;
     case 'envergonhado': cada(olhos.baixo); bocas.tremida(); corar(true); break;
     case 'pensativo': cada(olhos.cima); bocas.lado(); sobr('uma'); break;
-    case 'macabro-a': case 'macabro-b': case 'macabro-c':
+    case 'macabro-a': case 'macabro-b': case 'macabro-c': case 'macabro-v2':
     case 'macabro-fechado':
     case 'macabro-boca':
     case 'macabro': {   // PROTÓTIPO v5 (terror): o sorriso grande da v3 + gengiva, escorrido preto embaixo dos olhos e pupila branca que treme
@@ -100,7 +100,14 @@ export function aplicarRosto(pix, L, expr) {
         set(xp, ey + (treme ? 0 : 1), BRANCO);                                                         // pupila (treme entre os quadros)
         if (expr === 'macabro-boca') { const xs = lado < 0 ? x0 : x1 - 1; set(xs, ey + 2, ESCORRE); set(xs, ey + 3, ESCORRE); set(xs, ey + 4, PRETO); }   // escorrido (só na versão com dentes: no fechado parecia choro)
       });
-      if (!L.semBoca && /^macabro-[abc]$/.test(expr)) {   // TESTE de variações do sorriso só com dentes (para o usuário escolher)
+      if (!L.semBoca && expr === 'macabro-v2') {   // a v2 (reconstruída a pedido): sorriso largo com uma fileira de dentes, boca escura e 2 dentes embaixo
+        const y0 = my - 1, DENTEv = '#f4f0e4', DENTE2v = '#d8d0bc', VAOv = '#5a1a1e', FUNDOv = '#1a0608';
+        for (const sx of [-1, 1]) { set(mx + sx * 6, y0 - 2, L.sombra); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 5, y0, BOCA2); set(mx + sx * 5, y0 + 1, BOCA2); set(mx + sx * 4, y0 + 2, BOCA2); }
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0, DENTEv);
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 1, (x - mx) % 2 ? VAOv : DENTE2v);
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 2, Math.abs(x - mx) === 2 ? DENTE2v : FUNDOv);
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 3, BOCA2);
+      } else if (!L.semBoca && /^macabro-[abc]$/.test(expr)) {   // TESTE de variações do sorriso só com dentes (para o usuário escolher)
         const DT = '#f4f0e4', JUNTA = '#a8a090', VAOD = '#8a8070', y0 = my - 1;
         if (expr === 'macabro-a') {   // A: menor e mais "normal": ±4, duas fileiras, pontas subindo só 1 px
           for (const sx of [-1, 1]) { set(mx + sx * 5, y0 - 1, BOCA2); set(mx + sx * 5, y0, BOCA2); set(mx + sx * 5, y0 + 1, BOCA2); }
@@ -183,6 +190,7 @@ const EQUIVALENTES = {
   bravo: ['assustar', 'alerta', 'agarrar'], surpreso: ['alerta', 'olho-aberto', 'olhos'], assustado: ['tremendo', 'timido', 'alerta'],
   envergonhado: ['timido'], pensativo: ['olhando-lado'],
   bug: ['bug', 'falha', 'sem-rosto'],
+  'macabro-v2': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
   'macabro-fechado': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
   'macabro-boca': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
   macabro: ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
