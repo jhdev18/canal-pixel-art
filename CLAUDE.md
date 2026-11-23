@@ -331,7 +331,7 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
   feliz, `gota` chorando, `raiva` bravo, `...` envergonhado; `"rosto": false` desliga). Nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])`
   do `nm.mjs` (f = fração da fala em que começa).
 - **Rostos:** `feliz`, `rindo`, `triste` (olho molhado, sem lágrima), `chorando` (lágrimas; choro forte), `bravo`, `surpreso`, `assustado`,
-  `envergonhado`, `pensativo` (olhar de lado).
+  `envergonhado`, `pensativo` (olhar de lado). `macabro` 🧪 (terror: sorriso enorme com dentes e olhos pretos com pupila branca; nos sprites sem rosto usa `sorriso`/`pior`/`olhos`) — só no terror, na virada ou na cidade "controlada"; teste na `projetos/vitrine` (cena 64).
 - **Quem tem:** moradores, protótipos de pessoas, Bia, Nina e cachorros de estimação (`cachorro-*`, `vira-lata`). **O `cao-policial` não tem**
   (deformava o rosto; o usuário pediu o desenho antigo). Guardiões/fantasmas usam o estado parecido; RPG e robô não mudam.
 - **Só aparece parado e sem `pose`:** andando, correndo, sentado ou com `pose` fixa o rosto não muda. Para reagir, a pessoa para antes

@@ -224,7 +224,7 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 ## 4. Efeitos que dão vida (ações e climas)
 
 - **Expressão no rosto** 🧪 (moradores, Bia e cachorros de estimação; o cão policial não tem): ação `expressao` (`rosto`: feliz, rindo, triste,
-  chorando, bravo, surpreso, assustado, envergonhado, pensativo) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o
+  chorando, bravo, surpreso, assustado, envergonhado, pensativo, `macabro` 🧪 — sorriso enorme com dentes e olhos pretos com pupila branca, para terror) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o
   rosto junto (`!` surpreso, `?` pensativo, coração feliz, gota chorando, raiva bravo, `...` envergonhado). Guardiões e fantasmas usam o
   estado mais parecido. Só vale parado e sem `pose`. Triste = olho molhado (sem lágrima); choro forte = `chorando`. Usar em todo vídeo (ver CLAUDE.md, "Expressões no rosto").
 - **Ícone de emoção:** `emocao` com `!`, `?`, `coracao`, `...` e `zzz` (✅); `lampada`, `gota`, `raiva` e `nota` (🧪). Balão: `falar`. Pensamento: `pensar` 🧪.

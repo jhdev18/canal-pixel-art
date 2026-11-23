@@ -5,7 +5,7 @@
 //     "gota" chorando, "raiva" bravo, "..." envergonhado). Desligar numa ação: { "tipo": "emocao", ..., "rosto": false }.
 //   - por um tempo: { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 1, "duracao": 2 }
 //   - a cena toda: "pose": "rosto-feliz" no elemento (ou ação "trocar" com "estado": "rosto-triste").
-export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo'];
+export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro'];
 export const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
 
 const BRANCO = '#ffffff', BOCA = '#5a2020', BOCA2 = '#3a1414', LINGUA = '#c84a5a', LAGRIMA = '#9ad8ff', LAGRIMA2 = '#5aa8e8', SUOR = '#a8e0ff', CORADO = '#f06a6a';
@@ -81,6 +81,23 @@ export function aplicarRosto(pix, L, expr) {
     case 'assustado': cada(olhos.susto); bocas.tremida(); sobr('triste'); { const [bx, by] = L.olhos[1]; set(bx + w + 2, by - 2, SUOR); set(bx + w + 2, by - 1, SUOR); set(bx + w + 1, by - 1, SUOR); } break;
     case 'envergonhado': cada(olhos.baixo); bocas.tremida(); corar(true); break;
     case 'pensativo': cada(olhos.cima); bocas.lado(); sobr('uma'); break;
+    case 'macabro': {   // PROTÓTIPO (terror): olhos pretos com pupila branca minúscula + olheira, sorriso enorme de orelha a orelha com dentes
+      const PRETO = '#0a0406', DENTE = '#f4f0e4', VAO = '#b8ac98', OLHEIRA = L.sombra;
+      cada((ex, ey, lado) => {
+        const t = L.oculos ? 0 : 1;
+        for (let x = ex - (w === 1 ? 1 : 0); x < ex + w; x++) { for (let y = ey - t; y < ey + 2; y++) set(x, y, PRETO); set(x, ey + 2, OLHEIRA); }
+        set(w === 2 ? (lado < 0 ? ex + 1 : ex) : ex, ey, BRANCO);   // pupila olhando para o meio (para você)
+      });
+      if (!L.semBoca) {
+        set(mx - 5, my - 1, BOCA2); set(mx + 5, my - 1, BOCA2);   // cantos puxados para cima, quase nas bochechas
+        set(mx - 4, my, BOCA2); set(mx + 4, my, BOCA2);
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, my, Math.abs(x - mx) === 1 ? VAO : DENTE);   // fileira de dentes de cima (vãos entre os dentes)
+        set(mx - 3, my + 1, BOCA2); set(mx + 3, my + 1, BOCA2);
+        for (let x = mx - 2; x <= mx + 2; x++) set(x, my + 1, x === mx - 1 || x === mx + 1 ? DENTE : BOCA2);   // boca escura com dois dentes de baixo
+        for (let x = mx - 2; x <= mx + 2; x++) set(x, my + 2, BOCA2);   // fundo do sorriso
+      }
+      break;
+    }
     default: cada(olhos.normal); bocas.pequena();
   }
   return q;
@@ -101,6 +118,7 @@ const EQUIVALENTES = {
   feliz: ['feliz', 'acenar', 'rindo'], rindo: ['rindo', 'feliz'], triste: ['timido', 'dormindo'], chorando: ['timido', 'tremendo'],
   bravo: ['assustar', 'alerta', 'agarrar'], surpreso: ['alerta', 'olho-aberto', 'olhos'], assustado: ['tremendo', 'timido', 'alerta'],
   envergonhado: ['timido'], pensativo: ['olhando-lado'],
+  macabro: ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
 };
 export function rostoEquivalente(anims, nome) {
   if (!nome || !nome.startsWith('rosto-')) return null;
