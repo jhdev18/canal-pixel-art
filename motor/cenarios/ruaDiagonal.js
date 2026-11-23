@@ -25,7 +25,7 @@ const ESTAB = {
   farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 82, cruz: true },
   // PROTÓTIPO (terror dos brinquedos): só aparecem nos cenários rua-brinquedos e fabrica-brinquedos, não na rua comercial normal
   brinquedos: { pal: ['#f8e8b0', '#f0d890', '#c8a868', '#5a4a30'], tipo: 'reboco', placa: ['#d84a8a', '#ffffff'], texto: 'BRINQUEDOS', toldo: ['#f8e060', '#3a8ad8'], alt: 112, vitrine: 'brinquedos', base: '#c85a8a' },
-  fabrica: { pal: ['#9a6a5a', '#7a4e44', '#5a3a34', '#2a1a1a'], tipo: 'tijolo', placa: ['#2a2a36', '#f8d040'], texto: 'FÁBRICA DE BRINQUEDOS', toldo: null, alt: 144, porta: 'portao', chamine: true },
+  fabrica: { castelo: true, alt: 88, texto: 'FÁBRICA DE BRINQUEDOS', tipo: 'castelo', pal: ['#e0c8d0', '#c8aab8', '#a08898', '#5a4858'], toldo: null },   // castelo de brinquedo envelhecido
 };
 
 // i atravessa a rua (cresce para baixo/direita); j vai ao longo dela (cresce para baixo/esquerda).
@@ -202,7 +202,112 @@ export function gerarRuaDiagonal(opc = {}) {
   const lojas = [];
   if (opc.semPredios) predios.length = 0;
   if (opc.soPedidos) for (let k = predios.length - 1; k >= 0; k--) if (!predios[k].estab) predios.splice(k, 1);   // só os prédios da lista (fábrica no campo)
+  // ---------- FÁBRICA DE BRINQUEDOS = castelo de brinquedo envelhecido (PROTÓTIPO) ----------
+  // Pedra rosa-lilás desbotada, ameias, duas torres com telhado cônico azul (telhas faltando), bandeiras rasgadas,
+  // portão em arco de madeira, janelas em arco (uma tampada com tábuas), letreiro de faixa, musgo na base e rachaduras.
+  function castelo(P) {
+    const rw = rng(P.s + 11), PED = ['#e0c8d0', '#c8aab8', '#a08898', '#5a4858'], JUNTA = '#8a7484';
+    const MUSGO = ['#7a9a5a', '#5a7a44', '#3e5a30'], OURO = '#c8a860', MAD = ['#7a5434', '#5a3a22', '#3a2416'];
+    const TELHA = ['#8aa8d0', '#6a88b8', '#4a6898', '#2e4870'];
+    const sujo = new Map();
+    const pedra = (u, t, x, y, h0 = 0) => {   // bloco de pedra 8x6 com junta, manchas, rachaduras e musgo embaixo
+      const tt = t + h0, lin = Math.floor(tt / 6), uu = u + (lin % 2) * 4;
+      if (tt % 6 === 0 || uu % 8 === 0) return JUNTA;
+      const k = lin * 1000 + Math.floor(uu / 8);
+      if (!sujo.has(k)) sujo.set(k, rw());
+      const v = sujo.get(k);
+      if (tt < 10 + (Math.floor(uu / 3) % 3) * 2 && bayer(x, y) < 0.7 - tt * 0.06) return MUSGO[(uu + tt) % 3 === 0 ? 2 : (tt < 4 ? 1 : 0)];
+      if (v < 0.07 && (uu % 8) === 4 - (tt % 6) + 2) return PED[3];                     // rachadura diagonal no bloco
+      if (v > 0.9) return '#b09aa0';                                                    // bloco manchado/desbotado
+      return (uu % 8 === 1 || tt % 6 === 5) ? PED[0] : PED[1];
+    };
+    const masc = mascaraTexto(P.e.texto);
+    const h = P.h;
+    // corpo principal
+    prisma(-3.2, 0, P.j0, P.j1, 0, h, {
+      frente: (x, y, u, t, larg, s) => {
+        const meio = Math.floor(larg / 2);
+        let c = pedra(u, t, x, y), tp = 1;
+        const dx = u - meio;
+        // portão em arco (madeira com faixas de ferro) e moldura de pedra clara
+        const topoArco = (r) => 36 + Math.sqrt(Math.max(0, r * r - dx * dx)) * 0.7;
+        if (Math.abs(dx) < 20 && t < topoArco(20) && t >= 0) {
+          if (Math.abs(dx) >= 17 || t >= topoArco(17)) c = (t + u) % 5 ? PED[0] : PED[2];
+          else { c = Math.abs(dx) % 5 === 0 ? MAD[2] : (t % 14 === 6 || t % 14 === 7) ? '#3a3a44' : (dx === 0 ? MAD[2] : MAD[(u + Math.floor(t / 3)) % 2]); if ((dx === 3 || dx === -3) && t > 20 && t < 24) c = OURO; }
+        }
+        // janelas em arco: térreo (2) e 1º andar (4); a 2ª de cima está tampada com tábuas
+        const JAN = [[22, 14], [larg - 23, 14], [20, 44], [46, 44], [larg - 47, 44], [larg - 21, 44]];
+        JAN.forEach(([cu, t0], n) => {
+          const ddx = u - cu, alto = t0 + 14 + Math.sqrt(Math.max(0, 25 - ddx * ddx)) * 0.9;
+          if (Math.abs(ddx) <= 6 && t >= t0 && t < alto + 1) {
+            const borda = Math.abs(ddx) === 6 || t === t0 || t >= alto;
+            if (borda) c = PED[0];
+            else if (n === 3) c = (t + ddx * 2) % 7 < 2 ? MAD[2] : MAD[t % 5 < 3 ? 0 : 1];                 // tábuas pregadas
+            else if (noite) { c = '#ffd070'; tp = 2; }
+            else c = ddx === 0 || t === t0 + 10 ? '#3a3040' : (t > t0 + 12 ? '#8aa0c0' : '#4a5a7a');
+          }
+        });
+        // faixa do letreiro (um pouco apagada)
+        const lw = masc.w + 8, lx = meio - Math.floor(lw / 2), ly0 = 68, lh = 13;
+        if (u >= lx && u < lx + lw && t >= ly0 && t < ly0 + lh) {
+          const borda = u === lx || u === lx + lw - 1 || t === ly0 || t === ly0 + lh - 1;
+          const mx = (lx + lw - 1 - u) - 3, my = ly0 + lh - 2 - t;
+          c = borda ? OURO : (masc.tem(mx, my) ? (bayer(x, y) < 0.16 ? '#8a7a5a' : '#f0d890') : '#6a3a5a');
+          if (!borda && masc.tem(mx, my) && noite) tp = 2;
+        }
+        if (t >= h - 5) c = t === h - 5 ? PED[3] : PED[0];                                  // cornija
+        if (t < 2) c = PED[3];
+        pintar(x, y, c, 0, s, t, tp, 1);
+      },
+      lado: (x, y, u, t, s) => pintar(x, y, pedra(u, t, x, y) === JUNTA ? '#6a5464' : PED[2], s, P.j1, t, 1, 0.72),
+      topo: (x, y, i, j, d) => pintar(x, y, d < 0.15 ? PED[0] : '#7a6a70', i, j, h, 1, 1.1),
+    });
+    // ameias (uma sim, uma não; algumas quebradas)
+    for (let jk = P.j0 + 2.4, k = 0; jk < P.j1 - 2.4; jk += 0.6, k++) {
+      const alt = rw() < 0.18 ? 4 : 9;
+      prisma(-0.5, 0, jk, jk + 0.3, h, alt, {
+        frente: (x, y, u, t) => pintar(x, y, t === alt ? PED[0] : pedra(u + k * 5, t, x, y, h), 0, jk, h + t, 1, 1),
+        lado: (x, y, u, t, s) => pintar(x, y, PED[2], s, jk + 0.3, h + t, 1, 0.72),
+        topo: (x, y, i, j) => pintar(x, y, PED[0], i, j, h + alt, 1, 1.1),
+      });
+    }
+    // duas torres nas pontas, para a frente da fachada, com telhado cônico e bandeira
+    const TH = h + 28;
+    for (const [tj0, tj1, lado] of [[P.j0 - 0.5, P.j0 + 2.0, 0], [P.j1 - 2.0, P.j1 + 0.5, 1]]) {
+      prisma(-2.4, 0.7, tj0, tj1, 0, TH, {
+        frente: (x, y, u, t, larg, s) => {
+          let c = pedra(u, t, x, y), m = Math.floor(larg / 2);
+          if (Math.abs(u - m) <= 1 && ((t > 30 && t < 42) || (t > 60 && t < 72))) c = '#2a2030';          // seteiras
+          const r2 = (u - m) ** 2 + ((t - (TH - 16)) * 1.2) ** 2;                                               // janela redonda no alto
+          if (r2 < 30) c = r2 > 18 ? PED[0] : (noite ? '#ffd070' : (lado ? '#4a5a7a' : '#2a2030'));
+          if (t >= TH - 4) c = t === TH - 4 ? PED[3] : PED[0];
+          if (t < 2) c = PED[3];
+          pintar(x, y, c, 0.7, s, t, noite && r2 < 18 ? 2 : 1, 1);
+        },
+        lado: (x, y, u, t, s) => pintar(x, y, pedra(u, t, x, y) === JUNTA ? '#6a5464' : PED[2], s, tj1, t, 1, 0.72),
+        topo: (x, y, i, j) => pintar(x, y, PED[1], i, j, TH, 1, 1.1),
+      });
+      // telhado cônico em camadas (telhas desbotadas, algumas faltando mostrando a madeira)
+      const ci = (-2.4 + 0.7) / 2, cj = (tj0 + tj1) / 2, ri = 1.75, rj = 1.45, N = 11;
+      for (let k = 0; k < N; k++) {
+        const f = 1 - k / N, hi = ri * f, hj = rj * f, h0 = TH + k * 4;
+        prisma(ci - hi, ci + hi, cj - hj, cj + hj, h0, 4, {
+          frente: (x, y, u, t, larg, s) => { const falta = (Math.floor(u / 3) * 7 + k * 13) % 17 === 0; pintar(x, y, falta ? MAD[1] : t === 0 ? TELHA[3] : TELHA[(u + k) % 6 < 3 ? 1 : 0], ci + hi, s, h0 + t, 1, 1); },
+          lado: (x, y, u, t, s) => pintar(x, y, (Math.floor(u / 3) * 5 + k * 11) % 19 === 0 ? MAD[2] : t === 0 ? TELHA[3] : TELHA[2], s, cj + hj, h0 + t, 1, 0.75),
+          topo: (x, y, i, j) => pintar(x, y, TELHA[1], i, j, h0 + 4, 1, 1.1),
+        });
+      }
+      const ph = TH + N * 4;   // mastro e bandeira rasgada
+      prisma(ci - 0.06, ci + 0.06, cj - 0.06, cj + 0.06, ph, 14, { frente: (x, y, u, t, l, s) => pintar(x, y, '#6a6a74', ci, s, ph + t, 1, 1), lado: (x, y, u, t, s) => pintar(x, y, '#4a4a54', s, cj, ph + t, 1, 0.8), topo: (x, y) => pintar(x, y, OURO, ci, cj, ph + 14, 1, 1) });
+      prisma(ci - 0.04, ci + 0.04, cj + 0.06, cj + 0.9, ph + 7, 6, {
+        frente: (x, y, u, t, l, s) => { if (u > 9 && (t + u) % 4 === 0) return; pintar(x, y, (lado ? '#6a9ac8' : '#c86a6a'), ci, s, ph + 7 + t, 1, 1); },
+        lado: (x, y, u, t, s) => pintar(x, y, lado ? '#4a7aa8' : '#a84a4a', s, cj + 0.9, ph + 7 + t, 1, 0.8),
+        topo: (x, y, i, j) => pintar(x, y, lado ? '#6a9ac8' : '#c86a6a', i, j, ph + 13, 1, 1),
+      });
+    }
+  }
   for (const P of predios) {
+    if (P.e?.castelo) { castelo(P); continue; }
     const rw = rng(P.s), pal = P.pal;
     const acesa = new Map();
     const parede = (u, t, larg) => {
@@ -238,10 +343,6 @@ export function gerarRuaDiagonal(opc = {}) {
             const borda = Math.abs(u - meio) === 11 || u === meio || t === 47;
             const puxador = (u === meio - 2 || u === meio + 2) && t >= 20 && t < 26;
             pintar(x, y, borda || puxador ? '#2a2638' : (t > 30 ? '#a8c8e0' : '#6a8aa8'), 0, s, t, 1, 1); return;
-          }
-          if (E.porta === 'portao' && Math.abs(u - meio) < 22 && t < 52) {           // portão de enrolar da fábrica
-            const borda = Math.abs(u - meio) === 21 || t === 51;
-            pintar(x, y, borda ? '#2a2a36' : (t % 4 === 0 ? '#5a5e6a' : t % 4 === 1 ? '#9aa0ac' : '#7a808c'), 0, s, t, 1, 1); return;
           }
           if (E.vitrine === 'brinquedos' && t >= 8 && t < 40 && u >= 22 && u < larg - 5) {
             // 2 prateleiras de brinquedos (bola, bloco, soldadinho, pião, boneca) atrás do vidro
@@ -343,14 +444,6 @@ export function gerarRuaDiagonal(opc = {}) {
         frente: (x, y, u, t) => pintar(x, y, u < 6 ? '#3a6aff' : '#ff3a3a', -0.2, cj, P.h + t, noite ? 2 : 1, 1),
         lado: (x, y, u, t, s) => pintar(x, y, '#2a2a3a', s, cj + 0.8, P.h + t, 1, 0.8),
         topo: (x, y, i, j) => pintar(x, y, '#4a4a5a', i, j, P.h + 6, 1, 1),
-      });
-    }
-    if (E?.chamine) {   // chaminé de tijolo atrás do telhado
-      const cj = P.j0 + 1.2;
-      prisma(-2.6, -1.8, cj, cj + 0.8, P.h, 44, {
-        frente: (x, y, u, t) => pintar(x, y, t > 40 ? '#2a1a1a' : (t % 4 === 0 || (u + (Math.floor(t / 4) % 2) * 4) % 8 === 0) ? '#5a3a34' : '#8a4e44', -1.8, cj, P.h + t, 1, 1),
-        lado: (x, y, u, t, s) => pintar(x, y, t > 40 ? '#2a1a1a' : '#5a3430', s, cj + 0.8, P.h + t, 1, 0.75),
-        topo: (x, y, i, j, d) => pintar(x, y, d < 0.12 ? '#3a2a2a' : '#14101a', i, j, P.h + 44, 1, 1),
       });
     }
     if (E?.caixotes) {

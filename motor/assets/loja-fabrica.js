@@ -100,8 +100,8 @@ PRESETS_INTERIORES['loja-brinquedos'] = {
 PRESETS_INTERIORES['fabrica-brinquedos'] = {
   ceu: { cores: ['#d8d4d0'] },
   camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true,
-    cor: ['#b8a8a0', '#9a8a84', '#6a5a56'], padrao: 'tijolo', teto: ['#c8ccd4', '#9aa0ac', '#5a5e6a'],
-    meiaParede: { altura: 20, padrao: 'liso', cores: ['#f8e060', '#e8c040', '#2a2a36'] },
+    cor: ['#e0c8d0', '#c8aab8', '#8a7484'], padrao: 'tijolo', teto: ['#d8c0a0', '#a88a6a', '#6a4a34'],   // pedra do castelo, desbotada
+    meiaParede: { altura: 22, padrao: 'lambri', cores: ['#9a6a44', '#7a5434', '#4a3020'] },
     rodape: ['#3a3a44', '#2e2e38', '#22222a'], janelas: [], portas: [], quadros: [] }],
   chao: { estilo: 'piso', topo: ['#c8c8c4', '#a8a8a4', '#f8d040'], terra: ['#8a8a88', '#6a6a68'] },
   ambiente: ['#fffaf0', 0.96],
