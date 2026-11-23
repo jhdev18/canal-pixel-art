@@ -505,8 +505,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
 - **Elenco fixo:** Bia (`menina-capa`, protagonista principal), **Nina** (`rival`/`nina`, a rival da Bia — também pode ser a
   protagonista, dependendo da história), seu Tonho (`padeiro`),
-  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia), o menino do topete (`menino-topete`, protótipo —
-  protagonista masculino e colega de turma da Bia e da Nina; nome ainda não definido).
+  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia), **Léo**, o menino do topete (`menino-topete`, protótipo —
+  protagonista masculino e colega de turma da Bia e da Nina; nome escolhido no roteiro "pausa o Roblox").
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,

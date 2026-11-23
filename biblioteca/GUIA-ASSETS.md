@@ -21,7 +21,7 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 | **Bolota** | `cao-guarda` | ✅ | Cão da delegacia, de uniforme (estilo RPG, de frente). Mascote cômico |
 | **Professora** | `professora` | ✅ | Coque ruivo, óculos, casaco verde, livro. Brava mas querida ("Sem correr, crianças!") |
 | Menino da coroa | `menino-coroa` | 🧪 | Menino com coroa dourada (pedrinhas), capa vermelha, túnica azul-real e cinto dourado; sorriso de canto, confiante. Bom para "o menino que se acha rei", príncipe da festa, rival do menino do topete. Anda, corre, senta, fica de costas e espirra |
-| Menino do topete | `menino-topete` | 🧪 | Protagonista masculino (nome a definir), colega de turma da Bia e da Nina; topete e cachecol azul |
+| **Léo** (menino do topete) | `menino-topete` | 🧪 | Protagonista masculino, colega de turma da Bia e da Nina; topete e cachecol azul |
 | Aluno / aluna | `aluno`, `aluna` | ✅ | Colegas de escola (crianças com mochila). Servem de protagonista ("o Caio") ou de turma. **Não use o mesmo sprite para dois personagens diferentes no mesmo vídeo** |
 | Caixa | `caixa` | ✅ | Moça do mercado, boné e avental verdes |
 | Robô-semáforo | `robo-semaforo` | ✅ | Robô de trânsito detalhado (ainda pouco usado) |
