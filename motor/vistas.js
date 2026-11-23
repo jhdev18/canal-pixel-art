@@ -243,14 +243,21 @@ function vistaDiagonal(c, motor) {
     if (rua.noite) { const L = new THREE.PointLight('#ffe0a0', 1.3 * Math.PI, 5, 1); L.position.copy(ponto(p.i, p.j, 2.5)).add(new THREE.Vector3(0, 0, 1)); cena.add(L); }
   }
 
+  // fumaça animada das chaminés (fábrica de brinquedos): troca o quadro do sprite com o tempo
+  const fumacas = (rua.fumacas || []).map((f) => {
+    const { m, s } = decoracao('fumaca-chamine');
+    m.position.copy(ponto(f.i, f.j, f.h / PPU)); m.renderOrder = ordem(f.i, f.j);
+    cena.add(m);
+    return { m, texs: s.quadros.map((q) => tex(q)), fps: s.anims.parado.fps };
+  });
   const camera = new THREE.OrthographicCamera(-W / 2 / PPU, W / 2 / PPU, H / 2 / PPU, -H / 2 / PPU, -100, 100);
   camera.position.z = 50;
   return {
     cena, camera,
     ambiente: rua.noite ? ['#9aa0d0', 0.78] : ['#ffffff', 1.0],
     climaPadrao: null,
-    atualizar: () => {},
-    liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); },
+    atualizar: (t) => { for (const f of fumacas) { const k = Math.floor((t || 0) * f.fps) % f.texs.length; if (f.m.material.map !== f.texs[k]) { f.m.material.map = f.texs[k]; f.m.material.emissiveMap = f.texs[k]; f.m.material.needsUpdate = true; } } },
+    liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); fumacas.forEach((f) => f.texs.forEach((t) => t.dispose())); },
     ordemInicial: (el) => ordem(iDe(el), -(el.x ?? 0)),
     // sombra: posição (i, j) do centro do elemento e o estado da sombra no chão
     centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), -st.x - (c ? (c.dj ?? 1) / 2 : 0)]; },

@@ -6,6 +6,8 @@
 // Móveis novos: prateleira-brinquedos, balcao-loja, caixa-presentes, esteira, maquina-brinquedos, caixa-pecas.
 import { MOVEIS, COMODOS_DIAGONAL } from '../cenarios/comodoDiagonal.js';
 import { PRESETS_INTERIORES } from '../cenarios/interiores.js';
+import { Pix } from '../pixel.js';
+import { registrarSprites } from '../sprites.js';
 
 const MAD = ['#d8a070', '#b07a4a', '#7a4e2a'], METAL = ['#c8ccd8', '#9aa0ac', '#5a5e6a'];
 const CORES = ['#e83a3a', '#3a8ad8', '#f8d040', '#3ab060', '#d84a8a', '#8a5ac8', '#f08a30'];
@@ -137,3 +139,19 @@ COMODOS_DIAGONAL['fabrica-brinquedos'] = {
   ],
   piso: [{ x: 5.6, i0: 1.8, i1: 2.6, dj: 3.0, cor: ['#f8d040', '#2a2a36', '#f8d040'] }],
 };
+
+// fumaça da chaminé (8 quadros): bolotas que sobem, crescem e somem; levemente lilás (fantasia). A rua da fábrica põe uma em
+// cima de cada chaminé sozinha (rua.fumacas); também serve como elemento comum: { "sprite": "fumaca-chamine" }.
+function quadroFumaca(f) {
+  const W = 28, H = 60, p = new Pix(W, H), N = 6, cores = ['#ffffff', '#ece6f0', '#cfc6d8', '#a89cb4'];
+  for (let k = 0; k < N; k++) {
+    const fase = ((k + f / 8) / N) % 1, y = H - 4 - fase * (H - 10), r = 3 + fase * 7;
+    const x = W / 2 + Math.sin((k * 1.7 + fase * 3.2)) * (2 + fase * 4);
+    if (fase > 0.85 && (k + f) % 2) continue;                                            // as de cima vão sumindo
+    p.circulo(x, y, r, (xx, yy, dx, dy) => Pix.tom(cores, 0.25 + dy * 0.35 + dx * 0.15 + fase * 0.35, xx, yy));
+  }
+  return p;
+}
+registrarSprites({
+  'fumaca-chamine': () => { const quadros = [0, 1, 2, 3, 4, 5, 6, 7].map(quadroFumaca); return { quadros, anims: { parado: { q: [0, 1, 2, 3, 4, 5, 6, 7], fps: 6 } }, sombra: false }; },
+}, { grupo: 'Loja e fábrica de brinquedos', status: 'protótipo' });

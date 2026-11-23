@@ -88,9 +88,10 @@ A rua comercial normal (`rua-comercial`) **não** tem a loja. Para os vídeos do
   Calçada da loja z ~5.0, câmera `{ "x": -3.9, "z": 2.2, "y": 2.4 }`. Poste fixo em x -1.5: ninguém para logo à direita dele.
 - `loja-brinquedos-diorama`: a loja por dentro (parede listrada rosa, 2 prateleiras cheias de brinquedos, balcão com caixa
   registradora, presentes, baú). Brinquedos em pé na frente das prateleiras (x -6.9, -3.4, 0; z ~2.6); pessoas z 0–1.6.
-- `fabrica-brinquedos`: a **fábrica** sozinha no campo, na estrada de terra = **castelo de brinquedo envelhecido** (pedra rosa-lilás
-  desbotada, duas torres com telhado cônico azul e telhas faltando, ameias quebradas, bandeiras rasgadas, portão em arco, janelas em arco
-  — uma tampada com tábuas —, musgo, rachaduras, faixa "FÁBRICA DE BRINQUEDOS"; pedido do usuário); centro x ≈ 0.6; câmera alta (y 3.6); pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0; câmera `{ "x": 0.6, "z": 2.2, "y": 2.8 }`.
+- `fabrica-brinquedos`: a **fábrica** sozinha no campo, na estrada de terra = **fábrica de tijolo com toques de castelo**, envelhecida (duas chaminés listradas com coroa
+  de ameias, bandeirinha e **fumaça animada** automática; frontão de pedra com engrenagem dourada; ameias; portão de carga em arco; janelas
+  industriais em arco com vidro em grade — uma quebrada, uma tampada —; cano com válvula; fuligem, ferrugem, musgo; faixa "FÁBRICA DE
+  BRINQUEDOS"). O usuário achou as torres do castelo ridículas: sem torres, estética de fábrica); centro x ≈ 0.6; câmera alta (y 3.6); pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0; câmera `{ "x": 0.6, "z": 2.2, "y": 2.8 }`.
 - `fabrica-brinquedos-diorama`: a fábrica por dentro (máquina com luzes à esquerda, esteira com cabeças e corpos de brinquedo no meio,
   prateleira de cabeças de boneca, caixotes de peças). Brinquedos saem da máquina em x ~-6.2, z ~1.0 e andam para a direita.
 Sugestão: a loja como base do vídeo (de dia, na rua) e a fábrica como revelação no fim, em 1–2 cenas.

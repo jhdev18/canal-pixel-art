@@ -499,7 +499,7 @@
 
     // 37. PROTÓTIPO: fábrica de brinquedos por fora (fabrica-brinquedos): no campo, portão de enrolar, chaminé, letreiro
     { "cenario": "fabrica-brinquedos", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0.6, "z": 2.2, "y": 3.6 },
-      "legenda": "37. Fábrica de brinquedos por fora: castelo de brinquedo envelhecido.",
+      "legenda": "37. Fábrica de brinquedos por fora: chaminés com fumaça, engrenagem, ameias.",
       "elementos": [
         { "id": "rob", "personagem": "brinquedo-robo", "x": 0.6, "z": 5.0, "pose": "olhos" },
         { "id": "bia", "personagem": "menina-capa", "x": -3.0, "z": 2.4 }

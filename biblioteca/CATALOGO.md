@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (192)
+## Sprites (193)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -281,6 +281,12 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `brinquedo-boneca` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
 | `brinquedo-robo` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
 | `brinquedo-caixa` | 🧪 protótipo | parado, fechada, desligado, cantando, acenar, virado, olhos, rachado, falha, fechada-andando, fechada-correndo, olhos-andando, olhos-correndo, rachado-andando, rachado-correndo | 30×50 |
+
+### Loja e fábrica de brinquedos
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `fumaca-chamine` | 🧪 protótipo | parado | 28×60 |
 
 ## Personagens
 
