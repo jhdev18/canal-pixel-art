@@ -133,6 +133,13 @@
         { "tipo": "pular", "alvo": "j1", "inicio": 0.95, "duracao": 1.0, "som": null }, { "tipo": "pular", "alvo": "j2", "inicio": 0.8, "duracao": 1.0, "som": null },
         { "tipo": "pular", "alvo": "j3", "inicio": 0.4, "duracao": 1.0, "som": null }, { "tipo": "pular", "alvo": "j4", "inicio": 0.05, "duracao": 1.0, "som": null },
         { "tipo": "andar", "alvo": "w", "para": -4.6, "inicio": 0, "duracao": 2.4 }, { "tipo": "andar", "alvo": "w2", "para": -3.8, "inicio": 0.03, "duracao": 2.4 }, { "tipo": "andar", "alvo": "w3", "para": -4.2, "inicio": 0.07, "duracao": 2.4 }
-      ] }
+      ] },
+    { "cenario": "rua-comercial", "duracao": 2, "transicao": "dither", "foto": [1.0], "legenda": "82. rosto macabro v2 (close).",
+      "camera": { "x": 0.2, "z": 4.6, "y": 0.9, "zoom": 3 },
+      "elementos": [
+        { "id": "m1", "personagem": "padeiro", "x": -1.0, "z": 4.6, "pose": "rosto-macabro" }, { "id": "m2", "personagem": "aluna", "x": 0.0, "z": 4.6, "pose": "rosto-macabro" },
+        { "id": "m3", "personagem": "aluno", "x": 1.0, "z": 4.6, "pose": "rosto-macabro" }, { "id": "m4", "personagem": "menina-capa", "x": 2.0, "z": 4.6, "pose": "rosto-macabro" },
+        { "id": "m5", "personagem": "professora", "x": 3.0, "z": 4.6, "pose": "rosto-macabro" }
+      ], "acoes": [] }
   ]
 }

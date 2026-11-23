@@ -81,20 +81,30 @@ export function aplicarRosto(pix, L, expr) {
     case 'assustado': cada(olhos.susto); bocas.tremida(); sobr('triste'); { const [bx, by] = L.olhos[1]; set(bx + w + 2, by - 2, SUOR); set(bx + w + 2, by - 1, SUOR); set(bx + w + 1, by - 1, SUOR); } break;
     case 'envergonhado': cada(olhos.baixo); bocas.tremida(); corar(true); break;
     case 'pensativo': cada(olhos.cima); bocas.lado(); sobr('uma'); break;
-    case 'macabro': {   // PROTÓTIPO (terror): olhos pretos com pupila branca minúscula + olheira, sorriso enorme de orelha a orelha com dentes
-      const PRETO = '#0a0406', DENTE = '#f4f0e4', VAO = '#b8ac98', OLHEIRA = L.sombra;
+    case 'macabro': {   // PROTÓTIPO v2 (terror): olhos pretos fundos com pupila branca minúscula e olheira; sorriso ENORME em meia-lua,
+      // de bochecha a bochecha, com duas fileiras de dentes, boca escura por dentro e vincos subindo das pontas (o rosto "esticado")
+      const PRETO = '#0a0406', DENTE = '#f4f0e4', DENTE2 = '#d8d0bc', VAO = '#5a1a1e', FUNDO = '#1a0608';
+      const lum = (h) => { const n = parseInt(h.slice(1), 16); return ((n >> 16) * 0.3 + ((n >> 8) & 255) * 0.59 + (n & 255) * 0.11) / 255; };
+      const escura = L.pele && lum(L.pele) < 0.45, ARO = '#d8d0c4';   // pele escura: aro claro em volta do olho (senão o olho preto some)
       cada((ex, ey, lado) => {
-        const t = L.oculos ? 0 : 1;
-        for (let x = ex - (w === 1 ? 1 : 0); x < ex + w; x++) { for (let y = ey - t; y < ey + 2; y++) set(x, y, PRETO); set(x, ey + 2, OLHEIRA); }
+        const t = L.oculos ? 0 : 1, x0 = ex - (w === 1 ? 1 : 0), x1 = ex + w;
+        for (let x = x0; x < x1; x++) { for (let y = ey - t; y < ey + 2; y++) set(x, y, PRETO); set(x, ey + 2, L.sombra); }
+        if (escura) { for (let x = x0; x < x1; x++) set(x, ey + 2, ARO); set(lado < 0 ? x0 - 1 : x1, ey, ARO); set(lado < 0 ? x0 - 1 : x1, ey + 1, ARO); }
         set(w === 2 ? (lado < 0 ? ex + 1 : ex) : ex, ey, BRANCO);   // pupila olhando para o meio (para você)
       });
-      if (!L.semBoca) {
-        set(mx - 5, my - 1, BOCA2); set(mx + 5, my - 1, BOCA2);   // cantos puxados para cima, quase nas bochechas
-        set(mx - 4, my, BOCA2); set(mx + 4, my, BOCA2);
-        for (let x = mx - 3; x <= mx + 3; x++) set(x, my, Math.abs(x - mx) === 1 ? VAO : DENTE);   // fileira de dentes de cima (vãos entre os dentes)
-        set(mx - 3, my + 1, BOCA2); set(mx + 3, my + 1, BOCA2);
-        for (let x = mx - 2; x <= mx + 2; x++) set(x, my + 1, x === mx - 1 || x === mx + 1 ? DENTE : BOCA2);   // boca escura com dois dentes de baixo
-        for (let x = mx - 2; x <= mx + 2; x++) set(x, my + 2, BOCA2);   // fundo do sorriso
+      if (!L.semBoca) {   // v3 (pedido "sorriso maior"): vai de uma ponta à outra do rosto, 7 linhas de altura, pontas subindo até perto dos olhos
+        const y0 = my - 2;
+        for (const sx of [-1, 1]) {
+          set(mx + sx * 6, y0 - 3, L.sombra); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2);   // ponta puxada para cima + vinco
+          set(mx + sx * 6, y0 + 1, BOCA2); set(mx + sx * 5, y0 + 2, BOCA2); set(mx + sx * 5, y0 + 3, BOCA2); set(mx + sx * 4, y0 + 4, BOCA2);
+          set(mx + sx * 5, y0 - 1, DENTE); set(mx + sx * 5, y0 - 2, BOCA2);
+        }
+        for (let x = mx - 5; x <= mx + 5; x++) set(x, y0, DENTE);                                                    // dentes de cima
+        for (let x = mx - 5; x <= mx + 5; x++) set(x, y0 + 1, (x - mx) % 2 ? VAO : DENTE2);                          // pontas dos dentes
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 2, FUNDO);                                                // boca escura
+        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 3, (x - mx) % 2 ? DENTE2 : FUNDO);                        // dentes de baixo (pontudos)
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 4, x === mx - 3 || x === mx + 3 ? BOCA2 : DENTE);         // fileira de baixo
+        for (let x = mx - 3; x <= mx + 3; x++) set(x, y0 + 5, BOCA2);                                                // fundo da meia-lua
       }
       break;
     }

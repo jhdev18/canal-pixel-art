@@ -842,7 +842,7 @@
         { "tipo": "trocar", "alvo": "cel", "estado": "sem-sinal", "inicio": 5.4 }
       ] },
     // 64. PROTÓTIPO (terror): rosto "macabro" — sorriso enorme com dentes e olhos pretos com pupila branca
-    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.2, 5.4], "camera": { "x": 0, "z": -9.6, "zoom": 2 },
+    { "cenario": "praca", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.2, 5.4], "camera": { "x": 0, "z": -8.6, "y": 1.6, "zoom": 2 },
       "legenda": "64. Rosto macabro (terror): começam felizes e viram macabro um por um; a Bia continua normal.", "remover": ["arvore3", "arvore4"],
       "elementos": [
         { "id": "m1", "personagem": "padeiro", "x": -4.2, "z": -8.4, "pose": "rosto-feliz" },
