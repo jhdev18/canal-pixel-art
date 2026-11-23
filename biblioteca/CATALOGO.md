@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (195)
+## Sprites (196)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -286,6 +286,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
+| `boneco-conserto` | 🧪 protótipo | parado | 28×24 |
 | `manequim` | 🧪 protótipo | parado, virado, braco, torto, virado-andando | 26×50 |
 | `manequim-coberto` | 🧪 protótipo | parado, virado | 26×50 |
 | `fumaca-chamine` | 🧪 protótipo | parado | 28×60 |

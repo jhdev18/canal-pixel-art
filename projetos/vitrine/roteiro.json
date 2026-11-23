@@ -526,9 +526,10 @@
       ] },
     // 39. PROTÓTIPO: sala dos fundos da loja (loja-fundos-diorama): oficina de conserto com papel de parede gasto
     { "cenario": "loja-fundos-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0, "y": 3 },
-      "legenda": "39. Sala dos fundos da loja: bancada com boneco aberto, prateleira de cabeças, caixotes.",
+      "legenda": "39. Sala dos fundos da loja: boneca em conserto na bancada (peito aberto, braço solto), prateleira de cabeças, caixotes.",
       "elementos": [
         { "id": "bon", "personagem": "brinquedo-boneca", "x": -3.6, "z": 1.6, "pose": "desligado" },
+        { "id": "conserto", "sprite": "boneco-conserto", "x": -0.6, "z": 2.8, "y": 1.0 },
         { "id": "bia", "personagem": "menina-capa", "x": 4.0, "z": 0.8 }
       ],
       "acoes": [

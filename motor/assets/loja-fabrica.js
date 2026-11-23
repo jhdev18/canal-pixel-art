@@ -134,13 +134,12 @@ Object.assign(MOVEIS, {
     }, lado: '#7a4e44', topo: '#3a3a44' });
     L.caixa(i0 + 0.3, i0 + 0.6, (j0 + j1) / 2 - 0.15, (j0 + j1) / 2 + 0.15, 30, 22, { frente: '#5a5e6a', lado: '#3a3a44', topo: '#14101a' });   // cano de exaustão
   } },
-  // bancada de trabalho: ferramentas, um boneco pela metade (sem braço) e uma lâmpada
+  // bancada de trabalho: ferramentas, retalho e lâmpada (o boneco em conserto é o sprite "boneco-conserto", posto em cima: y 1.0)
   bancada: { di: 0.8, dj: 1.9, f(L, m) {
     const { i0, i1, j0, j1 } = m, cj = (j0 + j1) / 2;
     for (const [a, b] of [[i0 + 0.05, j0 + 0.05], [i1 - 0.12, j0 + 0.05], [i0 + 0.05, j1 - 0.12], [i1 - 0.12, j1 - 0.12]]) L.caixa(a, a + 0.07, b, b + 0.07, 0, 13, MAD[2]);
     L.caixa(i0, i1, j0, j1, 13, 3, { frente: MAD[1], lado: MAD[2], topo: (a, b) => (Math.floor(b * 8) % 5 === 0 ? MAD[2] : MAD[0]) });
-    L.caixa(i0 + 0.2, i0 + 0.5, cj - 0.25, cj + 0.25, 16, 3, { frente: '#3a5ac8', lado: '#24388a', topo: '#3a5ac8' });          // corpo do boneco deitado
-    L.caixa(i0 + 0.22, i0 + 0.48, cj + 0.25, cj + 0.5, 16, 4, { frente: (u, t) => (t === 2 && Math.abs(u - 0.12) < 0.05 ? '#14121c' : '#f8d8bc'), lado: '#e8c4a4', topo: '#e06a2a' });   // cabeça
+    L.caixa(i0 + 0.3, i0 + 0.45, cj + 0.3, cj + 0.7, 16, 2, { frente: '#e8e0d0', lado: '#c8c0b0', topo: '#ffffff' });                 // retalho de pano
     L.caixa(i0 + 0.5, i0 + 0.6, j0 + 0.2, j0 + 0.7, 16, 1, FERRO[1]);                                                         // chave inglesa
     L.caixa(i0 + 0.1, i0 + 0.16, j0 + 0.15, j0 + 0.21, 16, 18, FERRO[2]); L.caixa(i0 + 0.08, i0 + 0.3, j0 + 0.1, j0 + 0.3, 34, 3, ['#fff0a0', 2]);   // lâmpada
   } },
@@ -405,7 +404,37 @@ function quadroFumaca(f) {
   }
   return p;
 }
+// boneca de pano em conserto, sentada e tombada (para pôr em cima da bancada: { "sprite": "boneco-conserto", "y": 1.0 }):
+// peito aberto com engrenagem e enchimento, um olho de botão e o outro costurado em X, braço solto do lado preso por uma linha.
+function bonecoConserto() {
+  const p = new Pix(28, 24), la = ['#f8904a', '#e06a2a', '#a8441a'], pano = ['#fff0e0', '#f8d8bc', '#c8a088'], az = ['#7aa8f0', '#5a8ad8', '#3a5a9a'];
+  const t3 = (c) => (x, y, dx, dy) => Pix.tom(c, 0.75 - dy * 0.45 - dx * 0.2, x, y);
+  // pernas esticadas para a frente (listradas) e sapatos
+  for (const x of [11, 15]) { for (let y = 17; y < 21; y++) p.ret(x, y, 3, 1, y % 2 ? '#ffffff' : '#d83a4a'); p.ret(x - 1, 21, 4, 2, '#1a1a24'); }
+  // corpo (vestido azul) com o peito aberto
+  p.elipse(14, 13.5, 4.6, 4.6, t3(az)); p.ret(10, 15, 9, 3, az[1]);
+  p.elipse(14.5, 13, 2.6, 2.8, '#1a1420');                                         // buraco
+  for (const [x, y, c] of [[14, 12, '#c8a860'], [15, 12, '#f0d890'], [14, 13, '#8a7034'], [15, 13, '#c8a860'], [13, 12, '#8a7034'], [16, 13, '#8a7034'], [14, 11, '#c8a860'], [15, 14, '#c8a860']]) p.set(x, y, c);   // engrenagem
+  for (const [x, y] of [[12, 11], [12, 14], [17, 11], [16, 15], [13, 15]]) p.set(x, y, '#f4f4f0');                                                    // enchimento saindo
+  p.ret(18, 10, 2, 5, az[0]); p.set(20, 11, az[0]); p.set(20, 12, az[0]);         // aba do vestido aberta para o lado
+  // braço que ficou (pendurado) e o ombro sem braço com a linha solta
+  p.ret(8, 11, 2, 6, pano[1]); p.ret(8, 16, 2, 2, pano[2]);
+  p.set(19, 10, '#1a1420'); p.set(20, 9, '#c83a4a'); p.set(21, 10, '#c83a4a');
+  // braço solto deitado na bancada, ligado ao ombro por uma linha vermelha
+  p.ret(20, 20, 6, 2, pano[1]); p.ret(25, 19, 2, 3, pano[2]); p.set(20, 20, '#c8a088');
+  for (const [x, y] of [[21, 11], [22, 13], [22, 15], [21, 17], [21, 19]]) p.set(x, y, '#c83a4a');
+  // cabeça tombada para a esquerda: cabelo de lã, um botão, um X costurado, boca costurada
+  p.circulo(5.5, 9, 2.4, t3(la)); p.circulo(12.5, 3.5, 2.2, t3(la));             // marias-chiquinhas
+  p.elipse(9, 6.5, 4.4, 4.4, t3(pano)); p.elipse(9, 3.5, 4.6, 2.2, t3(la));
+  p.circulo(7.5, 6.5, 1.2, '#1a1a24'); p.set(7, 6, '#4a4a5a');                    // olho de botão
+  for (const [x, y] of [[10, 5], [12, 7], [12, 5], [10, 7], [11, 6]]) p.set(x, y, '#3a2a2a');   // olho costurado em X
+  p.ret(7, 9, 5, 1, '#c83a4a'); for (const x of [7, 9, 11]) { p.set(x, 8, '#c83a4a'); p.set(x, 10, '#c83a4a'); }
+  p.set(6, 8, '#f0a0b0');
+  return p.contorno('#14121c');
+}
+
 registrarSprites({
+  'boneco-conserto': () => ({ quadros: [bonecoConserto()], anims: { parado: { q: [0], fps: 1 } }, sombra: false }),
   manequim: () => estadosSprite([
     ['parado', [quadroManequim()]], ['virado', [quadroManequim({ cabeca: 2, torto: 0 })]], ['braco', [quadroManequim({ braco: true })]],
     ['torto', [quadroManequim({ torto: 3 })]],
