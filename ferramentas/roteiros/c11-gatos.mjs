@@ -1,4 +1,4 @@
-import { turma, marcar, P, S, RUA, FRENTE, PRACA, a, cena, salvar, base, rostos } from './nm.mjs';
+import { alturaShorts, turma, marcar, P, S, RUA, FRENTE, PRACA, a, cena, salvar, base, rostos } from './nm.mjs';
 // NESSE MUNDO curto, terror DE DIA — "consequência inesperada". Feito com as táticas de retenção do vídeo das sombras:
 // gato (algo do dia a dia) que SE MEXE sozinho em toda cena, 1ª frase com "você", tudo de dia, evento aos ~33%,
 // a Bia AGE na hora H, a virada inverte a crença ("sorte" → "buscar") e a última imagem é o gato seguindo a Bia.
@@ -119,6 +119,9 @@ marcar(C, { praca: [[6, 9]] });
 rostos(C, [[1, 'tonho', 'feliz', 0.7], [3, 'bia', 'triste', 0.72], [4, 'bia', 'triste', 0.5], [5, 'prefeito', 'feliz', 0.96],
   [6, 'prefeito', 'rindo', 0.5], [6, 'bia', 'pensativo', 0.6], [7, 'prefeito', 'rindo', 0.05], [8, 'bia', 'assustado', 0.4], [8, 'prefeito', 'rindo'],
   [11, 'prefeito', 'assustado', 0.12], [11, 'bia', 'assustado', 0.3], [12, 'bia', 'assustado', 0.82]]);
+
+// Shorts: câmera mais baixa para a legenda fixa embaixo não cobrir ninguém (medido; praça cheia limitada a -2)
+alturaShorts(C, { 2: -1.25, 3: -1.5, 4: -2.25, 5: -2.25, 6: -2, 7: -2, 8: -1.5, 9: -2, 10: -2.25, 11: -2, 12: -2.25 });
 
 salvar('nesse-mundo-gatos', ['NESSE MUNDO (curto, terror DE DIA) — "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-gatos',

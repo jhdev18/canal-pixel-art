@@ -111,7 +111,7 @@
     "camera": {
      "x": 4,
      "z": 2.2,
-     "y": 1.5,
+     "y": 1,
      "zoom": 2
     }
    }
@@ -260,7 +260,7 @@
    "vertical": {
     "camera": {
      "x": -1.6,
-     "y": 3
+     "y": 1.5
     }
    }
   },
@@ -485,7 +485,7 @@
     "camera": {
      "x": 1,
      "z": 0,
-     "y": 2.4
+     "y": 1.4
     }
    }
   },
@@ -552,7 +552,7 @@
    }
   },
   {
-   "narracaoTexto": "Mas o pão pulou da vitrine e saiu rolando rua abaixo.",
+   "narracaoTexto": "E o pão pulou da vitrine e saiu quicando rua abaixo.",
    "cenario": "rua-comercial",
    "camera": {
     "x": 5.6,
@@ -581,60 +581,60 @@
      "altura": 0.6,
      "para": 3.4,
      "inicio": 0.37,
-     "duracao": 0.5
+     "duracao": 0.49
     },
     {
      "tipo": "pular",
      "alvo": "gigante",
      "altura": 0.6,
      "para": 5.2,
-     "inicio": 0.9,
-     "duracao": 0.5
+     "inicio": 0.89,
+     "duracao": 0.49
     },
     {
      "tipo": "pular",
      "alvo": "gigante",
      "altura": 0.6,
      "para": 7,
-     "inicio": 1.43,
-     "duracao": 0.5
+     "inicio": 1.4,
+     "duracao": 0.49
     },
     {
      "tipo": "pular",
      "alvo": "gigante",
      "altura": 0.6,
      "para": 8.8,
-     "inicio": 1.95,
-     "duracao": 0.5
+     "inicio": 1.92,
+     "duracao": 0.49
     },
     {
      "tipo": "pular",
      "alvo": "gigante",
      "altura": 0.6,
      "para": 10.6,
-     "inicio": 2.48,
-     "duracao": 0.5
+     "inicio": 2.44,
+     "duracao": 0.49
     },
     {
      "tipo": "pular",
      "alvo": "gigante",
      "altura": 0.6,
      "para": 12.4,
-     "inicio": 3.01,
-     "duracao": 0.5
+     "inicio": 2.96,
+     "duracao": 0.49
     },
     {
      "tipo": "emocao",
      "alvo": "tonho",
      "icone": "!",
-     "inicio": 1.33
+     "inicio": 1.31
     },
     {
      "tipo": "correr",
      "alvo": "tonho",
      "para": 9.8,
-     "inicio": 1.51,
-     "duracao": 2.07
+     "inicio": 1.48,
+     "duracao": 2.03
     },
     {
      "tipo": "som",
@@ -645,15 +645,15 @@
      "tipo": "expressao",
      "alvo": "tonho",
      "rosto": "surpreso",
-     "inicio": 1.26,
-     "duracao": 2.49
+     "inicio": 1.25,
+     "duracao": 2.43
     }
    ],
    "vertical": {
     "camera": {
      "x": 5.6,
      "z": 2.2,
-     "y": 2.4
+     "y": 1.65
     }
    }
   },
@@ -780,7 +780,7 @@
     "camera": {
      "x": 12,
      "z": 2.2,
-     "y": 2.4
+     "y": 1.15
     }
    }
   },
@@ -920,7 +920,8 @@
    "vertical": {
     "camera": {
      "x": 0,
-     "z": -8.5
+     "z": -8.5,
+     "y": 0.2
     }
    },
    "momento": "praca"
@@ -1154,13 +1155,14 @@
    "vertical": {
     "camera": {
      "x": -1.6,
-     "z": -8.5
+     "z": -8.5,
+     "y": 1.7
     }
    },
    "momento": "praca"
   },
   {
-   "narracaoTexto": "A comida nunca fugiu de quem deixava no prato. Fugia de quem comia correndo.",
+   "narracaoTexto": "A comida nunca fugiu do prato. Fugia da pressa.",
    "cenario": "praca",
    "remover": [
     "arvore3",
@@ -1214,77 +1216,78 @@
      "tipo": "emocao",
      "alvo": "tonho",
      "icone": "!",
-     "inicio": 0.79
+     "inicio": 0.61
     },
     {
      "tipo": "emocao",
      "alvo": "prof",
      "icone": "!",
-     "inicio": 0.99
+     "inicio": 0.73
     },
     {
      "tipo": "emocao",
      "alvo": "caixa",
      "icone": "!",
-     "inicio": 1.19
+     "inicio": 0.85
     },
     {
      "tipo": "som",
      "som": "revelar",
-     "inicio": 2.28
+     "inicio": 1.52
     },
     {
      "tipo": "tremer",
      "intensidade": 0.2,
-     "inicio": 2.52,
-     "duracao": 0.49
+     "inicio": 1.67,
+     "duracao": 0.31
     },
     {
      "tipo": "pular",
      "alvo": "gigante",
      "altura": 0.2,
-     "inicio": 3.26
+     "inicio": 2.13
     },
     {
      "tipo": "expressao",
      "alvo": "tonho",
      "rosto": "envergonhado",
-     "inicio": 1.78,
-     "duracao": 3.46
+     "inicio": 1.22,
+     "duracao": 2.13
     },
     {
      "tipo": "expressao",
      "alvo": "prof",
      "rosto": "envergonhado",
-     "inicio": 2.03,
-     "duracao": 3.21
+     "inicio": 1.37,
+     "duracao": 1.99
     },
     {
      "tipo": "expressao",
      "alvo": "caixa",
      "rosto": "envergonhado",
-     "inicio": 2.28,
-     "duracao": 2.96
+     "inicio": 1.52,
+     "duracao": 1.84
     },
     {
      "tipo": "expressao",
      "alvo": "policial",
      "rosto": "surpreso",
-     "inicio": 1.29,
-     "duracao": 3.95
+     "inicio": 0.91,
+     "duracao": 2.44
     },
     {
      "tipo": "expressao",
      "alvo": "bia",
      "rosto": "feliz",
-     "inicio": 0.55,
-     "duracao": 4.69
+     "inicio": 0.45,
+     "duracao": 2.91
     }
    ],
    "vertical": {
     "camera": {
      "x": 0,
-     "z": -8.5
+     "z": -8.5,
+     "y": 0.95
     }
    },
    "momento": "praca"
@@ -1416,6 +1419,19 @@
      "inicio": 3.66
     },
     {
+     "tipo": "pular",
+     "alvo": "mini",
+     "altura": 0.25,
+     "inicio": 4.16
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "mini",
+     "icone": "coracao",
+     "rosto": false,
+     "inicio": 3.59
+    },
+    {
      "tipo": "expressao",
      "alvo": "bia",
      "rosto": "feliz",
@@ -1426,7 +1442,7 @@
    "vertical": {
     "camera": {
      "x": 0,
-     "y": 3
+     "y": 0.75
     }
    }
   }

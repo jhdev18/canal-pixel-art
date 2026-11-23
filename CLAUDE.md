@@ -62,7 +62,10 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Legenda palavra por palavra (padrão):** grupos de 2–3 palavras grandes, com a palavra falada em amarelo (tempo real das
   palavras pelo alinhamento; sem áudio, estimado). **Posição fixa embaixo** (pedido do usuário: legenda trocando de lugar
   confunde): Shorts a 76% da altura (logo acima dos 18% de baixo, onde ficam os botões do YouTube), 16:9 a 85%. Por isso, no
-  enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé).
+  enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
+  câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
+  Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
+  Praça cheia (várias fileiras) não cabe toda: limitar a -2 e aceitar os pés da fileira da frente sob a legenda.
   `"legendaPosicao"` (0–1, no roteiro ou na cena) muda; `"auto"` desvia sozinho de quem está na cena (`lugarLegenda` em `motor/ui.js`).
   `"legendaEstilo": "caixa"` volta à legenda antiga; `"legendaLetras"` (padrão 16) muda o tamanho dos grupos.
 - **Corte de enquadramento dentro da cena** (quebra de padrão a cada ~2 s sem trocar de lugar): ação
@@ -103,7 +106,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia de quem comia correndo (`nesse-mundo-comida`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.

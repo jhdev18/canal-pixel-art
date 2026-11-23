@@ -138,3 +138,14 @@ export function turma(elementos, { livres = [], extra = () => ({}), junto = () =
   }
   return [...elementos, ...novos];
 }
+
+// Legenda fixa embaixo (76% da altura no Shorts): abaixa a câmera do Shorts (bloco "vertical") de cada cena para os
+// personagens ficarem acima da faixa da legenda. dy por cena (múltiplos de 0,25 = 8 px), medido com ferramentas/_altura.mjs.
+export function alturaShorts(C, ajustes) {
+  for (const [n, dy] of Object.entries(ajustes)) {
+    const c = C[Number(n) - 1];
+    const v = (c.vertical ||= {});
+    const base = v.camera?.y ?? c.camera?.y ?? (c.comodo || /-diorama$/.test(c.cenario || '') ? 3 : 2.2);
+    v.camera = { ...(c.camera || {}), ...(v.camera || {}), y: +(base + dy).toFixed(2) };
+  }
+}

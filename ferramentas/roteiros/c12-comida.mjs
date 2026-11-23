@@ -1,4 +1,4 @@
-import { turma, marcar, P, S, RUA, FRENTE, PRACA, a, cena, salvar, base, rostos, LUGARES_AULA } from './nm.mjs';
+import { alturaShorts, turma, marcar, P, S, RUA, FRENTE, PRACA, a, cena, salvar, base, rostos, LUGARES_AULA } from './nm.mjs';
 // NESSE MUNDO curto, COMÉDIA de dia. Táticas de retenção do vídeo das sombras: comida (do dia a dia) que SE MEXE sozinha em
 // toda cena, 1ª frase com "você", evento aos ~33%, pico de movimento no meio (a cidade inteira correndo atrás do pão),
 // a Bia AGE (para e abre a mão), a virada inverte a crença e o callback fecha com a piada ("quatro segundos" → "quatro horas").
@@ -51,7 +51,7 @@ C.push(cena('Até que, num domingo, o seu Tonho assou o maior pão da história.
     a(0.55, 'pular', { alvo: 'tonho', altura: 0.5 })],
 }));
 // 6. O pão gigante foge
-C.push(cena('Mas o pão pulou da vitrine e saiu rolando rua abaixo.', {
+C.push(cena('E o pão pulou da vitrine e saiu quicando rua abaixo.', {
   cenario: 'rua-comercial', camera: RUA(5.6), foco: 5.6,
   elementos: [P('tonho', 'padeiro', -0.4, 5.2), PAO('gigante', 1.6, 4.8, { escala: 4 })],
   acoes: [...saltos('gigante', 1.6, 12.4, 0.02, 0.92, 6, 0.6),
@@ -90,7 +90,7 @@ C.push(cena('E o pão gigante freou, deu meia-volta e deitou do lado dela.', {
     a(0.75, 'emocao', { alvo: 'bia', icone: 'coracao' })],
 }));
 // 11. Virada: inverte a crença
-C.push(cena('A comida nunca fugiu de quem deixava no prato. Fugia de quem comia correndo.', {
+C.push(cena('A comida nunca fugiu do prato. Fugia da pressa.', {
   cenario: 'praca', camera: PRACA(0), foco: 0,
   elementos: [PAO('gigante', -0.6, -9.8, { escala: 4 }), P('bia', 'menina-capa', -2.6, -8.6), P('tonho', 'padeiro', 3.6, -8.0), P('prof', 'professora', 2.6, -7.6),
     P('caixa', 'caixa', 1.6, -7.2), P('policial', 'policial', 0.6, -9.2)],
@@ -103,13 +103,16 @@ C.push(cena('Hoje, a cidade inteira almoça devagar. E a merenda dura quatro hor
   cenario: 'sala-de-aula-diorama', camera: { x: 1.5, y: 3 }, foco: 0,
   elementos: turma([P('prof', 'professora', 8.1, 1.6, { virado: 'esquerda' }), ...sand12, PAO('mini', 6.4, 1.4, { y: 1.15 })]),
   acoes: [a(0.05, 'andar', { alvo: 'prof', para: 6.9, durF: 0.5 }), a(0.55, 'emocao', { alvo: 'aluno', icone: 'zzz' }), a(0.7, 'emocao', { alvo: 'bia', icone: 'coracao' }),
-    a(0.75, 'som', { som: 'sucesso' })],
+    a(0.75, 'som', { som: 'sucesso' }), a(0.86, 'pular', { alvo: 'mini', altura: 0.25 }), a(0.88, 'emocao', { alvo: 'mini', icone: 'coracao', rosto: false })],
 }));
 
 marcar(C, { praca: [[8, 11]] });
 rostos(C, [[3, 'tonho', 'bravo', 0.6], [4, 'bia', 'feliz', 0.65], [5, 'tonho', 'rindo', 0.3], [6, 'tonho', 'surpreso', 0.28],
   [8, 'bia', 'pensativo', 0.35], [9, 'bia', 'feliz', 0.5], [9, 'tonho', 'assustado', 0.3], [10, 'bia', 'rindo', 0.72], [10, 'tonho', 'surpreso', 0.3], [10, 'prof', 'surpreso', 0.3],
   [11, 'tonho', 'envergonhado', 0.3], [11, 'prof', 'envergonhado', 0.35], [11, 'caixa', 'envergonhado', 0.4], [11, 'policial', 'surpreso', 0.2], [11, 'bia', 'feliz'], [12, 'bia', 'feliz', 0.7]]);
+
+// Shorts: câmera mais baixa para a legenda fixa embaixo não cobrir ninguém (medido; praça cheia limitada a -2)
+alturaShorts(C, { 1: -0.5, 2: -1.5, 4: -1, 6: -0.75, 7: -1.25, 8: -2, 10: -0.5, 11: -1.25, 12: -2.25 });
 
 salvar('nesse-mundo-comida', ['NESSE MUNDO (curto, comédia DE DIA) — "Nessa cidade, a comida que você deixa no prato sai correndo."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-comida',
