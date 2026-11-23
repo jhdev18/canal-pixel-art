@@ -8,12 +8,14 @@
 //     (o sorriso pintado cresce até as bordas), andando/correndo/pulando e bug-andando, sem-rosto-andando, sorriso-andando.
 //   Cubos isométricos (objetos do mapa, diorama): cubo-grama, cubo-terra, cubo-pedra, cubo-madeira, cubo-lava (brilha),
 //     cubo-xadrez (bandeira de chegada), plataforma-spawn (ponto de nascimento, brilha).
-//   tela-jogo: monitor em close ("tela": true) com o mundo de cubos, avatares e o chat; estados jogando / chat / erro.
+//   tela-jogo: monitor em close ("tela": true) com o mundo de cubos, avatares e o chat; estados jogando / chat / erro /
+//     socorro (avatar batendo no vidro) / chat-nao-sai / chat-banho / pausado. icone-pausa: o símbolo de pausa (use "sobre").
 //   moeda-bloco: moedinha quadrada nossa (dourada, com estrela) que gira.
 import { Pix } from '../pixel.js';
 import { registrarSprites } from '../sprites.js';
 import { MOVEIS } from '../cenarios/comodoDiagonal.js';
 import { iso } from './praca.js';
+import { desenharTexto, larguraTexto } from '../fonte.js';
 
 const K = '#14121c', W = 30, H = 44;
 
@@ -201,6 +203,84 @@ function moeda(k) {
   return p.contorno(K);
 }
 
+// PROTÓTIPO — estados novos da tela (vídeos de Roblox):
+//   socorro (2 quadros, batendo): um avatar em close, com as mãos espalmadas no vidro, chorando; marcas de mão e o vidro rachando.
+//   chat-nao-sai: o chat aberto no meio, quatro jogadores mandando NÃO SAI (em vermelho). chat-banho: VAI TOMAR / BANHO!
+//   pausado: a imagem do jogo apagada, cinza, com o símbolo de pausa grande no meio.
+const escreve = (p, t, x, y, cor) => desenharTexto({ fillStyle: cor, fillRect(px, py, w, h) { p.ret(Math.round(px), Math.round(py), w, h, this.fillStyle); } }, t, x, y, cor);
+function telaSocorro(k) {
+  const p = telaJogo('jogando');
+  const t = (x, y, c) => { if (x >= 3 && x < 93 && y >= 3 && y < 56) p.set(x, y, c); };
+  for (let y = 7; y < 56; y++) for (let x = 3; x < 93; x++) if ((x + y) % 3 === 0) t(x, y, '#3a3a4a');   // escurece o fundo
+  const dy = k ? 1 : 0, cx = 48;
+  // cabeça grande do avatar (rosto colado no vidro)
+  const pele = '#ecc8b0', pele2 = '#d0a890', cab = '#e0602a';
+  for (let y = 14; y < 46; y++) for (let x = cx - 16; x < cx + 16; x++) { const cant = (y < 17 || y > 42) && (x < cx - 13 || x > cx + 12); if (!cant) t(x, y + dy, x > cx + 12 ? pele2 : pele); }
+  for (let y = 10; y < 19; y++) for (let x = cx - 16; x < cx + 16; x++) if (y < 14 || x < cx - 10 || x > cx + 8) t(x, y + dy, cab);   // topete
+  for (let x = cx - 16; x < cx + 16; x++) t(x, 10 + dy, '#f08a4a');
+  // olhos arregalados com lágrimas escorrendo
+  for (const ox of [cx - 9, cx + 4]) {
+    for (let x = ox - 1; x < ox + 7; x++) { t(x, 21 + dy, '#a87868'); t(x, 29 + dy, '#b88878'); }   // olheiras
+    for (let y = 22; y < 29; y++) for (let x = ox; x < ox + 6; x++) t(x, y + dy, '#ffffff');
+    for (let y = 24; y < 28; y++) for (let x = ox + 2; x < ox + 4; x++) t(x, y + dy, K);
+    for (let y = 29; y < 36 + k * 3; y++) t(ox + (ox < cx ? 0 : 5), y + dy, y % 2 ? '#9ad8ff' : '#5aa8e8');
+  }
+  // boca aberta gritando
+  for (let y = 34; y < 42; y++) for (let x = cx - 5; x < cx + 5; x++) t(x, y + dy, y < 35 || y > 40 || x === cx - 5 || x === cx + 4 ? '#5a2020' : '#2a0c10');
+  for (let x = cx - 3; x < cx + 3; x++) t(x, 40 + dy, '#c84a5a');
+  // braços de bloco saindo de baixo e mãos grandes espalmadas no vidro (batendo: uma sobe enquanto a outra desce)
+  for (const [hx, lado] of [[cx - 37, -1], [cx + 22, 1]]) {
+    const hy = 12 + (k ? (lado < 0 ? -2 : 3) : (lado < 0 ? 3 : -2)), camisa = '#2a8a7a';
+    for (let y = hy + 16; y < 56; y++) for (let x = hx + 2; x < hx + 13; x++) t(x, y, x === hx + 12 ? '#1e6a5e' : camisa);   // braço
+    for (let y = hy; y < hy + 17; y++) for (let x = hx; x < hx + 15; x++) t(x, y, (x === hx || x === hx + 14 || y === hy) ? '#b8886a' : '#f8d8b8');
+    for (const fx of [3, 7, 11]) for (let y = hy; y < hy + 7; y++) t(hx + fx, y, '#b8886a');   // vãos entre os dedos
+    for (let y = hy + 9; y < hy + 15; y++) for (let x = hx + 3; x < hx + 12; x++) if ((x + y) % 2) t(x, y, '#ffffff');   // palma amassada no vidro (clarão)
+  }
+  // marcas de mão de batidas antigas (embaçadas) e rachaduras grossas saindo das mãos (maiores no 2º quadro)
+  for (const [mx0, my0] of [[cx - 22, 44], [cx + 14, 6], [cx - 40, 40]]) for (let y = my0; y < my0 + 8; y++) for (let x = mx0; x < mx0 + 7; x++) if ((x * 3 + y) % 4 === 0) t(x, y, '#e8f0ff');
+  const rach = [[cx - 30, 10, -1, -1], [cx - 38, 26, -1, 1], [cx + 36, 8, 1, -1], [cx + 37, 30, 1, 1], [cx, 8, 1, -1], [cx - 4, 50, -1, 1]];
+  rach.forEach(([x, y, ddx, ddy], n) => { const L = (k ? 16 : 9) - (n > 3 ? 4 : 0); let X = x, Y = y;
+    for (let i = 0; i < L; i++) { t(X, Y, '#ffffff'); t(X + 1, Y, '#b8d8f0'); if (i === 5) { let X2 = X, Y2 = Y; for (let j = 0; j < 5; j++) { X2 -= ddx || 1; Y2 += ddy; t(X2, Y2, '#e8f4ff'); } } X += ddx || (i % 2 ? 1 : -1); Y += i % 2 ? ddy : 0; } });
+  for (let i = 0; i < 6; i++) t(10 + i * 14 + k * 3, 50 - (i % 2) * 2, '#f4f4f4a0'.slice(0, 7));
+  return p;
+}
+function telaChat(linhas) {
+  const p = telaJogo('chat');
+  const t = (x, y, c) => { if (x >= 3 && x < 93 && y >= 3 && y < 56) p.set(x, y, c); };
+  for (let y = 9; y < 53; y++) for (let x = 5; x < 91; x++) t(x, y, (x + y) % 2 || y === 9 || y === 52 ? '#14121c' : '#24222e');
+  linhas.forEach(([cor, txt, corTxt], n) => {
+    const y = 12 + n * 10;
+    for (let yy = y; yy < y + 7; yy++) for (let xx = 8; xx < 13; xx++) t(xx, yy, cor);       // quadradinho do jogador
+    t(9, y + 1, '#ffffff');
+    escreve(p, txt, 16, y, corTxt);
+  });
+  return p;
+}
+function telaPausada() {
+  const p = telaJogo('jogando');
+  for (let y = 3; y < 56; y++) for (let x = 3; x < 93; x++) {
+    const i = (y * p.w + x) * 4, v = Math.round((p.d[i] * 0.3 + p.d[i + 1] * 0.59 + p.d[i + 2] * 0.11) * 0.55);
+    p.d[i] = p.d[i + 1] = p.d[i + 2] = v;
+  }
+  for (const x of [38, 52]) { p.ret(x - 1, 15, 8, 26, '#14121c'); p.ret(x, 16, 6, 24, '#f4f4f4'); p.ret(x, 16, 6, 1, '#ffffff'); }
+  return p;
+}
+// ícone de pausa (flutua em cima de quem congelou; use "sobre")
+function iconePausa(k) {
+  const p = new Pix(12, 12);
+  p.ret(1, 1, 10, 10, k ? '#2a2a36' : '#14121c');
+  for (const x of [3, 7]) p.ret(x, 3, 2, 6, '#f4f4f4');
+  return p.contorno('#f4f4f4');
+}
+const texJogo = () => {
+  const fr = [telaJogo('jogando'), telaJogo('chat'), telaJogo('erro'), telaSocorro(0), telaSocorro(1),
+    telaChat([['#d83a3a', 'NÃO SAI', '#ff4a5a'], ['#f8c82c', 'NÃO SAI', '#ff4a5a'], ['#8a4ac8', 'NÃO SAI', '#ff4a5a'], ['#2a8a7a', 'NÃO SAI', '#ff4a5a']]),
+    telaChat([['#2a8a7a', 'GG', '#f4f4f4'], ['#8a4ac8', 'VAI TOMAR', '#f8e060'], ['#8a4ac8', 'BANHO!', '#f8e060']]),
+    telaPausada().contorno(K)];
+  return { quadros: fr, anims: { parado: { q: [0] }, jogando: { q: [0] }, chat: { q: [1] }, erro: { q: [2] }, socorro: { q: [3, 4], fps: 6 },
+    'chat-nao-sai': { q: [5] }, 'chat-banho': { q: [6] }, pausado: { q: [7] } }, sombra: false };
+};
+
 registrarSprites({
   ...Object.fromEntries(Object.entries(AVATARES).map(([k, c]) => [k, () => spriteAvatar(c)])),
   'cubo-grama': () => iso({ parado: { tipo: 'cubo-grama' } }), 'cubo-terra': () => iso({ parado: { tipo: 'cubo-terra' } }),
@@ -215,6 +295,7 @@ registrarSprites({
   'placa-amarela': () => iso({ parado: { tipo: 'placa-amarela' } }),
   'bloco-neon': () => iso({ parado: { tipo: 'bloco-neon' } }),
   'trelica': () => iso({ parado: { tipo: 'trelica' } }),
-  'tela-jogo': () => ({ quadros: [telaJogo('jogando'), telaJogo('chat'), telaJogo('erro')], anims: { parado: { q: [0] }, jogando: { q: [0] }, chat: { q: [1] }, erro: { q: [2] } }, sombra: false }),
+  'tela-jogo': texJogo,
+  'icone-pausa': () => ({ quadros: [iconePausa(0), iconePausa(1)], anims: { parado: { q: [0, 1], fps: 2 } }, sombra: false, flutua: true }),
   'moeda-bloco': () => ({ quadros: [0, 1, 2, 3].map(moeda), anims: { parado: { q: [0, 1, 2, 3], fps: 8 } }, sombra: true, flutua: true }),
 }, { grupo: 'Jogo de blocos (vídeos sobre Roblox)', status: 'protótipo' });

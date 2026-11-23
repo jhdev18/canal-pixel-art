@@ -331,7 +331,7 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
   feliz, `gota` chorando, `raiva` bravo, `...` envergonhado; `"rosto": false` desliga). Nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])`
   do `nm.mjs` (f = fração da fala em que começa).
 - **Rostos:** `feliz`, `rindo`, `triste` (olho molhado, sem lágrima), `chorando` (lágrimas; choro forte), `bravo`, `surpreso`, `assustado`,
-  `envergonhado`, `pensativo` (olhar de lado). `macabro` 🧪 (terror: sorriso enorme com dentes e olhos pretos com pupila branca; nos sprites sem rosto usa `sorriso`/`pior`/`olhos`) — só no terror, na virada ou na cidade "controlada"; teste na `projetos/vitrine` (cena 64).
+  `envergonhado`, `pensativo` (olhar de lado). `macabro` 🧪 (terror: sorriso enorme com dentes e olhos pretos com pupila branca; nos sprites sem rosto usa `sorriso`/`pior`/`olhos`) — só no terror, na virada ou na cidade "controlada"; teste na `projetos/vitrine` (cena 64). `bug` 🧪 (o rosto falha como avatar travando: olhos quadrados ciano, fatias deslocadas; vitrine cena 65).
 - **Quem tem:** moradores, protótipos de pessoas, Bia, Nina e cachorros de estimação (`cachorro-*`, `vira-lata`). **O `cao-policial` não tem**
   (deformava o rosto; o usuário pediu o desenho antigo). Guardiões/fantasmas usam o estado parecido; RPG e robô não mudam.
 - **Só aparece parado e sem `pose`:** andando, correndo, sentado ou com `pose` fixa o rosto não muda. Para reagir, a pessoa para antes
@@ -646,7 +646,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (v2, pedido do usuário "parecer mais Roblox": baseplate cinza com pinos `"chao": "baseplate"`, peças coloridas `peca-*`/`placa-*`, `bloco-neon`,
   `trelica`; o antigo de grama é `mundo-bloco-grama`, `"chao": "blocos"`), avatares `avatar-bloco-*` e `avatar-bia`/`-nina`/`-topete`, cubos `cubo-*`, `plataforma-spawn`,
   `moeda-bloco`, `tela-jogo`; sons `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`. **Nada do Roblox nos assets** (logo, avatar padrão
-  amarelo/azul/verde, moeda oficial): o nome só na narração/título. Teste: `projetos/vitrine` (cenas 42–43).
+  amarelo/azul/verde, moeda oficial): o nome só na narração/título. Teste: `projetos/vitrine` (cenas 42–43). Novos (protótipo): `tela-jogo` `socorro`/`chat-nao-sai`/`chat-banho`/`pausado`, `icone-pausa`, rosto `bug`, `sombraPessoa` `"bloco": true` (vitrine 65–68; `projetos/teste-roblox`).
 - **Medieval (PROTÓTIPO)** (`motor/assets/medieval.js` + fachadas `casa-medieval`/`-2`/`-3`, `taverna`, `ferreiro`, `muralha` e
   `"chao": "pedras"` no `ruaDiagonal.js`): cenários `vila-medieval`, `castelo-medieval`, `salao-trono-diorama`, `taverna-diorama`; pessoas
   `rei`, `rainha`, `princesa`, `cavaleiro`, `campones`, `camponesa`, `ferreiro`, `bruxa`, `mago` (chapéus novos `bruxa` e `capuz` no gerador);

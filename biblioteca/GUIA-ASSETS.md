@@ -150,6 +150,12 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 - `tela-jogo`: monitor em close (`"tela": true`, `"escurecer"`) com interface de jogo (chat à esquerda, lista de jogadores à direita, barra no
   topo, baseplate e avatares); estados `jogando`, `chat` (mais mensagens, uma vermelha), `erro`.
 - Sons: `entrar-jogo`, `pulo-bloco`, `ai` (o "ui!" de quando o avatar cai), `chat`, `bug-jogo`.
+- Novos 🧪 (vitrine 65–68, teste em `projetos/teste-roblox`): `tela-jogo` ganhou `socorro` (avatar em close batendo no vidro, chorando, o vidro
+  rachando; 2 quadros), `chat-nao-sai` (4 jogadores mandando NÃO SAI em vermelho), `chat-banho` (VAI TOMAR / BANHO!) e `pausado` (jogo cinza com
+  o símbolo de pausa); `icone-pausa` (símbolo de pausa que flutua em quem congelou: `"sobre": { "id", "dy": 2.5 }`); rosto **`bug`** para as
+  pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
+  `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
+  menos — preferir `bug` ou zoom 2 nesses casos.
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 
 ### Medieval (🧪)

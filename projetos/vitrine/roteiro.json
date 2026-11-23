@@ -859,6 +859,44 @@
         { "tipo": "trocar", "alvo": "m4", "estado": "rosto-macabro", "inicio": 3.0 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.4, "duracao": 1.4 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "macabro", "inicio": 4.9, "duracao": 1.1 }
-      ] }
+      ] },
+    // 65. PROTÓTIPO (Roblox/terror): rosto "bug" (o rosto falha como avatar travando) e sombra quadrada de avatar ("sombraPessoa": { "bloco": true })
+    { "cenario": "rua-comercial", "duracao": 5, "transicao": "dither", "foto": [1.0, 3.6], "camera": { "x": 4.6, "z": 2.2, "y": 2.4, "zoom": 1.5 },
+      "legenda": "65. Rosto bug + sombra quadrada: a criança trocada tem a sombra de um avatar de bloco (a da Bia é normal).",
+      "elementos": [
+        { "id": "leo", "personagem": "menino-topete", "x": 6.4, "z": 4.2, "pose": "rosto-bug" },
+        { "id": "s1", "sombraPessoa": { "tamanho": 3.0, "direcao": 75, "bloco": true }, "x": 6.4, "z": 4.2 },
+        { "id": "aluna", "personagem": "aluna", "x": 4.2, "z": 4.6, "pose": "rosto-macabro" },
+        { "id": "s2", "sombraPessoa": { "tamanho": 3.0, "direcao": 75, "bloco": true }, "x": 4.2, "z": 4.6 },
+        { "id": "bia", "personagem": "menina-capa", "x": 2.0, "z": 4.2 },
+        { "id": "s3", "sombraPessoa": { "tamanho": 3.0, "direcao": 75 }, "x": 2.0, "z": 4.2 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 2.4, "duracao": 2.6 },
+        { "tipo": "trocar", "alvo": "aluna", "estado": "rosto-bug", "inicio": 3.2, "som": "bug-jogo" }
+      ] },
+    // 66. PROTÓTIPO (Roblox/terror): tela do jogo "socorro" — avatar batendo no vidro, chorando, o vidro rachando
+    { "cenario": "quarto-menina-diorama", "duracao": 4, "transicao": "dither", "foto": [1.0, 3.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "66. tela-jogo: socorro (2 quadros batendo; rachaduras crescem).",
+      "elementos": [ { "id": "tv", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "socorro", "escurecer": 0.6 } ],
+      "acoes": [ { "tipo": "tremer", "inicio": 1.0, "duracao": 0.4 } ] },
+    // 67. PROTÓTIPO (Roblox): chat escrito (NÃO SAI / VAI TOMAR BANHO!) e jogo pausado
+    { "cenario": "quarto-menina-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.8, 4.8], "camera": { "x": 0, "y": 3 },
+      "legenda": "67. tela-jogo: chat-nao-sai > chat-banho > pausado.",
+      "elementos": [ { "id": "tv", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "chat-nao-sai", "escurecer": 0.6 } ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tv", "estado": "chat-banho", "inicio": 2.0, "som": "chat" },
+        { "tipo": "trocar", "alvo": "tv", "estado": "pausado", "inicio": 4.0 }
+      ] },
+    // 68. PROTÓTIPO (Roblox/comédia): ícone de pausa sobre quem congelou
+    { "cenario": "rua-comercial", "duracao": 4, "transicao": "dither", "foto": [2.0], "camera": { "x": 0.6, "z": 2.2, "y": 2.4, "zoom": 2 },
+      "legenda": "68. icone-pausa em cima do seu Tonho e do prefeito congelados.",
+      "elementos": [
+        { "id": "tonho", "personagem": "padeiro", "x": -0.4, "z": 4.6 },
+        { "id": "p1", "sprite": "icone-pausa", "sobre": { "id": "tonho", "dx": 0, "dy": 2.5 } },
+        { "id": "prefeito", "personagem": "prefeito", "x": 1.6, "z": 4.6, "pose": "espirro" },
+        { "id": "p2", "sprite": "icone-pausa", "sobre": { "id": "prefeito", "dx": 0, "dy": 2.5 } }
+      ],
+      "acoes": [] }
   ]
 }

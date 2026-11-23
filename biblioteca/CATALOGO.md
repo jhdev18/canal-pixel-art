@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (268)
+## Sprites (269)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -50,16 +50,16 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `mago` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `mago` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 | `tocha` | 🧪 protótipo | parado | 13×50 |
-| `rei` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `rainha` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `princesa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `cavaleiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `campones` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `camponesa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `ferreiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `bruxa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `rei` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `rainha` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `princesa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `cavaleiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `campones` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `camponesa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `ferreiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `bruxa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 | `barril` | 🧪 protótipo | parado | 21×26 |
 | `feno` | 🧪 protótipo | parado | 41×28 |
 | `carroca` | 🧪 protótipo | parado | 69×43 |
@@ -85,25 +85,25 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `menina-capa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `menina-capa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 | `robo-semaforo` | ✅ | parado | 28×44 |
-| `menina-capa-detalhada` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `menina-capa-detalhada` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 | `robo-semaforo-detalhado` | ✅ | parado | 28×44 |
 
 ### Moradores da cidade
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `policial` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `prefeito` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `aluno` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `aluna` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `professora` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `padeiro` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `caixa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `policial-oculos` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `prefeito-careca` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `padeiro-pregador` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `policial` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `prefeito` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `aluno` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `aluna` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `professora` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `padeiro` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `caixa` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `policial-oculos` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `prefeito-careca` | ✅ | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `padeiro-pregador` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 | `cao-policial` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro | 28×44 |
 
 ### Cidade (vista lateral)
@@ -150,10 +150,10 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `janela-cortina` | 🧪 protótipo | fechada, aberta, acesa, vulto, parado, balancando | 20×24 |
 | `celular` | 🧪 protótipo | inicio, mensagem, notificacao, chamada, camera, rachado, sem-sinal, parado | 48×88 |
 | `vassoura` | 🧪 protótipo | parado | 8×24 |
-| `motorista` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `gari` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `pipoqueiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `medica` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `motorista` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `gari` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `pipoqueiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `medica` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 
 ### Interiores (móveis e cômodos)
 
@@ -260,12 +260,12 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `carteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `vovo` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `sorveteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `menino-coroa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `carteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `vovo` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `sorveteiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `rival` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `menino-coroa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `menino-pijama` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 | `gato-chapeu` | 🧪 protótipo | parado, monstro, monstro-andando, monstro-correndo, pior, pior-andando, pior-correndo | 20×16 |
 | `gato-monstro` | 🧪 protótipo | parado, monstro, monstro-andando, monstro-correndo, pior, pior-andando, pior-correndo | 20×16 |
 | `bilhete` | 🧪 protótipo | parado, brilhando | 9×7 |
@@ -301,20 +301,20 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `casa-banheiro-noite` | 🧪 protótipo | parado | 212×174 |
 | `casa-corte` | 🧪 protótipo | parado | 452×472 |
 | `casa-corte-noite` | 🧪 protótipo | parado | 452×472 |
-| `mae` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
-| `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 28×44 |
+| `mae` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `mae-avental` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
+| `menino-topete` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 28×44 |
 
 ### Cachorros (leva 3)
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `cachorro-caramelo` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 20×19 |
-| `cachorro-preto` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 20×19 |
-| `cachorro-branco` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 20×19 |
-| `cachorro-cinza` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 20×19 |
-| `cachorro-chique` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 20×19 |
-| `vira-lata` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro | 20×19 |
+| `cachorro-caramelo` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 20×19 |
+| `cachorro-preto` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 20×19 |
+| `cachorro-branco` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 20×19 |
+| `cachorro-cinza` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 20×19 |
+| `cachorro-chique` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 20×19 |
+| `vira-lata` | 🧪 protótipo | parado, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-bug | 20×19 |
 
 ### Terror e objetos (leva 3)
 
@@ -375,7 +375,8 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `placa-amarela` | 🧪 protótipo | parado | 67×37 |
 | `bloco-neon` | 🧪 protótipo | parado | 67×31 |
 | `trelica` | 🧪 protótipo | parado | 19×73 |
-| `tela-jogo` | 🧪 protótipo | parado, jogando, chat, erro | 96×64 |
+| `tela-jogo` | 🧪 protótipo | parado, jogando, chat, erro, socorro, chat-nao-sai, chat-banho, pausado | 96×64 |
+| `icone-pausa` | 🧪 protótipo | parado | 12×12 |
 | `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
 
 ## Personagens

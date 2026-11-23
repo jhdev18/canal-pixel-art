@@ -5,7 +5,7 @@
 //     "gota" chorando, "raiva" bravo, "..." envergonhado). Desligar numa ação: { "tipo": "emocao", ..., "rosto": false }.
 //   - por um tempo: { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 1, "duracao": 2 }
 //   - a cena toda: "pose": "rosto-feliz" no elemento (ou ação "trocar" com "estado": "rosto-triste").
-export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro'];
+export const EXPRESSOES = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo', 'macabro', 'bug'];
 export const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
 
 const BRANCO = '#ffffff', BOCA = '#5a2020', BOCA2 = '#3a1414', LINGUA = '#c84a5a', LAGRIMA = '#9ad8ff', LAGRIMA2 = '#5aa8e8', SUOR = '#a8e0ff', CORADO = '#f06a6a';
@@ -98,6 +98,21 @@ export function aplicarRosto(pix, L, expr) {
       }
       break;
     }
+    case 'bug': {   // PROTÓTIPO (terror/jogo): o rosto falha como avatar travando — olhos quadrados que brilham e fatias deslocadas com cor
+      const CIANO = '#3af0ff', ROSA = '#ff3ac8';
+      cada((ex, ey) => { for (let x = ex - (w === 1 ? 1 : 0); x < ex + w; x++) for (let y = ey - 1; y < ey + 2; y++) set(x, y, CIANO); set(ex, ey - 1, BRANCO); });
+      bocas.reta();
+      const ey = Math.min(...L.olhos.map(([, y]) => y)), par = ey % 2 === 0, s1 = par ? 3 : -2;   // o quadro da respiração tem o olho 1 px acima: a falha muda de lado
+      const faixas = [[ey - 4, ey - 2, s1], [ey, ey + 1, -s1], [my, my + 1, par ? -3 : 2]];
+      for (const [y0, y1, dx] of faixas) for (let y = y0; y <= y1; y++) {
+        if (y < 0 || y >= q.h) continue;
+        const linha = q.d.slice(y * q.w * 4, (y + 1) * q.w * 4);
+        for (let x = 0; x < q.w; x++) { const o = (y * q.w + x) * 4, xs = x - dx, i = xs * 4; if (xs < 0 || xs >= q.w) { q.d[o + 3] = 0; continue; } for (let c = 0; c < 4; c++) q.d[o + c] = linha[i + c]; }
+        let a = -1, b = -1; for (let x = 0; x < q.w; x++) if (q.d[(y * q.w + x) * 4 + 3]) { if (a < 0) a = x; b = x; }
+        if (a >= 0) { set(a, y, ROSA); set(b, y, CIANO); }
+      }
+      break;
+    }
     default: cada(olhos.normal); bocas.pequena();
   }
   return q;
@@ -108,7 +123,7 @@ export function adicionarExpressoes(sprite, quadros) {
   for (const e of EXPRESSOES) {
     const n = sprite.quadros.length, [a, b] = quadros(e);
     sprite.quadros.push(a, b);
-    sprite.anims['rosto-' + e] = { q: [n, n, n + 1, n + 1], fps: 2 };
+    sprite.anims['rosto-' + e] = e === 'bug' ? { q: [n, n + 1, n, n, n + 1, n + 1, n, n + 1], fps: 10 } : { q: [n, n, n + 1, n + 1], fps: 2 };   // a falha pisca rápido e irregular
   }
   return sprite;
 }
@@ -118,6 +133,7 @@ const EQUIVALENTES = {
   feliz: ['feliz', 'acenar', 'rindo'], rindo: ['rindo', 'feliz'], triste: ['timido', 'dormindo'], chorando: ['timido', 'tremendo'],
   bravo: ['assustar', 'alerta', 'agarrar'], surpreso: ['alerta', 'olho-aberto', 'olhos'], assustado: ['tremendo', 'timido', 'alerta'],
   envergonhado: ['timido'], pensativo: ['olhando-lado'],
+  bug: ['bug', 'falha', 'sem-rosto'],
   macabro: ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
 };
 export function rostoEquivalente(anims, nome) {
