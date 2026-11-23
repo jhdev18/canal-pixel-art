@@ -629,8 +629,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 - **Protótipos NÃO aprovados** (definidos em `prototipos/cenarios.json`; teste em `projetos/prototipo-diagonal`, `previa.png`, imagens em `praca/`):
   `praca-seca` (decorada com fonte seca etc., para a história do Dia do Sol) e `quarto-menina` / `quarto-menina-noite`
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
-- **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
-  (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
+- **Canal novo "Vila Serena" (o antigo "Histórias em Pixel" foi abandonado; ver `projetos/canal/CANAL.md`):** banner e foto de perfil gerados por `projetos/canal/arte/`
+  (`banner.html`, `icone.html`, `comum.js`, `gerar.mjs`): de dia, com a turma e a sombra da Bia ao contrário.
 - **Animatrônicos de brinquedo (PROTÓTIPO, aguardando "pode salvar")** (`motor/assets/animatronicos.js`; o usuário pediu foco em
   terror e escolheu o tema "brinquedos de corda gigantes" — os mascotes de loja pão/sapo/vaca/bailarina foram rejeitados e apagados):
   `brinquedo-soldadinho`, `brinquedo-boneca`, `brinquedo-robo`, `brinquedo-caixa` (estados parado/desligado/cantando/acenar/virado/olhos/
