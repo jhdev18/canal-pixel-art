@@ -657,7 +657,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `motorista`, `gari`, `pipoqueiro`, `medica`. O usuário NÃO quis a dona da banca de jornal nem a bibliotecária. Teste: `projetos/vitrine` (cenas 48–63).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
-- **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,
+- **Branch de trabalho atual:** `claude/adoring-wright-3m65ne` (parte do `claude/happy-goldberg-q6y15g`, já mesclado no principal
+  `claude/cool-noether-ai5egq` pelo PR #1; acrescenta brinquedos/loja/fábrica, jogo de blocos, medieval, melhorias da cidade, `vidaNaRua`,
+  `[altura]` no conferir e a regra 13). O `claude/gifted-franklin-jtanmi` (exemplos de roteiro Roblox, de outra conversa) não está aqui.
+  Antes: `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,
   `ccr-77868c41-s69pnw`, `claude/modest-hamilton-4p4851`, `jolly-archimedes`, `upbeat-mccarthy` e os anteriores).
   Antes: `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,
   `cool-noether`, `charming-mendel` e `epic-bardeen`, + diorama como padrão + guardiões/números) e `ccr-77868c41-s69pnw` (casa, mãe, menino-topete, monstros 3D).
