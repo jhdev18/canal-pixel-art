@@ -188,8 +188,9 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   moedas. Os avatares continuam em z ~1.4–4.4 (a frente fica livre). Teste: vitrine 72.
 - **Cenas de jogo acontecem DENTRO do `mundo-bloco`** (pedido do usuário): chat = balão `falar` em cima do avatar (como o chat de balão do
   jogo, com som `chat`); pausa = avatares parados no ar (`"y"` + `"pose": "pulando"`) com `icone-pausa` em cima (`"sobre"`, `dy` 3.0);
-  socorro = avatares andando até a frente da câmera (zoom 2, câmera z ~1.2) em `bug`, pulando com `tremer`. O `tela-jogo` fica só para um
-  close rápido (com o `mundo-bloco` no fundo), não para contar a cena. Teste: vitrine 69–71.
+  socorro = avatares andando até a frente da câmera (zoom 2, câmera z ~1.2) em `bug`, pulando com `tremer`. O `tela-jogo` (o monitor) fica só para um
+  close rápido e SEMPRE no mundo real, no quarto de quem joga (`quarto-leo-diorama`, `quarto-nina-diorama`...): nunca dentro do `mundo-bloco`
+  (um monitor no meio do jogo não faz sentido — o usuário apontou). Teste: vitrine 69–71.
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 
 ### Medieval (🧪)

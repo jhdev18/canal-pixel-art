@@ -20,12 +20,12 @@
         { "tipo": "trocar", "alvo": "aluna", "estado": "rosto-bug", "inicio": 3.2, "som": "bug-jogo" }
       ] },
     // 66. PROTÓTIPO (Roblox/terror): tela do jogo "socorro" — avatar batendo no vidro, chorando, o vidro rachando
-    { "cenario": "mundo-bloco", "duracao": 4, "transicao": "dither", "foto": [1.0, 3.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    { "cenario": "quarto-leo-diorama", "duracao": 4, "transicao": "dither", "foto": [1.0, 3.0], "camera": { "x": 0, "y": 3 },
       "legenda": "66. tela-jogo: socorro (2 quadros batendo; rachaduras crescem).",
       "elementos": [ { "id": "tv", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "socorro", "escurecer": 0.6 } ],
       "acoes": [ { "tipo": "tremer", "inicio": 1.0, "duracao": 0.4 } ] },
     // 67. PROTÓTIPO (Roblox): chat escrito (NÃO SAI / VAI TOMAR BANHO!) e jogo pausado
-    { "cenario": "mundo-bloco", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.8, 4.8], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    { "cenario": "quarto-leo-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.8, 4.8], "camera": { "x": 0, "y": 3 },
       "legenda": "67. tela-jogo: chat-nao-sai > chat-banho > pausado.",
       "elementos": [ { "id": "tv", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "chat-nao-sai", "escurecer": 0.6 } ],
       "acoes": [
