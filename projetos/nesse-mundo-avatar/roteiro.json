@@ -455,8 +455,7 @@
    "camera": {
     "x": 5.6,
     "z": 2.2,
-    "y": 2.4,
-    "zoom": 2
+    "y": 2.4
    },
    "elementos": [
     {
@@ -501,14 +500,23 @@
      "tipo": "som",
      "som": "suspense",
      "inicio": 2.82
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 5.75,
+     "y": 1.2,
+     "vertical": {
+      "y": 0.4
+     },
+     "inicio": 2.82
     }
    ],
    "vertical": {
     "camera": {
      "x": 4.55,
      "z": 2.2,
-     "y": 0.4,
-     "zoom": 2
+     "y": 1.15
     }
    }
   },
@@ -575,8 +583,7 @@
    "camera": {
     "x": 5.6,
     "z": 2.2,
-    "y": 2.4,
-    "zoom": 1.5
+    "y": 2.4
    },
    "elementos": [
     {
@@ -663,6 +670,16 @@
      "inicio": 2.7
     },
     {
+     "tipo": "corte",
+     "zoom": 1.5,
+     "x": 6.15,
+     "y": 1.6,
+     "vertical": {
+      "y": 0.75
+     },
+     "inicio": 2.7
+    },
+    {
      "tipo": "tremer",
      "intensidade": 0.25,
      "inicio": 2.77,
@@ -673,8 +690,7 @@
     "camera": {
      "x": 4.51,
      "z": 2.2,
-     "y": -0.1,
-     "zoom": 1.5
+     "y": 1.15
     }
    }
   },

@@ -82,6 +82,8 @@ function paraVertical(roteiro) {
       else c[k] = val;
     }
     delete c.vertical;
+    // ação com "vertical": { ... } usa esses campos só no Shorts (ex.: corte de zoom com outro "y")
+    c.acoes = (c.acoes || []).map(({ vertical: va, ...a }) => (va ? { ...a, ...va } : a));
   }
   return r;
 }

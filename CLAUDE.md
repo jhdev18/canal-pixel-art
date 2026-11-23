@@ -89,6 +89,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Corte de enquadramento dentro da cena** (quebra de padrão a cada ~2 s sem trocar de lugar): ação
   `{ "tipo": "corte", "zoom": 2, "y": 1.5, "inicio" }` — troca instantânea (sem movimento lento), só com zoom redondo
   (1, 1.5, 2, 3); usar em cenas de 3–4 s, na palavra forte. Nos scripts do Claude: `a(0.5, 'corte', { zoom: 2, y: 1.5 })`.
+  **Zoom na hora da transformação/revelação** (pedido do usuário): a cena fica no enquadramento normal e um `corte` de zoom entra
+  no instante da mudança. Qualquer ação aceita `"vertical": { ... }` com campos só do Shorts (ex.: `a(0.68, 'corte', { zoom: 2, x, y: 1.2,
+  vertical: { y: 0.4 } })`); dar o `x` de quem transforma (`xCentrado` do `centro.js`). Na rua, zoom 2 ≈ `y` 1.2 (16:9) / 0.4 (Shorts).
 - **Trilha de fundo em todo vídeo:** `"trilha": "suspense"` (terror), `"comedia"` ou `"emocional"` no roteiro (base chiptune
   baixa em loop, abaixa sozinha com a narração; só no final, como os outros sons; `"volumeTrilha"` padrão 0.7;
   `biblioteca/sfx/trilha-<nome>.mp3` substitui a gerada). Projetos novos já vêm com `"trilha": "suspense"`; o conferir acusa `[trilha]`.

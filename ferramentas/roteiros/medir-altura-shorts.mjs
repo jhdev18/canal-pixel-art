@@ -8,7 +8,7 @@ const nome = process.argv[2];
 const dir = caminhoProjeto(nome);
 const r = lerRoteiro(dir);
 r.resolucao = [180, 320];
-for (const c of r.cenas) { for (const [k, v] of Object.entries(c.vertical || {})) c[k] = (v && typeof v === 'object' && !Array.isArray(v) && c[k] && typeof c[k] === 'object') ? { ...c[k], ...v } : v; delete c.vertical; }
+for (const c of r.cenas) { for (const [k, v] of Object.entries(c.vertical || {})) c[k] = (v && typeof v === 'object' && !Array.isArray(v) && c[k] && typeof c[k] === 'object') ? { ...c[k], ...v } : v; delete c.vertical; c.acoes = (c.acoes || []).map(({ vertical: va, ...a }) => (va ? { ...a, ...va } : a)); }
 const DY = [0, -0.25, -0.5, -0.75, -1, -1.25, -1.5, -1.75, -2, -2.25, -2.5, -2.75, -3, -3.25, -3.5];
 const base = r.cenas;
 r.cenas = base.flatMap((c, i) => DY.map((dy) => ({ ...JSON.parse(JSON.stringify(c)), _i: i + 1, _dy: dy, camera: { ...(c.camera || {}), y: (c.camera?.y ?? (c.comodo ? 3 : 2.2)) + dy } })));

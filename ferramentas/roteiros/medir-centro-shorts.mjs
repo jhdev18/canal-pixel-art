@@ -11,7 +11,7 @@ const FOCO = JSON.parse(process.argv[3] || '{}');   // opcional: { "13": ["atop"
 const dir = caminhoProjeto(nome);
 const r = lerRoteiro(dir);
 r.resolucao = [180, 320];
-for (const c of r.cenas) { for (const [k, v] of Object.entries(c.vertical || {})) c[k] = (v && typeof v === 'object' && !Array.isArray(v) && c[k] && typeof c[k] === 'object') ? { ...c[k], ...v } : v; delete c.vertical; }
+for (const c of r.cenas) { for (const [k, v] of Object.entries(c.vertical || {})) c[k] = (v && typeof v === 'object' && !Array.isArray(v) && c[k] && typeof c[k] === 'object') ? { ...c[k], ...v } : v; delete c.vertical; c.acoes = (c.acoes || []).map(({ vertical: va, ...a }) => (va ? { ...a, ...va } : a)); }
 const rot = resolverRoteiro(r, new Map(), { fps: 30 });
 const cfg = carregarConfig();
 const srv = await iniciarServidor({ projetoDir: dir });
