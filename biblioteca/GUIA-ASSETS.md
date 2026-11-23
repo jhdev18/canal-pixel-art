@@ -156,9 +156,12 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
   `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
   menos — preferir `bug` ou zoom 2 nesses casos.
+- **`mundo-bloco` v3 — com referências dos jogos atuais** 🧪: peças de **plástico liso** (sem os pinos de LEGO; `{ pinos: true }` no código volta),
+  baseplate **cinza com grade** que vai longe até o fundo (sem a borda do céu na diagonal; `"rua": { "baseplateClassica": true }` volta aos pinos),
+  **checkpoints** verdes que brilham (`checkpoint-1`…`-5`, zona segura; vermelho neon = bloco que mata — o código de cores dos percursos).
 - **`mundo-bloco` v3 (mais cheio)** 🧪: casinhas do lobby (`casa-bloco`, x -10.6 e 11), `arvore-bloco` (6 pelo mapa, inclusive nos cantos da
   frente x ±12), `torre-bloco` (peças coloridas empilhadas com luz no topo, ao fundo), `ponte-bloco` (passarela no ar), `bandeira-checkpoint`
-  (x -0.8, z 4.9), `trampolim-bloco` (x 5.6, z 4.8), `placa-jogo` (seta, junto do spawn), `nuvem-bloco` e plataformas flutuando no céu, mais
+  (x -0.8, z 4.9), `trampolim-bloco` (x 5.6, z 4.8), `placa-jogo` (seta, junto do spawn), plataformas flutuando (a `nuvem-bloco` existe, mas saiu do mapa: ficava em cima do chão), mais
   moedas. Os avatares continuam em z ~1.4–4.4 (a frente fica livre). Teste: vitrine 72.
 - **Cenas de jogo acontecem DENTRO do `mundo-bloco`** (pedido do usuário): chat = balão `falar` em cima do avatar (como o chat de balão do
   jogo, com som `chat`); pausa = avatares parados no ar (`"y"` + `"pose": "pulando"`) com `icone-pausa` em cima (`"sobre"`, `dy` 3.0);

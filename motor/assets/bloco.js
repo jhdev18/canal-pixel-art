@@ -133,13 +133,13 @@ function spriteAvatar(c) {
 
 // ------------------------------------------------------------------ cubos do mapa (isométricos)
 // peça de plástico com PINOS em cima (4x4 por cubo) e brilho; xadrez = bandeira de chegada; brilho = neon (bloco que "mata")
-const cubo = (topo, lado, frente, { brilho = false, xadrez = false, borda = null, pinos = true, h = 16, di = 1, dj = 1 } = {}) => ({ di, dj, f(L, m) {
+const cubo = (topo, lado, frente, { brilho = false, xadrez = false, borda = null, pinos = false, h = 16, di = 1, dj = 1 } = {}) => ({ di, dj, f(L, m) {   // v3: liso (sem pinos) por padrão
   const { i0, i1, j0, j1 } = m, cor = (c) => (brilho ? [c, 2] : c);
   L.caixa(i0, i1, j0, j1, 0, h, {
     frente: (u, t) => (borda && t > h - 5 ? borda : t === 0 ? escuro(frente, 0.3) : t === h - 1 ? claro(frente, 0.25) : u < 0.08 ? claro(frente, 0.15) : cor(frente)),
     lado: (u, t) => (borda && t > h - 5 ? escuro(borda, 0.15) : t === h - 1 ? claro(lado, 0.2) : cor(lado)),
     topo: (a, b, d) => {
-      if (d < 0.05) return escuro(topo, 0.2);
+      if (d < 0.05) return claro(topo, 0.25);   // quina clara (plástico liso)
       if (xadrez) return (Math.floor(a * 4) + Math.floor(b * 4)) % 2 ? '#14121c' : '#f4f4f4';
       if (pinos) { const fa = (a * 4) % 1, fb = (b * 4) % 1, r = Math.hypot(fa - 0.5, fb - 0.5); if (r < 0.22) return fa + fb < 0.95 ? claro(topo, 0.35) : escuro(topo, 0.12); }
       return cor(topo);
@@ -170,7 +170,7 @@ Object.assign(MOVEIS, {
 
 
 // PROTÓTIPO (v3 do mundo de blocos, pedido do usuário "está muito vazio"): objetos para encher o mapa.
-const pinado = (cor) => (a, b, d) => { if (d < 0.05) return escuro(cor, 0.2); const fa = (a * 4) % 1, fb = (b * 4) % 1; return Math.hypot(fa - 0.5, fb - 0.5) < 0.22 ? (fa + fb < 0.95 ? claro(cor, 0.35) : escuro(cor, 0.12)) : cor; };
+const pinado = (cor) => (a, b, d) => (d < 0.05 ? claro(cor, 0.25) : cor);   // v3: topo liso com a quina clara
 const plast = (cor) => ({ frente: (u, t) => (t === 0 ? escuro(cor, 0.3) : u < 0.08 ? claro(cor, 0.15) : cor), lado: escuro(cor, 0.22), topo: pinado(cor) });
 Object.assign(MOVEIS, {
   'arvore-bloco': { di: 1.2, dj: 1.2, f(L, m) {   // árvore de jogo: tronco quadrado e copa de dois cubos verdes
@@ -221,6 +221,14 @@ Object.assign(MOVEIS, {
     L.caixa(i0, i1, j0, j1, 0, 10, br); L.caixa(i0 + 0.3, i1 - 0.3, j0 + 0.6, j0 + 1.8, 10, 8, br);
   } },
 });
+
+// checkpoint: placa verde que brilha (zona segura, como nos percursos do jogo); checkpoint-1..5 são iguais (ids por fase)
+for (const n of [1, 2, 3, 4, 5]) {
+  MOVEIS[`checkpoint-${n}`] = { di: 1.8, dj: 1.8, f(L, m) {
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 3, { frente: '#2e8a3e', lado: '#246e32', topo: (a, b, d) => (d < 0.08 ? '#7ae88a' : ['#5ad06a', 2]) });
+  } };
+}
 // ------------------------------------------------------------------ tela do jogo (close) e moeda
 function telaJogo(modo) {
   const p = new Pix(96, 64);
@@ -356,6 +364,11 @@ registrarSprites({
   'ponte-bloco': () => iso({ parado: { tipo: 'ponte-bloco' } }),
   'torre-bloco': () => iso({ parado: { tipo: 'torre-bloco' } }),
   'nuvem-bloco': () => iso({ parado: { tipo: 'nuvem-bloco' } }),
+  'checkpoint-1': () => iso({ parado: { tipo: 'checkpoint-1' } }),
+  'checkpoint-2': () => iso({ parado: { tipo: 'checkpoint-2' } }),
+  'checkpoint-3': () => iso({ parado: { tipo: 'checkpoint-3' } }),
+  'checkpoint-4': () => iso({ parado: { tipo: 'checkpoint-4' } }),
+  'checkpoint-5': () => iso({ parado: { tipo: 'checkpoint-5' } }),
   'tela-jogo': texJogo,
   'icone-pausa': () => ({ quadros: [iconePausa(0), iconePausa(1)], anims: { parado: { q: [0, 1], fps: 2 } }, sombra: false, flutua: true }),
   'moeda-bloco': () => ({ quadros: [0, 1, 2, 3].map(moeda), anims: { parado: { q: [0, 1, 2, 3], fps: 8 } }, sombra: true, flutua: true }),

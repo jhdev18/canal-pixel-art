@@ -60,7 +60,7 @@ export function gerarRuaDiagonal(opc = {}) {
   const noite = (opc.periodo ?? 'noite') === 'noite';
   const tarde = opc.periodo === 'tarde';   // PROTÓTIPO: pôr do sol (luz alaranjada, céu laranja e rosa); continua claro
   const semente = opc.semente ?? 7;
-  const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 24, HMAX = 200;   // I1 largo: o canteiro vai até a borda
+  const J0 = -comp / 2, J1 = comp / 2, I0 = opc.chao === 'baseplate' ? -16 : -4.5, I1 = 24, HMAX = 200;   // baseplate: chão bem maior para o fundo (horizonte longe, como no jogo)   // I1 largo: o canteiro vai até a borda
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 8);
   const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
@@ -123,10 +123,16 @@ export function gerarRuaDiagonal(opc = {}) {
       c = junta ? (v === 3 && bayer(x, y) < 0.5 ? '#6a7a4a' : '#6a6050') : (di > 0.75 || dj > 0.85) ? '#8a7e6c' : (di < 0.3 && dj < 0.4 ? '#d4c8b4' : base);
       pintar(x, y, c, i, j, 0); continue;
     }
-    if (opc.chao === 'baseplate') {   // PROTÓTIPO: chão de "baseplate" cinza de jogo de blocos: placas de 2x2 com junta e pinos (4 por unidade)
-      const fi = (i / 2) % 1, fj = (j / 2) % 1, junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985;
-      const pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, r = Math.hypot(pa - 0.5, pb - 0.5);
-      c = junta ? '#7e7e86' : r < 0.2 ? (pa + pb < 0.95 ? '#c4c4ca' : '#8e8e96') : bayer(x, y) < 0.05 ? '#a2a2a8' : '#a8a8ae';
+    if (opc.chao === 'baseplate') {   // PROTÓTIPO v3: baseplate dos jogos de bloco atuais: cinza liso com grade (quadrados de 2x2 e linha fina
+      // a cada unidade), sem pinos; "baseplateClassica": true volta aos pinos antigos
+      const fi = ((i / 2) % 1 + 1) % 1, fj = ((j / 2) % 1 + 1) % 1;
+      if (opc.baseplateClassica) {
+        const junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985, pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, rr = Math.hypot(pa - 0.5, pb - 0.5);
+        c = junta ? '#7e7e86' : rr < 0.2 ? (pa + pb < 0.95 ? '#c4c4ca' : '#8e8e96') : bayer(x, y) < 0.05 ? '#a2a2a8' : '#a8a8ae';
+      } else {
+        const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1, linha = fi < 0.02 || fj < 0.02, fina = g1 < 0.02 || g2 < 0.02;
+        c = linha ? '#6e7076' : fina ? '#878a90' : bayer(x, y) < 0.04 ? '#94979d' : '#9a9da3';
+      }
       pintar(x, y, c, i, j, 0); continue;
     }
     if (opc.chao === 'blocos') {   // PROTÓTIPO: mundo de cubos (jogo de blocos): grama em ladrilhos de 1x1 com junta, caminho de pedra no meio
