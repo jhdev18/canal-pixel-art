@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, congelar: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
   pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
@@ -237,7 +237,18 @@ function destino(a, x, y) {
 }
 
 // Estado de um elemento no tempo local t da cena.
+// PROTÓTIPO "congelar": { "tipo": "congelar", "alvo": "a1", "inicio": 0.4 } — a partir do início, o elemento fica parado EXATAMENTE como
+// estava (no meio do pulo, da corrida, do espirro): posição e quadro da animação param ("pausa" do jogo). Quem está "sobre" ele também para.
 export function estadoElemento(cena, el, t, _prof = 0) {
+  const gelo = (cena.acoes || []).find((a) => a.tipo === 'congelar' && a.alvo === el.id && t >= a.inicio);
+  if (gelo && !_congelando.has(el.id)) {
+    _congelando.add(el.id);
+    try { const st = estadoElemento(cena, el, gelo.inicio, _prof); return { ...st, congeladoEm: gelo.inicio }; } finally { _congelando.delete(el.id); }
+  }
+  return estadoLivre(cena, el, t, _prof);
+}
+const _congelando = new Set();
+function estadoLivre(cena, el, t, _prof = 0) {
   let x = el.x ?? 0, y = el.y ?? 0;
   let z = el.z ?? 0;
   let virado = el.virado === 'esquerda' ? -1 : 1;

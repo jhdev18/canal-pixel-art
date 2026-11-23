@@ -29,8 +29,8 @@
      "z": 2.8
     },
     {
-     "id": "atop",
-     "personagem": "avatar-topete",
+     "id": "aleo1",
+     "personagem": "avatar-leo-1",
      "x": -2,
      "z": 3.3,
      "oculto": true
@@ -69,12 +69,12 @@
     },
     {
      "tipo": "aparecer",
-     "alvo": "atop",
+     "alvo": "aleo1",
      "inicio": null
     },
     {
      "tipo": "andar",
-     "alvo": "atop",
+     "alvo": "aleo1",
      "para": 0.4,
      "inicio": 2.03,
      "duracao": 1.92
@@ -102,10 +102,17 @@
    },
    "elementos": [
     {
-     "id": "atop",
-     "personagem": "avatar-topete",
+     "id": "aleo1",
+     "personagem": "avatar-leo-1",
      "x": -3,
      "z": 2.8
+    },
+    {
+     "id": "aleo2",
+     "personagem": "avatar-leo-2",
+     "x": -0.8,
+     "z": 3.3,
+     "oculto": true
     },
     {
      "id": "a1",
@@ -118,10 +125,10 @@
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "atop",
-     "para": 2.2,
+     "alvo": "aleo1",
+     "para": -0.8,
      "inicio": 0.3,
-     "duracao": 2.88
+     "duracao": 1.15
     },
     {
      "tipo": "andar",
@@ -131,10 +138,38 @@
      "duracao": 2.3
     },
     {
+     "tipo": "magia",
+     "alvo": "aleo1",
+     "inicio": 1.6
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1.6
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "aleo1",
+     "som": null,
+     "inicio": 1.83
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "aleo2",
+     "inicio": 1.83
+    },
+    {
+     "tipo": "andar",
+     "alvo": "aleo2",
+     "para": 2.2,
+     "inicio": 2.68,
+     "duracao": 1.23
+    },
+    {
      "tipo": "corte",
      "zoom": 2,
      "y": 1.6,
-     "inicio": 3.37
+     "inicio": 3.98
     }
    ],
    "vertical": {
@@ -246,14 +281,13 @@
     {
      "id": "abiaSem",
      "personagem": "avatar-bloco-verde",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.5,
      "pose": "sem-rosto"
     },
     {
-     "id": "atop",
-     "personagem": "avatar-topete",
+     "id": "aleo2",
+     "personagem": "avatar-leo-2",
      "x": -2.6,
      "z": 3.6
     },
@@ -267,7 +301,7 @@
    "acoes": [
     {
      "tipo": "pular",
-     "alvo": "atop",
+     "alvo": "aleo2",
      "altura": 0.6,
      "inicio": 0.51
     },
@@ -280,7 +314,7 @@
     },
     {
      "tipo": "pular",
-     "alvo": "atop",
+     "alvo": "aleo2",
      "altura": 0.6,
      "inicio": 2.2
     },
@@ -315,16 +349,23 @@
    },
    "elementos": [
     {
-     "id": "atop",
-     "personagem": "avatar-topete",
+     "id": "aleo2",
+     "personagem": "avatar-leo-2",
      "x": -1.4,
      "z": 2.8
+    },
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": 0.2,
+     "z": 3.25,
+     "oculto": true
     }
    ],
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "atop",
+     "alvo": "aleo2",
      "para": 0.2,
      "inicio": 0.49,
      "duracao": 1.51
@@ -341,8 +382,20 @@
     },
     {
      "tipo": "magia",
+     "alvo": "aleo2",
+     "inicio": 2.37
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "aleo2",
+     "som": null,
+     "inicio": 2.41
+    },
+    {
+     "tipo": "aparecer",
      "alvo": "atop",
-     "inicio": 2.49
+     "som": null,
+     "inicio": 2.41
     },
     {
      "tipo": "pular",
@@ -915,17 +968,15 @@
     {
      "id": "abiaSem",
      "personagem": "avatar-bloco-verde",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.5,
      "pose": "sem-rosto"
     },
     {
      "id": "abia",
      "personagem": "avatar-bia",
-     "x": -6,
-     "z": 3.1,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.95,
      "oculto": true
     }
    ],
@@ -954,7 +1005,7 @@
     {
      "tipo": "andar",
      "alvo": "abia",
-     "para": -5,
+     "para": -4.6,
      "inicio": 2.49,
      "duracao": 1.46
     },

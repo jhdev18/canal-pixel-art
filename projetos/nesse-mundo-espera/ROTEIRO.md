@@ -19,7 +19,7 @@
 **5.** `mundo-bloco` — Desde então, o avatar dela acena sozinho, cada dia mais devagar.
 **6.** `quarto-nina-diorama` — Até que avisaram: no domingo, o servidor da cidade ia fechar para sempre.
 **7.** `mundo-bloco` — No jogo, os avatares começaram a apagar, um por um, ainda acenando.
-**8.** `praca-tarde` — As crianças correram para a praça, com o celular na mão.
+**8.** `rua-tarde` — As crianças correram para a praça, com o celular na mão.
 **9.** `praca-tarde` — A Nina disse que não ligava. Mas foi a primeira a chegar.
 **10.** `mundo-bloco-tarde` — Ela entrou e parou na frente do próprio avatar. Só faltava ele.
 **11.** `mundo-bloco-tarde` — Ele não esperava a volta dela.

@@ -34,7 +34,7 @@
     {
      "tipo": "correr",
      "alvo": "azul",
-     "para": -5.6,
+     "para": -4.4,
      "inicio": null,
      "duracao": 1.2
     },
@@ -69,7 +69,7 @@
     {
      "id": "azul",
      "personagem": "avatar-bloco-azul",
-     "x": -5.6,
+     "x": -4.4,
      "z": 2.8,
      "pose": "acenar",
      "figurante": true
@@ -77,8 +77,8 @@
     {
      "id": "a1",
      "personagem": "avatar-bloco-vermelho",
-     "x": -6.8,
-     "z": 3.4,
+     "x": -7.4,
+     "z": 1.6,
      "pose": "acenar",
      "figurante": true
     },
@@ -272,9 +272,9 @@
     {
      "id": "anina",
      "personagem": "avatar-nina",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.5,
+     "y": 0,
      "pose": "acenar"
     },
     {
@@ -393,8 +393,8 @@
     {
      "id": "a1",
      "personagem": "avatar-bloco-vermelho",
-     "x": -7.6,
-     "z": 3.4,
+     "x": -7.4,
+     "z": 1.6,
      "pose": "acenar",
      "figurante": true
     },
@@ -417,9 +417,9 @@
     {
      "id": "anina",
      "personagem": "avatar-nina",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.5,
+     "y": 0,
      "pose": "acenar"
     }
    ],
@@ -468,76 +468,73 @@
   },
   {
    "narracaoTexto": "As crianças correram para a praça, com o celular na mão.",
-   "cenario": "praca-tarde",
-   "remover": [
-    "arvore3",
-    "arvore4"
-   ],
+   "cenario": "rua-tarde",
    "camera": {
-    "x": 0,
-    "z": -8.5
+    "x": 3,
+    "z": 2.2,
+    "y": 2.4
    },
    "elementos": [
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": -9,
-     "z": -9.8
+     "x": -6,
+     "z": 4.2
     },
     {
      "id": "aluna",
      "personagem": "aluna",
-     "x": -10,
-     "z": -9.2
+     "x": -7,
+     "z": 4.6
     },
     {
      "id": "leo",
      "personagem": "menino-topete",
-     "x": -11,
-     "z": -8.6
+     "x": -8,
+     "z": 5
     },
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -12,
-     "z": -8
+     "x": -6.5,
+     "z": 0.6
     }
    ],
    "acoes": [
     {
      "tipo": "correr",
      "alvo": "aluno",
-     "para": -1.2,
+     "para": 14,
      "inicio": 0.3,
-     "duracao": 3.28
+     "duracao": 3.46
     },
     {
      "tipo": "correr",
      "alvo": "aluna",
-     "para": 0.4,
+     "para": 13,
      "inicio": 0.3,
-     "duracao": 3.28
+     "duracao": 3.46
     },
     {
      "tipo": "correr",
      "alvo": "leo",
-     "para": 2,
+     "para": 12,
      "inicio": 0.3,
-     "duracao": 3.28
+     "duracao": 3.46
     },
     {
      "tipo": "correr",
      "alvo": "bia",
-     "para": 3.6,
+     "para": 13.5,
      "inicio": 0.3,
-     "duracao": 3.28
+     "duracao": 3.46
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0,
-     "z": -8.5,
-     "y": 0.2
+     "x": 3,
+     "z": 2.2,
+     "y": 1.15
     }
    }
   },
@@ -556,8 +553,32 @@
     {
      "id": "nina",
      "personagem": "rival",
-     "x": -9,
+     "x": -11,
      "z": -8.6
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -13,
+     "z": -9.8
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -13,
+     "z": -8
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": -13,
+     "z": -9.2
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -13,
+     "z": -7.6
     }
    ],
    "acoes": [
@@ -566,13 +587,41 @@
      "alvo": "nina",
      "para": -1,
      "inicio": 0.3,
-     "duracao": 2.22
+     "duracao": 1.85
     },
     {
      "tipo": "emocao",
      "alvo": "nina",
      "icone": "...",
-     "inicio": 2.81
+     "inicio": 2.34
+    },
+    {
+     "tipo": "correr",
+     "alvo": "aluno",
+     "para": -3.2,
+     "inicio": 1.41,
+     "duracao": 2.04
+    },
+    {
+     "tipo": "correr",
+     "alvo": "aluna",
+     "para": -4.4,
+     "inicio": 1.6,
+     "duracao": 2.04
+    },
+    {
+     "tipo": "correr",
+     "alvo": "leo",
+     "para": 1.2,
+     "inicio": 1.78,
+     "duracao": 2.04
+    },
+    {
+     "tipo": "correr",
+     "alvo": "bia",
+     "para": 0.2,
+     "inicio": 1.97,
+     "duracao": 2.04
     },
     {
      "tipo": "expressao",
@@ -588,7 +637,8 @@
      "z": -8.5,
      "y": 0.45
     }
-   }
+   },
+   "momento": "praca"
   },
   {
    "narracaoTexto": "Ela entrou e parou na frente do próprio avatar. Só faltava ele.",
@@ -603,9 +653,9 @@
     {
      "id": "anina",
      "personagem": "avatar-nina",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.5,
+     "y": 0,
      "pose": "acenar"
     },
     {
@@ -658,9 +708,9 @@
     {
      "id": "anina",
      "personagem": "avatar-nina",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19,
+     "x": -5.6,
+     "z": 1.5,
+     "y": 0,
      "pose": "acenar"
     },
     {
@@ -711,6 +761,30 @@
      "personagem": "rival",
      "x": -1,
      "z": -8.6
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -3.2,
+     "z": -9.8
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -4.4,
+     "z": -8
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 1.2,
+     "z": -9.2
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0.2,
+     "z": -7.6
     }
    ],
    "acoes": [
@@ -742,7 +816,8 @@
      "y": 0.9,
      "zoom": 2
     }
-   }
+   },
+   "momento": "praca"
   },
   {
    "narracaoTexto": "A Nina acenou. Ele acenou de volta e sumiu, sorrindo.",
@@ -757,9 +832,9 @@
     {
      "id": "anina",
      "personagem": "avatar-nina",
-     "x": -6,
-     "z": 2.6,
-     "y": 0.19
+     "x": -5.6,
+     "z": 1.5,
+     "y": 0
     },
     {
      "id": "avis",

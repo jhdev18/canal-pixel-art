@@ -340,7 +340,7 @@ class Motor {
       const fasePulo = fp == null ? null : fp < 0.1 ? 'pulando-agacha' : fp < 0.45 ? 'pulando-sobe' : fp < 0.9 ? 'pulando-desce' : 'pulando-cai';
       const anim = (fasePulo && conjunto[fasePulo]) || (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
-      const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
+      const tAnim = (st.congeladoEm ?? t) + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria (congelado: o quadro para)
       let idx = Math.floor(tAnim * fps);
       // "unica": a animação toca uma vez a partir do "trocar" e para no último quadro
       if (anim.unica) idx = Math.min(anim.q.length - 1, Math.max(0, Math.floor((t - (st.animInicio || 0)) * fps)));

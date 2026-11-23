@@ -44,14 +44,15 @@
    ],
    "acoes": [
     {
-     "tipo": "mover",
+     "tipo": "pular",
      "alvo": "a1",
      "para": [
-      -1.6,
-      3.6
+      -0.8,
+      2.25
      ],
+     "altura": 1.1,
      "inicio": null,
-     "duracao": 0.4
+     "duracao": 0.8
     },
     {
      "tipo": "som",
@@ -59,9 +60,8 @@
      "inicio": null
     },
     {
-     "tipo": "trocar",
+     "tipo": "congelar",
      "alvo": "a1",
-     "estado": "pulando",
      "inicio": null
     },
     {
@@ -228,6 +228,17 @@
      "personagem": "aluno",
      "x": -0.6,
      "z": 1.6
+    },
+    {
+     "id": "cel",
+     "sprite": "celular-mao",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "aluno",
+      "dx": 0.35,
+      "dy": 0.95
+     }
     }
    ],
    "acoes": [
@@ -236,6 +247,12 @@
      "alvo": "aluno",
      "altura": 0.4,
      "inicio": 0.48
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "y": 2.2,
+     "inicio": 1.19
     },
     {
      "tipo": "som",
@@ -397,6 +414,17 @@
      "personagem": "menino-topete",
      "x": 2.2,
      "z": 1.6
+    },
+    {
+     "id": "cel",
+     "sprite": "celular-mao",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "leo",
+      "dx": 0.35,
+      "dy": 0.95
+     }
     }
    ],
    "acoes": [
@@ -597,9 +625,9 @@
       -6.4,
       1.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 2.3,
-     "duracao": 1.09
+     "duracao": 0.8
     },
     {
      "tipo": "som",
@@ -667,9 +695,9 @@
       -3.6,
       2.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 0.37,
-     "duracao": 0.49
+     "duracao": 0.42
     },
     {
      "tipo": "pular",
@@ -678,9 +706,9 @@
       -0.8,
       2.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 0.9,
-     "duracao": 0.49
+     "duracao": 0.42
     },
     {
      "tipo": "pular",
@@ -689,9 +717,9 @@
       2,
       3.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 1.42,
-     "duracao": 0.49
+     "duracao": 0.42
     },
     {
      "tipo": "pular",
@@ -700,9 +728,9 @@
       4.8,
       3.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 1.95,
-     "duracao": 0.49
+     "duracao": 0.42
     },
     {
      "tipo": "pular",
@@ -711,9 +739,9 @@
       7.6,
       4.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 2.48,
-     "duracao": 0.49
+     "duracao": 0.42
     },
     {
      "tipo": "pular",
@@ -722,8 +750,8 @@
       10.6,
       4
      ],
-     "altura": 0.8,
-     "inicio": 3.04,
+     "altura": 1.1,
+     "inicio": 3,
      "duracao": 0.42
     },
     {
@@ -1041,9 +1069,9 @@
       -0.8,
       2.25
      ],
-     "altura": 0.8,
+     "altura": 1.1,
      "inicio": 0.48,
-     "duracao": 0.89
+     "duracao": 0.79
     },
     {
      "tipo": "falar",
@@ -1115,19 +1143,24 @@
    ],
    "acoes": [
     {
-     "tipo": "mover",
+     "tipo": "pular",
      "alvo": "atop",
      "para": [
-      -0.2,
-      3.6
+      2,
+      3.25
      ],
+     "altura": 1.1,
      "inicio": null,
-     "duracao": 0.4
+     "duracao": 0.8
     },
     {
-     "tipo": "trocar",
+     "tipo": "som",
+     "som": "pulo-bloco",
+     "inicio": null
+    },
+    {
+     "tipo": "congelar",
      "alvo": "atop",
-     "estado": "pulando",
      "inicio": null
     },
     {
@@ -1163,10 +1196,10 @@
     {
      "id": "atop",
      "personagem": "avatar-topete",
-     "x": -0.2,
+     "x": 0.39,
      "z": 3.2,
-     "y": 3.6,
-     "pose": "bug"
+     "y": 3.75,
+     "pose": "pulando-sobe"
     },
     {
      "id": "p",

@@ -31,6 +31,9 @@ const AVATARES = {
   'avatar-bia': { pele: '#f8d8b8', camisa: '#f8c82c', calca: '#4a6ab0', sapato: '#d83a3a', cabelo: '#9a5a36', chapeu: 'capuz-capa', chapeuCor: '#f8c82c', estampa: 'botoes' },
   'avatar-nina': { pele: '#f0c8a8', camisa: '#7a3ad0', calca: '#2a2448', sapato: '#e0407a', cabelo: '#2e1a3e', chapeu: 'rabo', chapeuCor: '#f8d040', estampa: 'emblema' },
   'avatar-topete': { pele: '#f0c4a0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#e0602a', chapeu: 'topete', chapeuCor: '#3a7ad8', estampa: 'cachecol' },
+  // o avatar do Léo virando ele aos poucos (vídeo nesse-mundo-avatar): 1 = só a roupa dele (cabelo e pele do avatar azul); 2 = roupa + cabelo
+  'avatar-leo-1': { pele: '#f8dcc0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#f8d860', chapeu: 'liso', chapeuCor: '#3a7ad8', estampa: 'cachecol' },
+  'avatar-leo-2': { pele: '#f8dcc0', camisa: '#2a8a7a', calca: '#3a4a7a', sapato: '#d83a3a', cabelo: '#e0602a', chapeu: 'topete', chapeuCor: '#3a7ad8', estampa: 'cachecol' },
 };
 
 const claro = (hex, t = 0.3) => { const n = parseInt(hex.slice(1), 16); const c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.round(v + (255 - v) * t)); return '#' + c.map((v) => v.toString(16).padStart(2, '0')).join(''); };
@@ -297,6 +300,15 @@ MOVEIS['arco-largada'] = { di: 0.6, dj: 3.0, f(L, m) {   // arco de largada do c
   for (const j of [j0, j1 - 0.3]) L.caixa(i0 + 0.15, i0 + 0.45, j, j + 0.3, 0, 36, plast('#f4f4f4'));
   L.caixa(i0 + 0.1, i0 + 0.5, j0, j1, 36, 10, { frente: (u, t) => ((Math.floor(u * 4) + Math.floor(t / 5)) % 2 ? '#14121c' : '#f4f4f4'), lado: '#14121c', topo: '#f4f4f4' });
 } };
+
+// celular na mão (para quem está jogando no mundo real; use "sobre": { "id": "<pessoa>", "dx": 0.35, "dy": 0.95 }): a tela acesa com o jogo
+function celularMao(k) {
+  const p = new Pix(8, 12);
+  p.ret(0, 0, 8, 12, '#22222c'); p.ret(1, 1, 6, 9, k ? '#7ac8f0' : '#6ab8e8');
+  p.ret(1, 6, 6, 4, '#a0a3a9'); p.ret(2, 5, 2, 2, '#e84a4a'); p.ret(5, 4 + k, 1, 2, '#5ad06a');   // baseplate, avatar e um bloco
+  p.set(3, 11, '#5a5a66'); p.set(4, 11, '#5a5a66');
+  return p.contorno(K);
+}
 // ------------------------------------------------------------------ tela do jogo (close) e moeda
 function telaJogo(modo) {
   const p = new Pix(96, 64);
@@ -454,6 +466,7 @@ registrarSprites({
   'checkpoint-4': () => iso({ parado: { tipo: 'checkpoint-4' } }),
   'checkpoint-5': () => iso({ parado: { tipo: 'checkpoint-5' } }),
   'tela-jogo': texJogo,
+  'celular-mao': () => ({ quadros: [celularMao(0), celularMao(1)], anims: { parado: { q: [0, 1], fps: 3 } }, sombra: false }),
   'icone-pausa': () => ({ quadros: [iconePausa(0), iconePausa(1)], anims: { parado: { q: [0, 1], fps: 2 } }, sombra: false, flutua: true }),
   'moeda-bloco': () => ({ quadros: [0, 1, 2, 3].map(moeda), anims: { parado: { q: [0, 1, 2, 3], fps: 8 } }, sombra: true, flutua: true }),
 }, { grupo: 'Jogo de blocos (vídeos sobre Roblox)', status: 'protótipo' });

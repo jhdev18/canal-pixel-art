@@ -1,4 +1,4 @@
-import { alturaShorts, P, S, PRACA, a, cena, salvar, base, rostos } from './nm.mjs';
+import { alturaShorts, marcar, P, S, PRACA, a, cena, salvar, base, rostos } from './nm.mjs';
 // NESSE MUNDO curto, EMOCIONAL de dia (Roblox). "Nesse mundo, quando você sai do Roblox, seu avatar te espera."
 // Pista: a Nina parou de jogar "sem tchau" (cena 4). Mistério que se vê: o aceno dela ficando mais devagar, com os dias somando.
 // Evento (~38%): o servidor vai fechar. A Nina age (chega primeiro). A virada inverte a crença ("espera você voltar" → "esperava um tchau").
@@ -6,18 +6,18 @@ import { alturaShorts, P, S, PRACA, a, cena, salvar, base, rostos } from './nm.m
 const R = base('Nesse mundo, quando você sai do Roblox, seu avatar te espera', 'emocional');
 const C = R.cenas;
 const JOGO = (x, extra = {}) => ({ x, z: 2.2, y: 2.6, ...extra });
-const SPAWN = { x: -6.0, z: 2.6, y: 0.19 };
+const SPAWN = { x: -5.6, z: 1.5, y: 0 };   // na frente da plataforma do spawn (em cima dela o desenho piscava)
 
 // 1. Regra: aos 0,3 s um avatar corre até o spawn e começa a acenar
 C.push(cena('Nesse mundo, quando você sai do Roblox, seu avatar te espera.', {
   cenario: 'mundo-bloco', transicao: 'corte', camera: { x: -4.6, z: 2.2, y: 2.0, zoom: 1.5 }, foco: -5.0,
   elementos: [P('azul', 'avatar-bloco-azul', -2.0, 2.8, { figurante: true })],
-  acoes: [{ tipo: 'correr', alvo: 'azul', para: -5.6, inicio: 0, duracao: 1.2 }, a(0.4, 'trocar', { alvo: 'azul', estado: 'acenar' })],
+  acoes: [{ tipo: 'correr', alvo: 'azul', para: -4.4, inicio: 0, duracao: 1.2 }, a(0.4, 'trocar', { alvo: 'azul', estado: 'acenar' })],
 }));
 // 2. Ele fica no spawn acenando até você voltar (vários avatares esperando)
 C.push(cena('Ele fica no spawn, acenando, até você voltar. Às vezes por anos.', {
   cenario: 'mundo-bloco', camera: JOGO(-4.6), foco: -5.0, titulo: 'SEU AVATAR TE ESPERA', tituloInicio: 0.3, tituloDuracao: 2.4,
-  elementos: [P('azul', 'avatar-bloco-azul', -5.6, 2.8, { pose: 'acenar', figurante: true }), P('a1', 'avatar-bloco-vermelho', -6.8, 3.4, { pose: 'acenar', figurante: true }),
+  elementos: [P('azul', 'avatar-bloco-azul', -4.4, 2.8, { pose: 'acenar', figurante: true }), P('a1', 'avatar-bloco-vermelho', -7.4, 1.6, { pose: 'acenar', figurante: true }),
     P('a2', 'avatar-bloco-verde', -1.0, 2.2, { figurante: true })],
   acoes: [a(0, 'andar', { alvo: 'a2', para: -4.2, durF: 0.7 }), a(0.72, 'trocar', { alvo: 'a2', estado: 'acenar' })],
 }));
@@ -50,23 +50,25 @@ C.push(cena('Até que avisaram: no domingo, o servidor da cidade ia fechar para 
 // 7. Os avatares começam a apagar, um por um, ainda acenando
 C.push(cena('No jogo, os avatares começaram a apagar, um por um, ainda acenando.', {
   cenario: 'mundo-bloco', camera: JOGO(-4.0), foco: -4.6,
-  elementos: [P('a1', 'avatar-bloco-vermelho', -7.6, 3.4, { pose: 'acenar', figurante: true }), P('azul', 'avatar-bloco-azul', -4.4, 2.8, { pose: 'acenar', figurante: true }),
+  elementos: [P('a1', 'avatar-bloco-vermelho', -7.4, 1.6, { pose: 'acenar', figurante: true }), P('azul', 'avatar-bloco-azul', -4.4, 2.8, { pose: 'acenar', figurante: true }),
     P('a2', 'avatar-bloco-verde', -2.8, 3.6, { pose: 'acenar', figurante: true }), P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' })],
   acoes: [a(0.1, 'desaparecer', { alvo: 'a1', durF: 0.2 }), a(0.35, 'desaparecer', { alvo: 'azul', durF: 0.2 }), a(0.6, 'desaparecer', { alvo: 'a2', durF: 0.2 }),
     a(0.1, 'som', { som: 'magia' }), a(0.35, 'som', { som: 'magia' }), a(0.6, 'som', { som: 'magia' })],
 }));
-// 8. Pico de movimento: as crianças correm para a praça, com o celular na mão (cada uma na sua faixa)
+// 8. Pico de movimento: as crianças correm pela rua rumo à praça, com o celular na mão, e saem da tela (cada uma na sua faixa)
 C.push(cena('As crianças correram para a praça, com o celular na mão.', {
-  cenario: 'praca-tarde', camera: PRACA(0), foco: 0,
-  elementos: [P('aluno', 'aluno', -9.0, -9.8), P('aluna', 'aluna', -10.0, -9.2), P('leo', 'menino-topete', -11.0, -8.6), P('bia', 'menina-capa', -12.0, -8.0)],
-  acoes: [a(0, 'correr', { alvo: 'aluno', para: -1.2, durF: 0.9 }), a(0, 'correr', { alvo: 'aluna', para: 0.4, durF: 0.9 }), a(0, 'correr', { alvo: 'leo', para: 2.0, durF: 0.9 }),
-    a(0, 'correr', { alvo: 'bia', para: 3.6, durF: 0.9 })],
+  cenario: 'rua-tarde', camera: { x: 3.0, z: 2.2, y: 2.4 }, foco: 3.0,
+  elementos: [P('aluno', 'aluno', -6.0, 4.2), P('aluna', 'aluna', -7.0, 4.6), P('leo', 'menino-topete', -8.0, 5.0), P('bia', 'menina-capa', -6.5, 0.6)],
+  acoes: [a(0, 'correr', { alvo: 'aluno', para: 14.0, durF: 0.95 }), a(0, 'correr', { alvo: 'aluna', para: 13.0, durF: 0.95 }), a(0, 'correr', { alvo: 'leo', para: 12.0, durF: 0.95 }),
+    a(0, 'correr', { alvo: 'bia', para: 13.5, durF: 0.95 })],
 }));
-// 9. A Nina age: diz que não liga, mas chega primeiro (corre e para, triste)
+// 9. Na praça: a Nina chega PRIMEIRO e para; as outras crianças chegam logo atrás e ficam em volta (momento "praca", cenas 9 e 12)
+const NA_PRACA = [['aluno', 'aluno', -3.2, -9.8], ['aluna', 'aluna', -4.4, -8.0], ['leo', 'menino-topete', 1.2, -9.2], ['bia', 'menina-capa', 0.2, -7.6]];
 C.push(cena('A Nina disse que não ligava. Mas foi a primeira a chegar.', {
   cenario: 'praca-tarde', camera: PRACA(-1), foco: -1,
-  elementos: [P('nina', 'rival', -9.0, -8.6)],
-  acoes: [a(0, 'correr', { alvo: 'nina', para: -1.0, durF: 0.6 }), a(0.7, 'emocao', { alvo: 'nina', icone: '...' })],
+  elementos: [P('nina', 'rival', -11.0, -8.6), ...NA_PRACA.map(([id, sp, , z]) => P(id, sp, -13.0, z))],
+  acoes: [a(0, 'correr', { alvo: 'nina', para: -1.0, durF: 0.5 }), a(0.55, 'emocao', { alvo: 'nina', icone: '...' }),
+    ...NA_PRACA.map(([id, , x], k) => a(0.3 + k * 0.05, 'correr', { alvo: id, para: x, durF: 0.55 }))],
 }));
 // 10. Ela entra no jogo e para na frente do próprio avatar (o spawn quase vazio, ao pôr do sol)
 C.push(cena('Ela entrou e parou na frente do próprio avatar. Só faltava ele.', {
@@ -82,7 +84,7 @@ C.push(cena('Ele não esperava a volta dela.', {
 }));
 C.push(cena('Esperava um tchau.', {
   cenario: 'praca-tarde', camera: { x: -1.0, z: -8.5, y: 1.4, zoom: 2 }, foco: -1.0,
-  elementos: [P('nina', 'rival', -1.0, -8.6)],
+  elementos: [P('nina', 'rival', -1.0, -8.6), ...NA_PRACA.map(([id, sp, x, z]) => P(id, sp, x, z))],
   acoes: [a(0, 'emocao', { alvo: 'nina', icone: 'gota' }), a(0.05, 'pular', { alvo: 'nina', altura: 0.15, durF: 0.3 })],
 }));
 // 13. O gesto: ela acena; ele acena de volta e some sorrindo, devagar
@@ -99,9 +101,10 @@ C.push(cena('E a Nina continuou acenando para o spawn vazio, até a tela apagar.
   acoes: [a(0.05, 'andar', { alvo: 'avis', para: -4.6, durF: 0.3 }), a(0.4, 'trocar', { alvo: 'avis', estado: 'acenar' }), a(0.85, 'desaparecer', { alvo: 'avis', durF: 0.15 })],
 }));
 
+marcar(C, { praca: [[9, 9], [12, 12]] });
 rostos(C, [[3, 'aluno', 'rindo', 0.1], [3, 'aluna', 'rindo', 0.4], [3, 'leo', 'feliz', 0.5], [4, 'nina', 'bravo', 0.02, 0.05], [6, 'nina', 'surpreso', 0.4],
   [9, 'nina', 'triste', 0.65], [12, 'nina', 'chorando', 0.1]]);
-alturaShorts(C, { 3: -1.75, 4: -1.25, 6: -1.25, 8: -2, 9: -1.75, 12: -0.5 });
+alturaShorts(C, { 3: -1.75, 4: -1.25, 6: -1.25, 8: -1.25, 9: -1.75, 12: -0.5 });
 
 salvar('nesse-mundo-espera', ['NESSE MUNDO (curto, EMOCIONAL de dia, Roblox) — "Nesse mundo, quando você sai do Roblox, seu avatar te espera."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-espera',

@@ -15,9 +15,10 @@ const pausa = (id, alvo, extra = {}) => S(id, 'icone-pausa', 0, 0, { sobre: { id
 C.push(cena('Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.', {
   cenario: 'parkour-campeonato', transicao: 'corte', camera: { x: -2.0, z: 2.2, y: 2.4, zoom: 1.5 }, foco: -2.0,
   elementos: [P('a1', 'avatar-bloco-azul', ...[topo(1)[0], 3.2], { y: topo(1)[1] }), pausa('p1', 'a1')],
-  acoes: [{ tipo: 'mover', alvo: 'a1', para: [-1.6, 3.6], inicio: 0, duracao: 0.4 }, { tipo: 'som', som: 'pulo-bloco', inicio: 0 },
-    { tipo: 'trocar', alvo: 'a1', estado: 'pulando', inicio: 0 }, { tipo: 'flash', inicio: 0.4, intensidade: 0.5 }, { tipo: 'aparecer', alvo: 'p1', inicio: 0.42, som: null },
-    { tipo: 'som', som: 'erro', inicio: 0.42 }],
+  // pulo de verdade (agacha → sobe com os braços para cima) até o próximo pilar, CONGELADO no meio do caminho (congelar)
+  acoes: [{ tipo: 'pular', alvo: 'a1', para: topo(2), altura: 1.1, inicio: 0, duracao: 0.8 }, { tipo: 'som', som: 'pulo-bloco', inicio: 0 },
+    { tipo: 'congelar', alvo: 'a1', inicio: 0.34 }, { tipo: 'flash', inicio: 0.36, intensidade: 0.5 }, { tipo: 'aparecer', alvo: 'p1', inicio: 0.38, som: null },
+    { tipo: 'som', som: 'erro', inicio: 0.38 }],
 }));
 // 2. Exemplos rápidos: o pão parado no ar, o prefeito congelado no meio do espirro
 C.push(cena('O avatar parou no ar. O pão parou no ar. O prefeito, no meio do espirro.', {
@@ -30,8 +31,8 @@ C.push(cena('O avatar parou no ar. O pão parou no ar. O prefeito, no meio do es
 // 3. Crença como AÇÃO (exagero): a criançada joga trancada no banheiro; batidas na porta
 C.push(cena('Por isso, a criançada joga Roblox trancada no banheiro.', {
   cenario: 'banheiro-diorama', camera: { x: 0, y: 3 }, foco: 0,
-  elementos: [P('aluno', 'aluno', -0.6, 1.6)],
-  acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.4 }), a(0.4, 'som', { som: 'porta' }), a(0.55, 'som', { som: 'porta' }), a(0.55, 'emocao', { alvo: 'aluno', icone: '!' }),
+  elementos: [P('aluno', 'aluno', -0.6, 1.6), S('cel', 'celular-mao', 0, 0, { sobre: { id: 'aluno', dx: 0.35, dy: 0.95 } })],
+  acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.4 }), a(0.25, 'corte', { zoom: 2, y: 2.2 }), a(0.4, 'som', { som: 'porta' }), a(0.55, 'som', { som: 'porta' }), a(0.55, 'emocao', { alvo: 'aluno', icone: '!' }),
     a(0.7, 'tremer', { intensidade: 0.15, durF: 0.08 })],
 }));
 // 4. A mãe do Léo (a vilã boba): pausa a cidade vinte vezes por dia — anda, congela, anda, congela, com o contador subindo
@@ -46,7 +47,7 @@ C.push(cena('Mas a mãe do Léo grita pausa vinte vezes por dia.', {
 // 5. A pista (o único balão): "MÃE, ONLINE NÃO PAUSA!"
 C.push(cena('E ele sempre responde: mãe, online não pausa!', {
   cenario: 'sala-de-estar-diorama', camera: { x: 0.4, y: 3 }, foco: 0.6,
-  elementos: [P('mae', 'mae', -2.4, 1.6), P('leo', 'menino-topete', 2.2, 1.6)],
+  elementos: [P('mae', 'mae', -2.4, 1.6), P('leo', 'menino-topete', 2.2, 1.6), S('cel', 'celular-mao', 0, 0, { sobre: { id: 'leo', dx: 0.35, dy: 0.95 } })],
   acoes: [a(0, 'andar', { alvo: 'mae', para: -1.2, durF: 0.3 }), a(0.3, 'pular', { alvo: 'leo', altura: 0.35 }), a(0.35, 'falar', { alvo: 'leo', texto: 'MÃE, ONLINE NÃO PAUSA!' })],
 }));
 // 6. Evento (~38%): o campeonato valendo mil Robux; a largada e o grito
@@ -62,14 +63,14 @@ C.push(cena('A cidade congelou. O servidor congelou. Menos um avatar.', {
   cenario: 'parkour-campeonato', camera: PK(-4.0), foco: -4.0,
   elementos: [P('a1', 'avatar-bloco-vermelho', -6.0, 3.2, { y: 2.2, pose: 'pulando', figurante: true }), P('a2', 'avatar-bloco-verde', -3.6, 3.6, { y: 3.0, pose: 'pulando', figurante: true }),
     pausa('p1', 'a1', { oculto: false }), pausa('p2', 'a2', { oculto: false }), P('atop', 'avatar-topete', -9.4, 2.6, { y: 1 })],
-  acoes: [a(0.55, 'pular', { alvo: 'atop', para: topo(0), altura: 0.8, durF: 0.3 }), a(0.55, 'som', { som: 'pulo-bloco' }), a(0.85, 'emocao', { alvo: 'atop', icone: '!' })],
+  acoes: [a(0.55, 'pular', { alvo: 'atop', para: topo(0), altura: 1.1, durF: 0.22 }), a(0.55, 'som', { som: 'pulo-bloco' }), a(0.85, 'emocao', { alvo: 'atop', icone: '!' })],
 }));
 // 8. Pico de movimento: ele pula de pilar em pilar até a chegada e ganha de doze estátuas
 C.push(cena('Ele pulou de pilar em pilar e ganhou de doze estátuas.', {
   cenario: 'parkour-campeonato', camera: PK(3.0), foco: 3.0,
   elementos: [P('atop', 'avatar-topete', topo(0)[0], 3.2, { y: topo(0)[1] }), P('a2', 'avatar-bloco-verde', -3.6, 3.6, { y: 3.0, pose: 'pulando', figurante: true }), pausa('p2', 'a2', { oculto: false })],
-  acoes: [...[1, 2, 3, 4, 5].map((k, i) => a(0.02 + i * 0.15, 'pular', { alvo: 'atop', para: topo(k), altura: 0.8, durF: 0.14 })),
-    a(0.78, 'pular', { alvo: 'atop', para: [10.6, 4], altura: 0.8, durF: 0.12 }), a(0.92, 'fogos', { posicao: [10.6, 6, 3], cor: 'dourado' }), a(0.92, 'som', { som: 'sucesso' })],
+  acoes: [...[1, 2, 3, 4, 5].map((k, i) => a(0.02 + i * 0.15, 'pular', { alvo: 'atop', para: topo(k), altura: 1.1, durF: 0.12 })),
+    a(0.77, 'pular', { alvo: 'atop', para: [10.6, 4], altura: 1.1, durF: 0.12 }), a(0.92, 'fogos', { posicao: [10.6, 6, 3], cor: 'dourado' }), a(0.92, 'som', { som: 'sucesso' })],
 }));
 // 9. Na rua parada: o Léo pega o pão do ar e a peruca do prefeito (que vira careca)
 C.push(cena('Na rua, o Léo pegou o pão do ar e a peruca do prefeito.', {
@@ -98,19 +99,19 @@ C.push(cena('No dia seguinte, ela criou uma conta no Roblox.', {
 C.push(cena('Entrou no campeonato do Léo e gritou, lá dentro: pausa!', {
   cenario: 'parkour-campeonato', camera: PK(-2.0), foco: -2.0,
   elementos: [P('amae', 'avatar-bloco-roxo', -9.4, 2.6, { y: 1 }), P('atop', 'avatar-topete', topo(1)[0], 3.2, { y: topo(1)[1] })],
-  acoes: [a(0.05, 'pular', { alvo: 'atop', para: topo(2), altura: 0.8, durF: 0.25 }), a(0.4, 'falar', { alvo: 'amae', texto: 'PAUSA!' }), a(0.45, 'som', { som: 'chat' }),
+  acoes: [a(0.05, 'pular', { alvo: 'atop', para: topo(2), altura: 1.1, durF: 0.22 }), a(0.4, 'falar', { alvo: 'amae', texto: 'PAUSA!' }), a(0.45, 'som', { som: 'chat' }),
     a(0.7, 'flash', { intensidade: 0.5 }), a(0.7, 'tremer', { intensidade: 0.3, durF: 0.1 })],
 }));
 // 13–14. Virada (2 frases curtas): online não pausa… mas filho online, pausa. Ele fica no ar; ela ganha.
 C.push(cena('Jogo online não pausa.', {
   cenario: 'parkour-campeonato', camera: { x: 0.4, z: 2.2, y: 2.0, zoom: 2 }, foco: 0.4,
   elementos: [P('atop', 'avatar-topete', topo(2)[0], 3.2, { y: topo(2)[1] }), pausa('p', 'atop'), P('amae', 'avatar-bloco-roxo', topo(2)[0], 3.6, { y: topo(2)[1] })],
-  acoes: [{ tipo: 'mover', alvo: 'atop', para: [-0.2, 3.6], inicio: 0, duracao: 0.4 }, { tipo: 'trocar', alvo: 'atop', estado: 'pulando', inicio: 0 },
-    { tipo: 'aparecer', alvo: 'p', inicio: 0.45, som: null }, { tipo: 'som', som: 'erro', inicio: 0.45 }],
+  acoes: [{ tipo: 'pular', alvo: 'atop', para: topo(3), altura: 1.1, inicio: 0, duracao: 0.8 }, { tipo: 'som', som: 'pulo-bloco', inicio: 0 },
+    { tipo: 'congelar', alvo: 'atop', inicio: 0.34 }, { tipo: 'aparecer', alvo: 'p', inicio: 0.38, som: null }, { tipo: 'som', som: 'erro', inicio: 0.38 }],
 }));
 C.push(cena('Mas filho online, pausa. E o Léo ficou no ar até a hora do banho.', {
   cenario: 'parkour-campeonato', camera: PK(4.0), foco: 4.0,
-  elementos: [P('atop', 'avatar-topete', -0.2, 3.2, { y: 3.6, pose: 'bug' }), pausa('p', 'atop', { oculto: false }), P('amae', 'avatar-bloco-roxo', topo(2)[0], 3.6, { y: topo(2)[1] })],
+  elementos: [P('atop', 'avatar-topete', 0.39, 3.2, { y: 3.75, pose: 'pulando-sobe' }), pausa('p', 'atop', { oculto: false }), P('amae', 'avatar-bloco-roxo', topo(2)[0], 3.6, { y: topo(2)[1] })],
   acoes: [a(0.05, 'pular', { alvo: 'amae', para: topo(3), altura: 0.8, durF: 0.15 }), a(0.22, 'pular', { alvo: 'amae', para: topo(4), altura: 0.8, durF: 0.15 }),
     a(0.39, 'pular', { alvo: 'amae', para: topo(5), altura: 0.8, durF: 0.15 }), a(0.56, 'pular', { alvo: 'amae', para: [10.6, 4], altura: 0.8, durF: 0.15 }),
     a(0.74, 'fogos', { posicao: [10.6, 6, 3], cor: 'rosa' }), a(0.74, 'som', { som: 'sucesso' }), a(0.85, 'falar', { alvo: 'amae', texto: 'VAI TOMAR BANHO!' })],
