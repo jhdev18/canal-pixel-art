@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (196)
+## Sprites (200)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -277,10 +277,14 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `brinquedo-soldadinho` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
-| `brinquedo-boneca` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
-| `brinquedo-robo` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
-| `brinquedo-caixa` | 🧪 protótipo | parado, fechada, desligado, cantando, acenar, virado, olhos, rachado, falha, fechada-andando, fechada-correndo, olhos-andando, olhos-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-soldadinho` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-boneca` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-robo` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-caixa` | 🧪 protótipo | parado, fechada, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, fechada-andando, fechada-correndo, olhos-andando, olhos-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-soldadinho-sem-rosto` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-boneca-sem-rosto` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-robo-sem-rosto` | 🧪 protótipo | parado, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, olhos-andando, olhos-correndo, virado-andando, virado-correndo, rachado-andando, rachado-correndo | 30×50 |
+| `brinquedo-caixa-sem-rosto` | 🧪 protótipo | parado, fechada, desligado, cantando, acenar, virado, olhos, rachado, falha, sem-rosto, sem-rosto-andando, sem-rosto-correndo, fechada-andando, fechada-correndo, olhos-andando, olhos-correndo, rachado-andando, rachado-correndo | 30×50 |
 
 ### Loja e fábrica de brinquedos
 
@@ -330,6 +334,10 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `brinquedo-boneca` | 🧪 protótipo | `brinquedo-boneca` | 1.4 |
 | `brinquedo-robo` | 🧪 protótipo | `brinquedo-robo` | 0.6 |
 | `brinquedo-caixa` | 🧪 protótipo | `brinquedo-caixa` | 1.6 |
+| `brinquedo-soldadinho-sem-rosto` | 🧪 protótipo | `brinquedo-soldadinho-sem-rosto` | 0.7 |
+| `brinquedo-boneca-sem-rosto` | 🧪 protótipo | `brinquedo-boneca-sem-rosto` | 1.2 |
+| `brinquedo-robo-sem-rosto` | 🧪 protótipo | `brinquedo-robo-sem-rosto` | 0.5 |
+| `brinquedo-caixa-sem-rosto` | 🧪 protótipo | `brinquedo-caixa-sem-rosto` | 1.4 |
 | `manequim` | 🧪 protótipo | `manequim` | 0.9 |
 | `manequim-coberto` | 🧪 protótipo | `manequim-coberto` | 0.9 |
 | `protagonista` | ✅ | `heroi` | 1 |

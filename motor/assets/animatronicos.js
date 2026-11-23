@@ -28,6 +28,32 @@ function engrenagem(p, cx, cy) {
   for (const [dx, dy] of [[0, -3], [3, 0], [0, 3], [-3, 0]]) p.set(Math.floor(cx + dx), Math.floor(cy + dy), '#6a6e7c');
 }
 
+// ------------------------------------------------------------------ sem o rosto (versão mais assustadora)
+// O rosto foi arrancado: buraco escuro com borda rasgada (lascas de madeira, enchimento, fios ou cacos), uma engrenagem
+// apagada no fundo, uma fileira de dentinhos de metal e dois pontinhos que brilham lá dentro (vermelhos no estado "olhos").
+const CARA = {
+  soldadinho: { cx: 15, cy: 13.5, rx: 5.6, ry: 5.8, y0: 9, borda: ['#c89878', '#8a5a3a'] },
+  boneca: { cx: 15, cy: 12.5, rx: 6.2, ry: 6.2, y0: 9, borda: ['#f4f4f0', '#d8d4cc'] },
+  robo: { ret: [10, 7, 11, 10], borda: ['#e8404a', '#f8d040'] },
+  caixa: { cx: 15, cy: 13, rx: 5.6, ry: 5.8, y0: 9, borda: ['#f4f0ec', '#c8c0c8'] },
+};
+function semCara(p, b, tipo, vermelho) {
+  const c = CARA[tipo];
+  const dentro = (x, y, f = 1) => (c.ret ? x >= c.ret[0] + (1 - f) * 3 && x < c.ret[0] + c.ret[2] - (1 - f) * 3 && y >= c.ret[1] + (1 - f) * 2 && y < c.ret[1] + c.ret[3] - (1 - f) * 2
+    : y >= c.y0 && ((x + 0.5 - c.cx) / (c.rx * f)) ** 2 + ((y + 0.5 - c.cy) / (c.ry * f)) ** 2 <= 1);
+  for (let y = 0; y < p.h; y++) for (let x = 0; x < p.w; x++) {
+    if (!dentro(x, y)) continue;
+    if (dentro(x, y, 0.8)) p.set(x, y, OCO);
+    else if ((x * 7 + y * 3) % 5 < 2) p.set(x, y, c.borda[(x + y) % 2]);   // borda rasgada
+    else p.set(x, y, OCO);
+  }
+  const cx = c.ret ? c.ret[0] + c.ret[2] / 2 : c.cx, cy = c.ret ? c.ret[1] + c.ret[3] / 2 : c.cy;
+  p.circulo(cx + 2.2, cy + 1.2, 2, '#2a2a34'); p.set(Math.floor(cx + 2), Math.floor(cy + 1), '#14121c');      // engrenagem no fundo
+  for (let x = Math.round(cx - 3); x <= Math.round(cx + 2); x++) if (x % 2 === 0) p.set(x, Math.round(cy + 3), '#b8b4a8');   // dentinhos
+  const cor = vermelho ? '#ff2a1a' : PONTO;
+  for (const dx of [-2, 2]) { const x = Math.round(cx + dx - 0.5), y = Math.round(cy - 1); p.set(x, y, cor); b.set(x, y, cor); }
+}
+
 // ------------------------------------------------------------------ cabeças (folha 30x22, para poder entortar)
 const CABECAS = {
   soldadinho(op, b) {
@@ -50,6 +76,7 @@ const CABECAS = {
       racha(p, [[16, 9], [16, 10], [17, 11], [18, 12], [18, 13], [19, 14], [18, 15]]);
       p.elipse(18.5, 13, 2.6, 2.8, OCO); engrenagem(p, 18.6, 13.4); p.set(18, 12, '#ff2a1a'); b.set(18, 12, '#ff2a1a');
     }
+    if (op.semRosto) semCara(p, b, 'soldadinho', op.olhos === 'oco');
     return { p, olhos };
   },
   boneca(op, b) {
@@ -71,6 +98,7 @@ const CABECAS = {
       for (const [x, y] of [[15, 9], [16, 8], [20, 10], [20, 13], [15, 14], [19, 15]]) p.set(x, y, '#f4f4f0');
       p.set(18, 11, PONTO); b.set(18, 11, PONTO);
     }
+    if (op.semRosto) semCara(p, b, 'boneca', op.olhos === 'oco');
     return { p, olhos };
   },
   robo(op, b) {
@@ -93,6 +121,7 @@ const CABECAS = {
       for (const [x, y, c] of [[16, 13, '#e8404a'], [17, 14, '#e8404a'], [21, 12, '#f8d040'], [20, 13, '#f8d040'], [21, 14, '#f8d040']]) p.set(x, y, c);
       p.set(12, 10, '#ff2a1a'); b.set(12, 10, '#ff2a1a');
     }
+    if (op.semRosto) semCara(p, b, 'robo', op.olhos === 'oco');
     return { p, olhos };
   },
 };
@@ -135,7 +164,7 @@ function quadro(tipo, op, f = {}) {
     if (tipo === 'robo') { p.ret(x - 1, 33 + bob + dy, 1, 3, c.mao); p.ret(x + 2, 33 + bob + dy, 1, 3, c.mao); p.ret(x - 1, 33 + bob + dy, 4, 1, c.mao); }   // garra
     else p.ret(x - 1, 33 + bob + dy, 4, 3, c.mao);
   };
-  braco(5, f.bracoE || 0, false);
+  braco(5, (f.bracoE || 0) + (op.estrago ? 2 : 0), false);   // sem rosto: o braço esquerdo fica caído
   braco(23, f.bracoD === 'alto' ? 0 : (f.bracoD || 0), f.bracoD === 'alto');
   // tronco
   if (tipo === 'robo') {
@@ -159,6 +188,11 @@ function quadro(tipo, op, f = {}) {
       for (let y = 22; y < 33; y += 2) p.set(19, y + bob, '#2a3a6a');                                // costura
     }
   }
+  if (op.estrago) {   // corpo estragado: rasgo no peito com engrenagem e fios (e enchimento na boneca)
+    p.elipse(17.5, 27 + bob, 2.4, 3, OCO); engrenagem(p, 17.6, 27.4 + bob);
+    for (const [x, y, c] of [[15, 25, '#e8404a'], [16, 30, '#f8d040'], [20, 26, '#e8404a']]) p.set(x, y + bob, tipo === 'boneca' ? '#f4f4f0' : c);
+    for (const [x, y] of [[10, 23], [11, 24], [11, 25], [12, 26]]) p.set(x, y + bob, OCO);         // rachadura
+  }
   // pescoço (pino de madeira / lata)
   p.ret(14, 18 + bob, 3, 3, tipo === 'robo' ? '#6a7484' : c.junta);
   // cabeça entortada (cada linha desliza um pouco)
@@ -177,9 +211,11 @@ function quadro(tipo, op, f = {}) {
 }
 const hex = (d, i) => '#' + [0, 1, 2].map((k) => d[i + k].toString(16).padStart(2, '0')).join('');
 
-function spriteBrinquedo(tipo) {
+function spriteBrinquedo(tipo, assustador = false) {
   const quadros = [], brilho = [];
-  const add = (op, f) => { const { p, b } = quadro(tipo, op, f); quadros.push(p); brilho.push(b); return quadros.length - 1; };
+  // assustador: todas as poses sem o rosto e com o corpo estragado (o "falha" pisca o rosto antigo de volta)
+  const S = (op) => (assustador ? { ...op, semRosto: true, estrago: true } : op);
+  const add = (op, f, cru = false) => { const { p, b } = quadro(tipo, cru ? op : S(op), f); quadros.push(p); brilho.push(b); return quadros.length - 1; };
   const nor = { olhos: 'normal' }, oco = { olhos: 'oco' }, rach = { olhos: 'normal', rachado: true };
   const gira = (op, f = {}) => [0, 1, 2, 3].map((k) => add(op, { ...f, chave: k }));
   const P = gira(nor), T = add(nor, { inclina: 1, chave: 0 });
@@ -190,10 +226,14 @@ function spriteBrinquedo(tipo) {
   const O = gira(oco), R = gira(rach);
   const andar = (op, f0 = {}) => [0, 1, 2, 3].map((k) => add(op, { ...f0, chave: k, passo: [-1, 0, 1, 0][k], bracoE: [1, 0, -1, 0][k], bracoD: [-1, 0, 1, 0][k] }));
   const AN = andar(nor), AO = andar(oco), AV = andar(nor, { inclina: 3, cabecaY: 1 }), AR = andar(rach);
+  const sr = { olhos: 'normal', semRosto: true, estrago: assustador }, SR = gira(sr), ASR = andar(sr);   // estado "sem-rosto" (o rosto cai)
+  const ANTES = add({ olhos: 'normal' }, { chave: 0 }, true);                                            // o rosto antigo, para a falha
   const e = (q, fps = 6) => ({ q, fps });
   return { quadros, brilho, sombra: true, personagem: true, anims: {
     parado: e([P[0], P[1], P[2], P[3], P[0], P[1], T, P[3]], 6), desligado: e([D], 1), cantando: e(C, 5), acenar: e(AC, 4),
-    virado: e(V, 6), olhos: e(O, 6), rachado: e(R, 6), falha: e([P[0], R[1], P[2], V[0], R[0], P[3]], 12),
+    virado: e(V, 6), olhos: e(O, 6), rachado: e(R, 6),
+    falha: e(assustador ? [P[0], ANTES, P[2], P[3], ANTES, V[0]] : [P[0], R[1], P[2], V[0], R[0], P[3]], 12),
+    'sem-rosto': e(SR, 6), 'sem-rosto-andando': e(ASR, 5), 'sem-rosto-correndo': e(ASR, 9),
     andando: e(AN, 5), correndo: e(AN, 9), pulando: e([P[0]], 1),
     'olhos-andando': e(AO, 5), 'olhos-correndo': e(AO, 9), 'virado-andando': e(AV, 5), 'virado-correndo': e(AV, 9),
     'rachado-andando': e(AR, 5), 'rachado-correndo': e(AR, 9),
@@ -236,6 +276,8 @@ function quadroCaixa(op, f = {}) {
   if (op.boca) { cab.ret(11, 16, 9, 3, OCO); for (let x = 11; x <= 19; x += 2) cab.set(x, 16, '#f4f0e0'); }
   else { cab.ret(11, 17, 9, 1, '#d83a3a'); cab.set(10, 16, '#d83a3a'); cab.set(20, 16, '#d83a3a'); cab.set(10, 15, '#d83a3a'); cab.set(20, 15, '#d83a3a'); }   // sorriso pintado até as bochechas
   if (op.rachado) { racha(cab, [[15, 8], [15, 9], [16, 10], [17, 11], [16, 12], [17, 13]]); cab.elipse(17.5, 12, 2.4, 2.6, OCO); engrenagem(cab, 17.6, 12.4); cab.set(17, 11, '#ff2a1a'); bc.set(17, 11, '#ff2a1a'); }
+  if (op.semRosto) semCara(cab, bc, 'caixa', op.olhos === 'oco');
+  if (op.estrago) for (const [x, y] of [[9, 36], [10, 37], [10, 38], [11, 39], [17, 40], [18, 41], [18, 42], [19, 43], [13, 45], [14, 46]]) p.set(x, y - (f.pulo || 0), OCO);   // caixa rachada
   const oy = gy - 19 + (f.frouxa ? 3 : 0), inc = (f.inclina || 0) + (f.frouxa ? 3 : 0);
   for (let y = 0; y < 22; y++) {
     const dx = Math.round(inc * (y - 11) / 11) + (inc ? Math.sign(inc) : 0) - gx;
@@ -249,9 +291,10 @@ function quadroCaixa(op, f = {}) {
   return { p, b };
 }
 
-function spriteCaixa() {
+function spriteCaixa(assustador = false) {
   const quadros = [], brilho = [];
-  const add = (op, f) => { const { p, b } = quadroCaixa(op, f); quadros.push(p); brilho.push(b); return quadros.length - 1; };
+  const S = (op) => (assustador && !op.fechada ? { ...op, semRosto: true, estrago: true } : assustador ? { ...op, estrago: true } : op);
+  const add = (op, f, cru = false) => { const { p, b } = quadroCaixa(cru ? op : S(op), f); quadros.push(p); brilho.push(b); return quadros.length - 1; };
   const bal = [0, 1, 2, 1, 0, -1, -2, -1];
   const ciclo = (op, f = {}) => bal.map((v, k) => add(op, { ...f, balanco: v, manivela: k % 3 }));
   const nor = { olhos: 'normal' };
@@ -262,10 +305,13 @@ function spriteCaixa() {
   const pula = (op) => [0, 2, 3, 2, 0, 0].map((h, k) => add(op, { pulo: h, balanco: [0, -1, -2, -1, 1, 0][k], manivela: k % 3 }));
   const AN = pula(nor), AO = pula({ olhos: 'oco' }), AR = pula({ olhos: 'normal', rachado: true });
   const AF = [0, 2, 3, 2, 0, 0].map((h, k) => add({ fechada: true }, { pulo: h, manivela: k % 3 }));
+  const sr = { olhos: 'normal', semRosto: true, estrago: assustador }, SR = ciclo(sr), ASR = pula(sr);
+  const ANTES = add({ olhos: 'normal' }, { balanco: 0 }, true);
   const e = (q, fps = 8) => ({ q, fps });
   return { quadros, brilho, sombra: true, personagem: true, anims: {
     parado: e(P, 8), fechada: e(F, 6), desligado: e([D], 1), cantando: e(C, 5), acenar: e(P, 12), virado: e(V, 8),
-    olhos: e(O, 8), rachado: e(R, 8), falha: e([P[0], R[2], P[4], V[1], R[6], P[3]], 12),
+    olhos: e(O, 8), rachado: e(R, 8), falha: e(assustador ? [P[0], ANTES, P[4], ANTES, P[6], P[3]] : [P[0], R[2], P[4], V[1], R[6], P[3]], 12),
+    'sem-rosto': e(SR, 8), 'sem-rosto-andando': e(ASR, 8), 'sem-rosto-correndo': e(ASR, 12),
     andando: e(AN, 8), correndo: e(AN, 12), pulando: e([AN[2]], 1), 'fechada-andando': e(AF, 8), 'fechada-correndo': e(AF, 12),
     'olhos-andando': e(AO, 8), 'olhos-correndo': e(AO, 12), 'rachado-andando': e(AR, 8), 'rachado-correndo': e(AR, 12),
   } };
@@ -276,6 +322,11 @@ registrarSprites({
   'brinquedo-boneca': () => spriteBrinquedo('boneca'),
   'brinquedo-robo': () => spriteBrinquedo('robo'),
   'brinquedo-caixa': () => spriteCaixa(),
+  // versões mais assustadoras: sem o rosto (buraco com pontinhos brilhando) e com o corpo estragado, em todas as poses
+  'brinquedo-soldadinho-sem-rosto': () => spriteBrinquedo('soldadinho', true),
+  'brinquedo-boneca-sem-rosto': () => spriteBrinquedo('boneca', true),
+  'brinquedo-robo-sem-rosto': () => spriteBrinquedo('robo', true),
+  'brinquedo-caixa-sem-rosto': () => spriteCaixa(true),
 }, { grupo: 'Animatrônicos de brinquedo (terror)', status: 'protótipo', descricoes: {
   'brinquedo-soldadinho': 'soldadinho de corda gigante', 'brinquedo-boneca': 'boneca de pano gigante',
   'brinquedo-robo': 'robô de lata de corda', 'brinquedo-caixa': 'caixa-surpresa com o bobo na mola',

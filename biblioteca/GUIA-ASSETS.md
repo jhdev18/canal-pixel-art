@@ -54,6 +54,10 @@ Cachorros de estimação 🧪: `cachorro-caramelo`, `-preto`, `-branco`, `-cinza
   racha e mostra engrenagem/enchimento), `falha`; andam travados e `olhos`/`virado`/`rachado` valem andando. Caixa: `fechada` (manivela
   girando), `parado` (aberta, balançando), anda aos pulinhos. Sons `corda` (catraca), `servo`, `caixinha-musica`, `falha-eletrica`.
   Truque de terror: mudam de estado na palavra forte (`trocar` + som); de dia, sem escuro.
+  **Sem rosto (mais assustadores):** estado `sem-rosto` nos 4 (o rosto cai na hora, com `trocar`; vale andando) e versões que já vêm
+  sem rosto em todas as poses — `brinquedo-soldadinho-sem-rosto`, `brinquedo-boneca-sem-rosto`, `brinquedo-robo-sem-rosto`,
+  `brinquedo-caixa-sem-rosto`: buraco escuro com borda rasgada (lascas, enchimento, fios, cacos), engrenagem e dentinhos no fundo, dois
+  pontinhos brancos (vermelhos no estado `olhos`), rasgo no peito e um braço caído; a `falha` pisca o rosto antigo de volta.
 
 ---
 

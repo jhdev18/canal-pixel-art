@@ -626,7 +626,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 - **Animatrônicos de brinquedo (PROTÓTIPO, aguardando "pode salvar")** (`motor/assets/animatronicos.js`; o usuário pediu foco em
   terror e escolheu o tema "brinquedos de corda gigantes" — os mascotes de loja pão/sapo/vaca/bailarina foram rejeitados e apagados):
   `brinquedo-soldadinho`, `brinquedo-boneca`, `brinquedo-robo`, `brinquedo-caixa` (estados parado/desligado/cantando/acenar/virado/olhos/
-  rachado/falha; caixa também `fechada`; andam travados) e sons `corda`, `servo`, `caixinha-musica`, `falha-eletrica`. O usuário pediu
+  rachado/falha/sem-rosto; caixa também `fechada`; andam travados; versões já sem rosto `brinquedo-*-sem-rosto`) e sons `corda`, `servo`, `caixinha-musica`, `falha-eletrica`. O usuário pediu
   "parecidos com FNAF": é o mesmo gênero, mas nada copiado do jogo (regra 6). Teste: `projetos/vitrine` (cenas 34–35).
   **Lugares deles (PROTÓTIPO):** loja de brinquedos (`rua-brinquedos` = rua comercial com a loja no lugar do prédio comum da esquerda;
   a `rua-comercial` normal NÃO tem a loja — pedido do usuário: só em alguns vídeos) e por dentro `loja-brinquedos-diorama`; fábrica
