@@ -29,8 +29,9 @@ Personagens e mundos originais, feitos em pixel art.
   princesa), cidade (a Bia e o gatinho), fábrica de brinquedos (soldadinho e boneca) e jogo de blocos (dois avatares). Todas as
   sombras vão para a direita e só a da Bia vai para a esquerda, a ideia do vídeo das sombras.
   O título "PIXELVERSO" e o slogan ficam dentro da área segura do YouTube (1546×423 no centro), que aparece em todos os aparelhos.
-- `foto-perfil.png`: 800×800. A Bia em pé num planetinha dividido nos quatro mundos (pedras e castelo, rua e prédio, fábrica com
-  chaminé, chão de blocos), com as mesmas fendas brilhantes, num céu roxo de estrelas com cubos e moedas. Aro dourado no limite do círculo.
+- `foto-perfil.png`: 800×800. A Bia em pé no topo de um planetinha redondo dividido nos quatro mundos (pedras, rua, fábrica e chão de
+  blocos), separados pelas fendas brilhantes do banner. A torre do castelo, o prédio e a fábrica ficam plantados na curva do planeta (a borda
+  cobre a base deles); o cubo vermelho e o de grama flutuam no céu roxo de estrelas, com moedas. Aro dourado no limite do círculo.
 - Código: `arte/banner.html`, `arte/icone.html` e `arte/comum.js` (sprites do motor, sombras, títulos).
 - As artes antigas ("Histórias em Pixel" e a versão "Vila Serena") ficam no histórico do git.
 

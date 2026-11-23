@@ -23,23 +23,43 @@ for (let i = 0; i < 90; i++) {
   if (f > 0.93) for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) p.set(x + dx, y + dy, '#9a90e8');
 }
 // cubos flutuando no espaço
-desenharSprite(T, quadro('peca-vermelha'), 38, 84, 1);
-desenharSprite(T, quadro('cubo-grama'), 168, 70, 1);
+desenharSprite(T, quadro('peca-vermelha'), 40, 70, 1);
+desenharSprite(T, quadro('cubo-grama'), 171, 134, 1);
 desenharSprite(T, quadro('moeda-bloco'), 62, 40, 1);
-desenharSprite(T, quadro('moeda-bloco'), 140, 30, 1);
+desenharSprite(T, quadro('moeda-bloco'), 172, 92, 1);
 
-// planeta
-const PX = 100, PY = 236, PR = 112;
-brilho(PX, PY, PR + 22, '#ffd6f0', 0.45);
-// cada pedaço da superfície é um mundo (pelo ângulo)
+// planeta (menor e mais redondo; o topo fica logo abaixo dos pés da Bia)
+const PX = 100, PY = 222, PR = 96;
+const sup = (x) => Math.round(PY - Math.sqrt(Math.max(0, PR * PR - (x - PX) ** 2))); // altura da superfície em x
 const mundo = (x, y) => {
   const a = Math.atan2(y - PY, x - PX) * 180 / Math.PI; // -180..0 em cima
-  return a < -118 ? 'medieval' : a < -90 ? 'cidade' : a < -62 ? 'fabrica' : 'blocos';
+  return a < -125 ? 'medieval' : a < -90 ? 'cidade' : a < -55 ? 'fabrica' : 'blocos';
 };
+// 1) as construções vêm ANTES do planeta e descem até o fundo: a borda do planeta cobre a base (ficam plantadas na curva)
+const SIL = '#3a2b2b';
+// castelo (esquerda): torre de pedra com telhado vermelho e bandeirinha
+{ const x0 = 26, w = 18, topo = sup(x0 + w / 2) - 32;
+  p.ret(x0, topo, w, 200 - topo, '#b4b0c0'); for (let i = 0; i < w; i += 4) p.ret(x0 + i, topo - 3, 3, 3, '#b4b0c0');
+  for (let y = topo; y < 200; y += 5) p.ret(x0, y, w, 1, '#8e8aa0'); p.ret(x0 + w - 1, topo, 1, 200 - topo, '#8e8aa0');
+  for (let i = 0; i < 12; i++) { const l = Math.round(11 * (i / 12)); p.ret(x0 + 9 - l, topo - 15 + i, 2 * l + 1, 1, i < 2 ? '#e07a6a' : '#c0504a'); }
+  p.ret(x0 + 9, topo - 21, 1, 6, '#6b5a50'); p.ret(x0 + 10, topo - 21, 5, 3, '#e8c040');
+  p.ret(x0 + 4, topo + 8, 3, 4, '#3a2b40'); p.ret(x0 + 11, topo + 8, 3, 4, '#3a2b40'); p.ret(x0 + 6, topo + 18, 6, 14, SIL); }
+// prédio da cidade (perto da Bia, à esquerda)
+{ const x0 = 50, w = 22, topo = sup(x0 + w / 2) - 34;
+  p.ret(x0, topo, w, 200 - topo, '#e9a882'); p.ret(x0 - 2, topo - 3, w + 4, 3, '#5b6fa8'); p.ret(x0 + w - 1, topo, 1, 200 - topo, '#d48d66');
+  for (const [dx, dy] of [[3, 6], [13, 6], [3, 18], [13, 18]]) { p.ret(x0 + dx - 1, topo + dy - 1, 7, 8, '#4a3a3a'); p.ret(x0 + dx, topo + dy, 5, 6, '#ffe7b0'); } }
+// fábrica com chaminé e fumaça (direita)
+{ const x0 = 130, w = 26, topo = sup(x0 + w / 2) - 26;
+  p.ret(x0 + 17, topo - 20, 7, 30, '#b05a40'); p.ret(x0 + 16, topo - 22, 9, 3, '#6a3a2e');
+  for (let i = 0; i < 3; i++) p.circulo(x0 + 21 + i * 4, topo - 26 - i * 6, 3 + i, (x, y, dx, dy) => (dy > 0.3 ? '#c8c4cc' : '#eceaf0'));
+  p.ret(x0, topo, w, 200 - topo, '#c06848'); for (let y = topo; y < 200; y += 5) p.ret(x0, y, w, 1, '#9a4c36');
+  for (let i = 0; i < 3; i++) for (let k = 0; k < 5; k++) p.ret(x0 + i * 9 + k, topo - 5 + k, 1, 5 - k, '#6a4a5a'); // telhado em dente
+  for (const dx of [3, 12]) { p.ret(x0 + dx - 1, topo + 6, 7, 8, '#4a2a2a'); p.ret(x0 + dx, topo + 7, 5, 6, '#ffe3a0'); } }
+// 2) o planeta por cima: cada fatia é o chão de um mundo
+brilho(PX, PY, PR + 18, '#ffd6f0', 0.35);
 p.circulo(PX, PY, PR, (x, y) => {
   const d = Math.hypot(x + 0.5 - PX, y + 0.5 - PY), borda = PR - d, m = mundo(x, y);
-  const fundo = Math.min(1, borda / 60); // mais escuro para dentro do planeta
-  const tom = (cores) => Pix.tom(cores, fundo, x, y);
+  const tom = (cores) => Pix.tom(cores, Math.min(1, borda / 50), x, y);
   if (m === 'medieval') {
     if (borda < 3) return '#7ac05a';
     const lin = Math.floor(y / 6), col = (x + lin * 4) % 9;
@@ -53,31 +73,15 @@ p.circulo(PX, PY, PR, (x, y) => {
   const px = ((x % 6) + 6) % 6, py = ((y % 6) + 6) % 6; // pinos do jogo de blocos
   return px >= 2 && px <= 3 && py >= 2 && py <= 3 ? tom(['#8ae070', '#4a9a3a']) : tom(['#5ac04a', '#2e7a2a']);
 });
-for (const ang of [-118, -90, -62]) {
+for (const ang of [-125, -90, -55]) { // fendas brilhantes entre os mundos (como no banner)
   const r = ang * Math.PI / 180;
   for (let k = 0; k < PR; k++) {
     const x = Math.round(PX + Math.cos(r) * k), y = Math.round(PY + Math.sin(r) * k);
     p.set(x, y, '#ffffff'); p.set(x + 1, y, misturar(T.get(x + 1, y), '#ff7ad9', 0.5)); p.set(x - 1, y, misturar(T.get(x - 1, y), '#7af0ff', 0.5));
   }
 }
-const sup = (x) => Math.round(PY - Math.sqrt(PR * PR - (x - PX) ** 2)); // altura da superfície em x
-// castelo (esquerda)
-const t1 = sup(36);
-p.ret(28, t1 - 30, 18, 32, '#b4b0c0'); for (let i = 0; i < 18; i += 4) p.ret(28 + i, t1 - 33, 3, 3, '#b4b0c0');
-for (let i = 0; i < 12; i++) { const l = Math.round(10 * (i / 12)); p.ret(37 - l, t1 - 46 + i, 2 * l + 1, 1, '#c0504a'); }
-p.ret(37, t1 - 52, 1, 6, '#6b5a50'); p.ret(38, t1 - 52, 5, 3, '#e8c040');
-p.ret(34, t1 - 12, 6, 12, '#3a2b2b'); p.ret(32, t1 - 24, 3, 4, '#3a2b40'); p.ret(40, t1 - 24, 3, 4, '#3a2b40');
-// prédio da cidade (perto da Bia, à esquerda)
-const t2 = sup(66);
-p.ret(56, t2 - 34, 22, 36, '#e9a882'); p.ret(54, t2 - 37, 26, 3, '#5b6fa8');
-for (const [x, y] of [[59, 28], [70, 28], [59, 16], [70, 16]]) { p.ret(x - 1, t2 - y - 1, 7, 8, '#4a3a3a'); p.ret(x, t2 - y, 5, 6, '#ffe7b0'); }
-// fábrica com chaminé (direita)
-const t3 = sup(140);
-p.ret(128, t3 - 26, 26, 30, '#c06848'); p.ret(146, t3 - 46, 7, 22, '#b05a40'); p.ret(145, t3 - 48, 9, 3, '#6a3a2e');
-for (let i = 0; i < 4; i++) p.circulo(150 + i * 3, t3 - 54 - i * 7, 3 + i, (x, y, dx, dy) => (dy > 0.3 ? '#c8c4cc' : '#eceaf0'));
-for (const x of [131, 139]) { p.ret(x - 1, t3 - 19, 7, 8, '#4a2a2a'); p.ret(x, t3 - 18, 5, 6, '#ffe3a0'); }
-// cubos empilhados (direita, mais baixo)
-desenharSprite(T, quadro('cubo-pedra'), 176, sup(176) + 6, 1);
+// contorno escuro da borda do planeta (separa do céu)
+for (let y = 0; y < 200; y++) for (let x = 0; x < 200; x++) { const d = Math.hypot(x + 0.5 - PX, y + 0.5 - PY); if (d > PR && d <= PR + 1) p.set(x, y, '#2a1a3a'); }
 
 // a Bia em pé no topo do planeta
 const bia = quadro('menina-capa', 'parado');
