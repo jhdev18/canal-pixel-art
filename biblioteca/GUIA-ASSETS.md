@@ -146,6 +146,22 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 - Sons: `entrar-jogo`, `pulo-bloco`, `ai` (o "ui!" de quando o avatar cai), `chat`, `bug-jogo`.
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 
+### Medieval (🧪)
+- `vila-medieval`: rua de pedras (opção `"chao": "pedras"`) com casas de enxaimel (pedra embaixo, reboco e vigas de madeira, telhado de
+  telhas). Centros: casa (x -10.4), **taverna** (-5.4, placa TAVERNA, janelas acesas), casa de telhado cinza com chaminé e fumaça (-0.4),
+  **ferreiro** (4.1, arco aberto com a forja acesa e a bigorna, placa com bigorna), casa (8.6). Já vem com poço, barraca de frutas,
+  carroça, feno, barris e tochas. Calçada das casas z ~4.6–5.0; rua z 0.6–4.
+- `castelo-medieval`: a muralha do castelo (portão em arco com grade levadiça, ameias, duas torres quadradas, estandartes vermelho e
+  azul pintados e em mastro, tochas). Portão em x ~0.6; guardas em x -1.4 e 2.6, z 5.0; câmera alta (y 3.4).
+- `salao-trono-diorama`: pedra, vitrais coloridos, estandartes, tochas e escudos na parede, trono dourado num degrau e tapete vermelho.
+  Rei sentado: x 0, z ~3.0, `"pose": "sentado"`, `"y": 0.55`; guardas x ±2.6, z 2.4; visitantes z 0–1.2.
+- `taverna-diorama`: madeira, lareira acesa, balcão com canecas, barris, 2 mesas com canecas e pão, banquetas. Atrás do balcão x ~5.6, z ~2.8.
+- Pessoas (gerador de moradores, com expressões, andam e sentam): `rei`, `rainha`, `princesa`, `cavaleiro` (elmo com pluma, escudo,
+  lança, capa), `campones`, `camponesa`, `ferreiro`, `bruxa` (chapéu de bruxa novo, pele esverdeada), `mago` (capuz novo, barba).
+  O gerador ganhou `"chapeu": "bruxa"` e `"chapeu": "capuz"`.
+- Objetos isométricos: `barril`, `feno`, `carroca`, `poco`, `barraca-medieval`, `estandarte` (`vermelho`/`azul`), `tocha` (fogo animado
+  com luz).
+
 ### Não usar sem pedido do usuário
 Cenários laterais (`escola`, `padaria`, `cidade-rpg`, `vila`...), a avenida e o modo 3D. Eles existem, mas a regra
 do canal é o diorama.

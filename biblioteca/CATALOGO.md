@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (225)
+## Sprites (239)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -25,7 +25,6 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `guarda` | ✅ | parado | 16×16 |
 | `crianca` | ✅ | parado | 16×16 |
 | `pessoa` | ✅ | parado | 16×16 |
-| `mago` | ✅ | parado | 16×18 |
 | `slime` | ✅ | parado | 16×11 |
 | `morcego` | ✅ | parado | 15×7 |
 | `moeda` | ✅ | parado | 8×8 |
@@ -46,7 +45,27 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `poste` | ✅ | parado | 12×44 |
 | `placa` | ✅ | parado | 16×16 |
 | `fogueira` | ✅ | parado | 18×18 |
-| `tocha` | ✅ | parado | 8×18 |
+
+### Medieval (vila, castelo, taverna)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `mago` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `tocha` | 🧪 protótipo | parado | 13×50 |
+| `rei` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `rainha` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `princesa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `cavaleiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `campones` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `camponesa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `ferreiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `bruxa` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `barril` | 🧪 protótipo | parado | 21×26 |
+| `feno` | 🧪 protótipo | parado | 41×28 |
+| `carroca` | 🧪 protótipo | parado | 69×43 |
+| `poco` | 🧪 protótipo | parado | 47×58 |
+| `barraca-medieval` | 🧪 protótipo | parado | 75×71 |
+| `estandarte` | 🧪 protótipo | parado, vermelho, azul | 33×63 |
 
 ### Personagens RPG (estilo indie)
 
@@ -368,6 +387,15 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `brinquedo-boneca-sem-rosto` | 🧪 protótipo | `brinquedo-boneca-sem-rosto` | 1.2 |
 | `brinquedo-robo-sem-rosto` | 🧪 protótipo | `brinquedo-robo-sem-rosto` | 0.5 |
 | `brinquedo-caixa-sem-rosto` | 🧪 protótipo | `brinquedo-caixa-sem-rosto` | 1.4 |
+| `rei` | 🧪 protótipo | `rei` | 0.8 |
+| `rainha` | 🧪 protótipo | `rainha` | 1.1 |
+| `princesa` | 🧪 protótipo | `princesa` | 1.4 |
+| `cavaleiro` | 🧪 protótipo | `cavaleiro` | 0.9 |
+| `campones` | 🧪 protótipo | `campones` | 1 |
+| `camponesa` | 🧪 protótipo | `camponesa` | 1.15 |
+| `ferreiro` | 🧪 protótipo | `ferreiro` | 0.8 |
+| `bruxa` | 🧪 protótipo | `bruxa` | 1.25 |
+| `mago` | 🧪 protótipo | `mago` | 0.85 |
 | `avatar-bloco-vermelho` | 🧪 protótipo | `avatar-bloco-vermelho` | 1.3 |
 | `avatar-bloco-roxo` | 🧪 protótipo | `avatar-bloco-roxo` | 1.4 |
 | `avatar-bloco-verde` | 🧪 protótipo | `avatar-bloco-verde` | 1.2 |
@@ -448,6 +476,10 @@ Uso: `{ "cenario": "nome" }`
 | `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
 | `mundo-bloco` | 🧪 protótipo | diorama | 13 |
 | `mundo-bloco-grama` | 🧪 protótipo | diorama | 14 |
+| `vila-medieval` | 🧪 protótipo | diorama | 8 |
+| `castelo-medieval` | 🧪 protótipo | diorama | 4 |
+| `salao-trono-diorama` | 🧪 protótipo | diorama (cômodo salao-trono) | 0 |
+| `taverna-diorama` | 🧪 protótipo | diorama (cômodo taverna) | 0 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |

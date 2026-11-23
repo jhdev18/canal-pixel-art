@@ -92,6 +92,9 @@ function frente(p, { resp = 0, piscar = false, espirro = null } = {}) {
   if (p.cachecol) { b.poli([[8.4, 15.2 + yc], [19.6, 15.2 + yc], [20, 18.4 + yc], [8, 18.4 + yc]], M.cachecol); b.ret(15.4, 18 + yc, 3.2, 8, M.cachecol); }
   // coroa (PROTÓTIPO): aro dourado com 3 pontas, assentado no alto da cabeça
   if (p.chapeu === 'coroa') { b.poli([[8.8, 5.4 + yc], [8.4, 0.6 + yc], [10.8, 2.6 + yc], [12.4, -1 + yc], [14, 2.2 + yc], [15.6, -1 + yc], [17.2, 2.6 + yc], [19.6, 0.6 + yc], [19.2, 5.4 + yc]], M.chapeu); b.ret(8.8, 4 + yc, 10.4, 1.4, M.aba); }
+  // PROTÓTIPO (medieval): chapéu de bruxa (aba larga e cone torto) e capuz (contorna o rosto)
+  if (p.chapeu === 'bruxa') { b.poli([[9.4, 4.6 + yc], [12.6, -0.6 + yc], [16.6, -1 + yc], [19.2, 4.6 + yc]], M.chapeu); b.poli([[3.6, 4.4 + yc], [24.4, 4.4 + yc], [23, 6.4 + yc], [5, 6.4 + yc]], M.aba); }
+  if (p.chapeu === 'capuz') { b.poli([[6.4, 16 + yc], [6.2, 5 + yc], [9, 1 + yc], [19, 1 + yc], [21.8, 5 + yc], [21.6, 16 + yc], [19.8, 16 + yc], [19.8, 6.6 + yc], [8.2, 6.6 + yc], [8.2, 16 + yc]], M.chapeu); }
   if (p.chapeu === 'quepe') { b.poli([[7.4, 6.2 + yc], [8.4, 1.2 + yc], [19.6, 1.2 + yc], [20.6, 6.2 + yc]], M.chapeu); b.poli([[7, 6 + yc], [21, 6 + yc], [20.4, 7.6 + yc], [7.6, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8, 5.6 + yc], [7.2, -0.4 + yc], [10, -2 + yc], [14, -1 + yc], [18, -2 + yc], [20.8, -0.4 + yc], [20, 5.6 + yc]], M.chapeu); b.ret(8, 4.4 + yc, 12, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[7.6, 6.4 + yc], [8.6, 2 + yc], [19.4, 2 + yc], [20.4, 6.4 + yc]], M.chapeu); b.poli([[12, 5.6 + yc], [22.4, 5.6 + yc], [22, 7.2 + yc], [12, 7.2 + yc]], M.aba); }
@@ -217,6 +220,8 @@ function lado(p, t, { correr = false, classico = false } = {}) {
   if (p.cabelo === 'topete') b.poli([[8, 11], [7.4, 7.6], [4.6, 6.4], [7.6, 4.8], [6.6, 1.6], [10.2, 2.4], [11.4, -0.8], [13.6, 1.6], [16.2, -0.6], [16.8, 2.2], [20.6, 2.4], [20.6, 5.6], [17.4, 5.4], [14.6, 6.8], [13.2, 7.8], [12.6, 11.6]].map(([px, py]) => [px + x, py + yc]), M.cabelo);
   if (p.cachecol) b.poli([[11.6 + x, 15 + yc], [18.4 + x, 15 + yc], [18.6 + x, 18.2 + yc], [11.4 + x, 18.2 + yc]], M.cachecol);
   if (p.chapeu === 'coroa') { b.poli([[9.2 + x, 5.4 + yc], [9 + x, 0.8 + yc], [11.4 + x, 2.6 + yc], [13.4 + x, -0.8 + yc], [15.4 + x, 2.6 + yc], [17.6 + x, 0.4 + yc], [19.6 + x, 2.8 + yc], [19.8 + x, 5.4 + yc]], M.chapeu); b.ret(Math.round(9.2 + x), Math.round(4 + yc), 11, 1, M.aba); b.pinta(Math.round(14.6 + x), Math.round(3.2 + yc), '#e83a5a'); }
+  if (p.chapeu === 'bruxa') { b.poli([[9.6 + x, 4.8 + yc], [12 + x, -0.4 + yc], [17.4 + x, -1 + yc], [19.4 + x, 4.8 + yc]], M.chapeu); b.poli([[5 + x, 4.6 + yc], [24 + x, 4.6 + yc], [23 + x, 6.6 + yc], [6 + x, 6.6 + yc]], M.aba); }
+  if (p.chapeu === 'capuz') { b.poli([[7.4 + x, 16 + yc], [7.6 + x, 4.6 + yc], [10 + x, 1 + yc], [18.6 + x, 1 + yc], [21 + x, 5 + yc], [21.4 + x, 16 + yc], [12 + x, 16 + yc], [12 + x, 7 + yc], [9.6 + x, 7 + yc], [9.6 + x, 16 + yc]], M.chapeu); }
   if (p.chapeu === 'quepe') { b.poli([[8.4 + x, 6.4 + yc], [9.4 + x, 1.2 + yc], [19.4 + x, 1.2 + yc], [20 + x, 6.4 + yc]], M.chapeu); b.poli([[14 + x, 5.8 + yc], [23 + x, 6.2 + yc], [22.4 + x, 7.6 + yc], [14 + x, 7.6 + yc]], M.aba); }
   if (p.chapeu === 'padeiro') { b.poli([[8.6 + x, 5.8 + yc], [8 + x, -0.4 + yc], [12 + x, -2 + yc], [17 + x, -1.6 + yc], [20.4 + x, -0.2 + yc], [20 + x, 5.8 + yc]], M.chapeu); b.ret(8.6 + x, 4.4 + yc, 11.6, 2, M.aba); }
   if (p.chapeu === 'bone') { b.poli([[8.4 + x, 6.6 + yc], [9.4 + x, 2 + yc], [19.4 + x, 2 + yc], [20 + x, 6.6 + yc]], M.chapeu); b.poli([[16 + x, 5.8 + yc], [24 + x, 6 + yc], [23.6 + x, 7.4 + yc], [16 + x, 7.4 + yc]], M.aba); }

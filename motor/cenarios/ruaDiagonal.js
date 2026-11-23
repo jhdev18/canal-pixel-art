@@ -25,6 +25,13 @@ const ESTAB = {
   farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 82, cruz: true },
   // PROTÓTIPO (terror dos brinquedos): só aparecem nos cenários rua-brinquedos e fabrica-brinquedos, não na rua comercial normal
   brinquedos: { pal: ['#f8e8b0', '#f0d890', '#c8a868', '#5a4a30'], tipo: 'reboco', placa: ['#d84a8a', '#ffffff'], texto: 'BRINQUEDOS', toldo: ['#f8e060', '#3a8ad8'], alt: 112, vitrine: 'brinquedos', base: '#c85a8a' },
+  // PROTÓTIPO (medieval): casas de enxaimel, taverna, ferreiro e a muralha do castelo (desenho próprio: medieval(P))
+  'casa-medieval': { medieval: 'casa', alt: 80, reboco: '#f0e4c8', telha: ['#c85a44', '#a84a38', '#7a3428'], texto: '' },
+  'casa-medieval-2': { medieval: 'casa', alt: 80, reboco: '#e8d0a8', telha: ['#6a6e84', '#565a6e', '#3e4254'], texto: '', chamine: true },
+  'casa-medieval-3': { medieval: 'casa', alt: 80, reboco: '#f4e8d8', telha: ['#b87a3a', '#9a622c', '#6a4220'], texto: '' },
+  taverna: { medieval: 'taverna', alt: 80, reboco: '#f0dcb8', telha: ['#a84a38', '#8a3a2c', '#5a2420'], texto: 'TAVERNA' },
+  ferreiro: { medieval: 'ferreiro', alt: 80, reboco: '#d8c8b0', telha: ['#5a5e70', '#4a4e60', '#34364a'], texto: '', chamine: true },
+  muralha: { medieval: 'muralha', alt: 96, texto: '' },
   fabrica: { castelo: true, alt: 80, texto: 'FÁBRICA DE BRINQUEDOS', tipo: 'castelo', pal: ['#e0c8d0', '#c8aab8', '#a08898', '#5a4858'], toldo: null },   // fábrica de tijolo com toques de castelo (chaminés, engrenagem, ameias)
 };
 
@@ -88,6 +95,14 @@ export function gerarRuaDiagonal(opc = {}) {
     // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
     const terra = opc.chao === 'terra';
     const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.chao === 'pedras') {   // PROTÓTIPO (medieval): calçamento de pedras (fileiras desencontradas), um pouco de musgo nas juntas
+      const fi = i / 0.36, linha = Math.floor(fi), fj = (j + (linha % 2) * 0.25) / 0.5, col = Math.floor(fj);
+      const di = fi - linha, dj = fj - col, junta = di < 0.14 || dj < 0.08;
+      const v = (((linha * 92821) ^ (col * 68917)) >>> 0) % 9;
+      const base = ['#b8ac98', '#a89c88', '#9a8e7c', '#c4b8a4'][v % 4];
+      c = junta ? (v === 3 && bayer(x, y) < 0.5 ? '#6a7a4a' : '#6a6050') : (di > 0.75 || dj > 0.85) ? '#8a7e6c' : (di < 0.3 && dj < 0.4 ? '#d4c8b4' : base);
+      pintar(x, y, c, i, j, 0); continue;
+    }
     if (opc.chao === 'baseplate') {   // PROTÓTIPO: chão de "baseplate" cinza de jogo de blocos: placas de 2x2 com junta e pinos (4 por unidade)
       const fi = (i / 2) % 1, fj = (j / 2) % 1, junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985;
       const pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, r = Math.hypot(pa - 0.5, pb - 0.5);
@@ -340,8 +355,111 @@ export function gerarRuaDiagonal(opc = {}) {
       fumacas.push({ i: -2.0, j: cj + 0.4, h: CH + 2 });
     }
   }
+  // ---------- MEDIEVAL (PROTÓTIPO): casa de enxaimel, taverna, ferreiro (telhado de telhas em degraus) e muralha do castelo ----------
+  function medieval(P) {
+    const E = P.e, h = P.h, rw = rng(P.s + 5);
+    const PEDRA = ['#c8bca8', '#a89c88', '#8a7e6c', '#5a5044'], MAD = ['#8a5a34', '#6a4424', '#4a2e18'], FERRO = ['#5a5e6a', '#3a3a44'];
+    const pedra = (u, t) => ((t % 6 === 0 || (u + (Math.floor(t / 6) % 2) * 5) % 10 === 0) ? PEDRA[3] : (u * 7 + t * 3) % 13 === 0 ? PEDRA[0] : PEDRA[1]);
+    const janela = (u, t, cu, t0, w, hh, quente) => {   // janela com venezianas verdes, vidro em cruz
+      const du = u - cu, dt = t - t0;
+      if (dt < 0 || dt >= hh || Math.abs(du) > w / 2 + 3) return null;
+      if (Math.abs(du) > w / 2) return dt % 3 === 0 ? '#2e5a3a' : '#3e7a4e';                         // venezianas abertas
+      if (Math.abs(du) === Math.floor(w / 2) || dt === 0 || dt === hh - 1 || du === 0 || dt === Math.floor(hh / 2)) return MAD[2];
+      return quente || noite ? ['#ffd070', 2] : (dt > hh / 2 ? '#8aa8c8' : '#5a7898');
+    };
+    if (E.medieval === 'muralha') {
+      // muralha de pedra: portão em arco com grade levadiça meio levantada, ameias, duas torres quadradas e um estandarte
+      prisma(-3.2, 0, P.j0, P.j1, 0, h, {
+        frente: (x, y, u, t, larg, s) => {
+          const meio = Math.floor(larg / 2), dx = u - meio;
+          let c = pedra(u, t);
+          const arco = 44 + Math.sqrt(Math.max(0, 22 * 22 - dx * dx)) * 0.7;
+          if (Math.abs(dx) < 24 && t < arco + 3) {
+            if (Math.abs(dx) >= 21 || t >= arco) c = (t + u) % 4 ? PEDRA[0] : PEDRA[2];
+            else c = (t > 30 && (Math.abs(dx) % 5 === 0 || t % 6 === 0)) ? FERRO[1] : (t > 30 && t < 33 ? FERRO[0] : '#2a2420');   // grade levantada em cima, passagem escura
+          }
+          for (const bu of [meio - 40, meio + 40]) if (Math.abs(u - bu) < 7 && t > 34 && t < 80) {   // estandartes pendurados
+            const v = t < 40 && Math.abs(u - bu) > (t - 34); c = v ? c : (Math.abs(u - bu) < 2 && t > 56 && t < 64) ? '#f0c840' : bu < meio ? '#c83a3a' : '#3a6ac8';
+          }
+          if (t >= h - 3) c = PEDRA[0];
+          pintar(x, y, c, 0, s, t, Array.isArray(c) ? 2 : 1, 1);
+        },
+        lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, P.j1, t, 1, 0.72),
+        topo: (x, y, i, j, d) => pintar(x, y, d < 0.15 ? PEDRA[0] : '#7a705e', i, j, h, 1, 1.1),
+      });
+      const ameias = (i0, i1, j0, j1, base) => { for (let jk = j0 + 0.1, k = 0; jk < j1 - 0.3; jk += 0.6, k++) prisma(i1 - 0.45, i1, jk, jk + 0.3, base, 7, {
+        frente: (x, y, u, t) => pintar(x, y, t === 7 ? PEDRA[0] : pedra(u + k * 3, t + base), i1, jk, base + t, 1, 1), lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, jk + 0.3, base + t, 1, 0.72), topo: (x, y, i, j) => pintar(x, y, PEDRA[0], i, j, base + 7, 1, 1.1) }); };
+      ameias(-3.2, 0, P.j0 + 2.2, P.j1 - 2.2, h);
+      const TH = h + 36;
+      for (const [tj0, tj1] of [[P.j0 - 0.4, P.j0 + 2.2], [P.j1 - 2.2, P.j1 + 0.4]]) {
+        prisma(-3.4, 0.8, tj0, tj1, 0, TH, {
+          frente: (x, y, u, t, larg, s) => { let c = pedra(u, t); const m = Math.floor(larg / 2); if (Math.abs(u - m) <= 1 && ((t > 40 && t < 54) || (t > 84 && t < 98))) c = '#2a2420'; if (t >= TH - 3) c = PEDRA[0]; pintar(x, y, c, 0.8, s, t, 1, 1); },
+          lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, tj1, t, 1, 0.72),
+          topo: (x, y, i, j, d) => pintar(x, y, d < 0.15 ? PEDRA[0] : '#7a705e', i, j, TH, 1, 1.1),
+        });
+        ameias(-3.4, 0.8, tj0, tj1, TH);
+      }
+      return;
+    }
+    // ---- casas (enxaimel): pedra embaixo, reboco claro com vigas de madeira, telhado de telhas em degraus
+    const ehT = E.medieval === 'taverna', ehF = E.medieval === 'ferreiro', masc = E.texto ? mascaraTexto(E.texto) : null;
+    prisma(-3.2, 0, P.j0, P.j1, 0, h, {
+      frente: (x, y, u, t, larg, s) => {
+        const meio = Math.floor(larg / 2);
+        let c = t < 12 ? pedra(u, t) : (bayer(x, y) < 0.06 ? '#d8c8a8' : E.reboco), tp = 1;
+        // vigas: postes a cada 16 px, vigas horizontais, mãos-francesas em X no andar de cima
+        const pu = u % 16, painel = Math.floor(u / 16);
+        if (t >= 12 && (pu < 2 || u > larg - 3)) c = MAD[1];
+        if ((t >= 12 && t < 14) || (t >= 44 && t < 47) || t >= h - 3) c = t === 46 ? MAD[2] : MAD[1];
+        if (t > 47 && t < h - 3 && pu >= 2) { const k = (t - 47) / (h - 50) * 14 + 2; if (Math.abs(pu - (painel % 2 ? k : 18 - k)) < 1.1) c = MAD[1]; }
+        // porta em arco (taverna: dupla no meio; ferreiro: arco grande aberto com a forja acesa lá dentro)
+        const larP = ehT ? 12 : ehF ? 18 : 8, cuP = ehT || ehF ? meio : 14, du = u - cuP;
+        const topoP = (ehF ? 30 : 34) + Math.sqrt(Math.max(0, larP * larP - du * du)) * 0.45;
+        if (Math.abs(du) <= larP && t < topoP + 2 && t >= 0) {
+          if (Math.abs(du) >= larP - 1 || t >= topoP) c = PEDRA[0];
+          else if (ehF) {
+            c = '#1e1814';
+            if (t < 14 && Math.abs(du + 6) < 4) c = t > 9 ? ['#fff0a0', 2] : (u + t) % 2 ? ['#ff8a2a', 2] : ['#ff4a1a', 2];      // forja
+            if (t < 10 && Math.abs(du - 7) < 4) c = t > 7 ? '#5a5e6a' : t > 4 ? '#3a3a44' : (Math.abs(du - 7) < 1 ? '#3a3a44' : '#1e1814');   // bigorna
+          } else c = Math.abs(du) % 4 === 0 || du === 0 ? MAD[2] : t % 12 === 6 ? FERRO[1] : MAD[(u + Math.floor(t / 3)) % 2];
+          if (!ehF && (du === 2 || du === -2) && t > 16 && t < 20) c = '#f0c840';
+        }
+        // janelas
+        const jl = [];
+        if (!ehT && !ehF) jl.push([larg - 18, 18, 8, 14]);
+        for (let k = 0; k < Math.floor(larg / 32); k++) jl.push([16 + k * 32 + (larg % 32) / 2, 54, 8, 14]);
+        for (const [cu, t0, w, hh] of jl) { const jc = janela(u, t, cu, t0, w, hh, ehT); if (jc) c = jc; }
+        // placa da taverna com o nome, placa pendurada do ferreiro (bigorna)
+        if (masc) { const lw = masc.w + 6, lx = meio - Math.floor(lw / 2), ly = 36, lh = 11; if (u >= lx && u < lx + lw && t >= ly && t < ly + lh) { const borda = u === lx || u === lx + lw - 1 || t === ly || t === ly + lh - 1; const mx = (lx + lw - 1 - u) - 2, my = ly + lh - 2 - t; c = borda ? MAD[2] : masc.tem(mx, my) ? '#f0d890' : MAD[0]; } }
+        if (ehF) { const bu = larg - 16; if (u > bu - 7 && u < bu + 7 && t > 36 && t < 44) { c = (u === bu - 6 || u === bu + 6 || t === 37 || t === 43) ? MAD[2] : MAD[0]; if (t > 38 && t < 42 && Math.abs(u - bu) < 4 - (t === 41 ? 2 : 0)) c = FERRO[1]; } }
+        pintar(x, y, Array.isArray(c) ? c[0] : c, 0, s, t, Array.isArray(c) ? 2 : tp, 1);
+      },
+      lado: (x, y, u, t, s) => pintar(x, y, t < 12 ? PEDRA[2] : (u % 16 < 2 || t === 45 ? MAD[2] : '#c8b898'), s, P.j1, t, 1, 0.72),
+      topo: (x, y, i, j) => pintar(x, y, MAD[2], i, j, h, 1, 1),
+    });
+    // telhado: camadas de 4 px que recuam para o fundo (beiral um pouco para a frente)
+    const N = 11, T = E.telha;
+    for (let k = 0; k < N; k++) {
+      const iF = 0.3 - k * (3.3 / N), h0 = h + k * 4;
+      prisma(-3.4, iF, P.j0 - 0.15, P.j1 + 0.15, h0, 4, {
+        frente: (x, y, u, t, larg, s) => pintar(x, y, t === 0 ? T[2] : ((u + (k % 2) * 4) % 8 === 0 ? T[2] : t === 3 ? T[0] : T[1]), iF, s, h0 + t, 1, 1),
+        lado: (x, y, u, t, s) => pintar(x, y, t === 0 ? T[2] : T[2], s, P.j1 + 0.15, h0 + t, 1, 0.75),
+        topo: (x, y, i, j) => pintar(x, y, k === N - 1 ? T[2] : T[0], i, j, h0 + 4, 1, 1.1),
+      });
+    }
+    if (E.chamine) {
+      const cj = P.j0 + 0.8;
+      prisma(-2.2, -1.4, cj, cj + 0.7, h + 20, 30, {
+        frente: (x, y, u, t) => pintar(x, y, t > 26 ? '#2a2420' : pedra(u, t), -1.4, cj, h + 20 + t, 1, 1),
+        lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, cj + 0.7, h + 20 + t, 1, 0.72),
+        topo: (x, y, i, j) => pintar(x, y, '#14101a', i, j, h + 50, 1, 1),
+      });
+      fumacas.push({ i: -1.8, j: cj + 0.35, h: h + 52 });
+    }
+  }
   for (const P of predios) {
     if (P.e?.castelo) { castelo(P); continue; }
+    if (P.e?.medieval) { medieval(P); continue; }
     const rw = rng(P.s), pal = P.pal;
     const acesa = new Map();
     const parede = (u, t, larg) => {

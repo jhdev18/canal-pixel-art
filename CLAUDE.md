@@ -639,6 +639,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `trelica`; o antigo de grama é `mundo-bloco-grama`, `"chao": "blocos"`), avatares `avatar-bloco-*` e `avatar-bia`/`-nina`/`-topete`, cubos `cubo-*`, `plataforma-spawn`,
   `moeda-bloco`, `tela-jogo`; sons `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`. **Nada do Roblox nos assets** (logo, avatar padrão
   amarelo/azul/verde, moeda oficial): o nome só na narração/título. Teste: `projetos/vitrine` (cenas 42–43).
+- **Medieval (PROTÓTIPO)** (`motor/assets/medieval.js` + fachadas `casa-medieval`/`-2`/`-3`, `taverna`, `ferreiro`, `muralha` e
+  `"chao": "pedras"` no `ruaDiagonal.js`): cenários `vila-medieval`, `castelo-medieval`, `salao-trono-diorama`, `taverna-diorama`; pessoas
+  `rei`, `rainha`, `princesa`, `cavaleiro`, `campones`, `camponesa`, `ferreiro`, `bruxa`, `mago` (chapéus novos `bruxa` e `capuz` no gerador);
+  objetos `barril`, `feno`, `carroca`, `poco`, `barraca-medieval`, `estandarte`, `tocha`. Teste: `projetos/vitrine` (cenas 44–47).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,

@@ -614,6 +614,54 @@
       "acoes": [
         { "tipo": "trocar", "alvo": "tela", "estado": "chat", "inicio": 1.6 }, { "tipo": "som", "som": "chat", "inicio": 1.6 },
         { "tipo": "trocar", "alvo": "tela", "estado": "erro", "inicio": 3.2 }, { "tipo": "som", "som": "bug-jogo", "inicio": 3.2 }
+      ] },
+    // 44. PROTÓTIPO: vila medieval (casas de enxaimel, taverna, ferreiro, poço, carroça, tochas) com camponeses, ferreiro e bruxa
+    { "cenario": "vila-medieval", "duracao": 7, "transicao": "dither", "foto": [0.8, 3.0, 5.4], "camera": { "x": -1, "z": 2.2, "y": 2.6 },
+      "legenda": "44. Vila medieval: casas, taverna, ferreiro; camponês, camponesa, ferreiro, bruxa.",
+      "elementos": [
+        { "id": "camp", "personagem": "campones", "x": -7.0, "z": 2.6 }, { "id": "campa", "personagem": "camponesa", "x": -4.6, "z": 3.4 },
+        { "id": "ferr", "personagem": "ferreiro", "x": 4.2, "z": 4.6 }, { "id": "bruxa", "personagem": "bruxa", "x": 3.6, "z": 1.8 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "camp", "para": -0.8, "inicio": 0.3, "duracao": 3.0 },
+        { "tipo": "emocao", "alvo": "campa", "icone": "!", "inicio": 2.8 },
+        { "tipo": "falar", "alvo": "bruxa", "texto": "* Quer uma maçã?", "inicio": 3.6 },
+        { "tipo": "expressao", "alvo": "ferr", "rosto": "bravo", "inicio": 4.6, "duracao": 2.2 }
+      ] },
+
+    // 45. PROTÓTIPO: muralha do castelo (portão, grade levadiça, torres, estandartes) com o cavaleiro de guarda
+    { "cenario": "castelo-medieval", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0.6, "z": 2.2, "y": 3.4 },
+      "legenda": "45. Castelo: muralha, portão, torres; cavaleiro.",
+      "elementos": [
+        { "id": "cav", "personagem": "cavaleiro", "x": 2.6, "z": 5.0 }, { "id": "mago", "personagem": "mago", "x": -2.4, "z": 2.6 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "mago", "para": 0.6, "inicio": 0.3, "duracao": 2.4 },
+        { "tipo": "falar", "alvo": "cav", "texto": "* Alto lá!", "inicio": 2.8 }
+      ] },
+
+    // 46. PROTÓTIPO: salão do trono (rei no trono, rainha, princesa, cavaleiro)
+    { "cenario": "salao-trono-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "46. Salão do trono: vitrais, estandartes, tochas, trono e tapete; rei, rainha, princesa, cavaleiro.",
+      "elementos": [
+        { "id": "rei", "personagem": "rei", "x": 0, "z": 3.0, "pose": "sentado", "y": 0.55 },
+        { "id": "rainha", "personagem": "rainha", "x": 1.9, "z": 2.6 }, { "id": "princesa", "personagem": "princesa", "x": -1.8, "z": 2.6 },
+        { "id": "cav", "personagem": "cavaleiro", "x": 0.4, "z": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "emocao", "alvo": "princesa", "icone": "coracao", "inicio": 1.2 },
+        { "tipo": "falar", "alvo": "rei", "texto": "* Ajoelhe-se!", "inicio": 2.4 }
+      ] },
+
+    // 47. PROTÓTIPO: taverna (lareira acesa, balcão, barris, mesas com canecas)
+    { "cenario": "taverna-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "47. Taverna: lareira, balcão, barris, mesas; camponês e ferreiro.",
+      "elementos": [
+        { "id": "camp", "personagem": "campones", "x": -2.8, "z": 0.8 }, { "id": "ferr", "personagem": "ferreiro", "x": 5.6, "z": 2.8 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "camp", "para": 2.4, "inicio": 0.3, "duracao": 2.6 },
+        { "tipo": "expressao", "alvo": "ferr", "rosto": "rindo", "inicio": 3.0, "duracao": 1.8 }
       ] }
   ]
 }

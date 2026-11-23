@@ -708,5 +708,33 @@
       { "id": "chegada", "sprite": "cubo-xadrez", "x": 5.6, "z": 5.6 },
       { "id": "moeda1", "sprite": "moeda-bloco", "x": 1.9, "z": 5.4, "y": 1.6 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": -2.6, "z": 5.6, "y": 1.4 }
     ]
-  }
+  },
+
+  // ---- MEDIEVAL (PROTÓTIPO, motor/assets/medieval.js + fachadas em ruaDiagonal.js) ----
+  // vila-medieval: rua de pedras com casas de enxaimel. Da esquerda para a direita (centro x): casa (-10.4), TAVERNA (-5.4),
+  // casa de telhado cinza com chaminé (-0.4), FERREIRO com a forja acesa (4.1), casa (8.6). Calçada das casas z ~4.6–5.0; rua z 0.6–4.
+  "vila-medieval": {
+    "vista": "diorama", "camera": { "x": -1, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "dia", "chao": "pedras", "soPedidos": true, "postes": false, "cerca": false, "ancoraPredios": -10,
+      "predios": [ { "tipo": "casa-medieval", "largura": 4 }, { "tipo": "taverna", "largura": 6 }, { "tipo": "casa-medieval-2", "largura": 4 }, { "tipo": "ferreiro", "largura": 5 }, { "tipo": "casa-medieval-3", "largura": 4 } ] },
+    "elementos": [
+      { "id": "poco", "sprite": "poco", "x": 1.4, "z": 0.8 }, { "id": "barraca", "sprite": "barraca-medieval", "x": 6.4, "z": 0.2 },
+      { "id": "carroca", "sprite": "carroca", "x": -9.4, "z": 1.8 }, { "id": "feno", "sprite": "feno", "x": -7.6, "z": 4.6 },
+      { "id": "barril1", "sprite": "barril", "x": 6.6, "z": 4.8 }, { "id": "barril2", "sprite": "barril", "x": 7.2, "z": 4.8 },
+      { "id": "tocha1", "sprite": "tocha", "x": -7.9, "z": 5.0 }, { "id": "tocha2", "sprite": "tocha", "x": 1.9, "z": 5.0 }
+    ]
+  },
+  // castelo-medieval: a MURALHA do castelo (portão em arco com grade levadiça, ameias, torres quadradas, estandartes). Portão em x ~0.6;
+  // guardas dos lados do portão (x -1.4 e 2.6, z 5.0); câmera alta para ver as torres.
+  "castelo-medieval": {
+    "vista": "diorama", "camera": { "x": 0.6, "z": 2.2, "y": 3.4 },
+    "rua": { "periodo": "dia", "chao": "pedras", "soPedidos": true, "postes": false, "cerca": false, "ancoraPredios": -6,
+      "predios": [ { "tipo": "muralha", "largura": 12 } ] },
+    "elementos": [
+      { "id": "tocha1", "sprite": "tocha", "x": -2.0, "z": 5.0 }, { "id": "tocha2", "sprite": "tocha", "x": 3.4, "z": 5.0 },
+      { "id": "est1", "sprite": "estandarte", "x": -6.6, "z": 4.4 }, { "id": "est2", "sprite": "estandarte", "x": 7.4, "z": 4.4, "pose": "azul" }
+    ]
+  },
+  "salao-trono-diorama": { "vista": "diorama", "comodo": { "tipo": "salao-trono" } },
+  "taverna-diorama":     { "vista": "diorama", "comodo": { "tipo": "taverna" } }
 }

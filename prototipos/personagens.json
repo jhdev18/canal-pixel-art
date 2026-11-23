@@ -50,6 +50,16 @@
   "brinquedo-boneca-sem-rosto":     { "sprite": "brinquedo-boneca-sem-rosto", "voz": 1.2 },
   "brinquedo-robo-sem-rosto":       { "sprite": "brinquedo-robo-sem-rosto", "voz": 0.5 },
   "brinquedo-caixa-sem-rosto":      { "sprite": "brinquedo-caixa-sem-rosto", "voz": 1.4 },
+  // ---- medieval (motor/assets/medieval.js)
+  "rei": { "sprite": "rei", "voz": 0.8 },
+  "rainha": { "sprite": "rainha", "voz": 1.1 },
+  "princesa": { "sprite": "princesa", "voz": 1.4 },
+  "cavaleiro": { "sprite": "cavaleiro", "voz": 0.9 },
+  "campones": { "sprite": "campones", "voz": 1.0 },
+  "camponesa": { "sprite": "camponesa", "voz": 1.15 },
+  "ferreiro": { "sprite": "ferreiro", "voz": 0.8 },
+  "bruxa": { "sprite": "bruxa", "voz": 1.25 },
+  "mago": { "sprite": "mago", "voz": 0.85 },
   // ---- jogo de blocos (motor/assets/bloco.js)
   "avatar-bloco-vermelho": { "sprite": "avatar-bloco-vermelho", "voz": 1.3 },
   "avatar-bloco-roxo": { "sprite": "avatar-bloco-roxo", "voz": 1.4 },
