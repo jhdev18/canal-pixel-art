@@ -156,7 +156,11 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
   `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
   menos — preferir `bug` ou zoom 2 nesses casos.
-- **`mundo-bloco` v4 = o LOBBY do jogo** 🧪 (pedido do usuário: "fundo e peças no nada" estavam estranhos): praça de baseplate (z -0.5 a 6.5)
+- **v5: dois lugares** 🧪 — `mundo-bloco` = o **lobby** (praça de baseplate, spawn, gramado, casinhas e árvores; sem peças soltas: o usuário
+  perguntou "esses blocos estão fazendo o quê?") e `mundo-bloco-corrida` = o **percurso** (o mesmo lobby com a corrida montada na beira de trás).
+  Use a corrida só quando a cena for de corrida/campeonato e os avatares estiverem pulando nas peças; o resto (chat, spawn, avatares
+  esperando, socorro) no lobby.
+- **`mundo-bloco` v4 (agora é o `mundo-bloco-corrida`)** 🧪 (pedido do usuário: "fundo e peças no nada" estavam estranhos): praça de baseplate (z -0.5 a 6.5)
   cercada de **gramado**; no fundo (grama, z 7.4–9) um bairro de 4 `casa-bloco` e árvores; o percurso fica na beira de trás da praça
   (z 5.4–6.2) e é **todo apoiado no chão** (escada de peças, 2 blocos neon, checkpoint, treliça com a plataforma em cima, chegada e
   checkpoint 2). Nada flutuando sem apoio. Avatares em z ~1.4–4.4.

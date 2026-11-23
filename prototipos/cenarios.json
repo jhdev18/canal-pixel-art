@@ -678,7 +678,25 @@
   // com pinos; no fundo (z 5.4–6.6) um percurso de peças de plástico coloridas ("obby"): plataforma de nascer, escada de peças, placa,
   // bloco neon que "mata", torre com treliça e a chegada xadrez. Pessoas z ~1.4–4.4. Câmera { "x": 0, "z": 2.2, "y": 2.6 }.
   "mundo-bloco": {
-    // v4: o LOBBY do jogo — praça de baseplate (z -0.5 a 6.5) cercada de gramado; casinhas e árvores no fundo (grama, z ~7.5–9);
+    // v5: o LOBBY do jogo (onde os avatares nascem e se encontram) — praça de baseplate cercada de gramado, spawn no meio,
+    // bairro de casinhas e árvores no fundo (sem peças soltas: o percurso fica só no cenário da corrida).
+    // Para a corrida em si, use "mundo-bloco-corrida" (o percurso com escada, blocos que matam, checkpoint e chegada).
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "dia", "chao": "baseplate", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "spawn", "sprite": "plataforma-spawn", "x": -6.4, "z": 2.0 },
+      // fundo: bairro do lobby no gramado
+      { "id": "casa1", "sprite": "casa-bloco", "x": -11.0, "z": 8.0 }, { "id": "casa2", "sprite": "casa-bloco", "x": -3.6, "z": 9.0 },
+      { "id": "casa3", "sprite": "casa-bloco", "x": 9.0, "z": 9.0 }, { "id": "casa4", "sprite": "casa-bloco", "x": 15.4, "z": 8.0 },
+      { "id": "arv1", "sprite": "arvore-bloco", "x": -7.2, "z": 7.4 }, { "id": "arv2", "sprite": "arvore-bloco", "x": 0.0, "z": 7.6 },
+      { "id": "arv3", "sprite": "arvore-bloco", "x": 7.0, "z": 7.4 }, { "id": "arv4", "sprite": "arvore-bloco", "x": -14.6, "z": 7.6 },
+      { "id": "arv5", "sprite": "arvore-bloco", "x": 12.6, "z": 7.4 },
+      { "id": "arv6", "sprite": "arvore-bloco", "x": -12.4, "z": -1.4 }, { "id": "arv7", "sprite": "arvore-bloco", "x": 12.2, "z": -1.6 }
+    ]
+  },
+  // mundo-bloco-corrida: o percurso de obstáculos (cenas de corrida/campeonato)
+  "mundo-bloco-corrida": {
+    // a CORRIDA (percurso de obstáculos) — praça de baseplate (z -0.5 a 6.5) cercada de gramado; casinhas e árvores no fundo (grama, z ~7.5–9);
     // o percurso fica na beira de trás da praça (z 5.4–6.2), todo apoiado no chão: escada de peças, bloco vermelho que mata,
     // checkpoint verde, torre de treliça com a plataforma em cima e a chegada xadrez. Avatares em z ~1.4–4.4 (frente livre).
     "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },

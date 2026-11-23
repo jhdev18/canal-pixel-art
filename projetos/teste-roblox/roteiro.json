@@ -97,10 +97,10 @@
       ] },
     // 72. mundo-bloco v3 (mais cheio): vista normal e vista alta
     { "cenario": "mundo-bloco", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
-      "legenda": "72. Mundo-bloco v3: vista normal.",
+      "legenda": "72. mundo-bloco (lobby).",
       "elementos": [ { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 2.4 }, { "id": "atop", "personagem": "avatar-topete", "x": 1.6, "z": 3.4 }, { "id": "anina", "personagem": "avatar-nina", "x": -4.2, "z": 3.0 } ],
       "acoes": [] },
-    { "cenario": "mundo-bloco", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 3.6 },
-      "legenda": "73. Mundo-bloco v3: câmera alta (céu).", "elementos": [], "acoes": [] }
+    { "cenario": "mundo-bloco-corrida", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "73. mundo-bloco-corrida (o percurso).", "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -5.0, "z": 3.0 } ], "acoes": [] }
   ]
 }
