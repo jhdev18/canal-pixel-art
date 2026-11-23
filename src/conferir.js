@@ -16,6 +16,7 @@
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
 import { resolverRoteiro, estadoElemento, estadoCamera } from '../motor/compartilhado/linhaDoTempo.js';
+import { medirCentro } from '../motor/compartilhado/centro.js';
 import { Pix } from '../motor/pixel.js';
 import path from 'node:path';
 
@@ -98,10 +99,11 @@ export async function conferir(nome) {
     if ((c.vista !== 'diorama' && c.vista !== 'diagonal') || c.comodo) continue;
     const objs = c.elementos.filter((e) => e.sprite && BASE.test(e.sprite) && !e.oculto && tam(e.sprite)?.iso);
     for (const p of c.elementos.filter((e) => ehPessoa(e, tam))) {
-      for (const t of [0, c.duracao - 0.05]) {
+      for (let t = 0; t < c.duracao; t += 0.2) {   // amostrado na cena inteira: pega também quem PASSA por dentro do objeto andando/correndo
         const sp = estadoElemento(c, p, t);
         if (!sp.visivel || sp.yBase > 0.3) continue;                       // em cima de propósito (palanque, banco) usa "y"
-        const o = objs.find((o) => { const b = tam(o.sprite).iso; return sp.x > o.x + 0.1 && sp.x < o.x + (b.dj ?? 1) - 0.1 && (p.z ?? 0) > o.z + 0.1 && (p.z ?? 0) < o.z + (b.di ?? 1) - 0.1; });
+        const o = objs.find((o) => { const b = tam(o.sprite).iso; const pz = sp.z ?? p.z ?? 0, m = /^(canteiro|fonte)/.test(o.sprite) ? 0.05 : -0.1;   // canteiro/fonte: pés encostando na borda já parecem dentro; barraca/banco: o vendedor fica colado de propósito
+          return sp.x > o.x - m && sp.x < o.x + (b.dj ?? 1) + m && pz > o.z - m && pz < o.z + (b.di ?? 1) + m; });
         if (o) { aviso(c.numero, 'em cima', `"${p.id}" está em pé em cima de "${o.id}" (${o.sprite}) em ~${t.toFixed(1)} s — mova para fora da base do objeto`); break; }
       }
     }
@@ -254,6 +256,22 @@ export async function conferir(nome) {
     }
     const sombras = c.elementos.filter((e) => e.sombraPessoa).length;
     if (sombras > 4) aviso(c.numero, 'sombras', `${sombras} sombras de pessoa (o motor mostra no máximo 4)`);
+  }
+
+  // ---------- 4b. [centro] Shorts: quem conta a história fora do meio da tela (a câmera do diorama não fica em cima do mesmo "x")
+  for (const [i, c] of r.cenas.entries()) {
+    if ((c.vista !== 'diorama' && c.vista !== 'diagonal')) continue;
+    const v = bruto.cenas[i]?.vertical?.camera;
+    const cam = { ...(c.camera || {}), ...(v || {}) };
+    const em = bruto.cenas[i]?.vertical?.centrarEm;   // centrar de propósito em alguém (foco: "id" no nm.mjs)
+    const quem = c.elementos.filter((e) => ehPessoa(e, tam) && !e.tela && (em ? em.includes(e.id) : !e.figurante));
+    if (!quem.length) continue;
+    const zoom = cam.zoom ?? 1, med = medirCentro(c, quem, cam, estadoElemento);
+    if (!med) continue;
+    const { m } = med, larg = [med.larg];
+    const movem = c.acoes.some((a) => ['andar', 'correr'].includes(a.tipo) && quem.some((e) => e.id === a.alvo) && Math.abs((typeof a.para === 'number' ? a.para : 0) - (c.elementos.find((e) => e.id === a.alvo).x ?? 0)) > 5);
+    if (Math.abs(m) > 20 && !movem) aviso(c.numero, 'centro', `no Shorts, ${quem.map((e) => e.id).join(', ')} ficam ${Math.round(Math.abs(m))} px à ${m > 0 ? 'direita' : 'esquerda'} do meio — use "x": ${((cam.x ?? 0) + m / (16 * zoom)).toFixed(2)} na câmera do "vertical" (ou foco: "<id>" no cena() do nm.mjs, que centraliza sozinho)`);
+    if (Math.max(...larg) > 170 && !movem) aviso(c.numero, 'centro', `no Shorts, o grupo (${quem.map((e) => e.id).join(', ')}) tem ${Math.round(Math.max(...larg))} px de largura e não cabe nos 180 px — junte as pessoas ou escolha em quem centrar`);
   }
 
   // ---------- 5. quem segue algo e para antes do fim da fala (fica de frente para a câmera)

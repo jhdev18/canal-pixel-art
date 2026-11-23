@@ -69,9 +69,9 @@ C.push(cena('Primeiro o padeiro. Depois a professora. Em um minuto, a cidade int
 C.push(cena('E quanto mais gente corria, mais rápido o pão fugia.', {
   cenario: 'praca', camera: PRACA(0), foco: 0,
   elementos: [PAO('gigante', -6.4, -9.8, { escala: 4 }), P('bia', 'menina-capa', -2.6, -8.6), P('tonho', 'padeiro', -8.6, -8.0), P('prof', 'professora', -9.4, -7.6),
-    P('caixa', 'caixa', -10.2, -7.2), P('policial', 'policial', -11.0, -9.2)],
+    P('caixa', 'caixa', -10.2, -7.2), P('policial', 'policial', -4.0, -9.2)],
   acoes: [...saltos('gigante', -6.4, 6.8, 0, 0.6, 5, 0.6), a(0.05, 'correr', { alvo: 'tonho', para: 3.6, durF: 0.85 }),
-    a(0.08, 'correr', { alvo: 'prof', para: 2.6, durF: 0.85 }), a(0.11, 'correr', { alvo: 'caixa', para: 1.6, durF: 0.85 }), a(0.14, 'correr', { alvo: 'policial', para: 0.6, durF: 0.84 }),
+    a(0.08, 'correr', { alvo: 'prof', para: 2.6, durF: 0.85 }), a(0.11, 'correr', { alvo: 'caixa', para: 1.6, durF: 0.85 }), a(0.14, 'correr', { alvo: 'policial', para: 0.6, durF: 0.84 })   /* policial sai de x -4 (à direita do canteiro1: correndo de -11 ele passava por dentro) */,
     a(0.35, 'emocao', { alvo: 'bia', icone: '?' })],
 }));
 // 9. A protagonista AGE: não corre, para e abre a mão
