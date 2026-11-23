@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (200)
+## Sprites (217)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -295,6 +295,28 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `manequim-coberto` | 🧪 protótipo | parado, virado | 26×50 |
 | `fumaca-chamine` | 🧪 protótipo | parado | 28×60 |
 
+### Jogo de blocos (vídeos sobre Roblox)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `avatar-bloco-vermelho` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-bloco-roxo` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-bloco-verde` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-bloco-azul` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-bloco-capuz` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-bia` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-nina` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-topete` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `cubo-grama` | 🧪 protótipo | parado | 35×33 |
+| `cubo-terra` | 🧪 protótipo | parado | 35×33 |
+| `cubo-pedra` | 🧪 protótipo | parado | 35×33 |
+| `cubo-madeira` | 🧪 protótipo | parado | 35×33 |
+| `cubo-lava` | 🧪 protótipo | parado | 35×33 |
+| `cubo-xadrez` | 🧪 protótipo | parado | 35×33 |
+| `plataforma-spawn` | 🧪 protótipo | parado | 55×29 |
+| `tela-jogo` | 🧪 protótipo | parado, jogando, chat, erro | 96×64 |
+| `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
+
 ## Personagens
 
 Uso: `{ "id": "x", "personagem": "nome" }`
@@ -338,6 +360,14 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `brinquedo-boneca-sem-rosto` | 🧪 protótipo | `brinquedo-boneca-sem-rosto` | 1.2 |
 | `brinquedo-robo-sem-rosto` | 🧪 protótipo | `brinquedo-robo-sem-rosto` | 0.5 |
 | `brinquedo-caixa-sem-rosto` | 🧪 protótipo | `brinquedo-caixa-sem-rosto` | 1.4 |
+| `avatar-bloco-vermelho` | 🧪 protótipo | `avatar-bloco-vermelho` | 1.3 |
+| `avatar-bloco-roxo` | 🧪 protótipo | `avatar-bloco-roxo` | 1.4 |
+| `avatar-bloco-verde` | 🧪 protótipo | `avatar-bloco-verde` | 1.2 |
+| `avatar-bloco-azul` | 🧪 protótipo | `avatar-bloco-azul` | 1.3 |
+| `avatar-bloco-capuz` | 🧪 protótipo | `avatar-bloco-capuz` | 0.6 |
+| `avatar-bia` | 🧪 protótipo | `avatar-bia` | 1.2 |
+| `avatar-nina` | 🧪 protótipo | `avatar-nina` | 1.3 |
+| `avatar-topete` | 🧪 protótipo | `avatar-topete` | 1.4 |
 | `manequim` | 🧪 protótipo | `manequim` | 0.9 |
 | `manequim-coberto` | 🧪 protótipo | `manequim-coberto` | 0.9 |
 | `protagonista` | ✅ | `heroi` | 1 |
@@ -408,6 +438,7 @@ Uso: `{ "cenario": "nome" }`
 | `fabrica-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo fabrica-brinquedos) | 0 |
 | `loja-fundos-diorama` | 🧪 protótipo | diorama (cômodo loja-fundos) | 0 |
 | `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
+| `mundo-bloco` | 🧪 protótipo | diorama | 14 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |
@@ -448,6 +479,6 @@ Uso: `{ "cenario": "nome" }`
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `miau-monstro`, `trovao`, `suspense`, `fantasma`, `servo`, `corda`, `caixinha-musica`, `falha-eletrica`, `trilha-suspense`, `trilha-comedia`, `trilha-emocional`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `miau-monstro`, `trovao`, `suspense`, `fantasma`, `servo`, `corda`, `caixinha-musica`, `falha-eletrica`, `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`, `trilha-suspense`, `trilha-comedia`, `trilha-emocional`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

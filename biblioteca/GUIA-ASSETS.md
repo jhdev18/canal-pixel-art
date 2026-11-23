@@ -128,6 +128,20 @@ z ~2.4; dentro da cela x ~7.4, z ~2.6.
 ### Fora da cidade (diorama, 🧪)
 `estrada-terra` (placa "VILA SERENA 1 KM"; pessoas z ~1.4–4.4), `ponte-rio` / `-noite` (em cima da ponte: `"y": 0.45`).
 
+### Jogo de blocos (🧪, vídeos que falam de Roblox)
+Estilo "jogo de bonecos de bloco" desenhado do nosso jeito. **Nunca** usar o logo, o nome em sprite, o avatar padrão (amarelo/azul/verde)
+nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/título.
+- `mundo-bloco`: o mundo DENTRO do jogo, de dia: chão de ladrilhos de grama com caminho de pedra (opção da rua `"chao": "blocos"`), percurso de
+  cubos no fundo (plataforma de nascer em x -6.4 z 2.0, degraus, lava, torre de pedra, chegada xadrez, moedas). Pessoas no caminho z ~1.4–4.4.
+- Avatares (personagens): `avatar-bloco-vermelho`, `-roxo`, `-verde`, `-azul`, `avatar-bloco-capuz` (rosto no escuro, olhos vermelhos: o estranho
+  do servidor) e o elenco em bloco `avatar-bia`, `avatar-nina`, `avatar-topete`. Estados `parado`, `acenar`, `bug` (fatias e cores, travando),
+  `sem-rosto`, `sorriso` (o sorriso pintado estica); andam travados e pulam; `bug`/`sem-rosto`/`sorriso` valem andando.
+- Cubos (sprites isométricos, 1 cubo = `"y": 1` para empilhar): `cubo-grama`, `cubo-terra`, `cubo-pedra`, `cubo-madeira`, `cubo-lava` (brilha),
+  `cubo-xadrez`, `plataforma-spawn` (brilha); `moeda-bloco` (moedinha quadrada nossa, gira).
+- `tela-jogo`: monitor em close (`"tela": true`, `"escurecer"`), estados `jogando`, `chat`, `erro`.
+- Sons: `entrar-jogo`, `pulo-bloco`, `ai` (o "ui!" de quando o avatar cai), `chat`, `bug-jogo`.
+- Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
+
 ### Não usar sem pedido do usuário
 Cenários laterais (`escola`, `padaria`, `cidade-rpg`, `vila`...), a avenida e o modo 3D. Eles existem, mas a regra
 do canal é o diorama.

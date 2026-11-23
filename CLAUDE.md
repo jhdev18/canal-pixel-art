@@ -634,6 +634,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (`motor/assets/loja-fabrica.js`). Também: sala dos fundos da loja `loja-fundos-diorama` (oficina) e depósito `sala-manequins-diorama`
   com os personagens `manequim` (cinza, sem roupa, sem rosto, no suporte) e `manequim-coberto`. A fábrica continua para outras histórias.
   Teste: `projetos/vitrine` (cenas 34, 36–40).
+- **Jogo de blocos (PROTÓTIPO, para vídeos que falam de Roblox; pedido do usuário)** (`motor/assets/bloco.js`): cenário `mundo-bloco`
+  (opção da rua `"chao": "blocos"`), avatares `avatar-bloco-*` e `avatar-bia`/`-nina`/`-topete`, cubos `cubo-*`, `plataforma-spawn`,
+  `moeda-bloco`, `tela-jogo`; sons `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`. **Nada do Roblox nos assets** (logo, avatar padrão
+  amarelo/azul/verde, moeda oficial): o nome só na narração/título. Teste: `projetos/vitrine` (cenas 42–43).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,

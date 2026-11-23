@@ -672,5 +672,24 @@
   "fabrica-brinquedos-diorama": { "vista": "diorama", "comodo": { "tipo": "fabrica-brinquedos" } },
   // sala dos fundos da loja (oficina de conserto) e o depósito com os manequins cinza
   "loja-fundos-diorama":     { "vista": "diorama", "comodo": { "tipo": "loja-fundos" } },
-  "sala-manequins-diorama":  { "vista": "diorama", "comodo": { "tipo": "sala-manequins" } }
+  "sala-manequins-diorama":  { "vista": "diorama", "comodo": { "tipo": "sala-manequins" } },
+
+  // ---- jogo de blocos (PROTÓTIPO, vídeos sobre Roblox): o mundo DENTRO do jogo, de dia, todo de cubos.
+  // Chão de ladrilhos de grama com caminho de pedra no meio (pessoas no caminho, z ~1.4–4.4); no fundo (z 5.4–6.6) um percurso
+  // de cubos ("obby"): plataforma de nascer, degraus, lava, torre de pedra e a bandeira de chegada. Câmera { "x": 0, "z": 2.2, "y": 2.6 }.
+  "mundo-bloco": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "dia", "chao": "blocos", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "spawn", "sprite": "plataforma-spawn", "x": -6.4, "z": 2.0 },
+      { "id": "c1", "sprite": "cubo-terra", "x": -3.6, "z": 5.6 }, { "id": "c2", "sprite": "cubo-grama", "x": -3.6, "z": 5.6, "y": 1 },
+      { "id": "c3", "sprite": "cubo-grama", "x": -2.6, "z": 5.6 },
+      { "id": "c4", "sprite": "cubo-madeira", "x": -1.0, "z": 6.0 }, { "id": "c5", "sprite": "cubo-madeira", "x": 0.0, "z": 6.0, "y": 1 },
+      { "id": "c6", "sprite": "cubo-lava", "x": 1.4, "z": 5.4 }, { "id": "c7", "sprite": "cubo-lava", "x": 2.4, "z": 5.4 },
+      { "id": "c8", "sprite": "cubo-pedra", "x": 4.0, "z": 6.0 }, { "id": "c9", "sprite": "cubo-pedra", "x": 4.0, "z": 6.0, "y": 1 },
+      { "id": "c10", "sprite": "cubo-pedra", "x": 4.0, "z": 6.0, "y": 2 },
+      { "id": "chegada", "sprite": "cubo-xadrez", "x": 5.6, "z": 5.6 },
+      { "id": "moeda1", "sprite": "moeda-bloco", "x": 1.9, "z": 5.4, "y": 1.6 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": -2.6, "z": 5.6, "y": 1.4 }
+    ]
+  }
 }

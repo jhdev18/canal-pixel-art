@@ -88,6 +88,14 @@ export function gerarRuaDiagonal(opc = {}) {
     // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
     const terra = opc.chao === 'terra';
     const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.chao === 'blocos') {   // PROTÓTIPO: mundo de cubos (jogo de blocos): grama em ladrilhos de 1x1 com junta, caminho de pedra no meio
+      const ci = Math.floor(i), cj = Math.floor(j), fi = i - ci, fj = j - cj, junta = fi < 0.06 || fj < 0.06;
+      const caminho = i > 1.8 && i < 5.2, v = (((ci * 92821) ^ (cj * 68917)) >>> 0) % 7;
+      c = caminho ? (junta ? '#6a6a74' : v === 0 ? '#b8b8c0' : (ci + cj) % 2 ? '#a0a0aa' : '#9494a0')
+        : (junta ? '#3e8a34' : v === 0 ? '#6ad85a' : (ci + cj) % 2 ? '#5ac84a' : '#52bc44');
+      if (!caminho && !junta && (fi > 0.8 || fj > 0.8) && bayer(x, y) < 0.5) c = '#4aac3c';
+      pintar(x, y, c, i, j, 0); continue;
+    }
     if (opc.rio && i > 1.5 && i < 5.5) {
       const borda = i < 1.8 || i > 5.2;
       const onda = Math.sin(j * 4 + i * 2.2 + 1) + Math.sin(j * 1.7 - i * 3.1) * 0.6;

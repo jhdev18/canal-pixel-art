@@ -210,6 +210,12 @@ const SONS = {
   // falha elétrica: chiado com estalos (rosto que pisca para o esqueleto)
   'falha-eletrica': () => misturar([[ruido({ dur: 0.5, vol: 0.3, f0: 4000, filtro: 'passa-alta', semente: 71, envFn: (t, p) => (Math.sin(t * 90) > 0.2 ? 1 : 0.15) * (1 - p) })],
     [tom({ tipo: 'quadrada', f0: 120, dur: 0.5, vol: 0.1, duty: 0.5, curva: 1.4 })], ...[0.05, 0.19, 0.31].map((t0, k) => [ruido({ dur: 0.03, vol: 0.5, f0: 2500, curva: 2, semente: 80 + k }), t0])]),
+  // ---- jogo de blocos (PROTÓTIPO, vídeos sobre Roblox; sons nossos) ----
+  'entrar-jogo': () => sequencia([523, 659, 784, 1047, 1319], { passo: 0.06, vol: 0.18, duty: 0.25, ultimaDur: 0.4 }),
+  'pulo-bloco': () => tom({ f0: 330, f1: 880, dur: 0.12, vol: 0.22, duty: 0.5, curva: 0.7 }),
+  ai: () => misturar([[tom({ tipo: 'triangulo', f0: 520, f1: 300, dur: 0.22, vol: 0.35, curva: 1.2, vibrato: 0.04, vibratoHz: 18 })], [ruido({ dur: 0.08, vol: 0.12, f0: 1800, filtro: 'passa-banda', q: 2 }), 0.02]]),
+  chat: () => misturar([[tom({ f0: 1200, dur: 0.04, vol: 0.18, duty: 0.25 })], [tom({ f0: 1600, dur: 0.06, vol: 0.18, duty: 0.25 }), 0.06]]),
+  'bug-jogo': () => esmagar(misturar([0, 0.07, 0.11, 0.2, 0.26, 0.38].map((t0, k) => [k % 2 ? tom({ f0: 180 + k * 140, f1: 60, dur: 0.06, vol: 0.3, duty: 0.5 }) : ruido({ dur: 0.05, vol: 0.4, f0: 3000, filtro: 'passa-banda', q: 1, semente: 120 + k }), t0])), 4),
   // ---- Ambientes (loops) ----
   chuva: () => emLoop((L) => misturar([
     [ruido({ dur: L, vol: 0.28, f0: 5000, envFn: () => 1, semente: 21 })],

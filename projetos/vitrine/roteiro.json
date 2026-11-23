@@ -578,6 +578,42 @@
         { "tipo": "som", "som": "servo", "inicio": 2.8 },
         { "tipo": "andar", "alvo": "sold", "para": [-5.6, 4.2], "inicio": 4.2, "duracao": 2.6 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.0, "duracao": 3.8 }
+      ] },
+    // 42. PROTÓTIPO: mundo de blocos (mundo-bloco): avatares nascem na plataforma, andam e pulam; o elenco em bloco; o de capuz aparece com bug
+    { "cenario": "mundo-bloco", "duracao": 8, "transicao": "dither", "foto": [0.8, 2.8, 4.8, 6.8], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "42. Mundo de blocos: cubos, spawn, moedas; avatares (vermelho, roxo, verde, azul), Bia/Nina/topete em bloco, o de capuz com bug.",
+      "elementos": [
+        { "id": "abia", "personagem": "avatar-bia", "x": -6.0, "z": 2.4, "oculto": true },
+        { "id": "anina", "personagem": "avatar-nina", "x": -1.8, "z": 3.4 },
+        { "id": "atop", "personagem": "avatar-topete", "x": -0.6, "z": 3.4, "pose": "acenar" },
+        { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": 1.2, "z": 2.6 },
+        { "id": "a2", "personagem": "avatar-bloco-roxo", "x": 2.6, "z": 3.8, "pose": "acenar" },
+        { "id": "a3", "personagem": "avatar-bloco-verde", "x": 3.8, "z": 2.4 },
+        { "id": "a4", "personagem": "avatar-bloco-azul", "x": 5.2, "z": 3.2 },
+        { "id": "capuz", "personagem": "avatar-bloco-capuz", "x": 6.6, "z": 4.2, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "aparecer", "alvo": "abia", "inicio": 0.4 }, { "tipo": "som", "som": "entrar-jogo", "inicio": 0.4 },
+        { "tipo": "andar", "alvo": "abia", "para": -3.6, "inicio": 1.0, "duracao": 2.0 },
+        { "tipo": "pular", "alvo": "a1", "inicio": 1.2 }, { "tipo": "som", "som": "pulo-bloco", "inicio": 1.2 },
+        { "tipo": "andar", "alvo": "a3", "para": 3.0, "inicio": 1.4, "duracao": 1.8 },
+        { "tipo": "falar", "alvo": "a2", "texto": "* oi noob kkk", "inicio": 2.2 }, { "tipo": "som", "som": "chat", "inicio": 2.2 },
+        { "tipo": "aparecer", "alvo": "capuz", "inicio": 4.4 }, { "tipo": "trocar", "alvo": "capuz", "estado": "bug", "inicio": 4.4 },
+        { "tipo": "som", "som": "bug-jogo", "inicio": 4.4 },
+        { "tipo": "trocar", "alvo": "a4", "estado": "sorriso", "inicio": 5.6 }, { "tipo": "trocar", "alvo": "a1", "estado": "sem-rosto", "inicio": 6.2 },
+        { "tipo": "trocar", "alvo": "capuz", "estado": "parado", "inicio": 6.4 }, { "tipo": "som", "som": "ai", "inicio": 6.6 }
+      ] },
+
+    // 43. PROTÓTIPO: tela do jogo em close ("tela": true): jogando → chat → erro
+    { "cenario": "quarto-menina-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.4, 4.2], "camera": { "x": 0, "y": 3 },
+      "legenda": "43. Tela do jogo (tela-jogo): jogando, chat, erro.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": 1.0 },
+        { "id": "tela", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "jogando", "escurecer": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tela", "estado": "chat", "inicio": 1.6 }, { "tipo": "som", "som": "chat", "inicio": 1.6 },
+        { "tipo": "trocar", "alvo": "tela", "estado": "erro", "inicio": 3.2 }, { "tipo": "som", "som": "bug-jogo", "inicio": 3.2 }
       ] }
   ]
 }
