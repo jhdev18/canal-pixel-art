@@ -146,6 +146,15 @@
       "elementos": [
         { "id": "va", "personagem": "aluno", "x": -1.4, "z": 4.6, "pose": "rosto-macabro-a" }, { "id": "vb", "personagem": "aluno", "x": 0.0, "z": 4.6, "pose": "rosto-macabro-b" },
         { "id": "vc", "personagem": "aluno", "x": 1.4, "z": 4.6, "pose": "rosto-macabro-c" }, { "id": "vd", "personagem": "aluno", "x": 2.8, "z": 4.6, "pose": "rosto-macabro" }
-      ], "acoes": [] }
+      ], "acoes": [] },
+    // PROTÓTIPO: animações do sorriso macabro (v8): cresce (toca uma vez no trocar), range (dentes de baixo deslizando), abre (a boca abre e fecha)
+    { "cenario": "rua-comercial", "duracao": 5, "transicao": "dither", "foto": [0.6, 1.4, 3.0], "camera": { "x": 0.6, "z": 4.6, "y": 0.9, "zoom": 2 },
+      "legenda": "80. Sorriso macabro animado: cresce (aluno), range (aluna), abre (seu Tonho).",
+      "elementos": [
+        { "id": "m1", "personagem": "aluno", "x": -0.4, "z": 4.6, "pose": "rosto-feliz" },
+        { "id": "m2", "personagem": "aluna", "x": 0.8, "z": 4.6, "pose": "rosto-macabro-range" },
+        { "id": "m3", "personagem": "padeiro", "x": 2.0, "z": 4.6, "pose": "rosto-macabro-abre" }
+      ],
+      "acoes": [ { "tipo": "trocar", "alvo": "m1", "estado": "rosto-macabro-cresce", "inicio": 0.8, "som": "revelar" } ] }
   ]
 }

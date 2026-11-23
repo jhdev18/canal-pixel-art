@@ -67,7 +67,7 @@ export function aplicarRosto(pix, L, expr) {
   const lados = [-1, 1];
   const cada = (fn) => { if (!L.semOlhos) L.olhos.forEach(([ex, ey], k) => fn(ex, ey, lados[k])); };
   const corar = (forte) => (L.bochechas || []).forEach(([x, y]) => { set(x, y, CORADO); if (forte) { set(x + (x < mx ? 1 : -1), y, CORADO); set(x, y - 1, CORADO); } });
-  switch (expr) {
+  switch (String(expr).startsWith('macabro~') ? 'macabro' : expr) {
     case 'feliz': cada(olhos.arco); bocas.sorriso(); corar(false); break;
     case 'rindo': cada(olhos.arco); bocas.aberta(); corar(true); break;
     case 'triste': cada(olhos.triste); bocas.triste(); sobr('triste'); break;
@@ -120,16 +120,23 @@ export function aplicarRosto(pix, L, expr) {
           for (const sx of [-1, 1]) { set(mx + sx * 6, y0, BOCA2); set(mx + sx * 6, y0 + 1, BOCA2); }
           for (let x = mx - 5; x <= mx + 5; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 2, BOCA2); set(x, y0, (x - mx) % 2 ? VAOD : DT); set(x, y0 + 1, (x - mx) % 2 ? DT : VAOD); }
         }
-      } else if (!L.semBoca && expr === 'macabro') {   // v8 (escolhida a partir da "B"): dentes cerrados de ponta a ponta, PONTUDOS em triângulo —
-        // os de cima apontam para baixo e os de baixo para cima, encaixados em zigue-zague; contorno fino e pontas subindo 2 px
-        const y0 = my - 1, DT = '#f4f0e4', DT2 = '#f4f0e4', VAOP = '#6a3a3a';   // junta em zigue-zague (escura, mas não preta: a faixa continua branca como a B)
-        for (const sx of [-1, 1]) { set(mx + sx * 6, y0 - 3, L.sombra); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2); set(mx + sx * 6, y0 + 1, BOCA2); set(mx + sx * 5, y0 + 2, BOCA2); set(mx + sx * 5, y0 - 1, DT); set(mx + sx * 5, y0 - 2, BOCA2); }
-        for (let x = mx - 4; x <= mx + 4; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 3, BOCA2); }
-        for (let x = mx - 5; x <= mx + 5; x++) {
-          const o = ((x - mx + 5) % 4 + 4) % 4;   // um dente a cada 4 px; os de baixo deslocados 2 px
-          set(x, y0, o === 3 ? VAOP : DT);                                   // dentes de cima (base larga)
-          set(x, y0 + 1, o === 1 || o === 3 ? DT2 : VAOP);                   // as pontas: de cima (o 1) e de baixo (o 3) se cruzam
-          if (Math.abs(x - mx) <= 4) set(x, y0 + 2, o === 1 ? VAOP : DT);    // dentes de baixo (base larga)
+      } else if (!L.semBoca && (expr === 'macabro' || expr.startsWith('macabro~'))) {   // v8: dentes cerrados PONTUDOS em zigue-zague
+        // expr 'macabro~meia,sobe,desloca,abre' = quadros das animações (cresce, range, abre); 'macabro' = o sorriso inteiro
+        const [meia, sobe, desl, abre] = expr === 'macabro' ? [5, 2, 0, 0] : expr.split('~')[1].split(',').map(Number);
+        const y0 = my - 1, DT = '#f4f0e4', VAOP = '#6a3a3a', FUNDOP = '#1a0608';
+        for (const sx of [-1, 1]) {   // pontas subindo (quanto mais largo, mais sobe)
+          const xp = mx + sx * (meia + 1);
+          for (let k = 0; k <= sobe; k++) set(xp, y0 - k, BOCA2);
+          set(xp, y0 + 1 + abre, BOCA2); if (sobe >= 2) { set(xp, y0 - 3, L.sombra); set(mx + sx * meia, y0 - 1, DT); set(mx + sx * meia, y0 - 2, BOCA2); }
+          set(mx + sx * meia, y0 + 2 + abre, BOCA2);
+        }
+        for (let x = mx - meia + 1; x <= mx + meia - 1; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 3 + abre, BOCA2); }
+        for (let x = mx - meia; x <= mx + meia; x++) {
+          const o = ((x - mx + 5) % 4 + 4) % 4, ob = ((x - mx + 5 - desl) % 4 + 4) % 4;   // os de baixo podem deslizar (rangendo)
+          set(x, y0, o === 3 ? VAOP : DT);                                                  // dentes de cima
+          if (abre) { set(x, y0 + 1, o === 1 ? DT : FUNDOP); for (let k = 2; k <= abre; k++) set(x, y0 + k, FUNDOP); set(x, y0 + 1 + abre, ob === 3 ? DT : FUNDOP); }
+          else set(x, y0 + 1, o === 1 || ob === 3 ? DT : VAOP);                             // pontas encaixadas
+          if (Math.abs(x - mx) <= meia - 1) set(x, y0 + 2 + abre, ob === 1 ? VAOP : DT);  // dentes de baixo
         }
       } else if (!L.semBoca && expr === 'macabro-fechado') {   // v6 (pedido: "sorriso sem mostrar a boca"): boca FECHADA esticada de orelha a orelha —
         // uma linha fina que sobe até perto dos olhos, com o lábio de baixo e os vincos das bochechas marcando o esforço do sorriso
@@ -179,7 +186,21 @@ export function aplicarRosto(pix, L, expr) {
 }
 
 // Acrescenta as animações "rosto-<expressão>" (2 quadros cada) a um sprite. quadros(expr) → [quadro, quadroRespirando]
+// PROTÓTIPO: animações do sorriso macabro (v8). No roteiro: "pose": "rosto-macabro-range" (ou trocar/expressao com o rosto).
+//   rosto-macabro-cresce: a boca normal vai esticando até o sorriso inteiro (toca uma vez a partir do "trocar"; depois fica parado no final)
+//   rosto-macabro-range: os dentes de baixo deslizam de um lado para o outro (rangendo), em loop
+//   rosto-macabro-abre: o sorriso fica parado e, de vez em quando, a boca abre 1–2 px (escuro dentro) e fecha, como uma respiração
+const ANIMS_MACABRO = {
+  'macabro-cresce': { q: ['macabro~1,0,0,0', 'macabro~2,0,0,0', 'macabro~3,1,0,0', 'macabro~4,1,0,0', 'macabro~5,2,0,0'], fps: 7, unica: true },
+  'macabro-range': { q: ['macabro', 'macabro~5,2,1,0', 'macabro~5,2,2,0', 'macabro~5,2,1,0'], fps: 10 },
+  'macabro-abre': { q: ['macabro', 'macabro', 'macabro', 'macabro', 'macabro', 'macabro', 'macabro~5,2,0,1', 'macabro~5,2,0,2', 'macabro~5,2,0,2', 'macabro~5,2,0,1'], fps: 6 },
+};
 export function adicionarExpressoes(sprite, quadros) {
+  const cache = {};
+  for (const [nome, an] of Object.entries(ANIMS_MACABRO)) {
+    const q = an.q.map((ex) => { if (cache[ex] == null) { cache[ex] = sprite.quadros.length; sprite.quadros.push(quadros(ex)[0]); } return cache[ex]; });
+    sprite.anims['rosto-' + nome] = { q, fps: an.fps, unica: an.unica };
+  }
   for (const e of EXPRESSOES) {
     const n = sprite.quadros.length, [a, b] = quadros(e);
     sprite.quadros.push(a, b);
@@ -194,6 +215,7 @@ const EQUIVALENTES = {
   bravo: ['assustar', 'alerta', 'agarrar'], surpreso: ['alerta', 'olho-aberto', 'olhos'], assustado: ['tremendo', 'timido', 'alerta'],
   envergonhado: ['timido'], pensativo: ['olhando-lado'],
   bug: ['bug', 'falha', 'sem-rosto'],
+  'macabro-cresce': ['sorriso', 'pior', 'olhos'], 'macabro-range': ['sorriso', 'pior', 'olhos'], 'macabro-abre': ['sorriso', 'pior', 'olhos'],
   'macabro-v2': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
   'macabro-fechado': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],
   'macabro-boca': ['sorriso', 'pior', 'olhos', 'monstro', 'assustar', 'sem-rosto'],

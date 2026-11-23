@@ -286,7 +286,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
         break;
       }
       case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
-      case 'expressao': if (p < 1) rosto = a.rosto || a.estado || null; break;   // PROTÓTIPO: rosto por um tempo
+      case 'expressao': if (p < 1) { rosto = a.rosto || a.estado || null; animInicio = a.inicio; } break;   // PROTÓTIPO: rosto por um tempo
       case 'emocao': if (p < 1 && a.rosto !== false && !rosto) rosto = (typeof a.rosto === 'string' && a.rosto) || ROSTO_DA_EMOCAO[a.icone] || null; break;
       case 'espirrar': if (p < 1) espirro = p < (a.inspira ?? 0.6) ? 'espirro-antes' : 'espirro'; break;   // PROTÓTIPO
       case 'levantar': pose = null; break;
