@@ -76,7 +76,11 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   `salvar()` refina medindo a cena resolvida no tempo (pulos, `congelar`, quem some) — a mesma conta do aviso `[centro]` do `npm run conferir`
   (`medirCentro` em `motor/compartilhado/centro.js`). Sem `foco` = todos com papel (sem figurantes/`sobre`/`tela`); `foco: 'id'` ou
   `['a','b']` = em quem centrar (vira `vertical.centrarEm`, que o conferir respeita). **Nunca** `foco: <número>` nem `centroShorts` em
-  vídeo novo. Grupo mais largo que 170 px não cabe: o conferir avisa — escolher em quem centrar com `foco`.
+  vídeo novo (se vierem, o `salvar()` recentra por cima). Grupo mais largo que 170 px não cabe: centra em quem a câmera já mostrava
+  mais no meio e nos vizinhos que cabem (até 150 px) e grava `centrarEm`; para escolher outra pessoa, `foco`. Cena com panorâmica
+  (`cameraFim`/ação `camera`) não é mexida. **Figurantes continuam valendo** — só não puxam a câmera (cena só com figurantes centra neles).
+  **Roteiro antigo ou feito à mão:** `node ferramentas/roteiros/centrar-shorts.mjs <projeto>` (`--ver` só mostra) aplica a mesma conta
+  no `roteiro.json` (pula vídeo `postado`). `"vertical": { "camera": { "travado": true } }` = x escolhido à mão, o `nm.mjs` não mexe.
   Praça cheia (várias fileiras) não cabe toda: limitar a -2 e aceitar os pés da fileira da frente sob a legenda.
   `"legendaPosicao"` (0–1, no roteiro ou na cena) muda; `"auto"` desvia sozinho de quem está na cena (`lugarLegenda` em `motor/ui.js`).
   `"legendaEstilo": "caixa"` volta à legenda antiga; `"legendaLetras"` (padrão 16) muda o tamanho dos grupos.

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { lerJsonFlexivel } from '../../src/biblioteca.js';
 import { fileURLToPath } from 'node:url';
-import { xCentrado, medirCentro } from '../../motor/compartilhado/centro.js';
+import { xCentrado, centrarCena } from '../../motor/compartilhado/centro.js';
 import { lerRoteiro } from '../../src/projeto.js';
 import { resolverRoteiro, estadoElemento } from '../../motor/compartilhado/linhaDoTempo.js';
 const RAIZ_PROJ = fileURLToPath(new URL('../../', import.meta.url));
@@ -102,8 +102,7 @@ export function cena(texto, o) {
         return [xCentrado(e.x ?? 0, e.z ?? 0, camZ, comodo), xCentrado(xf, e.z ?? 0, camZ, comodo)];
       });
       if (pontos.length) x = +((Math.min(...pontos) + Math.max(...pontos)) / 2).toFixed(2);
-      // ao salvar, o salvar() ajusta o x medindo a cena resolvida no tempo (pulos, congelar, sumir) — igual ao conferir
-      Object.defineProperty(c, '_centro', { value: quem.map((e) => e.id), enumerable: false });
+      // o salvar() ainda refina o x medindo a cena resolvida no tempo (pulos, congelar, sumir) — igual ao conferir
     }
     c.vertical = { camera: { ...o.camera, x }, ...(typeof o.foco === 'string' || Array.isArray(o.foco) ? { centrarEm: [].concat(o.foco) } : {}), ...(o.vertical || {}) };
   }
@@ -133,13 +132,14 @@ export function salvar(nome, cabecalho, roteiro) {
   const escrever = () => fs.writeFileSync(path.join(dir, 'roteiro.json'), cabecalho.map((l) => '// ' + l).join('\n') + '\n' + JSON.stringify(roteiro, null, 1) + '\n');
   escrever();
   // Shorts: centraliza de verdade — resolve o roteiro e mede onde cada um fica no tempo (mesma conta do aviso [centro] do conferir)
-  if (roteiro.cenas.some((c) => c._centro && !c.vertical?.camera?.travado)) {
+  if (roteiro.cenas.some((c) => c.vertical?.camera)) {
     const r = resolverRoteiro(lerRoteiro(dir), new Map(), { fps: 30 });
     roteiro.cenas.forEach((cb, i) => {
-      if (!cb._centro?.length || !cb.vertical?.camera) return;
-      const c = r.cenas[i], cam = { ...(c.camera || {}), ...cb.vertical.camera };
-      const med = medirCentro(c, c.elementos.filter((e) => cb._centro.includes(e.id)), cam, estadoElemento);
-      if (med && Math.abs(med.m) > 2) cb.vertical.camera.x = +((cam.x ?? 0) + med.m / (16 * (cam.zoom ?? 1))).toFixed(2);
+      if (!cb.vertical?.camera || cb.vertical.camera.travado) return;   // "travado": true = x escolhido à mão, não mexer
+      const res = centrarCena(r.cenas[i], cb, estadoElemento);
+      if (!res || (Math.abs(res.desvio) <= 2 && !res.centrarEm)) return;
+      cb.vertical.camera.x = res.x;
+      if (res.centrarEm) cb.vertical.centrarEm = res.centrarEm;
     });
     escrever();
   }
@@ -186,8 +186,7 @@ export function alturaShorts(C, ajustes) {
   }
 }
 
-// Centraliza no Shorts (9:16): soma dx ao "x" da câmera do bloco "vertical" de cada cena. dx medido com
-// `node ferramentas/roteiros/medir-centro-shorts.mjs <projeto>` (só conta quem tem papel na história, sem figurantes).
+// OBSOLETO (scripts antigos): soma dx ao "x" da câmera do "vertical". Hoje o salvar() centraliza sozinho por cima disto.
 export function centroShorts(C, ajustes) {
   for (const [n, dx] of Object.entries(ajustes)) {
     const c = C[Number(n) - 1];

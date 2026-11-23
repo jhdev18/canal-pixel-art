@@ -23,3 +23,32 @@ export function medirCentro(c, quem, cam, estadoElemento) {
   if (!meio.length) return null;
   return { m: meio.reduce((a, b) => a + b, 0) / meio.length, larg: Math.max(...larg) };
 }
+
+// Centraliza UMA cena resolvida (c) do roteiro bruto (cb) no Shorts. Em quem: cb.vertical.centrarEm, senão todos com papel
+// (sem figurantes/"sobre"/"tela"; só figurantes → neles). Grupo largo demais (> 170 px) → fica com quem a câmera atual já
+// mostrava mais no meio e os vizinhos que cabem junto (até 150 px). Devolve { x, centrarEm?, desvio, nota } ou null.
+export function centrarCena(c, cb, estadoElemento) {
+  if (c.vista !== 'diorama' && c.vista !== 'diagonal') return null;
+  if (temPanoramica(cb)) return null;   // câmera que anda (cameraFim / ação camera): quem escreveu escolheu o caminho
+  const em = cb.vertical?.centrarEm;
+  const pessoas = (cb.elementos || []).filter((e) => e.personagem && !e.sobre && !e.tela);
+  let ids = em || pessoas.filter((e) => !e.figurante).map((e) => e.id);
+  if (!ids.length) ids = pessoas.map((e) => e.id);
+  const quem = c.elementos.filter((e) => ids.includes(e.id));
+  if (!quem.length) return null;
+  const cam = { ...(c.camera || {}), ...(cb.vertical?.camera || {}) };
+  let med = medirCentro(c, quem, cam, estadoElemento), centrarEm, nota = ids.join(', ');
+  if (med && med.larg > 170 && !em) {
+    const um = quem.map((e) => [e, medirCentro(c, [e], cam, estadoElemento)]).filter(([, m]) => m).sort((a, b) => Math.abs(a[1].m) - Math.abs(b[1].m));
+    const sub = [um[0]];
+    for (const par of um.slice(1)) { const ms = [...sub, par].map(([, m]) => m.m); if (Math.max(...ms) - Math.min(...ms) <= 150) sub.push(par); }
+    centrarEm = sub.map(([e]) => e.id);
+    med = medirCentro(c, sub.map(([e]) => e), cam, estadoElemento);
+    nota = `grupo não cabe: centrado em ${centrarEm.join(', ')}, perto do foco anterior`;
+  }
+  if (!med) return null;
+  return { x: +((cam.x ?? 0) + med.m / (16 * (cam.zoom ?? 1))).toFixed(2), centrarEm, desvio: med.m, nota, xAntes: cam.x ?? 0 };
+}
+
+// a câmera da cena se mexe sozinha (panorâmica): não dá para centrar com um x só
+export const temPanoramica = (cb) => !!(cb.cameraFim || cb.vertical?.cameraFim || (cb.acoes || []).some((a) => a.tipo === 'camera'));
