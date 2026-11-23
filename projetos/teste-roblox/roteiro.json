@@ -101,6 +101,14 @@
       "elementos": [ { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 2.4 }, { "id": "atop", "personagem": "avatar-topete", "x": 1.6, "z": 3.4 }, { "id": "anina", "personagem": "avatar-nina", "x": -4.2, "z": 3.0 } ],
       "acoes": [] },
     { "cenario": "mundo-bloco-corrida", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
-      "legenda": "73. mundo-bloco-corrida (o percurso).", "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -5.0, "z": 3.0 } ], "acoes": [] }
+      "legenda": "73. mundo-bloco-corrida (o percurso).", "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -5.0, "z": 3.0 } ], "acoes": [] },
+    { "cenario": "cidade-bloco", "duracao": 3, "transicao": "dither", "foto": [1.4], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "74. cidade-bloco.",
+      "elementos": [ { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 5.6 }, { "id": "atop", "personagem": "avatar-topete", "x": 1.4, "z": 5.4 }, { "id": "anina", "personagem": "avatar-nina", "x": 3.4, "z": 0.4 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "anina", "para": 1.0, "inicio": 0.2, "duracao": 2.6 } ] },
+    { "cenario": "parkour-bloco", "duracao": 3, "transicao": "dither", "foto": [1.4], "camera": { "x": 0, "z": 2.2, "y": 2.8 },
+      "legenda": "75. parkour-bloco.",
+      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -3.0, "z": 4.0, "y": 2.25 }, { "id": "abia", "personagem": "avatar-bia", "x": 1.8, "z": 3.6, "y": 3.25 }, { "id": "anina", "personagem": "avatar-nina", "x": -8.6, "z": 3.4, "y": 1 } ],
+      "acoes": [] }
   ]
 }

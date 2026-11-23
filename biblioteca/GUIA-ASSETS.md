@@ -156,6 +156,12 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
   `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
   menos — preferir `bug` ou zoom 2 nesses casos.
+- **`cidade-bloco`** 🧪 — a cidade do jogo: rua de asfalto com faixa amarela (z 1.3–4.7), calçada dos prédios (z 5.0–6.5) e da frente
+  (z -0.5–1.0), gramado; no fundo casas, `loja-bloco-azul`/`-rosa`/`-verde` (toldo listrado e letreiro), `predio-bloco`; `poste-bloco` (luz
+  amarela) e `carro-bloco-vermelho`/`-azul`/`-amarelo`. Avatares andam nas calçadas (z ~5.2–6.0 ou ~0.2–0.8). Chão `"chao": "bloco-cidade"`.
+- **`parkour-bloco`** 🧪 — mar de lava (`"chao": "lava"`, brilha) com `pilar-bloco-1`…`-5` (pilar cinza saindo da lava e plataforma colorida em
+  cima; quem está em cima usa `"y": altura + 0.25`), `plataforma-inicio` (spawn; em cima `"y": 1`), `plataforma-chegada` (topo xadrez; em cima
+  `"y": 4`) e checkpoint no meio (`"y": 3.25` em cima do pilar 3). Avatares pulam com `pular` + `"para": [x, y]`.
 - **v5: dois lugares** 🧪 — `mundo-bloco` = o **lobby** (praça de baseplate, spawn, gramado, casinhas e árvores; sem peças soltas: o usuário
   perguntou "esses blocos estão fazendo o quê?") e `mundo-bloco-corrida` = o **percurso** (o mesmo lobby com a corrida montada na beira de trás).
   Use a corrida só quando a cena for de corrida/campeonato e os avatares estiverem pulando nas peças; o resto (chat, spawn, avatares

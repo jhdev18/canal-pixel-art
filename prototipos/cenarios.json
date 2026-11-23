@@ -724,6 +724,44 @@
       { "id": "arv6", "sprite": "arvore-bloco", "x": -12.4, "z": -1.4 }, { "id": "arv7", "sprite": "arvore-bloco", "x": 12.2, "z": -1.6 }
     ]
   },
+  // cidade-bloco (PROTÓTIPO): a CIDADE do jogo de blocos — rua de asfalto com faixa amarela (z 1.3–4.7), calçada dos prédios (z 5.0–6.5),
+  // calçada da frente (z -0.5–1.0) e gramado; no fundo (z ~7) casas, lojas com toldo e prédios de bloco; postes e carros na rua.
+  // Avatares andam na calçada dos prédios (z ~5.2–6.0) ou na da frente (z ~0.2–0.8), como na cidade normal.
+  "cidade-bloco": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "dia", "chao": "bloco-cidade", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "c1", "sprite": "casa-bloco", "x": -13.4, "z": 7.0 }, { "id": "l1", "sprite": "loja-bloco-azul", "x": -9.0, "z": 7.0 },
+      { "id": "pr1", "sprite": "predio-bloco", "x": -4.6, "z": 7.2 }, { "id": "l2", "sprite": "loja-bloco-rosa", "x": -0.4, "z": 7.0 },
+      { "id": "c2", "sprite": "casa-bloco", "x": 4.0, "z": 7.0 }, { "id": "l3", "sprite": "loja-bloco-verde", "x": 8.4, "z": 7.0 },
+      { "id": "pr2", "sprite": "predio-bloco", "x": 12.8, "z": 7.2 },
+      { "id": "a1", "sprite": "arvore-bloco", "x": -6.4, "z": 9.6 }, { "id": "a2", "sprite": "arvore-bloco", "x": 2.4, "z": 9.8 },
+      { "id": "a3", "sprite": "arvore-bloco", "x": 10.6, "z": 9.6 },
+      { "id": "po1", "sprite": "poste-bloco", "x": -11.0, "z": 5.0 }, { "id": "po2", "sprite": "poste-bloco", "x": -3.0, "z": 5.0 },
+      { "id": "po3", "sprite": "poste-bloco", "x": 5.0, "z": 5.0 }, { "id": "po4", "sprite": "poste-bloco", "x": 13.0, "z": 5.0 },
+      { "id": "car1", "sprite": "carro-bloco-vermelho", "x": -7.0, "z": 3.4 }, { "id": "car2", "sprite": "carro-bloco-azul", "x": 6.4, "z": 1.8 },
+      { "id": "a4", "sprite": "arvore-bloco", "x": -12.6, "z": -2.0 }, { "id": "a5", "sprite": "arvore-bloco", "x": 12.0, "z": -2.0 }
+    ]
+  },
+  // parkour-bloco (PROTÓTIPO): PARKOUR sobre um mar de lava — bloco de início com spawn (x -8.6, em cima "y": 1), pilares de altura 1→4
+  // com plataformas coloridas em cima (quem está em cima usa "y": altura + 0.25), checkpoint no meio e a chegada xadrez (em cima "y": 4).
+  // Os avatares pulam de plataforma em plataforma (ação pular com "para": [x, y]). Mais pilares ao fundo (o percurso continua).
+  "parkour-bloco": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.8 },
+    "rua": { "periodo": "dia", "chao": "lava", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "inicio", "sprite": "plataforma-inicio", "x": -10.0, "z": 2.0 },
+      { "id": "pl1", "sprite": "pilar-bloco-1", "x": -6.0, "z": 2.4 }, { "id": "pl2", "sprite": "pilar-bloco-2", "x": -3.6, "z": 3.6 },
+      { "id": "pl3", "sprite": "pilar-bloco-2", "x": -1.2, "z": 2.2 }, { "id": "pl4", "sprite": "pilar-bloco-3", "x": 1.2, "z": 3.4 },
+      { "id": "check", "sprite": "checkpoint-1", "x": 1.1, "z": 3.3, "y": 3.25 },
+      { "id": "pl5", "sprite": "pilar-bloco-4", "x": 3.8, "z": 2.2 }, { "id": "pl6", "sprite": "pilar-bloco-4", "x": 6.2, "z": 3.6 },
+      { "id": "chegada", "sprite": "plataforma-chegada", "x": 8.6, "z": 2.0 },
+      { "id": "m1", "sprite": "moeda-bloco", "x": -3.0, "z": 4.2, "y": 3.0 }, { "id": "m2", "sprite": "moeda-bloco", "x": 4.4, "z": 2.8, "y": 5.0 },
+      { "id": "f1", "sprite": "pilar-bloco-3", "x": -8.0, "z": 8.0 }, { "id": "f2", "sprite": "pilar-bloco-5", "x": -3.0, "z": 9.4 },
+      { "id": "f3", "sprite": "pilar-bloco-2", "x": 2.4, "z": 8.6 }, { "id": "f4", "sprite": "pilar-bloco-4", "x": 7.4, "z": 9.6 },
+      { "id": "f5", "sprite": "pilar-bloco-1", "x": 12.0, "z": 7.6 }, { "id": "f6", "sprite": "pilar-bloco-3", "x": -13.0, "z": 9.0 }
+    ]
+  },
   // mundo-bloco-grama: o mesmo mapa de cubos com chão de grama (fase "ao ar livre")
   "mundo-bloco-grama": {
     "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },

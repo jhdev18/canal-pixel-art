@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (282)
+## Sprites (297)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -383,6 +383,21 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `ponte-bloco` | 🧪 protótipo | parado | 131×45 |
 | `torre-bloco` | 🧪 protótipo | parado | 47×120 |
 | `nuvem-bloco` | 🧪 protótipo | parado | 97×48 |
+| `loja-bloco-azul` | 🧪 protótipo | parado | 119×80 |
+| `loja-bloco-rosa` | 🧪 protótipo | parado | 119×80 |
+| `loja-bloco-verde` | 🧪 protótipo | parado | 119×80 |
+| `predio-bloco` | 🧪 protótipo | parado | 105×144 |
+| `poste-bloco` | 🧪 protótipo | parado | 15×58 |
+| `carro-bloco-vermelho` | 🧪 protótipo | parado | 79×42 |
+| `carro-bloco-azul` | 🧪 protótipo | parado | 79×42 |
+| `carro-bloco-amarelo` | 🧪 protótipo | parado | 79×42 |
+| `pilar-bloco-1` | 🧪 protótipo | parado | 55×46 |
+| `pilar-bloco-2` | 🧪 protótipo | parado | 55×62 |
+| `pilar-bloco-3` | 🧪 protótipo | parado | 55×78 |
+| `pilar-bloco-4` | 🧪 protótipo | parado | 55×94 |
+| `pilar-bloco-5` | 🧪 protótipo | parado | 55×110 |
+| `plataforma-inicio` | 🧪 protótipo | parado | 99×65 |
+| `plataforma-chegada` | 🧪 protótipo | parado | 99×113 |
 | `checkpoint-1` | 🧪 protótipo | parado | 61×32 |
 | `checkpoint-2` | 🧪 protótipo | parado | 61×32 |
 | `checkpoint-3` | 🧪 protótipo | parado | 61×32 |
@@ -527,7 +542,9 @@ Uso: `{ "cenario": "nome" }`
 | `loja-fundos-diorama` | 🧪 protótipo | diorama (cômodo loja-fundos) | 0 |
 | `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
 | `mundo-bloco` | 🧪 protótipo | diorama | 12 |
-| `mundo-bloco-corrida` | 🧪 protótipo | diorama | 33 |
+| `mundo-bloco-corrida` | 🧪 protótipo | diorama | 30 |
+| `cidade-bloco` | 🧪 protótipo | diorama | 18 |
+| `parkour-bloco` | 🧪 protótipo | diorama | 17 |
 | `mundo-bloco-grama` | 🧪 protótipo | diorama | 14 |
 | `vila-medieval` | 🧪 protótipo | diorama | 8 |
 | `castelo-medieval` | 🧪 protótipo | diorama | 4 |

@@ -229,6 +229,55 @@ for (const n of [1, 2, 3, 4, 5]) {
     L.caixa(i0, i1, j0, j1, 0, 3, { frente: '#2e8a3e', lado: '#246e32', topo: (a, b, d) => (d < 0.08 ? '#7ae88a' : ['#5ad06a', 2]) });
   } };
 }
+
+// PROTÓTIPO — CIDADE de jogo de blocos (lojas, prédio, carros, postes) e PARKOUR (pilares saindo da lava com plataformas em cima)
+const loja = (parede, toldo, letreiro) => ({ di: 2.6, dj: 3.4, f(L, m) {
+  const { i0, i1, j0, j1 } = m;
+  L.caixa(i0, i1, j0, j1, 0, 32, { frente: (u, t, l) => {
+      if (t > 3 && t < 22 && u > 0.3 && u < l - 1.1) return t === 12 ? '#d8e8f0' : u % 1 < 0.06 ? '#e8f0f4' : '#8ad0f0';   // vitrine grande
+      if (t < 22 && u > l - 0.9 && u < l - 0.3) return '#5a3a24';                                                    // porta
+      return t === 0 ? escuro(parede, 0.3) : u < 0.08 ? claro(parede, 0.2) : parede; }, lado: escuro(parede, 0.18), topo: claro(parede, 0.15) });
+  L.caixa(i1 - 0.05, i1 + 0.35, j0 + 0.1, j1 - 0.1, 22, 4, { frente: (u) => (Math.floor(u * 2) % 2 ? '#f4f4f4' : toldo), lado: toldo, topo: (a, b) => (Math.floor(b * 2) % 2 ? '#f4f4f4' : toldo) });   // toldo listrado
+  L.caixa(i1 - 0.2, i1, j0 + 0.6, j1 - 0.6, 32, 10, plast(letreiro));                                                // letreiro em cima
+} });
+Object.assign(MOVEIS, {
+  'loja-bloco-azul': loja('#4a8ae8', '#e84a4a', '#f8d84a'), 'loja-bloco-rosa': loja('#f080b0', '#8a4ac8', '#f4f4f4'),
+  'loja-bloco-verde': loja('#5ad06a', '#f8d84a', '#e84a4a'),
+  'predio-bloco': { di: 3.0, dj: 3.0, f(L, m) {   // prédio de apartamentos: grade de janelas e beiral no teto
+    const { i0, i1, j0, j1 } = m, cor = '#c8b8a0';
+    const jan = (u, t) => (t > 6 && t < 84 && (t % 14) > 4 && (t % 14) < 11 && (u % 1) > 0.25 && (u % 1) < 0.75);
+    L.caixa(i0, i1, j0, j1, 0, 90, { frente: (u, t) => (jan(u, t) ? ((t % 14) === 5 ? '#d8e8f0' : '#7ac0e8') : t < 2 ? '#8a7a64' : u < 0.08 ? '#e0d4c0' : cor),
+      lado: (u, t) => (jan(u, t) ? '#5aa0c8' : '#a89880'), topo: '#d8ccb8' });
+    L.caixa(i0 - 0.1, i1 + 0.1, j0 - 0.1, j1 + 0.1, 90, 4, plast('#8e8e98'));
+  } },
+  'poste-bloco': { di: 0.5, dj: 0.5, f(L, m) {   // poste de rua: haste cinza e luminária amarela que brilha
+    const { i0, j0 } = m;
+    L.caixa(i0 + 0.15, i0 + 0.35, j0 + 0.15, j0 + 0.35, 0, 44, { frente: '#6e7076', lado: '#55575f', topo: '#8a8e96' });
+    L.caixa(i0 + 0.05, i0 + 0.45, j0 + 0.05, j0 + 0.45, 44, 6, { frente: ['#fff0a0', 2], lado: ['#f8d860', 2], topo: '#8a8e96' });
+  } },
+});
+const carro = (cor) => ({ di: 1.3, dj: 2.4, f(L, m) {   // carro de bloco: rodas pretas, carroceria colorida, cabine com vidros
+  const { i0, i1, j0, j1 } = m;
+  for (const [a, b] of [[i0 + 0.1, j0 + 0.3], [i1 - 0.4, j0 + 0.3], [i0 + 0.1, j1 - 0.7], [i1 - 0.4, j1 - 0.7]]) L.caixa(a, a + 0.3, b, b + 0.4, 0, 5, { frente: '#1a1a22', lado: '#2a2a32', topo: '#3a3a44' });
+  L.caixa(i0, i1, j0, j1, 3, 7, plast(cor));
+  L.caixa(i0 + 0.1, i1 - 0.1, j0 + 0.6, j1 - 0.5, 10, 7, { frente: (u, t) => (t > 1 && t < 6 ? '#8ad0f0' : cor), lado: (u, t) => (t > 1 && t < 6 ? '#6ab8e0' : escuro(cor, 0.2)), topo: claro(cor, 0.2) });
+} });
+Object.assign(MOVEIS, { 'carro-bloco-vermelho': carro('#e84a4a'), 'carro-bloco-azul': carro('#3a7ad8'), 'carro-bloco-amarelo': carro('#f8c82c') });
+// parkour: pilar cinza saindo da lava com uma plataforma colorida em cima (altura N peças); quem fica em cima usa "y": N + 0.25
+const COR_PLAT = { 1: '#4a8ae8', 2: '#f8d84a', 3: '#5ad06a', 4: '#e84a4a', 5: '#8a4ac8' };
+for (const n of [1, 2, 3, 4, 5]) MOVEIS[`pilar-bloco-${n}`] = { di: 1.6, dj: 1.6, f(L, m) {
+  const { i0, i1, j0, j1 } = m;
+  L.caixa(i0 + 0.45, i1 - 0.45, j0 + 0.45, j1 - 0.45, 0, n * 16, { frente: (u, t) => (t < 6 ? '#5a3a2a' : t % 16 === 0 ? '#7e8088' : '#9a9da3'), lado: (u, t) => (t < 6 ? '#4a2a1a' : '#7e8088'), topo: '#a8acb2' });
+  L.caixa(i0, i1, j0, j1, n * 16, 4, plast(COR_PLAT[n]));
+} };
+MOVEIS['plataforma-inicio'] = { di: 3.0, dj: 3.0, f(L, m) {   // bloco grande de início (spawn), saindo da lava; em cima "y": 1
+  const { i0, i1, j0, j1 } = m;
+  L.caixa(i0, i1, j0, j1, 0, 16, { frente: (u, t) => (t < 6 ? '#5a3a2a' : '#8e9096'), lado: (u, t) => (t < 6 ? '#4a2a1a' : '#74767c'), topo: (a, b, d) => { const r = Math.hypot(a - 1.5, b - 1.5); return d < 0.06 ? '#c4c6cc' : r < 0.5 ? ['#e8f4ff', 2] : r < 0.6 ? '#74767c' : '#a8aab0'; } });
+} };
+MOVEIS['plataforma-chegada'] = { di: 3.0, dj: 3.0, f(L, m) {   // chegada: bloco alto com o topo xadrez (altura 4 peças; em cima "y": 4)
+  const { i0, i1, j0, j1 } = m;
+  L.caixa(i0, i1, j0, j1, 0, 64, { frente: (u, t) => (t < 6 ? '#5a3a2a' : t % 16 === 0 ? '#7e8088' : '#9a9da3'), lado: (u, t) => (t < 6 ? '#4a2a1a' : '#7e8088'), topo: (a, b, d) => (d < 0.06 ? '#c4c6cc' : (Math.floor(a * 2) + Math.floor(b * 2)) % 2 ? '#14121c' : '#f4f4f4') });
+} };
 // ------------------------------------------------------------------ tela do jogo (close) e moeda
 function telaJogo(modo) {
   const p = new Pix(96, 64);
@@ -364,6 +413,21 @@ registrarSprites({
   'ponte-bloco': () => iso({ parado: { tipo: 'ponte-bloco' } }),
   'torre-bloco': () => iso({ parado: { tipo: 'torre-bloco' } }),
   'nuvem-bloco': () => iso({ parado: { tipo: 'nuvem-bloco' } }),
+  'loja-bloco-azul': () => iso({ parado: { tipo: 'loja-bloco-azul' } }),
+  'loja-bloco-rosa': () => iso({ parado: { tipo: 'loja-bloco-rosa' } }),
+  'loja-bloco-verde': () => iso({ parado: { tipo: 'loja-bloco-verde' } }),
+  'predio-bloco': () => iso({ parado: { tipo: 'predio-bloco' } }),
+  'poste-bloco': () => iso({ parado: { tipo: 'poste-bloco' } }),
+  'carro-bloco-vermelho': () => iso({ parado: { tipo: 'carro-bloco-vermelho' } }),
+  'carro-bloco-azul': () => iso({ parado: { tipo: 'carro-bloco-azul' } }),
+  'carro-bloco-amarelo': () => iso({ parado: { tipo: 'carro-bloco-amarelo' } }),
+  'pilar-bloco-1': () => iso({ parado: { tipo: 'pilar-bloco-1' } }),
+  'pilar-bloco-2': () => iso({ parado: { tipo: 'pilar-bloco-2' } }),
+  'pilar-bloco-3': () => iso({ parado: { tipo: 'pilar-bloco-3' } }),
+  'pilar-bloco-4': () => iso({ parado: { tipo: 'pilar-bloco-4' } }),
+  'pilar-bloco-5': () => iso({ parado: { tipo: 'pilar-bloco-5' } }),
+  'plataforma-inicio': () => iso({ parado: { tipo: 'plataforma-inicio' } }),
+  'plataforma-chegada': () => iso({ parado: { tipo: 'plataforma-chegada' } }),
   'checkpoint-1': () => iso({ parado: { tipo: 'checkpoint-1' } }),
   'checkpoint-2': () => iso({ parado: { tipo: 'checkpoint-2' } }),
   'checkpoint-3': () => iso({ parado: { tipo: 'checkpoint-3' } }),

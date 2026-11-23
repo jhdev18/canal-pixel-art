@@ -60,7 +60,7 @@ export function gerarRuaDiagonal(opc = {}) {
   const noite = (opc.periodo ?? 'noite') === 'noite';
   const tarde = opc.periodo === 'tarde';   // PROTÓTIPO: pôr do sol (luz alaranjada, céu laranja e rosa); continua claro
   const semente = opc.semente ?? 7;
-  const J0 = -comp / 2, J1 = comp / 2, I0 = opc.chao === 'baseplate' ? -16 : -4.5, I1 = 24, HMAX = 200;   // baseplate: chão bem maior para o fundo (horizonte longe, como no jogo)   // I1 largo: o canteiro vai até a borda
+  const J0 = -comp / 2, J1 = comp / 2, I0 = ['baseplate', 'bloco-cidade', 'lava'].includes(opc.chao) ? -16 : -4.5, I1 = 24, HMAX = 200;   // baseplate: chão bem maior para o fundo (horizonte longe, como no jogo)   // I1 largo: o canteiro vai até a borda
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 8);
   const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
@@ -121,6 +121,20 @@ export function gerarRuaDiagonal(opc = {}) {
       const v = (((linha * 92821) ^ (col * 68917)) >>> 0) % 9;
       const base = ['#b8ac98', '#a89c88', '#9a8e7c', '#c4b8a4'][v % 4];
       c = junta ? (v === 3 && bayer(x, y) < 0.5 ? '#6a7a4a' : '#6a6050') : (di > 0.75 || dj > 0.85) ? '#8a7e6c' : (di < 0.3 && dj < 0.4 ? '#d4c8b4' : base);
+      pintar(x, y, c, i, j, 0); continue;
+    }
+    if (opc.chao === 'lava') {   // PROTÓTIPO (parkour de jogo de blocos): mar de lava até o horizonte (brilha), com manchas claras e crosta escura
+      const n = Math.sin(j * 3.1 + i * 1.9) * Math.sin(i * 2.7 - j * 1.3 + 1.7) + Math.sin(j * 1.1 + i * 4.3) * 0.45;   // manchas pequenas (lava borbulhando)
+      c = n > 0.85 ? '#ffe080' : n > 0.45 ? '#ffa030' : n < -0.75 ? '#b8300e' : n < -0.55 ? '#d84a16' : bayer(x, y) < 0.06 ? '#ff7a22' : '#ff6a1a';
+      pintar(x, y, c, i, j, 0, 2); continue;
+    }
+    if (opc.chao === 'bloco-cidade') {   // PROTÓTIPO (cidade de jogo de blocos): asfalto liso com faixa amarela, calçadas claras, meio-fio e gramado
+      const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1;
+      if (i < 0 || i > 7.4) c = (g1 < 0.03 || g2 < 0.03) ? '#4a9a4a' : bayer(x, y) < 0.05 ? '#5cb85a' : '#58b056';
+      else if (i < 1.5 || (i > 5.5 && i <= 7.4)) c = (g1 < 0.04 || g2 < 0.04) ? '#a4a8b0' : '#bec2ca';         // calçada
+      else if (i < 1.8 || i > 5.2) c = (i < 1.62 || i > 5.38) ? '#dcdfe6' : '#8a8e96';                          // meio-fio
+      else { const meio = Math.abs(i - 3.5) < 0.07 && ((j % 2) + 2) % 2 < 1.1, borda = Math.abs(i - 2.0) < 0.04 || Math.abs(i - 5.0) < 0.04;
+        c = meio ? '#f8d040' : borda ? '#e8e8ec' : bayer(x, y) < 0.04 ? '#55575f' : '#4e5058'; }
       pintar(x, y, c, i, j, 0); continue;
     }
     if (opc.chao === 'baseplate') {   // PROTÓTIPO v3: baseplate dos jogos de bloco atuais: cinza liso com grade (quadrados de 2x2 e linha fina
