@@ -120,13 +120,17 @@ export function aplicarRosto(pix, L, expr) {
           for (const sx of [-1, 1]) { set(mx + sx * 6, y0, BOCA2); set(mx + sx * 6, y0 + 1, BOCA2); }
           for (let x = mx - 5; x <= mx + 5; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 2, BOCA2); set(x, y0, (x - mx) % 2 ? VAOD : DT); set(x, y0 + 1, (x - mx) % 2 ? DT : VAOD); }
         }
-      } else if (!L.semBoca && expr === 'macabro') {   // v7 (pedido: "sorriso só mostrando os dentes"): dentes CERRADOS de ponta a ponta, sem boca
-        // escura nem gengiva — duas fileiras brancas encostadas, vãos cinza entre os dentes, contorno fino e as pontas subindo
-        const y0 = my - 1, DT = '#f4f0e4', JUNTA = '#a8a090', VAOD = '#8a8070';
+      } else if (!L.semBoca && expr === 'macabro') {   // v8 (escolhida a partir da "B"): dentes cerrados de ponta a ponta, PONTUDOS em triângulo —
+        // os de cima apontam para baixo e os de baixo para cima, encaixados em zigue-zague; contorno fino e pontas subindo 2 px
+        const y0 = my - 1, DT = '#f4f0e4', DT2 = '#f4f0e4', VAOP = '#6a3a3a';   // junta em zigue-zague (escura, mas não preta: a faixa continua branca como a B)
         for (const sx of [-1, 1]) { set(mx + sx * 6, y0 - 3, L.sombra); set(mx + sx * 6, y0 - 2, BOCA2); set(mx + sx * 6, y0 - 1, BOCA2); set(mx + sx * 6, y0, BOCA2); set(mx + sx * 6, y0 + 1, BOCA2); set(mx + sx * 5, y0 + 2, BOCA2); set(mx + sx * 5, y0 - 1, DT); set(mx + sx * 5, y0 - 2, BOCA2); }
-        for (let x = mx - 4; x <= mx + 4; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 3, BOCA2); }               // contorno de cima e de baixo
-        for (let x = mx - 5; x <= mx + 5; x++) { set(x, y0, (x - mx) % 2 ? VAOD : DT); set(x, y0 + 1, JUNTA); }   // dentes de cima + a junta (dentes encostados)
-        for (let x = mx - 4; x <= mx + 4; x++) set(x, y0 + 2, (x - mx) % 2 ? DT : VAOD);                         // dentes de baixo, desencontrados
+        for (let x = mx - 4; x <= mx + 4; x++) { set(x, y0 - 1, BOCA2); set(x, y0 + 3, BOCA2); }
+        for (let x = mx - 5; x <= mx + 5; x++) {
+          const o = ((x - mx + 5) % 4 + 4) % 4;   // um dente a cada 4 px; os de baixo deslocados 2 px
+          set(x, y0, o === 3 ? VAOP : DT);                                   // dentes de cima (base larga)
+          set(x, y0 + 1, o === 1 || o === 3 ? DT2 : VAOP);                   // as pontas: de cima (o 1) e de baixo (o 3) se cruzam
+          if (Math.abs(x - mx) <= 4) set(x, y0 + 2, o === 1 ? VAOP : DT);    // dentes de baixo (base larga)
+        }
       } else if (!L.semBoca && expr === 'macabro-fechado') {   // v6 (pedido: "sorriso sem mostrar a boca"): boca FECHADA esticada de orelha a orelha —
         // uma linha fina que sobe até perto dos olhos, com o lábio de baixo e os vincos das bochechas marcando o esforço do sorriso
         const y0 = my;
