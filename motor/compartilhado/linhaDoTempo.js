@@ -140,6 +140,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + NARRACAO_FOLGA);
       if ((roteiro.legendaEstilo || 'palavra') === 'palavra') {
         // padrão: grupos curtos (até ~3 palavras) com a palavra falada destacada — segura quem assiste sem som
+        if (cena.legendaPosicao == null && roteiro.legendaPosicao != null) cena.legendaPosicao = roteiro.legendaPosicao;
         cena.legendasNarracao = palavrasLegenda(cena.narracaoTexto, cena.narracaoInicio, falaDur, narr?.palavras, roteiro.legendaLetras || 16);
       } else {
         const blocos = blocosLegenda(cena.narracaoTexto);

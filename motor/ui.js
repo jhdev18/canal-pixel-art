@@ -306,7 +306,11 @@ export class UI {
     const altLinha = 11 * esc, altBloco = linhas.length * altLinha;
     const pop = clamp((t - b.ini) / 0.08);
     const larguraMax = Math.max(...linhas.map((ln) => larguraTexto(ln.map((p) => p.w).join(' '), esc)));
-    const centro = this.lugarLegenda(b, altBloco, larguraMax, vertical);
+    // posição fixa embaixo (pedido do usuário: legenda que troca de lugar confunde). No Shorts fica logo acima dos ~18% de
+    // baixo, onde ficam o título e os botões do YouTube. "legendaPosicao" (0–1) no roteiro/cena muda; "legendaPosicao": "auto"
+    // usa lugarLegenda (desvia de quem está na cena).
+    const pos = this.cenaAtual?.legendaPosicao ?? (vertical ? 0.76 : 0.85);
+    const centro = pos === 'auto' ? this.lugarLegenda(b, altBloco, larguraMax, vertical) : pos;
     const y0 = Math.round(H * centro - altBloco / 2 + (1 - pop) * 2);
     const espaco = larguraTexto(' ', esc) + esc;
     linhas.forEach((ln, i) => {
