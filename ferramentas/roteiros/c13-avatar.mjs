@@ -54,7 +54,7 @@ C.push(cena('Piscava igual. Ria igual. E acenou para ele, pela tela.', {
 }));
 // 7. A ameaça em pedaços: o Léo volta andando duro, com a sombra QUADRADA de avatar; para de frente e o sorriso cresce
 C.push(cena('No sábado, o Léo voltou da escola andando duro. Sorrindo.', {
-  cenario: 'rua-comercial', camera: RUA(5.6),
+  cenario: 'rua-comercial', camera: { ...RUA(5.6), zoom: 2 },   // zoom (pedido do usuário): o sorriso dele de perto
   elementos: [P('leo', 'menino-topete', 2.2, 4.6), S('sleo', null, 2.2, 4.6, { sprite: undefined, sombraPessoa: { tamanho: 2.6, direcao: 75, bloco: true } })],
   acoes: [a(0, 'andar', { alvo: 'leo', para: 5.4, durF: 0.62 }), a(0, 'andar', { alvo: 'sleo', para: 5.4, durF: 0.62 }),
     a(0.68, 'trocar', { alvo: 'leo', estado: 'rosto-macabro-cresce' }), a(0.68, 'som', { som: 'suspense' })],
@@ -68,7 +68,7 @@ C.push(cena('A mãe achou graça. Ele não piscava mais.', {
 // 9. Pico de movimento no meio: a turma inteira volta andando duro, no mesmo passo (cada um na sua faixa), e para junta de frente
 const TURMA9 = [['leo', 'menino-topete', 4.2, 2.6], ['aluno', 'aluno', 4.6, 1.8], ['aluna', 'aluna', 5.0, 2.2], ['nina', 'rival', 4.2, 0.2]];   // a Nina na mesma faixa do Léo, atrás (mesma velocidade: não alcança)
 C.push(cena('Na segunda, a turma inteira voltou do mesmo jeito.', {
-  cenario: 'rua-comercial', camera: RUA(5.6),
+  cenario: 'rua-comercial', camera: { ...RUA(5.6), zoom: 1.5 },   // zoom (pedido do usuário); 1.5 para a turma toda caber
   elementos: TURMA9.map(([id, sp, z, x]) => P(id, sp, x, z)),
   acoes: [...TURMA9.map(([id, , , x]) => a(0, 'andar', { alvo: id, para: +(x + 4).toFixed(1), durF: 0.7 })),
     ...TURMA9.map(([id]) => a(0.74, 'trocar', { alvo: id, estado: 'rosto-macabro' })), a(0.74, 'som', { som: 'bug-jogo' }), a(0.76, 'tremer', { intensidade: 0.25, durF: 0.08 })],
@@ -112,7 +112,7 @@ rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [8, 'mae', 'r
   [11, 'bia', 'assustado', 0.45]]);
 // a sombra do Léo (cena 7): elemento só de sombra
 C[6].elementos[1] = { id: 'sleo', sombraPessoa: { tamanho: 2.6, direcao: 75, bloco: true }, x: 2.2, z: 4.6 };
-alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -0.5 });
+alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 7: -2, 8: -1.25, 9: -2.5, 11: -1.25, 14: -0.5 });
 
 
 salvar('nesse-mundo-avatar', ['NESSE MUNDO (curto, TERROR de dia, Roblox) — "Nesse mundo, seu avatar do Roblox vai ficando igual a você."',
