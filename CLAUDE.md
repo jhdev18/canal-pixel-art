@@ -112,7 +112,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -495,6 +495,9 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 - **Leva 3 (feita com as táticas de retenção do vídeo das sombras), aguardando narração/render:** curtos `nesse-mundo-gatos`
   (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes que viram monstros só enquanto as pessoas estão de costas (cenas 1–2); todos viram `gato-monstro` depois que a Bia leva o prefeito; cena 11 = a sombra leva o prefeito; cena 12 = cara `pior` — o monstro 3D foi tirado, o usuário não gostou) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
   `cadeado`). Cada um tem `ROTEIRO.md` com o checklist de retenção cumprido e `PUBLICACAO.md`; `npm run conferir` sem avisos.
+- **Leva Roblox (curtos, de dia, aguardando narração/render):** `nesse-mundo-avatar` (terror, 14 cenas, fala ~48 s), `nesse-mundo-pausa`
+  (comédia, 14 cenas, ~49 s) e `nesse-mundo-espera` (emocional, 14 cenas, ~51 s); scripts `c13-avatar.mjs`, `c14-pausa.mjs`, `c15-espera.mjs`;
+  `ROTEIRO.md` com o checklist e `PUBLICACAO.md`; `npm run conferir` sem avisos (só o [parado] da cena 7 do avatar, de propósito: o Léo para para sorrir).
 - **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
   `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).
 - **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js

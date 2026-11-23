@@ -1,0 +1,1267 @@
+// NESSE MUNDO (curto, COMÉDIA de dia, Roblox) — "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-pausa
+// Protótipos: jogo de blocos (parkour-campeonato, mundo-bloco, avatares, icone-pausa), banheiro-diorama, mae, menino-topete, peruca/prefeito-careca (aprovados).
+{
+ "titulo": "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "trilha": "comedia",
+ "cenas": [
+  {
+   "narracaoTexto": "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.",
+   "cenario": "parkour-campeonato",
+   "transicao": "corte",
+   "camera": {
+    "x": -2,
+    "z": 2.2,
+    "y": 2.4,
+    "zoom": 1.5
+   },
+   "elementos": [
+    {
+     "id": "a1",
+     "personagem": "avatar-bloco-azul",
+     "x": -3.6,
+     "z": 3.2,
+     "y": 2.25
+    },
+    {
+     "id": "p1",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "a1",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "mover",
+     "alvo": "a1",
+     "para": [
+      -1.6,
+      3.6
+     ],
+     "inicio": null,
+     "duracao": 0.4
+    },
+    {
+     "tipo": "som",
+     "som": "pulo-bloco",
+     "inicio": null
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "a1",
+     "estado": "pulando",
+     "inicio": null
+    },
+    {
+     "tipo": "flash",
+     "inicio": null,
+     "intensidade": 0.5
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "p1",
+     "inicio": null,
+     "som": null
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": null
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -2,
+     "z": 2.2,
+     "y": 2.4,
+     "zoom": 1.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "O avatar parou no ar. O pão parou no ar. O prefeito, no meio do espirro.",
+   "cenario": "rua-comercial",
+   "titulo": "PAUSA ESSE JOGO!",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.2,
+   "camera": {
+    "x": 0.8,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": 5.2
+    },
+    {
+     "id": "pao",
+     "sprite": "pao",
+     "x": 0.4,
+     "z": 4.3,
+     "escala": 2,
+     "y": 0.3
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 2.6,
+     "z": 5.2
+    },
+    {
+     "id": "p1",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "tonho",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
+    },
+    {
+     "id": "p2",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "prefeito",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "mover",
+     "alvo": "pao",
+     "para": [
+      1,
+      1.3
+     ],
+     "inicio": 0.3,
+     "duracao": 1.4
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "prefeito",
+     "inspira": 0.75,
+     "inicio": 0.53,
+     "duracao": 1.87
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 1.8
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "p1",
+     "som": null,
+     "inicio": 1.84
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "p2",
+     "som": null,
+     "inicio": 1.84
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": 1.84
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "prefeito",
+     "estado": "espirro",
+     "inicio": 3.11
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "y": 1.6,
+     "inicio": 3.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 1.7,
+     "duracao": 3.28
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.8,
+     "z": 2.2,
+     "y": 1.15
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, a criançada joga Roblox trancada no banheiro.",
+   "cenario": "banheiro-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -0.6,
+     "z": 1.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "aluno",
+     "altura": 0.4,
+     "inicio": 0.48
+    },
+    {
+     "tipo": "som",
+     "som": "porta",
+     "inicio": 1.73
+    },
+    {
+     "tipo": "som",
+     "som": "porta",
+     "inicio": 2.27
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": 2.27
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.15,
+     "inicio": 2.8,
+     "duracao": 0.29
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 1.75
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas a mãe do Léo grita pausa vinte vezes por dia.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 5,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "mae",
+     "personagem": "mae",
+     "x": 2.6,
+     "z": 5
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 4.2,
+     "z": 4.6,
+     "figurante": true
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 6.6,
+     "z": 4.2,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "caixa",
+     "para": 5.4,
+     "inicio": 0.3,
+     "duracao": 0.64
+    },
+    {
+     "tipo": "andar",
+     "alvo": "policial",
+     "para": 7.6,
+     "inicio": 0.3,
+     "duracao": 0.64
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.3,
+     "inicio": 1
+    },
+    {
+     "tipo": "andar",
+     "alvo": "caixa",
+     "para": 6.6,
+     "inicio": 1.41,
+     "duracao": 0.57
+    },
+    {
+     "tipo": "andar",
+     "alvo": "policial",
+     "para": 8.6,
+     "inicio": 1.41,
+     "duracao": 0.57
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.3,
+     "inicio": 2.05
+    },
+    {
+     "tipo": "andar",
+     "alvo": "caixa",
+     "para": 7.8,
+     "inicio": 2.47,
+     "duracao": 0.64
+    },
+    {
+     "tipo": "andar",
+     "alvo": "policial",
+     "para": 9.6,
+     "inicio": 2.47,
+     "duracao": 0.64
+    },
+    {
+     "tipo": "contador",
+     "de": 20,
+     "inicio": 0.62,
+     "duracao": 2.55
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "mae",
+     "icone": "raiva",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "mae",
+     "rosto": "bravo",
+     "inicio": 1.1,
+     "duracao": 2.38
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": 2.2,
+     "y": 1.15
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E ele sempre responde: mãe, online não pausa!",
+   "cenario": "sala-de-estar-diorama",
+   "camera": {
+    "x": 0.4,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "mae",
+     "personagem": "mae",
+     "x": -2.4,
+     "z": 1.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 2.2,
+     "z": 1.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "mae",
+     "para": -1.2,
+     "inicio": 0.3,
+     "duracao": 0.88
+    },
+    {
+     "tipo": "pular",
+     "alvo": "leo",
+     "altura": 0.35,
+     "inicio": 1.18
+    },
+    {
+     "tipo": "falar",
+     "alvo": "leo",
+     "texto": "MÃE, ONLINE NÃO PAUSA!",
+     "inicio": 0.93
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "leo",
+     "rosto": "bravo",
+     "inicio": 1.18,
+     "duracao": 2.05
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "mae",
+     "rosto": "rindo",
+     "inicio": 1.32,
+     "duracao": 1.91
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "y": 1.75
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, no campeonato valendo mil Robux, ela gritou: pausa!",
+   "cenario": "parkour-campeonato",
+   "camera": {
+    "x": -8,
+    "z": 2.2,
+    "y": 2.8
+   },
+   "elementos": [
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -10.2,
+     "z": 2.4,
+     "y": 1
+    },
+    {
+     "id": "a1",
+     "personagem": "avatar-bloco-vermelho",
+     "x": -9,
+     "z": 2.8,
+     "y": 1,
+     "figurante": true
+    },
+    {
+     "id": "a2",
+     "personagem": "avatar-bloco-verde",
+     "x": -8,
+     "z": 2.3,
+     "y": 1,
+     "figurante": true
+    },
+    {
+     "id": "m1",
+     "sprite": "moeda-bloco",
+     "x": -9.4,
+     "z": 3.6,
+     "y": 2.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "a1",
+     "altura": 0.4,
+     "inicio": 0.5
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "altura": 0.4,
+     "inicio": 1.08
+    },
+    {
+     "tipo": "pular",
+     "alvo": "a2",
+     "altura": 0.4,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "som",
+     "som": "sino",
+     "inicio": 1.86
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 3.42
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.35,
+     "inicio": 3.42,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": 3.42
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -8.4,
+     "z": 2.2,
+     "y": 2.8
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A cidade congelou. O servidor congelou. Menos um avatar.",
+   "cenario": "parkour-campeonato",
+   "camera": {
+    "x": -4,
+    "z": 2.2,
+    "y": 2.8
+   },
+   "elementos": [
+    {
+     "id": "a1",
+     "personagem": "avatar-bloco-vermelho",
+     "x": -6,
+     "z": 3.2,
+     "y": 2.2,
+     "pose": "pulando",
+     "figurante": true
+    },
+    {
+     "id": "a2",
+     "personagem": "avatar-bloco-verde",
+     "x": -3.6,
+     "z": 3.6,
+     "y": 3,
+     "pose": "pulando",
+     "figurante": true
+    },
+    {
+     "id": "p1",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "a1",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": false
+    },
+    {
+     "id": "p2",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "a2",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": false
+    },
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -9.4,
+     "z": 2.6,
+     "y": 1
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      -6.4,
+      1.25
+     ],
+     "altura": 0.8,
+     "inicio": 2.3,
+     "duracao": 1.09
+    },
+    {
+     "tipo": "som",
+     "som": "pulo-bloco",
+     "inicio": 2.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "atop",
+     "icone": "!",
+     "inicio": 2.74
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4,
+     "z": 2.2,
+     "y": 2.8
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ele pulou de pilar em pilar e ganhou de doze estátuas.",
+   "cenario": "parkour-campeonato",
+   "camera": {
+    "x": 3,
+    "z": 2.2,
+    "y": 2.8
+   },
+   "elementos": [
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -6.4,
+     "z": 3.2,
+     "y": 1.25
+    },
+    {
+     "id": "a2",
+     "personagem": "avatar-bloco-verde",
+     "x": -3.6,
+     "z": 3.6,
+     "y": 3,
+     "pose": "pulando",
+     "figurante": true
+    },
+    {
+     "id": "p2",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "a2",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": false
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      -3.6,
+      2.25
+     ],
+     "altura": 0.8,
+     "inicio": 0.37,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      -0.8,
+      2.25
+     ],
+     "altura": 0.8,
+     "inicio": 0.9,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      2,
+      3.25
+     ],
+     "altura": 0.8,
+     "inicio": 1.42,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      4.8,
+      3.25
+     ],
+     "altura": 0.8,
+     "inicio": 1.95,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      7.6,
+      4.25
+     ],
+     "altura": 0.8,
+     "inicio": 2.48,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      10.6,
+      4
+     ],
+     "altura": 0.8,
+     "inicio": 3.04,
+     "duracao": 0.42
+    },
+    {
+     "tipo": "fogos",
+     "posicao": [
+      10.6,
+      6,
+      3
+     ],
+     "cor": "dourado",
+     "inicio": 3.53
+    },
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 3.53
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 3,
+     "z": 2.2,
+     "y": 2.8
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Na rua, o Léo pegou o pão do ar e a peruca do prefeito.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.6,
+     "z": 5.2
+    },
+    {
+     "id": "pao",
+     "sprite": "pao",
+     "x": 1,
+     "z": 4.9,
+     "escala": 2,
+     "y": 1.3
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 2.6,
+     "z": 5.2,
+     "pose": "espirro"
+    },
+    {
+     "id": "prefCareca",
+     "personagem": "prefeito-careca",
+     "x": 2.6,
+     "z": 5.7,
+     "pose": "espirro",
+     "oculto": true
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": -2.4,
+     "z": 4.4
+    },
+    {
+     "id": "peruca",
+     "sprite": "peruca",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "leo",
+      "dx": 0.5,
+      "dy": 1
+     },
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "leo",
+     "para": 0.6,
+     "inicio": 0.3,
+     "duracao": 1.25
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "pao",
+     "inicio": 1.59
+    },
+    {
+     "tipo": "andar",
+     "alvo": "leo",
+     "para": 1.8,
+     "inicio": 1.8,
+     "duracao": 0.89
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "prefeito",
+     "inicio": 2.8
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "prefCareca",
+     "som": null,
+     "inicio": 2.8
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "peruca",
+     "som": null,
+     "inicio": 2.87
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "leo",
+     "icone": "coracao",
+     "inicio": 2.68
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 1.37,
+     "duracao": 2.51
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 2.2,
+     "y": 1.15
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Foi aí que a mãe descongelou. Com a peruca bem na frente dela.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 2.4,
+    "z": 2.2,
+    "y": 1.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "mae",
+     "personagem": "mae",
+     "x": 4.6,
+     "z": 4.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 1.8,
+     "z": 4.4
+    },
+    {
+     "id": "peruca",
+     "sprite": "peruca",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "leo",
+      "dx": 0.5,
+      "dy": 1
+     }
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "mae",
+     "para": 3,
+     "inicio": 0.3,
+     "duracao": 1.41
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "mae",
+     "icone": "lampada",
+     "inicio": 1.91
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "mae",
+     "icone": "raiva",
+     "inicio": 2.8
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.15,
+     "inicio": 2.8,
+     "duracao": 0.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "leo",
+     "rosto": "envergonhado",
+     "inicio": 0.7,
+     "duracao": 3.63
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "mae",
+     "rosto": "bravo",
+     "inicio": 1.91,
+     "duracao": 2.42
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2.4,
+     "z": 2.2,
+     "y": 1.1,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "No dia seguinte, ela criou uma conta no Roblox.",
+   "cenario": "mundo-bloco",
+   "camera": {
+    "x": -5.4,
+    "z": 2.2,
+    "y": 2,
+    "zoom": 1.5
+   },
+   "elementos": [
+    {
+     "id": "amae",
+     "personagem": "avatar-bloco-roxo",
+     "x": -6,
+     "z": 2.6,
+     "y": 0.19,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "magia",
+     "alvo": "amae",
+     "inicio": 0.45
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "amae",
+     "som": null,
+     "inicio": 0.61
+    },
+    {
+     "tipo": "som",
+     "som": "entrar-jogo",
+     "inicio": 0.61
+    },
+    {
+     "tipo": "andar",
+     "alvo": "amae",
+     "para": -3.6,
+     "inicio": 1.52,
+     "duracao": 1.22
+    },
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "altura": 0.5,
+     "inicio": 2.76
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5.4,
+     "z": 2.2,
+     "y": 2,
+     "zoom": 1.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Entrou no campeonato do Léo e gritou, lá dentro: pausa!",
+   "cenario": "parkour-campeonato",
+   "camera": {
+    "x": -2,
+    "z": 2.2,
+    "y": 2.8
+   },
+   "elementos": [
+    {
+     "id": "amae",
+     "personagem": "avatar-bloco-roxo",
+     "x": -9.4,
+     "z": 2.6,
+     "y": 1
+    },
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -3.6,
+     "z": 3.2,
+     "y": 2.25
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "para": [
+      -0.8,
+      2.25
+     ],
+     "altura": 0.8,
+     "inicio": 0.48,
+     "duracao": 0.89
+    },
+    {
+     "tipo": "falar",
+     "alvo": "amae",
+     "texto": "PAUSA!",
+     "inicio": 1.73
+    },
+    {
+     "tipo": "som",
+     "som": "chat",
+     "inicio": 1.91
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 2.8
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 2.8,
+     "duracao": 0.36
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -2,
+     "z": 2.2,
+     "y": 2.8
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Jogo online não pausa.",
+   "cenario": "parkour-campeonato",
+   "camera": {
+    "x": 0.4,
+    "z": 2.2,
+    "y": 2,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -0.8,
+     "z": 3.2,
+     "y": 2.25
+    },
+    {
+     "id": "p",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "atop",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
+    },
+    {
+     "id": "amae",
+     "personagem": "avatar-bloco-roxo",
+     "x": -0.8,
+     "z": 3.6,
+     "y": 2.25
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "mover",
+     "alvo": "atop",
+     "para": [
+      -0.2,
+      3.6
+     ],
+     "inicio": null,
+     "duracao": 0.4
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "atop",
+     "estado": "pulando",
+     "inicio": null
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "p",
+     "inicio": null,
+     "som": null
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": null
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.4,
+     "z": 2.2,
+     "y": 2,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas filho online, pausa. E o Léo ficou no ar até a hora do banho.",
+   "cenario": "parkour-campeonato",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 2.8
+   },
+   "elementos": [
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": -0.2,
+     "z": 3.2,
+     "y": 3.6,
+     "pose": "bug"
+    },
+    {
+     "id": "p",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "atop",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": false
+    },
+    {
+     "id": "amae",
+     "personagem": "avatar-bloco-roxo",
+     "x": -0.8,
+     "z": 3.6,
+     "y": 2.25
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "para": [
+      2,
+      3.25
+     ],
+     "altura": 0.8,
+     "inicio": 0.51,
+     "duracao": 0.63
+    },
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "para": [
+      4.8,
+      3.25
+     ],
+     "altura": 0.8,
+     "inicio": 1.23,
+     "duracao": 0.63
+    },
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "para": [
+      7.6,
+      4.25
+     ],
+     "altura": 0.8,
+     "inicio": 1.95,
+     "duracao": 0.63
+    },
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "para": [
+      10.6,
+      4
+     ],
+     "altura": 0.8,
+     "inicio": 2.67,
+     "duracao": 0.63
+    },
+    {
+     "tipo": "fogos",
+     "posicao": [
+      10.6,
+      6,
+      3
+     ],
+     "cor": "rosa",
+     "inicio": 3.43
+    },
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 3.43
+    },
+    {
+     "tipo": "falar",
+     "alvo": "amae",
+     "texto": "VAI TOMAR BANHO!",
+     "inicio": 2.53
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": 2.2,
+     "y": 2.8
+    }
+   }
+  }
+ ]
+}
