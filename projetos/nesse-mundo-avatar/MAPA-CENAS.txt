@@ -6,7 +6,7 @@ Nesse mundo, seu avatar do Roblox vai ficando igual a você — tempos ESTIMADOS
   0:08.6  0:13.8   16%    3   mov                     Por isso, a criançada joga o dia inteiro para ter o avatar mais parecido.
   0:13.8  0:18.5   25%    4   mov corte som           Mas a Bia só pode jogar dez minutos. O avatar dela nem tem rosto.
   0:18.5  0:22.7   34%    5   mov flash som           Até que, numa sexta, o avatar do Léo ficou idêntico a ele.
-  0:22.7  0:26.8   42%    6   mov corte               Piscava igual. Ria igual. E acenou para ele, pela tela.
+  0:22.7  0:26.8   42%    6   mov som                 Piscava igual. Ria igual. E acenou para ele, pela tela.
   0:26.8  0:30.9   49%    7   mov som                 No sábado, o Léo voltou da escola andando duro. Sorrindo.
   0:30.9  0:34.0   57%    8   mov corte               A mãe achou graça. Ele não piscava mais.
   0:34.0  0:37.7   62%    9   mov flash som           Na segunda, a turma inteira voltou do mesmo jeito.
