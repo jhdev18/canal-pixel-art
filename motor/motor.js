@@ -186,7 +186,7 @@ class Motor {
         : new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
       malha.renderOrder = vista.ordemInicial(el, i);
-      const obj = { def: el, sprite, texturas, malha, mat, h: h * esc, esc, realce: el.realce ?? realce };
+      const obj = { def: el, sprite, texturas, malha, mat, w: w * esc, h: h * esc, esc, realce: el.realce ?? realce };
       // sombra que se alastra: o sprite escurece de baixo para cima quando a sombra chega nele
       if (temSombra && !el.tela && vista.centroIJ) obj.somU = sombraNoSprite(mat, texturas[0].image.height, vazio);
       // "tela": true — detalhe em close (ex.: página de um caderno), no centro da tela, por cima da cena,
@@ -483,6 +483,24 @@ class Motor {
         const st = estadoElemento(c, e.def, tt);
         const p = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
         return { x: p.x, y: this.H - p.y, visivel: st.visivel, alpha: st.alpha };
+      },
+      // caixas na tela (px, y do topo) do que a legenda não pode cobrir: personagens, objetos que agem na cena,
+      // o que a câmera segue e detalhes "tela"
+      importantes: (tt) => {
+        const alvos = new Set(c.acoes.map((a) => a.alvo).filter(Boolean));
+        if (c.seguir) alvos.add(c.seguir);
+        if (c.foco && typeof c.foco === 'string') alvos.add(c.foco);
+        const caixas = [];
+        for (const e of obj.elementos) {
+          if (!(e.sprite.personagem || alvos.has(e.def.id) || e.def.sobre || e.def.tela)) continue;
+          const st = estadoElemento(c, e.def, tt);
+          if (st.visivel === false || (st.alpha ?? 1) < 0.2) continue;
+          const pe = this.projetar(obj, obj.vista.paraMundo(e.def, st, 0));
+          const topo = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
+          const alt = Math.abs(pe.y - topo.y), larg = Math.max(alt * 0.5, (e.w * PPU * alt) / Math.max(1, e.h * PPU));
+          caixas.push({ x0: (pe.x + topo.x) / 2 - larg / 2, x1: (pe.x + topo.x) / 2 + larg / 2, y0: this.H - Math.max(pe.y, topo.y) - 4, y1: this.H - Math.min(pe.y, topo.y) + 1 });
+        }
+        return caixas;
       },
     });
     if (this.ui.malha.parent !== obj.overlay) obj.overlay.add(this.ui.malha);

@@ -60,7 +60,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **1ª frase curta:** no máximo 12 palavras / ~65 letras (o ideal é ~8 palavras, ~2–3 s). O `npm run conferir` acusa `[gancho]`.
 - **Silêncio no começo do áudio é cortado sozinho** (a voz começa no 1º quadro; o `--verificar` mostra quanto foi cortado).
 - **Legenda palavra por palavra (padrão):** grupos de 2–3 palavras grandes, com a palavra falada em amarelo (tempo real das
-  palavras pelo alinhamento; sem áudio, estimado). No Shorts fica a ~66% da altura, fora dos botões do YouTube.
+  palavras pelo alinhamento; sem áudio, estimado). **A posição é escolhida sozinha para não cobrir ninguém:** uma altura por
+  cena (não pula), desviando dos personagens, dos objetos que têm ação na cena, do que a câmera segue e dos detalhes `"tela"`
+  (`lugarLegenda` em `motor/ui.js`; Shorts: preferência 66%, 74%, 20%, 28%..., nunca nos 18% de baixo, onde ficam os botões do YouTube).
   `"legendaEstilo": "caixa"` volta à legenda antiga; `"legendaLetras"` (padrão 16) muda o tamanho dos grupos.
 - **Corte de enquadramento dentro da cena** (quebra de padrão a cada ~2 s sem trocar de lugar): ação
   `{ "tipo": "corte", "zoom": 2, "y": 1.5, "inicio" }` — troca instantânea (sem movimento lento), só com zoom redondo

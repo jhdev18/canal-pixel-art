@@ -80,7 +80,8 @@ export class UI {
   }
 
   // cabeca(id, t) -> {x, y} em px da tela (y a partir do topo) do topo do sprite.
-  desenhar({ cena, t, cabeca, rascunho, info }) {
+  desenhar({ cena, t, cabeca, rascunho, info, importantes }) {
+    this.importantes = importantes; this.cenaAtual = cena;
     const { ctx, W, H } = this;
     ctx.clearRect(0, 0, W, H);
     ctx.globalAlpha = 1;
@@ -302,9 +303,11 @@ export class UI {
       if (atual.length && larguraTexto(txt, esc) > W - 12) { linhas.push(atual); atual = [p]; } else atual.push(p);
     }
     if (atual.length) linhas.push(atual);
-    const altLinha = 11 * esc;
+    const altLinha = 11 * esc, altBloco = linhas.length * altLinha;
     const pop = clamp((t - b.ini) / 0.08);
-    const y0 = Math.round(H * (vertical ? 0.66 : 0.8) - (linhas.length * altLinha) / 2 + (1 - pop) * 2);
+    const larguraMax = Math.max(...linhas.map((ln) => larguraTexto(ln.map((p) => p.w).join(' '), esc)));
+    const centro = this.lugarLegenda(b, altBloco, larguraMax, vertical);
+    const y0 = Math.round(H * centro - altBloco / 2 + (1 - pop) * 2);
     const espaco = larguraTexto(' ', esc) + esc;
     linhas.forEach((ln, i) => {
       const larg = ln.reduce((sm, p) => sm + larguraTexto(p.w, esc), 0) + espaco * (ln.length - 1);
@@ -317,6 +320,43 @@ export class UI {
         x += larguraTexto(p.w, esc) + espaco;
       }
     });
+  }
+
+  // Onde a legenda não cobre ninguém: testa alturas em ordem de preferência. Primeiro uma posição para a CENA inteira
+  // (a legenda não pula de cima para baixo); só se ela cobrir alguém num grupo, esse grupo procura outra.
+  // Shorts: evita os 18% de baixo (título/botões do YouTube) e os 8% de cima.
+  lugarLegenda(b, altBloco, larg, vertical) {
+    const { W, H } = this;
+    const opcoes = vertical ? [0.66, 0.74, 0.2, 0.28, 0.58, 0.12] : [0.84, 0.12, 0.74, 0.22];
+    if (!this.importantes) return opcoes[0];
+    if (b._lugar != null) return b._lugar;
+    const x0 = (W - larg) / 2 - 3, x1 = (W + larg) / 2 + 3;
+    const cobre = (c, caixas) => {
+      const y0 = H * c - altBloco / 2 - 2, y1 = H * c + altBloco / 2 + 2;
+      let area = 0;
+      for (const k of caixas) area += Math.max(0, Math.min(x1, k.x1) - Math.max(x0, k.x0)) * Math.max(0, Math.min(y1, k.y1) - Math.max(y0, k.y0));
+      return area;
+    };
+    const escolher = (caixas) => {
+      let melhor = opcoes[0], menor = Infinity;
+      for (const [i, c] of opcoes.entries()) {
+        const area = cobre(c, caixas), custo = area + i * 0.5;   // empate: a preferida
+        if (custo < menor) { menor = custo; melhor = c; }
+        if (area === 0) break;
+      }
+      return melhor;
+    };
+    const amostras = (g) => [g.ini, (g.ini + g.fim) / 2, Math.max(g.ini, g.fim - 0.05)];
+    const cena = this.cenaAtual;
+    if (cena && cena._lugarLegenda == null) {
+      const todas = (cena.legendasNarracao || []).flatMap((g) => amostras(g)).flatMap((tt) => this.importantes(tt));
+      cena._lugarLegenda = escolher(todas);
+    }
+    const caixas = amostras(b).flatMap((tt) => this.importantes(tt));
+    const daCena = cena?._lugarLegenda ?? opcoes[0];
+    b._lugar = cobre(daCena, caixas) === 0 ? daCena : escolher(caixas);
+    b._cobre = Math.round(cobre(b._lugar, caixas));
+    return b._lugar;
   }
 
   titulo(cena, t) {
