@@ -28,8 +28,9 @@ const CLIMAS = {
   calor: { n: 60, cor: '#fff4d0', tam: 1, alpha: 0.45 },   // ar quente subindo (Dia do Sol)
   neblina: { n: 150, cor: '#c8d0e0', tam: 8, alpha: 0.09 },  // PROTÓTIPO: bancos de névoa baixos e lentos (terror)
   polen: { n: 70, cor: '#f8e060', tam: 1, alpha: 0.95 },     // PROTÓTIPO: pólen amarelo flutuando (primavera)
+  vento: { n: 55, cor: '#f4f8ff', tam: 5, alpha: 0.6 },      // PROTÓTIPO: rajadas de vento (risquinhos rápidos para a direita)
 };
-const ID_CLIMA = { chuva: 0, neve: 1, vagalumes: 2, brasas: 3, poeira: 4, folhas: 5, calor: 6, neblina: 7, polen: 8 };
+const ID_CLIMA = { chuva: 0, neve: 1, vagalumes: 2, brasas: 3, poeira: 4, folhas: 5, calor: 6, neblina: 7, polen: 8, vento: 9 };
 
 const VERT_CLIMA = /* glsl */ `
 attribute vec4 aSeed;
@@ -67,6 +68,10 @@ void main() {
     p = vec2(aSeed.x * W + uT * (4.0 + aSeed.z * 4.0) + sin(uT * 1.1 + aSeed.w * 6.28) * 6.0 - uCam.x * 0.9,
              aSeed.y * H + sin(uT * 0.8 + aSeed.z * 6.28) * 8.0 - uT * 2.0 - uCam.y * 0.9);
     vBrilho = 0.5 + 0.5 * sin(uT * 3.0 + aSeed.w * 25.0);
+  } else if (uTipo == 9) { // vento: risquinhos rápidos atravessando a tela em ondas
+    float v = 120.0 + aSeed.z * 120.0;
+    p = vec2(aSeed.x * W + uT * v - uCam.x, aSeed.y * H + sin(uT * 2.0 + aSeed.x * 12.0) * 5.0 - uCam.y);
+    vBrilho = smoothstep(0.0, 0.4, sin(uT * (0.8 + aSeed.w) + aSeed.z * 6.28));
   } else {                 // folhas
     float v = 16.0 + aSeed.z * 14.0;
     p = vec2(aSeed.x * W + uT * 12.0 + sin(uT * 1.5 + aSeed.w * 6.28) * 10.0 - uCam.x, aSeed.y * H - uT * v - uCam.y);
@@ -81,6 +86,7 @@ uniform vec3 uCor; uniform float uAlpha; uniform int uTipo; uniform float uTam;
 varying float vBrilho;
 void main() {
   if (uTipo == 0) { if (floor(gl_PointCoord.x * uTam) != 1.0) discard; }
+  if (uTipo == 9) { if (floor(gl_PointCoord.y * uTam) != 2.0) discard; }
   if (vBrilho < 0.02) discard;
   if (uTipo == 7 && length(gl_PointCoord - 0.5) > 0.5) discard;
   vec3 c = uCor;

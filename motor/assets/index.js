@@ -18,6 +18,7 @@
 //   loja-fabrica.js           PROTÓTIPO: interiores da loja e da fábrica de brinquedos (cômodos em diorama)
 //   bloco.js                  PROTÓTIPO: jogo de blocos (avatares, cubos, tela do jogo) para vídeos sobre Roblox
 //   medieval.js               PROTÓTIPO: medieval (pessoas, objetos, salão do trono, taverna)
+//   cidade.js                 PROTÓTIPO: melhorias da cidade (vida na rua, parquinho, ônibus, telas, interiores novos)
 //   animatronicos.js          PROTÓTIPO: animatrônicos de terror (Pãozito, Sapo Bandinha, Mimosa, bailarina)
 import './rpg.js';
 import './personagens-detalhados.js';
@@ -36,3 +37,4 @@ import './animatronicos.js';
 import './loja-fabrica.js';
 import './bloco.js';
 import './medieval.js';
+import './cidade.js';

@@ -736,5 +736,56 @@
     ]
   },
   "salao-trono-diorama": { "vista": "diorama", "comodo": { "tipo": "salao-trono" } },
-  "taverna-diorama":     { "vista": "diorama", "comodo": { "tipo": "taverna" } }
+  "taverna-diorama":     { "vista": "diorama", "comodo": { "tipo": "taverna" } },
+
+  // ---- CIDADE (PROTÓTIPO, motor/assets/cidade.js): vida na rua, hora do dia, clima, lugares novos ----
+  // rua-viva: a rua comercial com gente passando no fundo, pombos que voam e um cachorro ("vidaNaRua"; vale em qualquer cena/cenário).
+  "rua-viva": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "vidaNaRua": { "pedestres": 3, "pombos": 2, "cachorro": true },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] } },
+  // rua-transito: a mesma rua com carros e ônibus passando (passam NA FRENTE de quem está na calçada dos prédios), ponto de ônibus,
+  // semáforo e placa na calçada da frente.
+  "rua-transito": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "vidaNaRua": { "pedestres": 2, "pombos": 1, "carros": 3, "onibus": true },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [ { "id": "ponto", "sprite": "ponto-onibus", "x": 3.6, "z": 0.2 }, { "id": "semaforo", "sprite": "semaforo", "x": -2.9, "z": 0.5 },
+      { "id": "placa", "sprite": "placa-rua", "x": 7.4, "z": 0.3 }, { "id": "bike", "sprite": "bicicleta", "x": -0.6, "z": 0.4 } ] },
+  // pôr do sol (continua claro: luz alaranjada e céu laranja e rosa) — bom para o fim de um vídeo, no lugar da noite
+  "rua-tarde": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "rua": { "periodo": "tarde", "faixaPedestre": -3, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] } },
+  "praca-tarde": { "vista": "diorama", "camera": { "x": 0, "z": -8.5 }, "rua": { "periodo": "tarde", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 }, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [ { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 }, { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -8.4, "z": -6.4 }, { "id": "poste4", "sprite": "poste-iso", "x": 7.9, "z": -6.4 }, { "id": "fonte", "sprite": "fonte-iso", "x": -0.9, "z": -6.9 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 }, { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 } ] },
+  // clima de dia: vento (rajadas atravessando a tela) e neblina de manhã (terror sem escuro)
+  "rua-vento": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "clima": "vento", "rua": { "periodo": "dia", "faixaPedestre": -3, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] } },
+  "rua-neblina": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "clima": "neblina", "rua": { "periodo": "dia", "faixaPedestre": -3, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] } },
+  // praca-parquinho: a praça com escorregador, balanço, gira-gira e gangorra no lugar da fonte e dos bancos.
+  // Crianças brincando: no escorregador x ~-1 z -6.2 (em cima "y": 2); balanço x 2.6 z -6.0; gira-gira x -4.8 z -6.6; gangorra x 4.6 z -4.6.
+  "praca-parquinho": { "vista": "diorama", "camera": { "x": 0, "z": -8.5 }, "rua": { "periodo": "dia", "faixaPedestre": -3, "praca": { "x": 0, "largura": 16, "profundidade": 12 }, "predios": [ { "tipo": "comum" }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] },
+    "elementos": [ { "id": "arvore1", "sprite": "arvore-iso-grande", "x": -7.25, "z": -2.25 }, { "id": "arvore2", "sprite": "arvore-iso-grande", "x": 6.75, "z": -2.25 },
+      { "id": "poste3", "sprite": "poste-iso", "x": -8.4, "z": -6.4 }, { "id": "poste4", "sprite": "poste-iso", "x": 7.9, "z": -6.4 },
+      { "id": "escorregador", "sprite": "escorregador", "x": -1.4, "z": -6.0 }, { "id": "balanco", "sprite": "balanco", "x": 2.0, "z": -5.8 },
+      { "id": "giragira", "sprite": "gira-gira", "x": -5.4, "z": -6.4 }, { "id": "gangorra", "sprite": "gangorra", "x": 4.6, "z": -4.4 },
+      { "id": "canteiro1", "sprite": "canteiro-iso", "x": -6.7, "z": -9.9 }, { "id": "canteiro2", "sprite": "canteiro-iso", "x": 4.3, "z": -9.9 } ] },
+  // rua-bairro: outra rua da cidade. Da esquerda para a direita (centro x): EDIFÍCIO SERENA, apartamentos (-11.4), POSTO DE SAÚDE (-5.4),
+  // BIBLIOTECA (0.1), casa amarela (5.1), casa azul (10.1). Calçada z ~5.0; câmera { "x": <prédio>, "z": 2.2, "y": 2.4 }.
+  "rua-bairro": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.4 }, "vidaNaRua": { "pedestres": 2, "pombos": 2 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3, "ancoraPredios": -12,
+      "predios": [ { "tipo": "apartamentos", "largura": 6 }, { "tipo": "posto-saude", "largura": 6 }, { "tipo": "biblioteca", "largura": 5 }, { "tipo": "casa", "largura": 5 }, { "tipo": "casa-2", "largura": 5 } ] } },
+  // casa-bia-fora: a casa da Bia (amarela, no meio, x ~0.6) entre as casas dos vizinhos (azul x -4.9, verde x 6.1); caixa de correio,
+  // cerca e árvore. Calçada z ~4.4–5.0; câmera { "x": 0.6, "z": 2.2, "y": 2.4 }.
+  "casa-bia-fora": { "vista": "diorama", "camera": { "x": 0.6, "z": 2.2, "y": 2.4 },
+    "rua": { "periodo": "dia", "soPedidos": true, "ancoraPredios": -8, "predios": [ { "tipo": "casa-2", "largura": 5 }, { "tipo": "casa", "largura": 6 }, { "tipo": "casa-3", "largura": 5 } ] },
+    "elementos": [ { "id": "correio", "sprite": "caixa-correio", "x": 3.0, "z": 5.4 }, { "id": "cerca1", "sprite": "cerca-madeira", "x": -7.6, "z": 5.6 },
+      { "id": "cerca2", "sprite": "cerca-madeira", "x": 4.6, "z": 5.6 }, { "id": "arvore", "sprite": "arvore-iso", "x": -2.8, "z": 5.4 }, { "id": "bike", "sprite": "bicicleta", "x": -1.2, "z": 5.8 } ] },
+  // escola-patio: o pátio da escola (quadra pintada, portão, mastro com bandeira, trave, bola, banco). Escola no fundo (x ~0.6);
+  // crianças no pátio z ~1–5; portão aberto na frente (x ~-1.2, z 0.1).
+  "escola-patio": { "vista": "diorama", "camera": { "x": 0.4, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "dia", "chao": "patio", "soPedidos": true, "postes": false, "cerca": false, "ancoraPredios": -4, "predios": [ { "tipo": "escola", "largura": 8 } ] },
+    "elementos": [ { "id": "mastro", "sprite": "mastro-bandeira", "x": -5.6, "z": 5.4 }, { "id": "trave", "sprite": "trave", "x": -6.8, "z": 2.4 },
+      { "id": "bola", "sprite": "bola", "x": 1.4, "z": 2.6 }, { "id": "banco", "sprite": "banco-iso", "x": 5.8, "z": 5.2 },
+      { "id": "portao", "sprite": "portao-escola", "x": 2.4, "z": 0.1, "pose": "aberto" } ] },
+  // interiores novos (cômodos em diorama)
+  "onibus-dentro-diorama":  { "vista": "diorama", "comodo": { "tipo": "onibus-dentro" } },
+  "mercado-dentro-diorama": { "vista": "diorama", "comodo": { "tipo": "mercado-dentro" } },
+  "consultorio-diorama":    { "vista": "diorama", "comodo": { "tipo": "consultorio" } },
+  "biblioteca-diorama":     { "vista": "diorama", "comodo": { "tipo": "biblioteca" } }
 }

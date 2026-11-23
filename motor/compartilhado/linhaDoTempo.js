@@ -74,6 +74,45 @@ function duracaoFala(texto) {
 
 // Normaliza o roteiro e calcula início/duração de cada cena.
 // narracoes: Map<indiceCena, {arquivo, duracao}>
+// PROTÓTIPO: "vidaNaRua" (na cena ou no cenário) — gente passando no fundo, pombos que voam, cachorro e carros,
+// sem precisar escrever ações. true = padrão (3 pedestres e 2 pombos) ou { pedestres, carros, pombos, cachorro, onibus,
+// zPedestres }. Os elementos são figurantes marcados com "vida": true (a conferência não cobra nada deles).
+// Pedestres na calçada dos prédios, ATRÁS de quem está na cena (z 5.3 indo para a direita, 5.7 para a esquerda); na praça
+// (câmera com z < -2) passam atrás das fileiras (z -6.9 / -6.5). Carros no asfalto (z 2.6 e 3.6) passam NA FRENTE de quem
+// está na calçada dos prédios: use carros só quando ninguém importante estiver ali.
+const SPRITES_VIDA = ['carteiro', 'vovo', 'mae', 'sorveteiro', 'aluno', 'aluna', 'caixa', 'mae-avental', 'professora', 'menino-pijama', 'campones'];
+function adicionarVidaNaRua(cena, n) {
+  const cfg = cena.vidaNaRua === true ? {} : cena.vidaNaRua, dur = cena.duracao, cx = cena.camera?.x ?? 0;
+  const praca = (cena.camera?.z ?? 0) < -2;
+  const usados = new Set(cena.elementos.map((e) => e.sprite || e.personagem));
+  const livres = SPRITES_VIDA.filter((s) => !usados.has(s));
+  let sem = (n + 1) * 7919;
+  const rnd = () => ((sem = (sem * 16807) % 2147483647) / 2147483647);
+  const add = (el, acoes) => { cena.elementos.push({ figurante: true, vida: true, ...el }); cena.acoes.push(...acoes); };
+  const zP = cfg.zPedestres ?? (praca ? -6.9 : 5.3);
+  for (let k = 0; k < (cfg.pedestres ?? 3) && livres.length; k++) {
+    const dir = k % 2 ? -1 : 1, vel = dir > 0 ? 1.1 : 0.95, x0 = cx - dir * (7 + (k >> 1) * 4.5) + (rnd() - 0.5);
+    add({ id: `vida-p${k}`, sprite: livres[k % livres.length], x: x0, z: zP + (dir > 0 ? 0 : 0.4) },
+      [{ tipo: 'andar', alvo: `vida-p${k}`, para: x0 + dir * vel * (dur + 1), inicio: 0, duracao: dur + 1, som: null }]);
+  }
+  for (let k = 0; k < (cfg.pombos ?? 2); k++) {
+    const id = `vida-pombo${k}`, x0 = cx - 4 + k * 5.5 + rnd() * 2, z0 = praca ? -7.3 : 4.55, tv = dur * (0.45 + 0.2 * rnd());
+    add({ id, sprite: 'pombo-rua', x: x0, z: z0 },
+      [{ tipo: 'trocar', alvo: id, estado: 'voando', inicio: tv }, { tipo: 'mover', alvo: id, para: [x0 + 3 + rnd() * 2, 5], inicio: tv, duracao: 1.8 }]);
+  }
+  if (cfg.cachorro) {
+    const x0 = cx + 8;
+    add({ id: 'vida-cao', sprite: 'vira-lata', x: x0, z: zP + 0.4 }, [{ tipo: 'andar', alvo: 'vida-cao', para: x0 - 1.4 * (dur + 1), inicio: 0, duracao: dur + 1, som: null }]);
+  }
+  const CARROS = ['carro-vermelho', 'carro-azul', 'carro-amarelo', 'carro-branco'];
+  for (let k = 0; k < (cfg.carros ?? 0); k++) {
+    const dir = k % 2 ? -1 : 1, z = dir > 0 ? 2.6 : 3.6, x0 = cx - dir * 14, t0 = k * 1.3;
+    add({ id: `vida-carro${k}`, sprite: CARROS[k % CARROS.length], x: x0, z }, [{ tipo: 'mover', alvo: `vida-carro${k}`, para: x0 + dir * 28, inicio: t0, duracao: 6, easing: 'linear' }]);
+  }
+  if (cfg.onibus) add({ id: 'vida-onibus', sprite: 'onibus', x: cx + 16, z: 3.4 }, [{ tipo: 'mover', alvo: 'vida-onibus', para: cx - 16, inicio: 0, duracao: 9, easing: 'linear' }]);
+  cena.acoes.sort((a, b) => a.inicio - b.inicio);
+}
+
 export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
   const res = roteiro.resolucao || [320, 180];
   const fps = opcoes.fps || 30;
@@ -154,6 +193,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     if (continuo) for (const a of cena.acoes) if (a.inicio + a.duracao > dur) a.duracao = Math.max(0, dur - a.inicio);   // nada passa do fim da fala
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;
+    if (cena.vidaNaRua && (cena.vista === 'diorama' || cena.vista === 'diagonal') && !cena.comodo) adicionarVidaNaRua(cena, indice);
     cena.inicio = inicio;
     cena.transicao = cena.transicao || (indice === 0 ? 'corte' : 'dither')   // 1ª cena começa já com imagem (sem fade do preto: o 1º segundo decide se o público fica);
     cena.transicaoDuracao = cena.transicaoDuracao ?? roteiro.transicaoDuracao ?? TRANSICAO_DURACAO;

@@ -46,6 +46,8 @@ export async function conferir(nome) {
   const bruto = lerJsonFlexivel(path.join(dir, 'roteiro.json'));
   const r = resolverRoteiro(lerRoteiro(dir), new Map(), { fps: 30 });
   r.cenas.forEach((c, i) => { c.cenarioBruto = bruto.cenas[i].cenario; });
+  // "vidaNaRua": figurantes automáticos do fundo (pedestres, pombos, carros) não entram na conferência
+  for (const c of r.cenas) { const vida = new Set(c.elementos.filter((e) => e.vida).map((e) => e.id)); if (vida.size) { c.elementos = c.elementos.filter((e) => !vida.has(e.id)); c.acoes = c.acoes.filter((a) => !vida.has(a.alvo)); } }
   const tam = await tamanhos();
   const av = [];
   const aviso = (n, tipo, msg) => av.push({ n, tipo, msg });
@@ -157,6 +159,12 @@ export async function conferir(nome) {
   }
 
   // ---------- 9. RITMO: trilha de fundo (o som nunca fica vazio) e cortes de enquadramento com zoom redondo
+  // ---------- [altura] "para": [x, y] em andar/correr/mover muda a ALTURA (y), não a profundidade (z não anda): a pessoa sai flutuando
+  for (const c of r.cenas) for (const a of c.acoes) {
+    if (!['andar', 'correr', 'mover'].includes(a.tipo) || !Array.isArray(a.para) || !(a.para[1] > 0.3)) continue;
+    const e = c.elementos.find((x) => x.id === a.alvo);
+    if (e && ehPessoa(e, tam) && !(e.y > 0)) aviso(c.numero, 'altura', `"${a.alvo}" ${a.tipo} com "para": [${a.para}] — o 2º número é a ALTURA (sobe no ar), não a profundidade; para mudar de faixa, use outra cena ou outro "z" fixo`);
+  }
   if (!bruto.trilha) aviso(0, 'trilha', 'o roteiro não tem "trilha" — usar "trilha": "suspense" (terror), "comedia" ou "emocional" (base musical baixa, abaixa sozinha com a narração)');
   for (const c of r.cenas) for (const a of c.acoes) {
     if (a.tipo === 'camera' && a.corte && a.para?.zoom != null && Math.round(a.para.zoom * 2) !== a.para.zoom * 2) aviso(c.numero, 'corte', `corte com zoom ${a.para.zoom} — usar valores redondos (1, 1.5, 2, 3) para os pixels ficarem alinhados`);

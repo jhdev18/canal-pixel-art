@@ -25,6 +25,13 @@ const ESTAB = {
   farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 82, cruz: true },
   // PROTÓTIPO (terror dos brinquedos): só aparecem nos cenários rua-brinquedos e fabrica-brinquedos, não na rua comercial normal
   brinquedos: { pal: ['#f8e8b0', '#f0d890', '#c8a868', '#5a4a30'], tipo: 'reboco', placa: ['#d84a8a', '#ffffff'], texto: 'BRINQUEDOS', toldo: ['#f8e060', '#3a8ad8'], alt: 112, vitrine: 'brinquedos', base: '#c85a8a' },
+  // PROTÓTIPO (cidade): posto de saúde, biblioteca, prédio de apartamentos e casas (a casa da Bia é a 'casa')
+  'posto-saude': { pal: ['#f4f8fa', '#e0eaf0', '#b0c0cc', '#4a5a6a'], tipo: 'azulejo', placa: ['#2a8ad8', '#ffffff'], texto: 'POSTO DE SAÚDE', toldo: null, alt: 82, cruz: true, porta: 'vidro-dupla' },
+  biblioteca: { pal: ['#e8d8b8', '#d4c098', '#a88e68', '#5a4a30'], tipo: 'reboco', placa: ['#6a3a1e', '#f0d890'], texto: 'BIBLIOTECA', toldo: null, alt: 112, porta: 'vidro-dupla', base: '#8a5a3a' },
+  apartamentos: { pal: ['#c8d8e8', '#b0c4d8', '#8a9cb0', '#3a4a5e'], tipo: 'reboco', placa: ['#3a4a5e', '#ffffff'], texto: 'EDIFÍCIO SERENA', toldo: null, alt: 176, porta: 'vidro-dupla' },
+  casa: { casa: true, alt: 64, cor: '#f8d8a0', telha: ['#d86a4a', '#b8543a', '#8a3a28'], texto: '' },
+  'casa-2': { casa: true, alt: 64, cor: '#b8d8f0', telha: ['#6a6e84', '#565a6e', '#3e4254'], texto: '' },
+  'casa-3': { casa: true, alt: 64, cor: '#d8f0c0', telha: ['#b87a3a', '#9a622c', '#6a4220'], texto: '' },
   // PROTÓTIPO (medieval): casas de enxaimel, taverna, ferreiro e a muralha do castelo (desenho próprio: medieval(P))
   'casa-medieval': { medieval: 'casa', alt: 80, reboco: '#f0e4c8', telha: ['#c85a44', '#a84a38', '#7a3428'], texto: '' },
   'casa-medieval-2': { medieval: 'casa', alt: 80, reboco: '#e8d0a8', telha: ['#6a6e84', '#565a6e', '#3e4254'], texto: '', chamine: true },
@@ -51,6 +58,7 @@ const TOLDOS = [['#e8e0d0', '#c83c4c'], ['#e8e0d0', '#3aa868'], ['#e8e0d0', '#3a
 export function gerarRuaDiagonal(opc = {}) {
   const comp = opc.comprimento ?? 44;
   const noite = (opc.periodo ?? 'noite') === 'noite';
+  const tarde = opc.periodo === 'tarde';   // PROTÓTIPO: pôr do sol (luz alaranjada, céu laranja e rosa); continua claro
   const semente = opc.semente ?? 7;
   const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 24, HMAX = 200;   // I1 largo: o canteiro vai até a borda
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
@@ -95,6 +103,12 @@ export function gerarRuaDiagonal(opc = {}) {
     // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
     const terra = opc.chao === 'terra';
     const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.chao === 'patio') {   // PROTÓTIPO: pátio de escola (cimento claro com quadra pintada: linhas brancas e círculo do meio)
+      const di = i - 3.2, dj = j - (opc.patioCentro ?? 0), r = Math.hypot(di, dj * 0.9);
+      const linha = Math.abs(Math.abs(di) - 2.6) < 0.05 && Math.abs(dj) < 6 || Math.abs(Math.abs(dj) - 6) < 0.06 && Math.abs(di) < 2.6 || Math.abs(dj) < 0.04 && Math.abs(di) < 2.6 || Math.abs(r - 1.1) < 0.05;
+      c = i < 0.2 ? '#c8c4bc' : linha ? '#f8f8f4' : Math.abs(di) < 2.6 && Math.abs(dj) < 6 ? (bayer(x, y) < 0.06 ? '#5a9a6a' : '#4a8a5a') : (bayer(x, y) < 0.05 ? '#c4c0b8' : '#d4d0c8');
+      pintar(x, y, c, i, j, 0); continue;
+    }
     if (opc.chao === 'pedras') {   // PROTÓTIPO (medieval): calçamento de pedras (fileiras desencontradas), um pouco de musgo nas juntas
       const fi = i / 0.36, linha = Math.floor(fi), fj = (j + (linha % 2) * 0.25) / 0.5, col = Math.floor(fj);
       const di = fi - linha, dj = fj - col, junta = di < 0.14 || dj < 0.08;
@@ -459,9 +473,42 @@ export function gerarRuaDiagonal(opc = {}) {
       fumacas.push({ i: -1.8, j: cj + 0.35, h: h + 52 });
     }
   }
+  // ---------- CASA (PROTÓTIPO): casa térrea com telhado de telhas, porta, 2 janelas com floreira, luz da varanda ----------
+  function casaModerna(P) {
+    const E = P.e, h = P.h;
+    const BR = '#f8f6f0', ESC = '#5a4030';
+    prisma(-3.2, 0, P.j0, P.j1, 0, h, {
+      frente: (x, y, u, t, larg, s) => {
+        let c = t < 4 ? '#a89888' : (bayer(x, y) < 0.05 ? '#e8c890' : E.cor), tp = 1;
+        if (t >= h - 3) c = BR;
+        const cuP = Math.floor(larg / 2) - 4, du = u - cuP;
+        if (Math.abs(du) <= 8 && t < 46) c = Math.abs(du) >= 7 || t >= 44 ? BR : (du === 0 ? ESC : (t > 30 && t < 40 && Math.abs(du) < 5 ? '#8ab8d8' : '#8a5a3a'));   // porta com vidrinho
+        if (Math.abs(du) <= 8 && t < 46 && (du === 4) && t > 20 && t < 24) c = '#f0c840';
+        for (const cu of [10, larg - 12]) {
+          const dd = u - cu;
+          if (Math.abs(dd) <= 8 && t >= 16 && t < 42) c = Math.abs(dd) >= 7 || t === 16 || t >= 40 || dd === 0 || t === 28 ? BR : (noite ? '#ffd070' : t > 30 ? '#a8c8e0' : '#6a8aa8');
+          if (Math.abs(dd) <= 9 && t >= 12 && t < 16) c = t === 15 ? '#5a3a24' : (u + t) % 3 ? '#e85a7a' : '#5ac84a';   // floreira
+        }
+        if (Math.abs(u - (cuP + 12)) < 1.5 && t > 46 && t < 50) { c = '#fff0a0'; tp = noite ? 2 : 1; }       // luz da varanda
+        pintar(x, y, c, 0, s, t, tp, 1);
+      },
+      lado: (x, y, u, t, s) => pintar(x, y, t < 4 ? '#8a7a6a' : t >= h - 3 ? BR : '#c8a878', s, P.j1, t, 1, 0.72),
+      topo: (x, y, i, j) => pintar(x, y, ESC, i, j, h, 1, 1),
+    });
+    const N = 11, T = E.telha;
+    for (let k = 0; k < N; k++) {
+      const iF = 0.35 - k * (3.4 / N), h0 = h + k * 4;
+      prisma(-3.4, iF, P.j0 - 0.2, P.j1 + 0.2, h0, 4, {
+        frente: (x, y, u, t, larg, s) => pintar(x, y, t === 0 ? T[2] : ((u + (k % 2) * 4) % 8 === 0 ? T[2] : t === 3 ? T[0] : T[1]), iF, s, h0 + t, 1, 1),
+        lado: (x, y, u, t, s) => pintar(x, y, T[2], s, P.j1 + 0.2, h0 + t, 1, 0.75),
+        topo: (x, y, i, j) => pintar(x, y, k === N - 1 ? T[2] : T[0], i, j, h0 + 4, 1, 1.1),
+      });
+    }
+  }
   for (const P of predios) {
     if (P.e?.castelo) { castelo(P); continue; }
     if (P.e?.medieval) { medieval(P); continue; }
+    if (P.e?.casa) { casaModerna(P); continue; }
     const rw = rng(P.s), pal = P.pal;
     const acesa = new Map();
     const parede = (u, t, larg) => {
@@ -641,7 +688,7 @@ export function gerarRuaDiagonal(opc = {}) {
   // luz dos postes da praça (os postes são sprites "poste-iso"; a luz no chão vem daqui)
   const luzPraca = PR && noite ? (op.luzes ? op.luzes.map(([x, z]) => [FAIXA.calcadaFrente - z, -x]) : [[PR.i0 + 1.5, PR.j0 + 2], [PR.i0 + 1.5, PR.j1 - 2], [PR.i1 - 3, PR.j0 + 2], [PR.i1 - 3, PR.j1 - 2]]).map(([i, j]) => ({ i, j, h: 40, raio: 4.6, forca: 1 })) : [];
   const luzes = noite ? [...postes.map((p) => ({ ...p, h: 40, raio: 4.2, forca: 1 })), ...lojas, ...luzPraca] : [];
-  const amb = noite ? [0.70, 0.74, 0.94] : [1, 1, 1];
+  const amb = noite ? [0.70, 0.74, 0.94] : tarde ? [1.07, 0.86, 0.72] : [1, 1, 1];
   const corLuz = [1.0, 0.86, 0.6];
   const saida = new Uint8ClampedArray(N * 4), brilho = new Uint8ClampedArray(N * 4);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -667,5 +714,5 @@ export function gerarRuaDiagonal(opc = {}) {
     }
     saida.set([Math.min(255, R * 255), Math.min(255, G * 255), Math.min(255, B * 255), 255], k * 4);
   }
-  return { W, H, imagem: saida, brilho, proj, postes, fumacas, J0, J1, noite, pi, pj, ph, tipo };
+  return { W, H, imagem: saida, brilho, proj, postes, fumacas, J0, J1, noite, tarde, pi, pj, ph, tipo };
 }

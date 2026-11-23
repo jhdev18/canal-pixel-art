@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (239)
+## Sprites (267)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -117,8 +117,42 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `farmacia` | ✅ | (gerado no navegador) |  |
 | `carro-policia` | ✅ | (gerado no navegador) |  |
 | `banco-praca` | ✅ | parado | 30×14 |
-| `ponto-onibus` | ✅ | (gerado no navegador) |  |
 | `hidrante` | ✅ | parado | 10×14 |
+
+### Cidade (melhorias)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `ponto-onibus` | 🧪 protótipo | parado | 85×65 |
+| `bola` | 🧪 protótipo | parado | 8×8 |
+| `carro-vermelho` | 🧪 protótipo | parado | 63×34 |
+| `carro-azul` | 🧪 protótipo | parado | 63×34 |
+| `carro-amarelo` | 🧪 protótipo | parado | 63×34 |
+| `carro-branco` | 🧪 protótipo | parado | 63×34 |
+| `onibus` | 🧪 protótipo | parado | 149×73 |
+| `bicicleta` | 🧪 protótipo | parado | 37×16 |
+| `escorregador` | 🧪 protótipo | parado | 91×63 |
+| `carrinho-compras` | 🧪 protótipo | parado | 27×30 |
+| `trave` | 🧪 protótipo | parado | 59×40 |
+| `varal` | 🧪 protótipo | parado | 85×58 |
+| `mastro-bandeira` | 🧪 protótipo | parado | 41×81 |
+| `semaforo` | 🧪 protótipo | verde, amarelo, vermelho, apagado, parado, piscando | 13×59 |
+| `portao-escola` | 🧪 protótipo | fechado, aberto, parado | 103×66 |
+| `balanco` | 🧪 protótipo | parado, balancando, sozinho | 79×62 |
+| `gira-gira` | 🧪 protótipo | parado, girando | 47×36 |
+| `gangorra` | 🧪 protótipo | parado, subindo | 85×40 |
+| `pombo-rua` | 🧪 protótipo | parado, voando | 14×12 |
+| `placa-rua` | 🧪 protótipo | parado, rua, pare, nao-olhe, vazia | 30×44 |
+| `relogio-digital` | 🧪 protótipo | 10-00, 12-00, 03-33, 00-00, parado, piscando | 32×46 |
+| `tv-noticia` | 🧪 protótipo | parado, jornal, urgente, chuvisco, desligada | 96×64 |
+| `cartaz-muda` | 🧪 protótipo | parado, circo, sorriso, olhos, vazio | 32×40 |
+| `janela-cortina` | 🧪 protótipo | fechada, aberta, acesa, vulto, parado, balancando | 20×24 |
+| `celular` | 🧪 protótipo | inicio, mensagem, notificacao, chamada, camera, rachado, sem-sinal, parado | 48×88 |
+| `vassoura` | 🧪 protótipo | parado | 8×24 |
+| `motorista` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `gari` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `pipoqueiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
+| `medica` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo | 28×44 |
 
 ### Interiores (móveis e cômodos)
 
@@ -137,7 +171,6 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `cadeira-gamer` | ✅ | parado | 20×34 |
 | `guarda-roupa` | ✅ | parado | 44×72 |
 | `bau-brinquedos` | ✅ | parado | 34×26 |
-| `bola` | ✅ | parado | 10×10 |
 | `abajur` | ✅ | parado | 16×30 |
 | `abajur-apagado` | ✅ | parado | 16×30 |
 | `criado-mudo` | ✅ | parado | 20×22 |
@@ -387,6 +420,10 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `brinquedo-boneca-sem-rosto` | 🧪 protótipo | `brinquedo-boneca-sem-rosto` | 1.2 |
 | `brinquedo-robo-sem-rosto` | 🧪 protótipo | `brinquedo-robo-sem-rosto` | 0.5 |
 | `brinquedo-caixa-sem-rosto` | 🧪 protótipo | `brinquedo-caixa-sem-rosto` | 1.4 |
+| `motorista` | 🧪 protótipo | `motorista` | 0.85 |
+| `gari` | 🧪 protótipo | `gari` | 0.95 |
+| `pipoqueiro` | 🧪 protótipo | `pipoqueiro` | 0.9 |
+| `medica` | 🧪 protótipo | `medica` | 1.1 |
 | `rei` | 🧪 protótipo | `rei` | 0.8 |
 | `rainha` | 🧪 protótipo | `rainha` | 1.1 |
 | `princesa` | 🧪 protótipo | `princesa` | 1.4 |
@@ -480,6 +517,20 @@ Uso: `{ "cenario": "nome" }`
 | `castelo-medieval` | 🧪 protótipo | diorama | 4 |
 | `salao-trono-diorama` | 🧪 protótipo | diorama (cômodo salao-trono) | 0 |
 | `taverna-diorama` | 🧪 protótipo | diorama (cômodo taverna) | 0 |
+| `rua-viva` | 🧪 protótipo | diorama | 0 |
+| `rua-transito` | 🧪 protótipo | diorama | 4 |
+| `rua-tarde` | 🧪 protótipo | diorama | 0 |
+| `praca-tarde` | 🧪 protótipo | diorama | 7 |
+| `rua-vento` | 🧪 protótipo | diorama | 0 |
+| `rua-neblina` | 🧪 protótipo | diorama | 0 |
+| `praca-parquinho` | 🧪 protótipo | diorama | 10 |
+| `rua-bairro` | 🧪 protótipo | diorama | 0 |
+| `casa-bia-fora` | 🧪 protótipo | diorama | 5 |
+| `escola-patio` | 🧪 protótipo | diorama | 5 |
+| `onibus-dentro-diorama` | 🧪 protótipo | diorama (cômodo onibus-dentro) | 0 |
+| `mercado-dentro-diorama` | 🧪 protótipo | diorama (cômodo mercado-dentro) | 0 |
+| `consultorio-diorama` | 🧪 protótipo | diorama (cômodo consultorio) | 0 |
+| `biblioteca-diorama` | 🧪 protótipo | diorama (cômodo biblioteca) | 0 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |

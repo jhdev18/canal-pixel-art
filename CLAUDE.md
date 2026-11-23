@@ -74,6 +74,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Trilha de fundo em todo vídeo:** `"trilha": "suspense"` (terror), `"comedia"` ou `"emocional"` no roteiro (base chiptune
   baixa em loop, abaixa sozinha com a narração; só no final, como os outros sons; `"volumeTrilha"` padrão 0.7;
   `biblioteca/sfx/trilha-<nome>.mp3` substitui a gerada). Projetos novos já vêm com `"trilha": "suspense"`; o conferir acusa `[trilha]`.
+- **Vida na rua:** em cenas de rua/praça paradas, `"vidaNaRua": true` põe gente passando no fundo e pombos voando (movimento sem
+  atrapalhar a história). Para o fim do vídeo sem escuro, `"periodo": "tarde"` (pôr do sol).
 - **Medir pela retenção real:** `npm run mapa -- <projeto>` mostra cada cena no tempo (início, fim, %, se tem movimento,
   corte, flash, noite) e salva `MAPA-CENAS.txt`. Quando o usuário mandar o gráfico de retenção do YouTube Studio, comparar
   os segundos em que a linha cai com o mapa, achar a cena culpada e anotar a regra nova aqui.
@@ -346,7 +348,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%; `[trilha]` roteiro sem trilha; `[corte]` corte com zoom quebrado; `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
+depois de 40%; `[trilha]` roteiro sem trilha; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
@@ -643,6 +645,12 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `"chao": "pedras"` no `ruaDiagonal.js`): cenários `vila-medieval`, `castelo-medieval`, `salao-trono-diorama`, `taverna-diorama`; pessoas
   `rei`, `rainha`, `princesa`, `cavaleiro`, `campones`, `camponesa`, `ferreiro`, `bruxa`, `mago` (chapéus novos `bruxa` e `capuz` no gerador);
   objetos `barril`, `feno`, `carroca`, `poco`, `barraca-medieval`, `estandarte`, `tocha`. Teste: `projetos/vitrine` (cenas 44–47).
+- **Cidade — melhorias (PROTÓTIPO, pedido do usuário)** (`motor/assets/cidade.js`; ver o GUIA): `"vidaNaRua"` (pedestres, pombos,
+  cachorro, carros, ônibus automáticos em `linhaDoTempo.js`), `"periodo": "tarde"` (pôr do sol), clima `vento`, chão `patio`, fachadas
+  `apartamentos`, `posto-saude`, `biblioteca`, `casa`/`-2`/`-3`; cenários `rua-viva`, `rua-transito`, `rua-tarde`, `praca-tarde`, `rua-vento`,
+  `rua-neblina`, `praca-parquinho`, `rua-bairro`, `casa-bia-fora`, `escola-patio`, `onibus-dentro-diorama`, `mercado-dentro-diorama`,
+  `consultorio-diorama`, `biblioteca-diorama`; parquinho, trânsito, objetos que mudam de estado, `tv-noticia`, `celular`; moradores
+  `motorista`, `gari`, `pipoqueiro`, `medica`. O usuário NÃO quis a dona da banca de jornal nem a bibliotecária. Teste: `projetos/vitrine` (cenas 48–63).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,

@@ -50,6 +50,11 @@
   "brinquedo-boneca-sem-rosto":     { "sprite": "brinquedo-boneca-sem-rosto", "voz": 1.2 },
   "brinquedo-robo-sem-rosto":       { "sprite": "brinquedo-robo-sem-rosto", "voz": 0.5 },
   "brinquedo-caixa-sem-rosto":      { "sprite": "brinquedo-caixa-sem-rosto", "voz": 1.4 },
+  // ---- cidade (motor/assets/cidade.js)
+  "motorista": { "sprite": "motorista", "voz": 0.85 },
+  "gari": { "sprite": "gari", "voz": 0.95 },
+  "pipoqueiro": { "sprite": "pipoqueiro", "voz": 0.9 },
+  "medica": { "sprite": "medica", "voz": 1.1 },
   // ---- medieval (motor/assets/medieval.js)
   "rei": { "sprite": "rei", "voz": 0.8 },
   "rainha": { "sprite": "rainha", "voz": 1.1 },

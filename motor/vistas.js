@@ -88,8 +88,8 @@ function vistaLateral(c, motor) {
 }
 
 // Céu da vista diorama: faixas de cor com dithering na transição (e estrelas à noite).
-function ceuDiagonal(W, H, noite) {
-  const cores = noite ? ['#05061a', '#0a0c26', '#141638', '#22204a'] : ['#4a8ad8', '#62a2e4', '#80baee', '#a4d0f4'];
+function ceuDiagonal(W, H, noite, tarde = false) {
+  const cores = noite ? ['#05061a', '#0a0c26', '#141638', '#22204a'] : tarde ? ['#6a5aa8', '#c86a8a', '#f08a5a', '#f8c070'] : ['#4a8ad8', '#62a2e4', '#80baee', '#a4d0f4'];
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const g = cv.getContext('2d');
   const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
@@ -211,7 +211,7 @@ function vistaDiagonal(c, motor) {
   const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13 });
   const cena = new THREE.Scene();
   // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
-  cena.background = ceuDiagonal(W, H, rua.noite);
+  cena.background = ceuDiagonal(W, H, rua.noite, rua.tarde);
   const cv = document.createElement('canvas'); cv.width = rua.W; cv.height = rua.H;
   cv.getContext('2d').putImageData(new ImageData(rua.imagem, rua.W, rua.H), 0, 0);
   const texMundo = tex(cv);
@@ -254,7 +254,7 @@ function vistaDiagonal(c, motor) {
   camera.position.z = 50;
   return {
     cena, camera,
-    ambiente: rua.noite ? ['#9aa0d0', 0.78] : ['#ffffff', 1.0],
+    ambiente: rua.noite ? ['#9aa0d0', 0.78] : rua.tarde ? ['#ffd8b8', 1.0] : ['#ffffff', 1.0],
     climaPadrao: null,
     atualizar: (t) => { for (const f of fumacas) { const k = Math.floor((t || 0) * f.fps) % f.texs.length; if (f.m.material.map !== f.texs[k]) { f.m.material.map = f.texs[k]; f.m.material.emissiveMap = f.texs[k]; f.m.material.needsUpdate = true; } } },
     liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); fumacas.forEach((f) => f.texs.forEach((t) => t.dispose())); },

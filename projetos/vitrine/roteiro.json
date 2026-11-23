@@ -556,7 +556,7 @@
         { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 1.8 },
         { "tipo": "trocar", "alvo": "m5", "estado": "braco", "inicio": 3.0 },
         { "tipo": "trocar", "alvo": "m4", "estado": "virado", "inicio": 3.6 },
-        { "tipo": "mover", "alvo": "m1", "para": [-4.3, 1.8], "inicio": 4.0, "duracao": 1.6 },
+        { "tipo": "mover", "alvo": "m1", "para": -4.3, "inicio": 4.0, "duracao": 1.6 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.2, "duracao": 2.6 }
       ] },
     // 41. PROTÓTIPO: versões assustadoras SEM ROSTO dos 4 brinquedos, na calçada da loja; o soldadinho normal perde o rosto (estado "sem-rosto")
@@ -576,7 +576,7 @@
         { "tipo": "trocar", "alvo": "bon", "estado": "olhos", "inicio": 2.8 },
         { "tipo": "trocar", "alvo": "rob", "estado": "falha", "inicio": 2.8 },
         { "tipo": "som", "som": "servo", "inicio": 2.8 },
-        { "tipo": "andar", "alvo": "sold", "para": [-5.6, 4.2], "inicio": 4.2, "duracao": 2.6 },
+        { "tipo": "andar", "alvo": "sold", "para": -7.2, "inicio": 4.2, "duracao": 2.6 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.0, "duracao": 3.8 }
       ] },
     // 42. PROTÓTIPO: mundo de blocos (mundo-bloco): avatares nascem na plataforma, andam e pulam; o elenco em bloco; o de capuz aparece com bug
@@ -662,6 +662,184 @@
       "acoes": [
         { "tipo": "andar", "alvo": "camp", "para": 2.4, "inicio": 0.3, "duracao": 2.6 },
         { "tipo": "expressao", "alvo": "ferr", "rosto": "rindo", "inicio": 3.0, "duracao": 1.8 }
+      ] },
+    // 48. PROTÓTIPO (cidade): Vida na rua: gente passando no fundo, pombos que voam, cachorro.
+    { "cenario": "rua-viva", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.4], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "48. Vida na rua: gente passando no fundo, pombos que voam, cachorro.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": 4.4 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.5, "duracao": 5 }
+      ] },
+    // 49. PROTÓTIPO (cidade): Trânsito: carros e ônibus passando, ponto de ônibus, semáforo (verde→amarelo→vermelho), placa, bicicleta.
+    { "cenario": "rua-transito", "duracao": 7, "transicao": "dither", "foto": [0.8, 3.5, 6.4], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "49. Trânsito: carros e ônibus passando, ponto de ônibus, semáforo (verde→amarelo→vermelho), placa, bicicleta.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 5.0, "z": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "semaforo", "estado": "amarelo", "inicio": 2.5 },
+        { "tipo": "trocar", "alvo": "semaforo", "estado": "vermelho", "inicio": 3.5 }
+      ] },
+    // 50. PROTÓTIPO (cidade): Pôr do sol: luz alaranjada, céu laranja e rosa (continua claro).
+    { "cenario": "rua-tarde", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.4], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "50. Pôr do sol: luz alaranjada, céu laranja e rosa (continua claro).",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -4, "z": 4.4 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": 3, "inicio": 0.3, "duracao": 5 }
+      ] },
+    // 51. PROTÓTIPO (cidade): Vento de dia (clima "vento").
+    { "cenario": "rua-vento", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "51. Vento de dia (clima vento).",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": 4.4 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "surpreso", "inicio": 1, "duracao": 4 }
+      ] },
+    // 52. PROTÓTIPO (cidade): Neblina de manhã (terror de dia, sem escuro).
+    { "cenario": "rua-neblina", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "52. Neblina de manhã (terror de dia, sem escuro).",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": 4.4 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 1, "duracao": 4 }
+      ] },
+    // 53. PROTÓTIPO (cidade): Parquinho: balanço balançando sozinho, gira-gira girando, gangorra, escorregador.
+    { "cenario": "praca-parquinho", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.4], "camera": { "x": 0, "z": -9.6 }, "remover": ["arvore3", "arvore4"],
+      "legenda": "53. Parquinho: balanço balançando sozinho, gira-gira girando, gangorra, escorregador.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0.6, "z": -8.6 },
+        { "id": "menino", "personagem": "menino-topete", "x": -2.6, "z": -8.0 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "balanco", "estado": "sozinho", "inicio": 0.4 },
+        { "tipo": "trocar", "alvo": "giragira", "estado": "girando", "inicio": 1.2 },
+        { "tipo": "trocar", "alvo": "gangorra", "estado": "subindo", "inicio": 2 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 2.4 }
+      ] },
+    // 54. PROTÓTIPO (cidade): Rua do bairro: edifício, posto de saúde, biblioteca, casas; médica e gari.
+    { "cenario": "rua-bairro", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.4], "camera": { "x": -2, "z": 2.2, "y": 2.6 },
+      "legenda": "54. Rua do bairro: edifício, posto de saúde, biblioteca, casas; médica e gari.",
+      "elementos": [
+        { "id": "medica", "personagem": "medica", "x": -5.0, "z": 4.6 },
+        { "id": "gari", "personagem": "gari", "x": 0.8, "z": 4.2 },
+        { "id": "vassoura", "sprite": "vassoura", "sobre": { "id": "gari", "dx": 0.6, "dy": 0.2 } }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "gari", "para": 3.0, "inicio": 0.4, "duracao": 4 },
+        { "tipo": "expressao", "alvo": "medica", "rosto": "feliz", "inicio": 1, "duracao": 4 }
+      ] },
+    // 55. PROTÓTIPO (cidade): Casa da Bia por fora (amarela, no meio) e os vizinhos.
+    { "cenario": "casa-bia-fora", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0.6, "z": 2.2, "y": 2.4 },
+      "legenda": "55. Casa da Bia por fora (amarela, no meio) e os vizinhos.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": 0.4, "z": 4.6 },
+        { "id": "cao", "personagem": "cachorro-caramelo", "x": 1.6, "z": 4.6 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "feliz", "inicio": 0.6, "duracao": 4 }
+      ] },
+    // 56. PROTÓTIPO (cidade): Pátio da escola: quadra, portão, mastro com bandeira, trave e bola.
+    { "cenario": "escola-patio", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0.4, "z": 2.2, "y": 2.6 },
+      "legenda": "56. Pátio da escola: quadra, portão, mastro com bandeira, trave e bola.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -1.0, "z": 3.0 },
+        { "id": "nina", "personagem": "nina", "x": 2.6, "z": 3.4 },
+        { "id": "aluno", "personagem": "aluno", "x": 0.4, "z": 1.8 }
+      ],
+      "acoes": [
+        { "tipo": "correr", "alvo": "aluno", "para": 3.6, "inicio": 0.4, "duracao": 2.4 },
+        { "tipo": "expressao", "alvo": "nina", "rosto": "rindo", "inicio": 1, "duracao": 3.6 }
+      ] },
+    // 57. PROTÓTIPO (cidade): Ônibus por dentro: bancos, barras, paisagem nas janelas; motorista.
+    { "cenario": "onibus-dentro-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "y": 3 },
+      "legenda": "57. Ônibus por dentro: bancos, barras, paisagem nas janelas; motorista.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -3, "z": 2.9, "pose": "sentado" },
+        { "id": "mot", "personagem": "motorista", "x": 3.6, "z": 1.2 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "mot", "rosto": "feliz", "inicio": 0.6, "duracao": 3.6 }
+      ] },
+    // 58. PROTÓTIPO (cidade): Mercado por dentro: gôndolas, freezer, caixa; carrinho de compras.
+    { "cenario": "mercado-dentro-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "y": 3 },
+      "legenda": "58. Mercado por dentro: gôndolas, freezer, caixa; carrinho de compras.",
+      "elementos": [
+        { "id": "caixa", "personagem": "caixa", "x": 5.6, "z": 2.8 },
+        { "id": "carrinho", "sprite": "carrinho-compras", "x": -5.0, "z": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "mover", "alvo": "carrinho", "para": -1.0, "inicio": 0.6, "duracao": 3.0 },
+        { "tipo": "expressao", "alvo": "caixa", "rosto": "surpreso", "inicio": 3.2, "duracao": 1.6 }
+      ] },
+    // 59. PROTÓTIPO (cidade): Consultório do posto de saúde: maca, armário de remédios; médica.
+    { "cenario": "consultorio-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "y": 3 },
+      "legenda": "59. Consultório do posto de saúde: maca, armário de remédios; médica.",
+      "elementos": [
+        { "id": "medica", "personagem": "medica", "x": 4.6, "z": 2.6 },
+        { "id": "bia", "personagem": "menina-capa", "x": 0, "z": 0.8 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "medica", "rosto": "feliz", "inicio": 0.6, "duracao": 3.6 }
+      ] },
+    // 60. PROTÓTIPO (cidade): Biblioteca: estantes, mesas de leitura com abajur, globo.
+    { "cenario": "biblioteca-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "y": 3 },
+      "legenda": "60. Biblioteca: estantes, mesas de leitura com abajur, globo.",
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -2, "z": 0.8 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": 1.5, "inicio": 0.4, "duracao": 2.4 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "pensativo", "inicio": 3.0, "duracao": 1.8 }
+      ] },
+    // 61. PROTÓTIPO (cidade): Objetos da rua: relógio digital (10:00 → 03:33 → piscando), placa (rua → NÃO OLHE), cartaz (circo → sorriso → olhos), janela com cortina (balançando → vulto); pipoqueiro.
+    { "cenario": "rua-comercial", "duracao": 6.5, "transicao": "dither", "foto": [0.8, 3.25, 5.9], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "61. Objetos da rua: relógio digital (10:00 → 03:33 → piscando), placa (rua → NÃO OLHE), cartaz (circo → sorriso → olhos), janela com cortina (balançando → vulto); pipoqueiro.",
+      "elementos": [
+        { "id": "relogio", "sprite": "relogio-digital", "x": -2.4, "z": 0.4 },
+        { "id": "placa", "sprite": "placa-rua", "x": 3.8, "z": 0.4 },
+        { "id": "cartaz", "sprite": "cartaz-muda", "x": 1.0, "z": 5.6 },
+        { "id": "janela", "sprite": "janela-cortina", "x": -2.6, "z": 6.0, "y": 4.2, "pose": "balancando" },
+        { "id": "pip", "personagem": "pipoqueiro", "x": -0.4, "z": 4.4 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "relogio", "estado": "03-33", "inicio": 1.6 },
+        { "tipo": "trocar", "alvo": "placa", "estado": "nao-olhe", "inicio": 2.4 },
+        { "tipo": "trocar", "alvo": "cartaz", "estado": "sorriso", "inicio": 2.0 },
+        { "tipo": "trocar", "alvo": "cartaz", "estado": "olhos", "inicio": 3.6 },
+        { "tipo": "trocar", "alvo": "janela", "estado": "vulto", "inicio": 4.0 },
+        { "tipo": "trocar", "alvo": "relogio", "estado": "piscando", "inicio": 4.6 },
+        { "tipo": "expressao", "alvo": "pip", "rosto": "assustado", "inicio": 3.8, "duracao": 2.2 }
+      ] },
+    // 62. PROTÓTIPO (cidade): TV de vitrine em close: jornal → URGENTE → chuvisco → desligada.
+    { "cenario": "rua-comercial", "duracao": 5, "transicao": "dither", "foto": [0.8, 2.5, 4.4], "camera": { "x": 0, "z": 2.2, "y": 2.4 },
+      "legenda": "62. TV de vitrine em close: jornal → URGENTE → chuvisco → desligada.",
+      "elementos": [
+        { "id": "tv", "sprite": "tv-noticia", "x": 0, "tela": true, "pose": "jornal", "escurecer": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tv", "estado": "urgente", "inicio": 1.4 },
+        { "tipo": "trocar", "alvo": "tv", "estado": "chuvisco", "inicio": 3.0 },
+        { "tipo": "trocar", "alvo": "tv", "estado": "desligada", "inicio": 4.2 }
+      ] },
+    // 63. PROTÓTIPO (cidade): Celular em close: início → notificação → mensagem → chamada de ??? → câmera (alguém atrás) → rachado → sem sinal.
+    { "cenario": "quarto-menina-diorama", "duracao": 6.2, "transicao": "dither", "foto": [0.8, 3.1, 5.6000000000000005], "camera": { "x": 0, "y": 3 },
+      "legenda": "63. Celular em close: início → notificação → mensagem → chamada de ??? → câmera (alguém atrás) → rachado → sem sinal.",
+      "elementos": [
+        { "id": "cel", "sprite": "celular", "x": 0, "tela": true, "pose": "inicio", "escurecer": 0.6 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "cel", "estado": "notificacao", "inicio": 0.8 },
+        { "tipo": "trocar", "alvo": "cel", "estado": "mensagem", "inicio": 1.6 },
+        { "tipo": "trocar", "alvo": "cel", "estado": "chamada", "inicio": 2.6 },
+        { "tipo": "trocar", "alvo": "cel", "estado": "camera", "inicio": 3.6 },
+        { "tipo": "trocar", "alvo": "cel", "estado": "rachado", "inicio": 4.6 },
+        { "tipo": "trocar", "alvo": "cel", "estado": "sem-sinal", "inicio": 5.4 }
       ] }
   ]
 }
