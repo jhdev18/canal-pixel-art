@@ -570,6 +570,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   formato que enche a tela (ficam no código só como protótipo antigo).
 - **Decisão do usuário (guardiões):** o monstro do final continua o **`vulto` com `"escala": 2`** ("deixe como está por enquanto");
   o teste com os monstros 3D fica guardado em `projetos/teste-monstro-guardioes` (A vulto, B sombra-alta, C rastejante), sem uso.
+- **Monstros de sombra em PIXEL ART (PROTÓTIPO, no lugar dos 3D — o usuário achou o 3D esquisito)** (`motor/assets/sombras.js`):
+  personagens `sombra-alta` (parado/olhos/sorriso/agarrar, anda), `sombra-tentaculos` (parado/subindo/agarrar), `sombra-olhos`
+  (parado/olhando) e `sombra-rastejante` (de lado, anda de quatro; olhos). Borda que ferve, fumaça subindo, olhos que brilham;
+  usar `"escala": 2` (ou 1.5). **Usar estes nos vídeos**, não o `"monstro"` 3D. Teste: `projetos/vitrine` (cenas 64–65).
 - **Monstros de sombra 3D (protótipo, NÃO aprovado)** (`motor/monstros3d.js`): elemento `"monstro": "sombra-alta" |
   "tentaculos" | "massa-olhos" | "rastejante"`, em alta resolução sobre o pixel art. `rastejante` = humano de sombra
   andando de quatro (membros longos, joelhos/cotovelos para cima, cabeça aos trancos; anda com `andar`/`correr`/`mover`,

@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (268)
+## Sprites (272)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -378,6 +378,15 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `tela-jogo` | 🧪 protótipo | parado, jogando, chat, erro | 96×64 |
 | `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
 
+### Monstros de sombra (pixel art)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `sombra-alta` | 🧪 protótipo | parado, olhos, sorriso, agarrar, olhos-andando, sorriso-andando | 34×66 |
+| `sombra-tentaculos` | 🧪 protótipo | parado, subindo, agarrar | 56×60 |
+| `sombra-olhos` | 🧪 protótipo | parado, olhando | 44×38 |
+| `sombra-rastejante` | 🧪 protótipo | parado, olhos, olhos-andando | 50×30 |
+
 ## Personagens
 
 Uso: `{ "id": "x", "personagem": "nome" }`
@@ -421,6 +430,10 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `brinquedo-boneca-sem-rosto` | 🧪 protótipo | `brinquedo-boneca-sem-rosto` | 1.2 |
 | `brinquedo-robo-sem-rosto` | 🧪 protótipo | `brinquedo-robo-sem-rosto` | 0.5 |
 | `brinquedo-caixa-sem-rosto` | 🧪 protótipo | `brinquedo-caixa-sem-rosto` | 1.4 |
+| `sombra-alta` | 🧪 protótipo | `sombra-alta` | 0.5 |
+| `sombra-tentaculos` | 🧪 protótipo | `sombra-tentaculos` | 0.5 |
+| `sombra-olhos` | 🧪 protótipo | `sombra-olhos` | 0.5 |
+| `sombra-rastejante` | 🧪 protótipo | `sombra-rastejante` | 0.5 |
 | `motorista` | 🧪 protótipo | `motorista` | 0.85 |
 | `gari` | 🧪 protótipo | `gari` | 0.95 |
 | `pipoqueiro` | 🧪 protótipo | `pipoqueiro` | 0.9 |
