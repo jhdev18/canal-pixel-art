@@ -52,3 +52,11 @@ export function centrarCena(c, cb, estadoElemento) {
 
 // a câmera da cena se mexe sozinha (panorâmica): não dá para centrar com um x só
 export const temPanoramica = (cb) => !!(cb.cameraFim || cb.vertical?.cameraFim || (cb.acoes || []).some((a) => a.tipo === 'camera'));
+
+// Altura na TELA (px a partir do topo, resolução interna) de um ponto do diorama: chão em (x, z) + "alt" unidades de altura.
+// Mesma projeção 2:1 do motor (motor/vistas.js: rua i = 6,25 − z, câmera i = 3,5 − câmera.z; cômodo 4,2 / 2,5; j = −x).
+export function yTela(x, z, alt, cam, comodo = false, H = 320) {
+  const i = (comodo ? 4.2 : 6.25) - z, ic = (comodo ? 2.5 : 3.5) - (cam.z ?? 0);
+  const d = -((i - x) - (ic - (cam.x ?? 0))) / 2 + alt - (cam.y ?? 0);
+  return H / 2 - d * 16 * (cam.zoom ?? 1);
+}

@@ -21,7 +21,7 @@ C.push(cena('Primeiro a roupa. Depois o cabelo. Depois o jeito de andar.', {
   cenario: 'mundo-bloco', camera: JOGO(0), titulo: 'SEU AVATAR VAI FICANDO IGUAL A VOCÊ', tituloInicio: 0.3, tituloDuracao: 2.4,
   elementos: [P('aleo1', 'avatar-leo-1', -3.0, 2.8), P('a1', 'avatar-bloco-vermelho', 3.6, 3.8, { figurante: true })],
   acoes: [a(0, 'andar', { alvo: 'aleo1', para: 1.2, durF: 0.7 }), a(0.1, 'andar', { alvo: 'a1', para: 6.2, durF: 0.6 }),
-    a(0.4, 'magia', { alvo: 'aleo1' }), a(0.4, 'som', { som: 'magia' }), a(0.76, 'corte', { zoom: 2, y: 1.6 })],
+    a(0.4, 'magia', { alvo: 'aleo1' }), a(0.4, 'som', { som: 'magia' }), a(0.76, 'corte', { zoom: 2, y: 1.6, vertical: { y: -0.4 } })],
 }));
 // 3. Crença como AÇÃO: a criançada joga o dia inteiro (pátio da escola, todos rindo com o jogo)
 C.push(cena('Por isso, a criançada joga o dia inteiro para ter o avatar mais parecido.', {
@@ -35,7 +35,7 @@ C.push(cena('Mas a Bia só pode jogar dez minutos. O avatar dela nem tem rosto.'
   cenario: 'mundo-bloco', camera: JOGO(-5),
   elementos: [P('abiaSem', 'avatar-bloco-verde', -5.6, 1.5, { pose: 'sem-rosto' }), P('aleo1', 'avatar-leo-1', -2.6, 3.6), P('anina', 'avatar-nina', -3.8, 2.0)],
   acoes: [a(0.05, 'pular', { alvo: 'aleo1', altura: 0.6 }), a(0.2, 'andar', { alvo: 'anina', para: -1.2, durF: 0.5 }), a(0.45, 'pular', { alvo: 'aleo1', altura: 0.6 }),
-    a(0.65, 'corte', { zoom: 2, y: 1.6 }), a(0.68, 'som', { som: 'bug-jogo' })],
+    a(0.65, 'corte', { zoom: 2, y: 1.6, vertical: { x: -2.15, y: -2.3 } }), a(0.68, 'som', { som: 'bug-jogo' })],
 }));
 // 5. Evento (~34%): o avatar do Léo ficou idêntico a ele
 C.push(cena('Até que, numa sexta, o avatar do Léo ficou idêntico a ele.', {
@@ -65,7 +65,7 @@ C.push(cena('No sábado, o Léo voltou da escola andando duro. Sorrindo.', {
 C.push(cena('A mãe achou graça. Ele não piscava mais.', {
   cenario: 'sala-de-estar-diorama', camera: { x: 0.4, y: 3 },
   elementos: [P('mae', 'mae', -2.4, 1.6), P('leo', 'menino-topete', 2.0, 1.6, { pose: 'rosto-macabro-range' })],
-  acoes: [a(0.05, 'andar', { alvo: 'mae', para: -1.0, durF: 0.35 }), a(0.55, 'corte', { zoom: 2, y: 2.2 }), a(0.6, 'piscar', { alvo: 'leo', durF: 0.08 })],
+  acoes: [a(0.05, 'andar', { alvo: 'mae', para: -1.0, durF: 0.35 }), a(0.55, 'corte', { zoom: 2, y: 2.2, vertical: { y: 1.2 } }), a(0.6, 'piscar', { alvo: 'leo', durF: 0.08 })],
 }));
 // 9. Pico de movimento no meio: a turma inteira volta andando duro, no mesmo passo (cada um na sua faixa), e para junta de frente
 const TURMA9 = [['leo', 'menino-topete', 4.2, 2.6], ['aluno', 'aluno', 4.6, 1.8], ['aluna', 'aluna', 5.0, 2.2], ['nina', 'rival', 4.2, 0.2]];   // a Nina na mesma faixa do Léo, atrás (mesma velocidade: não alcança)
@@ -115,7 +115,7 @@ rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [8, 'mae', 'r
   [11, 'bia', 'assustado', 0.45]]);
 // a sombra do Léo (cena 7): elemento só de sombra
 C[6].elementos[1] = { id: 'sleo', sombraPessoa: { tamanho: 2.6, direcao: 75, bloco: true }, x: 2.2, z: 4.6 };
-alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -3.75 });
+alturaShorts(C, { 1: -1.75, 2: -1.75, 3: -1.5, 4: -2.5, 5: -2, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -3.75 });
 
 
 salvar('nesse-mundo-avatar', ['NESSE MUNDO (curto, TERROR de dia, Roblox) — "Nesse mundo, seu avatar do Roblox vai ficando igual a você."',

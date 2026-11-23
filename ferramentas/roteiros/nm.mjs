@@ -183,6 +183,9 @@ export function alturaShorts(C, ajustes) {
     const v = (c.vertical ||= {});
     const base = v.camera?.y ?? c.camera?.y ?? (c.comodo || /-diorama$/.test(c.cenario || '') ? 3 : 2.2);
     v.camera = { ...(c.camera || {}), ...(v.camera || {}), y: +(base + dy).toFixed(2) };
+    // corte de zoom com "y" próprio: no Shorts ele também desce (senão o corte joga todo mundo para baixo da legenda).
+    // Um "vertical": { "y" } escrito à mão no corte manda.
+    for (const ac of c.acoes || []) if (ac.tipo === 'corte' && ac.y != null && ac.vertical?.y == null) ac.vertical = { ...(ac.vertical || {}), y: +(ac.y + dy).toFixed(2) };
   }
 }
 

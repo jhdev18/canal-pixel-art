@@ -73,6 +73,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
   câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
   Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
+  O `npm run conferir` acusa `[legenda]` sem abrir o navegador. **Corte de zoom no Shorts:** o `y` do corte vale também no Shorts;
+  o `alturaShorts` agora desce o corte junto (`vertical.y` automático), e um `"vertical": { "y" }` escrito no corte manda.
   **Centralizar no Shorts (pedido do usuário: personagens descentralizados):** a câmera do diorama NÃO fica em cima de quem tem o mesmo `x`
   (o `z` também desloca na tela). **Automático (não fazer à mão):** o `cena()` do `nm.mjs` centraliza a câmera do `vertical` sozinho e o
   `salvar()` refina medindo a cena resolvida no tempo (pulos, `congelar`, quem some) — a mesma conta do aviso `[centro]` do `npm run conferir`
@@ -371,7 +373,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%; `[trilha]` roteiro sem trilha; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
+depois de 40%; `[trilha]` roteiro sem trilha; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[legenda]` no Shorts, a legenda em cima de personagem com papel ou objeto que age na cena (figurante, detalhe `"tela"` e só os pés encostando não contam; inclui o enquadramento depois de um `corte` de zoom; mesma conta de tela do motor, `yTela` em `centro.js`); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
