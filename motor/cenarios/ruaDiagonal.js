@@ -368,8 +368,20 @@ export function gerarRuaDiagonal(opc = {}) {
       return quente || noite ? ['#ffd070', 2] : (dt > hh / 2 ? '#8aa8c8' : '#5a7898');
     };
     if (E.medieval === 'muralha') {
-      // muralha de pedra: portão em arco com grade levadiça meio levantada, ameias, duas torres quadradas e um estandarte
-      prisma(-3.2, 0, P.j0, P.j1, 0, h, {
+      // ordem de profundidade (sem z-buffer): torre da direita (j menor, mais ao fundo) → muralha entre as torres → torre da esquerda
+      const ameias = (i0, i1, j0, j1, base) => { for (let jk = j0 + 0.1, k = 0; jk < j1 - 0.3; jk += 0.6, k++) prisma(i1 - 0.45, i1, jk, jk + 0.3, base, 7, {
+        frente: (x, y, u, t) => pintar(x, y, t === 7 ? PEDRA[0] : pedra(u + k * 3, t + base), i1, jk, base + t, 1, 1), lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, jk + 0.3, base + t, 1, 0.72), topo: (x, y, i, j) => pintar(x, y, PEDRA[0], i, j, base + 7, 1, 1.1) }); };
+      const TH = h + 36;
+      const torre = (tj0, tj1) => {
+        prisma(-3.4, 0.8, tj0, tj1, 0, TH, {
+          frente: (x, y, u, t, larg, s) => { let c = pedra(u, t); const m = Math.floor(larg / 2); if (Math.abs(u - m) <= 1 && ((t > 40 && t < 54) || (t > 84 && t < 98))) c = '#2a2420'; if (t >= TH - 3) c = PEDRA[0]; pintar(x, y, c, 0.8, s, t, 1, 1); },
+          lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, tj1, t, 1, 0.72),
+          topo: (x, y, i, j, d) => pintar(x, y, d < 0.15 ? PEDRA[0] : '#7a705e', i, j, TH, 1, 1.1),
+        });
+        ameias(-3.4, 0.8, tj0, tj1, TH);
+      };
+      torre(P.j0 - 0.4, P.j0 + 2.2);
+      prisma(-3.2, 0, P.j0 + 2.2, P.j1 - 2.2, 0, h, {
         frente: (x, y, u, t, larg, s) => {
           const meio = Math.floor(larg / 2), dx = u - meio;
           let c = pedra(u, t);
@@ -384,21 +396,11 @@ export function gerarRuaDiagonal(opc = {}) {
           if (t >= h - 3) c = PEDRA[0];
           pintar(x, y, c, 0, s, t, Array.isArray(c) ? 2 : 1, 1);
         },
-        lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, P.j1, t, 1, 0.72),
+        lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, P.j1 - 2.2, t, 1, 0.72),
         topo: (x, y, i, j, d) => pintar(x, y, d < 0.15 ? PEDRA[0] : '#7a705e', i, j, h, 1, 1.1),
       });
-      const ameias = (i0, i1, j0, j1, base) => { for (let jk = j0 + 0.1, k = 0; jk < j1 - 0.3; jk += 0.6, k++) prisma(i1 - 0.45, i1, jk, jk + 0.3, base, 7, {
-        frente: (x, y, u, t) => pintar(x, y, t === 7 ? PEDRA[0] : pedra(u + k * 3, t + base), i1, jk, base + t, 1, 1), lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, jk + 0.3, base + t, 1, 0.72), topo: (x, y, i, j) => pintar(x, y, PEDRA[0], i, j, base + 7, 1, 1.1) }); };
       ameias(-3.2, 0, P.j0 + 2.2, P.j1 - 2.2, h);
-      const TH = h + 36;
-      for (const [tj0, tj1] of [[P.j0 - 0.4, P.j0 + 2.2], [P.j1 - 2.2, P.j1 + 0.4]]) {
-        prisma(-3.4, 0.8, tj0, tj1, 0, TH, {
-          frente: (x, y, u, t, larg, s) => { let c = pedra(u, t); const m = Math.floor(larg / 2); if (Math.abs(u - m) <= 1 && ((t > 40 && t < 54) || (t > 84 && t < 98))) c = '#2a2420'; if (t >= TH - 3) c = PEDRA[0]; pintar(x, y, c, 0.8, s, t, 1, 1); },
-          lado: (x, y, u, t, s) => pintar(x, y, PEDRA[2], s, tj1, t, 1, 0.72),
-          topo: (x, y, i, j, d) => pintar(x, y, d < 0.15 ? PEDRA[0] : '#7a705e', i, j, TH, 1, 1.1),
-        });
-        ameias(-3.4, 0.8, tj0, tj1, TH);
-      }
+      torre(P.j1 - 2.2, P.j1 + 0.4);
       return;
     }
     // ---- casas (enxaimel): pedra embaixo, reboco claro com vigas de madeira, telhado de telhas em degraus
