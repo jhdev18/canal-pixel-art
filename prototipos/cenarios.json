@@ -678,33 +678,35 @@
   // com pinos; no fundo (z 5.4–6.6) um percurso de peças de plástico coloridas ("obby"): plataforma de nascer, escada de peças, placa,
   // bloco neon que "mata", torre com treliça e a chegada xadrez. Pessoas z ~1.4–4.4. Câmera { "x": 0, "z": 2.2, "y": 2.6 }.
   "mundo-bloco": {
+    // v4: o LOBBY do jogo — praça de baseplate (z -0.5 a 6.5) cercada de gramado; casinhas e árvores no fundo (grama, z ~7.5–9);
+    // o percurso fica na beira de trás da praça (z 5.4–6.2), todo apoiado no chão: escada de peças, bloco vermelho que mata,
+    // checkpoint verde, torre de treliça com a plataforma em cima e a chegada xadrez. Avatares em z ~1.4–4.4 (frente livre).
     "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
     "rua": { "periodo": "dia", "chao": "baseplate", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
     "elementos": [
       { "id": "spawn", "sprite": "plataforma-spawn", "x": -6.4, "z": 2.0 },
-      { "id": "p1", "sprite": "peca-vermelha", "x": -4.0, "z": 5.8 }, { "id": "p2", "sprite": "peca-azul", "x": -3.0, "z": 5.8, "y": 1 },
-      { "id": "p3", "sprite": "peca-amarela", "x": -2.0, "z": 5.8, "y": 2 },
-      { "id": "placa1", "sprite": "placa-azul", "x": -0.4, "z": 6.0, "y": 2 },
-      { "id": "neon", "sprite": "bloco-neon", "x": 2.0, "z": 5.4 },
+      { "id": "placa", "sprite": "placa-jogo", "x": -9.0, "z": 2.6 },
+      { "id": "p1", "sprite": "peca-vermelha", "x": -4.2, "z": 5.8 },
+      { "id": "p2", "sprite": "peca-azul", "x": -3.2, "z": 5.8 }, { "id": "p2b", "sprite": "peca-azul", "x": -3.2, "z": 5.8, "y": 1 },
+      { "id": "p3", "sprite": "peca-amarela", "x": -2.2, "z": 5.8 }, { "id": "p3b", "sprite": "peca-amarela", "x": -2.2, "z": 5.8, "y": 1 },
+      { "id": "p3c", "sprite": "peca-amarela", "x": -2.2, "z": 5.8, "y": 2 },
+      { "id": "check1", "sprite": "checkpoint-1", "x": -0.9, "z": 5.0 },
+      { "id": "neon", "sprite": "bloco-neon", "x": 1.0, "z": 5.4 }, { "id": "neon2", "sprite": "bloco-neon", "x": 2.2, "z": 5.4 },
       { "id": "p4", "sprite": "peca-verde", "x": 3.6, "z": 6.0 }, { "id": "p5", "sprite": "peca-verde", "x": 3.6, "z": 6.0, "y": 1 },
       { "id": "tr", "sprite": "trelica", "x": 4.8, "z": 6.2 },
       { "id": "placa2", "sprite": "placa-amarela", "x": 5.6, "z": 6.0, "y": 4 },
-      { "id": "chegada", "sprite": "cubo-xadrez", "x": 7.2, "z": 5.6 },
-      { "id": "moeda1", "sprite": "moeda-bloco", "x": 2.4, "z": 5.4, "y": 1.2 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": -2.0, "z": 5.8, "y": 3.4 },
-      // v3 (mais cheio): casinhas do lobby, árvores de bloco, torre, ponte no ar, checkpoint, trampolim, placa, nuvens e plataformas no céu
-      { "id": "casa1", "sprite": "casa-bloco", "x": -10.6, "z": 7.0 }, { "id": "casa2", "sprite": "casa-bloco", "x": 11.0, "z": 7.6 },
-      { "id": "torre", "sprite": "torre-bloco", "x": -2.4, "z": 13.0 },
-      { "id": "arv1", "sprite": "arvore-bloco", "x": -8.2, "z": 5.0 }, { "id": "arv2", "sprite": "arvore-bloco", "x": -4.8, "z": 8.6 },
-      { "id": "arv3", "sprite": "arvore-bloco", "x": 6.0, "z": 8.8 }, { "id": "arv4", "sprite": "arvore-bloco", "x": 10.2, "z": 4.6 },
-      { "id": "arv5", "sprite": "arvore-bloco", "x": -12.2, "z": 3.0 }, { "id": "arv6", "sprite": "arvore-bloco", "x": 12.0, "z": 1.2 },
-      { "id": "ponte", "sprite": "ponte-bloco", "x": 0.6, "z": 5.9, "y": 2 },
-      { "id": "check1", "sprite": "checkpoint-1", "x": -1.0, "z": 4.8 }, { "id": "check2", "sprite": "checkpoint-2", "x": 8.4, "z": 5.0 },
-      { "id": "tramp", "sprite": "trampolim-bloco", "x": 5.6, "z": 4.8 },
-      { "id": "placa", "sprite": "placa-jogo", "x": -9.0, "z": 2.6 },
-      { "id": "plat1", "sprite": "placa-azul", "x": -6.6, "z": 8.2, "y": 4 }, { "id": "plat2", "sprite": "peca-amarela", "x": 2.6, "z": 11.4, "y": 3 },
-      { "id": "plat3", "sprite": "peca-vermelha", "x": 4.4, "z": 11.0, "y": 4 },
-      { "id": "moeda3", "sprite": "moeda-bloco", "x": 0.8, "z": 5.9, "y": 3.5 }, { "id": "moeda4", "sprite": "moeda-bloco", "x": 5.6, "z": 4.8, "y": 1.6 },
-      { "id": "moeda5", "sprite": "moeda-bloco", "x": -6.4, "z": 8.2, "y": 5.0 }, { "id": "moeda6", "sprite": "moeda-bloco", "x": 4.6, "z": 11.0, "y": 5.4 }
+      { "id": "tramp", "sprite": "trampolim-bloco", "x": 5.6, "z": 4.6 },
+      { "id": "chegada", "sprite": "cubo-xadrez", "x": 7.4, "z": 5.6 }, { "id": "check2", "sprite": "checkpoint-2", "x": 8.6, "z": 5.2 },
+      { "id": "moeda1", "sprite": "moeda-bloco", "x": -2.2, "z": 5.8, "y": 3.4 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": 3.6, "z": 6.0, "y": 2.4 },
+      { "id": "moeda3", "sprite": "moeda-bloco", "x": 5.8, "z": 6.0, "y": 5.0 }, { "id": "moeda4", "sprite": "moeda-bloco", "x": 1.6, "z": 5.4, "y": 1.0 },
+      // fundo: bairro do lobby no gramado
+      { "id": "casa1", "sprite": "casa-bloco", "x": -11.0, "z": 8.0 }, { "id": "casa2", "sprite": "casa-bloco", "x": -3.6, "z": 9.0 },
+      { "id": "casa3", "sprite": "casa-bloco", "x": 4.0, "z": 9.0 }, { "id": "casa4", "sprite": "casa-bloco", "x": 11.4, "z": 8.0 },
+      { "id": "arv1", "sprite": "arvore-bloco", "x": -7.2, "z": 7.4 }, { "id": "arv2", "sprite": "arvore-bloco", "x": 0.4, "z": 7.6 },
+      { "id": "arv3", "sprite": "arvore-bloco", "x": 8.0, "z": 7.4 }, { "id": "arv4", "sprite": "arvore-bloco", "x": -14.6, "z": 7.6 },
+      { "id": "arv5", "sprite": "arvore-bloco", "x": 15.0, "z": 7.6 },
+      // frente: gramado com árvores nos cantos
+      { "id": "arv6", "sprite": "arvore-bloco", "x": -12.4, "z": -1.4 }, { "id": "arv7", "sprite": "arvore-bloco", "x": 12.2, "z": -1.6 }
     ]
   },
   // mundo-bloco-grama: o mesmo mapa de cubos com chão de grama (fase "ao ar livre")

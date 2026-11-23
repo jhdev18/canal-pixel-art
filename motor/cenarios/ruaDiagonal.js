@@ -129,6 +129,9 @@ export function gerarRuaDiagonal(opc = {}) {
       if (opc.baseplateClassica) {
         const junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985, pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, rr = Math.hypot(pa - 0.5, pb - 0.5);
         c = junta ? '#7e7e86' : rr < 0.2 ? (pa + pb < 0.95 ? '#c4c4ca' : '#8e8e96') : bayer(x, y) < 0.05 ? '#a2a2a8' : '#a8a8ae';
+      } else if (i < 0 || i > 7.4) {   // v4: em volta da praça de baseplate, gramado liso em placas (o mapa não acaba no nada)
+        const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1, borda = i > -0.12 && i < 0;
+        c = borda ? '#3e8a3e' : (g1 < 0.03 || g2 < 0.03) ? '#4a9a4a' : bayer(x, y) < 0.05 ? '#5cb85a' : '#58b056';
       } else {
         const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1, linha = fi < 0.02 || fj < 0.02, fina = g1 < 0.02 || g2 < 0.02;
         c = linha ? '#6e7076' : fina ? '#878a90' : bayer(x, y) < 0.04 ? '#94979d' : '#9a9da3';

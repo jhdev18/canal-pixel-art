@@ -526,7 +526,7 @@ Uso: `{ "cenario": "nome" }`
 | `fabrica-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo fabrica-brinquedos) | 0 |
 | `loja-fundos-diorama` | 🧪 protótipo | diorama (cômodo loja-fundos) | 0 |
 | `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
-| `mundo-bloco` | 🧪 protótipo | diorama | 34 |
+| `mundo-bloco` | 🧪 protótipo | diorama | 33 |
 | `mundo-bloco-grama` | 🧪 protótipo | diorama | 14 |
 | `vila-medieval` | 🧪 protótipo | diorama | 8 |
 | `castelo-medieval` | 🧪 protótipo | diorama | 4 |

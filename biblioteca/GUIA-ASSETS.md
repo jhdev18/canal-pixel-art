@@ -156,6 +156,10 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
   `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
   menos — preferir `bug` ou zoom 2 nesses casos.
+- **`mundo-bloco` v4 = o LOBBY do jogo** 🧪 (pedido do usuário: "fundo e peças no nada" estavam estranhos): praça de baseplate (z -0.5 a 6.5)
+  cercada de **gramado**; no fundo (grama, z 7.4–9) um bairro de 4 `casa-bloco` e árvores; o percurso fica na beira de trás da praça
+  (z 5.4–6.2) e é **todo apoiado no chão** (escada de peças, 2 blocos neon, checkpoint, treliça com a plataforma em cima, chegada e
+  checkpoint 2). Nada flutuando sem apoio. Avatares em z ~1.4–4.4.
 - **`mundo-bloco` v3 — com referências dos jogos atuais** 🧪: peças de **plástico liso** (sem os pinos de LEGO; `{ pinos: true }` no código volta),
   baseplate **cinza com grade** que vai longe até o fundo (sem a borda do céu na diagonal; `"rua": { "baseplateClassica": true }` volta aos pinos),
   **checkpoints** verdes que brilham (`checkpoint-1`…`-5`, zona segura; vermelho neon = bloco que mata — o código de cores dos percursos).
