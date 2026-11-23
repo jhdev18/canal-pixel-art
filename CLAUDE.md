@@ -631,7 +631,9 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   **Lugares deles (PROTÓTIPO):** loja de brinquedos (`rua-brinquedos` = rua comercial com a loja no lugar do prédio comum da esquerda;
   a `rua-comercial` normal NÃO tem a loja — pedido do usuário: só em alguns vídeos) e por dentro `loja-brinquedos-diorama`; fábrica
   `fabrica-brinquedos` (fábrica de tijolo com chaminés e fumaça animada + toques de castelo; as torres foram rejeitadas; no campo; opção nova da rua `"soPedidos": true` = só os prédios da lista) e por dentro `fabrica-brinquedos-diorama`
-  (`motor/assets/loja-fabrica.js`). Teste: `projetos/vitrine` (cenas 34, 36–38).
+  (`motor/assets/loja-fabrica.js`). Também: sala dos fundos da loja `loja-fundos-diorama` (oficina) e depósito `sala-manequins-diorama`
+  com os personagens `manequim` (cinza, sem roupa, sem rosto, no suporte) e `manequim-coberto`. A fábrica continua para outras histórias.
+  Teste: `projetos/vitrine` (cenas 34, 36–40).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,

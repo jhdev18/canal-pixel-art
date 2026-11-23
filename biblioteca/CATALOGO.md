@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (193)
+## Sprites (195)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -286,6 +286,8 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
+| `manequim` | 🧪 protótipo | parado, virado, braco, torto, virado-andando | 26×50 |
+| `manequim-coberto` | 🧪 protótipo | parado, virado | 26×50 |
 | `fumaca-chamine` | 🧪 protótipo | parado | 28×60 |
 
 ## Personagens
@@ -327,6 +329,8 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `brinquedo-boneca` | 🧪 protótipo | `brinquedo-boneca` | 1.4 |
 | `brinquedo-robo` | 🧪 protótipo | `brinquedo-robo` | 0.6 |
 | `brinquedo-caixa` | 🧪 protótipo | `brinquedo-caixa` | 1.6 |
+| `manequim` | 🧪 protótipo | `manequim` | 0.9 |
+| `manequim-coberto` | 🧪 protótipo | `manequim-coberto` | 0.9 |
 | `protagonista` | ✅ | `heroi` | 1 |
 | `companheira` | ✅ | `amiga` | 1.3 |
 | `anciao` | ✅ | `velho` | 0.8 |
@@ -393,6 +397,8 @@ Uso: `{ "cenario": "nome" }`
 | `fabrica-brinquedos` | 🧪 protótipo | diorama | 0 |
 | `loja-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo loja-brinquedos) | 0 |
 | `fabrica-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo fabrica-brinquedos) | 0 |
+| `loja-fundos-diorama` | 🧪 protótipo | diorama (cômodo loja-fundos) | 0 |
+| `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |

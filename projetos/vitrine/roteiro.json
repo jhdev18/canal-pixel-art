@@ -523,6 +523,40 @@
         { "tipo": "trocar", "alvo": "sold", "estado": "rachado", "inicio": 3.4 },
         { "tipo": "som", "som": "falha-eletrica", "inicio": 3.4 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.6, "duracao": 2.2 }
+      ] },
+    // 39. PROTÓTIPO: sala dos fundos da loja (loja-fundos-diorama): oficina de conserto com papel de parede gasto
+    { "cenario": "loja-fundos-diorama", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "39. Sala dos fundos da loja: bancada com boneco aberto, prateleira de cabeças, caixotes.",
+      "elementos": [
+        { "id": "bon", "personagem": "brinquedo-boneca", "x": -3.6, "z": 1.6, "pose": "desligado" },
+        { "id": "bia", "personagem": "menina-capa", "x": 4.0, "z": 0.8 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": 1.6, "inicio": 0.2, "duracao": 2.0 },
+        { "tipo": "trocar", "alvo": "bon", "estado": "virado", "inicio": 2.6 },
+        { "tipo": "som", "som": "servo", "inicio": 2.6 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 2.8, "duracao": 2.0 }
+      ] },
+
+    // 40. PROTÓTIPO: sala dos manequins (sala-manequins-diorama) com manequins cinza sem roupa: um vira a cabeça, outro levanta o braço
+    { "cenario": "sala-manequins-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.6, 4.6], "camera": { "x": 0, "y": 3 },
+      "legenda": "40. Sala dos manequins: parado, virado, braco, torto, coberto; um anda deslizando.",
+      "elementos": [
+        { "id": "m1", "personagem": "manequim", "x": -5.4, "z": 2.6 },
+        { "id": "m2", "personagem": "manequim", "x": -3.2, "z": 2.6, "figurante": true },
+        { "id": "m3", "personagem": "manequim", "x": -1.0, "z": 2.6, "pose": "torto", "figurante": true },
+        { "id": "m4", "personagem": "manequim-coberto", "x": 3.0, "z": 2.6 },
+        { "id": "m5", "personagem": "manequim", "x": 5.6, "z": 2.6, "figurante": true },
+        { "id": "bia", "personagem": "menina-capa", "x": 1.0, "z": 0.8 }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "m2", "estado": "virado", "inicio": 1.6 },
+        { "tipo": "som", "som": "servo", "inicio": 1.6 },
+        { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 1.8 },
+        { "tipo": "trocar", "alvo": "m5", "estado": "braco", "inicio": 3.0 },
+        { "tipo": "trocar", "alvo": "m4", "estado": "virado", "inicio": 3.6 },
+        { "tipo": "mover", "alvo": "m1", "para": [-4.3, 1.8], "inicio": 4.0, "duracao": 1.6 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.2, "duracao": 2.6 }
       ] }
   ]
 }

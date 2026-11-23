@@ -96,6 +96,14 @@ A rua comercial normal (`rua-comercial`) **não** tem a loja. Para os vídeos do
 - `fabrica-brinquedos-diorama`: a fábrica por dentro, com o mesmo tijolo de fora e faixa de pedra rosa (janelas industriais em arco —
   uma quebrada —, canos com válvula, engrenagens douradas, placa de aviso; máquina com luzes à esquerda, forno aceso, prateleira de cabeças
   de boneca, esteira com cabeças e corpos, caixotes de peças, bancada com um boneco pela metade). Brinquedos saem da máquina em x ~-6.2, z ~1.0 e andam para a direita.
+- `loja-fundos-diorama`: a **sala dos fundos da loja** (oficina de conserto): o papel de parede listrado da loja, gasto e manchado;
+  bancada com um boneco aberto, prateleira de cabeças, caixotes de peças e caixas de papelão. Pessoas z 0–1.4.
+- `sala-manequins-diorama`: o **depósito dos manequins** (cimento cinza rachado, janelinha alta, espelho velho, arara de cabides vazios,
+  caixas de papelão). Manequins em fileira no fundo (z ~2.4–2.8, x -6.5 a 6.5); pessoas z 0–1.4.
+- **Manequins 🧪** (personagens): `manequim` (cinza, sem roupa e sem rosto, juntas marcadas, em pé num suporte de metal; estados `parado`,
+  `virado` = cabeça torta, `braco` = braço levantado, `torto` = corpo inclinado; `mover` desliza no suporte, sem passos) e `manequim-coberto`
+  (com lençol branco; `parado`, `virado`). Vários iguais: marcar `"figurante": true`. Terror: mudam de pose/lugar de uma cena para outra.
+- A **fábrica** (`fabrica-brinquedos` / `-diorama`) continua para outras histórias (ex.: de onde os brinquedos vêm).
 Sugestão: a loja como base do vídeo (de dia, na rua) e a fábrica como revelação no fim, em 1–2 cenas.
 
 ### Cômodos (diorama, enchem a tela)

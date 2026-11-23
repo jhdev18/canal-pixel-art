@@ -276,6 +276,123 @@ COMODOS_DIAGONAL['fabrica-brinquedos'] = {
   piso: [{ x: 5.6, i0: 2.4, i1: 3.0, dj: 3.0, cor: ['#f8d040', '#2a2a36', '#f8d040'] }],
 };
 
+// SALA DOS FUNDOS da loja (oficina de conserto, atrás do balcão): o papel de parede listrado da loja, mas gasto e manchado;
+// bancada com um boneco aberto, prateleira de cabeças, caixotes de peças e caixas de papelão. A FÁBRICA continua existindo
+// (fabrica-brinquedos / fabrica-brinquedos-diorama) para outras histórias. Cenário: loja-fundos-diorama.
+// Pessoas: z 0–1.4; a porta para a loja fica na parede da direita (x ~2.6).
+PRESETS_INTERIORES['loja-fundos'] = {
+  ceu: { cores: ['#efe4dc'] },
+  camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true,
+    cor: ['#e8d0d8', '#d4b8c4', '#a88a98'], padrao: 'listras', teto: ['#e0d8cc', '#b8ac9c', '#7a6e60'],
+    meiaParede: { altura: 26, padrao: 'lambri', cores: ['#8aa8b8', '#6a8898', '#4a6070'] },
+    rodape: ['#4a6070', '#3a4a58', '#2a3440'], janelas: [], portas: [], quadros: [] }],
+  chao: { estilo: 'piso', topo: ['#d8ccb8', '#b8a890', '#6a5a48'], terra: ['#a89888', '#887868'] },
+  ambiente: ['#fff8f0', 0.94],
+};
+DECOR['mancha'] = (d, u, U, t) => {   // mancha de umidade e papel de parede descascando
+  const y0 = d.altura ?? 50, dx = u - U / 2, dy = t - y0;
+  if (dx * dx / (U * U / 5) + dy * dy / 90 < 1) return (u + t) % 4 ? '#c4a8b0' : '#b89aa4';
+  if (dy > 9 && dy < 13 && Math.abs(dx) < U / 3 && (u % 3)) return '#f4ece4';
+  return null;
+};
+COMODOS_DIAGONAL['loja-fundos'] = {
+  estilo: 'loja-fundos', inicio: -9, fim: 9,
+  paredes: [
+    { tipo: 'mancha', x: -4.6, w: 2.4, altura: 60 }, { tipo: 'mancha', x: 3.4, w: 1.6, altura: 44 },
+    { tipo: 'prateleira-parede', x: 0.6, w: 3.2, altura: 58 }, { tipo: 'relogio', x: -1.8, w: 0.9, altura: 72, h: 14 },
+    { tipo: 'aviso', x: 6.6, w: 1.0, altura: 40, h: 14 },
+    { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#a8d8f0', '#7ab8e0', '#4a88b8'] },
+  ],
+  moveis: [
+    { tipo: 'prateleira-brinquedos', x: -6.6, i: 0, pecas: true }, { tipo: 'caixa-pecas', x: -3.6, i: 0.2 },
+    { tipo: 'bancada', x: -0.6, i: 0.6 }, { tipo: 'caixas-papelao', x: 4.4, i: 0.1 }, { tipo: 'caixa-pecas', x: 6.8, i: 0.3 },
+  ],
+  piso: [],
+};
+
+// ------------------------------------------------------------------ SALA DOS MANEQUINS (depósito da loja)
+// Cimento cinza, janelinha alta, espelho velho, araras com cabides vazios e caixas de papelão. Os manequins são personagens
+// (sprites "manequim" e "manequim-coberto"), para poderem mudar de lugar entre as cenas. Pessoas: z 0–1.4; manequins em
+// fileira no fundo (z ~2.4–2.8, x -6.5 a 6.5) ou espalhados.
+Object.assign(MOVEIS, {
+  // arara de roupas vazia: barra de metal com cabides balançando
+  arara: { di: 0.5, dj: 2.2, f(L, m) {
+    const { i0, i1, j0, j1 } = m, ci = (i0 + i1) / 2;
+    for (const b of [j0 + 0.05, j1 - 0.12]) { L.caixa(ci - 0.04, ci + 0.04, b, b + 0.07, 0, 40, FERRO[1]); L.caixa(i0, i1, b - 0.05, b + 0.12, 0, 2, FERRO[2]); }
+    L.caixa(ci - 0.04, ci + 0.04, j0, j1, 40, 2, FERRO[0]);
+    for (let k = 0; k < 6; k++) { const b = j0 + 0.3 + k * 0.3; L.caixa(ci - 0.02, ci + 0.02, b, b + 0.22, 33, 1, '#c8ccd8'); L.caixa(ci - 0.02, ci + 0.02, b + 0.1, b + 0.12, 34, 6, '#c8ccd8'); }
+  } },
+  // pilha de caixas de papelão fechadas com fita
+  'caixas-papelao': { di: 0.9, dj: 1.0, f(L, m) {
+    const { i0, j0 } = m, PAP = ['#d8b880', '#b8945a', '#8a6a3a'];
+    const cx = (a, b, h0, ti, tj, h) => L.caixa(a, a + ti, b, b + tj, h0, h, { frente: (u, t) => (Math.abs(u - tj / 2) < 0.05 ? '#c8b088' : t === h - 1 ? PAP[2] : PAP[1]), lado: PAP[2], topo: (x, y) => (Math.abs(y - tj / 2) < 0.05 ? '#e8d8b0' : PAP[0]) });
+    cx(i0, j0, 0, 0.9, 1.0, 14); cx(i0 + 0.1, j0 + 0.1, 14, 0.7, 0.75, 11); cx(i0 + 0.2, j0 + 0.25, 25, 0.45, 0.5, 8);
+  } },
+});
+DECOR['parede-rachada'] = (d, u, U, t) => {   // rachadura e mancha de umidade (cimento)
+  const y0 = d.altura ?? 60;
+  if (Math.abs(t - (y0 - u * 0.6 + Math.sin(u * 0.9) * 2)) < 0.6 && u < U) return '#6a6a72';
+  if ((u - U * 0.7) ** 2 / 30 + (t - y0 + 30) ** 2 / 60 < 1) return (u + t) % 3 ? '#9a9aa2' : '#a4a4ac';
+  return null;
+};
+PRESETS_INTERIORES['sala-manequins'] = {
+  ceu: { cores: ['#d8d8dc'] },
+  camadas: [{ tipo: 'comodo', z: -3, acima: 140, iluminada: true,
+    cor: ['#c8c8cc', '#b4b4ba', '#8e8e96'], padrao: 'liso', teto: ['#d0d0d4', '#a8a8ae', '#6a6a72'],
+    meiaParede: { altura: 14, padrao: 'liso', cores: ['#a0a0a8', '#8a8a92', '#5a5a62'] },
+    rodape: ['#5a5a62', '#4a4a52', '#3a3a42'], janelas: [], portas: [], quadros: [] }],
+  chao: { estilo: 'piso', topo: ['#b8b8b8', '#a0a0a2', '#6a6a70'], terra: ['#8a8a8c', '#6a6a6c'] },
+  ambiente: ['#f4f6fa', 0.95],
+};
+COMODOS_DIAGONAL['sala-manequins'] = {
+  estilo: 'sala-manequins', inicio: -9, fim: 9,
+  paredes: [
+    { tipo: 'janela', x: -2.4, w: 1.6, peitoril: 64, h: 16 }, { tipo: 'espelho', x: 4.2, w: 1.4, altura: 20, h: 40 },
+    { tipo: 'parede-rachada', x: -6.4, w: 3, altura: 70 }, { tipo: 'parede-rachada', x: 1.2, w: 2, altura: 52 },
+    { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#9aa0ac', '#7a808c', '#5a5e6a'] },
+  ],
+  moveis: [
+    { tipo: 'arara', x: -7.6, i: 0.1 }, { tipo: 'caixas-papelao', x: 7.4, i: 0.1 }, { tipo: 'caixas-papelao', x: 1.4, i: 0.2 },
+  ],
+  piso: [],
+};
+
+// ------------------------------------------------------------------ manequim (cinza, sem roupa, sem rosto) e manequim coberto
+// De frente, 26x50, em pé num suporte de metal (barra até o quadril, base redonda). Juntas marcadas (pescoço, ombros, cotovelos,
+// punhos, cintura, joelhos). Estados: parado, virado (cabeça torta), braco (um braço levantado), torto (o corpo inteiro inclinado).
+// "andar"/"mover" funcionam (desliza no suporte, balançando um pouco) — o terror é ele estar num lugar diferente a cada cena.
+const CINZA = ['#d4d6dc', '#aeb2ba', '#80848e'], JUNTA = '#6a6e78';
+function quadroManequim({ cabeca = 0, braco = false, torto = 0, bal = 0 } = {}) {
+  const W = 26, H = 50, p = new Pix(W, H);
+  const sh = (y) => Math.round((torto * (44 - y)) / 44) + bal;   // inclinação: desloca cada linha
+  const corpo = new Pix(W, H);
+  const t3 = (x, y, dx, dy) => Pix.tom(CINZA, 0.75 - dy * 0.4 - dx * 0.25, x, y);
+  corpo.elipse(13 + cabeca, 6, 3.6, 4.6, t3);                                              // cabeça lisa (sem rosto)
+  corpo.ret(12, 10, 3, 3, CINZA[1]); corpo.ret(12, 11, 3, 1, JUNTA);                      // pescoço
+  for (let y = 13; y < 27; y++) { const m = y < 15 ? 5 + (y - 13) : y < 22 ? 6.6 - (y - 15) * 0.25 : 4.8 + (y - 22) * 0.5; corpo.ret(Math.round(13 - m), y, Math.round(m * 2), 1, t3(0, y, 0, (y - 20) / 10)); }
+  corpo.ret(9, 22, 8, 1, JUNTA);                                                            // cintura
+  for (const x of [10, 14]) { corpo.ret(x, 27, 3, 16, CINZA[1]); corpo.ret(x, 27, 1, 16, CINZA[0]); corpo.ret(x, 35, 3, 1, JUNTA); corpo.ret(x - 1, 43, 4, 1, CINZA[2]); }   // pernas e pés
+  corpo.ret(5, 13, 2, 1, JUNTA); corpo.ret(19, 13, 2, 1, JUNTA);                          // ombros
+  corpo.ret(5, 14, 2, 13, CINZA[1]); corpo.ret(5, 20, 2, 1, JUNTA); corpo.ret(5, 26, 2, 2, CINZA[2]);   // braço esquerdo
+  if (braco) { corpo.ret(19, 1, 2, 13, CINZA[1]); corpo.ret(19, 7, 2, 1, JUNTA); corpo.ret(19, 0, 2, 2, CINZA[2]); }
+  else { corpo.ret(19, 14, 2, 13, CINZA[1]); corpo.ret(19, 20, 2, 1, JUNTA); corpo.ret(19, 26, 2, 2, CINZA[2]); }
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {                                // aplica a inclinação
+    const i = (y * W + x) * 4; if (!corpo.d[i + 3]) continue;
+    p.set(x + sh(y), y, '#' + [0, 1, 2].map((k) => corpo.d[i + k].toString(16).padStart(2, '0')).join(''));
+  }
+  p.ret(12 + bal, 27, 2, 18, '#5a5e6a'); p.elipse(13 + bal, 46.5, 6, 1.8, '#4a4a54'); p.ret(8 + bal, 46, 10, 1, '#6a6e78');   // suporte
+  return p.contorno('#1a1a22');
+}
+function quadroCoberto({ cabeca = 0, bal = 0 } = {}) {
+  const W = 26, H = 50, p = new Pix(W, H), L = ['#ffffff', '#ecebf0', '#c8c6d0', '#9a98a8'];
+  p.elipse(13 + cabeca + bal, 7, 4.4, 5, (x, y, dx, dy) => Pix.tom(L, 0.8 - dy * 0.4 - dx * 0.3, x, y));
+  for (let y = 11; y < 45; y++) { const m = 5 + (y - 11) * 0.22; for (let x = Math.round(13 - m); x <= Math.round(12 + m); x++) p.set(x + bal, y, (x * 3 + Math.floor(y / 2)) % 11 === 0 ? L[3] : Pix.tom(L, 0.75 - (x - 13) / 18 - (y - 11) / 60, x, y)); }
+  for (let x = 6; x < 21; x += 3) p.set(x + bal, 44, L[3]);                                 // barra do lençol
+  p.ret(12 + bal, 45, 2, 1, '#5a5e6a'); p.elipse(13 + bal, 46.5, 6, 1.8, '#4a4a54');
+  return p.contorno('#1a1a22');
+}
+const estadosSprite = (pares, extra = {}) => { const quadros = [], anims = {}; for (const [k, lista, fps] of pares) { anims[k] = { q: lista.map((q) => { quadros.push(q); return quadros.length - 1; }), fps: fps || 1 }; } return { quadros, anims, sombra: true, personagem: true, ...extra }; };
+
 // fumaça da chaminé (8 quadros): bolotas que sobem, crescem e somem; levemente lilás (fantasia). A rua da fábrica põe uma em
 // cima de cada chaminé sozinha (rua.fumacas); também serve como elemento comum: { "sprite": "fumaca-chamine" }.
 function quadroFumaca(f) {
@@ -289,5 +406,15 @@ function quadroFumaca(f) {
   return p;
 }
 registrarSprites({
+  manequim: () => estadosSprite([
+    ['parado', [quadroManequim()]], ['virado', [quadroManequim({ cabeca: 2, torto: 0 })]], ['braco', [quadroManequim({ braco: true })]],
+    ['torto', [quadroManequim({ torto: 3 })]],
+    ['andando', [quadroManequim({ bal: -1 }), quadroManequim(), quadroManequim({ bal: 1 }), quadroManequim()], 6],
+    ['virado-andando', [quadroManequim({ cabeca: 2, bal: -1 }), quadroManequim({ cabeca: 2 }), quadroManequim({ cabeca: 2, bal: 1 }), quadroManequim({ cabeca: 2 })], 6],
+  ]),
+  'manequim-coberto': () => estadosSprite([
+    ['parado', [quadroCoberto()]], ['virado', [quadroCoberto({ cabeca: 2 })]],
+    ['andando', [quadroCoberto({ bal: -1 }), quadroCoberto(), quadroCoberto({ bal: 1 }), quadroCoberto()], 6],
+  ]),
   'fumaca-chamine': () => { const quadros = [0, 1, 2, 3, 4, 5, 6, 7].map(quadroFumaca); return { quadros, anims: { parado: { q: [0, 1, 2, 3, 4, 5, 6, 7], fps: 6 } }, sombra: false }; },
 }, { grupo: 'Loja e fábrica de brinquedos', status: 'protótipo' });

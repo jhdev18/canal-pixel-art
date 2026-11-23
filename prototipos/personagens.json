@@ -45,5 +45,7 @@
   "brinquedo-soldadinho": { "sprite": "brinquedo-soldadinho", "voz": 0.8 },
   "brinquedo-boneca":     { "sprite": "brinquedo-boneca", "voz": 1.4 },
   "brinquedo-robo":       { "sprite": "brinquedo-robo", "voz": 0.6 },
-  "brinquedo-caixa":      { "sprite": "brinquedo-caixa", "voz": 1.6 }
+  "brinquedo-caixa":      { "sprite": "brinquedo-caixa", "voz": 1.6 },
+  "manequim":             { "sprite": "manequim", "voz": 0.9 },
+  "manequim-coberto":     { "sprite": "manequim-coberto", "voz": 0.9 }
 }

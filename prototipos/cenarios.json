@@ -669,5 +669,8 @@
       "predios": [ { "tipo": "fabrica", "largura": 10 } ] }
   },
   "loja-brinquedos-diorama":   { "vista": "diorama", "comodo": { "tipo": "loja-brinquedos" } },
-  "fabrica-brinquedos-diorama": { "vista": "diorama", "comodo": { "tipo": "fabrica-brinquedos" } }
+  "fabrica-brinquedos-diorama": { "vista": "diorama", "comodo": { "tipo": "fabrica-brinquedos" } },
+  // sala dos fundos da loja (oficina de conserto) e o depósito com os manequins cinza
+  "loja-fundos-diorama":     { "vista": "diorama", "comodo": { "tipo": "loja-fundos" } },
+  "sala-manequins-diorama":  { "vista": "diorama", "comodo": { "tipo": "sala-manequins" } }
 }
