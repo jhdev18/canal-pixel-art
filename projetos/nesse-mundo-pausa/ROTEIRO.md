@@ -6,7 +6,7 @@
 
 **Pista plantada:** cena 5 ("mãe, online não pausa!", o único balão de fala) → cenas 7–8 (só o Léo se mexe) → cenas 13–14 (a frase volta invertida).
 
-**Assets usados:** protótipos: `parkour-campeonato` (pilares na lava + arco de largada), `mundo-bloco`, avatares (`avatar-topete`, `avatar-bloco-roxo` = a mãe no jogo, `avatar-bloco-*`), `icone-pausa`, `banheiro-diorama`, `mae`, `menino-topete` (Léo); aprovados: `pao`… (`pao` é protótipo), `peruca`, `prefeito-careca`, espirro do prefeito. O nome "Roblox" só na narração/título (nada do jogo nos assets).
+**Assets usados:** protótipos: `parkour-campeonato` (pilares na lava + arco de largada), `mundo-bloco`, avatares (`avatar-topete`, `avatar-bloco-roxo` = a mãe no jogo, `avatar-bloco-*`), `icone-pausa`, `banheiro-diorama`, `mae`, `menino-topete` (Léo), `pao`, espirro do prefeito; aprovados: `peruca`, `prefeito-careca`. O nome "Roblox" só na narração/título (nada do jogo nos assets).
 
 **Checklist de retenção:** de dia · gancho: o avatar congela no ar aos ~0,4 s · 1ª frase com "sua" e algo que todo mundo ouve ("pausa esse jogo!") · imagem cômica a cada ~4 s (pão no ar, prefeito no espirro, banheiro, cidade congelando, estátuas, peruca) · escalada (1 avatar → a cidade 20 vezes → o servidor → a mãe dentro do jogo) · "Até que" aos ~38% · pico de movimento no meio (a corrida pelos pilares) · a mãe usa a regra a favor e a regra se volta contra o filho · callback da pista invertida · balões: 1 fala + 2 do chat do jogo.
 
