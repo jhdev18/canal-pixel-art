@@ -651,5 +651,23 @@
   "cozinha-noite-diorama":  { "vista": "diorama", "comodo": { "tipo": "cozinha-noite" } },
   "banheiro-diorama":       { "vista": "diorama", "comodo": { "tipo": "banheiro" } },
   "banheiro-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "banheiro-noite" } },
-  "sala-de-estar-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-estar-noite" } }
+  "sala-de-estar-noite-diorama": { "vista": "diorama", "comodo": { "tipo": "sala-estar-noite" } },
+
+  // ---- terror dos brinquedos (PROTÓTIPO). A loja NÃO entra na rua-comercial normal: só neste cenário próprio.
+  // rua-brinquedos: a rua comercial de sempre, com a LOJA DE BRINQUEDOS no lugar do prédio comum da esquerda (x ≈ -6.4 a -1.4,
+  // centro -3.9; a padaria e os outros prédios continuam no mesmo lugar). Calçada da loja: z ~5.0, câmera { "x": -3.9, "z": 2.2, "y": 2.4 }.
+  "rua-brinquedos": {
+    "vista": "diorama", "camera": { "x": -3.9, "z": 2.2, "y": 2.4 },
+    "rua": { "periodo": "dia", "faixaPedestre": -3,
+      "predios": [ { "tipo": "brinquedos", "largura": 5 }, { "tipo": "padaria", "largura": 4 }, { "tipo": "escola", "largura": 6 }, { "tipo": "delegacia", "largura": 5 }, { "tipo": "mercado", "largura": 6 }, { "tipo": "farmacia", "largura": 4 } ] }
+  },
+  // fabrica-brinquedos: a FÁBRICA DE BRINQUEDOS sozinha no campo, na estrada de terra (portão de enrolar, chaminé, letreiro).
+  // Centro da fachada x ≈ 0.6; portão no meio; pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0.
+  "fabrica-brinquedos": {
+    "vista": "diorama", "camera": { "x": 0.6, "z": 2.2, "y": 2.8 },
+    "rua": { "periodo": "dia", "chao": "terra", "soPedidos": true, "postes": false, "ancoraPredios": -5,
+      "predios": [ { "tipo": "fabrica", "largura": 10 } ] }
+  },
+  "loja-brinquedos-diorama":   { "vista": "diorama", "comodo": { "tipo": "loja-brinquedos" } },
+  "fabrica-brinquedos-diorama": { "vista": "diorama", "comodo": { "tipo": "fabrica-brinquedos" } }
 }

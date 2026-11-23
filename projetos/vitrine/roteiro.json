@@ -433,14 +433,14 @@
       ] },
 
     // 34. PROTÓTIPO: animatrônicos de brinquedo (soldadinho, boneca de pano, robô de lata, caixa-surpresa) na calçada da escola, de dia
-    { "cenario": "rua-comercial", "duracao": 8, "transicao": "dither", "foto": [0.8, 2.8, 4.8, 6.8], "camera": { "x": 4.6, "z": 2.2, "y": 2.4 },
-      "legenda": "34. Brinquedos: girando a corda / caixa fechada → olhos ocos → virado, rachado, falha, caixa abre.",
+    { "cenario": "rua-brinquedos", "duracao": 8, "transicao": "dither", "foto": [0.8, 2.8, 4.8, 6.8], "camera": { "x": -3.9, "z": 2.2, "y": 2.4 },
+      "legenda": "34. Loja de brinquedos (rua-brinquedos) + brinquedos: corda girando / caixa fechada → olhos ocos → virado, rachado, falha, caixa abre.",
       "elementos": [
-        { "id": "sold", "personagem": "brinquedo-soldadinho", "x": 2.8, "z": 5.0 },
-        { "id": "bon", "personagem": "brinquedo-boneca", "x": 4.0, "z": 5.0, "pose": "acenar" },
-        { "id": "rob", "personagem": "brinquedo-robo", "x": 5.2, "z": 5.0, "pose": "cantando" },
-        { "id": "cx", "personagem": "brinquedo-caixa", "x": 6.9, "z": 5.0, "pose": "fechada" },
-        { "id": "bia", "personagem": "menina-capa", "x": 4.6, "z": 4.2 }
+        { "id": "sold", "personagem": "brinquedo-soldadinho", "x": -5.8, "z": 5.0 },
+        { "id": "bon", "personagem": "brinquedo-boneca", "x": -4.6, "z": 5.0, "pose": "acenar" },
+        { "id": "rob", "personagem": "brinquedo-robo", "x": -3.4, "z": 5.0, "pose": "cantando" },
+        { "id": "cx", "personagem": "brinquedo-caixa", "x": -2.3, "z": 5.0, "pose": "fechada" },
+        { "id": "bia", "personagem": "menina-capa", "x": -3.9, "z": 4.2 }
       ],
       "acoes": [
         { "tipo": "som", "som": "corda", "inicio": 0.3 },
@@ -477,6 +477,52 @@
         { "tipo": "trocar", "alvo": "bon", "estado": "rachado", "inicio": 3.0 },
         { "tipo": "som", "som": "falha-eletrica", "inicio": 3.0 },
         { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.2, "duracao": 2.6 }
+      ] },
+    // 36. PROTÓTIPO: interior da loja de brinquedos (loja-brinquedos-diorama): prateleiras, balcão, presentes; brinquedos virando
+    { "cenario": "loja-brinquedos-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "36. Loja de brinquedos por dentro.",
+      "elementos": [
+        { "id": "cx", "personagem": "brinquedo-caixa", "x": -6.9, "z": 2.6, "pose": "fechada" },
+        { "id": "sold", "personagem": "brinquedo-soldadinho", "x": -3.4, "z": 2.6, "pose": "desligado" },
+        { "id": "bon", "personagem": "brinquedo-boneca", "x": 0, "z": 2.6, "pose": "desligado" },
+        { "id": "bia", "personagem": "menina-capa", "x": 2.0, "z": 0.8 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": -1.0, "inicio": 0.2, "duracao": 2.0 },
+        { "tipo": "trocar", "alvo": "sold", "estado": "virado", "inicio": 2.6 },
+        { "tipo": "trocar", "alvo": "bon", "estado": "olhos", "inicio": 2.6 },
+        { "tipo": "som", "som": "servo", "inicio": 2.6 },
+        { "tipo": "trocar", "alvo": "cx", "estado": "parado", "inicio": 3.8 },
+        { "tipo": "som", "som": "caixinha-musica", "inicio": 3.8 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 2.8, "duracao": 3.0 }
+      ] },
+
+    // 37. PROTÓTIPO: fábrica de brinquedos por fora (fabrica-brinquedos): no campo, portão de enrolar, chaminé, letreiro
+    { "cenario": "fabrica-brinquedos", "duracao": 5, "transicao": "dither", "foto": [0.8, 3.0], "camera": { "x": 0.6, "z": 2.2, "y": 2.8 },
+      "legenda": "37. Fábrica de brinquedos por fora.",
+      "elementos": [
+        { "id": "rob", "personagem": "brinquedo-robo", "x": 0.6, "z": 5.0, "pose": "olhos" },
+        { "id": "bia", "personagem": "menina-capa", "x": -3.0, "z": 2.4 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": -0.6, "inicio": 0.2, "duracao": 2.4 },
+        { "tipo": "som", "som": "corda", "inicio": 2.8 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 2.8, "duracao": 2.0 }
+      ] },
+
+    // 38. PROTÓTIPO: fábrica de brinquedos por dentro (fabrica-brinquedos-diorama): máquina com luzes, esteira com peças, caixotes de cabeças
+    { "cenario": "fabrica-brinquedos-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 3.0, 5.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "38. Fábrica por dentro: o soldadinho sai da máquina andando.",
+      "elementos": [
+        { "id": "sold", "personagem": "brinquedo-soldadinho", "x": -6.2, "z": 1.0 },
+        { "id": "bia", "personagem": "menina-capa", "x": 5.4, "z": 1.0 }
+      ],
+      "acoes": [
+        { "tipo": "som", "som": "servo", "inicio": 0.2 },
+        { "tipo": "andar", "alvo": "sold", "para": 2.4, "inicio": 0.4, "duracao": 5.4 },
+        { "tipo": "trocar", "alvo": "sold", "estado": "rachado", "inicio": 3.4 },
+        { "tipo": "som", "som": "falha-eletrica", "inicio": 3.4 },
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 3.6, "duracao": 2.2 }
       ] }
   ]
 }

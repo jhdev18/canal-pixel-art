@@ -23,6 +23,9 @@ const ESTAB = {
   padaria: { pal: ['#f0e0c0', '#e0ccaa', '#b09a78', '#5a4a30'], tipo: 'reboco', placa: ['#6a3a1e', '#ffe8a0'], texto: 'PADARIA', toldo: ['#f4f0e8', '#c83c4c'], alt: 82, vitrine: 'paes', base: '#8a5a3a' },
   mercado: { pal: ['#e8f0e0', '#d4e0c8', '#a8b89c', '#4a5a40'], tipo: 'reboco', placa: ['#2e8a4a', '#ffffff'], texto: 'MERCADO', toldo: ['#f0f0e0', '#2e8a4a'], alt: 82, vitrine: 'frutas', caixotes: true },
   farmacia: { pal: ['#f4f4f4', '#e0e4e8', '#b8bcc8', '#4a5060'], tipo: 'azulejo', placa: ['#2a9a5a', '#ffffff'], texto: 'FARMÁCIA', toldo: null, alt: 82, cruz: true },
+  // PROTÓTIPO (terror dos brinquedos): só aparecem nos cenários rua-brinquedos e fabrica-brinquedos, não na rua comercial normal
+  brinquedos: { pal: ['#f8e8b0', '#f0d890', '#c8a868', '#5a4a30'], tipo: 'reboco', placa: ['#d84a8a', '#ffffff'], texto: 'BRINQUEDOS', toldo: ['#f8e060', '#3a8ad8'], alt: 112, vitrine: 'brinquedos', base: '#c85a8a' },
+  fabrica: { pal: ['#9a6a5a', '#7a4e44', '#5a3a34', '#2a1a1a'], tipo: 'tijolo', placa: ['#2a2a36', '#f8d040'], texto: 'FÁBRICA DE BRINQUEDOS', toldo: null, alt: 144, porta: 'portao', chamine: true },
 };
 
 // i atravessa a rua (cresce para baixo/direita); j vai ao longo dela (cresce para baixo/esquerda).
@@ -92,7 +95,7 @@ export function gerarRuaDiagonal(opc = {}) {
       if (noite && !borda) c = onda > 1.2 ? '#8ab8e0' : onda > 0.55 ? '#2e5a98' : '#1e3e6a';
       pintar(x, y, c, i, j, 0); continue;
     }
-    if (i < 0 && opc.semPredios) { pintar(x, y, grama(), i, j, 0); continue; }
+    if (i < 0 && (opc.semPredios || opc.soPedidos)) { pintar(x, y, grama(), i, j, 0); continue; }
     if (terra && i >= 0 && i < 7 && !(i > 1.8 && i <= 5.2)) { pintar(x, y, grama(), i, j, 0); continue; }
     if (terra && i > 1.8 && i <= 5.2) {
       const v = r(), sulco = Math.abs(i - 2.6) < 0.18 || Math.abs(i - 4.4) < 0.18;
@@ -198,6 +201,7 @@ export function gerarRuaDiagonal(opc = {}) {
   });
   const lojas = [];
   if (opc.semPredios) predios.length = 0;
+  if (opc.soPedidos) for (let k = predios.length - 1; k >= 0; k--) if (!predios[k].estab) predios.splice(k, 1);   // só os prédios da lista (fábrica no campo)
   for (const P of predios) {
     const rw = rng(P.s), pal = P.pal;
     const acesa = new Map();
@@ -234,6 +238,27 @@ export function gerarRuaDiagonal(opc = {}) {
             const borda = Math.abs(u - meio) === 11 || u === meio || t === 47;
             const puxador = (u === meio - 2 || u === meio + 2) && t >= 20 && t < 26;
             pintar(x, y, borda || puxador ? '#2a2638' : (t > 30 ? '#a8c8e0' : '#6a8aa8'), 0, s, t, 1, 1); return;
+          }
+          if (E.porta === 'portao' && Math.abs(u - meio) < 22 && t < 52) {           // portão de enrolar da fábrica
+            const borda = Math.abs(u - meio) === 21 || t === 51;
+            pintar(x, y, borda ? '#2a2a36' : (t % 4 === 0 ? '#5a5e6a' : t % 4 === 1 ? '#9aa0ac' : '#7a808c'), 0, s, t, 1, 1); return;
+          }
+          if (E.vitrine === 'brinquedos' && t >= 8 && t < 40 && u >= 22 && u < larg - 5) {
+            // 2 prateleiras de brinquedos (bola, bloco, soldadinho, pião, boneca) atrás do vidro
+            const borda = u === 22 || u === larg - 6 || t === 8 || t === 39;
+            let cc = borda ? '#3a2a4a' : (t > 28 ? '#e0f0f8' : '#a8d0e0'), emis = noite && !borda;
+            if (!borda && (t === 10 || t === 23)) cc = '#b07a4a';
+            else if (!borda && ((t > 10 && t < 19) || (t > 23 && t < 32))) {
+              const fila = t < 23 ? 0 : 1, k = Math.floor((u - 23) / 8) + fila, du = (u - 23) % 8, dt = t - (fila ? 24 : 11);
+              const tipoB = ((k % 5) + 5) % 5;
+              if (tipoB === 0 && (du - 3.5) ** 2 + (dt - 3.5) ** 2 < 9) cc = du < 4 ? '#e83a3a' : '#f8e060';                                 // bola
+              if (tipoB === 1 && du > 0 && du < 7 && dt < 6) cc = du === 1 || dt === 0 ? '#2a5ab0' : (du === 4 && dt > 1 && dt < 5 ? '#ffffff' : '#3a8ad8');   // bloco
+              if (tipoB === 2 && du > 2 && du < 6) cc = dt < 3 ? '#c83040' : dt < 4 ? '#f4c8a4' : dt < 7 ? '#3a5ac8' : '#ffffff';             // soldadinho
+              if (tipoB === 3 && Math.abs(du - 3.5) < 4 - dt * 0.5 && dt < 7) cc = dt % 2 ? '#3ab060' : '#f8e060';                              // pião
+              if (tipoB === 4 && du > 2 && du < 6) cc = dt < 2 ? '#e06a2a' : dt < 4 ? '#f8d8bc' : '#5a8ad8';                                  // boneca
+              if (cc !== '#a8d0e0' && cc !== '#e0f0f8') emis = false;
+            }
+            pintar(x, y, cc, 0, s, t, emis ? 2 : 1, 1); return;
           }
           if (E.vitrine === 'paes' && t >= 8 && t < 40 && u >= 22 && u < larg - 5) {
             const borda = u === 22 || u === larg - 6 || t === 8 || t === 39;
@@ -318,6 +343,14 @@ export function gerarRuaDiagonal(opc = {}) {
         frente: (x, y, u, t) => pintar(x, y, u < 6 ? '#3a6aff' : '#ff3a3a', -0.2, cj, P.h + t, noite ? 2 : 1, 1),
         lado: (x, y, u, t, s) => pintar(x, y, '#2a2a3a', s, cj + 0.8, P.h + t, 1, 0.8),
         topo: (x, y, i, j) => pintar(x, y, '#4a4a5a', i, j, P.h + 6, 1, 1),
+      });
+    }
+    if (E?.chamine) {   // chaminé de tijolo atrás do telhado
+      const cj = P.j0 + 1.2;
+      prisma(-2.6, -1.8, cj, cj + 0.8, P.h, 44, {
+        frente: (x, y, u, t) => pintar(x, y, t > 40 ? '#2a1a1a' : (t % 4 === 0 || (u + (Math.floor(t / 4) % 2) * 4) % 8 === 0) ? '#5a3a34' : '#8a4e44', -1.8, cj, P.h + t, 1, 1),
+        lado: (x, y, u, t, s) => pintar(x, y, t > 40 ? '#2a1a1a' : '#5a3430', s, cj + 0.8, P.h + t, 1, 0.75),
+        topo: (x, y, i, j, d) => pintar(x, y, d < 0.12 ? '#3a2a2a' : '#14101a', i, j, P.h + 44, 1, 1),
       });
     }
     if (E?.caixotes) {

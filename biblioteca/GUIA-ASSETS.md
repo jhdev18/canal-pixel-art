@@ -81,6 +81,19 @@ Câmera `{ "x", "z": -8.5 }`; pessoas na frente em `z` ~-8.6.
 - Fonte em x -0.9, z -6.9 (estados cheia/seca). Árvores, canteiros e postes já vêm no cenário.
 - Variações 🧪: `praca-feira` (barracas de frutas, verduras, flores e sorvete) e `praca-seca` (Dia do Sol).
 
+### Loja e fábrica de brinquedos (🧪, terror dos brinquedos — só nos vídeos que pedirem)
+A rua comercial normal (`rua-comercial`) **não** tem a loja. Para os vídeos dos brinquedos:
+- `rua-brinquedos`: a mesma rua, com a **loja de brinquedos** (fachada amarela, letreiro rosa, toldo azul e amarelo, vitrine com
+  brinquedos nas prateleiras) no lugar do prédio comum da esquerda: x ≈ -6.4 a -1.4 (centro -3.9). Padaria, escola etc. no mesmo lugar.
+  Calçada da loja z ~5.0, câmera `{ "x": -3.9, "z": 2.2, "y": 2.4 }`. Poste fixo em x -1.5: ninguém para logo à direita dele.
+- `loja-brinquedos-diorama`: a loja por dentro (parede listrada rosa, 2 prateleiras cheias de brinquedos, balcão com caixa
+  registradora, presentes, baú). Brinquedos em pé na frente das prateleiras (x -6.9, -3.4, 0; z ~2.6); pessoas z 0–1.6.
+- `fabrica-brinquedos`: a **fábrica** sozinha no campo, na estrada de terra (tijolo, portão de enrolar, chaminé, letreiro "FÁBRICA DE
+  BRINQUEDOS"); centro x ≈ 0.6; pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0; câmera `{ "x": 0.6, "z": 2.2, "y": 2.8 }`.
+- `fabrica-brinquedos-diorama`: a fábrica por dentro (máquina com luzes à esquerda, esteira com cabeças e corpos de brinquedo no meio,
+  prateleira de cabeças de boneca, caixotes de peças). Brinquedos saem da máquina em x ~-6.2, z ~1.0 e andam para a direita.
+Sugestão: a loja como base do vídeo (de dia, na rua) e a fábrica como revelação no fim, em 1–2 cenas.
+
 ### Cômodos (diorama, enchem a tela)
 ✅ `sala-de-aula-diorama`, `quarto-menino-diorama` (+ `-noite`), `sala-de-estar-diorama`.
 🧪 **`quarto-menina-diorama` (+ `-noite`) = quarto da Bia/Nina**, `cozinha-diorama`, `banheiro-diorama`, `sala-de-estar-noite-diorama`, `beco`.

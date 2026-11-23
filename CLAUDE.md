@@ -628,6 +628,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `brinquedo-soldadinho`, `brinquedo-boneca`, `brinquedo-robo`, `brinquedo-caixa` (estados parado/desligado/cantando/acenar/virado/olhos/
   rachado/falha; caixa também `fechada`; andam travados) e sons `corda`, `servo`, `caixinha-musica`, `falha-eletrica`. O usuário pediu
   "parecidos com FNAF": é o mesmo gênero, mas nada copiado do jogo (regra 6). Teste: `projetos/vitrine` (cenas 34–35).
+  **Lugares deles (PROTÓTIPO):** loja de brinquedos (`rua-brinquedos` = rua comercial com a loja no lugar do prédio comum da esquerda;
+  a `rua-comercial` normal NÃO tem a loja — pedido do usuário: só em alguns vídeos) e por dentro `loja-brinquedos-diorama`; fábrica
+  `fabrica-brinquedos` (no campo; opção nova da rua `"soPedidos": true` = só os prédios da lista) e por dentro `fabrica-brinquedos-diorama`
+  (`motor/assets/loja-fabrica.js`). Teste: `projetos/vitrine` (cenas 34, 36–38).
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,

@@ -383,6 +383,10 @@ Uso: `{ "cenario": "nome" }`
 | `banheiro-diorama` | 🧪 protótipo | diorama (cômodo banheiro) | 0 |
 | `banheiro-noite-diorama` | 🧪 protótipo | diorama (cômodo banheiro-noite) | 0 |
 | `sala-de-estar-noite-diorama` | 🧪 protótipo | diorama (cômodo sala-estar-noite) | 0 |
+| `rua-brinquedos` | 🧪 protótipo | diorama | 0 |
+| `fabrica-brinquedos` | 🧪 protótipo | diorama | 0 |
+| `loja-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo loja-brinquedos) | 0 |
+| `fabrica-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo fabrica-brinquedos) | 0 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |
