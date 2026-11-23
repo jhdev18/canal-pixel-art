@@ -44,6 +44,8 @@ const ehPessoa = (e, tam) => !!(e.sprite && tam(e.sprite)?.personagem && !e.sobr
 export async function conferir(nome) {
   const dir = caminhoProjeto(nome);
   const bruto = lerJsonFlexivel(path.join(dir, 'roteiro.json'));
+  // vídeo já postado ("postado": true no roteiro): não mexer mais nele, então a conferência não dá avisos
+  if (bruto.postado) { console.log(`\n▶ ${nome}: vídeo já postado — conferência pulada (tire "postado" do roteiro para conferir de novo)`); return []; }
   const r = resolverRoteiro(lerRoteiro(dir), new Map(), { fps: 30 });
   r.cenas.forEach((c, i) => { c.cenarioBruto = bruto.cenas[i].cenario; });
   // "vidaNaRua": figurantes automáticos do fundo (pedestres, pombos, carros) não entram na conferência

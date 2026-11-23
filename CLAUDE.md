@@ -347,6 +347,8 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
 ## Regras de cena (erros que se repetiram — evitar em TODO vídeo)
 Antes de entregar qualquer roteiro (novo ou ajustado), rodar **`npm run conferir -- <projeto>`** (`src/conferir.js`, não
 renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um problema.
+**Vídeos já postados** têm `"postado": true` no roteiro (sombras, gatos, estrelas, caderno, guardiões, números, relógio): o conferir
+os pula e eles **não devem ser alterados** (pedido do usuário). Ao postar um vídeo novo, marcar `"postado": true` no roteiro dele.
 **O que o `npm run conferir` acusa** (cada aviso diz a cena, quem e o que fazer): `[coberto]` atrás de objeto alto ou poste fixo
 da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barraca) ou dos caixotes do mercado; `[continuidade]`
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);

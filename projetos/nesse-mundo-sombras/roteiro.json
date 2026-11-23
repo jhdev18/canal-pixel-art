@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-sombras
 // Usa o protótipo sombraPessoa (sombras sem dono). "vertical" = enquadramento do Shorts.
 {
+  "postado": true,
  "titulo": "Nessa cidade, a sua sombra chega antes de você",
  "narrador": "Narrador",
  "resolucao": [

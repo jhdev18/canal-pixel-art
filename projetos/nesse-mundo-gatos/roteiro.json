@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-gatos
 // Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: gato-chapeu (relances da cara monstruosa: estados monstro/pior), gato-monstro (cenas 10–12), ação sombra e rival (Nina).
 {
+  "postado": true,
  "titulo": "Nessa cidade, gato que segue você é sorte",
  "narrador": "Narrador",
  "resolucao": [

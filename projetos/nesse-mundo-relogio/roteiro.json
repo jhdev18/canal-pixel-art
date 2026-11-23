@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-relogio
 // Usa protótipos: vovo, relogio-praca, ação fogos. "vertical" = enquadramento do Shorts.
 {
+  "postado": true,
  "titulo": "Nessa cidade, o relógio da virada anda para trás",
  "narrador": "Narrador",
  "resolucao": [

@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-caderno
 // "vertical": enquadramento só da versão Shorts (9:16).
 {
+  "postado": true,
  "titulo": "Nessa cidade, toda noite alguém some",
  "narrador": "Narrador",
  "resolucao": [

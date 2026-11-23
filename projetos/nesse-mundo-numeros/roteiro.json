@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-numeros
 // Números no estilo placa ("numero" + ação numero). Protótipos: rival (a Nina), vulto (a voz), clima neblina, quarto-menina. "vertical" = enquadramento do Shorts.
 {
+  "postado": true,
  "titulo": "Nessa cidade, todo mundo tem um número na cabeça",
  "narrador": "Narrador",
  "resolucao": [

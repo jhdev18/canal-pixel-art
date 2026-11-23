@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-guardioes
 // Usa protótipos: guardiões (guardiao-azul, guardia-verde, guardiao-noturno, guardiao-chefe) + estados tremendo/olhando-lado, vulto e quarto-menina-noite-diorama. "vertical" = enquadramento do Shorts.
 {
+  "postado": true,
  "titulo": "Nessa cidade, o guardião só acorda no perigo",
  "narrador": "Narrador",
  "resolucao": [
