@@ -1,0 +1,73 @@
+{
+  // PROTÓTIPO dos cenários novos na diagonal (só para conferir: npm run previa -- prototipo-diagonal)
+  "titulo": "Protótipo — praça e quarto de menina (diagonal)",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "cenas": [
+    // 1. Praça (na rua comercial) de dia: a Bia atravessa, o pombo no banco
+    { "cenario": "praca", "duracao": 5, "transicao": "fade",
+      "camera": { "x": -1, "z": -8.5 }, "cameraFim": { "x": 1, "z": -8.5 },
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -6, "z": -8.6 },
+        { "id": "tonho", "personagem": "padeiro", "x": 3, "z": -5.2, "virado": "esquerda" },
+        { "id": "pombo", "personagem": "pombo-fofoqueiro", "x": -5.2, "y": 0.45, "z": -4.4 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "bia", "para": 1.6, "inicio": 0.3, "duracao": 3.4 },
+        { "tipo": "falar", "alvo": "tonho", "texto": "* Bom dia, Bia!", "inicio": 3.8 }
+      ] },
+
+    // 2. Praça à noite: postes acesos
+    { "cenario": "praca-noite", "duracao": 4, "transicao": "dither",
+      "elementos": [ { "id": "ronaldo", "personagem": "policial-oculos", "x": -5, "z": -8.6 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "ronaldo", "para": 3, "inicio": 0.3, "duracao": 3.2 } ] },
+
+    // 3. Praça no Dia do Sol: prefeito no palanque, todos com sol na cabeça
+    { "cenario": "praca-decorada", "duracao": 5, "transicao": "dither", "clima": "calor", "camera": { "x": 1.5, "z": -8.5 },
+      "elementos": [
+        { "id": "prefeito", "personagem": "prefeito", "x": 5, "y": 0.75, "z": -6.7, "virado": "esquerda" },
+        { "id": "tPref", "sprite": "tempo-pessoal", "sobre": { "id": "prefeito", "dy": 2.75 } },
+        { "id": "bia", "personagem": "menina-capa", "x": -1, "z": -9.2 },
+        { "id": "tBia", "sprite": "tempo-pessoal", "sobre": { "id": "bia", "dy": 2.75 } },
+        { "id": "prof", "personagem": "professora", "x": 1.6, "z": -8.8 },
+        { "id": "tProf", "sprite": "tempo-pessoal", "sobre": { "id": "prof", "dy": 2.75 } }
+      ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tPref", "estado": "sol-grande", "inicio": 0 },
+        { "tipo": "trocar", "alvo": "tBia", "estado": "sol-pequeno", "inicio": 0 },
+        { "tipo": "falar", "alvo": "prefeito", "texto": "* Hoje, ninguém fica triste!", "inicio": 0.6 },
+        { "tipo": "trocar", "alvo": "tProf", "estado": "sol-forte", "inicio": 3 }
+      ] },
+
+    // 4. Praça seca (calor): fonte vazia, canteiros murchos, árvores amareladas
+    { "cenario": "praca-seca", "duracao": 4, "transicao": "dither", "clima": "calor", "paleta": "quente",
+      "elementos": [
+        { "id": "tonho", "personagem": "padeiro", "x": -2.4, "z": -9 },
+        { "id": "fogo", "sprite": "fogo-chapeu", "sobre": { "id": "tonho", "dy": 2.6 } }
+      ],
+      "acoes": [ { "tipo": "tremer", "inicio": 1, "duracao": 0.4 } ] },
+
+    // 5. Quarto de menina (diagonal), de dia
+    { "cenario": "quarto-menina-diorama", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 1.5 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": -3, "z": 0.8 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": 3, "inicio": 0.3, "duracao": 3.2 } ] },
+
+    // 6. Quarto de menina à noite (diagonal): a Bia chora escondida (garoa)
+    { "cenario": "quarto-menina-noite-diorama", "duracao": 4, "transicao": "dither", "camera": { "x": -3 },
+      "elementos": [
+        { "id": "bia", "personagem": "menina-capa", "x": -3.6, "z": 1.6 },
+        { "id": "tBia", "sprite": "tempo-pessoal", "sobre": { "id": "bia", "dy": 2.75 } }
+      ],
+      "acoes": [ { "tipo": "trocar", "alvo": "tBia", "estado": "garoa", "inicio": 0.4 } ] },
+
+    // 7. Quarto de menina (lateral), para alternar
+    { "cenario": "quarto-menina", "duracao": 4, "transicao": "dither",
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": -8 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": 1.6, "inicio": 0.3, "duracao": 3 } ] },
+
+    // 8. Sala de estar (diagonal, já aprovada), para comparar
+    { "cenario": "sala-de-estar-diorama", "duracao": 4, "transicao": "dither",
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 5, "z": 0.4, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -2, "inicio": 0.3, "duracao": 3 } ] }
+  ]
+}

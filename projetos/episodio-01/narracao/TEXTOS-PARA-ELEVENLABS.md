@@ -3,9 +3,8 @@
 Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como
 **`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac).
 
-O gerador corta o áudio nas pausas: deixe uma pausa clara (meio segundo ou mais) entre as falas de cada cena.
-O texto já vem com `<break time="1.0s" />` entre as cenas — no ElevenLabs essa marcação cria a pausa (se a voz
-ignorar a marcação, apague-a e deixe só a linha em branco, ou gere com reticências no fim de cada fala).
+O texto vem com um parágrafo por cena. O gerador corta o áudio nas pausas naturais entre as frases (0,2 s ou mais)
+e escolhe as que combinam com cada cena; confira com `npm run narracao -- episodio-01 --verificar`.
 
 São **9 falas** (uma por cena com narração):
 

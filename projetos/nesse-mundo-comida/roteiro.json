@@ -1,0 +1,1433 @@
+// NESSE MUNDO (curto, comédia DE DIA) — "Nessa cidade, a comida que você deixa no prato sai correndo."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-comida
+// Feito com as táticas de retenção do vídeo das sombras (CLAUDE.md). Usa protótipos: pao, cadeado, rival (Nina).
+{
+ "titulo": "Nessa cidade, a comida que você deixa no prato foge",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, a comida que você deixa no prato sai correndo.",
+   "cenario": "rua-comercial",
+   "transicao": "corte",
+   "seguir": "pao1",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 1.5,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 2.8,
+     "z": 5.2,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "pao1",
+     "sprite": "pao",
+     "x": 3.7,
+     "z": 4.8,
+     "escala": 2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.6,
+     "para": 4.5,
+     "inicio": null,
+     "duracao": 0.4
+    },
+    {
+     "tipo": "som",
+     "som": "pulo",
+     "inicio": null
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.5,
+     "para": 5.45,
+     "inicio": 0.38,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.5,
+     "para": 6.4,
+     "inicio": 0.95,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.5,
+     "para": 7.35,
+     "inicio": 1.52,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.5,
+     "para": 8.3,
+     "inicio": 2.09,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.5,
+     "para": 9.25,
+     "inicio": 2.67,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pao1",
+     "altura": 0.5,
+     "para": 10.2,
+     "inicio": 3.24,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": null
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": 2.2,
+     "y": 1.5,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, ninguém deixa resto. A merenda da escola dura quatro segundos.",
+   "cenario": "sala-de-aula-diorama",
+   "titulo": "NESSA CIDADE, A COMIDA FOGE",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.6,
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "s0",
+     "sprite": "sanduiche",
+     "x": -3.55,
+     "z": 2.25,
+     "y": 0.78
+    },
+    {
+     "id": "s1",
+     "sprite": "sanduiche",
+     "x": -0.55,
+     "z": 2.25,
+     "y": 0.78
+    },
+    {
+     "id": "s2",
+     "sprite": "sanduiche",
+     "x": 2.45,
+     "z": 2.25,
+     "y": 0.78
+    },
+    {
+     "id": "s3",
+     "sprite": "sanduiche",
+     "x": -3.55,
+     "z": 0.55,
+     "y": 0.78
+    },
+    {
+     "id": "s4",
+     "sprite": "sanduiche",
+     "x": -0.55,
+     "z": 0.55,
+     "y": 0.78
+    },
+    {
+     "id": "s5",
+     "sprite": "sanduiche",
+     "x": 2.45,
+     "z": 0.55,
+     "y": 0.78
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -1.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "coletar",
+     "alvo": "s0",
+     "inicio": 1.94
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "s1",
+     "inicio": 2.22
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "s2",
+     "inicio": 2.5
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "s3",
+     "inicio": 2.78
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "s4",
+     "inicio": 3.06
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "s5",
+     "inicio": 3.34
+    },
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 6,
+     "inicio": 0.53,
+     "duracao": 1.64
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 3.78
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.6,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E o seu Tonho tranca os pães com cadeado.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.3,
+     "z": 5.2
+    },
+    {
+     "id": "pa",
+     "sprite": "pao",
+     "x": 0.9,
+     "z": 4.9,
+     "escala": 2
+    },
+    {
+     "id": "pb",
+     "sprite": "pao",
+     "x": 1.5,
+     "z": 5,
+     "escala": 2
+    },
+    {
+     "id": "pc",
+     "sprite": "pao",
+     "x": 2.1,
+     "z": 4.9,
+     "escala": 2
+    },
+    {
+     "id": "cad",
+     "sprite": "cadeado",
+     "x": 1.5,
+     "z": 4.6,
+     "y": 0.9,
+     "pose": "aberto",
+     "escala": 2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "pa",
+     "altura": 0.5,
+     "inicio": 0.43
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pa",
+     "altura": 0.4,
+     "inicio": 1.23
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pb",
+     "altura": 0.5,
+     "inicio": 0.65
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pb",
+     "altura": 0.4,
+     "inicio": 1.45
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pc",
+     "altura": 0.5,
+     "inicio": 0.86
+    },
+    {
+     "tipo": "pular",
+     "alvo": "pc",
+     "altura": 0.4,
+     "inicio": 1.66
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "cad",
+     "estado": "fechado",
+     "inicio": 2.11
+    },
+    {
+     "tipo": "som",
+     "som": "cadeado",
+     "inicio": 2.11
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "bravo",
+     "inicio": 1.9,
+     "duracao": 1.07
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas a Bia come devagarinho. E o lanche dela nunca fugiu.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.2,
+     "z": 0.6
+    },
+    {
+     "id": "sandBia",
+     "sprite": "sanduiche",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "bia",
+      "dx": 0.55,
+      "dy": 1
+     }
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 1.4,
+     "z": 0.7
+    },
+    {
+     "id": "sandNina",
+     "sprite": "sanduiche",
+     "x": 2,
+     "z": 0.2,
+     "y": 0
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "sandNina",
+     "altura": 0.35,
+     "para": 2.96,
+     "inicio": 0.66,
+     "duracao": 0.35
+    },
+    {
+     "tipo": "pular",
+     "alvo": "sandNina",
+     "altura": 0.35,
+     "para": 3.92,
+     "inicio": 1.03,
+     "duracao": 0.35
+    },
+    {
+     "tipo": "pular",
+     "alvo": "sandNina",
+     "altura": 0.35,
+     "para": 4.88,
+     "inicio": 1.39,
+     "duracao": 0.35
+    },
+    {
+     "tipo": "pular",
+     "alvo": "sandNina",
+     "altura": 0.35,
+     "para": 5.84,
+     "inicio": 1.76,
+     "duracao": 0.35
+    },
+    {
+     "tipo": "pular",
+     "alvo": "sandNina",
+     "altura": 0.35,
+     "para": 6.8,
+     "inicio": 2.12,
+     "duracao": 0.35
+    },
+    {
+     "tipo": "correr",
+     "alvo": "nina",
+     "para": 5.6,
+     "inicio": 1.03,
+     "duracao": 1.64
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "coracao",
+     "inicio": 2.74
+    },
+    {
+     "tipo": "magia",
+     "alvo": "sandBia",
+     "inicio": 2.92
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.67,
+     "duracao": 1.27
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que, num domingo, o seu Tonho assou o maior pão da história.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 1.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.4,
+     "z": 5.2
+    },
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": 1.6,
+     "z": 4.8,
+     "escala": 4,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "gigante",
+     "inicio": 1.13
+    },
+    {
+     "tipo": "magia",
+     "alvo": "gigante",
+     "inicio": 1.22
+    },
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 1.76
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.5,
+     "inicio": 2.59
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 1.55,
+     "duracao": 2.91
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas o pão pulou da vitrine e saiu rolando rua abaixo.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 5.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.4,
+     "z": 5.2
+    },
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": 1.6,
+     "z": 4.8,
+     "escala": 4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 3.4,
+     "inicio": 0.37,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 5.2,
+     "inicio": 0.9,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 7,
+     "inicio": 1.43,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 8.8,
+     "inicio": 1.95,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 10.6,
+     "inicio": 2.48,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 12.4,
+     "inicio": 3.01,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "!",
+     "inicio": 1.33
+    },
+    {
+     "tipo": "correr",
+     "alvo": "tonho",
+     "para": 9.8,
+     "inicio": 1.51,
+     "duracao": 2.07
+    },
+    {
+     "tipo": "som",
+     "som": "pulo",
+     "inicio": 0.47
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 1.26,
+     "duracao": 2.49
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Primeiro o padeiro. Depois a professora. Em um minuto, a cidade inteira.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 12,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": 12.4,
+     "z": 3.8,
+     "escala": 4
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 9.8,
+     "z": 5.3
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 5.4,
+     "z": 4.9
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 3.8,
+     "z": 5.75
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 2.2,
+     "z": 4.45
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 14.07,
+     "inicio": 0.3,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 15.73,
+     "inicio": 1.04,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 17.4,
+     "inicio": 1.78,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 19.07,
+     "inicio": 2.52,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 20.73,
+     "inicio": 3.26,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 22.4,
+     "inicio": 4.01,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "correr",
+     "alvo": "tonho",
+     "para": 20.4,
+     "inicio": 0.3,
+     "duracao": 4.45
+    },
+    {
+     "tipo": "correr",
+     "alvo": "prof",
+     "para": 18.2,
+     "inicio": 1.24,
+     "duracao": 3.51
+    },
+    {
+     "tipo": "correr",
+     "alvo": "caixa",
+     "para": 17.2,
+     "inicio": 2.41,
+     "duracao": 2.34
+    },
+    {
+     "tipo": "correr",
+     "alvo": "policial",
+     "para": 16.2,
+     "inicio": 2.87,
+     "duracao": 1.97
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 12,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E quanto mais gente corria, mais rápido o pão fugia.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": -6.4,
+     "z": -9.8,
+     "escala": 4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -8.6,
+     "z": -8
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -9.4,
+     "z": -7.6
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -10.2,
+     "z": -7.2
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -11,
+     "z": -9.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": -3.76,
+     "inicio": 0.3,
+     "duracao": 0.39
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": -1.12,
+     "inicio": 0.71,
+     "duracao": 0.39
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 1.52,
+     "inicio": 1.11,
+     "duracao": 0.39
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 4.16,
+     "inicio": 1.52,
+     "duracao": 0.39
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.6,
+     "para": 6.8,
+     "inicio": 1.92,
+     "duracao": 0.39
+    },
+    {
+     "tipo": "correr",
+     "alvo": "tonho",
+     "para": 3.6,
+     "inicio": 0.47,
+     "duracao": 2.87
+    },
+    {
+     "tipo": "correr",
+     "alvo": "prof",
+     "para": 2.6,
+     "inicio": 0.57,
+     "duracao": 2.87
+    },
+    {
+     "tipo": "correr",
+     "alvo": "caixa",
+     "para": 1.6,
+     "inicio": 0.67,
+     "duracao": 2.87
+    },
+    {
+     "tipo": "correr",
+     "alvo": "policial",
+     "para": 0.6,
+     "inicio": 0.77,
+     "duracao": 2.84
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 1.48
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 1.48,
+     "duracao": 2.2
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "Só a Bia não correu. Ela parou no meio da praça e abriu a mão.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": 6.8,
+     "z": -9.8,
+     "escala": 4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 3.6,
+     "z": -8
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 2.6,
+     "z": -7.6
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.6,
+     "z": -7.2
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 0.6,
+     "z": -9.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.5,
+     "inicio": 0.5
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "...",
+     "inicio": 1.51
+    },
+    {
+     "tipo": "magia",
+     "alvo": "bia",
+     "inicio": 2.52
+    },
+    {
+     "tipo": "som",
+     "som": "item",
+     "inicio": 2.72
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.32,
+     "duracao": 2.01
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "assustado",
+     "inicio": 1.51,
+     "duracao": 2.82
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -2.6,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "E o pão gigante freou, deu meia-volta e deitou do lado dela.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": 6.8,
+     "z": -9.8,
+     "escala": 4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 3.6,
+     "z": -8
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 2.6,
+     "z": -7.6
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.6,
+     "z": -7.2
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 0.6,
+     "z": -9.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.5,
+     "para": 5.32,
+     "inicio": 0.38,
+     "duracao": 0.44
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.5,
+     "para": 3.84,
+     "inicio": 0.85,
+     "duracao": 0.44
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.5,
+     "para": 2.36,
+     "inicio": 1.31,
+     "duracao": 0.44
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.5,
+     "para": 0.88,
+     "inicio": 1.78,
+     "duracao": 0.44
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.5,
+     "para": -0.6,
+     "inicio": 2.25,
+     "duracao": 0.44
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.3,
+     "inicio": 2.95
+    },
+    {
+     "tipo": "som",
+     "som": "puf",
+     "inicio": 3.03
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "coracao",
+     "inicio": 3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "rindo",
+     "inicio": 3.11,
+     "duracao": 1.09
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 1.47,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "surpreso",
+     "inicio": 1.47,
+     "duracao": 2.73
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.6,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "A comida nunca fugiu de quem deixava no prato. Fugia de quem comia correndo.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "gigante",
+     "sprite": "pao",
+     "x": -0.6,
+     "z": -9.8,
+     "escala": 4
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.6,
+     "z": -8.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 3.6,
+     "z": -8
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 2.6,
+     "z": -7.6
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.6,
+     "z": -7.2
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 0.6,
+     "z": -9.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "!",
+     "inicio": 0.79
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 0.99
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 1.19
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 2.28
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.2,
+     "inicio": 2.52,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "pular",
+     "alvo": "gigante",
+     "altura": 0.2,
+     "inicio": 3.26
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 1.78,
+     "duracao": 3.46
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "envergonhado",
+     "inicio": 2.03,
+     "duracao": 3.21
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "envergonhado",
+     "inicio": 2.28,
+     "duracao": 2.96
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 1.29,
+     "duracao": 3.95
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.55,
+     "duracao": 4.69
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "momento": "praca"
+  },
+  {
+   "narracaoTexto": "Hoje, a cidade inteira almoça devagar. E a merenda dura quatro horas.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "t0",
+     "sprite": "sanduiche",
+     "x": -3.55,
+     "z": 2.25,
+     "y": 0.78
+    },
+    {
+     "id": "t1",
+     "sprite": "sanduiche",
+     "x": -0.55,
+     "z": 2.25,
+     "y": 0.78
+    },
+    {
+     "id": "t2",
+     "sprite": "sanduiche",
+     "x": 2.45,
+     "z": 2.25,
+     "y": 0.78
+    },
+    {
+     "id": "t3",
+     "sprite": "sanduiche",
+     "x": -3.55,
+     "z": 0.55,
+     "y": 0.78
+    },
+    {
+     "id": "t4",
+     "sprite": "sanduiche",
+     "x": -0.55,
+     "z": 0.55,
+     "y": 0.78
+    },
+    {
+     "id": "t5",
+     "sprite": "sanduiche",
+     "x": 2.45,
+     "z": 0.55,
+     "y": 0.78
+    },
+    {
+     "id": "mini",
+     "sprite": "pao",
+     "x": 6.4,
+     "z": 1.4,
+     "escala": 2,
+     "y": 1.15
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -1.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "prof",
+     "para": 6.9,
+     "inicio": 0.52,
+     "duracao": 2.24
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "zzz",
+     "inicio": 2.77
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "coracao",
+     "inicio": 3.44
+    },
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 3.66
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 3.44,
+     "duracao": 1.35
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   }
+  }
+ ]
+}

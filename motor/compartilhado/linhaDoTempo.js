@@ -6,7 +6,8 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
 export const TRANSICAO_DURACAO = 0.2;   // padrão (cada lado); o roteiro pode mudar com "transicaoDuracao"
@@ -48,7 +49,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       const acao = { ...a };
       acao.inicio = acao.inicio ?? 0;
       if (acao.duracao == null) {
-        acao.duracao = acao.tipo === 'falar' ? duracaoFala(acao.texto || '') : (DURACAO_PADRAO[acao.tipo] ?? 1);
+        acao.duracao = (acao.tipo === 'falar' || acao.tipo === 'pensar') ? duracaoFala(acao.texto || '') : (DURACAO_PADRAO[acao.tipo] ?? 1);
       }
       return acao;
     }).sort((a, b) => a.inicio - b.inicio);
@@ -60,16 +61,34 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       }
     }
     // Câmera padrão: chão a ~80% da altura da tela (funciona em 16:9 e 9:16).
-    const camPadrao = cena.vista === 'diagonal' ? { x: 0, y: 2.2, zoom: 1 }
+    const camPadrao = (cena.vista === 'diorama' && cena.comodo) ? { x: 0, y: 3, zoom: 1 }
+      : (cena.vista === 'diorama' || cena.vista === 'diagonal') ? { x: 0, y: 2.2, zoom: 1 }
       : cena.vista === 'avenida' ? { x: 0.6, y: 2.6, z: 11, zoom: 1 }
+      : cena.vista === '3d' ? { x: 0, y: 1.6, z: -1, zoom: 1 }
       : { x: 0, y: Math.round(res[1] * 0.3) / 16 / (cena.camera?.zoom ?? 1), zoom: 1 };   // chão a ~80% da altura, considerando o zoom
     cena.camera = { ...camPadrao, ...(cena.camera || {}) };
     cena.narracaoInicio = cena.narracaoInicio ?? 0.3;
     const narr = narracoes.get(indice);
+    // Ações sincronizadas com a fala real: o roteiro marca os tempos pela fala estimada (0,065 s por letra);
+    // com o áudio, os tempos de cada cena esticam/encolhem na mesma proporção da fala real.
+    // ("sincronizarAcoes": false no roteiro ou "sincronizar": false na cena desliga.)
+    // Narração única contínua: a cena dura exatamente o seu trecho de áudio (que já traz meia pausa de cada lado),
+    // sem silêncio extra no começo nem no fim — a voz segue sem buracos e o vídeo tem o tamanho do áudio.
+    const continuo = !!(narr && narr.continuo);
+    if (narr && cena.narracaoTexto && roteiro.sincronizarAcoes !== false && cena.sincronizar !== false) {
+      const f = clamp(narr.duracao / (cena.narracaoTexto.length * SEG_POR_LETRA + (continuo ? cena.narracaoInicio : 0)), 0.5, 2);
+      const n0 = cena.narracaoInicio, novo = continuo ? 0 : n0;
+      for (const a of cena.acoes) {
+        a.inicio = a.inicio > n0 ? novo + (a.inicio - n0) * f : a.inicio * (n0 ? novo / n0 : 1);
+        if (a.tipo !== 'flash' && a.tipo !== 'tremer') a.duracao *= f;
+      }
+      for (const k of ['tituloInicio', 'tituloDuracao']) if (cena[k] != null) cena[k] *= f;
+    }
+    if (continuo) cena.narracaoInicio = 0;
     let dur = cena.duracao ?? 4;
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };
-      dur = Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
+      dur = continuo ? narr.duracao : Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
     }
     // Legenda do narrador: blocos distribuídos pela duração da fala (real, ou estimada sem áudio).
     if (cena.narracaoTexto && roteiro.legendasNarracao !== false && cena.legendaNarracao !== false) {
@@ -81,11 +100,12 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       cena.legendasNarracao = blocos.map((b) => { const d = falaDur * (b.length / total); const r = { texto: b, ini: t0, fim: t0 + d }; t0 += d; return r; });
     }
     const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
-    if (cena.duracao == null) dur = Math.max(dur, fimAcoes + 0.5);
+    if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + 0.5);
+    if (continuo) for (const a of cena.acoes) if (a.inicio + a.duracao > dur) a.duracao = Math.max(0, dur - a.inicio);   // nada passa do fim da fala
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;
     cena.inicio = inicio;
-    cena.transicao = cena.transicao || (indice === 0 ? 'fade' : 'dither');
+    cena.transicao = cena.transicao || (indice === 0 ? 'corte' : 'dither')   // 1ª cena começa já com imagem (sem fade do preto: o 1º segundo decide se o público fica);
     cena.transicaoDuracao = cena.transicaoDuracao ?? roteiro.transicaoDuracao ?? TRANSICAO_DURACAO;
     inicio += cena.duracao;
     return cena;
@@ -125,12 +145,31 @@ function destino(a, x, y) {
 }
 
 // Estado de um elemento no tempo local t da cena.
-export function estadoElemento(cena, el, t) {
+export function estadoElemento(cena, el, t, _prof = 0) {
   let x = el.x ?? 0, y = el.y ?? 0;
-  const z = el.z ?? 0;
+  let z = el.z ?? 0;
   let virado = el.virado === 'esquerda' ? -1 : 1;
+  // "sobre": { "id": "bia", "dx": 0, "dy": 2.8 } — o elemento acompanha outro (tempo na cabeça, guarda-chuva na mão).
+  // dx segue o lado para onde o dono está virado; "virar": false mantém o próprio lado.
+  let dono = null;
+  if (el.sobre && _prof < 4) {
+    const so = typeof el.sobre === 'string' ? { id: el.sobre } : el.sobre;
+    const pai = elementoPorId(cena, so.id);
+    if (pai) {
+      dono = estadoElemento(cena, pai, t, _prof + 1);
+      if (so.virar !== false) virado = dono.virado;
+      x = dono.x + (so.dx ?? 0) * (so.virar !== false ? dono.virado : 1);
+      y = dono.yBase + (dono.alturaPulo || 0) + (so.dy ?? 0);
+      z = dono.z + (so.dz ?? 0);
+    }
+  }
   let visivel = !el.oculto;
   let anim = 'parado', alpha = 1, offY = 0, escala = 1, vermelho = 0;
+  // pose de quando está parado: "pose": "sentado" (de frente) ou "sentado-lado"; muda com as ações sentar/levantar
+  let pose = el.pose || null;
+  let espirro = null, rosto = null;
+  const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
+  let animInicio = 0;   // quando começou o estado atual (para animações que tocam uma vez só)
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
     if (t < a.inicio) break;
@@ -153,6 +192,13 @@ export function estadoElemento(cena, el, t) {
         if (p < 1) { offY += 4 * h * p * (1 - p); anim = 'pulando'; }
         break;
       }
+      case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
+      case 'expressao': if (p < 1) rosto = a.rosto || a.estado || null; break;   // PROTÓTIPO: rosto por um tempo
+      case 'emocao': if (p < 1 && a.rosto !== false && !rosto) rosto = (typeof a.rosto === 'string' && a.rosto) || ROSTO_DA_EMOCAO[a.icone] || null; break;
+      case 'espirrar': if (p < 1) espirro = p < (a.inspira ?? 0.6) ? 'espirro-antes' : 'espirro'; break;   // PROTÓTIPO
+      case 'levantar': pose = null; break;
+      // "trocar": muda o estado do objeto (ex.: tempo-pessoal de "sol" para "chuva"; estrela vira "olho")
+      case 'trocar': pose = a.estado || a.anim || null; animInicio = a.inicio; break;
       case 'virar':
         virado = a.direcao === 'esquerda' ? -1 : a.direcao === 'direita' ? 1 : -virado;
         break;
@@ -163,6 +209,10 @@ export function estadoElemento(cena, el, t) {
       case 'sumir':
         if (p >= 1) visivel = false; else escala = 1 - p * p;
         break;
+      // "desaparecer": some devagar, sem fumaça nem som (para cenas pesadas)
+      case 'desaparecer':
+        if (p >= 1) visivel = false; else alpha = Math.min(alpha, 1 - p);
+        break;
       case 'coletar':
         if (p >= 1) visivel = false; else { offY += easeOutBack(p) * 1.2; alpha = p < 0.6 ? 1 : 1 - (p - 0.6) / 0.4; }
         break;
@@ -172,7 +222,11 @@ export function estadoElemento(cena, el, t) {
       default: break;
     }
   }
-  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, alpha, escala, vermelho, alturaPulo: offY };
+  if (pose && anim === 'parado') anim = pose;
+  if (espirro && anim === 'parado' && !pose) anim = espirro;
+  else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
+  if (dono && !dono.visivel) visivel = false;
+  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY };
 }
 
 export function elementoPorId(cena, id) {
@@ -240,6 +294,22 @@ export function estadoCamera(cena, t) {
 }
 
 // Efeitos de tela: tremor, flash e transição.
+// Sombra que se alastra (ação "sombra"): { "origem": [x, z], "raio": 14, "inicio", "duracao", "recolher": s }.
+// Devolve { x, z, R, t } (R = raio atual, em unidades) ou null. A borda é irregular: raioNoAngulo().
+export function estadoSombra(cena, t) {
+  let r = null;
+  for (const a of cena.acoes) {
+    if (a.tipo !== 'sombra' || t < a.inicio) continue;
+    const p = clamp((t - a.inicio) / Math.max(0.1, a.duracao));
+    let R = (a.raio ?? 14) * (1 - (1 - p) * (1 - p));
+    if (a.recolher != null && t > a.recolher) R *= 1 - clamp((t - a.recolher) / 1.2);
+    const [x, z] = a.origem || [0, 0];
+    r = { x, z, R, t, cor: a.cor, borda: a.corBorda, personagens: a.personagens !== false };
+  }
+  return r;
+}
+export const raioNoAngulo = (R, ang, t) => R * (0.8 + 0.14 * Math.sin(ang * 5 + 1.3) + 0.06 * Math.sin(ang * 13 + t * 1.7));
+
 export function efeitosTela(cena, t) {
   let tremor = 0, flash = 0;
   for (const a of cena.acoes) {
@@ -273,7 +343,7 @@ export function larguraVisivel(roteiro, zoom = 1) {
 }
 
 const SOM_COLETAR = { moeda: 'moeda', coracao: 'vida', estrela: 'powerup', gema: 'powerup', chave: 'item' };
-const SOM_EMOCAO = { '!': 'surpresa', '?': 'duvida', coracao: 'amor', '...': 'blip', zzz: 'blip' };
+const SOM_EMOCAO = { '!': 'surpresa', '?': 'duvida', coracao: 'amor', '...': 'blip', zzz: 'blip', lampada: 'item', gota: 'duvida', raiva: 'erro', nota: 'amor' };
 
 const AMBIENTE_FUNDO = {
   'floresta-dia': [['passaros', 0.5], ['vento', 0.25]],
@@ -284,6 +354,8 @@ const AMBIENTE_FUNDO = {
   espaco: [['espaco', 0.6]],
   'cidade-noite': [['cidade', 0.6]],
   neve: [['vento', 0.6]],
+  diorama: [['passaros', 0.15]],
+  'diorama-noite': [['grilos', 0.25]],
 };
 const AMBIENTE_CLIMA = { chuva: [['chuva', 0.9]], neve: [['vento', 0.4]] };
 
@@ -312,11 +384,19 @@ export function eventosSonoros(roteiro) {
       const vol = a.volume ?? 1;
       switch (a.tipo) {
         case 'andar': case 'correr': {
-          if (semSom) break;
-          const passo = a.tipo === 'correr' ? 0.19 : 0.3;
+          if (semSom || el?.sombraPessoa) break;   // sombra andando não faz barulho de passo
+          // multidão: só as 3 primeiras pessoas andando ao mesmo tempo fazem som de passo, cada uma num ritmo um pouco
+          // diferente e mais baixo quanto mais gente anda junto (antes os passos se empilhavam e viravam um "metralhar")
+          const juntos = cena.acoes.filter((b) => (b.tipo === 'andar' || b.tipo === 'correr') && b.som !== null && b.som !== false
+            && !elementoPorId(cena, b.alvo)?.sombraPessoa && b.inicio < a.inicio + a.duracao && a.inicio < b.inicio + b.duracao);
+          const ordem = juntos.indexOf(a);
+          if (!somManual && ordem >= 3) break;
+          const passo = (a.tipo === 'correr' ? 0.19 : 0.3) * (1 + ((ordem * 37) % 11 - 5) / 50);
+          const fase = ordem * 0.11;
+          const volJuntos = 1 / Math.sqrt(Math.min(juntos.length, 3));
           let k = 0;
-          for (let t = a.inicio + 0.05; t < a.inicio + a.duracao; t += passo, k++) {
-            add(somManual || 'passo', t, { volume: 0.55 * vol, taxa: k % 2 ? 1.08 : 0.94, pan: panEl(a.alvo, t) });
+          for (let t = a.inicio + 0.05 + fase; t < a.inicio + a.duracao; t += passo, k++) {
+            add(somManual || 'passo', t, { volume: 0.55 * vol * volJuntos, taxa: (k % 2 ? 1.08 : 0.94) * (1 - ordem * 0.04), pan: panEl(a.alvo, t) });
           }
           break;
         }
@@ -329,7 +409,7 @@ export function eventosSonoros(roteiro) {
           if (!semSom) add(somManual || SOM_COLETAR[el?.sprite] || 'item', a.inicio, { volume: vol, pan: panEl(a.alvo, a.inicio) });
           break;
         case 'aparecer': case 'sumir':
-          if (!semSom) add(somManual || 'puf', a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
+          if (!semSom) add(somManual || ((el?.monstro || el?.sombraPessoa) ? (a.tipo === 'aparecer' ? 'sombra-surge' : 'sombra-some') : 'puf'), a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
           break;
         case 'explosao': {
           if (semSom) break;
@@ -355,6 +435,37 @@ export function eventosSonoros(roteiro) {
         }
         case 'emocao':
           if (!semSom) add(somManual || SOM_EMOCAO[a.icone || '!'] || 'surpresa', a.inicio, { volume: 0.8 * vol, pan: panEl(a.alvo, a.inicio) });
+          break;
+        case 'contador':   // um tique por segundo; no último, o sino
+          if (semSom) break;
+          for (let k = 0; k < Math.round(a.de ?? a.duracao); k++) add(somManual || 'clique', a.inicio + k * (a.duracao / Math.round(a.de ?? a.duracao)), { volume: 0.7 * vol });
+          add('sino', a.inicio + a.duracao, { volume: 0.5 * vol });
+          break;
+        case 'sombra':
+          if (!semSom) add(somManual || 'sombra', a.inicio, { volume: 0.9 * vol });
+          break;
+        case 'destaque':
+          if (!semSom) add(somManual || 'revelar', a.inicio, { volume: 0.6 * vol });
+          break;
+        case 'continua':
+          if (!semSom) add(somManual || 'suspense', a.inicio, { volume: 0.8 * vol });
+          break;
+        case 'numero':
+          if (!semSom) add(somManual || 'clique', a.inicio, { volume: 0.5 * vol, pan: panEl(a.alvo, a.inicio) });
+          break;
+        case 'fogos':   // PROTÓTIPO: assobio subindo + estouro
+          if (semSom) break;
+          if ((a.subida ?? 0.5) > 0) add('fogos-sobe', a.inicio, { volume: 0.6 * vol, pan: a.posicao ? pan(a.posicao[0], a.inicio) : 0 });
+          add(somManual || 'fogos', a.inicio + (a.subida ?? 0.5), { volume: vol, pan: a.posicao ? pan(a.posicao[0], a.inicio) : 0 });
+          break;
+        case 'trocar':   // guardião que passa a "alerta"/"tremendo" dá um "iiip!" de susto (PROTÓTIPO)
+          if (!semSom && /^guardi/.test(el?.sprite || el?.personagem || '') && ['alerta', 'tremendo'].includes(a.estado)) add(somManual || 'guardiao-susto', a.inicio, { volume: 0.8 * vol, pan: el.sobre ? panEl(el.sobre.id, a.inicio) : panEl(a.alvo, a.inicio) });
+          else if (somManual) add(somManual, a.inicio, { volume: vol });
+          break;
+        case 'espirrar':   // PROTÓTIPO: inspira no começo, atchim no meio da ação
+          if (semSom) break;
+          add('espirro-inspira', a.inicio, { volume: 0.7 * vol, pan: panEl(a.alvo, a.inicio), taxa: el?.voz ?? 1 });
+          add(somManual || 'espirro', a.inicio + a.duracao * (a.inspira ?? 0.6), { volume: vol, pan: panEl(a.alvo, a.inicio), taxa: el?.voz ?? 1 });
           break;
         case 'piscar':
           if (!semSom) add(somManual || 'dano', a.inicio, { volume: vol, pan: panEl(a.alvo, a.inicio) });

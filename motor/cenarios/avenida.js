@@ -1,7 +1,7 @@
 // Avenida em PERSPECTIVA, desenhada pixel a pixel na GPU (shaders do Three.js).
 // Não usamos texturas esticadas: cada pixel da tela calcula o que vê (asfalto, faixa, calçada,
 // tijolo, janela...). Assim as linhas têm sempre 1 pixel, perto ou longe, e o detalhe menor que
-// um pixel vira cor lisa em vez de "chuviscar". Iluminação em faixas, como na rua diagonal.
+// um pixel vira cor lisa em vez de "chuviscar". Iluminação em faixas, como na vista diorama.
 import * as THREE from 'three';
 import { rng } from '../compartilhado/util.js';
 import { hexParaRgb } from '../pixel.js';

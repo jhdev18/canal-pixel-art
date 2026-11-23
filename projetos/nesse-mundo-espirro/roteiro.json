@@ -1,0 +1,4663 @@
+// NESSE MUNDO (longo, cômico) — "Nessa cidade, quem espirra troca de corpo com quem estiver mais perto."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-espirro
+// Troca de corpo = faíscas + flash + "?" nos dois; quem está no corpo errado fala com a voz/assunto do outro (balões).
+// Protótipos: espirrar, clima polen, saquinho-pimenta, pao, padeiro-pregador, quarto-menina-diorama. "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, quem espirra troca de corpo",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, quem espirra troca de corpo com quem estiver mais perto.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 10.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 9.6,
+     "z": 5.2
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 11,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "almaA1",
+     "sprite": "alma",
+     "x": 9.6,
+     "z": 5.1000000000000005,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB1",
+     "sprite": "alma",
+     "x": 11,
+     "z": 5.300000000000001,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "aluno",
+     "inicio": 0.53
+    },
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Atchim!",
+     "inicio": 1.07
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1.67
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA1",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB1",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA1",
+     "para": [
+      10,
+      3.7
+     ],
+     "inicio": 1.85,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB1",
+     "para": [
+      10.600000000000001,
+      3.7
+     ],
+     "inicio": 1.85,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA1",
+     "para": [
+      11,
+      2.4
+     ],
+     "inicio": 2.44,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB1",
+     "para": [
+      9.6,
+      2.4
+     ],
+     "inicio": 2.44,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA1",
+     "duracao": 0.2,
+     "inicio": 3.03
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB1",
+     "duracao": 0.2,
+     "inicio": 3.03
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "?",
+     "inicio": 3.12
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "?",
+     "inicio": 3.21
+    },
+    {
+     "tipo": "falar",
+     "alvo": "policial",
+     "texto": "* Cadê minha mochila?",
+     "inicio": 2.6
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, ninguém chega perto de ninguém. A fila do mercado tem três quarteirões.",
+   "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, QUEM ESPIRRA TROCA DE CORPO",
+   "tituloInicio": 0.2,
+   "tituloDuracao": 2.6,
+   "camera": {
+    "x": 14,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 16.6,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 15.4,
+     "z": 5.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 11.8,
+     "z": 5.2
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 9.2,
+     "z": 5.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "...",
+     "inicio": 2.93
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "zzz",
+     "inicio": 4.25
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "bravo",
+     "inicio": 2.41,
+     "duracao": 3.16
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 14,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E em dia de gripe a escola fecha, para a professora não acordar no corpo de um aluno.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -1.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "aluno",
+     "inicio": 1.68
+    },
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Atchim!",
+     "inicio": 2.34
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 2.51
+    },
+    {
+     "tipo": "pular",
+     "alvo": "prof",
+     "altura": 0.6,
+     "inicio": 3.06
+    },
+    {
+     "tipo": "falar",
+     "alvo": "prof",
+     "texto": "* Ninguém chega perto!",
+     "inicio": 3.53
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "...",
+     "inicio": 4.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "assustado",
+     "inicio": 1.96,
+     "duracao": 3.87
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "O seu Tonho, o padeiro, não espirra há trinta anos. Faz pão com um pregador no nariz.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 3.4,
+    "y": 2.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro-pregador",
+     "x": 0.6,
+     "z": 5.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "...",
+     "inicio": 1.96
+    },
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* Pão quentinho!",
+     "inicio": 3.83
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 3.4,
+     "y": 2.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E tem uma mania estranha: adora ciscar as migalhas da calçada.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.4,
+     "z": 5.2
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": 2.4,
+     "z": 5.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.3,
+     "para": 0.2,
+     "inicio": 1.71
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.3,
+     "para": 0.8,
+     "inicio": 2.32
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.3,
+     "para": 1.4,
+     "inicio": 2.92
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "?",
+     "inicio": 3.13
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 1.91,
+     "duracao": 2.42
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E o pombo da padaria passa o dia olhando para o forno, com saudade.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 3.4,
+    "y": 2.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": 1.6,
+     "z": 5.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "coracao",
+     "inicio": 2.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 3.4,
+     "y": 2.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E tinha a Bia, de dez anos, alérgica a quase tudo.",
+   "cenario": "quarto-menina-diorama",
+   "camera": {
+    "x": 0,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.5,
+     "z": 1.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 1,
+     "inicio": 0.63,
+     "duracao": 1.63
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "inicio": 2.58
+    },
+    {
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* Atchim!",
+     "inicio": 1.9
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "envergonhado",
+     "inicio": 1.93,
+     "duracao": 1.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ela espirra sempre duas vezes seguidas. E nunca trocou de corpo com ninguém.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -0.6,
+     "z": 0.6
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 0.8,
+     "z": 0.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 0.3
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* Atchim! Atchim!",
+     "inicio": 0.79
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "!",
+     "inicio": 3.02
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "?",
+     "inicio": 4.04
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E anda com um saquinho de pimenta no bolso, porque acha a merenda sem graça.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.4,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "sanduiche",
+     "sprite": "sanduiche",
+     "x": 2,
+     "z": 0.9,
+     "y": 1.1
+    },
+    {
+     "id": "pimenta",
+     "sprite": "saquinho-pimenta",
+     "x": 2.45,
+     "z": 0.55,
+     "y": 0.78,
+     "pose": "fechado",
+     "oculto": true
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "pimenta",
+     "inicio": 1.04
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "pimenta",
+     "estado": "aberto",
+     "inicio": 2.52
+    },
+    {
+     "tipo": "som",
+     "som": "papel",
+     "inicio": 2.52
+    },
+    {
+     "tipo": "magia",
+     "alvo": "sanduiche",
+     "inicio": 3.26
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "coracao",
+     "inicio": 4.04
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que chegou a Festa da Primavera, com a praça cheia de flores.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -9.5,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": -7.2,
+     "inicio": 0.51,
+     "duracao": 2.54
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "coracao",
+     "inicio": 2.62
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "coracao",
+     "inicio": 3.26
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "O prefeito subiu no palanque para fazer o discurso.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 3.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Caros eleitores...",
+     "inicio": 1.41
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "cao",
+     "icone": "zzz",
+     "inicio": 2.42
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 1.29,
+     "duracao": 2.32
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Bem na hora, uma ventania soprou o pólen de todas as flores de uma vez.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "ambiente": [
+    [
+     "vento",
+     0.8
+    ]
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "tremer",
+     "intensidade": 0.4,
+     "inicio": 2.38,
+     "duracao": 1.38
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 2.84
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "!",
+     "inicio": 3.07
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 3.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.61,
+     "duracao": 2.31
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "assustado",
+     "inicio": 2.61,
+     "duracao": 2.31
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Primeiro espirrou a professora. E acordou no corpo do aluno.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -0.6,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    },
+    {
+     "id": "almaA2",
+     "sprite": "alma",
+     "x": -1.4,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB2",
+     "sprite": "alma",
+     "x": 0.2,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "prof",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "prof",
+     "texto": "* Atchim!",
+     "inicio": 0.77
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.47
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1.47
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA2",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.47
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB2",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA2",
+     "para": [
+      -0.8999999999999999,
+      3.7
+     ],
+     "inicio": 1.63,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB2",
+     "para": [
+      -0.3,
+      3.7
+     ],
+     "inicio": 1.63,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA2",
+     "para": [
+      0.2,
+      2.4
+     ],
+     "inicio": 2.13,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB2",
+     "para": [
+      -1.4,
+      2.4
+     ],
+     "inicio": 2.13,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA2",
+     "duracao": 0.2,
+     "inicio": 2.64
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB2",
+     "duracao": 0.2,
+     "inicio": 2.64
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "?",
+     "inicio": 2.72
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "?",
+     "inicio": 2.8
+    },
+    {
+     "tipo": "falar",
+     "alvo": "aluno",
+     "texto": "* Silêncio, turma!",
+     "inicio": 2.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "surpreso",
+     "inicio": 2.25,
+     "duracao": 1.95
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "surpreso",
+     "inicio": 2.25,
+     "duracao": 1.95
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.6,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Depois, cinco de uma vez. Em um minuto, doze pessoas estavam no corpo errado.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    },
+    {
+     "id": "almaA3",
+     "sprite": "alma",
+     "x": -4.2,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB3",
+     "sprite": "alma",
+     "x": -5,
+     "z": -7.8999999999999995,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    },
+    {
+     "id": "almaA4",
+     "sprite": "alma",
+     "x": 1.9,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB4",
+     "sprite": "alma",
+     "x": 1.2,
+     "z": -7.8999999999999995,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    },
+    {
+     "id": "almaA5",
+     "sprite": "alma",
+     "x": -2.9,
+     "z": -8.6,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB5",
+     "sprite": "alma",
+     "x": -1.4,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 0.7
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 0.7
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA3",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.7
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB3",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.7
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA3",
+     "para": [
+      -4.8999999999999995,
+      3.7
+     ],
+     "inicio": 0.9,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB3",
+     "para": [
+      -4.3,
+      3.7
+     ],
+     "inicio": 0.9,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA3",
+     "para": [
+      -5,
+      2.4
+     ],
+     "inicio": 1.55,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB3",
+     "para": [
+      -4.2,
+      2.4
+     ],
+     "inicio": 1.55,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA3",
+     "duracao": 0.2,
+     "inicio": 2.2
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB3",
+     "duracao": 0.2,
+     "inicio": 2.2
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "?",
+     "inicio": 2.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "?",
+     "inicio": 2.4
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.4
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1.4
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA4",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.4
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB4",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.4
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA4",
+     "para": [
+      1.2499999999999998,
+      3.7
+     ],
+     "inicio": 1.6,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB4",
+     "para": [
+      1.8499999999999999,
+      3.7
+     ],
+     "inicio": 1.6,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA4",
+     "para": [
+      1.2,
+      2.4
+     ],
+     "inicio": 2.25,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB4",
+     "para": [
+      1.9,
+      2.4
+     ],
+     "inicio": 2.25,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA4",
+     "duracao": 0.2,
+     "inicio": 2.9
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB4",
+     "duracao": 0.2,
+     "inicio": 2.9
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "?",
+     "inicio": 3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "?",
+     "inicio": 3.1
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 2.3
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 2.3
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA5",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 2.3
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB5",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 2.3
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA5",
+     "para": [
+      -2.4499999999999997,
+      3.7
+     ],
+     "inicio": 2.5,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB5",
+     "para": [
+      -1.8499999999999999,
+      3.7
+     ],
+     "inicio": 2.5,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA5",
+     "para": [
+      -1.4,
+      2.4
+     ],
+     "inicio": 3.15,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB5",
+     "para": [
+      -2.9,
+      2.4
+     ],
+     "inicio": 3.15,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA5",
+     "duracao": 0.2,
+     "inicio": 3.8
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB5",
+     "duracao": 0.2,
+     "inicio": 3.8
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "?",
+     "inicio": 3.9
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "?",
+     "inicio": 4
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 4.05,
+     "duracao": 0.75
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "assustado",
+     "inicio": 1.8,
+     "duracao": 3.51
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "assustado",
+     "inicio": 1.8,
+     "duracao": 3.51
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "O prefeito trocou com o cachorro da delegacia, e terminou o discurso latindo.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 3.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    },
+    {
+     "id": "almaA6",
+     "sprite": "alma",
+     "x": 5,
+     "z": -6.8,
+     "y": 3.15,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB6",
+     "sprite": "alma",
+     "x": 3.3,
+     "z": -8.7,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 0.6
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 0.6
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA6",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.6
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB6",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA6",
+     "para": [
+      3.8500000000000005,
+      4.45
+     ],
+     "inicio": 0.8,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB6",
+     "para": [
+      4.45,
+      4.45
+     ],
+     "inicio": 0.8,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA6",
+     "para": [
+      3.3,
+      2.4
+     ],
+     "inicio": 1.45,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB6",
+     "para": [
+      5,
+      3.15
+     ],
+     "inicio": 1.45,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA6",
+     "duracao": 0.2,
+     "inicio": 2.1
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB6",
+     "duracao": 0.2,
+     "inicio": 2.1
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prefeito",
+     "icone": "?",
+     "inicio": 2.2
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "cao",
+     "icone": "?",
+     "inicio": 2.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "cao",
+     "texto": "* Votem em mim!",
+     "inicio": 2.55
+    },
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Au! Au! Auuu!",
+     "inicio": 3.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 2.3,
+     "duracao": 3.01
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.2,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "O policial foi parar no corpo da moça do caixa, e multava todo mundo com voz fininha.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -2.6,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "caixa",
+     "texto": "* Teje multado!",
+     "inicio": 2.79
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "!",
+     "inicio": 4.63
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "bravo",
+     "inicio": 2.51,
+     "duracao": 3.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 1.96,
+     "duracao": 3.87
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.6,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "E a aluna, melhor amiga da Bia, acordou em cima do palanque. De terno.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 3.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    },
+    {
+     "id": "almaA7",
+     "sprite": "alma",
+     "x": 1.2,
+     "z": -7.8999999999999995,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB7",
+     "sprite": "alma",
+     "x": 5,
+     "z": -6.8,
+     "y": 3.15,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 0.53
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 0.53
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA7",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.53
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB7",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.53
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA7",
+     "para": [
+      2.8000000000000003,
+      4.45
+     ],
+     "inicio": 0.71,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB7",
+     "para": [
+      3.4,
+      4.45
+     ],
+     "inicio": 0.71,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA7",
+     "para": [
+      5,
+      3.15
+     ],
+     "inicio": 1.3,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB7",
+     "para": [
+      1.2,
+      2.4
+     ],
+     "inicio": 1.3,
+     "duracao": 0.55
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA7",
+     "duracao": 0.2,
+     "inicio": 1.89
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB7",
+     "duracao": 0.2,
+     "inicio": 1.89
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluna",
+     "icone": "?",
+     "inicio": 1.98
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prefeito",
+     "icone": "?",
+     "inicio": 2.07
+    },
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Por que eu tô de terno?!",
+     "inicio": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "surpreso",
+     "inicio": 2.12,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 2.12,
+     "duracao": 2.73
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "A Bia correu para ajudar, mas o pólen entrou direto no nariz dela.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -7.2,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "bia",
+     "para": -5.6,
+     "inicio": 0.51,
+     "duracao": 1.72
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 3.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "assustado",
+     "inicio": 2.44,
+     "duracao": 2.15
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Atchim! E ela acordou no corpo do seu Tonho.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -4.9,
+    "z": -9.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8
+    },
+    {
+     "id": "almaA8",
+     "sprite": "alma",
+     "x": -5.6,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB8",
+     "sprite": "alma",
+     "x": -4.2,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* Atchim!",
+     "inicio": 0.64
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 0.93
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 0.93
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA8",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.93
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB8",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.93
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA8",
+     "para": [
+      -5.2,
+      3.7
+     ],
+     "inicio": 1.04,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB8",
+     "para": [
+      -4.6000000000000005,
+      3.7
+     ],
+     "inicio": 1.04,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA8",
+     "para": [
+      -4.2,
+      2.4
+     ],
+     "inicio": 1.42,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB8",
+     "para": [
+      -5.6,
+      2.4
+     ],
+     "inicio": 1.42,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA8",
+     "duracao": 0.2,
+     "inicio": 1.79
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB8",
+     "duracao": 0.2,
+     "inicio": 1.79
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 1.84
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "?",
+     "inicio": 1.9
+    },
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* Eu tô cheirando a pão!",
+     "inicio": 0.76
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 1.73,
+     "duracao": 1.43
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.9,
+     "z": -9.8,
+     "zoom": 2
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Com medo de trocar de novo, ela tapou o nariz e segurou o segundo espirro.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -4.9,
+    "z": -9.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "tonho",
+     "inspira": 0.99,
+     "som": null,
+     "inicio": 1.74,
+     "duracao": 3.13
+    },
+    {
+     "tipo": "piscar",
+     "alvo": "tonho",
+     "inicio": 1.98,
+     "duracao": 2.41
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 2.22,
+     "duracao": 2.41
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 1.74,
+     "duracao": 3.37
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.9,
+     "z": -9.8,
+     "zoom": 2
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Mas não deu. Atchim! E ela voltou para o próprio corpo.",
+   "cenario": "praca-decorada",
+   "clima": "polen",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -4.9,
+    "z": -9.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8
+    },
+    {
+     "id": "almaA9",
+     "sprite": "alma",
+     "x": -5.6,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB9",
+     "sprite": "alma",
+     "x": -4.2,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "tonho",
+     "inicio": 0.66
+    },
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* Atchim!",
+     "inicio": 1.19
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.8
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1.8
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA9",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.8
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB9",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.8
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA9",
+     "para": [
+      -5.2,
+      3.7
+     ],
+     "inicio": 1.94,
+     "duracao": 0.43
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB9",
+     "para": [
+      -4.6000000000000005,
+      3.7
+     ],
+     "inicio": 1.94,
+     "duracao": 0.43
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA9",
+     "para": [
+      -4.2,
+      2.4
+     ],
+     "inicio": 2.41,
+     "duracao": 0.43
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB9",
+     "para": [
+      -5.6,
+      2.4
+     ],
+     "inicio": 2.41,
+     "duracao": 0.43
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA9",
+     "duracao": 0.2,
+     "inicio": 2.87
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB9",
+     "duracao": 0.2,
+     "inicio": 2.87
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "?",
+     "inicio": 2.68
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "?",
+     "inicio": 2.68
+    },
+    {
+     "tipo": "pular",
+     "alvo": "bia",
+     "altura": 0.5,
+     "inicio": 3.28
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 2.44,
+     "duracao": 1.44
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.9,
+     "z": -9.8,
+     "zoom": 2
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Foi aí que a Bia entendeu tudo: o segundo espirro desfaz a troca.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 1.57
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 1.57
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 1.57
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.41,
+     "duracao": 2.12
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5.6,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Ela nunca teve sorte nenhuma. Ela só espirrava sempre duas vezes.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -0.6,
+     "z": 0.6
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 0.8,
+     "z": 0.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 1.57
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "bia",
+     "duracao": 0.8,
+     "inicio": 2.62
+    },
+    {
+     "tipo": "falar",
+     "alvo": "bia",
+     "texto": "* Atchim! Atchim!",
+     "inicio": 1.99
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.02
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "rindo",
+     "inicio": 2.41,
+     "duracao": 2.12
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E o seu Tonho não ciscava por mania. Trinta anos atrás, ele espirrou uma vez só.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 0,
+     "z": 5.4
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": 1.4,
+     "z": 5.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "almaA10",
+     "sprite": "alma",
+     "x": 0,
+     "z": 5.300000000000001,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB10",
+     "sprite": "alma",
+     "x": 1.4,
+     "z": 5.5,
+     "y": 1.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "tonho",
+     "inicio": 2.9
+    },
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* Atchim!",
+     "inicio": 3.42
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 4.36
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 4.36
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA10",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 4.36
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB10",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 4.36
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA10",
+     "para": [
+      0.39999999999999997,
+      3.7
+     ],
+     "inicio": 4.56,
+     "duracao": 0.62
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB10",
+     "para": [
+      1,
+      3.7
+     ],
+     "inicio": 4.56,
+     "duracao": 0.62
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA10",
+     "para": [
+      1.4,
+      1.4
+     ],
+     "inicio": 4.88,
+     "duracao": 0.62
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB10",
+     "para": [
+      0,
+      2.4
+     ],
+     "inicio": 4.88,
+     "duracao": 0.62
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA10",
+     "duracao": 0.2,
+     "inicio": 5.3
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB10",
+     "duracao": 0.2,
+     "inicio": 5.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "?",
+     "inicio": 4.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "?",
+     "inicio": 4.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "triste",
+     "inicio": 2.38,
+     "duracao": 3.12
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "O pombo da padaria era o seu Tonho de verdade.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.5,
+    "z": -9.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "!",
+     "inicio": 1.35
+    },
+    {
+     "tipo": "falar",
+     "alvo": "pombo",
+     "texto": "* Até que enfim!",
+     "inicio": 1.29
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.2,
+     "duracao": 2.09
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3.5,
+     "z": -9.8,
+     "zoom": 2
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "A Bia subiu no palanque e abriu o saquinho de pimenta.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 3.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 2.6,
+     "z": -6.7,
+     "y": 0.75
+    },
+    {
+     "id": "pimenta",
+     "sprite": "saquinho-pimenta",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "bia",
+      "dx": 0.7,
+      "dy": 0.9
+     },
+     "pose": "fechado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 3.8,
+     "inicio": 0.48,
+     "duracao": 1.23
+    },
+    {
+     "tipo": "virar",
+     "alvo": "bia",
+     "direcao": "esquerda",
+     "inicio": 1.88
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "pimenta",
+     "estado": "aberto",
+     "som": "papel",
+     "inicio": 2.76
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "bravo",
+     "inicio": 1,
+     "duracao": 2.81
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.4,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "E soprou a pimenta na praça inteira.",
+   "cenario": "praca-decorada",
+   "clima": "poeira",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 3.8,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "pimenta",
+     "sprite": "saquinho-pimenta",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "bia",
+      "dx": 0.7,
+      "dy": 0.9
+     },
+     "pose": "aberto"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "tremer",
+     "intensidade": 0.5,
+     "inicio": 0.89,
+     "duracao": 0.94
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 1.44
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 1.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "rindo",
+     "inicio": 1,
+     "duracao": 1.64
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Atchim, atchim! A professora voltou para o próprio corpo. Depois, o policial.",
+   "cenario": "praca-decorada",
+   "clima": "poeira",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 3.8,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "almaA11",
+     "sprite": "alma",
+     "x": -1.4,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB11",
+     "sprite": "alma",
+     "x": 0.2,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    },
+    {
+     "id": "almaA12",
+     "sprite": "alma",
+     "x": 1.9,
+     "z": -8.9,
+     "y": 2.4,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB12",
+     "sprite": "alma",
+     "x": -5,
+     "z": -7.8999999999999995,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "espirrar",
+     "alvo": "prof",
+     "duracao": 0.7,
+     "inicio": 0.3
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 0.7
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 0.7
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA11",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.7
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB11",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 0.7
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA11",
+     "para": [
+      -0.8999999999999999,
+      3.7
+     ],
+     "inicio": 0.9,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB11",
+     "para": [
+      -0.3,
+      3.7
+     ],
+     "inicio": 0.9,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA11",
+     "para": [
+      0.2,
+      2.4
+     ],
+     "inicio": 1.55,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB11",
+     "para": [
+      -1.4,
+      2.4
+     ],
+     "inicio": 1.55,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA11",
+     "duracao": 0.2,
+     "inicio": 2.2
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB11",
+     "duracao": 0.2,
+     "inicio": 2.2
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "?",
+     "inicio": 2.3
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "?",
+     "inicio": 2.4
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 3.3
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 3.3
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA12",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 3.3
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB12",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 3.3
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA12",
+     "para": [
+      -1.85,
+      3.7
+     ],
+     "inicio": 3.5,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB12",
+     "para": [
+      -1.25,
+      3.7
+     ],
+     "inicio": 3.5,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA12",
+     "para": [
+      -5,
+      2.4
+     ],
+     "inicio": 4.15,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB12",
+     "para": [
+      1.9,
+      2.4
+     ],
+     "inicio": 4.15,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA12",
+     "duracao": 0.2,
+     "inicio": 4.8
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB12",
+     "duracao": 0.2,
+     "inicio": 4.8
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "?",
+     "inicio": 4.1
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "?",
+     "inicio": 4.1
+    },
+    {
+     "tipo": "pular",
+     "alvo": "prof",
+     "altura": 0.4,
+     "inicio": 2.8
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 2.8,
+     "duracao": 2.51
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.6,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Depois, o prefeito, que parou de latir bem no meio da frase.",
+   "cenario": "praca-decorada",
+   "clima": "poeira",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 3.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 3.8,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "almaA13",
+     "sprite": "alma",
+     "x": 5,
+     "z": -6.8,
+     "y": 3.15,
+     "pose": "azul",
+     "oculto": true
+    },
+    {
+     "id": "almaB13",
+     "sprite": "alma",
+     "x": 3.3,
+     "z": -8.7,
+     "y": 2.4,
+     "pose": "rosa",
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Au... digo, obrigado!",
+     "inicio": 0.5
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 1.67
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaA13",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "almaB13",
+     "som": null,
+     "duracao": 0.15,
+     "inicio": 1.67
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA13",
+     "para": [
+      3.8500000000000005,
+      4.45
+     ],
+     "inicio": 1.82,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB13",
+     "para": [
+      4.45,
+      4.45
+     ],
+     "inicio": 1.82,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaA13",
+     "para": [
+      3.3,
+      2.4
+     ],
+     "inicio": 2.33,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "mover",
+     "alvo": "almaB13",
+     "para": [
+      5,
+      3.15
+     ],
+     "inicio": 2.33,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaA13",
+     "duracao": 0.2,
+     "inicio": 2.83
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "almaB13",
+     "duracao": 0.2,
+     "inicio": 2.83
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prefeito",
+     "icone": "?",
+     "inicio": 2.91
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "cao",
+     "icone": "?",
+     "inicio": 2.99
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 1.86,
+     "duracao": 2.34
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.2,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Um por um, os doze voltaram para o próprio corpo. Só faltavam dois.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 3.8,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "aluna",
+     "altura": 0.5,
+     "inicio": 0.74
+    },
+    {
+     "tipo": "pular",
+     "alvo": "prof",
+     "altura": 0.5,
+     "inicio": 1.08
+    },
+    {
+     "tipo": "pular",
+     "alvo": "aluno",
+     "altura": 0.5,
+     "inicio": 1.43
+    },
+    {
+     "tipo": "pular",
+     "alvo": "caixa",
+     "altura": 0.5,
+     "inicio": 1.61
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "...",
+     "inicio": 3.35
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "...",
+     "inicio": 3.46
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.14
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.14
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.14
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3.5,
+     "z": -8.5
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "O seu Tonho olhou para o pombo. O pombo olhou para o seu Tonho.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.5,
+    "z": -9.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "virar",
+     "alvo": "tonho",
+     "direcao": "direita",
+     "inicio": 0.5
+    },
+    {
+     "tipo": "virar",
+     "alvo": "pombo",
+     "direcao": "esquerda",
+     "inicio": 2.55
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "pensativo",
+     "inicio": 0.5,
+     "duracao": 3.89
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3.5,
+     "z": -9.8,
+     "zoom": 2
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "A Bia ofereceu a pimenta. Os dois disseram não, obrigado.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.9,
+    "z": -9.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -5,
+     "z": -7.8
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -4.2,
+     "z": -8.8
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.9,
+     "z": -8.5
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1.4,
+     "z": -8.8
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0.2,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.2,
+     "z": -7.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 1.9,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cao",
+     "personagem": "cao-guarda",
+     "x": 3.3,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.6,
+     "z": -8.8,
+     "virado": "direita"
+    },
+    {
+     "id": "pimenta",
+     "sprite": "saquinho-pimenta",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "bia",
+      "dx": 0.7,
+      "dy": 0.9
+     },
+     "pose": "aberto"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "magia",
+     "alvo": "pimenta",
+     "inicio": 0.67
+    },
+    {
+     "tipo": "falar",
+     "alvo": "tonho",
+     "texto": "* Cruu!",
+     "inicio": 2.34
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "...",
+     "inicio": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 2.15,
+     "duracao": 1.86
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.49,
+     "duracao": 3.51
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3.9,
+     "z": -9.8,
+     "zoom": 2
+    }
+   },
+   "momento": "festa"
+  },
+  {
+   "narracaoTexto": "Até hoje, quem faz o pão da cidade é o pombo. E nunca foi tão bom.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 3.4,
+    "y": 2.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": 0.6,
+     "z": 5.6
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 2.2,
+     "z": 5.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "pao",
+     "sprite": "pao",
+     "x": 1,
+     "z": 5.7,
+     "y": 0.6,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "pao",
+     "inicio": 1.8
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.3,
+     "inicio": 2.44
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "pombo",
+     "icone": "coracao",
+     "inicio": 3.39
+    },
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 3.95
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 3.4,
+     "y": 2.6,
+     "zoom": 2
+    }
+   }
+  }
+ ]
+}

@@ -34,7 +34,7 @@ function barra(i, total, inicio) {
   process.stdout.write(`\r  [${'█'.repeat(cheio)}${'░'.repeat(n - cheio)}] ${(p * 100).toFixed(0).padStart(3)}%  ${i}/${total} quadros  ${fps.toFixed(1)} q/s  restam ${fmt(resto)}   `);
 }
 
-export async function abrirMotor(cfg, servidor, roteiro, modo) {
+export async function abrirMotor(cfg, servidor, roteiro, modo, escala = 0) {
   let tentativaJanela = false;
   for (;;) {
     const { browser, nome } = await abrirNavegador(cfg, { janela: tentativaJanela });
@@ -43,7 +43,7 @@ export async function abrirMotor(cfg, servidor, roteiro, modo) {
     page.on('console', (m) => { if (m.type() === 'error') console.error('\n  [motor]', m.text()); });
     await page.goto(`${servidor.url}/motor/index.html`);
     await page.waitForFunction('window.motorPronto === true', null, { timeout: 30000 });
-    const info = await page.evaluate(([r, m]) => window.motor.iniciar(r, { modo: m }), [roteiro, modo]);
+    const info = await page.evaluate(([r, m, e]) => window.motor.iniciar(r, { modo: m, escala: e }), [roteiro, modo, escala]);
     if (ehSoftware(info.gpu) && !cfg.permitirRenderizacaoCPU) {
       await browser.close();
       if (!tentativaJanela && !cfg.mostrarJanela) { tentativaJanela = true; console.log('  GPU não detectada no modo invisível; tentando com janela...'); continue; }
@@ -86,6 +86,25 @@ function paraVertical(roteiro) {
   return r;
 }
 
+function destinoLivre(arq) {
+  if (!fs.existsSync(arq)) return arq;
+  try { fs.unlinkSync(arq); return arq; } catch (e) {
+    if (!['EPERM', 'EBUSY', 'EACCES'].includes(e.code)) throw e;
+    const h = new Date().toTimeString().slice(0, 8).replace(/:/g, '');
+    const novo = arq.replace(/\.mp4$/, `-${h}.mp4`);
+    console.log(`  ⚠ ${path.basename(arq)} está aberto em outro programa (player/OneDrive) e não pode ser substituído.\n    O vídeo NOVO vai ser salvo como: ${path.basename(novo)}  (feche o player para a próxima vez sobrescrever)`);
+    return novo;
+  }
+}
+function renomearComTentativas(de, para) {
+  for (let i = 0; ; i++) {
+    try { fs.renameSync(de, para); return; } catch (e) {
+      if (i >= 5 || !['EPERM', 'EBUSY', 'EACCES'].includes(e.code)) throw e;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 400);   // espera 0,4 s e tenta de novo (antivírus/OneDrive soltando o arquivo)
+    }
+  }
+}
+
 export async function renderizar(nome, modo, opc = {}) {
   const t0 = Date.now();
   const cfg = carregarConfig();
@@ -117,22 +136,27 @@ export async function renderizar(nome, modo, opc = {}) {
   const saidaDir = path.join(dir, 'saida');
   fs.mkdirSync(saidaDir, { recursive: true });
   const videoTmp = path.join(saidaDir, `.${modo}${sufixo}-video.mp4`);
-  const saidaFinal = path.join(saidaDir, `${modo}${sufixo}.mp4`);
+  let saidaFinal = path.join(saidaDir, `${modo}${sufixo}.mp4`);
   if (vertical && roteiro.duracaoTotal > 180) avisos.push(`A versão Shorts tem ${roteiro.duracaoTotal.toFixed(0)}s; o YouTube aceita Shorts de até 3 minutos.`);
 
   const servidor = await iniciarServidor({ projetoDir: dir });
   let motor;
   try {
-    motor = await abrirMotor(cfg, servidor, roteiro, modo);
+    motor = await abrirMotor(cfg, servidor, roteiro, modo, m.escala);
     console.log(`  Navegador: ${motor.nomeNavegador}  •  GPU: ${motor.info.gpu.renderizador}`);
     avisos.push(...motor.info.avisos);
     for (const a of avisos) console.log(`  ⚠ ${a}`);
 
     const [W, H] = roteiro.resolucao;
     const total = Math.round(roteiro.duracaoTotal * fps);
-    const cod = abrirCodificador(ff, { W, H, fps, escala: m.escala, saida: videoTmp, encoder, modo, qualidade: m.qualidade ?? 18, crt: modo === 'final' && m.crt });
+    // Com monstros 3D o motor já entrega o quadro ampliado (HD); o FFmpeg não amplia de novo.
+    const hd = motor.info.escalaSaida || 0;
+    if (hd) console.log(`  Monstros 3D: quadro em alta resolução (${W * hd}x${H * hd}) — a renderização fica mais lenta`);
+    const cod = hd
+      ? abrirCodificador(ff, { W: W * hd, H: H * hd, fps, escala: 1, grade: hd, saida: videoTmp, encoder, modo, qualidade: m.qualidade ?? 18, crt: modo === 'final' && m.crt })
+      : abrirCodificador(ff, { W, H, fps, escala: m.escala, saida: videoTmp, encoder, modo, qualidade: m.qualidade ?? 18, crt: modo === 'final' && m.crt });
     const inicio = Date.now();
-    const LOTE = 4;
+    const LOTE = hd ? 1 : 4;
     let pendente = Promise.resolve();
     for (let i = 0; i < total; i += LOTE) {
       const n = Math.min(LOTE, total - i);
@@ -169,8 +193,11 @@ export async function renderizar(nome, modo, opc = {}) {
     console.log(`  Efeitos sonoros: ${eventos.length} eventos, ${ambientes.length} trechos de ambiente`);
   }
 
+  // No Windows, se o vídeo antigo estiver aberto (player, OneDrive sincronizando), ele não pode ser substituído (EPERM/EBUSY).
+  // Em vez de falhar, salva com outro nome e avisa — assim ninguém assiste ao vídeo velho achando que é o novo.
+  saidaFinal = destinoLivre(saidaFinal);
   if (!narracoes.length && !eventos.length && !ambientes.length) {
-    fs.renameSync(videoTmp, saidaFinal);
+    renomearComTentativas(videoTmp, saidaFinal);
   } else {
     const { L, R } = mixar({ duracao: roteiro.duracaoTotal, narracoes, eventos, ambientes, cfg: cfg.audio });
     const wav = path.join(saidaDir, `${modo}${sufixo}-audio.wav`);

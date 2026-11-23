@@ -1,0 +1,3001 @@
+// NESSE MUNDO (longo, cômico) — "Nessa cidade, todo cachorro fala em voz alta o que o dono está pensando."
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-cachorros
+// Cães: protótipos cachorro-* e vira-lata (leva3); Bolota = cao-guarda. Ícone "gota" e ação "pensar" são protótipos. "vertical" = enquadramento do Shorts.
+{
+ "titulo": "Nessa cidade, todo cachorro fala o que o dono pensa",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, todo cachorro fala em voz alta o que o dono está pensando.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 16.2,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 15.6,
+     "z": 5.4
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 19.4,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "ccaixa",
+     "para": 17,
+     "inicio": 0.3,
+     "duracao": 0.84
+    },
+    {
+     "tipo": "falar",
+     "alvo": "ccaixa",
+     "texto": "* Que fome de pastel.",
+     "inicio": 1.24
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 3.58
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "envergonhado",
+     "inicio": 2.17,
+     "duracao": 2.81
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 16.2,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Funciona assim: o dono pensa, e o cachorro late a frase inteira.",
+   "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, O CACHORRO FALA O QUE VOCÊ PENSA",
+   "tituloInicio": 0.2,
+   "tituloDuracao": 2.6,
+   "camera": {
+    "x": 4.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 4,
+     "z": 5.4
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 5.4,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "cprof",
+     "texto": "* Que preguiça de segunda.",
+     "inicio": 1.96
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "...",
+     "inicio": 3.26
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "envergonhado",
+     "inicio": 2.38,
+     "duracao": 2.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, ninguém leva cachorro em entrevista de emprego.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 16.2,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 17,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cand",
+     "personagem": "policial-oculos",
+     "x": 15.9,
+     "z": 5.2
+    },
+    {
+     "id": "ccand",
+     "personagem": "cachorro-cinza",
+     "x": 14.9,
+     "z": 5.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "ccand",
+     "texto": "* Ele mentiu no currículo.",
+     "inicio": 1.51
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "cand",
+     "rosto": "assustado",
+     "inicio": 1.78,
+     "duracao": 2.22
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 16.2,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E primeiro encontro é sempre sem cachorro, por segurança.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -9.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": -1.9,
+     "z": -8.6,
+     "virado": "direita"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -0.5,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": 2.6,
+     "z": -8.8,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "coracao",
+     "inicio": 0.49
+    },
+    {
+     "tipo": "andar",
+     "alvo": "ctonho",
+     "para": 0.8,
+     "inicio": 0.67,
+     "duracao": 1.11
+    },
+    {
+     "tipo": "falar",
+     "alvo": "ctonho",
+     "texto": "* Ela tem chulé.",
+     "inicio": 1.97
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 2.81
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "envergonhado",
+     "inicio": 1.78,
+     "duracao": 2.22
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 2.15,
+     "duracao": 1.86
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -9.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "O Bolota, cachorro da delegacia, há quinze anos só fala uma frase.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 10.4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 10,
+     "z": 5.4
+    },
+    {
+     "id": "bolota",
+     "personagem": "cao-guarda",
+     "x": 11.2,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bolota",
+     "icone": "...",
+     "inicio": 3.3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.4,
+     "z": 2.2,
+     "y": 2.4
+    }
+   },
+   "momento": "bolota-rua"
+  },
+  {
+   "narracaoTexto": "Hora do lanche. E o policial jura que nunca pensa nisso.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 10.6,
+    "z": 3.4,
+    "y": 1.5,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 10,
+     "z": 5.4
+    },
+    {
+     "id": "bolota",
+     "personagem": "cao-guarda",
+     "x": 11.2,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "bolota",
+     "texto": "* Hora do lanche.",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "policial",
+     "texto": "* Não penso!",
+     "inicio": 2.12
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "envergonhado",
+     "inicio": 1.76,
+     "duracao": 2.18
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.6,
+     "z": 3.4,
+     "y": 1.5,
+     "zoom": 2
+    }
+   },
+   "momento": "bolota-rua"
+  },
+  {
+   "narracaoTexto": "E tinha o Caio, de dez anos, o único menino da cidade sem cachorro.",
+   "cenario": "rua-comercial",
+   "seguir": "caio",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -3,
+     "z": 0.6
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 3,
+     "z": 4.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caluna",
+     "personagem": "cachorro-cinza",
+     "x": 1.8,
+     "z": 4.4,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "caio",
+     "para": 1,
+     "inicio": 0.52,
+     "duracao": 3.05
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caio",
+     "icone": "...",
+     "inicio": 3.46
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "triste",
+     "inicio": 2.48,
+     "duracao": 2.18
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "rindo",
+     "inicio": 2.04,
+     "duracao": 2.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ele tem mania de conversar com os cachorros dos outros, como se fossem gente.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.8,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 2.2,
+     "z": -8.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "caio",
+     "texto": "* Como foi seu dia?",
+     "inicio": 1.8
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "?",
+     "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.55,
+     "duracao": 4.76
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "pensativo",
+     "inicio": 1.8,
+     "duracao": 3.51
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Todo mundo ri dele. Cachorro não tem opinião, só repete o dono.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "aluna",
+     "texto": "* Esquisito!",
+     "inicio": 0.5
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caio",
+     "icone": "...",
+     "inicio": 2.76
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.6,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E os cachorros sempre respondem para ele coisas que ninguém entende.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.6,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.8,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 2.2,
+     "z": -8.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "cprof",
+     "texto": "* Odeio o carteiro.",
+     "inicio": 1.41
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "?",
+     "inicio": 3.52
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "pensativo",
+     "inicio": 1.63,
+     "duracao": 3.09
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Ele também imita latido tão bem que até os cachorros se confundem.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0,
+    "z": 0,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.6,
+     "z": 0.6
+    },
+    {
+     "id": "c1",
+     "personagem": "cachorro-caramelo",
+     "x": 1,
+     "z": 0.6,
+     "figurante": true,
+     "virado": "esquerda"
+    },
+    {
+     "id": "c2",
+     "personagem": "cachorro-cinza",
+     "x": 2.4,
+     "z": 0.6,
+     "figurante": true,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "caio",
+     "texto": "* Au! Au!",
+     "inicio": 1.59
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c1",
+     "icone": "?",
+     "inicio": 3.39
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c2",
+     "icone": "?",
+     "inicio": 3.39
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "rindo",
+     "inicio": 0.51,
+     "duracao": 4.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 0,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que chegou o grande debate da eleição para prefeito, na praça.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "coracao",
+     "inicio": 2.87
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "coracao",
+     "inicio": 3.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 0.51,
+     "duracao": 4.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "E, no meio do discurso, o cachorro do prefeito latiu: quero ir para casa dormir.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 5.7,
+    "z": -7.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Caros eleitores...",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "falar",
+     "alvo": "cpref",
+     "texto": "* Quero ir pra casa dormir.",
+     "inicio": 2.64
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "surpreso",
+     "inicio": 2.9,
+     "duracao": 2.6
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "cpref",
+     "rosto": "triste",
+     "inicio": 1.86,
+     "duracao": 3.64
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5.7,
+     "z": -7.8,
+     "zoom": 2
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "A praça inteira olhou para o prefeito.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "!",
+     "inicio": 0.55
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "!",
+     "inicio": 0.74
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 0.94
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "!",
+     "inicio": 1.14
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 1.29,
+     "duracao": 0.49
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "surpreso",
+     "inicio": 0.42,
+     "duracao": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "surpreso",
+     "inicio": 0.42,
+     "duracao": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "surpreso",
+     "inicio": 0.42,
+     "duracao": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 0.42,
+     "duracao": 2.35
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Primeiro, o cachorro do seu Tonho contou que o pão de hoje era de anteontem.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "ctonho",
+     "texto": "* Esse pão é de anteontem.",
+     "inicio": 1.78
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "tonho",
+     "icone": "!",
+     "inicio": 4.04
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "envergonhado",
+     "inicio": 2.77,
+     "duracao": 2.47
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Depois, cinco cachorros falaram de uma vez. Em um minuto, doze segredos estavam no meio da praça.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "c4",
+     "texto": "* Ronca!",
+     "inicio": 0.62
+    },
+    {
+     "tipo": "falar",
+     "alvo": "cprof",
+     "texto": "* Pinta o cabelo!",
+     "inicio": 1.56
+    },
+    {
+     "tipo": "falar",
+     "alvo": "ccaixa",
+     "texto": "* Deve o aluguel!",
+     "inicio": 2.82
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.4,
+     "inicio": 3.77,
+     "duracao": 1.26
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caixa",
+     "icone": "!",
+     "inicio": 4.08
+    },
+    {
+     "tipo": "falar",
+     "alvo": "ctonho",
+     "texto": "* Usa peruca!",
+     "inicio": 4.71
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "assustado",
+     "inicio": 0.62,
+     "duracao": 5.99
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 0.62,
+     "duracao": 5.99
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "O cachorro da professora latiu que ela odiava a escola. E ela chorou na frente de todo mundo.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -0.5,
+    "z": -9.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "cprof",
+     "texto": "* Odeio a escola!",
+     "inicio": 0.9
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "gota",
+     "inicio": 4.53
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "chorando",
+     "inicio": 3.93,
+     "duracao": 2.41
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "cprof",
+     "rosto": "envergonhado",
+     "inicio": 3.93,
+     "duracao": 2.41
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.5,
+     "z": -9.6,
+     "zoom": 2
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "E o Bolota, no meio da confusão, lembrou a todos: hora do lanche.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -4,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "bolota",
+     "texto": "* Hora do lanche.",
+     "inicio": 2.48
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "envergonhado",
+     "inicio": 1.99,
+     "duracao": 2.54
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "O prefeito ficou vermelho de vergonha e decretou: todo cachorro vai para a delegacia.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 4,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "piscar",
+     "alvo": "prefeito",
+     "inicio": 0.85,
+     "duracao": 1.66
+    },
+    {
+     "tipo": "falar",
+     "alvo": "prefeito",
+     "texto": "* Prendam os cães!",
+     "inicio": 3.06
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.4,
+     "inicio": 3.34,
+     "duracao": 1.11
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "bravo",
+     "inicio": 0.58,
+     "duracao": 5.25
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "O policial começou a levar os cachorros, um por um.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -3.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -6.2,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "policial",
+     "para": -5.6,
+     "inicio": 0.47,
+     "duracao": 0.99
+    },
+    {
+     "tipo": "falar",
+     "alvo": "policial",
+     "texto": "* Todos comigo!",
+     "inicio": 1.63
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c4",
+     "icone": "...",
+     "inicio": 2.42
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "ctonho",
+     "icone": "...",
+     "inicio": 2.42
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bolota",
+     "icone": "...",
+     "inicio": 2.42
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "triste",
+     "inicio": 1.29,
+     "duracao": 2.32
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "triste",
+     "inicio": 1.29,
+     "duracao": 2.32
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.5,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "O Caio tentou explicar, mas ninguém escuta um menino sem cachorro.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.4,
+     "z": -9.6,
+     "oculto": false
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "caio",
+     "texto": "* Esperem!",
+     "inicio": 0.51
+    },
+    {
+     "tipo": "virar",
+     "alvo": "tonho",
+     "direcao": "direita",
+     "inicio": 2.66
+    },
+    {
+     "tipo": "virar",
+     "alvo": "caixa",
+     "direcao": "esquerda",
+     "inicio": 2.87
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caio",
+     "icone": "...",
+     "inicio": 3.39
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "triste",
+     "inicio": 2.44,
+     "duracao": 2.15
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Até que um cachorro sem dono se escondeu atrás dele e latiu: eu gosto desse menino.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -0.9,
+    "z": -10.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.4,
+     "z": -9.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -4.2,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "vira",
+     "para": -1.6,
+     "inicio": 0.84,
+     "duracao": 1.62
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "caio",
+     "icone": "!",
+     "inicio": 2.46
+    },
+    {
+     "tipo": "falar",
+     "alvo": "vira",
+     "texto": "* Eu gosto desse menino.",
+     "inicio": 3.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "surpreso",
+     "inicio": 3,
+     "duracao": 2.7
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vira",
+     "rosto": "feliz",
+     "inicio": 3,
+     "duracao": 2.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.9,
+     "z": -10.6,
+     "zoom": 2
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Mas o Caio não tinha dono nenhum. E estava pensando em pizza.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -0.9,
+    "z": -10.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.4,
+     "z": -9.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -1.6,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pensar",
+     "alvo": "caio",
+     "texto": "Pizza...",
+     "inicio": 2.28
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 2.28,
+     "duracao": 1.99
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.9,
+     "z": -10.6,
+     "zoom": 2
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Foi aí que o Caio entendeu tudo: os cachorros nunca falaram o que os donos pensam.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": -0.4,
+     "z": -9.6
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -1.6,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "caio",
+     "icone": "!",
+     "inicio": 1.9
+    },
+    {
+     "tipo": "som",
+     "som": "revelar",
+     "inicio": 1.9
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 1.9
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 2.97,
+     "duracao": 2.66
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Eles falam o que eles mesmos pensam. E os donos, com vergonha, sempre concordaram.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 4.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 4,
+     "z": 5.4
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 5.4,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "cprof",
+     "texto": "* Que preguiça de segunda.",
+     "inicio": 0.57
+    },
+    {
+     "tipo": "falar",
+     "alvo": "prof",
+     "texto": "* É... verdade.",
+     "inicio": 3.68
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "envergonhado",
+     "inicio": 0.57,
+     "duracao": 5.06
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.6,
+     "z": 2.2,
+     "y": 2.4
+    }
+   }
+  },
+  {
+   "narracaoTexto": "E o Bolota não repetia o policial. Ele só estava com fome. Há quinze anos.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 10.6,
+    "z": 3.4,
+    "y": 1.5,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": 10,
+     "z": 5.4
+    },
+    {
+     "id": "bolota",
+     "personagem": "cao-guarda",
+     "x": 11.2,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "bolota",
+     "icone": "coracao",
+     "inicio": 2.71
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "policial",
+     "icone": "!",
+     "inicio": 3.91
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "policial",
+     "rosto": "surpreso",
+     "inicio": 2.22,
+     "duracao": 2.89
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.6,
+     "z": 3.4,
+     "y": 1.5,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "O Caio subiu no palanque e latiu tão alto que todos os cachorros pararam.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": 2.6,
+     "z": -6.7,
+     "y": 0.75
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -1.6,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "caio",
+     "para": 3.7,
+     "inicio": 0.54,
+     "duracao": 1.42
+    },
+    {
+     "tipo": "virar",
+     "alvo": "caio",
+     "direcao": "esquerda",
+     "inicio": 2.2
+    },
+    {
+     "tipo": "falar",
+     "alvo": "caio",
+     "texto": "* AU AU AU!",
+     "inicio": 2.44
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.6,
+     "inicio": 2.91,
+     "duracao": 0.95
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "ctonho",
+     "icone": "!",
+     "inicio": 3.85
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "cprof",
+     "icone": "!",
+     "inicio": 3.85
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "bravo",
+     "inicio": 0.77,
+     "duracao": 4.28
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "surpreso",
+     "inicio": 2.67,
+     "duracao": 2.38
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 3.7,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "E perguntou a cada um o que ele queria de verdade.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": 3.7,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "direita"
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -1.6,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "caio",
+     "texto": "* O que você quer?",
+     "inicio": 0.95
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "cpref",
+     "icone": "zzz",
+     "inicio": 2.35
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.46,
+     "duracao": 3.09
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "vira",
+     "rosto": "feliz",
+     "inicio": 0.46,
+     "duracao": 3.09
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "O do prefeito só queria dormir. O da professora só odiava o apito do recreio.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 2,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": 3.7,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -1.6,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "cpref",
+     "icone": "zzz",
+     "inicio": 0.3,
+     "duracao": 2
+    },
+    {
+     "tipo": "falar",
+     "alvo": "cprof",
+     "texto": "* Odeio o apito!",
+     "inicio": 3.05
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "prof",
+     "icone": "coracao",
+     "inicio": 4.1
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "envergonhado",
+     "inicio": 1.8,
+     "duracao": 3.51
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "rindo",
+     "inicio": 3.3,
+     "duracao": 2.01
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "Um por um, os segredos viraram só opinião de cachorro. Só faltava um.",
+   "cenario": "praca-decorada",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "policial",
+     "personagem": "policial",
+     "x": -5.6,
+     "z": -7.9
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -3.4,
+     "z": -8.4
+    },
+    {
+     "id": "ctonho",
+     "personagem": "cachorro-preto",
+     "x": -2.3,
+     "z": -8.2
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "cprof",
+     "personagem": "cachorro-branco",
+     "x": 0.1,
+     "z": -8.4
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ccaixa",
+     "personagem": "cachorro-caramelo",
+     "x": 2.5,
+     "z": -8.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "cpref",
+     "personagem": "cachorro-chique",
+     "x": 6.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": 3.7,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "vira",
+     "personagem": "vira-lata",
+     "x": -1.6,
+     "z": -9.5
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "tonho",
+     "altura": 0.4,
+     "inicio": 0.75
+    },
+    {
+     "tipo": "pular",
+     "alvo": "prof",
+     "altura": 0.4,
+     "inicio": 1.2
+    },
+    {
+     "tipo": "pular",
+     "alvo": "caixa",
+     "altura": 0.4,
+     "inicio": 1.65
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "vira",
+     "icone": "coracao",
+     "inicio": 2.32
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bolota",
+     "icone": "...",
+     "inicio": 3.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.27
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.27
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.27
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -3,
+     "z": -8.5
+    }
+   },
+   "momento": "debate"
+  },
+  {
+   "narracaoTexto": "O Caio ofereceu um sanduíche para o Bolota.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 10.6,
+    "z": 3.4,
+    "y": 1.5,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": 9.6,
+     "z": 5.2
+    },
+    {
+     "id": "bolota",
+     "personagem": "cao-guarda",
+     "x": 11.2,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "sand",
+     "sprite": "sanduiche",
+     "x": 10.15,
+     "z": 4.9,
+     "y": 1,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "sand",
+     "inicio": 0.52
+    },
+    {
+     "tipo": "magia",
+     "alvo": "sand",
+     "inicio": 0.58
+    },
+    {
+     "tipo": "mover",
+     "alvo": "sand",
+     "para": [
+      10.75,
+      1
+     ],
+     "inicio": 1.28,
+     "duracao": 0.7
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bolota",
+     "icone": "coracao",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "pular",
+     "alvo": "bolota",
+     "altura": 0.4,
+     "inicio": 2.14
+    },
+    {
+     "tipo": "coletar",
+     "alvo": "sand",
+     "inicio": 2.49
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "feliz",
+     "inicio": 0.44,
+     "duracao": 2.66
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.6,
+     "z": 3.4,
+     "y": 1.5,
+     "zoom": 2
+    }
+   },
+   "momento": "final"
+  },
+  {
+   "narracaoTexto": "E, pela primeira vez em quinze anos, o Bolota disse outra frase: agora, hora da janta.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 10.6,
+    "z": 3.4,
+    "y": 1.5,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "caio",
+     "personagem": "aluno",
+     "x": 9.6,
+     "z": 5.2
+    },
+    {
+     "id": "bolota",
+     "personagem": "cao-guarda",
+     "x": 11.2,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "emocao",
+     "alvo": "caio",
+     "icone": "?",
+     "inicio": 0.86
+    },
+    {
+     "tipo": "falar",
+     "alvo": "bolota",
+     "texto": "* Agora, hora da janta.",
+     "inicio": 3.37
+    },
+    {
+     "tipo": "som",
+     "som": "sucesso",
+     "inicio": 5.33
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caio",
+     "rosto": "rindo",
+     "inicio": 3.1,
+     "duracao": 2.79
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.6,
+     "z": 3.4,
+     "y": 1.5,
+     "zoom": 2
+    }
+   },
+   "momento": "final"
+  }
+ ]
+}

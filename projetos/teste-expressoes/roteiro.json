@@ -1,0 +1,415 @@
+// TESTE das expressões faciais (não é vídeo para publicar). Sem narração gravada: as cenas usam o tempo estimado.
+// npm run rascunho -- teste-expressoes
+{
+ "titulo": "Teste — expressões no rosto",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "A Bia encontrou um pão quentinho na padaria do seu Tonho.",
+   "cenario": "rua-comercial",
+   "transicao": "fade",
+   "camera": {
+    "x": 0.6,
+    "z": 3.4,
+    "y": 2.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -0.4,
+     "z": 5.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 1.6,
+     "z": 5.4,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.67,
+     "duracao": 2.96
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "coracao",
+     "inicio": 1.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "rindo",
+     "inicio": 2.71,
+     "duracao": 1.22
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 3.4,
+     "y": 2.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Mas o pombo roubou o pão bem na frente dela.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 0.6,
+    "z": 3.4,
+    "y": 2.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -0.4,
+     "z": 5.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 1.6,
+     "z": 5.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "pombo",
+     "personagem": "pombo-fofoqueiro",
+     "x": -2.6,
+     "z": 5.4
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "mover",
+     "alvo": "pombo",
+     "para": [
+      3.4,
+      1.4
+     ],
+     "inicio": 0.59,
+     "duracao": 1.14
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 1.16
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "bravo",
+     "inicio": 1.87,
+     "duracao": 1.29
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "assustado",
+     "inicio": 2.02,
+     "duracao": 1.14
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": 3.4,
+     "y": 2.6,
+     "zoom": 2
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Na escola, a professora perguntou quem tinha feito a lição.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.4,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "falar",
+     "alvo": "prof",
+     "texto": "* Quem fez a lição?",
+     "inicio": 0.68
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "aluno",
+     "icone": "?",
+     "inicio": 2.6
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "...",
+     "inicio": 2.93
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "A Nina fingiu que fez. O aluno ficou com vergonha. E a Bia pensou numa desculpa.",
+   "cenario": "sala-de-aula-diorama",
+   "camera": {
+    "x": 1.5,
+    "y": 3
+   },
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8.1,
+     "z": 1.6,
+     "virado": "esquerda",
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.4,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": -4.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -1.6,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.4,
+     "z": 2.45,
+     "pose": "sentado-lado"
+    },
+    {
+     "id": "topete",
+     "personagem": "menino-topete",
+     "x": -4.6,
+     "z": 0.75,
+     "pose": "sentado-lado"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "nina",
+     "rosto": "feliz",
+     "inicio": 0.56,
+     "duracao": 1.56
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "envergonhado",
+     "inicio": 2.12,
+     "duracao": 3.38
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.4,
+     "y": 3
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Depois da aula, todo mundo correu para a praça.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3.2,
+     "z": -8.6
+    },
+    {
+     "id": "nina",
+     "personagem": "nina",
+     "x": -1.6,
+     "z": -8.6,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 1.6,
+     "z": -8.6,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 3.4,
+     "z": -8.6,
+     "pose": "rosto-surpreso",
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "aluno",
+     "altura": 0.5,
+     "inicio": 0.91
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 1.52,
+     "duracao": 1.83
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   }
+  },
+  {
+   "narracaoTexto": "Até que o céu escureceu, e a Bia ficou triste de verdade.",
+   "cenario": "praca-noite",
+   "paleta": "fria",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "camera": {
+    "x": -1,
+    "z": -9.6,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.6,
+     "z": -8.6
+    },
+    {
+     "id": "nina",
+     "personagem": "nina",
+     "x": -0.2,
+     "z": -8.6,
+     "virado": "esquerda"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "nina",
+     "rosto": "assustado",
+     "inicio": 1.04,
+     "duracao": 1.85
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 2.34,
+     "duracao": 1.67
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -9.6,
+     "zoom": 2
+    }
+   }
+  }
+ ]
+}

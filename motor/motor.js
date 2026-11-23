@@ -2,19 +2,18 @@
 // Exposto como window.motor para o orquestrador em Node (Playwright).
 import * as THREE from 'three';
 import { obterSprite, spriteDeArquivo } from './sprites.js';
-import './sprites-rpg.js';
-import './sprites-detalhados.js';
-import './sprites-cidade.js';
-import './estabelecimentos.js';
-import { criarVista } from './vistas.js';
+import './assets/index.js';   // todos os assets (motor/assets/)
+import { criarVista, GLSL_BAYER } from './vistas.js';
+import { criarMonstro, Composicao, TIPOS_TRANSICAO } from './monstros3d.js';
 import { criarClima, criarRajada } from './particulas.js';
 import { UI } from './ui.js';
 import { PosProcessamento } from './pos.js';
 import { Pix } from './pixel.js';
 import { desenharTexto } from './fonte.js';
 import { distanciaCamera, FOV, PIXELS_POR_UNIDADE as PPU } from './compartilhado/util.js';
-import { cenaNoTempo, estadoCamera, estadoElemento, efeitosTela, elementoPorId } from './compartilhado/linhaDoTempo.js';
+import { cenaNoTempo, estadoCamera, estadoElemento, efeitosTela, elementoPorId, estadoSombra, raioNoAngulo } from './compartilhado/linhaDoTempo.js';
 import { ruido1, hashTexto } from './compartilhado/util.js';
+import { rostoEquivalente } from './expressoes.js';
 
 THREE.ColorManagement.enabled = false;
 
@@ -69,7 +68,12 @@ class Motor {
 
     this.renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true });
     this.renderer.setPixelRatio(1);
-    this.renderer.setSize(W, H, false);
+    // Monstros 3D: o quadro sai em ALTA resolução (o mundo pixel art é ampliado aqui, sem borrar,
+    // e os monstros são desenhados por cima em HD). "monstrosHD": false desenha os monstros em pixel art.
+    const temMonstro = roteiro.cenas.some((c) => c.elementos.some((e) => e.monstro));
+    this.hd = temMonstro && roteiro.monstrosHD !== false;
+    this.E = this.hd ? Math.max(1, Math.round(opcoes.escala || (opcoes.larguraTela ? opcoes.larguraTela / W : 3))) : 1;
+    this.renderer.setSize(W * this.E, H * this.E, false);
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
     const cv = this.renderer.domElement;
     cv.style.imageRendering = 'pixelated';
@@ -79,7 +83,15 @@ class Motor {
     const rtOpc = { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true, generateMipmaps: false };
     this.rtCena = new THREE.WebGLRenderTarget(W, H, rtOpc);
     this.rtSaida = new THREE.WebGLRenderTarget(W, H, { ...rtOpc, depthBuffer: false });
-    this.buffer = new Uint8Array(W * H * 4);
+    this.buffer = new Uint8Array(W * H * 4 * this.E * this.E);
+    this.uTempo = { value: 0 }; this.uMeiaAltura = { value: (H * this.E) / 2 };
+    if (this.hd) {
+      const E = this.E;
+      this.rtUI = new THREE.WebGLRenderTarget(W, H, { ...rtOpc, depthBuffer: false });
+      this.rtHD = new THREE.WebGLRenderTarget(W * E, H * E, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, depthBuffer: true, generateMipmaps: false, samples: 4 });
+      this.rtFinal = new THREE.WebGLRenderTarget(W * E, H * E, { ...rtOpc, depthBuffer: false });
+      this.compor = new Composicao(W, H);
+    }
 
     this.pos = new PosProcessamento(W, H);
     this.ui = new UI(W, H);
@@ -88,7 +100,7 @@ class Motor {
     this.cenas = new Map();
 
     await this.carregarArquivos();
-    return { gpu: this.infoGpu(), avisos: this.avisos };
+    return { gpu: this.infoGpu(), avisos: this.avisos, escalaSaida: this.hd ? this.E : 0 };
   }
 
   infoGpu() {
@@ -136,7 +148,7 @@ class Motor {
 
   construirCena(c) {
     const { W, H } = this;
-    // A vista (lateral, diagonal ou avenida) monta o cenário, a câmera e o posicionamento.
+    // A vista (lateral, diorama, 3d ou avenida) monta o cenário, a câmera e o posicionamento.
     const vista = criarVista(c, this);
     const { cena, camera } = vista;
     const fundo = vista;
@@ -151,23 +163,42 @@ class Motor {
     const realce = c.realce ?? Math.max(0, Math.min(0.55, 0.95 - lumAmb));
 
     const overlay = new THREE.Scene();
-    const elementos = c.elementos.map((el, i) => {
+    // Monstros 3D (não são sprites): cena própria em HD, ou a própria cena se "monstrosHD": false.
+    const cenaHD = new THREE.Scene();
+    const monstros = c.elementos.filter((el) => el.monstro).map((el) => {
+      const m = criarMonstro(el, this.uTempo, this.uMeiaAltura);
+      (this.hd ? cenaHD : cena).add(m.grupo);
+      return { def: el, m };
+    });
+    const temSombra = c.acoes.some((a) => a.tipo === 'sombra');
+    const elementos = c.elementos.filter((el) => !el.monstro && !el.sombraPessoa).map((el, i) => {
       const { sprite, texturas } = this.sprite(el, c);
       const esc = el.escala ?? 1;
       const w = texturas[0].image.width / PPU, h = texturas[0].image.height / PPU;
       // Apoia o sprite pela linha mais baixa que tem desenho (os pés tocam o chão de verdade).
-      // (só nas vistas que pedem; a lateral e a diagonal mantêm o apoio de antes)
+      // (só nas vistas que pedem; a lateral e o diorama mantêm o apoio de antes)
       const vazio = vista.apoiarPeloPe ? (sprite._vazioBaixo ?? (sprite._vazioBaixo = linhasVaziasEmbaixo(texturas))) : 0;
       const geo = new THREE.PlaneGeometry(w, h).translate(0, h / 2 - vazio / PPU, 0);
       // 'semLuz' (sprite ou elemento): não recebe luz da cena — ex.: uma sombra continua preta perto do fogo
-      const semLuz = el.semLuz ?? sprite.semLuz;
+      const semLuz = el.semLuz ?? sprite.semLuz ?? el.tela;   // "tela": detalhe por cima da cena (não recebe luz)
       const mat = semLuz
         ? new THREE.MeshBasicMaterial({ map: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide })
         : new THREE.MeshLambertMaterial({ map: texturas[0], emissiveMap: texturas[0], transparent: true, alphaTest: 0.5, depthWrite: false, side: THREE.DoubleSide });
       const malha = new THREE.Mesh(geo, mat);
       malha.renderOrder = vista.ordemInicial(el, i);
-      cena.add(malha);
       const obj = { def: el, sprite, texturas, malha, mat, h: h * esc, esc, realce: el.realce ?? realce };
+      // sombra que se alastra: o sprite escurece de baixo para cima quando a sombra chega nele
+      if (temSombra && !el.tela && vista.centroIJ) obj.somU = sombraNoSprite(mat, texturas[0].image.height, vazio);
+      // "tela": true — detalhe em close (ex.: página de um caderno), no centro da tela, por cima da cena,
+      // com o fundo escurecido ("escurecer": 0..1, padrão 0.6). "telaX"/"telaY" deslocam em pixels.
+      if (el.tela) {
+        malha.renderOrder = 60; overlay.add(malha);
+        const esc2 = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: el.escurecer ?? 0.6, depthTest: false, depthWrite: false }));
+        esc2.position.set(W / 2, H / 2, 0); esc2.renderOrder = 59; overlay.add(esc2);
+        obj.escuro = esc2; mat.depthTest = false;
+        return obj;
+      }
+      cena.add(malha);
       // Camada de brilho: pixels que emitem luz (lanterna, olhos, telas) ficam fora da iluminação.
       if (sprite.brilho) {
         if (!sprite._texBrilho) sprite._texBrilho = sprite.brilho.map(texturaCanvas);
@@ -228,6 +259,12 @@ class Motor {
           add('poeira', fim, () => { const d = porId.get(a.alvo).def, st = estadoElemento(c, d, fim); return vista.paraMundo(d, { ...st, y: st.yBase }, 0.1); });
         } break;
         case 'emocao': if (a.icone === 'coracao' && a.alvo) add('coracoes', a.inicio, fixo(centroEl(a.alvo, a.inicio))); break;
+        case 'fogos': {   // PROTÓTIPO: rastro subindo (subida s) e estouro na posição [x, y, z]
+          const pos = daPosicao(a) || { x: 0, y: 5, z: 0 }, sub = a.subida ?? 0.5;
+          if (sub > 0) add('rastro', a.inicio, fixo({ ...pos, y: pos.y - sub * 2.6 }));
+          add('fogos-' + (a.cor || 'dourado'), a.inicio + sub, fixo(pos));
+          break;
+        }
         default: break;
       }
     });
@@ -238,7 +275,7 @@ class Motor {
     if (c.clima && c.clima !== 'nenhum' && !clima) this.avisos.push(`Clima desconhecido "${c.clima}" (cena ${c.numero}).`);
     if (clima) overlay.add(clima.objeto);
 
-    return { def: c, cena, camera, overlay, fundo, vista, elementos, porId, rajadas, clima };
+    return { def: c, cena, camera, overlay, fundo, vista, elementos, porId, rajadas, clima, cenaHD, monstros, auras: [] };
   }
 
   liberar(obj) {
@@ -250,6 +287,7 @@ class Motor {
       }
     });
     obj.overlay.traverse((o) => { if (o !== this.ui.malha) { o.geometry?.dispose(); o.material?.dispose(); } });
+    obj.cenaHD.traverse((o) => { o.geometry?.dispose(); o.material?.dispose?.(); });
     obj.vista.liberar();
   }
 
@@ -275,10 +313,20 @@ class Motor {
     obj.camera.updateProjectionMatrix();
     obj.camera.updateMatrixWorld();
 
+    const somb = vista.atualizarSombra ? estadoSombra(c, t) : null;
+    vista.atualizarSombra?.(somb);
+    if (vista.atualizarSombrasPessoa) vista.atualizarSombrasPessoa(c.elementos.filter((el) => el.sombraPessoa).map((el) => {
+      const st = estadoElemento(c, el, t);
+      // "aparecer" surge em pontilhado durante a duração da ação (padrão 1 s)
+      const ap = c.acoes.find((a) => a.tipo === 'aparecer' && a.alvo === el.id && t >= a.inicio && t < a.inicio + Math.max(a.duracao, 1));
+      const surge = ap ? Math.min(1, (t - ap.inicio) / Math.max(ap.duracao, 1)) : 1;
+      return { x: st.x, z: st.z ?? el.z ?? 0, alpha: st.visivel ? st.alpha * surge : 0, def: el };
+    }), t);
     for (const e of obj.elementos) {
       const st = estadoElemento(c, e.def, t);
       const vis = st.visivel && st.alpha > 0.01 && st.escala > 0.01;
       e.malha.visible = vis;
+      if (e.escuro) { e.escuro.visible = vis; e.escuro.material.opacity = (e.def.escurecer ?? 0.6) * st.alpha; }
       if (e.sombra) e.sombra.visible = vis;
       if (e.brilho) e.brilho.malha.visible = vis;
       if (e.luz) e.luz.L.visible = vis;
@@ -286,10 +334,13 @@ class Motor {
       // A caminhada nova (passada sincronizada) só vale nas vistas que pedem (avenida);
       // nas outras o sprite usa a caminhada clássica, se tiver.
       const conjunto = !vista.caminhadaSincronizada && e.sprite.animsClassicas?.[st.anim] ? e.sprite.animsClassicas : e.sprite.anims;
-      const anim = conjunto[st.anim] || e.sprite.anims.parado;
+      // estado + caminhada: se o sprite tiver "<estado>-andando" (ex.: gato com a cara de monstro andando), usa
+      const anim = (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
       const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
       let idx = Math.floor(tAnim * fps);
+      // "unica": a animação toca uma vez a partir do "trocar" e para no último quadro
+      if (anim.unica) idx = Math.min(anim.q.length - 1, Math.max(0, Math.floor((t - (st.animInicio || 0)) * fps)));
       // Com 'passada' definida, os passos seguem a distância percorrida: sem pés escorregando.
       if (anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) {
         const a = c.acoes.find((ac) => ac.alvo === e.def.id && (ac.tipo === 'andar' || ac.tipo === 'correr') && t >= ac.inicio && t < ac.inicio + ac.duracao);
@@ -310,10 +361,27 @@ class Motor {
       if (e.sprite.personagem && !anim.passada && (st.anim === 'andando' || st.anim === 'correndo')) bob = idx % 2 ? 1 / PPU : 0;
       if (e.sprite.flutua && e.def.flutuar !== false && st.anim === 'parado') bob = Math.round(Math.sin(tAnim * 3) * 1.5) / PPU;
       if (e.sprite.voa) bob = Math.round(Math.sin(tAnim * 4) * 3) / PPU;
+      // "balancar": true — boia na água (sobe e desce devagar, em pixels inteiros)
+      if (e.def.balancar) bob = Math.round(Math.sin(tAnim * 2.2) * 1.5) / PPU;
       e.mat.map = e.texturas[q] || e.texturas[0]; if ('emissiveMap' in e.mat) e.mat.emissiveMap = e.mat.map;
-      vista.posicionar(e, st, bob);
+      if (e.somU) {
+        let nivel = -1;
+        if (somb && (somb.personagens || !e.sprite.personagem)) {
+          const [i, j] = vista.centroIJ(e, st), [oi, oj] = vista.sombraIJ(somb);
+          const d = Math.hypot(i - oi, j - oj), rr = raioNoAngulo(somb.R, Math.atan2(j - oj, i - oi), somb.t);
+          nivel = (rr - d) * 24;
+          if (somb.cor) e.somU.uSomCor.value.set(somb.cor); if (somb.borda) e.somU.uSomBorda.value.set(somb.borda);
+        }
+        e.somU.uSomNivel.value = nivel;
+      }
       const s = e.esc * st.escala;
-      e.malha.scale.set(st.virado * s, s, 1);
+      if (e.def.tela) {         // em pixels da tela (a malha está em unidades do mundo: x16)
+        e.malha.position.set(Math.round(this.W / 2 + (e.def.telaX ?? 0)), Math.round(this.H / 2 - e.h * PPU / 2 + (e.def.telaY ?? 0)), 0);
+        e.malha.scale.set(s * PPU, s * PPU, 1);
+      } else {
+        vista.posicionar(e, st, bob);
+        e.malha.scale.set(st.virado * s, s * (vista.escalaY ?? 1), 1);
+      }
       e.mat.opacity = st.alpha;
       if (e.brilho) {
         e.brilho.mat.map = e.brilho.texturas[q] || e.brilho.texturas[0];
@@ -340,8 +408,49 @@ class Motor {
       rj.r.atualizar(dt, rj.posFixa ? this.projetar(obj, rj.posFixa) : { x: -99, y: -99 });
     }
     if (obj.clima) obj.clima.atualizar(t, { x: cam.x * PPU, y: cam.y * PPU });
+    this.atualizarMonstros(obj, t);
     obj.fundo.atualizar(t);
     return { cam, ef };
+  }
+
+  // Presença do monstro (0 = invisível, 1 = inteiro): "aparecer" materializa, "sumir" desfaz em fumaça.
+  presenca(c, def, t) {
+    let v = def.oculto ? 0 : 1;
+    for (const a of c.acoes) {
+      if (a.alvo !== def.id || t < a.inicio) continue;
+      const p = Math.min(1, Math.max(0, (t - a.inicio) / Math.max(a.duracao, 1e-6)));
+      if (a.tipo === 'aparecer') v = p;
+      if (a.tipo === 'sumir') v = 1 - p;
+    }
+    return v;
+  }
+
+  atualizarMonstros(obj, t) {
+    const c = obj.def, vista = obj.vista;
+    this.uTempo.value = t;
+    obj.auras = [];
+    const posDe = (def, st) => (vista.paraMundoSuave ? vista.paraMundoSuave(def, st) : vista.paraMundo(def, st, 0));
+    for (const { def, m } of obj.monstros) {
+      const st = estadoElemento(c, def, t);
+      const pos = posDe(def, st);
+      let alvo = obj.camera.position.clone();
+      const idAlvo = def.olhar || def.alvo;
+      const eAlvo = idAlvo && (obj.porId.get(idAlvo) || null);
+      if (eAlvo) { const sa = estadoElemento(c, eAlvo.def, t); alvo = posDe(eAlvo.def, sa); alvo.y += eAlvo.h * 0.8; }
+      else { const mAlvo = idAlvo && obj.monstros.find((x) => x.def.id === idAlvo); if (mAlvo) alvo = posDe(mAlvo.def, estadoElemento(c, mAlvo.def, t)); }
+      const presenca = this.presenca(c, def, t);
+      m.atualizar(t, {
+        pos, presenca, virado: st.virado, alvo, olhosAbertos: def.olhosFechados ? 0 : 1, xRoteiro: st.x,
+        movendo: Math.abs(st.x - estadoElemento(c, def, Math.max(0, t - 0.06)).x) > 0.004,
+        direcaoAlvo: eAlvo ? Math.sign(alvo.x - pos.x) * st.virado : 0,
+      });
+      if (presenca > 0.01 && def.aura !== false) {
+        const esc = def.escala ?? 1, h = m.altura * esc;
+        const meio = this.projetar(obj, { x: pos.x, y: pos.y + h * 0.45, z: pos.z });
+        const topo = this.projetar(obj, { x: pos.x, y: pos.y + h * 1.25, z: pos.z });
+        obj.auras.push([meio.x, meio.y, Math.abs(topo.y - meio.y) * (def.aura ?? 1), Math.min(1, presenca * 1.2)]);
+      }
+    }
   }
 
   focoTransicao(obj, t) {
@@ -373,13 +482,19 @@ class Motor {
         if (!e) return null;
         const st = estadoElemento(c, e.def, tt);
         const p = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
-        return { x: p.x, y: this.H - p.y };
+        return { x: p.x, y: this.H - p.y, visivel: st.visivel, alpha: st.alpha };
       },
     });
     if (this.ui.malha.parent !== obj.overlay) obj.overlay.add(this.ui.malha);
     R.autoClear = false;
     R.render(obj.overlay, this.camOrto);
     R.autoClear = true;
+    const cc = new THREE.Color(), ca = R.getClearAlpha(); R.getClearColor(cc);
+    if (this.hd) {   // máscara do que fica na frente dos monstros (balões, legenda, chuva, partículas)
+      R.setRenderTarget(this.rtUI); R.setClearColor(0x000000, 0); R.clear();
+      R.render(obj.overlay, this.camOrto);
+      R.setClearColor(cc, ca);
+    }
 
     const fx = this.r.efeitos;
     const paleta = c.paleta || this.r.paleta;
@@ -391,13 +506,29 @@ class Motor {
     });
     R.setRenderTarget(this.rtSaida);
     R.render(this.pos.cena, this.pos.camera);
+    if (this.hd) {
+      R.setRenderTarget(this.rtHD); R.setClearColor(0x000000, 0); R.clear();
+      R.render(obj.cenaHD, obj.camera);
+      R.setClearColor(cc, ca);
+      const u = this.compor.material.uniforms;
+      u.tPixel.value = this.rtSaida.texture; u.tMonstro.value = this.rtHD.texture; u.tUI.value = this.rtUI.texture;
+      u.uTempo.value = t; u.uFade.value = ef.fade; u.uFlash.value = ef.flash; u.uTipo.value = TIPOS_TRANSICAO[ef.transicao] ?? 0;
+      const foco = this.focoTransicao(obj, t); u.uCentro.value.set(foco.x, foco.y);
+      u.uNAura.value = Math.min(4, obj.auras.length);
+      obj.auras.slice(0, 4).forEach((a, i) => u.uAura.value[i].set(...a));
+      R.setRenderTarget(this.rtFinal);
+      R.render(this.compor.cena, this.compor.camera);
+      if (paraTela) { R.setRenderTarget(null); R.render(this.compor.cena, this.compor.camera); }
+      return;
+    }
     if (paraTela) { R.setRenderTarget(null); R.render(this.pos.cena, this.pos.camera); }
   }
 
   // Renderiza o quadro i e devolve os pixels RGBA (de baixo p/ cima) em base64.
   quadro(i) {
     this.renderizarTempo(i / this.r.fps);
-    this.renderer.readRenderTargetPixels(this.rtSaida, 0, 0, this.W, this.H, this.buffer);
+    if (this.hd) this.renderer.readRenderTargetPixels(this.rtFinal, 0, 0, this.W * this.E, this.H * this.E, this.buffer);
+    else this.renderer.readRenderTargetPixels(this.rtSaida, 0, 0, this.W, this.H, this.buffer);
     return paraBase64(this.buffer);
   }
 
@@ -405,6 +536,23 @@ class Motor {
     const out = [];
     for (let i = 0; i < n; i++) out.push(this.quadro(inicio + i));
     return out;
+  }
+
+  // Imagem parada no tempo T (PNG em dataURL), ampliada "escala" vezes sem suavizar (pixel nítido).
+  foto(T, escala = 4) {
+    const { W, H } = this;
+    const rasc = this.rascunho; this.rascunho = false;
+    this.renderizarTempo(T);
+    this.rascunho = rasc;
+    // com monstros 3D o quadro final já sai em HD (W*E x H*E)
+    const w = this.hd ? W * this.E : W, h = this.hd ? H * this.E : H, buf = this.hd ? new Uint8Array(w * h * 4) : this.buffer;
+    this.renderer.readRenderTargetPixels(this.hd ? this.rtFinal : this.rtSaida, 0, 0, w, h, buf);
+    const img = new ImageData(w, h);
+    for (let y = 0; y < h; y++) img.data.set(buf.subarray((h - 1 - y) * w * 4, (h - y) * w * 4), y * w * 4);
+    const a = document.createElement('canvas'); a.width = w; a.height = h; a.getContext('2d').putImageData(img, 0, 0);
+    const b = document.createElement('canvas'); b.width = W * escala; b.height = H * escala;
+    const g = b.getContext('2d'); g.imageSmoothingEnabled = false; g.drawImage(a, 0, 0, b.width, b.height);
+    return b.toDataURL('image/png');
   }
 
   // Folha com uma miniatura por cena (para revisar o rascunho rapidamente).
@@ -452,6 +600,24 @@ class Motor {
     };
     loop();
   }
+}
+
+// Injeta no material do sprite a sombra que sobe de baixo para cima (uSomNivel = px cobertos, a partir da base).
+function sombraNoSprite(mat, alturaPx, vazio = 0) {
+  const u = { uSomNivel: { value: -1 }, uSomAlt: { value: alturaPx }, uSomVazio: { value: vazio },
+    uSomCor: { value: new THREE.Color('#0c0816') }, uSomBorda: { value: new THREE.Color('#4a2a7a') } };
+  mat.onBeforeCompile = (sh) => {
+    Object.assign(sh.uniforms, u);
+    sh.fragmentShader = 'uniform float uSomNivel, uSomAlt, uSomVazio; uniform vec3 uSomCor, uSomBorda;\n' + GLSL_BAYER + '\n' +
+      sh.fragmentShader.replace('#include <dithering_fragment>', `#include <dithering_fragment>
+        if (uSomNivel > 0.0) {
+          float hp = vMapUv.y * uSomAlt - uSomVazio, m = uSomNivel - hp;
+          if (m > 0.0 && !(m < 3.0 && bayer4(floor(gl_FragCoord.xy)) > m / 3.0)) gl_FragColor.rgb = m < 2.0 ? uSomBorda : uSomCor;
+        }`);
+  };
+  mat.customProgramCacheKey = () => 'sombra-sprite';
+  mat.needsUpdate = true;
+  return u;
 }
 
 window.motor = new Motor();

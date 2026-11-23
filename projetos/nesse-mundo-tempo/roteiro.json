@@ -1,0 +1,2112 @@
+// Nessa cidade, cada um carrega o próprio tempo — estilo "Nesse Mundo" (longo).
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-tempo
+// "vertical": enquadramento só da versão Shorts (9:16).
+{
+ "titulo": "Nessa cidade, cada um carrega o próprio tempo",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "Nessa cidade, cada pessoa carrega o próprio tempo em cima da cabeça.",
+   "cenario": "praca",
+   "transicao": "fade",
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -7,
+     "z": -8.6
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "sol"
+    },
+    {
+     "id": "caixa",
+     "personagem": "caixa",
+     "x": 7,
+     "z": -9.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tcaixa",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "caixa",
+      "dy": 2.75
+     },
+     "pose": "garoa"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -3,
+     "z": -7.2
+    },
+    {
+     "id": "tprof",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prof",
+      "dy": 2.75
+     },
+     "pose": "sol-pequeno"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 4,
+     "z": -6.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "taluno",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "aluno",
+      "dy": 2.65
+     },
+     "pose": "nuvenzinha"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "caixa",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "tonho",
+     "para": -1.5,
+     "duracao": 3.98
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "caixa",
+     "para": 2,
+     "duracao": 3.98
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.74,
+     "alvo": "prof",
+     "para": 1,
+     "duracao": 3.54
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Funciona assim: quem está feliz anda com um solzinho. Quem está triste, com uma nuvem de chuva.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 4.6,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "titulo": "CADA UM CARREGA O PRÓPRIO TEMPO",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.8,
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 3.6,
+     "z": 5.1
+    },
+    {
+     "id": "taluno",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "aluno",
+      "dy": 2.65
+     },
+     "pose": "sol"
+    },
+    {
+     "id": "aluna",
+     "personagem": "aluna",
+     "x": 5.8,
+     "z": 5.1,
+     "virado": "esquerda"
+    },
+    {
+     "id": "taluna",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "aluna",
+      "dy": 2.65
+     },
+     "pose": "nada"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.7,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.92,
+     "duracao": 2.78
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluna",
+     "rosto": "triste",
+     "inicio": 4.01,
+     "duracao": 2.47
+    },
+    {
+     "tipo": "pular",
+     "inicio": 1.23,
+     "alvo": "aluno",
+     "altura": 0.6
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 3.7,
+     "alvo": "taluna",
+     "estado": "chuva"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 4,
+     "alvo": "aluna",
+     "icone": "..."
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "E o prefeito criou a Lei do Céu Limpo: andar nublado em público dá multa.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 11,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 10,
+     "z": 5.1
+    },
+    {
+     "id": "tprefeito",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prefeito",
+      "dy": 2.75
+     },
+     "pose": "sol-grande"
+    },
+    {
+     "id": "placa",
+     "sprite": "placa-lei",
+     "x": 12.4,
+     "z": 5,
+     "oculto": true
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 11,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "feliz",
+     "inicio": 0.54,
+     "duracao": 4.51
+    },
+    {
+     "tipo": "aparecer",
+     "inicio": 1.72,
+     "alvo": "placa"
+    },
+    {
+     "tipo": "flash",
+     "inicio": 1.72
+    },
+    {
+     "tipo": "falar",
+     "inicio": 2.44,
+     "alvo": "prefeito",
+     "texto": "* Nublado = multa!"
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "O policial Ronaldo nunca mostrou o tempo dele. Anda com um guarda-chuva aberto há trinta anos.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 9,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "ronaldo",
+     "personagem": "policial-oculos",
+     "x": 6,
+     "z": 5.1
+    },
+    {
+     "id": "guarda",
+     "sprite": "guarda-chuva",
+     "sobre": {
+      "id": "ronaldo",
+      "dx": 0.45,
+      "dy": 1
+     }
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 9,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "bravo",
+     "inicio": 2.13,
+     "duracao": 4.28
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "ronaldo",
+     "para": 10,
+     "duracao": 3.67
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 4.88,
+     "alvo": "ronaldo",
+     "icone": "..."
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "E o único canteiro verde da cidade fica bem do lado da delegacia.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "cameraFim": {
+    "x": 9
+   },
+   "elementos": [
+    {
+     "id": "c1",
+     "sprite": "canteiro-iso",
+     "x": 3,
+     "z": 4.3,
+     "pose": "murcho"
+    },
+    {
+     "id": "c2",
+     "sprite": "canteiro-iso",
+     "x": 6,
+     "z": 4.3,
+     "pose": "murcho"
+    },
+    {
+     "id": "c3",
+     "sprite": "canteiro-iso",
+     "x": 9.2,
+     "z": 4.3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 9.4,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "flash",
+     "inicio": 3.47,
+     "intensidade": 0.5
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "E tinha a Bia, de dez anos, uma menina com um sol bem pequenininho.",
+   "cenario": "rua-comercial",
+   "camera": {
+    "x": 3,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0.6,
+     "z": 5.1
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol-pequeno"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 3.4,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 1.61,
+     "duracao": 3.05
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "bia",
+     "para": 3.8,
+     "duracao": 2.61
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.57,
+     "alvo": "bia",
+     "icone": "coracao",
+     "duracao": 1.09
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "Toda noite, ela chorava escondida vendo desenho. E a planta do quarto dela era a mais verde da rua.",
+   "cenario": "quarto-menina-noite-diorama",
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -0.4,
+     "z": 2.2
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "chorando",
+     "inicio": 2.23,
+     "duracao": 4.51
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 1.27,
+     "alvo": "tbia",
+     "estado": "garoa"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 4.48,
+     "alvo": "bia",
+     "icone": "..."
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "E contava histórias tão tristes que até o cachorro da praça chorava. Escondido, claro.",
+   "cenario": "praca",
+   "remover": [
+    "banco1",
+    "arvore3",
+    "arvore4"
+   ],
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.2,
+     "z": -8.6
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol-pequeno"
+    },
+    {
+     "id": "cao",
+     "x": -3.4,
+     "z": -8.6,
+     "virado": "esquerda",
+     "personagem": "cao-guarda"
+    },
+    {
+     "id": "tcao",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "cao",
+      "dy": 1.6
+     },
+     "pose": "nada"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -4.4,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "falar",
+     "inicio": 0.3,
+     "alvo": "bia",
+     "texto": "* ...e ninguém comprou o pão."
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 3.77,
+     "alvo": "tcao",
+     "estado": "garoa"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 4.49,
+     "alvo": "cao",
+     "icone": "..."
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 2.2,
+     "duracao": 3.4
+    }
+   ],
+   "camera": {
+    "x": -4.4,
+    "z": -8.5
+   }
+  },
+  {
+   "narracaoTexto": "Até que chegou o Dia do Sol, a festa mais importante de Vila Serena.",
+   "cenario": "praca-decorada",
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -8,
+     "z": -9
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "sol"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": 8,
+     "z": -10,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tprof",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prof",
+      "dy": 2.75
+     },
+     "pose": "sol"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -7,
+     "z": -7.4
+    },
+    {
+     "id": "taluno",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "aluno",
+      "dy": 2.65
+     },
+     "pose": "sol"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 7,
+     "z": -8.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol-pequeno"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.52,
+     "duracao": 4.2
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "tonho",
+     "para": -3,
+     "duracao": 3.54
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.3,
+     "alvo": "prof",
+     "para": 2.5,
+     "duracao": 3.54
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.74,
+     "alvo": "aluno",
+     "para": -2,
+     "duracao": 3.09
+    },
+    {
+     "tipo": "andar",
+     "inicio": 0.74,
+     "alvo": "bia",
+     "para": 1.4,
+     "duracao": 3.09
+    },
+    {
+     "tipo": "flash",
+     "inicio": 4.06,
+     "intensidade": 0.5
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "O prefeito subiu no palanque e decretou: hoje, ninguém fica triste.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito",
+     "x": 5,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tprefeito",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prefeito",
+      "dy": 2.75
+     },
+     "pose": "sol-grande"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 2,
+     "z": -8.6
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol-pequeno"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "rindo",
+     "inicio": 1.17,
+     "duracao": 3.49
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 2.91,
+     "duracao": 1.75
+    },
+    {
+     "tipo": "falar",
+     "inicio": 1.17,
+     "alvo": "prefeito",
+     "texto": "* Hoje, ninguém fica triste!"
+    },
+    {
+     "tipo": "flash",
+     "inicio": 3.57
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Primeiro, o sorvete do mercado derreteu. Depois, a fonte da praça secou.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": -1.4,
+    "z": -8.5
+   },
+   "clima": "calor",
+   "elementos": [
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": -3.2,
+     "z": -8.6
+    },
+    {
+     "id": "taluno",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "aluno",
+      "dy": 2.65
+     },
+     "pose": "sol-grande"
+    },
+    {
+     "id": "sorvete",
+     "sprite": "sorvete",
+     "x": 0,
+     "sobre": {
+      "id": "aluno",
+      "dx": 0.5,
+      "dy": 0.55
+     }
+    },
+    {
+     "id": "poca",
+     "sprite": "sorvete",
+     "x": -2.7,
+     "z": -8.7,
+     "pose": "derretido",
+     "oculto": true
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.8,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "surpreso",
+     "inicio": 1.7,
+     "duracao": 3.28
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 0.53,
+     "alvo": "sorvete",
+     "estado": "derretendo"
+    },
+    {
+     "tipo": "desaparecer",
+     "inicio": 1.4300000000000002,
+     "alvo": "sorvete",
+     "duracao": 0.2
+    },
+    {
+     "tipo": "aparecer",
+     "inicio": 1.4300000000000002,
+     "alvo": "poca",
+     "som": null
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 1.7,
+     "alvo": "aluno",
+     "icone": "!"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 3.58,
+     "alvo": "fonte",
+     "estado": "seca"
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 3.58,
+     "duracao": 0.3,
+     "intensidade": 0.5
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true
+  },
+  {
+   "narracaoTexto": "O seu Tonho sorria tanto que o chapéu de padeiro dele pegou fogo.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": -1.4,
+    "z": -8.5
+   },
+   "clima": "calor",
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.6,
+     "z": -8.6
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "sol-forte"
+    },
+    {
+     "id": "fogo",
+     "sprite": "fogo-chapeu",
+     "x": 0,
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.6
+     },
+     "oculto": true
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.6,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "rindo",
+     "inicio": 0.72,
+     "duracao": 3.81
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 0,
+     "alvo": "fonte",
+     "estado": "seca"
+    },
+    {
+     "tipo": "aparecer",
+     "inicio": 2.92,
+     "alvo": "fogo"
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 2.92,
+     "duracao": 0.4
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.26,
+     "alvo": "tonho",
+     "icone": "!"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true
+  },
+  {
+   "narracaoTexto": "As flores da praça murcharam. Todas, menos as do canteiro da delegacia.",
+   "cenario": "rua-comercial",
+   "clima": "calor",
+   "camera": {
+    "x": 4,
+    "z": 2.2,
+    "y": 2.4
+   },
+   "cameraFim": {
+    "x": 9
+   },
+   "elementos": [
+    {
+     "id": "c1",
+     "sprite": "canteiro-iso",
+     "x": 3,
+     "z": 4.3
+    },
+    {
+     "id": "c2",
+     "sprite": "canteiro-iso",
+     "x": 6,
+     "z": 4.3
+    },
+    {
+     "id": "c3",
+     "sprite": "canteiro-iso",
+     "x": 9.2,
+     "z": 4.3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 9.4,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "trocar",
+     "inicio": 0.99,
+     "alvo": "c1",
+     "estado": "murcho"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 1.68,
+     "alvo": "c2",
+     "estado": "murcho"
+    },
+    {
+     "tipo": "flash",
+     "inicio": 3.76,
+     "intensidade": 0.5
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "Então o seu Tonho caiu sentado, tonto de calor, no meio da praça.",
+   "cenario": "praca-seca",
+   "clima": "calor",
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.4,
+     "z": -8.6
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "sol-forte"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1.4,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "sentar",
+     "inicio": 1.36,
+     "alvo": "tonho"
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 1.36,
+     "duracao": 0.3,
+     "intensidade": 0.5
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 2.41,
+     "alvo": "tonho",
+     "icone": "..."
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "A Bia não aguentou. O sol dela apagou, e uma nuvenzinha apareceu.",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "clima": "calor",
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 1.2,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol-pequeno"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.4,
+     "z": -8.6,
+     "pose": "sentado"
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "chorando",
+     "inicio": 1.57,
+     "duracao": 2.96
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 1.78,
+     "alvo": "tbia",
+     "estado": "nada"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 3.05,
+     "alvo": "tbia",
+     "estado": "nuvenzinha"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.47,
+     "alvo": "bia",
+     "icone": "...",
+     "duracao": 1.06
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Mas, onde a garoa da Bia caía, a grama voltava a ficar verde.",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": -4.5,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -5.5,
+     "z": -10.3
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "garoa"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.4,
+     "z": -8.6,
+     "pose": "sentado"
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -5.5,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.89,
+     "duracao": 2.38
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.68,
+     "alvo": "canteiro1",
+     "estado": "verde"
+    },
+    {
+     "tipo": "flash",
+     "inicio": 2.68,
+     "intensidade": 0.6
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 3.08,
+     "alvo": "bia",
+     "icone": "?",
+     "duracao": 1.19
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "E o seu Tonho abriu os olhos, molhadinho, e sorriu de verdade.",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": -0.6,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -1.4,
+     "z": -8.6,
+     "pose": "sentado"
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0.4,
+     "z": -8.8,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "garoa"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.6,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 2.32,
+     "duracao": 2.01
+    },
+    {
+     "tipo": "levantar",
+     "inicio": 1.51,
+     "alvo": "tonho"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.52,
+     "alvo": "ttonho",
+     "estado": "sol"
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 2.92,
+     "alvo": "tonho",
+     "icone": "coracao"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Foi aí que a Bia entendeu tudo: a tristeza não estragava o tempo. Era ela que regava a cidade.",
+   "cenario": "praca-seca",
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 0.2,
+     "z": -9
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "garoa"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.2,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "surpreso",
+     "inicio": 1.52,
+     "duracao": 4.89
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 1.52,
+     "alvo": "bia",
+     "icone": "!"
+    },
+    {
+     "tipo": "flash",
+     "inicio": 1.52
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 1.52,
+     "duracao": 0.3,
+     "intensidade": 0.5
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "E o policial Ronaldo não escondia mau humor. Toda noite, ele regava o canteiro chorando escondido.",
+   "cenario": "rua-comercial-noite",
+   "camera": {
+    "x": 8.6,
+    "z": 2.4,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "ronaldo",
+     "personagem": "policial-oculos",
+     "x": 8.6,
+     "z": 4.6
+    },
+    {
+     "id": "tronaldo",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "ronaldo",
+      "dy": 2.75
+     },
+     "pose": "chuva"
+    },
+    {
+     "id": "guarda",
+     "sprite": "guarda-chuva",
+     "sobre": {
+      "id": "ronaldo",
+      "dx": 0.45,
+      "dy": 1
+     },
+     "pose": "fechado"
+    },
+    {
+     "id": "c3",
+     "sprite": "canteiro-iso",
+     "x": 9.2,
+     "z": 4.3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 9,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "triste",
+     "inicio": 2.85,
+     "duracao": 3.82
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 4.76,
+     "alvo": "ronaldo",
+     "icone": "..."
+    }
+   ]
+  },
+  {
+   "narracaoTexto": "A Bia subiu no palanque e pegou o microfone.",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": 3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 2.6,
+     "z": -6.7
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "garoa"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "pular",
+     "inicio": 0.73,
+     "alvo": "bia",
+     "para": [
+      4.4,
+      0.75
+     ],
+     "altura": 1.2,
+     "duracao": 0.7
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "E contou a história mais triste que ela sabia: a do pãozinho que ninguém quis comprar.",
+   "cenario": "praca-seca",
+   "camera": {
+    "x": 3,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 4.4,
+     "z": -6.7,
+     "y": 0.75,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "garoa"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.4,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "triste",
+     "inicio": 1.42,
+     "duracao": 4.47
+    },
+    {
+     "tipo": "falar",
+     "inicio": 1.42,
+     "alvo": "bia",
+     "texto": "* Era uma vez um pãozinho... que ninguém quis."
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "O cachorro foi o primeiro a chorar. Depois, a professora. Depois, o seu Tonho.",
+   "cenario": "praca-seca",
+   "elementos": [
+    {
+     "id": "cao",
+     "x": -4,
+     "z": -9.6,
+     "personagem": "cao-guarda"
+    },
+    {
+     "id": "tcao",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "cao",
+      "dy": 1.6
+     },
+     "pose": "sol"
+    },
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "tprof",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prof",
+      "dy": 2.75
+     },
+     "pose": "sol-grande"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 2,
+     "z": -9.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "sol-grande"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "chorando",
+     "inicio": 2.33,
+     "duracao": 3.04
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "chorando",
+     "inicio": 3.34,
+     "duracao": 2.03
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 0.81,
+     "alvo": "tcao",
+     "estado": "chuva"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.58,
+     "alvo": "tprof",
+     "estado": "chuva"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 4.25,
+     "alvo": "ttonho",
+     "estado": "chuva"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Choveu na praça inteira. A fonte encheu, as flores levantaram e a praça esfriou.",
+   "cenario": "praca-seca",
+   "clima": "chuva",
+   "elementos": [
+    {
+     "id": "prof",
+     "personagem": "professora",
+     "x": -1,
+     "z": -8.6
+    },
+    {
+     "id": "tprof",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prof",
+      "dy": 2.75
+     },
+     "pose": "chuva"
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 2,
+     "z": -9.4,
+     "virado": "esquerda"
+    },
+    {
+     "id": "ttonho",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "tonho",
+      "dy": 2.75
+     },
+     "pose": "chuva"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prof",
+     "rosto": "feliz",
+     "inicio": 1.86,
+     "duracao": 3.64
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "tonho",
+     "rosto": "feliz",
+     "inicio": 1.86,
+     "duracao": 3.64
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 1.9,
+     "alvo": "fonte",
+     "estado": "cheia"
+    },
+    {
+     "tipo": "flash",
+     "inicio": 1.9,
+     "intensidade": 0.6
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.96,
+     "alvo": "canteiro1",
+     "estado": "verde"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.96,
+     "alvo": "canteiro2",
+     "estado": "verde"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.96,
+     "alvo": "arvore1",
+     "estado": "verde"
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 2.96,
+     "alvo": "arvore2",
+     "estado": "verde"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Até o prefeito chorou, e a chuva dele levou a peruca para dentro da fonte.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 1,
+    "z": -7.9
+   },
+   "clima": "chuva",
+   "elementos": [
+    {
+     "id": "prefeito",
+     "personagem": "prefeito-careca",
+     "x": 1.8,
+     "z": -7.2,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tprefeito",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "prefeito",
+      "dy": 2.75
+     },
+     "pose": "chuva"
+    },
+    {
+     "id": "peruca",
+     "sprite": "peruca",
+     "x": 1.8,
+     "z": -7.2,
+     "y": 2.8
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1,
+     "z": -7.9
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "prefeito",
+     "rosto": "chorando",
+     "inicio": 0.54,
+     "duracao": 4.57
+    },
+    {
+     "tipo": "mover",
+     "inicio": 2.46,
+     "alvo": "peruca",
+     "para": [
+      1,
+      3.6
+     ],
+     "duracao": 0.8
+    },
+    {
+     "tipo": "mover",
+     "inicio": 3.26,
+     "alvo": "peruca",
+     "para": [
+      0.2,
+      0.6
+     ],
+     "duracao": 1
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 2.71,
+     "alvo": "prefeito",
+     "icone": "!"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Só faltava um.",
+   "cenario": "praca-decorada",
+   "clima": "chuva",
+   "camera": {
+    "x": -1,
+    "z": -8.5
+   },
+   "elementos": [
+    {
+     "id": "ronaldo",
+     "personagem": "policial-oculos",
+     "x": 0.4,
+     "z": -7.6
+    },
+    {
+     "id": "tronaldo",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "ronaldo",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    },
+    {
+     "id": "guarda",
+     "sprite": "guarda-chuva",
+     "sobre": {
+      "id": "ronaldo",
+      "dx": 0.45,
+      "dy": 1
+     }
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -2.4,
+     "z": -9,
+     "virado": "direita"
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -1,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "envergonhado",
+     "inicio": 0.35,
+     "duracao": 0.86
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "pensativo",
+     "inicio": 0.35,
+     "duracao": 0.86
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "O policial Ronaldo olhou para a Bia, respirou fundo e fechou o guarda-chuva.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": -0.6,
+    "z": -8.5
+   },
+   "clima": "chuva",
+   "elementos": [
+    {
+     "id": "ronaldo",
+     "personagem": "policial-oculos",
+     "x": 0.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tronaldo",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "ronaldo",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    },
+    {
+     "id": "guarda",
+     "sprite": "guarda-chuva",
+     "sobre": {
+      "id": "ronaldo",
+      "dx": 0.45,
+      "dy": 1
+     }
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.8,
+     "z": -8.8
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -0.4,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "triste",
+     "inicio": 2.28,
+     "duracao": 2.96
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 3.26,
+     "duracao": 1.98
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 3.26,
+     "alvo": "guarda",
+     "estado": "fechando"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "Trinta anos de chuva caíram de uma vez só.",
+   "cenario": "praca-decorada",
+   "camera": {
+    "x": 0,
+    "z": -8.5
+   },
+   "clima": "chuva",
+   "elementos": [
+    {
+     "id": "ronaldo",
+     "personagem": "policial-oculos",
+     "x": 0.6,
+     "z": -8.6,
+     "virado": "esquerda"
+    },
+    {
+     "id": "tronaldo",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "ronaldo",
+      "dy": 2.75
+     },
+     "pose": "nada"
+    },
+    {
+     "id": "guarda",
+     "sprite": "guarda-chuva",
+     "sobre": {
+      "id": "ronaldo",
+      "dx": 0.45,
+      "dy": 1
+     },
+     "pose": "fechado"
+    },
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -1.8,
+     "z": -8.8
+    },
+    {
+     "id": "tbia",
+     "sprite": "tempo-pessoal",
+     "sobre": {
+      "id": "bia",
+      "dy": 2.75
+     },
+     "pose": "sol"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.6,
+     "z": -8.5
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "expressao",
+     "alvo": "ronaldo",
+     "rosto": "chorando",
+     "inicio": 0.44,
+     "duracao": 2.59
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "bia",
+     "rosto": "feliz",
+     "inicio": 0.44,
+     "duracao": 2.59
+    },
+    {
+     "tipo": "trocar",
+     "inicio": 0.57,
+     "alvo": "tronaldo",
+     "estado": "aguaceiro"
+    },
+    {
+     "tipo": "tremer",
+     "inicio": 0.57,
+     "duracao": 0.6
+    },
+    {
+     "tipo": "flash",
+     "inicio": 0.57
+    },
+    {
+     "tipo": "emocao",
+     "inicio": 1.8,
+     "alvo": "bia",
+     "icone": "!"
+    }
+   ],
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ]
+  },
+  {
+   "narracaoTexto": "E a viatura saiu boiando por três quarteirões.",
+   "cenario": "rua-alagada",
+   "clima": "chuva",
+   "camera": {
+    "x": -3,
+    "z": 0.8,
+    "y": 2.4
+   },
+   "cameraFim": {
+    "x": 3
+   },
+   "elementos": [
+    {
+     "id": "viatura",
+     "sprite": "viatura-iso",
+     "x": -6,
+     "z": 3.6,
+     "balancar": true,
+     "pose": "sirene"
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": 1.2
+    }
+   },
+   "acoes": [
+    {
+     "tipo": "mover",
+     "inicio": 0.3,
+     "alvo": "viatura",
+     "para": 6,
+     "duracao": 2.84,
+     "easing": "linear"
+    }
+   ]
+  }
+ ]
+}

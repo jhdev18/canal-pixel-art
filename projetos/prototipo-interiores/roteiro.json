@@ -1,0 +1,41 @@
+{
+  // PROTÓTIPO dos interiores (só para conferir na prévia: npm run previa -- prototipo-interiores)
+  "titulo": "Protótipo — interiores",
+  "resolucao": [320, 180],
+  "cenas": [
+    { "cenario": "sala-de-aula", "duracao": 5, "transicao": "fade",
+      "camera": { "x": -2 }, "cameraFim": { "x": 2 },
+      "elementos": [
+        { "id": "prof", "personagem": "professora", "x": -1.6 },
+        { "id": "aluno", "personagem": "aluno", "x": 4.2, "virado": "esquerda" },
+        { "id": "aluna", "personagem": "aluna", "x": 7.2, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "falar", "alvo": "prof", "texto": "* Bom dia, turma!", "inicio": 0.8 } ] },
+    { "cenario": "quarto-menino", "duracao": 5, "transicao": "dither",
+      "camera": { "x": -1 }, "cameraFim": { "x": 1 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -9 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "aluno", "para": 1.8, "inicio": 0.3, "duracao": 3 } ] },
+    { "cenario": "quarto-menino-noite", "duracao": 4, "transicao": "dither",
+      "camera": { "x": -3, "zoom": 1.5 }, "cameraFim": { "x": -2 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -0.6, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "aluno", "icone": "zzz", "inicio": 0.6, "duracao": 2.5 } ] },
+    { "cenario": "sala-de-estar", "duracao": 5, "transicao": "dither",
+      "camera": { "x": -3 }, "cameraFim": { "x": 1 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 4.2, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -1.4, "inicio": 0.4, "duracao": 2.6 } ] },
+    { "cenario": "sala-de-aula-diagonal", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 1.5 },
+      "elementos": [
+        { "id": "prof", "personagem": "professora", "x": -1.4, "z": 3.8 },
+        { "id": "aluno", "personagem": "aluno", "x": 3.4, "z": -3.0 },
+        { "id": "aluna", "personagem": "aluna", "x": -2.6, "z": 1.15, "pose": "sentado-costas" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "aluno", "para": -1, "inicio": 0.4, "duracao": 3 } ] },
+    { "cenario": "quarto-menino-diagonal", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 1.5 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -3, "z": 0.6 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "aluno", "para": 4, "inicio": 0.3, "duracao": 3.5 } ] },
+    { "cenario": "quarto-menino-noite-diagonal", "duracao": 4, "transicao": "dither", "camera": { "x": -3 },
+      "elementos": [ { "id": "aluno", "personagem": "aluno", "x": -3.4, "z": 1.6 } ],
+      "acoes": [ { "tipo": "emocao", "alvo": "aluno", "icone": "zzz", "inicio": 0.6, "duracao": 2.5 } ] },
+    { "cenario": "sala-de-estar-diagonal", "duracao": 5, "transicao": "dither", "cameraFim": { "x": 2 },
+      "elementos": [ { "id": "bia", "personagem": "menina-capa", "x": 5, "z": 0.4, "virado": "esquerda" } ],
+      "acoes": [ { "tipo": "andar", "alvo": "bia", "para": -2, "inicio": 0.4, "duracao": 3 } ] }
+  ]
+}

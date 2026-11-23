@@ -1,0 +1,657 @@
+// TESTE: fotos dos rostos (npm run fotos -- teste-rostos)
+{
+ "titulo": "Teste — rostos de perto",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "cenas": [
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "normal",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-feliz"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-feliz"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "feliz",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-rindo"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-rindo"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "rindo",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-triste"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-triste"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "triste",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-chorando"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-chorando"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "chorando",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-bravo"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-bravo"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "bravo",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-surpreso"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-surpreso"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "surpreso",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-assustado"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "assustado",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-envergonhado"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-envergonhado"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "envergonhado",
+   "narracao": false
+  },
+  {
+   "narracaoTexto": "teste.",
+   "cenario": "praca",
+   "remover": [
+    "arvore3",
+    "arvore4"
+   ],
+   "salto": true,
+   "camera": {
+    "x": 0,
+    "z": -9.6,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "p0",
+     "personagem": "menina-capa",
+     "x": -1.9,
+     "z": -6.699999999999999,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p1",
+     "personagem": "nina",
+     "x": -0.95,
+     "z": -7.6499999999999995,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p2",
+     "personagem": "aluno",
+     "x": 0,
+     "z": -8.6,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p3",
+     "personagem": "padeiro",
+     "x": 0.95,
+     "z": -9.549999999999999,
+     "pose": "rosto-pensativo"
+    },
+    {
+     "id": "p4",
+     "personagem": "professora",
+     "x": 1.9,
+     "z": -10.5,
+     "pose": "rosto-pensativo"
+    }
+   ],
+   "acoes": [],
+   "vertical": {
+    "camera": {
+     "x": 0,
+     "z": -9.6,
+     "y": 1.9,
+     "zoom": 2
+    }
+   },
+   "duracao": 1.2,
+   "foto": 0.6,
+   "legenda": "pensativo",
+   "narracao": false
+  }
+ ]
+}

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Banner — Histórias em Pixel</title>
+<link rel="icon" href="data:,">
+<style>html,body{margin:0;background:#000}canvas{image-rendering:pixelated;max-width:100vw}</style>
+<script type="importmap">{ "imports": { "three": "/vendor/three/three.module.js" } }</script>
+</head>
+<body>
+<script type="module">
+// Banner do canal "Histórias em Pixel" — ilustração pixel art 640x360, ampliada 4x pelo Three.js (2560x1440).
+// Área segura do YouTube (1546x423 no centro) = x 127..513, y 127..233 na resolução baixa.
+import * as THREE from 'three';
+import { Pix, misturar, hexParaRgb, bayer } from '/motor/pixel.js';
+import { desenharTexto } from '/motor/fonte.js';
+
+const W = 640, H = 360, ESC = 4;
+const p = new Pix(W, H);
+let semente = 7;
+const rnd = () => { semente = (semente * 16807) % 2147483647; return semente / 2147483647; };
+const get = (x, y) => { x = Math.max(0, Math.min(W - 1, x | 0)); y = Math.max(0, Math.min(H - 1, y | 0)); const i = (y * W + x) * 4; return [p.d[i], p.d[i + 1], p.d[i + 2]]; };
+const brilho = (cx, cy, R, cor, forca) => {
+  for (let y = Math.floor(cy - R); y <= cy + R; y++) for (let x = Math.floor(cx - R); x <= cx + R; x++) {
+    if (!p.dentro(x, y)) continue;
+    const d = Math.hypot(x - cx, y - cy) / R; if (d >= 1) continue;
+    const t = (1 - d) * (1 - d) * forca;
+    const q = Math.round(t * 4) / 4 + ((t * 4) % 1 > bayer(x, y) ? 0.25 : 0);
+    if (q > 0) p.set(x, y, misturar(get(x, y), cor, Math.min(1, q)));
+  }
+};
+const HORIZ = 236;
+
+// ---------- céu ----------
+const CEU = ['#0b0920', '#120d2e', '#1b133f', '#28194f', '#3a2063', '#542872', '#78337c', '#a0447f', '#c95c7a', '#ea8670'];
+for (let y = 0; y < HORIZ; y++) for (let x = 0; x < W; x++) {
+  const v = Math.pow(y / HORIZ, 1.35) + 0.05 * Math.sin(x * 0.01);
+  p.set(x, y, Pix.tom(CEU, v, x, y));
+}
+// estrelas
+for (let i = 0; i < 520; i++) {
+  const x = Math.floor(rnd() * W), y = Math.floor(Math.pow(rnd(), 1.6) * 200);
+  const forte = rnd();
+  const c = forte > 0.92 ? '#fffbe8' : forte > 0.6 ? '#d8d0ff' : '#8f84c8';
+  p.set(x, y, c);
+  if (forte > 0.965) { for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) p.set(x + dx, y + dy, '#a99ee0'); }
+  if (forte > 0.993) { for (const [dx, dy] of [[2, 0], [-2, 0], [0, 2], [0, -2]]) p.set(x + dx, y + dy, '#6f63a8'); }
+}
+// estrela cadente
+for (let i = 0; i < 34; i++) {
+  const x = 120 + i, y = 52 + Math.floor(i * 0.45);
+  p.set(x, y, i > 28 ? '#fffbe8' : i > 18 ? '#d8d0ff' : i > 8 ? '#8f84c8' : '#5a4f94');
+}
+// lua
+const LX = 560, LY = 150, LR = 19;
+brilho(LX, LY, 62, '#c6b6ff', 0.5);
+p.circulo(LX, LY, LR, (x, y, dx, dy) => (dx * 0.7 + dy * 0.7 > 0.55 ? '#d9cfae' : dx - dy < -1.1 ? '#fffef0' : '#f6efd2'));
+for (const [cx, cy, r] of [[-7, -4, 4], [5, 6, 3], [6, -8, 2], [-3, 9, 2], [-11, 5, 1.5]]) p.circulo(LX + cx, LY + cy, r, '#e2d8b8');
+// nuvens finas
+const nuvem = (cx, cy, larg) => {
+  for (let i = 0; i < larg; i += 6) {
+    const r = 4 + 4 * Math.sin((i / larg) * Math.PI) + rnd() * 2;
+    p.elipse(cx + i, cy, r * 1.6, r * 0.7, (x, y, dx, dy) => (dy < -0.35 ? '#6a4f9e' : '#3e2b6c'));
+  }
+};
+nuvem(170, 98, 70); nuvem(390, 70, 90); nuvem(520, 112, 50); nuvem(40, 140, 40); nuvem(505, 172, 36);
+
+// ---------- montanhas ----------
+const lado = (x) => Math.min(1, Math.abs(x - 320) / 300);
+const longe = (x) => 212 - (18 + 52 * lado(x)) * (0.55 + 0.45 * Math.sin(x * 0.027 + 1.3)) - 3 * Math.sin(x * 0.13) - 1.5 * Math.sin(x * 0.31);
+const perto = (x) => 222 - (8 + 30 * lado(x)) * (0.5 + 0.5 * Math.sin(x * 0.041 + 2.1)) - 2 * Math.sin(x * 0.17 + 1);
+const montanha = (f, claro, escuro, neve) => {
+  for (let x = 0; x < W; x++) {
+    const top = Math.floor(f(x)), iluminado = f(x + 1) > f(x - 1);
+    for (let y = top; y < HORIZ; y++) {
+      let c = iluminado ? claro : escuro;
+      if (neve && top < 172 && y < top + 4 + (x % 3)) c = iluminado ? '#c9b8e8' : '#8d78b8';
+      p.set(x, y, c);
+    }
+  }
+};
+montanha(longe, '#4c3478', '#3a2864', true);
+for (let y = 196; y < HORIZ; y++) for (let x = 0; x < W; x++) if (bayer(x, y) < (y - 196) / 60) p.set(x, y, misturar(get(x, y), '#e07a74', 0.18)); // névoa
+montanha(perto, '#2f2156', '#261a48', false);
+
+// ---------- colina com castelo ----------
+p.elipse(112, 240, 96, 42, (x, y, dx) => (dx > 0.25 ? '#251a46' : '#1d1538'));
+const SIL = '#1a1232', BORDA = '#3b2b66', JAN = '#ffcf6a';
+const torre = (x0, x1, y0, y1, telhado) => {
+  p.ret(x0, y0, x1 - x0, y1 - y0, SIL);
+  for (let y = y0; y < y1; y++) p.set(x1 - 1, y, BORDA);
+  const meio = (x0 + x1 - 1) / 2, larg = (x1 - x0) / 2 + 1;
+  for (let i = 0; i < telhado; i++) {
+    const w = Math.round(larg * (i / telhado));
+    for (let x = Math.round(meio - w); x <= Math.round(meio + w); x++) p.set(x, y0 - telhado + i, x > meio ? '#3a2462' : '#2a1848');
+  }
+  return [meio, y0 - telhado];
+};
+p.ret(84, 182, 56, 22, SIL); for (let x = 84; x < 140; x += 3) p.ret(x, 180, 2, 2, SIL); for (let y = 182; y < 204; y++) p.set(139, y, BORDA);
+torre(74, 86, 168, 206, 12);
+torre(136, 147, 174, 206, 10);
+const [fx, fy] = torre(103, 117, 146, 182, 18);
+p.ret(Math.round(fx), fy - 7, 1, 7, '#6b5a90'); p.ret(Math.round(fx) + 1, fy - 7, 5, 3, '#e0566a'); p.ret(Math.round(fx) + 1, fy - 7, 5, 1, '#ff8290');
+for (const [x, y] of [[78, 178], [78, 190], [140, 184], [108, 156], [112, 156], [110, 168], [92, 190], [100, 192], [122, 190], [130, 192], [114, 196]]) {
+  p.ret(x, y, 2, 3, JAN); brilho(x + 1, y + 1, 5, '#ffcf6a', 0.25);
+}
+p.ret(106, 196, 8, 10, '#0f0a20'); p.ret(107, 195, 6, 1, '#0f0a20');
+
+// ---------- vilarejo (direita) ----------
+const casa = (x, y, w, h) => {
+  p.ret(x, y, w, h, SIL);
+  for (let i = 0; i <= w / 2 + 1; i++) p.ret(x - 1 + i, y - 1 - i, w + 2 - 2 * i, 1, i < 2 ? '#3a2462' : '#2a1848');
+  p.ret(x + 2, y + 2, 2, 2, JAN); brilho(x + 3, y + 3, 5, '#ffcf6a', 0.22);
+  if (w > 9) p.ret(x + w - 4, y + 2, 2, 2, JAN);
+};
+casa(454, 224, 11, 10); casa(470, 219, 13, 15); casa(488, 226, 9, 9); casa(502, 222, 12, 12);
+p.ret(477, 202, 3, 8, SIL); // chaminé
+for (let i = 0; i < 6; i++) p.set(478 + Math.round(Math.sin(i) * 1.5), 200 - i * 2, '#5a4a80');
+
+// ---------- floresta ----------
+const pinheiro = (x, base, h, cor, luz) => {
+  for (let i = 0; i < h; i++) {
+    const w = Math.floor(i * 0.42) - (i % 5 === 4 ? 1 : 0);
+    for (let dx = -w; dx <= w; dx++) p.set(x + dx, base - h + i, dx === w && i % 5 > 1 ? luz : cor);
+  }
+};
+p.ret(0, 228, W, HORIZ - 228, '#160f2c');
+for (let x = -4; x < W + 4; x += 3 + Math.floor(rnd() * 4)) {
+  const centro = Math.abs(x - 320) < 110;
+  pinheiro(x, HORIZ + 1, (centro ? 6 : 10) + Math.floor(rnd() * (centro ? 8 : 16)), '#160f2c', '#2c2052');
+}
+
+// ---------- lago (reflexo) ----------
+for (let y = HORIZ; y < H; y++) for (let x = 0; x < W; x++) {
+  const onda = Math.round(Math.sin(y * 0.9 + x * 0.02) * ((y - HORIZ) / 30));
+  const src = get(x + onda, 2 * HORIZ - y - 1);
+  p.set(x, y, misturar(src, '#120c2a', 0.42 + (y - HORIZ) / 300));
+}
+for (let i = 0; i < 160; i++) {
+  const y = HORIZ + 2 + Math.floor(rnd() * 70), x = Math.floor(rnd() * W), l = 2 + Math.floor(rnd() * 7);
+  for (let k = 0; k < l; k++) p.set(x + k, y, misturar(get(x + k, y), '#b8a6ea', 0.35));
+}
+for (let y = HORIZ + 2; y < 300; y += 2) { // brilho da lua na água
+  const w = Math.max(1, 9 - (y - HORIZ) / 9);
+  if (rnd() < 0.25) continue;
+  const o = Math.round((rnd() - 0.5) * 4);
+  for (let x = Math.round(LX - w + o); x <= LX + w + o; x++) p.set(x, y, rnd() < 0.7 ? '#f6efd2' : '#bfb0e8');
+}
+
+// ---------- margem da frente ----------
+const margem = (x) => 302 + 7 * Math.sin(x * 0.014 + 0.4) + 3 * Math.sin(x * 0.061) - 6 * Math.exp(-((x - 320) ** 2) / 9000);
+for (let x = 0; x < W; x++) {
+  const t = Math.floor(margem(x));
+  for (let y = t; y < H; y++) p.set(x, y, y < t + 2 ? '#2b2052' : Pix.tom(['#1a1334', '#120d26', '#0c0819'], (y - t) / 50, x, y));
+  if (rnd() < 0.5) { const hh = 1 + Math.floor(rnd() * 3); for (let k = 1; k <= hh; k++) p.set(x, t - k, '#221a44'); }
+}
+const junco = (x, base, h) => {
+  for (let i = 0; i < h; i++) p.set(x + Math.round(Math.sin(i / h * 1.4) * 2), base - i, '#0c0819');
+  const tx = x + Math.round(Math.sin(1.4) * 2);
+  p.ret(tx - 1, base - h - 5, 3, 6, '#160f2a'); p.set(tx, base - h - 6, '#0c0819');
+};
+for (const [x, h] of [[8, 46], [14, 38], [22, 52], [31, 30], [40, 40], [596, 44], [604, 54], [613, 36], [622, 48], [631, 30]]) junco(x, H - 1, h);
+
+// ---------- livro aberto com brilho ----------
+const BX = 320, BY = 316;
+brilho(BX, BY + 4, 80, '#ffcf7a', 0.55);
+brilho(BX, BY + 4, 36, '#fff0c0', 0.5);
+for (const s of [-1, 1]) {
+  for (let dx = 0; dx <= 50; dx++) { // capa
+    const t = dx / 50, top = Math.round(BY - 4 * Math.sin(t * Math.PI) + 1), bot = Math.round(BY + 28 - 1 * Math.sin(t * Math.PI));
+    for (let y = top; y <= bot + 2; y++) p.set(BX + s * dx, y, dx > 48 || y > bot ? '#5a1c30' : '#7d2a40');
+  }
+  for (let dx = 0; dx <= 46; dx++) { // páginas
+    const t = dx / 46, top = Math.round(BY - 5 * Math.sin(t * Math.PI)), bot = Math.round(BY + 26 - 2 * Math.sin(t * Math.PI));
+    for (let y = top; y <= bot; y++) {
+      let c = dx < 3 ? '#d7c49a' : dx > 43 ? '#e6d4a8' : '#f7ebc8';
+      if (y >= bot - 1) c = '#cdb88c';
+      if (dx > 6 && dx < 40 && (y - top) % 4 === 3 && y < bot - 3 && rnd() > 0.18) c = '#bfa77e';
+      p.set(BX + s * dx, y, c);
+    }
+  }
+}
+p.ret(BX, BY - 1, 1, 30, '#a88c62');
+// faíscas subindo do livro
+for (let i = 0; i < 70; i++) {
+  const sobe = Math.pow(rnd(), 0.8), y = Math.round(BY - 6 - sobe * 70);
+  const x = Math.round(BX + (rnd() - 0.5) * (20 + sobe * 120));
+  const c = rnd() < 0.5 ? '#ffe9a0' : rnd() < 0.5 ? '#ffc861' : '#fff8e0';
+  p.set(x, y, c);
+  if (rnd() < 0.22) { for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) p.set(x + dx, y + dy, '#f0a050'); }
+}
+// vaga-lumes
+for (let i = 0; i < 26; i++) {
+  const x = Math.floor(rnd() * W), y = 244 + Math.floor(rnd() * 100);
+  if (Math.abs(x - BX) < 60 && y > 300) continue;
+  for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) p.set(x + dx, y + dy, misturar(get(x + dx, y + dy), '#c8ff7a', 0.4));
+  p.set(x, y, '#eaffb0');
+}
+
+// ---------- título ----------
+const mascara = (texto, escala) => {
+  const pts = new Set();
+  const ctx = { set fillStyle(v) {}, fillRect(x, y, w, h) { for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) pts.add((x + i) + ',' + (y + j)); } };
+  desenharTexto(ctx, texto, 0, 0, '#fff', escala);
+  const arr = [...pts].map((s) => s.split(',').map(Number));
+  const xs = arr.map((a) => a[0]), ys = arr.map((a) => a[1]);
+  return { arr, w: Math.max(...xs) + 1, y0: Math.min(...ys), y1: Math.max(...ys) + 1 };
+};
+const limites = [];
+const titulo = (texto, escala, topoLetra, cores, contorno, sombra) => {
+  const m = mascara(texto, escala), ox = Math.round((W - m.w) / 2), oy = topoLetra - 2 * escala;
+  const tem = new Set(m.arr.map(([x, y]) => (x + ox) + ',' + (y + oy)));
+  const pts = [...tem].map((s) => s.split(',').map(Number));
+  for (const [x, y] of pts) for (let k = 1; k <= Math.ceil(escala / 2); k++) p.set(x + k, y + k + 1, sombra);
+  for (const [x, y] of pts) for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, -1], [-1, 1], [1, 1]]) if (!tem.has((x + dx) + ',' + (y + dy))) p.set(x + dx, y + dy, contorno);
+  for (const [x, y] of pts) {
+    const v = (y - topoLetra) / (7 * escala);
+    const c = v < 0 ? cores[0] : cores[Math.min(cores.length - 1, Math.floor(v * cores.length))];
+    p.set(x, y, c);
+  }
+  for (const [x, y] of pts) if (!tem.has(x + ',' + (y - 1)) && y >= topoLetra) p.set(x, y, '#fffdf2'); // brilho no topo das letras
+  limites.push({ texto, x0: ox - 1, x1: ox + m.w + Math.ceil(escala / 2), y0: m.y0 + oy - 1, y1: m.y1 + oy + Math.ceil(escala / 2) + 1 });
+  return { ox, w: m.w };
+};
+titulo('HISTÓRIAS', 6, 148, ['#fff3cf', '#ffe39a', '#ffcd66', '#f7a94a', '#ea8040'], '#2a1240', '#120822');
+const sub = titulo('EM PIXEL', 3, 200, ['#f4ecff', '#e2d4ff', '#c9b6f5'], '#2a1240', '#120822');
+const estrelinha = (cx, cy) => {
+  p.set(cx, cy, '#fff3cf'); for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) p.set(cx + dx, cy + dy, '#ffcd66');
+  for (const [dx, dy] of [[2, 0], [-2, 0], [0, 2], [0, -2]]) p.set(cx + dx, cy + dy, '#ea8040');
+};
+const ym = 200 + 10;
+for (const s of [-1, 1]) {
+  const ini = s < 0 ? sub.ox - 10 : sub.ox + sub.w + 10;
+  estrelinha(ini, ym);
+  for (let k = 5; k < 40; k++) if (k % 2 === 0 || k < 20) p.set(ini + s * k, ym, k < 20 ? '#ffcd66' : '#b8773e');
+}
+
+// ---------- Three.js: amplia 4x sem suavizar ----------
+const tex = new THREE.CanvasTexture(p.paraCanvas());
+tex.magFilter = tex.minFilter = THREE.NearestFilter; tex.generateMipmaps = false; tex.colorSpace = THREE.SRGBColorSpace;
+const renderer = new THREE.WebGLRenderer({ preserveDrawingBuffer: true, antialias: false });
+renderer.setPixelRatio(1); renderer.setSize(W * ESC, H * ESC, false); renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+const cena = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+cena.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshBasicMaterial({ map: tex })));
+renderer.render(cena, cam);
+window.limites = limites;
+window.resultado = renderer.domElement.toDataURL('image/png');
+</script>
+</body>
+</html>

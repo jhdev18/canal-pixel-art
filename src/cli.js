@@ -12,6 +12,8 @@ import { abrirNavegador, ehSoftware } from './navegador.js';
 import { gerarSom, NOMES_SONS, AMBIENTES } from './audio/sintetizador.js';
 import { escreverWavMono } from './audio/mixer.js';
 import { carregarBiblioteca, listarSpritesBiblioteca, PASTA_BIBLIOTECA } from './biblioteca.js';
+import { gerarFotos } from './fotos.js';
+import { gerarCatalogo } from './catalogo.js';
 
 const [cmd, ...resto] = process.argv.slice(2);
 const flags = {}, pos = [];
@@ -145,7 +147,7 @@ async function verificarNarracao(nome) {
   const r = lerRoteiro(dir);
   const n = await encontrarNarracoes(dir, r, cfg.ffmpeg);
   if (!n.mapa.size) throw new Error(`Nenhum áudio de narração em ${n.pasta} (nome esperado: narracao-completa.mp3).`);
-  console.log(n.unico ? `\n▶ ${n.unico} → ${n.trechos} trechos` : `\n▶ Narração por cena (${n.mapa.size} arquivos)`);
+  console.log(n.unico ? `\n▶ ${n.unico} → ${n.trechos} trechos (${n.metodo === 'fala' ? 'alinhado pelo que é falado' : 'cortado pelas pausas'})` : `\n▶ Narração por cena (${n.mapa.size} arquivos)`);
   const linhas = [];
   for (const [i, v] of [...n.mapa.entries()].sort((a, b) => a[0] - b[0])) {
     const txt = r.cenas[i].narracaoTexto || '';
@@ -164,15 +166,14 @@ function narracao(nome) {
   if (!falas.length) throw new Error('Nenhuma cena tem "narracaoTexto" no roteiro.');
   const pasta = path.join(dir, PASTA_NARRACAO);
   fs.mkdirSync(pasta, { recursive: true });
-  const pausa = '\n\n<break time="1.0s" />\n\n';
+  const pausa = '\n\n';   // um parágrafo por cena (a pausa natural da voz basta para o corte; sem <break>, a fala flui melhor)
   fs.writeFileSync(path.join(pasta, 'TEXTO-COMPLETO.txt'), falas.map((f) => f.texto).join(pausa) + '\n');
   const narrador = r.narrador ? ` (narrado por ${r.narrador})` : '';
   const md = [`# Narração — ${r.titulo || nome}${narrador}`, '',
     'Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como',
     '**`narracao-completa.mp3`** (também serve .wav, .m4a, .ogg ou .flac).', '',
-    'O gerador corta o áudio nas pausas: deixe uma pausa clara (meio segundo ou mais) entre as falas de cada cena.',
-    'O texto já vem com `<break time="1.0s" />` entre as cenas — no ElevenLabs essa marcação cria a pausa (se a voz',
-    'ignorar a marcação, apague-a e deixe só a linha em branco, ou gere com reticências no fim de cada fala).', '',
+    'O texto vem com um parágrafo por cena. O gerador corta o áudio nas pausas naturais entre as frases (0,2 s ou mais)',
+    'e escolhe as que combinam com cada cena; confira com `npm run narracao -- ' + nome + ' --verificar`.', '',
     `São **${falas.length} falas** (uma por cena com narração):`, '', '| Cena | Fala |', '|---|---|',
     ...falas.map((f) => `| ${f.n} | ${f.texto.replace(/\|/g, '/')} |`), '',
     'Depois rode `npm run rascunho -- ' + nome + '`: o terminal mostra em quantos trechos o áudio foi cortado.'].join('\n');
@@ -214,10 +215,11 @@ SPRITES:     heroi, amiga, velho, guarda, crianca, pessoa (com "cores"), mago, s
              antigos: menina-capa-antigo, robo-semaforo-antigo
              moradores: policial, prefeito, aluno, aluna, professora, padeiro, caixa
              cidade: escola, delegacia, padaria, mercado, farmacia, carro-policia, banco-praca, ponto-onibus, hidrante
+             casa (diorama): casa-sala, casa-cozinha, casa-quarto, casa-banheiro (+ -noite); mae, mae-avental, menino-topete
              (ou "arquivo:meu.png" de sprites/ do projeto ou de biblioteca/sprites/)
 AÇÕES:       ${Object.keys(DURACAO_PADRAO).join(', ')}
-CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, nenhum
-VISTAS:      lateral (padrão), diagonal (rua desenhada 2:1), avenida (perspectiva)
+CLIMAS:      chuva, neve, vagalumes, brasas, poeira, folhas, calor, neblina, polen, nenhum
+VISTAS:      diorama (padrão: rua desenhada 2:1; com "comodo" = interior), lateral, 3d (guardado), avenida (perspectiva)
 TRANSIÇÕES:  dither, fade, iris, pixelizar, corte
 PALETAS:     nenhuma (padrão), posterizar, retro32, verde4, sepia, noir, quente, fria
 EMOÇÕES:     !, ?, coracao, ..., zzz
@@ -240,7 +242,7 @@ SPRITES PNG: ${listarSpritesBiblioteca().join(', ') || '(nenhum em biblioteca/sp
 const AJUDA = `
 Gerador de vídeos pixel art (Three.js + GPU)
 
-  npm run novo -- meu-video         cria projetos/meu-video  (--modelo diagonal: começa de um modelo; veja FORMAS-DE-VIDEO.md)
+  npm run novo -- meu-video         cria projetos/meu-video  (--modelo diorama: começa de um modelo; veja FORMAS-DE-VIDEO.md)
   npm run rascunho -- meu-video     rascunho rápido (baixa resolução, só narração) + storyboard.png
   npm run final -- meu-video        versão final 1080p com efeitos visuais e sonoros
   npm run previa -- meu-video       prévia em tempo real no navegador
@@ -248,6 +250,10 @@ Gerador de vídeos pixel art (Three.js + GPU)
   npm run narracao -- meu-video     monta o texto da narração para colar no ElevenLabs
   npm run sfx                       exporta os efeitos sonoros para sfx/_gerados
   npm run sprites                   gera sprites-disponiveis.png
+  npm run fotos -- meu-video        imagens paradas de cada cena (sem vídeo) em saida/fotos/
+  npm run vitrine                   imagens das principais mudanças (projeto "vitrine")
+  npm run catalogo                  lista todos os assets em biblioteca/CATALOGO.md
+  npm run conferir -- meu-video     confere sem renderizar: gente coberta, continuidade, elenco, limites
   npm run lista [-- projeto]        lista fundos, sprites, sons e a biblioteca (personagens, cenários)
 
 Opções: --fps 60   --escala 4   --crt   --formato normal|vertical|ambos
@@ -280,6 +286,10 @@ try {
     case 'narracao': await narracao(pos[0]); break;
     case 'sfx': sfx(); break;
     case 'sprites': await sprites(); break;
+    case 'fotos': if (!pos[0]) throw new Error('Uso: npm run fotos -- nome-do-projeto'); await gerarFotos(pos[0], { escala: Number(flags.escala) || 4 }); break;
+    case 'vitrine': await gerarFotos('vitrine', { escala: Number(flags.escala) || 4 }); break;
+    case 'catalogo': { const c = await gerarCatalogo(); console.log(`✔ ${c.arq}\n  ${c.sprites} sprites, ${c.personagens} personagens, ${c.cenarios} cenários`); break; }
+    case 'conferir': { if (!pos[0]) throw new Error('Uso: npm run conferir -- nome-do-projeto'); const { conferir } = await import('./conferir.js'); await conferir(pos[0]); break; }
     case 'lista': await lista(); break;
     default: console.log(AJUDA);
   }

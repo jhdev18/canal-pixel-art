@@ -17,9 +17,16 @@
     "sfx": "node src/cli.js sfx",
     "sprites": "node src/cli.js sprites",
     "lista": "node src/cli.js lista",
-    "narracao": "node src/cli.js narracao"
+    "narracao": "node src/cli.js narracao",
+    "fotos": "node src/cli.js fotos",
+    "vitrine": "node src/cli.js vitrine",
+    "catalogo": "node src/cli.js catalogo",
+    "conferir": "node src/cli.js conferir"
   },
   "engines": {
     "node": ">=18"
+  },
+  "optionalDependencies": {
+    "@huggingface/transformers": "3.5.1"
   }
 }

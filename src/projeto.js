@@ -5,6 +5,7 @@ import { RAIZ } from './config.js';
 import { decodificarAudio } from './ffmpeg.js';
 import { SR } from './audio/sintetizador.js';
 import { lerJsonFlexivel, aplicarBiblioteca, carregarBiblioteca, PASTA_BIBLIOTECA } from './biblioteca.js';
+import { cortesPelaFala } from './alinhar.js';
 
 export const PASTA_NARRACAO = 'narracao';
 export const EXT_AUDIO = ['.mp3', '.wav', '.m4a', '.ogg', '.flac', '.aac', '.opus', '.webm'];
@@ -33,7 +34,7 @@ export function lerRoteiro(dir) {
 export const NOME_NARRACAO_UNICA = /^(narracao[-_ ]?completa|narracao|completa)$/i;
 
 // pesos: tamanho do texto de cada cena (para saber quanto cada trecho deve durar).
-function dividirPorPausas(dados, partes, pesos = null) {
+export function dividirPorPausas(dados, partes, pesos = null, fatorLimiar = null) {
   const QUADRO = Math.round(SR * 0.01);                           // janelas de 10 ms
   const n = Math.floor(dados.length / QUADRO);
   const rms = new Float32Array(n);
@@ -44,7 +45,7 @@ function dividirPorPausas(dados, partes, pesos = null) {
   }
   const ordenado = Array.from(rms).sort((a, b) => a - b);
   const p95 = ordenado[Math.floor(n * 0.95)] || 0;
-  const limiar = Math.max(0.004, p95 * 0.06);
+  const limiar = Math.max(0.004, p95 * (fatorLimiar ?? 0.06));
   const silencio = (i) => rms[i] < limiar;
   // pausas = trechos de silêncio de pelo menos 0,2 s (fora do começo e do fim)
   let ini = 0; while (ini < n && silencio(ini)) ini++;
@@ -83,12 +84,13 @@ function dividirPorPausas(dados, partes, pesos = null) {
   const cortesIdx = [];
   for (let k = K - 2, a = ult; k >= 0; k--) { cortesIdx.unshift(a); a = de[k][a]; }
   const cortes = cortesIdx.map((i) => pausas[i - 1]);
+  // trechos contínuos: cada corte cai no meio da pausa e a pausa fica (metade em cada cena) — a voz não perde o ritmo
   const trechos = [];
-  let inicio = ini;
-  for (const c of [...cortes, { a: fim + 1, b: fim + 1 }]) {
-    const a = Math.max(0, inicio - 5), b2 = Math.min(n, c.a + 5);       // 50 ms de folga
-    trechos.push({ dados: dados.slice(a * QUADRO, b2 * QUADRO), de: a / 100, ate: b2 / 100 });
-    inicio = c.b;
+  let inicio = Math.max(0, ini - 5);
+  for (const c of [...cortes, { meio: Math.min(n, fim + 15) }]) {
+    const b2 = Math.round(c.meio);
+    trechos.push({ dados: dados.slice(inicio * QUADRO, b2 * QUADRO), de: inicio / 100, ate: b2 / 100 });
+    inicio = b2;
   }
   return { trechos, pausas: cortes.map((c) => c.dur) };
 }
@@ -103,10 +105,36 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
     let alvo = cenas.map((c, i) => (c.narracaoTexto ? i : -1)).filter((i) => i >= 0);
     if (!alvo.length) alvo = cenas.map((c, i) => i).filter((i) => cenas[i].narracao !== false);
     const dados = await decodificarAudio(ff, path.join(pasta, unico));
-    const r = dividirPorPausas(dados, alvo.length, alvo.map((i) => (cenas[i].narracaoTexto || 'x').length));
+    // peso de cada cena = letras + as pausas entre as frases dela (cada pausa interna vale ~6 letras de fala)
+    const peso = (t) => t.length + 6 * ((t.match(/[.!?:…]\s/g) || []).length);
+    // 1º: pelo que é falado (reconhecimento de fala) — corta entre a última palavra de uma cena e a primeira da outra
+    let pelaFala = null;
+    if (alvo.length > 1 && process.env.ALINHAR_FALA !== '0') {
+      try { pelaFala = await cortesPelaFala(dados, SR, alvo.map((i) => cenas[i].narracaoTexto || ''), pasta, path.join(pasta, unico)); }
+      catch (e) { console.log(`  (reconhecimento de fala indisponível: ${String(e.message || e).split('\n')[0]} — usando as pausas)`); }
+    }
+    if (pelaFala) {
+      const limites = [0, ...pelaFala.map((t) => Math.round(t * SR)), dados.length];
+      alvo.forEach((ci, k) => {
+        const a = limites[k], b = limites[k + 1];
+        mapa.set(ci, { arquivo: `${unico} [${(a / SR).toFixed(1)}s–${(b / SR).toFixed(1)}s] fala`, duracao: (b - a) / SR, dados: dados.slice(a, b), continuo: true });
+      });
+      return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: alvo.length, metodo: 'fala' };
+    }
+    // 2º (reserva): pelas pausas. O nível de "silêncio" muda de áudio para áudio (respiração, ruído, emoções): testa vários e fica com o corte
+    // cujos trechos mais combinam com o tamanho do texto de cada cena
+    const pesos = alvo.map((i) => peso(cenas[i].narracaoTexto || 'x'));
+    let r = null, melhorErro = Infinity;
+    for (const fl of [0.06, 0.1, 0.15, 0.2, 0.25]) {
+      const t = dividirPorPausas(dados, alvo.length, pesos, fl);
+      if (t.erro) { if (!r) r = t; continue; }
+      const durs = t.trechos.map((x) => x.ate - x.de), k = durs.reduce((a, b) => a + b, 0) / pesos.reduce((a, b) => a + b, 0);
+      const erro = durs.reduce((s2, d, i) => s2 + Math.abs(d / (pesos[i] * k) - 1), 0) / durs.length;
+      if (erro < melhorErro) { melhorErro = erro; r = t; }
+    }
     if (r.erro) throw new Error(`Narração única (${unico}): ${r.erro}`);
-    r.trechos.forEach((t, k) => mapa.set(alvo[k], { arquivo: `${unico} [${t.de.toFixed(1)}s–${t.ate.toFixed(1)}s]`, duracao: t.dados.length / SR, dados: t.dados }));
-    return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length };
+    r.trechos.forEach((t, k) => mapa.set(alvo[k], { arquivo: `${unico} [${t.de.toFixed(1)}s–${t.ate.toFixed(1)}s]`, duracao: t.dados.length / SR, dados: t.dados, continuo: true }));
+    return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length, metodo: 'pausas' };
   }
   const porNumero = new Map();
   for (const f of arquivos) {

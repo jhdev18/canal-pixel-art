@@ -28,7 +28,7 @@ function somar(destino, fonte, inicio, ganho, taxa = 1, limite = Infinity) {
     let v;
     if (taxa === 1) v = fonte[i];
     else { const p = i * taxa, k = Math.floor(p), f = p - k; v = fonte[k] * (1 - f) + (fonte[k + 1] ?? 0) * f; }
-    destino[j] += v * ganho;
+    if (Number.isFinite(v)) destino[j] += v * ganho;   // amostra inválida de um som nunca apaga a narração
   }
 }
 
