@@ -156,6 +156,10 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
   `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
   menos — preferir `bug` ou zoom 2 nesses casos.
+- **Cenas de jogo acontecem DENTRO do `mundo-bloco`** (pedido do usuário): chat = balão `falar` em cima do avatar (como o chat de balão do
+  jogo, com som `chat`); pausa = avatares parados no ar (`"y"` + `"pose": "pulando"`) com `icone-pausa` em cima (`"sobre"`, `dy` 3.0);
+  socorro = avatares andando até a frente da câmera (zoom 2, câmera z ~1.2) em `bug`, pulando com `tremer`. O `tela-jogo` fica só para um
+  close rápido (com o `mundo-bloco` no fundo), não para contar a cena. Teste: vitrine 69–71.
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 
 ### Medieval (🧪)
