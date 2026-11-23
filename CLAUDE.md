@@ -131,7 +131,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); a sombra anda na sua frente — ia esperar (`nesse-mundo-sombras-v2`, v2 das sombras); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -366,7 +366,7 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
 ## Regras de cena (erros que se repetiram — evitar em TODO vídeo)
 Antes de entregar qualquer roteiro (novo ou ajustado), rodar **`npm run conferir -- <projeto>`** (`src/conferir.js`, não
 renderiza) e corrigir cada aviso, ou explicar ao usuário por que ele não é um problema.
-**Vídeos já postados** têm `"postado": true` no roteiro (sombras, gatos, estrelas, caderno, guardiões, números, relógio): o conferir
+**Vídeos já postados** têm `"postado": true` no roteiro (os do canal antigo foram apagados; no canal novo, ainda nenhum): o conferir
 os pula e eles **não devem ser alterados** (pedido do usuário). Ao postar um vídeo novo, marcar `"postado": true` no roteiro dele.
 **O que o `npm run conferir` acusa** (cada aviso diz a cena, quem e o que fazer): `[coberto]` atrás de objeto alto ou poste fixo
 da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barraca) ou dos caixotes do mercado; `[continuidade]`
@@ -501,30 +501,20 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   O usuário não marca cortes à mão.
 
 ## Estado atual
-- **Episódio 1** em `projetos/episodio-01` ("Nada acontece em Vila Serena"): protagonista **Bia**
-  (`menina-capa`), padeiro **seu Tonho**; 9 cenas; final com o público decidindo (comentar 1 ou 2).
-  Aguardando o usuário gravar a narração e renderizar.
-- **Vídeos "Nesse Mundo" — rascunhos prontos, aguardando o usuário gravar a narração e renderizar** (o usuário aponta
-  os problemas; ajustar só o que ele apontar). Todos só na diagonal:
-  `projetos/nesse-mundo-estrelas` (curto, 13 cenas, ~53 s; usa `rua-estrelas` do próprio projeto; cenas na rua e
-  cenas só de céu separadas), `projetos/nesse-mundo-caderno` (curto, 12 cenas, ~52 s — "Nessa cidade, toda noite
-  alguém some": o caderno da Bia escolhe quem some; substituiu o dos monstros), `projetos/nesse-mundo-tempo` (longo,
-  28 cenas, ~2:36 — a 1ª versão deu 3:04, foram tiradas 5 frases; usa `praca-seca`, `quarto-menina-noite-diorama` e `rua-alagada` do `cenarios.json` do projeto).
-  Texto do ElevenLabs em `narracao/TEXTO-COMPLETO.txt` de cada um.
-- **Leva 2 "Nesse Mundo" — roteiros prontos (diorama), aguardando narração/render:** curtos `nesse-mundo-sombras`
-  (12 cenas, fala ~45 s; protótipo `sombraPessoa`), `nesse-mundo-fantasminha` (13 cenas, ~47 s; fantasmas protótipo),
-  `nesse-mundo-relogio` (12 cenas, ~48 s; `vovo`/`relogio-praca` protótipo); longos `nesse-mundo-espirro` (33 cenas,
-  ~2:22; só aprovados) e `nesse-mundo-cachorros` (32 cenas, ~2:24; cães = `cao-guarda`). Cada um tem `ROTEIRO.md`
-  (os assets novos sugeridos já foram feitos como protótipo — leva 3 e espirro)
-  e `PUBLICACAO.md`.
-- **Leva 3 (feita com as táticas de retenção do vídeo das sombras), aguardando narração/render:** curtos `nesse-mundo-gatos`
-  (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes que viram monstros só enquanto as pessoas estão de costas (cenas 1–2); todos viram `gato-monstro` depois que a Bia leva o prefeito; cena 11 = a sombra leva o prefeito; cena 12 = cara `pior` — o monstro 3D foi tirado, o usuário não gostou) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
-  `cadeado`). Cada um tem `ROTEIRO.md` com o checklist de retenção cumprido e `PUBLICACAO.md`; `npm run conferir` sem avisos.
-- **Leva Roblox (curtos, de dia, aguardando narração/render):** `nesse-mundo-avatar` (terror, 14 cenas, fala ~48 s), `nesse-mundo-pausa`
-  (comédia, 14 cenas, ~49 s) e `nesse-mundo-espera` (emocional, 14 cenas, ~51 s); scripts `c13-avatar.mjs`, `c14-pausa.mjs`, `c15-espera.mjs`;
-  `ROTEIRO.md` com o checklist e `PUBLICACAO.md`; `npm run conferir` sem avisos (só o [parado] da cena 7 do avatar, de propósito: o Léo para para sorrir).
-- **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
-  `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).
+- **Canal novo "Pixelverso"** (o antigo foi abandonado por queda de alcance). Pedido do usuário: os projetos dos vídeos antigos
+  foram **apagados** de `projetos/` (episodio-01 e todos os `nesse-mundo-*` do canal antigo; ficam no histórico do git e os
+  scripts continuam em `ferramentas/roteiros/`). **Não repostar vídeos antigos iguais no canal novo**: fazer versões novas (v2).
+- **Vídeos do canal novo, aguardando narração/render:**
+  - `nesse-mundo-sombras-v2` (1º vídeo do canal; terror de dia, 13 cenas, fala ~44 s; script `c16-sombras-v2.mjs`): mesma regra das
+    sombras com texto, cenas e final novos — a sombra anda na frente, a da Bia fica grudada atrás; virada "não iam na frente para guiar,
+    iam para esperar". `npm run conferir` sem avisos.
+  - `nesse-mundo-avatar-v2` (Roblox, terror de dia, 14 cenas, ~48 s; script `c17-avatar-v2.mjs`): v2 das crianças substituídas pelos
+    avatares — sombra quadrada nas crianças trocadas, a Bia abre o jogo pela 1ª vez e o avatar sem rosto dela sorri no fim.
+    `npm run conferir`: só [parado] nas cenas 7–8, de propósito (o Léo e a turma param para mostrar o sorriso macabro).
+  - Roblox da leva anterior, ainda não postados: `nesse-mundo-pausa` (comédia, 14 cenas, ~49 s) e `nesse-mundo-espera` (emocional,
+    14 cenas, ~51 s); scripts `c14-pausa.mjs`, `c15-espera.mjs`.
+  Cada um tem `ROTEIRO.md` (checklist de retenção) e `PUBLICACAO.md`; texto do ElevenLabs em `narracao/TEXTO-COMPLETO.txt`.
+- `projetos/exemplo` continua (é o exemplo de formato usado no README).
 - **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
   reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no
   centro, fundo escurecido com `"escurecer"`); `"rua": { "alagada": true }`; sprites `viatura-iso` (parado/sirene),
