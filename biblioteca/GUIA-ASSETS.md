@@ -162,7 +162,7 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   esperando, socorro) no lobby.
 - **`mundo-bloco` v4 (agora é o `mundo-bloco-corrida`)** 🧪 (pedido do usuário: "fundo e peças no nada" estavam estranhos): praça de baseplate (z -0.5 a 6.5)
   cercada de **gramado**; no fundo (grama, z 7.4–9) um bairro de 4 `casa-bloco` e árvores; o percurso fica na beira de trás da praça
-  (z 5.4–6.2) e é **todo apoiado no chão** (escada de peças, 2 blocos neon, checkpoint, treliça com a plataforma em cima, chegada e
+  (z 5.4–6.2) e é **todo apoiado no chão** (escada de peças, 2 blocos neon, checkpoint, escada verde, chegada e
   checkpoint 2). Nada flutuando sem apoio. Avatares em z ~1.4–4.4.
 - **`mundo-bloco` v3 — com referências dos jogos atuais** 🧪: peças de **plástico liso** (sem os pinos de LEGO; `{ pinos: true }` no código volta),
   baseplate **cinza com grade** que vai longe até o fundo (sem a borda do céu na diagonal; `"rua": { "baseplateClassica": true }` volta aos pinos),
