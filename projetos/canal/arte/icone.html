@@ -2,50 +2,95 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Ícone — Vila Serena</title>
+<title>Ícone — Pixelverso</title>
 <link rel="icon" href="data:,">
 <style>html,body{margin:0;background:#000}canvas{image-rendering:pixelated;max-width:100vw}</style>
 <script type="importmap">{ "imports": { "three": "/vendor/three/three.module.js" } }</script>
 </head>
 <body>
 <script type="module">
-// Foto de perfil do canal "Vila Serena": 200x200 ampliada 4x (800x800). O YouTube corta em círculo (raio ~95).
-// A Bia de perto, de dia, com os telhados da cidade atrás.
+// Foto de perfil do canal "Pixelverso": 200x200 ampliada 4x (800x800). O YouTube corta em círculo (raio ~95).
+// A Bia em pé num planetinha feito dos mundos do canal (castelo, cidade, fábrica, blocos), num céu de estrelas colorido.
 import { criarTela, quadro, desenharSprite, finalizar, Pix, misturar } from './comum.js';
 
-const T = criarTela(200, 200, 11), { p, brilho } = T, CX = 100, CY = 100;
-const CEU = ['#3f8fd8', '#4f9fe0', '#64b0e8', '#7cc0ee', '#98d0f2', '#b6def4', '#d4ebf2'];
-for (let y = 0; y < 200; y++) for (let x = 0; x < 200; x++) p.set(x, y, Pix.tom(CEU, Math.pow(y / 150, 1.2), x, y));
-// sol no canto (longe da capa amarela)
-brilho(158, 42, 46, '#fff6c8', 0.6);
-p.circulo(158, 42, 16, (x, y, dx, dy) => (dx + dy > 0.8 ? '#ffd65a' : dx + dy < -0.7 ? '#fffbe0' : '#ffe98a'));
-// nuvens
-for (const [cx, cy, r] of [[26, 62, 9], [38, 58, 11], [50, 64, 8], [132, 76, 6], [142, 72, 8], [152, 77, 6]]) {
-  p.circulo(cx, cy + 2, r, '#b9d6ea'); p.circulo(cx, cy, r, (x, y, dx, dy) => (dy > 0.45 ? '#dcebf4' : '#ffffff'));
+const T = criarTela(200, 200, 21), { p, rnd, brilho } = T, CX = 100, CY = 100;
+// céu: roxo/azul vivo (não escuro), com estrelas
+const CEU = ['#2a3a9a', '#3a4ab0', '#5a52c0', '#7a5ac8', '#9a62c8', '#c070c0'];
+for (let y = 0; y < 200; y++) for (let x = 0; x < 200; x++) p.set(x, y, Pix.tom(CEU, Math.pow(y / 200, 1.1), x, y));
+for (let i = 0; i < 90; i++) {
+  const x = Math.floor(rnd() * 200), y = Math.floor(rnd() * 150), f = rnd();
+  p.set(x, y, f > 0.8 ? '#ffffff' : '#c8c0ff');
+  if (f > 0.93) for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) p.set(x + dx, y + dy, '#9a90e8');
 }
-// telhados da cidade
-const casa = (x, w, topo, parede, telh) => {
-  p.ret(x, topo, w, 200 - topo, parede);
-  for (let i = 0; i < 6; i++) p.ret(x - 3 + i, topo - 6 + i, w + 6 - 2 * i, 1, i === 0 ? misturar(telh, '#ffffff', 0.3) : telh);
-  for (let jx = x + 4; jx < x + w - 6; jx += 12) { p.ret(jx - 1, topo + 7, 8, 10, '#4a3a3a'); p.ret(jx, topo + 8, 6, 8, '#bfe4f6'); p.ret(jx, topo + 8, 6, 2, '#e8f6fc'); }
+// cubos flutuando no espaço
+desenharSprite(T, quadro('peca-vermelha'), 38, 84, 1);
+desenharSprite(T, quadro('cubo-grama'), 168, 70, 1);
+desenharSprite(T, quadro('moeda-bloco'), 62, 40, 1);
+desenharSprite(T, quadro('moeda-bloco'), 140, 30, 1);
+
+// planeta
+const PX = 100, PY = 236, PR = 112;
+brilho(PX, PY, PR + 22, '#ffd6f0', 0.45);
+// cada pedaço da superfície é um mundo (pelo ângulo)
+const mundo = (x, y) => {
+  const a = Math.atan2(y - PY, x - PX) * 180 / Math.PI; // -180..0 em cima
+  return a < -118 ? 'medieval' : a < -90 ? 'cidade' : a < -62 ? 'fabrica' : 'blocos';
 };
-casa(0, 46, 128, '#f6e2b4', '#a8603c');
-casa(44, 40, 116, '#e9a882', '#5b6fa8');
-casa(118, 40, 120, '#9fb7d6', '#34466e');
-casa(156, 48, 132, '#bfe0b0', '#4f8a4a');
-// a Bia grande
+p.circulo(PX, PY, PR, (x, y) => {
+  const d = Math.hypot(x + 0.5 - PX, y + 0.5 - PY), borda = PR - d, m = mundo(x, y);
+  const fundo = Math.min(1, borda / 60); // mais escuro para dentro do planeta
+  const tom = (cores) => Pix.tom(cores, fundo, x, y);
+  if (m === 'medieval') {
+    if (borda < 3) return '#7ac05a';
+    const lin = Math.floor(y / 6), col = (x + lin * 4) % 9;
+    return y % 6 === 0 || col === 0 ? tom(['#8a7a68', '#5a4e44']) : tom(['#c8b89c', '#8a7a68']);
+  }
+  if (m === 'cidade') {
+    if (borda < 2) return '#e6ddd0'; if (borda < 4) return '#b8aea2';
+    return borda > 12 && borda < 14 && Math.floor(x / 5) % 2 ? '#f0e6c8' : tom(['#5e6270', '#3a3c48']);
+  }
+  if (m === 'fabrica') return borda < 3 ? (Math.floor(x / 3) % 2 ? '#f0c030' : '#2a2a2a') : tom(['#b8b4ac', '#7a7670']);
+  const px = ((x % 6) + 6) % 6, py = ((y % 6) + 6) % 6; // pinos do jogo de blocos
+  return px >= 2 && px <= 3 && py >= 2 && py <= 3 ? tom(['#8ae070', '#4a9a3a']) : tom(['#5ac04a', '#2e7a2a']);
+});
+for (const ang of [-118, -90, -62]) {
+  const r = ang * Math.PI / 180;
+  for (let k = 0; k < PR; k++) {
+    const x = Math.round(PX + Math.cos(r) * k), y = Math.round(PY + Math.sin(r) * k);
+    p.set(x, y, '#ffffff'); p.set(x + 1, y, misturar(T.get(x + 1, y), '#ff7ad9', 0.5)); p.set(x - 1, y, misturar(T.get(x - 1, y), '#7af0ff', 0.5));
+  }
+}
+const sup = (x) => Math.round(PY - Math.sqrt(PR * PR - (x - PX) ** 2)); // altura da superfície em x
+// castelo (esquerda)
+const t1 = sup(36);
+p.ret(28, t1 - 30, 18, 32, '#b4b0c0'); for (let i = 0; i < 18; i += 4) p.ret(28 + i, t1 - 33, 3, 3, '#b4b0c0');
+for (let i = 0; i < 12; i++) { const l = Math.round(10 * (i / 12)); p.ret(37 - l, t1 - 46 + i, 2 * l + 1, 1, '#c0504a'); }
+p.ret(37, t1 - 52, 1, 6, '#6b5a50'); p.ret(38, t1 - 52, 5, 3, '#e8c040');
+p.ret(34, t1 - 12, 6, 12, '#3a2b2b'); p.ret(32, t1 - 24, 3, 4, '#3a2b40'); p.ret(40, t1 - 24, 3, 4, '#3a2b40');
+// prédio da cidade (perto da Bia, à esquerda)
+const t2 = sup(66);
+p.ret(56, t2 - 34, 22, 36, '#e9a882'); p.ret(54, t2 - 37, 26, 3, '#5b6fa8');
+for (const [x, y] of [[59, 28], [70, 28], [59, 16], [70, 16]]) { p.ret(x - 1, t2 - y - 1, 7, 8, '#4a3a3a'); p.ret(x, t2 - y, 5, 6, '#ffe7b0'); }
+// fábrica com chaminé (direita)
+const t3 = sup(140);
+p.ret(128, t3 - 26, 26, 30, '#c06848'); p.ret(146, t3 - 46, 7, 22, '#b05a40'); p.ret(145, t3 - 48, 9, 3, '#6a3a2e');
+for (let i = 0; i < 4; i++) p.circulo(150 + i * 3, t3 - 54 - i * 7, 3 + i, (x, y, dx, dy) => (dy > 0.3 ? '#c8c4cc' : '#eceaf0'));
+for (const x of [131, 139]) { p.ret(x - 1, t3 - 19, 7, 8, '#4a2a2a'); p.ret(x, t3 - 18, 5, 6, '#ffe3a0'); }
+// cubos empilhados (direita, mais baixo)
+desenharSprite(T, quadro('cubo-pedra'), 176, sup(176) + 6, 1);
+
+// a Bia em pé no topo do planeta
 const bia = quadro('menina-capa', 'parado');
-const ESC = 4, PES = 54 + bia.base * ESC;
-// contorno escuro em volta dela, para destacar do fundo
-const ox = Math.round(CX - (bia.w * ESC) / 2), oy = PES - bia.base * ESC;
-for (const [x, y] of bia.px) p.ret(ox + x * ESC - 2, oy + y * ESC - 2, ESC + 4, ESC + 4, '#2a1a14');
-desenharSprite(T, bia, CX, PES, ESC);
-// aro dourado no limite do círculo
+const ESC = 2, PES = PY - PR + 2, ox = Math.round(PX - (bia.w * ESC) / 2), oy = PES - bia.base * ESC;
+for (const [x, y] of bia.px) p.ret(ox + x * ESC - 1, oy + y * ESC - 1, ESC + 2, ESC + 2, '#2a1a3a');
+desenharSprite(T, bia, PX, PES, ESC);
+
+// aro no limite do círculo
 for (let y = 0; y < 200; y++) for (let x = 0; x < 200; x++) {
   const d = Math.hypot(x + 0.5 - CX, y + 0.5 - CY);
   if (d > 94 && d <= 97) p.set(x, y, '#ffc23c');
   else if (d > 97 && d <= 98.5) p.set(x, y, '#8a4a1a');
-  else if (d > 98.5) p.set(x, y, '#2a1a14');
+  else if (d > 98.5) p.set(x, y, '#1e1430');
 }
 finalizar(T, 4);
 </script>

@@ -2,149 +2,174 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<title>Banner — Vila Serena</title>
+<title>Banner — Pixelverso</title>
 <link rel="icon" href="data:,">
 <style>html,body{margin:0;background:#000}canvas{image-rendering:pixelated;max-width:100vw}</style>
 <script type="importmap">{ "imports": { "three": "/vendor/three/three.module.js" } }</script>
 </head>
 <body>
 <script type="module">
-// Banner do canal "Vila Serena": 640x360 ampliado 4x (2560x1440).
+// Banner do canal "Pixelverso": 640x360 ampliado 4x (2560x1440).
 // Área segura do YouTube (1546x423 no centro) = x 127..513, y 127..233 na resolução baixa.
-// De dia, a rua da cidade; todas as sombras vão para a direita, a da Bia vai para a esquerda.
+// Quatro mundos lado a lado, separados por fendas brilhantes: medieval | cidade | fábrica de brinquedos | jogo de blocos.
+// Todas as sombras vão para a direita; só a da Bia vai para a esquerda.
 import { criarTela, quadro, desenharSprite, sombra, titulo, finalizar, Pix, misturar, larguraTexto } from './comum.js';
 import { desenharTexto } from '/motor/fonte.js';
 
-const T = criarTela(640, 360, 5), { p, rnd, brilho, escurecer, W, H } = T;
-const BASE = 268; // pé dos prédios
-
-// ---------- céu de dia ----------
-const CEU = ['#3f8fd8', '#4f9fe0', '#64b0e8', '#7cc0ee', '#98d0f2', '#b6def4', '#d4ebf2', '#f2efd8'];
-for (let y = 0; y < BASE; y++) for (let x = 0; x < W; x++) p.set(x, y, Pix.tom(CEU, Math.pow(y / BASE, 1.2), x, y));
-// sol (canto de cima à esquerda: as sombras vão para a direita)
-brilho(70, 46, 90, '#fff6c8', 0.55);
-p.circulo(70, 46, 20, (x, y, dx, dy) => (dx + dy > 0.7 ? '#ffd65a' : dx + dy < -0.6 ? '#fffbe0' : '#ffe98a'));
-// nuvens fofas
-const nuvem = (cx, cy, n) => {
-  const bolas = [];
-  for (let i = 0; i < n; i++) bolas.push([cx + i * 9 - n * 4.5, cy - Math.sin((i + 0.5) / n * Math.PI) * 8, 7 + Math.sin((i + 0.5) / n * Math.PI) * 6]);
-  for (const [x, y, r] of bolas) p.circulo(x, y + 2, r, '#b9d6ea');
-  for (const [x, y, r] of bolas) p.circulo(x, y, r, (px, py, dx, dy) => (dy > 0.45 ? '#dcebf4' : '#ffffff'));
-  p.ret(cx - n * 4.5 - 4, cy + 2, n * 9 + 2, 5, '#dcebf4');
-};
-nuvem(200, 60, 5); nuvem(470, 40, 6); nuvem(590, 96, 3); nuvem(330, 104, 3); nuvem(30, 128, 3);
-// passarinhos
-for (const [x, y] of [[250, 40], [262, 46], [528, 120], [540, 114]]) { p.set(x - 2, y - 1, '#2b3a5c'); p.set(x - 1, y, '#2b3a5c'); p.set(x, y - 1, '#2b3a5c'); p.set(x + 1, y, '#2b3a5c'); p.set(x + 2, y - 1, '#2b3a5c'); }
-
-// ---------- morros ao fundo ----------
-for (let x = 0; x < W; x++) {
-  const a = 206 - 16 * Math.sin(x * 0.017 + 0.8) - 6 * Math.sin(x * 0.05);
-  for (let y = Math.floor(a); y < BASE; y++) p.set(x, y, Pix.tom(['#8fc79a', '#76b388'], (y - a) / 30, x, y));
-  const b = 222 - 10 * Math.sin(x * 0.023 + 2.4) - 4 * Math.sin(x * 0.09);
-  for (let y = Math.floor(b); y < BASE; y++) p.set(x, y, Pix.tom(['#67a86f', '#4f9160'], (y - b) / 30, x, y));
-}
-
-// ---------- prédios da rua ----------
-const tijolos = (x, y, w, h, cor, junta) => {
-  p.ret(x, y, w, h, cor);
-  for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) {
-    const lin = (y + j) % 5 === 0, col = ((x + i) + (Math.floor((y + j) / 5) % 2) * 4) % 8 === 0;
-    if (lin || col) p.set(x + i, y + j, junta);
-  }
-};
-const janela = (x, y, w = 8, h = 10, luz = '#bfe4f6') => {
-  p.ret(x - 1, y - 1, w + 2, h + 2, '#4a3a3a'); p.ret(x, y, w, h, luz);
-  p.ret(x, y, w, 2, '#e8f6fc'); p.ret(x + Math.floor(w / 2), y, 1, h, '#4a3a3a'); p.ret(x - 2, y + h + 1, w + 4, 2, '#d8cbb8');
-};
-const porta = (x, w, h, cor) => { p.ret(x - 1, BASE - h - 1, w + 2, h + 1, '#3a2b2b'); p.ret(x, BASE - h, w, h, cor); p.set(x + w - 3, BASE - Math.floor(h / 2), '#ffd65a'); };
-const toldo = (x, y, w, c1, c2) => {
-  for (let i = 0; i < w; i++) { const c = Math.floor(i / 5) % 2 ? c1 : c2; p.ret(x + i, y, 1, 6, c); if (i % 5 === 2) p.set(x + i, y + 6, c); }
-  p.ret(x, y, w, 1, '#ffffff');
-};
+const T = criarTela(640, 360, 9), { p, rnd, brilho, W, H } = T;
+const CHAO = 272, PES = 330;
+const fenda = (base) => (y) => base + Math.round(3 * Math.sin(y * 0.09 + base) + 2 * Math.sin(y * 0.23));
+const F = [() => -10, fenda(160), fenda(320), fenda(480), () => 650];
+const setOrig = p.set.bind(p);
+const recorte = (i) => { p.set = (x, y, c, a) => { x = Math.floor(x); y = Math.floor(y); if (x >= F[i](y) && x < F[i + 1](y)) setOrig(x, y, c, a); }; };
+const solto = () => { p.set = setOrig; };
 const letreiro = (x, y, w, texto, fundo, letra) => {
   p.ret(x - 1, y - 1, w + 2, 11, '#3a2b2b'); p.ret(x, y, w, 9, fundo);
   const ctx = { _c: letra, set fillStyle(v) { this._c = v; }, fillRect(a, b, c, d) { p.ret(a, b, c, d, this._c); } };
   desenharTexto(ctx, texto, x + Math.round((w - larguraTexto(texto)) / 2), y + 1, letra);
 };
-const telhado = (x, w, topo, cor, escura) => { p.ret(x - 3, topo - 4, w + 6, 4, cor); p.ret(x - 3, topo - 1, w + 6, 1, escura); p.ret(x - 3, topo - 5, w + 6, 1, misturar(cor, '#ffffff', 0.3)); };
-const predio = (x, w, h, cor, junta, telh, telhEsc) => { tijolos(x, BASE - h, w, h, cor, junta); telhado(x, w, BASE - h, telh, telhEsc); p.ret(x + w - 1, BASE - h, 1, h, junta); };
+const janela = (x, y, w = 8, h = 10, luz = '#bfe4f6', moldura = '#4a3a3a') => {
+  p.ret(x - 1, y - 1, w + 2, h + 2, moldura); p.ret(x, y, w, h, luz); p.ret(x, y, w, 2, misturar(luz, '#ffffff', 0.6));
+};
+const ceu = (cores, sol) => {
+  for (let y = 0; y < CHAO; y++) for (let x = 0; x < W; x++) p.set(x, y, Pix.tom(cores, Math.pow(y / CHAO, 1.15), x, y));
+};
+const nuvem = (cx, cy, n, claro = '#ffffff', sombraN = '#dcebf4') => {
+  for (let i = 0; i < n; i++) {
+    const x = cx + i * 9 - n * 4.5, y = cy - Math.sin((i + 0.5) / n * Math.PI) * 7, r = 6 + Math.sin((i + 0.5) / n * Math.PI) * 5;
+    p.circulo(x, y, r, (px, py, dx, dy) => (dy > 0.45 ? sombraN : claro));
+  }
+  p.ret(cx - n * 4.5 - 3, cy + 1, n * 9, 5, sombraN);
+};
 
-// casa à esquerda
-predio(-4, 60, 62, '#f2c6a0', '#e0ad86', '#c0504a', '#8e3632');
-janela(8, 222); janela(34, 222); porta(18, 12, 20, '#7a4f3a');
-// padaria
-predio(60, 84, 74, '#f6e2b4', '#e6cb92', '#a8603c', '#7c4428');
-letreiro(72, 206, 60, 'PADARIA', '#fff3d6', '#8a4a26'); toldo(64, 226, 76, '#e06a5a', '#fff3e8');
-janela(70, 236, 18, 14, '#ffe7b0'); janela(116, 236, 18, 14, '#ffe7b0'); porta(95, 14, 24, '#8a5a3a');
-for (let i = 0; i < 4; i++) p.elipse(74 + i * 4, 247, 2, 1.2, '#c9873e'); // pães na vitrine
-// escola (mais alta, com sino)
-predio(150, 104, 98, '#e9a882', '#d48d66', '#5b6fa8', '#3e4f80');
-p.ret(190, 154, 24, 14, '#5b6fa8'); for (let i = 0; i < 12; i++) p.ret(190 + i, 154 - i, 24 - 2 * i, 1, '#6d82bc');
-p.ret(199, 156, 6, 7, '#3e4f80'); p.ret(200, 157, 4, 4, '#ffd65a');
-letreiro(172, 186, 60, 'ESCOLA', '#fff8e6', '#3e4f80');
-for (const x of [160, 180, 216, 236]) janela(x, 202, 8, 10);
-for (const x of [160, 236]) janela(x, 230, 8, 12);
-porta(192, 20, 30, '#4f7a5a'); p.ret(201, BASE - 30, 1, 30, '#2f4a36');
-// prédio de apartamentos (atrás do título; mais baixo)
-predio(260, 76, 86, '#c9d6e0', '#b0c0cc', '#6a7684', '#4a5462');
-for (const y of [192, 214, 238]) for (const x of [270, 290, 310]) janela(x, y, 8, 10, y === 214 && x === 290 ? '#ffe7b0' : '#bfe4f6');
-p.ret(276, 207, 22, 2, '#8a96a4'); // varanda
-// delegacia
-predio(342, 92, 82, '#9fb7d6', '#86a0c2', '#34466e', '#232f4c');
-letreiro(358, 198, 60, 'DELEGACIA', '#ffffff', '#34466e');
-for (const x of [352, 372, 406, 424]) janela(x, 216, 7, 10);
-porta(380, 20, 28, '#34466e'); p.ret(389, BASE - 28, 1, 28, '#232f4c');
-p.ret(388, 192, 4, 4, '#e04a4a'); p.ret(392, 192, 4, 4, '#4a7ae0'); // luzinha
-// mercado
-predio(440, 98, 66, '#bfe0b0', '#a4c994', '#4f8a4a', '#36662f');
-letreiro(456, 210, 66, 'MERCADO', '#fffbe6', '#36662f'); toldo(444, 228, 90, '#4f9a5a', '#fff8e0');
-janela(452, 238, 20, 14, '#e6f6d8'); porta(484, 16, 26, '#5a7a4a'); janela(508, 238, 20, 14, '#e6f6d8');
-for (let i = 0; i < 3; i++) { p.ret(452 + i * 7, 258, 6, 8, '#a8743e'); p.ret(453 + i * 7, 257, 4, 2, ['#e04a3a', '#f0c040', '#6ab84a'][i]); } // caixotes de fruta
-// casa à direita
-predio(544, 100, 70, '#f6d6e2', '#e6bccc', '#7a5aa8', '#56407c');
-janela(556, 214); janela(584, 214); janela(612, 214); janela(556, 240); janela(612, 240); porta(582, 14, 22, '#7a5aa8');
-// pombo no telhado da escola
-desenharSprite(T, quadro('pombo-fofoqueiro'), 120, BASE - 74 - 4, 1);
-
-// ---------- calçada de trás, rua, calçada da frente ----------
-for (let y = BASE; y < 282; y++) for (let x = 0; x < W; x++) p.set(x, y, (x % 16 === 0 || y === 275) ? '#b8aea2' : '#d6ccbe');
-p.ret(0, 280, W, 2, '#9a9086');
-for (let y = 282; y < 320; y++) for (let x = 0; x < W; x++) p.set(x, y, Pix.tom(['#5e6270', '#53566a'], (y - 282) / 38, x, y));
-for (let x = 6; x < W; x += 28) p.ret(x, 300, 14, 2, '#f0e6c8');
-p.ret(0, 320, W, 3, '#b8aea2'); p.ret(0, 320, W, 1, '#e6ddd0');
-for (let y = 323; y < H; y++) for (let x = 0; x < W; x++) p.set(x, y, ((x + (y > 341 ? 8 : 0)) % 16 === 0 || y === 341) ? '#c4baae' : '#e2d8ca');
-// postes
-for (const x of [26, 612]) { p.ret(x, 252, 3, 72, '#4a5462'); p.ret(x - 3, 250, 9, 4, '#4a5462'); p.ret(x - 2, 254, 7, 2, '#fff3c0'); }
-
-// ---------- personagens na calçada da frente (todas as sombras para a direita; a da Bia para a esquerda) ----------
-const PES = 330, ESC = 2;
-const SOMBRA = { comp: 0.75, achatar: 0.3, cor: '#2e2848', forca: 0.6 };
-const turma = [
-  ['padeiro', 'rosto-feliz', 40, 1], ['prefeito', 'parado', 130, 1],
-  ['menina-capa', 'rosto-pensativo', 320, -1],
-  ['rival', 'rosto-surpreso', 440, 1], ['aluno', 'rosto-assustado', 540, 1],
-];
-const sprites = turma.map(([n, a]) => quadro(n, a));
-turma.forEach(([n, , x, dir], i) => sombra(T, sprites[i], x, PES, ESC, dir, SOMBRA));
-turma.forEach(([n, , x], i) => desenharSprite(T, sprites[i], x, PES, ESC));
-// gatinho de chapéu perto do mercado (com a sombra dele também para a direita)
-const gato = quadro('gato-chapeu');
-sombra(T, gato, 384, PES - 2, 1, 1, SOMBRA);
-desenharSprite(T, gato, 384, PES - 2, 1);
-
-// ---------- título ----------
-const limites = [];
-const t1 = titulo(T, 'VILA SERENA', 6, 138, ['#fff6d0', '#ffe68a', '#ffd04a', '#ffb43c', '#f08a2e'], { contorno: '#3a1e14', sombraCor: '#1e0e08' });
-limites.push(t1);
-const SUB = 'CIDADE CALMA. REGRAS ESTRANHAS.';
-const esc2 = larguraTexto(SUB, 2) <= 380 ? 2 : 1;
-// faixa atrás do subtítulo, para ler em cima dos prédios
-const wSub = larguraTexto(SUB, esc2), ySub = 200;
-for (let y = ySub - 5; y < ySub + 7 * esc2 + 5; y++) for (let x = 320 - wSub / 2 - 10; x < 320 + wSub / 2 + 10; x++) {
-  const borda = x < 320 - wSub / 2 - 8 || x >= 320 + wSub / 2 + 8 || y === ySub - 5 || y === ySub + 7 * esc2 + 4;
-  p.set(x, y, borda ? '#3a1e14' : '#fff3d6');
+// ================= 1. MEDIEVAL (esquerda) =================
+recorte(0);
+ceu(['#6aa6dc', '#86b8e2', '#a6cbe6', '#c8dce4', '#ecdcc0', '#f6d2a0']);
+nuvem(40, 50, 4, '#fff8ee', '#f0dcc8'); nuvem(120, 96, 3, '#fff8ee', '#f0dcc8');
+for (let x = 0; x < 170; x++) { const a = 214 - 12 * Math.sin(x * 0.03 + 1); for (let y = Math.floor(a); y < CHAO; y++) p.set(x, y, Pix.tom(['#8cbf7a', '#6fa260'], (y - a) / 30, x, y)); }
+const PEDRA = '#b4b0c0', PEDRA_E = '#8e8aa0', PEDRA_C = '#d0ccd8';
+const muro = (x, y, w, h) => {
+  p.ret(x, y, w, h, PEDRA);
+  for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if ((y + j) % 6 === 0 || ((x + i) + (Math.floor((y + j) / 6) % 2) * 5) % 10 === 0) p.set(x + i, y + j, PEDRA_E);
+  for (let i = 0; i < w; i += 6) p.ret(x + i, y - 4, 4, 4, PEDRA);
+  p.ret(x, y, w, 1, PEDRA_C);
+};
+const torre = (cx, topo, w, telh) => {
+  muro(cx - w / 2, topo, w, CHAO - topo);
+  for (let i = 0; i < 16; i++) { const l = Math.round((w / 2 + 2) * (i / 16)); p.ret(cx - l, topo - 16 + i, 2 * l + 1, 1, i < 3 ? misturar(telh, '#ffffff', 0.3) : (i % 4 === 0 ? misturar(telh, '#000000', 0.2) : telh)); }
+  p.ret(cx, topo - 26, 1, 10, '#6b5a50'); p.ret(cx + 1, topo - 26, 7, 4, '#e8c040'); p.ret(cx + 1, topo - 26, 7, 1, '#fff0a0');
+  janela(cx - 2, topo + 12, 4, 7, '#3a2b40', '#5a5068');
+};
+muro(18, 204, 128, CHAO - 204);
+torre(26, 176, 18, '#c0504a'); torre(140, 168, 18, '#3e5aa8'); torre(84, 150, 24, '#c0504a');
+p.ret(72, 234, 24, 38, '#3a2b2b'); for (let i = 0; i < 12; i++) p.ret(72 + i, 234 - Math.round(Math.sqrt(144 - (12 - i) ** 2) / 2), 24 - 2 * i, 1, '#3a2b2b');
+for (let x = 74; x < 95; x += 4) p.ret(x, 228, 1, 44, '#6b5a50'); // grade do portão
+for (let y = CHAO; y < H; y++) for (let x = 0; x < 170; x++) { // chão de pedras
+  const lin = Math.floor((y - CHAO) / 7), col = (x + lin * 5) % 11;
+  p.set(x, y, (y - CHAO) % 7 === 0 || col === 0 ? '#8a7a68' : Pix.tom(['#c8b89c', '#b4a488'], ((x * 7 + lin * 13) % 10) / 10, x, y));
 }
-limites.push(titulo(T, SUB, esc2, ySub, ['#6a2e1a', '#4a1e10'], { contorno: '#fff3d6', sombraCor: '#fff3d6' }));
+p.ret(0, CHAO, 170, 3, '#6fa260');
+desenharSprite(T, quadro('estandarte', 'vermelho'), 12, CHAO + 2, 1);
+desenharSprite(T, quadro('barril'), 152, 300, 1);
+solto();
+
+// ================= 2. CIDADE =================
+recorte(1);
+ceu(['#3f8fd8', '#4f9fe0', '#64b0e8', '#7cc0ee', '#98d0f2', '#b6def4', '#d4ebf2']);
+brilho(232, 40, 46, '#fff6c8', 0.55);
+p.circulo(232, 40, 14, (x, y, dx, dy) => (dx + dy > 0.7 ? '#ffd65a' : dx + dy < -0.6 ? '#fffbe0' : '#ffe98a'));
+nuvem(190, 92, 3); nuvem(290, 70, 3);
+const tijolos = (x, y, w, h, cor, junta) => {
+  p.ret(x, y, w, h, cor);
+  for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) if ((y + j) % 5 === 0 || (((x + i) + (Math.floor((y + j) / 5) % 2) * 4) % 8 === 0)) p.set(x + i, y + j, junta);
+};
+const telhado = (x, w, topo, cor) => { p.ret(x - 3, topo - 4, w + 6, 4, cor); p.ret(x - 3, topo - 5, w + 6, 1, misturar(cor, '#ffffff', 0.3)); p.ret(x - 3, topo - 1, w + 6, 1, misturar(cor, '#000000', 0.25)); };
+tijolos(160, 196, 72, CHAO - 196, '#f6e2b4', '#e6cb92'); telhado(160, 72, 196, '#a8603c');
+letreiro(170, 210, 52, 'PADARIA', '#fff3d6', '#8a4a26');
+for (let i = 0; i < 64; i++) { const c = Math.floor(i / 5) % 2 ? '#e06a5a' : '#fff3e8'; p.ret(164 + i, 230, 1, 6, c); }
+janela(170, 242, 14, 12, '#ffe7b0'); janela(208, 242, 14, 12, '#ffe7b0'); p.ret(190, 244, 12, 28, '#8a5a3a');
+tijolos(236, 178, 90, CHAO - 178, '#e9a882', '#d48d66'); telhado(236, 90, 178, '#5b6fa8');
+letreiro(252, 190, 54, 'ESCOLA', '#fff8e6', '#3e4f80');
+for (const x of [246, 266, 296, 312]) janela(x, 208); for (const x of [246, 312]) janela(x, 236, 8, 12);
+p.ret(272, 240, 20, 32, '#4f7a5a'); p.ret(281, 240, 1, 32, '#2f4a36');
+for (let y = CHAO; y < 284; y++) for (let x = 150; x < 330; x++) p.set(x, y, (x % 16 === 0 || y === 278) ? '#b8aea2' : '#d6ccbe');
+for (let y = 284; y < 316; y++) for (let x = 150; x < 330; x++) p.set(x, y, '#5a5e6c');
+for (let x = 152; x < 330; x += 28) p.ret(x, 299, 14, 2, '#f0e6c8');
+p.ret(150, 316, 180, 3, '#e6ddd0');
+for (let y = 319; y < H; y++) for (let x = 150; x < 330; x++) p.set(x, y, ((x + (y > 340 ? 8 : 0)) % 16 === 0 || y === 340) ? '#c4baae' : '#e2d8ca');
+solto();
+
+// ================= 3. FÁBRICA DE BRINQUEDOS =================
+recorte(2);
+ceu(['#5a9ad0', '#7aaed6', '#a0c2d8', '#c6d4d4', '#e4dcc4', '#f0d8b0']);
+// fumaça das chaminés
+const fumaca = (x, y) => { for (let i = 0; i < 7; i++) p.circulo(x + i * 5 + Math.sin(i) * 3, y - i * 9, 4 + i * 1.2, (px, py, dx, dy) => (dy > 0.3 ? '#c8c4cc' : '#eceaf0')); };
+fumaca(352, 128); fumaca(452, 112);
+for (const [x, top] of [[346, 132], [446, 116]]) { tijolos(x, top, 14, CHAO - top, '#b05a40', '#8a4030'); p.ret(x - 2, top - 3, 18, 4, '#6a3a2e'); p.ret(x, top + 8, 14, 2, '#e8d8b0'); }
+tijolos(326, 196, 158, CHAO - 196, '#c06848', '#9a4c36');
+for (let i = 0; i < 5; i++) { const x0 = 326 + i * 32; for (let k = 0; k < 14; k++) p.ret(x0 + k * 2, 196 - k, 32 - k * 2 > 0 ? 2 : 0, k, '#6a4a5a'); for (let k = 0; k < 14; k++) p.ret(x0 + 28, 182 + k, 4, 1, '#9ac8e0'); }
+letreiro(352, 204, 106, 'FABRICA DE BRINQUEDOS', '#fff3d6', '#8a2a3a');
+for (const x of [336, 372, 424, 460]) { janela(x, 222, 14, 18, '#ffe3a0', '#4a2a2a'); p.ret(x + 7, 222, 1, 18, '#4a2a2a'); p.ret(x, 231, 14, 1, '#4a2a2a'); }
+p.ret(394, 228, 26, 44, '#4a3a5a'); for (let y = 230; y < 272; y += 4) p.ret(394, y, 26, 1, '#5e4e70'); // portão de enrolar
+// engrenagem na fachada
+p.circulo(406, 214, 0, '#000');
+for (let y = CHAO; y < H; y++) for (let x = 310; x < 490; x++) p.set(x, y, (y === CHAO + 6) ? '#8a8a8a' : Pix.tom(['#b8b4ac', '#a8a49c'], ((x * 3 + y * 5) % 9) / 9, x, y));
+for (let x = 310; x < 490; x++) p.ret(x, CHAO + 2, 1, 4, Math.floor((x + 2) / 6) % 2 ? '#f0c030' : '#2a2a2a'); // faixa de cuidado
+desenharSprite(T, quadro('brinquedo-caixa', 'fechada'), 476, 300, 1);
+solto();
+
+// ================= 4. JOGO DE BLOCOS (direita) =================
+recorte(3);
+ceu(['#2a8cf0', '#3aa0ff', '#5ab4ff', '#7cc8ff', '#a2dcff', '#c8ecff']);
+nuvem(540, 46, 4, '#ffffff', '#e0f0ff'); nuvem(616, 104, 3, '#ffffff', '#e0f0ff');
+// torre de cubos e cubos flutuando
+const cubo = (n, x, y) => desenharSprite(T, quadro(n), x, y, 1);
+for (const [n, x, y] of [['cubo-pedra', 630, CHAO], ['cubo-pedra', 630, CHAO - 26], ['cubo-madeira', 630, CHAO - 52], ['cubo-grama', 630, CHAO - 78],
+  ['peca-amarela', 563, CHAO], ['cubo-grama', 500, 150], ['peca-verde', 590, 150], ['peca-vermelha', 548, 110]]) cubo(n, x, y);
+for (const [x, y] of [[512, 118], [560, 150], [622, 160]]) desenharSprite(T, quadro('moeda-bloco'), x, y, 1);
+for (let y = CHAO; y < H; y++) for (let x = 470; x < W; x++) { // baseplate com pinos
+  const px = (x - 470) % 8, py = (y - CHAO) % 8;
+  let c = '#a4a8b0';
+  if (px >= 2 && px <= 5 && py >= 2 && py <= 4) c = py === 2 ? '#c8ccd4' : '#b4b8c0';
+  if (px >= 2 && px <= 5 && py === 5) c = '#8a8e96';
+  p.set(x, y, c);
+}
+p.ret(470, CHAO, 170, 1, '#d0d4dc');
+solto();
+
+// ================= fendas entre os mundos =================
+for (const f of [F[1], F[2], F[3]]) for (let y = 0; y < H; y++) {
+  const x = f(y);
+  p.set(x - 1, y, misturar(T.get(x - 1, y), '#ffffff', 0.6)); p.set(x, y, '#ffffff'); p.set(x + 1, y, misturar(T.get(x + 1, y), '#ffffff', 0.6));
+  for (const d of [-3, -2, 2, 3]) p.set(x + d, y, misturar(T.get(x + d, y), y % 2 ? '#ff7ad9' : '#7af0ff', 0.35));
+  if (rnd() < 0.06) { const s = (rnd() - 0.5) * 12; p.set(x + s, y, rnd() < 0.5 ? '#ff9ae4' : '#9af6ff'); }
+}
+
+// ================= personagens (sombras para a direita; a da Bia para a esquerda) =================
+const SOMBRA = { comp: 0.6, achatar: 0.26, cor: '#2e2848', forca: 0.55 };
+const elenco = [
+  ['cavaleiro', 'parado', 48, 1], ['princesa', 'rosto-feliz', 112, 1],
+  ['menina-capa', 'rosto-pensativo', 262, -1],
+  ['brinquedo-soldadinho', 'parado', 368, 1], ['brinquedo-boneca', 'acenar', 438, 1],
+  ['avatar-bloco-vermelho', 'acenar', 530, 1], ['avatar-bloco-azul', 'parado', 596, 1],
+];
+const spr = elenco.map(([n, a]) => quadro(n, a));
+elenco.forEach(([, , x, d], i) => sombra(T, spr[i], x, PES, 2, d, SOMBRA));
+const gato = quadro('gato-chapeu'); sombra(T, gato, 300, PES - 1, 1, 1, SOMBRA);
+elenco.forEach(([, , x], i) => desenharSprite(T, spr[i], x, PES, 2));
+desenharSprite(T, gato, 300, PES - 1, 1);
+
+// ================= título =================
+const limites = [];
+limites.push(titulo(T, 'PIXELVERSO', 6, 136, ['#fff6d0', '#ffe68a', '#ffd04a', '#ffb43c', '#f08a2e'], { contorno: '#2a1240', sombraCor: '#120822' }));
+const SUB = 'CADA HISTÓRIA, UM MUNDO NOVO.';
+const esc2 = larguraTexto(SUB, 2) <= 360 ? 2 : 1, wSub = larguraTexto(SUB, esc2), ySub = 198;
+const ySubFim = ySub + 9 * esc2 + 6;
+for (let y = ySub - 5; y < ySubFim; y++) for (let x = 320 - wSub / 2 - 10; x < 320 + wSub / 2 + 10; x++) {
+  const borda = x < 320 - wSub / 2 - 8 || x >= 320 + wSub / 2 + 8 || y === ySub - 5 || y === ySubFim - 1;
+  p.set(x, y, borda ? '#2a1240' : '#fff3d6');
+}
+limites.push(titulo(T, SUB, esc2, ySub, ['#4a1e5a', '#2a1240'], { contorno: '#fff3d6', sombraCor: '#fff3d6' }));
 
 finalizar(T, 4, limites);
 </script>
