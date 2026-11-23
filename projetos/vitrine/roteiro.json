@@ -581,7 +581,7 @@
       ] },
     // 42. PROTÓTIPO: mundo de blocos (mundo-bloco): avatares nascem na plataforma, andam e pulam; o elenco em bloco; o de capuz aparece com bug
     { "cenario": "mundo-bloco", "duracao": 8, "transicao": "dither", "foto": [0.8, 2.8, 4.8, 6.8], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
-      "legenda": "42. Mundo de blocos: cubos, spawn, moedas; avatares (vermelho, roxo, verde, azul), Bia/Nina/topete em bloco, o de capuz com bug.",
+      "legenda": "42. Mundo de blocos v2: baseplate cinza com pinos, peças coloridas, treliça, neon; avatares com proporção de bloco clássico.",
       "elementos": [
         { "id": "abia", "personagem": "avatar-bia", "x": -6.0, "z": 2.4, "oculto": true },
         { "id": "anina", "personagem": "avatar-nina", "x": -1.8, "z": 3.4 },

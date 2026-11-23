@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (217)
+## Sprites (225)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -299,14 +299,14 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `avatar-bloco-vermelho` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-bloco-roxo` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-bloco-verde` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-bloco-azul` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-bloco-capuz` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-bia` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-nina` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
-| `avatar-topete` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 26×48 |
+| `avatar-bloco-vermelho` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-bloco-roxo` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-bloco-verde` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-bloco-azul` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-bloco-capuz` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-bia` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-nina` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
+| `avatar-topete` | 🧪 protótipo | parado, acenar, bug, bug-andando, bug-correndo, sem-rosto, sem-rosto-andando, sem-rosto-correndo, sorriso, sorriso-andando, sorriso-correndo | 30×50 |
 | `cubo-grama` | 🧪 protótipo | parado | 35×33 |
 | `cubo-terra` | 🧪 protótipo | parado | 35×33 |
 | `cubo-pedra` | 🧪 protótipo | parado | 35×33 |
@@ -314,6 +314,14 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `cubo-lava` | 🧪 protótipo | parado | 35×33 |
 | `cubo-xadrez` | 🧪 protótipo | parado | 35×33 |
 | `plataforma-spawn` | 🧪 protótipo | parado | 55×29 |
+| `peca-vermelha` | 🧪 protótipo | parado | 35×33 |
+| `peca-azul` | 🧪 protótipo | parado | 35×33 |
+| `peca-amarela` | 🧪 protótipo | parado | 35×33 |
+| `peca-verde` | 🧪 protótipo | parado | 35×33 |
+| `placa-azul` | 🧪 protótipo | parado | 67×37 |
+| `placa-amarela` | 🧪 protótipo | parado | 67×37 |
+| `bloco-neon` | 🧪 protótipo | parado | 67×31 |
+| `trelica` | 🧪 protótipo | parado | 19×73 |
 | `tela-jogo` | 🧪 protótipo | parado, jogando, chat, erro | 96×64 |
 | `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
 
@@ -438,7 +446,8 @@ Uso: `{ "cenario": "nome" }`
 | `fabrica-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo fabrica-brinquedos) | 0 |
 | `loja-fundos-diorama` | 🧪 protótipo | diorama (cômodo loja-fundos) | 0 |
 | `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
-| `mundo-bloco` | 🧪 protótipo | diorama | 14 |
+| `mundo-bloco` | 🧪 protótipo | diorama | 13 |
+| `mundo-bloco-grama` | 🧪 protótipo | diorama | 14 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |

@@ -131,14 +131,18 @@ z ~2.4; dentro da cela x ~7.4, z ~2.6.
 ### Jogo de blocos (🧪, vídeos que falam de Roblox)
 Estilo "jogo de bonecos de bloco" desenhado do nosso jeito. **Nunca** usar o logo, o nome em sprite, o avatar padrão (amarelo/azul/verde)
 nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/título.
-- `mundo-bloco`: o mundo DENTRO do jogo, de dia: chão de ladrilhos de grama com caminho de pedra (opção da rua `"chao": "blocos"`), percurso de
-  cubos no fundo (plataforma de nascer em x -6.4 z 2.0, degraus, lava, torre de pedra, chegada xadrez, moedas). Pessoas no caminho z ~1.4–4.4.
+- `mundo-bloco` (v2): o mundo DENTRO do jogo, de dia: chão cinza de "baseplate" com pinos (opção da rua `"chao": "baseplate"`) e, no fundo, um
+  percurso de peças de plástico coloridas com pinos (plataforma de nascer em x -6.4 z 2.0, escada de peças, placa, bloco neon vermelho que
+  "mata", torre com treliça, chegada xadrez, moedas). Pessoas z ~1.4–4.4. `mundo-bloco-grama`: o mapa antigo, com chão de ladrilhos de grama.
 - Avatares (personagens): `avatar-bloco-vermelho`, `-roxo`, `-verde`, `-azul`, `avatar-bloco-capuz` (rosto no escuro, olhos vermelhos: o estranho
-  do servidor) e o elenco em bloco `avatar-bia`, `avatar-nina`, `avatar-topete`. Estados `parado`, `acenar`, `bug` (fatias e cores, travando),
+  do servidor) e o elenco em bloco `avatar-bia`, `avatar-nina`, `avatar-topete` (v2: proporção de bloco clássico — cabeça arredondada, tronco largo, braços e pernas em
+  blocos, plástico brilhante, braços e pernas balançando ao andar; 30x50, um pouco maiores que as pessoas). Estados `parado`, `acenar`, `bug` (fatias e cores, travando),
   `sem-rosto`, `sorriso` (o sorriso pintado estica); andam travados e pulam; `bug`/`sem-rosto`/`sorriso` valem andando.
-- Cubos (sprites isométricos, 1 cubo = `"y": 1` para empilhar): `cubo-grama`, `cubo-terra`, `cubo-pedra`, `cubo-madeira`, `cubo-lava` (brilha),
-  `cubo-xadrez`, `plataforma-spawn` (brilha); `moeda-bloco` (moedinha quadrada nossa, gira).
-- `tela-jogo`: monitor em close (`"tela": true`, `"escurecer"`), estados `jogando`, `chat`, `erro`.
+- Peças (sprites isométricos, 1 peça = `"y": 1` para empilhar): `peca-vermelha`, `-azul`, `-amarela`, `-verde` (com pinos), `placa-azul`/`-amarela`
+  (finas, 2x2), `bloco-neon` (vermelho que brilha), `trelica` (torre de grade, 4 de altura), `cubo-pedra`, `cubo-grama`, `cubo-terra`, `cubo-madeira`,
+  `cubo-lava`, `cubo-xadrez`, `plataforma-spawn` (círculo que brilha); `moeda-bloco` (moedinha quadrada nossa, gira).
+- `tela-jogo`: monitor em close (`"tela": true`, `"escurecer"`) com interface de jogo (chat à esquerda, lista de jogadores à direita, barra no
+  topo, baseplate e avatares); estados `jogando`, `chat` (mais mensagens, uma vermelha), `erro`.
 - Sons: `entrar-jogo`, `pulo-bloco`, `ai` (o "ui!" de quando o avatar cai), `chat`, `bug-jogo`.
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 

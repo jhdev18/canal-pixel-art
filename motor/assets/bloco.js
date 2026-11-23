@@ -15,7 +15,7 @@ import { registrarSprites } from '../sprites.js';
 import { MOVEIS } from '../cenarios/comodoDiagonal.js';
 import { iso } from './praca.js';
 
-const K = '#14121c', W = 26, H = 44;
+const K = '#14121c', W = 30, H = 44;
 
 // ------------------------------------------------------------------ avatares
 // cfg: { pele, camisa, calca, sapato, cabelo, chapeu, estampa, capuz }
@@ -35,57 +35,63 @@ const claro = (hex, t = 0.3) => { const n = parseInt(hex.slice(1), 16); const c 
 const escuro = (hex, t = 0.3) => { const n = parseInt(hex.slice(1), 16); const c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.round(v * (1 - t))); return '#' + c.map((v) => v.toString(16).padStart(2, '0')).join(''); };
 const bloco = (p, x, y, w, h, cor) => { p.ret(x, y, w, h, cor); p.ret(x, y, w, 1, claro(cor, 0.35)); p.ret(x + w - 1, y + 1, 1, h - 1, escuro(cor, 0.25)); };
 
-// f: { braco: 'baixo' | 'alto' | 'aceno', passo: -1 | 0 | 1, pulo, rosto: 'normal' | 'liso' | 'sorriso' }
+// Proporção de avatar de bloco "clássico": cabeça arredondada de 10x10, tronco largo de 16x16, braços de 6x16 e pernas de 8x16
+// (as duas pernas juntas têm a largura do tronco). Plástico: faixa de brilho à esquerda, sombra à direita, um ponto de reflexo.
+// f: { braco, bracoE: número (encurta = vem para a frente) | 'alto' | 'aceno', perna: -1 | 0 | 1, pulo, rosto }
+const WA = 30;
 function avatar(c, f = {}) {
-  // desenha com 4 px de folga em cima (rabo de cavalo, topete e braço levantado não cortam)
-  const p0 = new Pix(W, H + 4), p = { set: (x, y, cor) => p0.set(x, y + 4, cor), ret: (x, y, w, h, cor) => p0.ret(x, y + 4, w, h, cor) };
-  const passo = f.passo || 0, pulo = f.pulo ? -1 : 0;
-  // pernas (uma sobe e a outra desce ao andar) e sapatos
-  for (const [x, lado] of [[7, -1], [13, 1]]) {
-    const d = passo === lado ? -2 : passo === -lado ? 1 : 0, y0 = 28 + pulo;
-    bloco(p, x, y0, 6, 13 + d, c.calca); p.ret(x, y0 + 11 + d, 6, 2, c.sapato);
+  const p0 = new Pix(WA, H + 6), p = { set: (x, y, cor) => p0.set(x, y + 4, cor), ret: (x, y, w, h, cor) => p0.ret(x, y + 4, w, h, cor) };
+  const pulo = f.pulo ? -2 : 0, bob = f.perna ? 1 : 0, y0 = pulo + bob;
+  const plastico = (x, y, w, h, cor, reflexo = true) => {
+    p.ret(x, y, w, h, cor); p.ret(x, y, 1, h, claro(cor, 0.3)); p.ret(x + w - 1, y, 1, h, escuro(cor, 0.22)); p.ret(x, y + h - 1, w, 1, escuro(cor, 0.3));
+    p.ret(x, y, w, 1, claro(cor, 0.4)); if (reflexo && w > 4) p.set(x + 1, y + 1, '#ffffff');
+  };
+  // pernas: a que vem para a frente fica mais curta (escorço) e mais clara
+  for (const [x, lado] of [[8, -1], [16, 1]]) {
+    const frente = f.perna === lado, alt = frente ? 13 : 16, yy = 30 + y0;
+    plastico(x, yy, 7, alt, frente ? claro(c.calca, 0.1) : c.calca, false); p.ret(x, yy + alt - 3, 7, 3, c.sapato);
   }
   // tronco
-  bloco(p, 6, 14 + pulo, 14, 14, c.camisa);
-  const e = c.estampa, cx = 13, cy = 20 + pulo;
-  if (e === 'listra') p.ret(6, cy, 13, 2, '#f4f4f4');
-  if (e === 'coracao') for (const [x, y] of [[11, 0], [12, 0], [14, 0], [15, 0], [11, 1], [12, 1], [13, 1], [14, 1], [15, 1], [12, 2], [13, 2], [14, 2], [13, 3]]) p.set(x, cy - 2 + y, '#f8a0c8');
-  if (e === 'raio') for (const [x, y] of [[14, 0], [13, 1], [12, 2], [13, 2], [14, 2], [13, 3], [12, 4]]) p.set(x, cy - 2 + y, '#f8e060');
-  if (e === 'estrela') for (const [x, y] of [[13, 0], [12, 1], [13, 1], [14, 1], [11, 2], [12, 2], [13, 2], [14, 2], [15, 2], [12, 3], [14, 3]]) p.set(x, cy - 2 + y, '#f8f4e0');
-  if (e === 'botoes') { for (const y of [16, 20, 24]) p.set(cx, y + pulo, '#8a6a20'); p.ret(cx, 14 + pulo, 1, 14, escuro(c.camisa, 0.2)); }
-  if (e === 'emblema') { p.ret(11, cy - 1, 4, 3, '#f8d040'); p.ret(12, cy - 1, 2, 3, '#7a3ad0'); }
-  if (e === 'cachecol') { p.ret(6, 14 + pulo, 14, 3, c.chapeuCor); p.ret(15, 17 + pulo, 3, 5, c.chapeuCor); }
-  // braços
+  plastico(7, 14 + y0, 16, 16, c.camisa);
+  const e = c.estampa, cx = 15, cy = 21 + y0;
+  if (e === 'listra') p.ret(8, cy, 14, 2, '#f4f4f4');
+  if (e === 'coracao') for (const [x, y] of [[-2, 0], [-1, 0], [1, 0], [2, 0], [-2, 1], [-1, 1], [0, 1], [1, 1], [2, 1], [-1, 2], [0, 2], [1, 2], [0, 3]]) p.set(cx + x, cy - 2 + y, '#f8a0c8');
+  if (e === 'raio') for (const [x, y] of [[1, 0], [0, 1], [-1, 2], [0, 2], [1, 2], [0, 3], [-1, 4]]) p.set(cx + x, cy - 2 + y, '#f8e060');
+  if (e === 'estrela') for (const [x, y] of [[0, 0], [-1, 1], [0, 1], [1, 1], [-2, 2], [-1, 2], [0, 2], [1, 2], [2, 2], [-1, 3], [1, 3]]) p.set(cx + x, cy - 2 + y, '#f8f4e0');
+  if (e === 'botoes') { p.ret(cx, 14 + y0, 1, 16, escuro(c.camisa, 0.2)); for (const y of [17, 21, 25]) p.set(cx + 1, y + y0, '#8a6a20'); }
+  if (e === 'emblema') { p.ret(cx - 2, cy - 1, 5, 4, '#f8d040'); p.ret(cx - 1, cy, 3, 2, '#7a3ad0'); }
+  if (e === 'cachecol') { p.ret(7, 14 + y0, 16, 3, c.chapeuCor); p.ret(17, 17 + y0, 3, 6, c.chapeuCor); }
+  // braços (manga da camisa em cima, pele embaixo)
   const braco = (x, modo) => {
-    if (modo === 'alto' || modo === 'aceno') { const dy = modo === 'aceno' ? -1 : 0; bloco(p, x, 3 + pulo + dy, 4, 12, c.camisa); p.ret(x, 2 + pulo + dy, 4, 3, c.pele); return; }
-    const d = typeof modo === 'number' ? modo : 0;
-    bloco(p, x, 14 + pulo + d, 4, 11, c.camisa); p.ret(x, 25 + pulo + d, 4, 3, c.pele);
+    if (modo === 'alto' || modo === 'aceno') { const dy = modo === 'aceno' ? -1 : 0; plastico(x, -2 + y0 + dy, 6, 9, c.camisa, false); p.ret(x, -4 + y0 + dy, 6, 3, c.pele); p.ret(x, 7 + y0, 6, 8, c.camisa); return; }
+    const enc = typeof modo === 'number' ? Math.max(0, modo) * 3 : 0;   // >0: o braço vem para a frente (mais curto)
+    plastico(x, 14 + y0, 6, 9 - enc / 2, enc ? claro(c.camisa, 0.1) : c.camisa, false);
+    plastico(x, 23 + y0 - enc / 2, 6, 7 - enc / 2, c.pele, false);
   };
-  braco(2, f.bracoE ?? 0);
-  braco(20, f.braco ?? 0);
-  // cabeça cúbica (com topo mais claro e lado mais escuro)
-  const hy = 1 + pulo;
-  bloco(p, 7, hy, 12, 12, c.pele); p.ret(7, hy + 11, 12, 1, escuro(c.pele, 0.15));
-  // cabelo / chapéu
-  const ch = c.chapeu, cor2 = c.chapeuCor;
-  if (ch === 'bone') { p.ret(7, hy, 12, 3, cor2); p.ret(6, hy + 3, 9, 1, escuro(cor2, 0.2)); p.ret(15, hy + 3, 4, 1, c.cabelo); }
-  if (ch === 'franja') { p.ret(7, hy, 12, 3, c.cabelo); p.ret(7, hy + 3, 4, 2, c.cabelo); p.ret(6, hy + 1, 1, 10, c.cabelo); p.ret(19, hy + 1, 1, 10, c.cabelo); }
-  if (ch === 'fone') { p.ret(7, hy, 12, 2, c.cabelo); p.ret(7, hy - 1, 12, 1, cor2); p.ret(5, hy + 4, 2, 5, cor2); p.ret(19, hy + 4, 2, 5, cor2); }
-  if (ch === 'liso') { p.ret(7, hy, 12, 3, c.cabelo); p.ret(7, hy + 3, 2, 3, c.cabelo); p.ret(17, hy + 3, 2, 3, c.cabelo); }
-  if (ch === 'capuz-capa') { p.ret(6, hy - 1, 14, 3, cor2); p.ret(6, hy + 2, 2, 9, cor2); p.ret(18, hy + 2, 2, 9, cor2); p.ret(8, hy + 2, 10, 1, c.cabelo); p.ret(6, hy - 1, 14, 1, claro(cor2, 0.4)); }
-  if (ch === 'rabo') { p.ret(7, hy, 12, 3, c.cabelo); p.ret(10, hy - 3, 6, 3, c.cabelo); p.ret(12, hy - 4, 2, 1, cor2); p.ret(15, hy - 2, 5, 2, c.cabelo); }
-  if (ch === 'topete') { p.ret(7, hy, 12, 3, c.cabelo); p.ret(9, hy - 2, 7, 2, c.cabelo); p.ret(13, hy - 3, 3, 1, '#fff4e0'); }
-  if (c.capuz) { p.ret(6, hy - 1, 14, 14, c.camisa); p.ret(6, hy - 1, 14, 1, '#3a3a46'); p.ret(8, hy + 3, 10, 8, '#08060c'); }   // capuz com o rosto no escuro
-  // rosto pintado
+  braco(1, f.bracoE ?? 0); braco(23, f.braco ?? 0);
+  // cabeça arredondada (sem os 4 cantos), plástico
+  const hy = 4 + y0;
+  plastico(10, hy, 10, 10, c.pele);
+  for (const [x, y] of [[10, 0], [19, 0], [10, 9], [19, 9]]) p0.d[((hy + y + 4) * WA + x) * 4 + 3] = 0;   // cantos arredondados
+  // cabelo / chapéu (encaixados na cabeça 10x10)
+  const ch = c.chapeu, c2 = c.chapeuCor;
+  if (ch === 'bone') { plastico(10, hy - 1, 10, 4, c2, false); p.ret(8, hy + 2, 8, 1, escuro(c2, 0.2)); p.ret(18, hy + 3, 2, 3, c.cabelo); }
+  if (ch === 'franja') { plastico(9, hy - 1, 12, 4, c.cabelo, false); p.ret(10, hy + 3, 4, 2, c.cabelo); p.ret(9, hy + 2, 1, 9, c.cabelo); p.ret(20, hy + 2, 1, 9, c.cabelo); }
+  if (ch === 'fone') { plastico(10, hy - 1, 10, 3, c.cabelo, false); p.ret(9, hy - 2, 12, 1, c2); p.ret(8, hy + 3, 2, 5, c2); p.ret(20, hy + 3, 2, 5, c2); }
+  if (ch === 'liso') { plastico(9, hy - 1, 12, 4, c.cabelo, false); p.ret(9, hy + 3, 2, 4, c.cabelo); p.ret(19, hy + 3, 2, 4, c.cabelo); }
+  if (ch === 'capuz-capa') { plastico(8, hy - 2, 14, 4, c2, false); p.ret(8, hy + 2, 2, 9, c2); p.ret(20, hy + 2, 2, 9, c2); p.ret(10, hy + 2, 10, 1, c.cabelo); }
+  if (ch === 'rabo') { plastico(10, hy - 1, 10, 4, c.cabelo, false); p.ret(12, hy - 4, 6, 3, c.cabelo); p.ret(14, hy - 5, 2, 1, c2); p.ret(19, hy, 4, 6, c.cabelo); }
+  if (ch === 'topete') { plastico(10, hy - 1, 10, 4, c.cabelo, false); p.ret(11, hy - 4, 7, 3, c.cabelo); p.ret(15, hy - 5, 3, 1, '#fff4e0'); }
+  if (c.capuz) { plastico(8, hy - 2, 14, 15, c.camisa, false); p.ret(10, hy + 2, 10, 8, '#08060c'); }
+  // rosto (nosso desenho): olhos ovais com brilho, sorriso largo; sem-rosto = liso; sorriso = estica até as bordas
   const rosto = f.rosto || 'normal';
-  if (c.capuz) { if (rosto !== 'liso') { p.set(10, hy + 6, '#ff3a2a'); p.set(15, hy + 6, '#ff3a2a'); } }
+  if (c.capuz) { if (rosto !== 'liso') { p.set(12, hy + 5, '#ff3a2a'); p.set(17, hy + 5, '#ff3a2a'); } }
   else if (rosto === 'normal') {
-    for (const x of [10, 15]) { p.set(x, hy + 5, K); p.set(x, hy + 6, K); }
-    for (const [x, y] of [[10, 8], [11, 9], [12, 9], [13, 9], [14, 9], [15, 8]]) p.set(x, hy + y, K);
-  } else if (rosto === 'sorriso') {   // o sorriso pintado estica até as bordas, com dentinhos
-    for (const x of [10, 15]) { p.set(x, hy + 4, K); p.set(x, hy + 5, K); }
-    for (let x = 8; x <= 17; x++) { p.set(x, hy + 8 + (x === 8 || x === 17 ? -1 : 0), K); p.set(x, hy + 9, x % 2 ? '#f4f4f0' : K); }
-    p.set(8, hy + 10, K); p.set(17, hy + 10, K); for (let x = 9; x <= 16; x++) p.set(x, hy + 10, K);
+    for (const x of [12, 17]) { p.ret(x, hy + 3, 1, 3, K); p.set(x + 1, hy + 3, K); p.set(x + 1, hy + 4, K); p.set(x, hy + 3, '#ffffff'); }
+    for (const [x, y] of [[11, 7], [12, 8], [13, 8], [14, 8], [15, 8], [16, 8], [17, 8], [18, 7]]) p.set(x, hy + y, K);
+  } else if (rosto === 'sorriso') {
+    for (const x of [12, 17]) { p.ret(x, hy + 2, 2, 3, K); }
+    for (let x = 10; x <= 19; x++) { p.set(x, hy + 6, K); p.set(x, hy + 7, x % 2 ? '#f4f4f0' : K); p.set(x, hy + 8, K); }
   }
   return p0.contorno(K);
 }
@@ -107,12 +113,12 @@ function bugar(p, k) {
 function spriteAvatar(c) {
   const quadros = [], anims = {};
   const add = (f) => { quadros.push(avatar(c, f)); return quadros.length - 1; };
-  const andar = (f0 = {}) => [-1, 0, 1, 0].map((s) => add({ ...f0, passo: s, bracoE: s, braco: -s }));
+  const andar = (f0 = {}) => [-1, 0, 1, 0].map((s) => add({ ...f0, perna: s, bracoE: s > 0 ? 1 : 0, braco: s < 0 ? 1 : 0 }));
   const P = add({}), A = [add({ braco: 'alto' }), add({ braco: 'aceno' })], J = add({ pulo: true, braco: 'alto', bracoE: 'alto' });
   const L = add({ rosto: 'liso' }), S = add({ rosto: 'sorriso' });
   const AN = andar(), AL = andar({ rosto: 'liso' }), AS = andar({ rosto: 'sorriso' });
   const B = [0, 1, 2, 3].map((k) => { quadros.push(bugar(avatar(c, {}), k)); return quadros.length - 1; });
-  const BA = [0, 1, 2, 3].map((k) => { quadros.push(bugar(avatar(c, { passo: [-1, 0, 1, 0][k] }), k)); return quadros.length - 1; });
+  const BA = [0, 1, 2, 3].map((k) => { quadros.push(bugar(avatar(c, { perna: [-1, 0, 1, 0][k] }), k)); return quadros.length - 1; });
   Object.assign(anims, {
     parado: { q: [P], fps: 1 }, acenar: { q: A, fps: 4 }, pulando: { q: [J], fps: 1 },
     andando: { q: AN, fps: 6 }, correndo: { q: AN, fps: 10 },
@@ -124,24 +130,39 @@ function spriteAvatar(c) {
 }
 
 // ------------------------------------------------------------------ cubos do mapa (isométricos)
-const cubo = (topo, lado, frente, { brilho = false, xadrez = false, borda = null } = {}) => ({ di: 1, dj: 1, f(L, m) {
+// peça de plástico com PINOS em cima (4x4 por cubo) e brilho; xadrez = bandeira de chegada; brilho = neon (bloco que "mata")
+const cubo = (topo, lado, frente, { brilho = false, xadrez = false, borda = null, pinos = true, h = 16, di = 1, dj = 1 } = {}) => ({ di, dj, f(L, m) {
   const { i0, i1, j0, j1 } = m, cor = (c) => (brilho ? [c, 2] : c);
-  L.caixa(i0, i1, j0, j1, 0, 16, {
-    frente: (u, t) => (borda && t > 11 ? borda : (Math.floor(u * 4) + Math.floor(t / 4)) % 5 === 0 ? escuro(frente, 0.12) : t === 0 ? escuro(frente, 0.3) : cor(frente)),
-    lado: (u, t) => (borda && t > 11 ? escuro(borda, 0.15) : (Math.floor(u * 4) + Math.floor(t / 4)) % 4 === 0 ? escuro(lado, 0.12) : cor(lado)),
-    topo: (a, b, d) => (d < 0.06 ? escuro(topo, 0.25) : xadrez ? ((Math.floor(a * 4) + Math.floor(b * 4)) % 2 ? '#14121c' : '#f4f4f4') : (Math.floor(a * 4) * 3 + Math.floor(b * 4)) % 7 === 0 ? claro(topo, 0.15) : cor(topo)),
+  L.caixa(i0, i1, j0, j1, 0, h, {
+    frente: (u, t) => (borda && t > h - 5 ? borda : t === 0 ? escuro(frente, 0.3) : t === h - 1 ? claro(frente, 0.25) : u < 0.08 ? claro(frente, 0.15) : cor(frente)),
+    lado: (u, t) => (borda && t > h - 5 ? escuro(borda, 0.15) : t === h - 1 ? claro(lado, 0.2) : cor(lado)),
+    topo: (a, b, d) => {
+      if (d < 0.05) return escuro(topo, 0.2);
+      if (xadrez) return (Math.floor(a * 4) + Math.floor(b * 4)) % 2 ? '#14121c' : '#f4f4f4';
+      if (pinos) { const fa = (a * 4) % 1, fb = (b * 4) % 1, r = Math.hypot(fa - 0.5, fb - 0.5); if (r < 0.22) return fa + fb < 0.95 ? claro(topo, 0.35) : escuro(topo, 0.12); }
+      return cor(topo);
+    },
   });
 } });
 Object.assign(MOVEIS, {
-  'cubo-grama': cubo('#5ac84a', '#8a5a34', '#a86a3e', { borda: '#4aa83a' }),
-  'cubo-terra': cubo('#a86a3e', '#7a4a2a', '#8a5a34'),
+  'cubo-grama': cubo('#5ac84a', '#8a5a34', '#a86a3e', { borda: '#4aa83a', pinos: false }),
+  'cubo-terra': cubo('#a86a3e', '#7a4a2a', '#8a5a34', { pinos: false }),
   'cubo-pedra': cubo('#a8a8b0', '#7a7a84', '#8e8e98'),
-  'cubo-madeira': cubo('#d8a060', '#9a6a3a', '#b07a48'),
-  'cubo-lava': cubo('#ff8a2a', '#d84a1a', '#ff6a2a', { brilho: true }),
+  'cubo-madeira': cubo('#d8a060', '#9a6a3a', '#b07a48', { pinos: false }),
+  'cubo-lava': cubo('#ff8a2a', '#d84a1a', '#ff6a2a', { brilho: true, pinos: false }),
   'cubo-xadrez': cubo('#f4f4f4', '#3a3a44', '#5a5a64', { xadrez: true }),
-  'plataforma-spawn': { di: 1.6, dj: 1.6, f(L, m) {
+  // peças de plástico coloridas (com pinos) e placas finas, para montar o percurso
+  'peca-vermelha': cubo('#e84a4a', '#a82a2a', '#c83a3a'), 'peca-azul': cubo('#4a8ae8', '#2a5aa8', '#3a6ac8'),
+  'peca-amarela': cubo('#f8d84a', '#c8a82a', '#e0c03a'), 'peca-verde': cubo('#5ad06a', '#2e8a3e', '#46b056'),
+  'placa-azul': cubo('#4a8ae8', '#2a5aa8', '#3a6ac8', { h: 4, di: 2, dj: 2 }), 'placa-amarela': cubo('#f8d84a', '#c8a82a', '#e0c03a', { h: 4, di: 2, dj: 2 }),
+  'bloco-neon': cubo('#ff4a5a', '#d82a3a', '#ff3a4a', { brilho: true, pinos: false, h: 6, di: 1, dj: 2 }),   // o bloco vermelho que "mata"
+  'trelica': { di: 0.5, dj: 0.5, f(L, m) {   // escada de treliça (torre cinza de grade)
     const { i0, i1, j0, j1 } = m;
-    L.caixa(i0, i1, j0, j1, 0, 3, { frente: '#5a5a6a', lado: '#4a4a58', topo: (a, b, d) => (d < 0.12 ? '#8a8a9a' : Math.hypot(a - 0.8, b - 0.8) < 0.35 ? ['#7af0ff', 2] : Math.hypot(a - 0.8, b - 0.8) < 0.5 ? '#3a3a48' : '#6a6a7a') });
+    L.caixa(i0, i1, j0, j1, 0, 64, { frente: (u, t, l) => (u < 0.07 || u > l - 0.07 || t % 8 < 1 || Math.abs((u / l) * 8 - (t % 8)) < 0.8 ? '#8a8e9c' : null), lado: (u, t) => (u < 1.2 / 16 || t % 8 < 1 ? '#6a6e7a' : null), topo: '#a8acb8' });
+  } },
+  'plataforma-spawn': { di: 1.6, dj: 1.6, f(L, m) {   // ponto de nascer: placa cinza com um círculo claro no meio
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 3, { frente: '#7a7a84', lado: '#6a6a74', topo: (a, b, d) => { const r = Math.hypot(a - 0.8, b - 0.8); return d < 0.1 ? '#b8b8c0' : r < 0.32 ? ['#e8f4ff', 2] : r < 0.42 ? '#6a6a74' : r < 0.5 ? ['#cfe8ff', 2] : '#9a9aa4'; } });
   } },
 });
 
@@ -149,17 +170,26 @@ Object.assign(MOVEIS, {
 function telaJogo(modo) {
   const p = new Pix(96, 64);
   p.ret(0, 0, 96, 60, '#2a2a36'); p.ret(40, 60, 16, 3, '#3a3a46'); p.ret(30, 62, 36, 2, '#2a2a36');   // monitor e pé
-  const tela = (x, y, c) => { if (x >= 3 && x < 93 && y >= 3 && y < 56) p.set(x, y, c); };
-  for (let y = 3; y < 56; y++) for (let x = 3; x < 93; x++) tela(x, y, y < 30 ? (y < 16 ? '#7ac8f8' : '#a8dcfa') : ((Math.floor(x / 6) + Math.floor(y / 6)) % 2 ? '#5ac84a' : '#4ab83a'));
-  for (const [bx, by, w, h, c] of [[10, 24, 12, 8, '#a8a8b0'], [26, 20, 8, 12, '#d8a060'], [60, 22, 14, 10, '#a8a8b0'], [78, 26, 8, 6, '#ff8a2a']]) { p.ret(bx, by, w, h, c); p.ret(bx, by, w, 1, '#ffffff'); }
-  for (const [ax, c] of [[40, '#d83a3a'], [50, '#f8c82c'], [58, '#8a4ac8']]) { p.ret(ax, 30, 4, 4, '#f4d0a8'); p.ret(ax - 1, 34, 6, 5, c); p.ret(ax, 39, 4, 4, '#2a2a36'); }
-  p.ret(3, 3, 90, 4, '#1a1a26'); for (let x = 5; x < 30; x += 3) p.set(x, 5, '#f4f4f4');               // barra de cima
-  if (modo === 'chat' || modo === 'erro') {
-    p.ret(5, 40, 40, 14, '#14121c'); for (const [y, w] of [[42, 30], [46, 22], [50, 34]]) for (let x = 7; x < 7 + w; x++) if (x % 4) p.set(x, y, y === 50 ? '#ff6a6a' : '#f4f4f4');
+  const t = (x, y, c) => { if (x >= 3 && x < 93 && y >= 3 && y < 56) p.set(x, y, c); };
+  for (let y = 3; y < 56; y++) for (let x = 3; x < 93; x++) {
+    const chao = y >= 32, r = Math.hypot(((x / 3) % 1) - 0.5, ((y / 3) % 1) - 0.5);
+    t(x, y, !chao ? (y < 18 ? '#6ab8f0' : '#9ad4f8') : (x % 12 === 0 || y % 8 === 0) ? '#8e8e96' : r < 0.2 ? '#c0c0c6' : '#a8a8ae');   // céu e baseplate
   }
-  if (modo === 'erro') {   // janela de erro no meio da tela
-    p.ret(28, 14, 40, 22, '#f4f4f4'); p.ret(28, 14, 40, 4, '#d83a3a'); p.ret(46, 21, 4, 8, '#d83a3a'); p.ret(46, 31, 4, 2, '#d83a3a');
-    for (let x = 30; x < 66; x += 2) p.set(x, 34, '#8a8a9a');
+  for (const [bx, by, w, h, c] of [[8, 26, 10, 6, '#e84a4a'], [18, 20, 8, 12, '#4a8ae8'], [62, 24, 12, 8, '#f8d84a'], [76, 28, 10, 4, '#ff4a5a']]) { p.ret(bx, by, w, h, c); p.ret(bx, by, w, 1, '#ffffff'); p.ret(bx + w - 1, by, 1, h, '#00000040'.slice(0, 7)); }
+  for (const [ax, c, ca] of [[38, '#d83a3a', '#2a2a36'], [48, '#f8c82c', '#4a6ab0'], [57, '#8a4ac8', '#6a6a78']]) {   // avatares de bloco na tela
+    p.ret(ax + 1, 30, 4, 4, '#f4d0a8'); p.ret(ax, 34, 6, 5, c); p.ret(ax - 1, 34, 1, 5, c); p.ret(ax + 6, 34, 1, 5, c); p.ret(ax, 39, 6, 4, ca);
+    p.set(ax + 2, 31, K); p.set(ax + 3, 31, K); p.ret(ax + 2, 33, 2, 1, K);
+  }
+  p.ret(3, 3, 90, 4, '#1a1a26'); for (const x of [5, 9, 13]) p.ret(x, 4, 2, 2, '#f4f4f4');                  // barra de cima com botões
+  const caixa = (x0, y0, w, h) => { for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) if ((x + y) % 2 === 0 || y === y0 || y === y0 + h - 1) t(x, y, '#1a1a26'); };
+  caixa(5, 9, 34, modo === 'jogando' ? 10 : 16);                                                              // chat (canto esquerdo)
+  const linhas = modo === 'jogando' ? [[11, 20, '#f4f4f4'], [15, 14, '#f8e060']] : [[11, 20, '#f4f4f4'], [15, 14, '#f8e060'], [19, 26, '#f4f4f4'], [23, 30, '#ff6a6a']];
+  for (const [y, w, c] of linhas) { for (let x = 7; x < 11; x++) t(x, y, '#7ad0ff'); for (let x = 12; x < 12 + w; x++) if (x % 4) t(x, y, c); }
+  caixa(68, 9, 23, 22);                                                                                       // lista de jogadores (direita)
+  for (let k = 0; k < 4; k++) { t(70, 12 + k * 5, ['#d83a3a', '#f8c82c', '#8a4ac8', '#22222c'][k]); for (let x = 73; x < 86 - k * 2; x++) if (x % 3) t(x, 12 + k * 5, '#f4f4f4'); }
+  if (modo === 'erro') {   // janela de erro no meio
+    p.ret(28, 18, 40, 22, '#f4f4f4'); p.ret(28, 18, 40, 4, '#d83a3a'); p.ret(46, 25, 4, 8, '#d83a3a'); p.ret(46, 35, 4, 2, '#d83a3a');
+    for (let x = 30; x < 66; x += 2) p.set(x, 38, '#8a8a9a');
   }
   return p.contorno(K);
 }
@@ -177,6 +207,14 @@ registrarSprites({
   'cubo-pedra': () => iso({ parado: { tipo: 'cubo-pedra' } }), 'cubo-madeira': () => iso({ parado: { tipo: 'cubo-madeira' } }),
   'cubo-lava': () => iso({ parado: { tipo: 'cubo-lava' } }), 'cubo-xadrez': () => iso({ parado: { tipo: 'cubo-xadrez' } }),
   'plataforma-spawn': () => iso({ parado: { tipo: 'plataforma-spawn' } }),
+  'peca-vermelha': () => iso({ parado: { tipo: 'peca-vermelha' } }),
+  'peca-azul': () => iso({ parado: { tipo: 'peca-azul' } }),
+  'peca-amarela': () => iso({ parado: { tipo: 'peca-amarela' } }),
+  'peca-verde': () => iso({ parado: { tipo: 'peca-verde' } }),
+  'placa-azul': () => iso({ parado: { tipo: 'placa-azul' } }),
+  'placa-amarela': () => iso({ parado: { tipo: 'placa-amarela' } }),
+  'bloco-neon': () => iso({ parado: { tipo: 'bloco-neon' } }),
+  'trelica': () => iso({ parado: { tipo: 'trelica' } }),
   'tela-jogo': () => ({ quadros: [telaJogo('jogando'), telaJogo('chat'), telaJogo('erro')], anims: { parado: { q: [0] }, jogando: { q: [0] }, chat: { q: [1] }, erro: { q: [2] } }, sombra: false }),
   'moeda-bloco': () => ({ quadros: [0, 1, 2, 3].map(moeda), anims: { parado: { q: [0, 1, 2, 3], fps: 8 } }, sombra: true, flutua: true }),
 }, { grupo: 'Jogo de blocos (vídeos sobre Roblox)', status: 'protótipo' });

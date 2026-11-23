@@ -88,6 +88,12 @@ export function gerarRuaDiagonal(opc = {}) {
     // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
     const terra = opc.chao === 'terra';
     const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.chao === 'baseplate') {   // PROTÓTIPO: chão de "baseplate" cinza de jogo de blocos: placas de 2x2 com junta e pinos (4 por unidade)
+      const fi = (i / 2) % 1, fj = (j / 2) % 1, junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985;
+      const pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, r = Math.hypot(pa - 0.5, pb - 0.5);
+      c = junta ? '#7e7e86' : r < 0.2 ? (pa + pb < 0.95 ? '#c4c4ca' : '#8e8e96') : bayer(x, y) < 0.05 ? '#a2a2a8' : '#a8a8ae';
+      pintar(x, y, c, i, j, 0); continue;
+    }
     if (opc.chao === 'blocos') {   // PROTÓTIPO: mundo de cubos (jogo de blocos): grama em ladrilhos de 1x1 com junta, caminho de pedra no meio
       const ci = Math.floor(i), cj = Math.floor(j), fi = i - ci, fj = j - cj, junta = fi < 0.06 || fj < 0.06;
       const caminho = i > 1.8 && i < 5.2, v = (((ci * 92821) ^ (cj * 68917)) >>> 0) % 7;

@@ -674,10 +674,27 @@
   "loja-fundos-diorama":     { "vista": "diorama", "comodo": { "tipo": "loja-fundos" } },
   "sala-manequins-diorama":  { "vista": "diorama", "comodo": { "tipo": "sala-manequins" } },
 
-  // ---- jogo de blocos (PROTÓTIPO, vídeos sobre Roblox): o mundo DENTRO do jogo, de dia, todo de cubos.
-  // Chão de ladrilhos de grama com caminho de pedra no meio (pessoas no caminho, z ~1.4–4.4); no fundo (z 5.4–6.6) um percurso
-  // de cubos ("obby"): plataforma de nascer, degraus, lava, torre de pedra e a bandeira de chegada. Câmera { "x": 0, "z": 2.2, "y": 2.6 }.
+  // ---- jogo de blocos (PROTÓTIPO, vídeos sobre Roblox): o mundo DENTRO do jogo, de dia. mundo-bloco = chão cinza de "baseplate"
+  // com pinos; no fundo (z 5.4–6.6) um percurso de peças de plástico coloridas ("obby"): plataforma de nascer, escada de peças, placa,
+  // bloco neon que "mata", torre com treliça e a chegada xadrez. Pessoas z ~1.4–4.4. Câmera { "x": 0, "z": 2.2, "y": 2.6 }.
   "mundo-bloco": {
+    "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+    "rua": { "periodo": "dia", "chao": "baseplate", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "spawn", "sprite": "plataforma-spawn", "x": -6.4, "z": 2.0 },
+      { "id": "p1", "sprite": "peca-vermelha", "x": -4.0, "z": 5.8 }, { "id": "p2", "sprite": "peca-azul", "x": -3.0, "z": 5.8, "y": 1 },
+      { "id": "p3", "sprite": "peca-amarela", "x": -2.0, "z": 5.8, "y": 2 },
+      { "id": "placa1", "sprite": "placa-azul", "x": -0.4, "z": 6.0, "y": 2 },
+      { "id": "neon", "sprite": "bloco-neon", "x": 2.0, "z": 5.4 },
+      { "id": "p4", "sprite": "peca-verde", "x": 3.6, "z": 6.0 }, { "id": "p5", "sprite": "peca-verde", "x": 3.6, "z": 6.0, "y": 1 },
+      { "id": "tr", "sprite": "trelica", "x": 4.8, "z": 6.2 },
+      { "id": "placa2", "sprite": "placa-amarela", "x": 5.6, "z": 6.0, "y": 4 },
+      { "id": "chegada", "sprite": "cubo-xadrez", "x": 7.2, "z": 5.6 },
+      { "id": "moeda1", "sprite": "moeda-bloco", "x": 2.4, "z": 5.4, "y": 1.2 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": -2.0, "z": 5.8, "y": 3.4 }
+    ]
+  },
+  // mundo-bloco-grama: o mesmo mapa de cubos com chão de grama (fase "ao ar livre")
+  "mundo-bloco-grama": {
     "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 },
     "rua": { "periodo": "dia", "chao": "blocos", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
     "elementos": [
