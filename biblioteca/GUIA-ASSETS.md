@@ -28,7 +28,12 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 
 **Outros moradores 🧪:** `vovo` (vovó de xale roxo; banco da praça), `carteiro`, `sorveteiro` (com `carrinho-sorvete`),
 `menino-pijama` (cenas à noite), `menino-coroa` (coroa e capa), `mae`, `mae-avental`, `menino-topete` (família da casa), `cao-policial` (cão em pé,
-de uniforme, com poses; v2 com focinho maior, manchas nos olhos, patas e rabo que abana). Todos os moradores andam, correm, sentam, ficam de costas e espirram.
+de uniforme, com poses; v2 com focinho maior, manchas nos olhos, patas e rabo que abana), `motorista` (do ônibus, quepe), `gari`
+(uniforme laranja; vassoura com `"sobre"`), `pipoqueiro` (avental, boné vermelho) e `medica` (jaleco branco, óculos). Todos os moradores andam,
+correm, sentam, ficam de costas e espirram.
+
+**Pessoas medievais 🧪** (só nos cenários medievais): `rei`, `rainha`, `princesa`, `cavaleiro`, `campones`, `camponesa`, `ferreiro`, `bruxa`, `mago`
+(ver "Medieval" em Lugares). **Avatares de bloco 🧪** (só no jogo de blocos): ver "Jogo de blocos". **Manequins 🧪**: ver "Loja e fábrica".
 
 **Bichos e criaturas:** `pombo-fofoqueiro` ✅ (fofoca, aparece em toda praça), `coruja-banca` ✅ (vende jornal),
 `lixeira-timida` ✅, `fantasma-metro` ✅, `cone-agressivo`/`bueiro-olhos` ✅ (inimigos brancos de batalha),
@@ -96,7 +101,8 @@ A rua comercial normal (`rua-comercial`) **não** tem a loja. Para os vídeos do
 - `fabrica-brinquedos`: a **fábrica** sozinha no campo, na estrada de terra = **fábrica de tijolo com toques de castelo**, envelhecida (duas chaminés listradas com coroa
   de ameias, bandeirinha e **fumaça animada** automática; frontão de pedra com engrenagem dourada; ameias; portão de carga em arco; janelas
   industriais em arco com vidro em grade — uma quebrada, uma tampada —; cano com válvula; fuligem, ferrugem, musgo; faixa "FÁBRICA DE
-  BRINQUEDOS"). O usuário achou as torres do castelo ridículas: sem torres, estética de fábrica); centro x ≈ 0.6; câmera alta (y 3.6); pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0; câmera `{ "x": 0.6, "z": 2.2, "y": 2.8 }`.
+  BRINQUEDOS"). O usuário achou as torres do castelo ridículas: sem torres, estética de fábrica); centro x ≈ 0.6; pessoas na estrada z ~1.4–4.4 ou na frente do portão z ~5.0; câmera alta `{ "x": 0.6, "z": 2.2, "y": 3.6 }`
+  (a fumaça é o sprite `fumaca-chamine`, que o cenário põe sozinho; também serve como elemento comum).
 - `fabrica-brinquedos-diorama`: a fábrica por dentro, com o mesmo tijolo de fora e faixa de pedra rosa (janelas industriais em arco —
   uma quebrada —, canos com válvula, engrenagens douradas, placa de aviso; máquina com luzes à esquerda, forno aceso, prateleira de cabeças
   de boneca, esteira com cabeças e corpos, caixotes de peças, bancada com um boneco pela metade). Brinquedos saem da máquina em x ~-6.2, z ~1.0 e andam para a direita.
@@ -227,7 +233,12 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 - **Trocar estado de objeto:** `trocar` (`"estado"`); estado inicial com `"pose"`. Preso em alguém: `"sobre"`.
 - **Impacto:** `flash`, `tremer`, `explosao`, `piscar` (vermelho: dano ou vergonha), `magia` (faíscas: transformação ou troca), `fogos` 🧪.
 - **Atenção:** `destaque` 🧪 (lupa), `contador` 🧪, `placar` 🧪 (votação), `continua` 🧪.
-- **Climas:** `chuva`, `neve`, `vagalumes`, `brasas`, `poeira`, `folhas`, `calor`, `neblina` 🧪 (terror), `polen` 🧪 (primavera).
+- **Climas:** `chuva`, `neve`, `vagalumes`, `brasas`, `poeira`, `folhas`, `calor`, `neblina` 🧪 (terror), `polen` 🧪 (primavera), `vento` 🧪
+  (rajadas atravessando a tela).
+- **Hora do dia (rua/praça):** `"periodo": "dia"`, `"tarde"` 🧪 (pôr do sol: luz alaranjada, céu laranja e rosa — final sem escuro) ou `"noite"`.
+- **Vida na rua** 🧪: `"vidaNaRua": true` (gente passando no fundo e pombos voando) — ver "Cidade — melhorias".
+- **Chão da rua** (`"rua": { "chao": ... }`): `terra`, `blocos`/`baseplate` (jogo de blocos), `pedras` (medieval), `patio` (pátio da escola);
+  `"soPedidos": true` = só os prédios da lista (fábrica, castelo, casas).
 - **Paletas por cena:** `sepia` (flashback), `fria`/`noir` (terror, virada), `quente` (calor).
 
 **Combinações que funcionam:**
@@ -244,7 +255,9 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 
 Gerados automaticamente, sem arquivo: `passo`, `pulo`, `puf`, `explosao`, `tremor`, `surpresa`, `duvida`, `amor`, `dano`, `magia`,
 `revelar`, `porta`, `sucesso`, `erro`, `sino`. Protótipos 🧪: `sino-relogio`, `papel`, `cadeado`, `sininho`, `miau`,
-`trovao`, `suspense`, `fantasma`, `sombra`, `sombra-surge`/`-some`, `espirro`, `espirro-inspira`, `fogos`, `fogos-sobe`.
+`trovao`, `suspense`, `fantasma`, `sombra`, `sombra-surge`/`-some`, `espirro`, `espirro-inspira`, `fogos`, `fogos-sobe`, `miau-monstro`;
+brinquedos: `corda` (catraca de dar corda), `servo` (junta mexendo), `caixinha-musica` (desafina no fim), `falha-eletrica`; jogo de blocos:
+`entrar-jogo`, `pulo-bloco`, `ai` (o "ui!" de quando o avatar cai), `chat`, `bug-jogo`.
 Um arquivo com o mesmo nome em `biblioteca/sfx/` (ex.: `espirro.mp3` do ElevenLabs) substitui o som gerado.
 
 ---
@@ -258,7 +271,8 @@ sombras andando (`sombraPessoa`) não fazem barulho. Para calar alguém: `"som":
 
 ## Erros comuns (ver "Regras de cena" no `CLAUDE.md`)
 Rode `npm run conferir -- <projeto>` antes de entregar: acusa gente coberta por árvore/objeto, gente que falta num `"momento"` (mesmo instante da
-história; `"saiDeCena"` libera quem sai pela história), o mesmo sprite fazendo dois personagens, gente fora do cômodo e quem para de andar antes do fim da fala.
+história; `"saiDeCena"` libera quem sai pela história), o mesmo sprite fazendo dois personagens, gente fora do cômodo, quem para de andar antes do fim da fala e `[altura]`: em `andar`/`mover`,
+`"para": [x, y]` muda a ALTURA (a pessoa sai flutuando); a profundidade `z` não anda — para mudar de faixa, use outra cena ou outro `z` fixo.
 
 **Figurantes (`"figurante": true` no elemento):** gente ou bicho de fundo, sem nome e sem papel na história (multidão, cães da
 praça). Podem repetir sprite e a conferência não cobra o "mesmo sprite". Regras:
@@ -270,3 +284,5 @@ praça). Podem repetir sprite e a conferência não cobra o "mesmo sprite". Regr
 - Asset novo aprovado ou criado: acrescente uma linha aqui (o que é, quando usar, como posicionar) e rode `npm run catalogo`.
 - Personagem ganhou nome ou papel fixo: atualize o "Elenco fixo".
 - Asset que o usuário não gostou: marque "não usar" (ex.: `casa-corte`, cômodos de caixinha, modo "mundo sombrio").
+- Recusados e apagados (não recriar sem pedido): animatrônicos mascotes de loja (pão, sapo, vaca, bailarina), torres de castelo na fábrica,
+  monstros de sombra 2D novos e as tentativas 3D `toon`/`pixel`/`silhueta` (os monstros de sombra voltaram a ser só os antigos).

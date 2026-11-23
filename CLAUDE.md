@@ -36,6 +36,10 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
     (nem trocar só os nomes); conferir também que a premissa nova não repete um vídeo nosso já feito.
 12. **Modo 3D (`"vista": "3d"`) só quando o usuário pedir explicitamente.** Nunca usar por iniciativa própria em
     roteiros, cenas, testes ou sugestões de vídeo; o padrão continua o diorama (regra 2).
+13. **Antes de gerar QUALQUER roteiro de vídeo (novo ou ajuste grande), ler `biblioteca/GUIA-ASSETS.md` inteiro** (o que cada
+    personagem, cenário, objeto, efeito e som é, onde posicionar e o que o usuário recusou) e conferir os nomes em
+    `biblioteca/CATALOGO.md`. Não inventar nomes de sprite/cenário nem usar asset marcado como "não usar"/recusado. Obrigatório
+    em todo formato (Nesse Mundo, episódio, Shorts, longo).
 
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
