@@ -16,6 +16,8 @@
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
 import { resolverRoteiro, estadoElemento, estadoCamera } from '../motor/compartilhado/linhaDoTempo.js';
+import { centrarCena, yTela } from '../motor/compartilhado/centro.js';
+import { larguraTexto } from '../motor/fonte.js';
 import { Pix } from '../motor/pixel.js';
 import path from 'node:path';
 
@@ -98,10 +100,11 @@ export async function conferir(nome) {
     if ((c.vista !== 'diorama' && c.vista !== 'diagonal') || c.comodo) continue;
     const objs = c.elementos.filter((e) => e.sprite && BASE.test(e.sprite) && !e.oculto && tam(e.sprite)?.iso);
     for (const p of c.elementos.filter((e) => ehPessoa(e, tam))) {
-      for (const t of [0, c.duracao - 0.05]) {
+      for (let t = 0; t < c.duracao; t += 0.2) {   // amostrado na cena inteira: pega também quem PASSA por dentro do objeto andando/correndo
         const sp = estadoElemento(c, p, t);
         if (!sp.visivel || sp.yBase > 0.3) continue;                       // em cima de propósito (palanque, banco) usa "y"
-        const o = objs.find((o) => { const b = tam(o.sprite).iso; return sp.x > o.x + 0.1 && sp.x < o.x + (b.dj ?? 1) - 0.1 && (p.z ?? 0) > o.z + 0.1 && (p.z ?? 0) < o.z + (b.di ?? 1) - 0.1; });
+        const o = objs.find((o) => { const b = tam(o.sprite).iso; const pz = sp.z ?? p.z ?? 0, m = /^(canteiro|fonte)/.test(o.sprite) ? 0.05 : -0.1;   // canteiro/fonte: pés encostando na borda já parecem dentro; barraca/banco: o vendedor fica colado de propósito
+          return sp.x > o.x - m && sp.x < o.x + (b.dj ?? 1) + m && pz > o.z - m && pz < o.z + (b.di ?? 1) + m; });
         if (o) { aviso(c.numero, 'em cima', `"${p.id}" está em pé em cima de "${o.id}" (${o.sprite}) em ~${t.toFixed(1)} s — mova para fora da base do objeto`); break; }
       }
     }
@@ -254,6 +257,67 @@ export async function conferir(nome) {
     }
     const sombras = c.elementos.filter((e) => e.sombraPessoa).length;
     if (sombras > 4) aviso(c.numero, 'sombras', `${sombras} sombras de pessoa (o motor mostra no máximo 4)`);
+  }
+
+  // ---------- 4b. [centro] Shorts: quem conta a história fora do meio da tela (a câmera do diorama não fica em cima do mesmo "x").
+  // Mesma conta do nm.mjs e do ferramentas/roteiros/centrar-shorts.mjs (centrarCena em motor/compartilhado/centro.js).
+  for (const [i, c] of r.cenas.entries()) {
+    const cb = bruto.cenas[i], res = cb && centrarCena(c, cb, estadoElemento);
+    if (!res) continue;
+    const quem = res.centrarEm || cb.vertical?.centrarEm || (cb.elementos || []).filter((e) => e.personagem && !e.figurante).map((e) => e.id);
+    const movem = c.acoes.some((a) => ['andar', 'correr'].includes(a.tipo) && quem.includes(a.alvo)
+      && Math.abs((typeof a.para === 'number' ? a.para : 0) - (c.elementos.find((e) => e.id === a.alvo)?.x ?? 0)) > 5);
+    if (movem) continue;
+    if (res.centrarEm) aviso(c.numero, 'centro', `no Shorts, o grupo não cabe nos 180 px (${res.nota}) — rode node ferramentas/roteiros/centrar-shorts.mjs <projeto> ou escolha em quem centrar (foco no nm.mjs / "vertical.centrarEm")`);
+    else if (Math.abs(res.desvio) > 20) aviso(c.numero, 'centro', `no Shorts, ${res.nota} ficam ${Math.round(Math.abs(res.desvio))} px à ${res.desvio > 0 ? 'direita' : 'esquerda'} do meio — use "x": ${res.x} na câmera do "vertical" (ou rode node ferramentas/roteiros/centrar-shorts.mjs <projeto>)`);
+  }
+
+  // ---------- 4c. [legenda] Shorts: a legenda (palavra por palavra, posição fixa) passando por cima de quem importa para a história.
+  // Só conta personagem com papel (não figurante, não "tela") e objeto que age na cena (alvo de alguma ação), e só enquanto a
+  // legenda está na tela. Mesma conta de posição do motor (yTela) e mesmo lugar da legenda (motor/ui.js: 76%; 80% com zoom ≥ 1,5).
+  if ((r.legendaEstilo || 'palavra') === 'palavra') {
+    const rv = JSON.parse(JSON.stringify(lerRoteiro(dir)));
+    rv.resolucao = rv.resolucaoVertical || [180, 320];
+    for (const c of rv.cenas) {
+      for (const [k, v] of Object.entries(c.vertical || {})) c[k] = v && typeof v === 'object' && !Array.isArray(v) && c[k] && typeof c[k] === 'object' && !Array.isArray(c[k]) ? { ...c[k], ...v } : v;
+      delete c.vertical;
+      c.acoes = (c.acoes || []).map(({ vertical: va, ...ac }) => (va ? { ...ac, ...va } : ac));
+    }
+    const V = resolverRoteiro(rv, new Map(), { fps: 30 });
+    const [W, H] = V.resolucao;
+    for (const c of V.cenas) {
+      if ((c.vista !== 'diorama' && c.vista !== 'diagonal') || !c.legendasNarracao?.length) continue;
+      const posFixa = c.legendaPosicao ?? V.legendaPosicao;
+      if (posFixa === 'auto') continue;
+      const alvos = new Set(c.acoes.map((ac) => ac.alvo).filter(Boolean));
+      const quem = c.elementos.filter((e) => e.sprite && !e.tela && !e.figurante && !e.vida && !e.sobre && !e.sombraPessoa && tam(e.sprite) && (ehPessoa(e, tam) || alvos.has(e.id)));
+      const vezes = new Map();
+      for (let t = 0; t < c.duracao; t += 0.1) {
+        const g = c.legendasNarracao.find((l) => t >= l.ini && t < l.fim);
+        if (!g) continue;
+        const cam = estadoCamera(c, t), zoom = cam.zoom ?? 1;
+        const esc = (g.palavras || []).some((p) => larguraTexto(p.w, 2) > W - 12) ? 1 : 2;
+        const larg = larguraTexto(g.texto, esc), linhas = larg > W - 12 ? 2 : 1, wTxt = Math.min(larg, W - 12);
+        const centro = H * (typeof posFixa === 'number' ? posFixa : zoom >= 1.5 ? 0.8 : 0.76);
+        const L0 = centro - (11 * esc * linhas) / 2, L1 = centro + (11 * esc * linhas) / 2, X0 = (W - wTxt) / 2, X1 = (W + wTxt) / 2;
+        for (const e of quem) {
+          const st = estadoElemento(c, e, t);
+          if (!st.visivel || (st.alpha ?? 1) < 0.2) continue;
+          const tm = tam(e.sprite), esE = (e.escala || 1) * (st.escala || 1), z = st.z ?? e.z ?? 0;
+          const pe = yTela(st.x, z, st.y, cam, !!c.comodo, H), topo = pe - tm.h * esE * zoom;
+          const xc = W / 2 + (st.x - z - ((cam.x ?? 0) - (cam.z ?? 0)) + (c.comodo ? 1.7 : 2.75)) * 16 * zoom, meiaL = (tm.w * esE * zoom) / 4;   // só o miolo do sprite (as bordas têm vazio)
+          if (pe < 0 || topo > H || xc + meiaL < 0 || xc - meiaL > W) continue;                     // fora da tela
+          const cobreY = Math.min(pe - 2, L1) - Math.max(topo, L0), cobreX = Math.min(xc + meiaL, X1) - Math.max(xc - meiaL, X0);
+          if (cobreY > 3 && cobreX > 2 && pe - 2 - L0 > 6) vezes.set(e.id, [...(vezes.get(e.id) || []), { t, pe: Math.round(pe), dy: Math.round(pe - 2 - L0) }]);
+        }
+      }
+      const ruins = [...vezes].filter(([, l]) => l.length >= 3);                                        // só encostou de passagem: ignora
+      if (ruins.length) {
+        const pior = ruins.flatMap(([, l]) => l).reduce((x, y) => (y.dy > x.dy ? y : x));
+        const z = estadoCamera(c, pior.t).zoom ?? 1, passo = (Math.ceil(pior.dy / (4 * z)) * 0.25).toFixed(2);
+        aviso(c.numero, 'legenda', `no Shorts, a legenda fica em cima de ${ruins.map(([id]) => `"${id}"`).join(', ')} (pior: ~${pior.t.toFixed(1)} s, ${pior.dy} px acima dos pés) — abaixe a câmera do Shorts ~${passo} (alturaShorts no nm.mjs) ou, se for depois de um corte de zoom, dê a ele um "vertical": { "y" } menor`);
+      }
+    }
   }
 
   // ---------- 5. quem segue algo e para antes do fim da fala (fica de frente para a câmera)

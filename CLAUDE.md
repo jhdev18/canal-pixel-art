@@ -62,19 +62,38 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
 - **1ª frase curta:** no máximo 12 palavras / ~65 letras (o ideal é ~8 palavras, ~2–3 s). O `npm run conferir` acusa `[gancho]`.
+- **Rascunho sem áudio:** cada cena dura a fala estimada + 0,15 s (antes tinha mínimo de 4 s e parecia parado). Cenas `PARADA` no `npm run mapa`
+  (sem nada se mexendo) são onde o público sai: pôr um passo, um pulo ou alguém chegando.
 - **Silêncio no começo do áudio é cortado sozinho** (a voz começa no 1º quadro; o `--verificar` mostra quanto foi cortado).
 - **Legenda palavra por palavra (padrão):** grupos de 2–3 palavras grandes, com a palavra falada em amarelo (tempo real das
   palavras pelo alinhamento; sem áudio, estimado). **Posição fixa embaixo** (pedido do usuário: legenda trocando de lugar
-  confunde): Shorts a 76% da altura (logo acima dos 18% de baixo, onde ficam os botões do YouTube), 16:9 a 85%. Por isso, no
+  confunde): Shorts a 76% da altura (logo acima dos 18% de baixo, onde ficam os botões do YouTube), 16:9 a 85%; **em cena com zoom ≥ 1,5**
+  desce para 80% (Shorts) / 88% (16:9), para não ficar em cima dos personagens grandes (pedido do usuário). **Tamanho fixo:** sempre a letra
+  grande (grupos de até 14 letras no Shorts, 16 no 16:9); se não couber, quebra em 2 linhas em vez de encolher. Por isso, no
   enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
   câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
   Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
+  O `npm run conferir` acusa `[legenda]` sem abrir o navegador. **Corte de zoom no Shorts:** o `y` do corte vale também no Shorts;
+  o `alturaShorts` agora desce o corte junto (`vertical.y` automático), e um `"vertical": { "y" }` escrito no corte manda.
+  **Centralizar no Shorts (pedido do usuário: personagens descentralizados):** a câmera do diorama NÃO fica em cima de quem tem o mesmo `x`
+  (o `z` também desloca na tela). **Automático (não fazer à mão):** o `cena()` do `nm.mjs` centraliza a câmera do `vertical` sozinho e o
+  `salvar()` refina medindo a cena resolvida no tempo (pulos, `congelar`, quem some) — a mesma conta do aviso `[centro]` do `npm run conferir`
+  (`medirCentro` em `motor/compartilhado/centro.js`). Sem `foco` = todos com papel (sem figurantes/`sobre`/`tela`); `foco: 'id'` ou
+  `['a','b']` = em quem centrar (vira `vertical.centrarEm`, que o conferir respeita). **Nunca** `foco: <número>` nem `centroShorts` em
+  vídeo novo (se vierem, o `salvar()` recentra por cima). Grupo mais largo que 170 px não cabe: centra em quem a câmera já mostrava
+  mais no meio e nos vizinhos que cabem (até 150 px) e grava `centrarEm`; para escolher outra pessoa, `foco`. Cena com panorâmica
+  (`cameraFim`/ação `camera`) não é mexida. **Figurantes continuam valendo** — só não puxam a câmera (cena só com figurantes centra neles).
+  **Roteiro antigo ou feito à mão:** `node ferramentas/roteiros/centrar-shorts.mjs <projeto>` (`--ver` só mostra) aplica a mesma conta
+  no `roteiro.json` (pula vídeo `postado`). `"vertical": { "camera": { "travado": true } }` = x escolhido à mão, o `nm.mjs` não mexe.
   Praça cheia (várias fileiras) não cabe toda: limitar a -2 e aceitar os pés da fileira da frente sob a legenda.
   `"legendaPosicao"` (0–1, no roteiro ou na cena) muda; `"auto"` desvia sozinho de quem está na cena (`lugarLegenda` em `motor/ui.js`).
   `"legendaEstilo": "caixa"` volta à legenda antiga; `"legendaLetras"` (padrão 16) muda o tamanho dos grupos.
 - **Corte de enquadramento dentro da cena** (quebra de padrão a cada ~2 s sem trocar de lugar): ação
   `{ "tipo": "corte", "zoom": 2, "y": 1.5, "inicio" }` — troca instantânea (sem movimento lento), só com zoom redondo
   (1, 1.5, 2, 3); usar em cenas de 3–4 s, na palavra forte. Nos scripts do Claude: `a(0.5, 'corte', { zoom: 2, y: 1.5 })`.
+  **Zoom na hora da transformação/revelação** (pedido do usuário): a cena fica no enquadramento normal e um `corte` de zoom entra
+  no instante da mudança. Qualquer ação aceita `"vertical": { ... }` com campos só do Shorts (ex.: `a(0.68, 'corte', { zoom: 2, x, y: 1.2,
+  vertical: { y: 0.4 } })`); dar o `x` de quem transforma (`xCentrado` do `centro.js`). Na rua, zoom 2 ≈ `y` 1.2 (16:9) / 0.4 (Shorts).
 - **Trilha de fundo em todo vídeo:** `"trilha": "suspense"` (terror), `"comedia"` ou `"emocional"` no roteiro (base chiptune
   baixa em loop, abaixa sozinha com a narração; só no final, como os outros sons; `"volumeTrilha"` padrão 0.7;
   `biblioteca/sfx/trilha-<nome>.mp3` substitui a gerada). Projetos novos já vêm com `"trilha": "suspense"`; o conferir acusa `[trilha]`.
@@ -112,7 +131,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -331,7 +350,7 @@ Os personagens reagem com o rosto. Toda cena com gente tem pelo menos uma expres
   feliz, `gota` chorando, `raiva` bravo, `...` envergonhado; `"rosto": false` desliga). Nos scripts do Claude: `rostos(C, [[cena, id, rosto, f]])`
   do `nm.mjs` (f = fração da fala em que começa).
 - **Rostos:** `feliz`, `rindo`, `triste` (olho molhado, sem lágrima), `chorando` (lágrimas; choro forte), `bravo`, `surpreso`, `assustado`,
-  `envergonhado`, `pensativo` (olhar de lado).
+  `envergonhado`, `pensativo` (olhar de lado). `macabro` 🧪 (terror, v8 — a partir da variação "B" que o usuário escolheu: **só os dentes**, cerrados de ponta a ponta, **pontudos em triângulo** encaixados em zigue-zague, sem boca escura nem gengiva, pontas subindo; olhos pretos com pupila branca que treme; aro claro em pele escura. Folha de comparação: `projetos/teste-roblox/saida/fotos/rostos-pontudo.png`; variações de teste `macabro-a`/`-b`/`-c`/`-v2`). **Animações (protótipo):** `rosto-macabro-cresce` (a boca estica até o sorriso inteiro; toca uma vez a partir do `trocar`/`expressao` e para no fim — use na virada), `rosto-macabro-range` (dentes de baixo deslizando, rangendo, em loop), `rosto-macabro-abre` (de vez em quando a boca abre 1–2 px e fecha); vitrine cena 80. Variações: `macabro-fechado` (boca fechada esticada) e `macabro-boca` (boca aberta com gengiva e escorrido nos olhos). A v4 com pele cinza ficou esquisita — não voltar; teste `projetos/teste-roblox` cena 82; nos sprites sem rosto usa `sorriso`/`pior`/`olhos`) — só no terror, na virada ou na cidade "controlada"; teste na `projetos/vitrine` (cena 64). `bug` 🧪 (o rosto falha como avatar travando: olhos quadrados ciano, fatias deslocadas; vitrine cena 65).
 - **Quem tem:** moradores, protótipos de pessoas, Bia, Nina e cachorros de estimação (`cachorro-*`, `vira-lata`). **O `cao-policial` não tem**
   (deformava o rosto; o usuário pediu o desenho antigo). Guardiões/fantasmas usam o estado parecido; RPG e robô não mudam.
 - **Só aparece parado e sem `pose`:** andando, correndo, sentado ou com `pose` fixa o rosto não muda. Para reagir, a pessoa para antes
@@ -354,7 +373,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%; `[trilha]` roteiro sem trilha; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
+depois de 40%; `[trilha]` roteiro sem trilha; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[legenda]` no Shorts, a legenda em cima de personagem com papel ou objeto que age na cena (figurante, detalhe `"tela"` e só os pés encostando não contam; inclui o enquadramento depois de um `corte` de zoom; mesma conta de tela do motor, `yTela` em `centro.js`); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
@@ -376,7 +395,9 @@ vários vídeos diferentes:
    - **Objetos fixos desenhados na rua** (não estão nos elementos, como os postes): caixotes do mercado em x 13–14.6, calçada
      dos prédios. Ninguém para ali (parece estar dentro dos caixotes); o `npm run conferir` acusa.
    - **Ninguém em pé em cima de objeto baixo** (canteiro, fonte, banco, barraca): os pés ficam fora da base do objeto
-     (`x`..`x + largura`, `z`..`z + profundidade`). O `npm run conferir` acusa ("em cima").
+     (`x`..`x + largura`, `z`..`z + profundidade`). O `npm run conferir` acusa ("em cima"), **também andando/correndo** (amostra a
+     cena toda; no canteiro/fonte, encostar na borda já conta). Na praça os canteiros ficam em x -6.7..-4.3 e 4.3..6.7, z -9.9..-9.1:
+     quem atravessa a praça corre em z ≤ -10 (na frente deles) ou z ≥ -8.6.
 2. **Continuidade de elenco — escrever a intenção no roteiro.** A conferência não entende a história: ela só cobra o que
    o roteiro DECLARA. Por isso, todo roteiro marca a continuidade com três campos de cena:
    - **`"momento": "<nome>"`** — cenas que são o **mesmo instante da história** (a mesma festa, o mesmo debate, a mesma noite
@@ -459,6 +480,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 ## Produção de um episódio
 - Rascunho (16:9): `npm run rascunho -- <ep>`
 - Final (gera `final.mp4` 16:9 e `final-shorts.mp4` 9:16): `npm run final -- <ep>`
+- **Final COM música do usuário** (pedido do usuário; o `final` padrão continua SEM a música dele): `npm run final-musica -- <ep>
+  [--musica arquivo.mp3] [--volume 0.25] [--abaixar 0.5] [--renderizar]` → `final-musica.mp4` / `final-shorts-musica.mp4`. Música da pasta
+  `projetos/<ep>/musica/` ou `musicas/` (raiz); entra no lugar da trilha gerada, em loop, abaixando na fala; reaproveita o vídeo do
+  `final.mp4` se ele já existe (só refaz o áudio). Volume também por `"volumeMusica"`/`"abaixarMusica"` no roteiro. Ver `musicas/LEIA-ME.md`.
 - **Qualidade dos vídeos finais: Full HD** — Shorts **1080×1920** (pixels internos 180×320 × 6) e longo 1920×1080
   (320×180 × 6), 30 fps (`config.json` → `"final": { "resolucao": 1080, "fps": 30 }`). Não mudar sem o usuário pedir.
 - Texto para o ElevenLabs: `npm run narracao -- <ep>` (usa `"narracaoTexto"` de cada cena)
@@ -495,6 +520,9 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 - **Leva 3 (feita com as táticas de retenção do vídeo das sombras), aguardando narração/render:** curtos `nesse-mundo-gatos`
   (terror de dia, 12 cenas, fala ~47 s; `gato-chapeu` figurantes que viram monstros só enquanto as pessoas estão de costas (cenas 1–2); todos viram `gato-monstro` depois que a Bia leva o prefeito; cena 11 = a sombra leva o prefeito; cena 12 = cara `pior` — o monstro 3D foi tirado, o usuário não gostou) e `nesse-mundo-comida` (comédia de dia, 12 cenas, ~48 s; `pao`,
   `cadeado`). Cada um tem `ROTEIRO.md` com o checklist de retenção cumprido e `PUBLICACAO.md`; `npm run conferir` sem avisos.
+- **Leva Roblox (curtos, de dia, aguardando narração/render):** `nesse-mundo-avatar` (terror, 14 cenas, fala ~48 s), `nesse-mundo-pausa`
+  (comédia, 14 cenas, ~49 s) e `nesse-mundo-espera` (emocional, 14 cenas, ~51 s); scripts `c13-avatar.mjs`, `c14-pausa.mjs`, `c15-espera.mjs`;
+  `ROTEIRO.md` com o checklist e `PUBLICACAO.md`; `npm run conferir` sem avisos (só o [parado] da cena 7 do avatar, de propósito: o Léo para para sorrir).
 - **Terror com protótipos:** `nesse-mundo-guardioes` (curto, 11 cenas, fala ~45 s; guardiões + `fantasma-sombra`) e
   `nesse-mundo-numeros` (curto, 12 cenas, ~49 s; números placa + `fantasma-sombra`; prefeito usa a regra a favor).
 - **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
@@ -505,8 +533,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   Sentar no banco da praça: `"pose": "sentado"`, `"y": 0`, `"z": -4.05`.
 - **Elenco fixo:** Bia (`menina-capa`, protagonista principal), **Nina** (`rival`/`nina`, a rival da Bia — também pode ser a
   protagonista, dependendo da história), seu Tonho (`padeiro`),
-  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia), o menino do topete (`menino-topete`, protótipo —
-  protagonista masculino e colega de turma da Bia e da Nina; nome ainda não definido).
+  prefeito Arlindo (`prefeito`), Bolota (`cao-guarda`, cão da delegacia), **Léo**, o menino do topete (`menino-topete`, protótipo —
+  protagonista masculino e colega de turma da Bia e da Nina; nome escolhido no roteiro "pausa o Roblox").
 - **Biblioteca aprovada:** personagens detalhados (`menina-capa`, `robo-semaforo`), moradores
   (`policial`, `prefeito`, `aluno`, `aluna`, `professora`, `padeiro`, `caixa`), estilo RPG
   (`pombo-fofoqueiro`, `cao-guarda`, `coruja-banca`...), cenários de cidade (`escola`, `delegacia`,
@@ -647,7 +675,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (v2, pedido do usuário "parecer mais Roblox": baseplate cinza com pinos `"chao": "baseplate"`, peças coloridas `peca-*`/`placa-*`, `bloco-neon`,
   `trelica`; o antigo de grama é `mundo-bloco-grama`, `"chao": "blocos"`), avatares `avatar-bloco-*` e `avatar-bia`/`-nina`/`-topete`, cubos `cubo-*`, `plataforma-spawn`,
   `moeda-bloco`, `tela-jogo`; sons `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`. **Nada do Roblox nos assets** (logo, avatar padrão
-  amarelo/azul/verde, moeda oficial): o nome só na narração/título. Teste: `projetos/vitrine` (cenas 42–43).
+  amarelo/azul/verde, moeda oficial): o nome só na narração/título. Teste: `projetos/vitrine` (cenas 42–43). Novos (protótipo): `tela-jogo` `socorro`/`chat-nao-sai`/`chat-banho`/`pausado`, `icone-pausa`, rosto `bug`, `sombraPessoa` `"bloco": true` (vitrine 65–68; `projetos/teste-roblox`).
 - **Medieval (PROTÓTIPO)** (`motor/assets/medieval.js` + fachadas `casa-medieval`/`-2`/`-3`, `taverna`, `ferreiro`, `muralha` e
   `"chao": "pedras"` no `ruaDiagonal.js`): cenários `vila-medieval`, `castelo-medieval`, `salao-trono-diorama`, `taverna-diorama`; pessoas
   `rei`, `rainha`, `princesa`, `cavaleiro`, `campones`, `camponesa`, `ferreiro`, `bruxa`, `mago` (chapéus novos `bruxa` e `capuz` no gerador);

@@ -335,9 +335,12 @@ class Motor {
       // nas outras o sprite usa a caminhada clássica, se tiver.
       const conjunto = !vista.caminhadaSincronizada && e.sprite.animsClassicas?.[st.anim] ? e.sprite.animsClassicas : e.sprite.anims;
       // estado + caminhada: se o sprite tiver "<estado>-andando" (ex.: gato com a cara de monstro andando), usa
-      const anim = (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
+      // pulo em fases (PROTÓTIPO, avatares de bloco): o sprite pode ter pulando-agacha / -sobe / -desce / -cai (escolhido pela fase do pulo)
+      const fp = st.anim === 'pulando' ? st.fasePulo : null;
+      const fasePulo = fp == null ? null : fp < 0.1 ? 'pulando-agacha' : fp < 0.45 ? 'pulando-sobe' : fp < 0.9 ? 'pulando-desce' : 'pulando-cai';
+      const anim = (fasePulo && conjunto[fasePulo]) || (st.pose && st.anim !== st.pose && conjunto[st.pose + '-' + st.anim]) || conjunto[st.anim] || conjunto[rostoEquivalente(conjunto, st.anim)] || e.sprite.anims.parado;
       const fps = anim.fps || 8;
-      const tAnim = t + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria
+      const tAnim = (st.congeladoEm ?? t) + (e.def.fase ?? (hashTexto(String(e.def.id)) % 1000) / 1000 * 2.3); // cada um pisca/anda em fase própria (congelado: o quadro para)
       let idx = Math.floor(tAnim * fps);
       // "unica": a animação toca uma vez a partir do "trocar" e para no último quadro
       if (anim.unica) idx = Math.min(anim.q.length - 1, Math.max(0, Math.floor((t - (st.animInicio || 0)) * fps)));
@@ -475,7 +478,7 @@ class Motor {
     R.render(obj.cena, obj.camera);
 
     this.ui.desenhar({
-      cena: c, t, rascunho: this.rascunho,
+      cena: c, t, rascunho: this.rascunho, zoom: estadoCamera(c, t).zoom ?? 1,
       info: `RASCUNHO - CENA ${c.numero}/${this.r.cenas.length} - ${formatarTempo(T)}`,
       cabeca: (id, tt) => {
         const e = obj.porId.get(id);
@@ -498,7 +501,8 @@ class Motor {
           const pe = this.projetar(obj, obj.vista.paraMundo(e.def, st, 0));
           const topo = this.projetar(obj, obj.vista.paraMundo(e.def, st, e.h * st.escala));
           const alt = Math.abs(pe.y - topo.y), larg = Math.max(alt * 0.5, (e.w * PPU * alt) / Math.max(1, e.h * PPU));
-          caixas.push({ x0: (pe.x + topo.x) / 2 - larg / 2, x1: (pe.x + topo.x) / 2 + larg / 2, y0: this.H - Math.max(pe.y, topo.y) - 4, y1: this.H - Math.min(pe.y, topo.y) + 1 });
+          caixas.push({ x0: (pe.x + topo.x) / 2 - larg / 2, x1: (pe.x + topo.x) / 2 + larg / 2, y0: this.H - Math.max(pe.y, topo.y) - 4, y1: this.H - Math.min(pe.y, topo.y) + 1,
+            id: e.def.id, pessoa: !!e.sprite.personagem, figurante: !!e.def.figurante, tela: !!e.def.tela });
         }
         return caixas;
       },

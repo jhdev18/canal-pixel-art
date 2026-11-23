@@ -60,7 +60,7 @@ export function gerarRuaDiagonal(opc = {}) {
   const noite = (opc.periodo ?? 'noite') === 'noite';
   const tarde = opc.periodo === 'tarde';   // PROTÓTIPO: pôr do sol (luz alaranjada, céu laranja e rosa); continua claro
   const semente = opc.semente ?? 7;
-  const J0 = -comp / 2, J1 = comp / 2, I0 = -4.5, I1 = 24, HMAX = 200;   // I1 largo: o canteiro vai até a borda
+  const J0 = -comp / 2, J1 = comp / 2, I0 = ['baseplate', 'bloco-cidade', 'lava'].includes(opc.chao) ? -16 : -4.5, I1 = 24, HMAX = 200;   // baseplate: chão bem maior para o fundo (horizonte longe, como no jogo)   // I1 largo: o canteiro vai até a borda
   const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
   const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 8);
   const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
@@ -123,10 +123,35 @@ export function gerarRuaDiagonal(opc = {}) {
       c = junta ? (v === 3 && bayer(x, y) < 0.5 ? '#6a7a4a' : '#6a6050') : (di > 0.75 || dj > 0.85) ? '#8a7e6c' : (di < 0.3 && dj < 0.4 ? '#d4c8b4' : base);
       pintar(x, y, c, i, j, 0); continue;
     }
-    if (opc.chao === 'baseplate') {   // PROTÓTIPO: chão de "baseplate" cinza de jogo de blocos: placas de 2x2 com junta e pinos (4 por unidade)
-      const fi = (i / 2) % 1, fj = (j / 2) % 1, junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985;
-      const pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, r = Math.hypot(pa - 0.5, pb - 0.5);
-      c = junta ? '#7e7e86' : r < 0.2 ? (pa + pb < 0.95 ? '#c4c4ca' : '#8e8e96') : bayer(x, y) < 0.05 ? '#a2a2a8' : '#a8a8ae';
+    if (opc.chao === 'lava') {   // PROTÓTIPO (parkour de jogo de blocos): mar de lava até o horizonte (brilha) — v2: mais uniforme, com veios
+      // finos e claros correndo (como a lava lisa dos jogos de bloco), em vez de manchas grandes
+      const v = Math.sin(j * 2.2 + Math.sin(i * 1.3) * 1.6) + Math.sin(i * 2.9 + j * 0.7) * 0.5;
+      const veio = Math.abs(v) < 0.08, borda = Math.abs(v) < 0.16;
+      c = veio ? '#ffd870' : borda ? '#ff9a30' : v > 1.1 ? '#ff7e26' : v < -1.1 ? '#e8501a' : bayer(x, y) < 0.05 ? '#ff7422' : '#ff6a1e';
+      pintar(x, y, c, i, j, 0, 2); continue;
+    }
+    if (opc.chao === 'bloco-cidade') {   // PROTÓTIPO (cidade de jogo de blocos): asfalto liso com faixa amarela, calçadas claras, meio-fio e gramado
+      const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1;
+      if (i < 0 || i > 7.4) c = (g1 < 0.03 || g2 < 0.03) ? '#4a9a4a' : bayer(x, y) < 0.05 ? '#5cb85a' : '#58b056';
+      else if (i < 1.5 || (i > 5.5 && i <= 7.4)) c = (g1 < 0.04 || g2 < 0.04) ? '#a4a8b0' : '#bec2ca';         // calçada
+      else if (i < 1.8 || i > 5.2) c = (i < 1.62 || i > 5.38) ? '#dcdfe6' : '#8a8e96';                          // meio-fio
+      else { const meio = Math.abs(i - 3.5) < 0.07 && ((j % 2) + 2) % 2 < 1.1, borda = Math.abs(i - 2.0) < 0.04 || Math.abs(i - 5.0) < 0.04;
+        c = meio ? '#f8d040' : borda ? '#e8e8ec' : bayer(x, y) < 0.04 ? '#55575f' : '#4e5058'; }
+      pintar(x, y, c, i, j, 0); continue;
+    }
+    if (opc.chao === 'baseplate') {   // PROTÓTIPO v3: baseplate dos jogos de bloco atuais: cinza liso com grade (quadrados de 2x2 e linha fina
+      // a cada unidade), sem pinos; "baseplateClassica": true volta aos pinos antigos
+      const fi = ((i / 2) % 1 + 1) % 1, fj = ((j / 2) % 1 + 1) % 1;
+      if (opc.baseplateClassica) {
+        const junta = fi < 0.03 || fj < 0.03 || fi > 0.985 || fj > 0.985, pa = ((i * 4) % 1 + 1) % 1, pb = ((j * 4) % 1 + 1) % 1, rr = Math.hypot(pa - 0.5, pb - 0.5);
+        c = junta ? '#7e7e86' : rr < 0.2 ? (pa + pb < 0.95 ? '#c4c4ca' : '#8e8e96') : bayer(x, y) < 0.05 ? '#a2a2a8' : '#a8a8ae';
+      } else if (i < 0 || i > 7.4) {   // v4: em volta da praça de baseplate, gramado liso em placas (o mapa não acaba no nada)
+        const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1, borda = i > -0.12 && i < 0;
+        c = borda ? '#3e8a3e' : (g1 < 0.03 || g2 < 0.03) ? '#4a9a4a' : bayer(x, y) < 0.05 ? '#5cb85a' : '#58b056';
+      } else {
+        const g1 = ((i % 1) + 1) % 1, g2 = ((j % 1) + 1) % 1, linha = fi < 0.02 || fj < 0.02, fina = g1 < 0.02 || g2 < 0.02;
+        c = linha ? '#6e7076' : fina ? '#878a90' : bayer(x, y) < 0.04 ? '#94979d' : '#9a9da3';
+      }
       pintar(x, y, c, i, j, 0); continue;
     }
     if (opc.chao === 'blocos') {   // PROTÓTIPO: mundo de cubos (jogo de blocos): grama em ladrilhos de 1x1 com junta, caminho de pedra no meio

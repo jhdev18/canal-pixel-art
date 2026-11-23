@@ -235,7 +235,12 @@ export const MOVEIS = {
     L.caixa(i0, i1, j0, j1, 11, 2, { frente: MAD.esc, lado: MAD.esc, topo: MAD.claro });
     const cj = (j0 + j1) / 2 + 0.15;
     L.caixa(i0 + 0.15, i0 + 0.25, cj - 0.1, cj + 0.1, 13, 3, '#3a3a4a');
-    L.caixa(i0 + 0.12, i0 + 0.2, cj - 0.5, cj + 0.5, 16, 12, { frente: (u, t, l) => (u < 0.06 || u > l - 0.06 || t < 1 || t > 10 ? '#3a3a4a' : ligado ? [t > 7 ? '#5ad0f0' : (Math.floor(u * 16) + t) % 7 === 0 ? '#a8f0ff' : '#3a9ad8', 2] : '#1e2430'), lado: '#2a2a36', topo: '#4a4a5a' });
+    const jogo = !!ctx.op.jogo, px = (u, t) => {   // "jogo": true = o jogo de blocos aberto na tela (céu, gramado, baseplate e um avatar)
+      const X = Math.floor(u * 16);
+      if (!jogo) return t > 7 ? '#5ad0f0' : (X + t) % 7 === 0 ? '#a8f0ff' : '#3a9ad8';
+      if (X >= 6 && X <= 8 && t >= 3 && t <= 7) return t >= 6 ? '#f4d0a8' : t >= 4 ? '#e84a4a' : '#2a2a36';   // avatar
+      return t >= 7 ? '#7ac8f0' : t >= 5 ? '#5ab05a' : (X + t) % 4 === 0 ? '#8a8e96' : '#a0a3a9'; };
+    L.caixa(i0 + 0.12, i0 + 0.2, cj - 0.5, cj + 0.5, 16, 12, { frente: (u, t, l) => (u < 0.06 || u > l - 0.06 || t < 1 || t > 10 ? '#3a3a4a' : ligado ? [px(u, t), 2] : '#1e2430'), lado: '#2a2a36', topo: '#4a4a5a' });
     L.caixa(i0 + 0.42, i0 + 0.6, cj - 0.4, cj + 0.3, 13, 1, { frente: '#9aa0b0', topo: (a, b) => (Math.floor(b * 10) % 2 ? '#d0d4dc' : '#b0b4c0') });
     if (ligado) ctx.luzes.push({ i: i0 + 0.5, j: cj, h: 22, raio: 2.4, forca: 0.6, cor: '#80d0ff' });
   } },
@@ -613,6 +618,40 @@ COMODOS_DIAGONAL.beco = {
   piso: [],
 };
 COMODOS_DIAGONAL['quarto-menina-noite'] = { ...COMODOS_DIAGONAL['quarto-menina'], estilo: 'quarto-menina-noite', noite: true };
+
+// PROTÓTIPO (vídeos de Roblox): quarto do Léo (o menino do topete) com o jogo de blocos aberto no computador, e quarto da Nina
+// (roxo; o computador DESLIGADO na escrivaninha: ela parou de jogar). Personagens: z de 0 (frente) a ~3.8 (parede).
+COMODOS_DIAGONAL['quarto-leo'] = {
+  ...COMODOS_DIAGONAL['quarto-menino'], estilo: 'quarto-menino',
+  paredes: [
+    { tipo: 'janela', x: -3.6, w: 2.8, cortina: ['#3a7ad8', '#2a5aa8'] },
+    { tipo: 'poster', x: 0.4, w: 1.3, altura: 58, h: 26, cores: ['#5ad06a', '#2e8a3e'] },
+    { tipo: 'poster', x: 4.8, w: 1.1, altura: 60, h: 22, cores: ['#f8d84a', '#c8a82a'] },
+    { tipo: 'porta', lateral: true, x: 3.4, w: 1.8 },
+  ],
+  moveis: [
+    { tipo: 'cama', x: -6.6, i: 0, tecido: ['#5a9ae8', '#3a6ac8', '#2a4a9a'] }, { tipo: 'criado-mudo', x: -5.2, i: 0 },
+    { tipo: 'bau-brinquedos', x: -1.4, i: 0 },
+    { tipo: 'escrivaninha', x: 2.6, i: 0, jogo: true, ligado: true }, { tipo: 'cadeira-gamer', x: 2.4, i: 0.95, tecido: ['#5ad06a', '#2e8a3e', '#1e5a2a'] },
+    { tipo: 'guarda-roupa', x: 8.65, i: 0.15 },
+  ],
+};
+COMODOS_DIAGONAL['quarto-nina'] = {
+  ...COMODOS_DIAGONAL['quarto-menina'], estilo: 'quarto-menina',
+  paredes: [
+    { tipo: 'janela', x: -3.4, w: 2.8, cortina: ['#a87ae8', '#7a4ac8'] },
+    { tipo: 'poster', x: 0.8, w: 1.3, altura: 58, h: 26, cores: ['#7a3ad0', '#5a2aa8'] },
+    { tipo: 'quadro', x: 4.6, w: 1.9, altura: 64, h: 18 },
+    { tipo: 'porta', lateral: true, x: 3.4, w: 1.8, cor: ['#f4f0e8', '#e0d8c8', '#a8a090'] },
+  ],
+  moveis: [
+    { tipo: 'cama', x: -6.6, i: 0, tecido: ['#b88ae8', '#8a5ad8', '#5a3aa8'] }, { tipo: 'criado-mudo', x: -5.2, i: 0 },
+    { tipo: 'estante', x: -1.2, i: 0, dj: 1.4 },
+    { tipo: 'escrivaninha', x: 2.6, i: 0, ligado: false }, { tipo: 'pufe', x: 2.4, i: 0.95 },
+    { tipo: 'planta', x: 0.4, i: 0.1 }, { tipo: 'guarda-roupa', x: 8.65, i: 0.15 },
+  ],
+  piso: [{ x: -0.4, i0: 1.6, i1: 3.8, dj: 4.2, cor: ['#b8a0e8', '#9a80d8', '#ffffff'] }],
+};
 
 // PROTÓTIPO (não aprovado): praça ao ar livre ("exterior": sem paredes, céu atrás, cerca viva no fundo).
 // Personagens: z de 0 (frente) a ~3.8 (perto da cerca). Fonte no centro (x 0); bancos em x -4.6 e 4.6.

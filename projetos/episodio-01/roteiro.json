@@ -75,7 +75,7 @@
       "acoes": [ { "tipo": "expressao", "alvo": "bia", "rosto": "bravo", "inicio": 1.14, "duracao": 1.95 },
         { "tipo": "andar", "alvo": "bia", "para": 5, "inicio": 0.3, "duracao": 2.6 },
         { "tipo": "falar", "alvo": "bia", "texto": "* NADA acontece nessa cidade!", "inicio": 3.2 } ],
-      "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
+      "vertical": { "camera": { "x": 3.8, "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 06 — o pedido ao pôr do sol
       "narracaoTexto": "Naquela tarde, ela fez um pedido.",
@@ -94,7 +94,7 @@
         { "tipo": "flash", "inicio": 2.8 },
         { "tipo": "emocao", "alvo": "bia", "icone": "!", "inicio": 3.1 } ],
       "sons": [ { "som": "revelar", "inicio": 2.6, "volume": 1 } ],
-      "vertical": { "camera": { "zoom": 2, "z": -2.75, "y": 1.2 } }
+      "vertical": { "camera": { "x": -1.32, "zoom": 2, "z": -2.75, "y": 1.2 } }
     },
     { // 08 — a luz na escola
       "narracaoTexto": "Uma luz estranha piscou dentro da escola. Uma escola que deveria estar vazia.",

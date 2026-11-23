@@ -9,3 +9,8 @@ Rodar da raiz do repositório: `node ferramentas/roteiros/c12-comida.mjs` e depo
 
 **Cuidado:** os vídeos já postados (estrelas, caderno, sombras, guardiões, números, relógio) NÃO devem ser regenerados:
 os roteiros deles receberam ajustes à mão depois do script. Para um vídeo novo, copie um script parecido (ex.: `c12-comida.mjs`).
+
+## Centralização no Shorts (automática)
+- `cena()` + `salvar()` do `nm.mjs` centralizam a câmera do `vertical` sozinhos (mesma conta do `[centro]` do `npm run conferir`).
+  `foco: 'id'` / `['a','b']` escolhe em quem centrar; figurantes não puxam a câmera.
+- Roteiros antigos ou feitos à mão: `node ferramentas/roteiros/centrar-shorts.mjs <projeto>` (`--ver` só mostra).

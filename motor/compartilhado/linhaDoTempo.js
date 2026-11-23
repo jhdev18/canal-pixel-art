@@ -6,7 +6,7 @@ import { clamp, lerp, easeInOut, easeOutBack, EASINGS, ruido1, PIXELS_POR_UNIDAD
 export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
-  piscar: 0.8, camera: 1.5, magia: 1, som: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  piscar: 0.8, camera: 1.5, magia: 1, som: 0, congelar: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
   pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
@@ -168,7 +168,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       for (const k of ['tituloInicio', 'tituloDuracao']) if (cena[k] != null) cena[k] *= f;
     }
     if (continuo) cena.narracaoInicio = 0;
-    let dur = cena.duracao ?? 4;
+    let dur = cena.duracao ?? (cena.narracaoTexto ? 0 : 4);   // com texto do narrador, a cena dura a fala (sem o mínimo de 4 s)
     if (narr) {
       cena.narracao = { arquivo: narr.arquivo, duracao: narr.duracao };
       dur = continuo ? narr.duracao : Math.max(dur, cena.narracaoInicio + narr.duracao + NARRACAO_FOLGA);
@@ -176,11 +176,11 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     // Legenda do narrador: blocos distribuídos pela duração da fala (real, ou estimada sem áudio).
     if (cena.narracaoTexto && roteiro.legendasNarracao !== false && cena.legendaNarracao !== false) {
       const falaDur = narr ? narr.duracao : cena.narracaoTexto.length * SEG_POR_LETRA;
-      if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + NARRACAO_FOLGA);
+      if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + 0.15);   // sem áudio (rascunho): a fala estimada + um respiro curto, sem silêncio parado
       if ((roteiro.legendaEstilo || 'palavra') === 'palavra') {
         // padrão: grupos curtos (até ~3 palavras) com a palavra falada destacada — segura quem assiste sem som
         if (cena.legendaPosicao == null && roteiro.legendaPosicao != null) cena.legendaPosicao = roteiro.legendaPosicao;
-        cena.legendasNarracao = palavrasLegenda(cena.narracaoTexto, cena.narracaoInicio, falaDur, narr?.palavras, roteiro.legendaLetras || 16);
+        cena.legendasNarracao = palavrasLegenda(cena.narracaoTexto, cena.narracaoInicio, falaDur, narr?.palavras, roteiro.legendaLetras || (res[0] < res[1] ? 14 : 16))   // Shorts: 14 letras cabem numa linha no tamanho grande (tamanho fixo);
       } else {
         const blocos = blocosLegenda(cena.narracaoTexto);
         const total = blocos.reduce((s, b) => s + b.length, 0) || 1;
@@ -189,7 +189,7 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       }
     }
     const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
-    if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + 0.5);
+    if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + (cena.narracaoTexto ? 0.1 : 0.5));
     if (continuo) for (const a of cena.acoes) if (a.inicio + a.duracao > dur) a.duracao = Math.max(0, dur - a.inicio);   // nada passa do fim da fala
     // Arredonda para quadros inteiros.
     cena.duracao = Math.ceil(dur * fps) / fps;
@@ -237,7 +237,18 @@ function destino(a, x, y) {
 }
 
 // Estado de um elemento no tempo local t da cena.
+// PROTÓTIPO "congelar": { "tipo": "congelar", "alvo": "a1", "inicio": 0.4 } — a partir do início, o elemento fica parado EXATAMENTE como
+// estava (no meio do pulo, da corrida, do espirro): posição e quadro da animação param ("pausa" do jogo). Quem está "sobre" ele também para.
 export function estadoElemento(cena, el, t, _prof = 0) {
+  const gelo = (cena.acoes || []).find((a) => a.tipo === 'congelar' && a.alvo === el.id && t >= a.inicio);
+  if (gelo && !_congelando.has(el.id)) {
+    _congelando.add(el.id);
+    try { const st = estadoElemento(cena, el, gelo.inicio, _prof); return { ...st, congeladoEm: gelo.inicio }; } finally { _congelando.delete(el.id); }
+  }
+  return estadoLivre(cena, el, t, _prof);
+}
+const _congelando = new Set();
+function estadoLivre(cena, el, t, _prof = 0) {
   let x = el.x ?? 0, y = el.y ?? 0;
   let z = el.z ?? 0;
   let virado = el.virado === 'esquerda' ? -1 : 1;
@@ -262,6 +273,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   let espirro = null, rosto = null;
   const ROSTO_DA_EMOCAO = { '!': 'surpreso', '?': 'pensativo', coracao: 'feliz', gota: 'chorando', raiva: 'bravo', '...': 'envergonhado', lampada: 'surpreso' };
   let animInicio = 0;   // quando começou o estado atual (para animações que tocam uma vez só)
+  let fasePulo = null;  // 0..1 durante um pulo (o sprite pode ter quadros de subida/descida)
   for (const a of cena.acoes) {
     if (a.alvo !== el.id) continue;
     if (t < a.inicio) break;
@@ -281,11 +293,11 @@ export function estadoElemento(cena, el, t, _prof = 0) {
         const [tx, ty] = destino(a, x, y);
         if (Math.abs(tx - x) > 1e-4) virado = tx < x ? -1 : 1;
         x = lerp(x, tx, p); y = lerp(y, ty, p);
-        if (p < 1) { offY += 4 * h * p * (1 - p); anim = 'pulando'; }
+        if (p < 1) { offY += 4 * h * p * (1 - p); anim = 'pulando'; fasePulo = p; }
         break;
       }
       case 'sentar': pose = a.pose || (a.lado ? 'sentado-lado' : 'sentado'); break;
-      case 'expressao': if (p < 1) rosto = a.rosto || a.estado || null; break;   // PROTÓTIPO: rosto por um tempo
+      case 'expressao': if (p < 1) { rosto = a.rosto || a.estado || null; animInicio = a.inicio; } break;   // PROTÓTIPO: rosto por um tempo
       case 'emocao': if (p < 1 && a.rosto !== false && !rosto) rosto = (typeof a.rosto === 'string' && a.rosto) || ROSTO_DA_EMOCAO[a.icone] || null; break;
       case 'espirrar': if (p < 1) espirro = p < (a.inspira ?? 0.6) ? 'espirro-antes' : 'espirro'; break;   // PROTÓTIPO
       case 'levantar': pose = null; break;
@@ -318,7 +330,7 @@ export function estadoElemento(cena, el, t, _prof = 0) {
   if (espirro && anim === 'parado' && !pose) anim = espirro;
   else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
   if (dono && !dono.visivel) visivel = false;
-  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY };
+  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY, fasePulo };
 }
 
 export function elementoPorId(cena, id) {

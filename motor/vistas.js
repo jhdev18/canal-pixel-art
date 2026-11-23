@@ -147,6 +147,16 @@ function criarSombraChao(rua) {
         if (u < 0.46 && aw > 0.012 && aw < 0.072 - u * 0.03) return 1.0;                            // pernas
         return 0.0;
       }
+      // PROTÓTIPO: silhueta de avatar de bloco (cabeça quadrada, tronco largo, braços e pernas retos; não tremula)
+      float silhuetaBloco(float u, float w) {
+        float aw = abs(w);
+        if (u < 0.0 || u > 1.0) return 0.0;
+        if (u > 0.8 && aw < 0.085) return 1.0;                                   // cabeça quadrada
+        if (u > 0.45 && u < 0.79 && aw < 0.125) return 1.0;                      // tronco
+        if (u > 0.46 && u < 0.79 && aw > 0.135 && aw < 0.195) return 1.0;        // braços
+        if (u < 0.45 && aw > 0.006 && aw < 0.125) return 1.0;                    // pernas (com o vão no meio)
+        return 0.0;
+      }
       void main() {
         vec2 px = floor(vUv * uTam);
         vec4 p = texture2D(tPos, (px + 0.5) / uTam);
@@ -156,7 +166,7 @@ function criarSombraChao(rua) {
           if (uPes[k].z <= 0.0) continue;
           vec2 v = p.xy - uPes[k].xy, d = uDir[k].xy, n = vec2(-d.y, d.x);
           float L = uDir[k].z, u = (dot(v, d) + p.z / 16.0) / L, w = dot(v, n) / L;
-          if (silhueta(u, w, uT) > 0.5) {
+          if ((uDir[k].w > 0.5 ? silhuetaBloco(u, w) : silhueta(u, w, uT)) > 0.5) {
             if (uPes[k].z < 0.999 && bayer4(px) > uPes[k].z) continue;       // aparecendo/sumindo em pontilhado
             if (uPes[k].w > 0.5 && abs(u - 0.915) < 0.012 && abs(abs(w) - 0.03) < 0.014) { gl_FragColor = vec4(1.0, 0.35, 0.42, 1.0); return; }
             gl_FragColor = vec4(uCor, 0.88); return;
@@ -185,7 +195,7 @@ function criarSombraChao(rua) {
       for (let k = 0; k < 4; k++) {
         const p = lista[k];
         if (!p) { u.uPes.value[k].set(0, 0, 0, 0); continue; }
-        u.uPes.value[k].set(p.i, p.j, p.alpha, p.olhos ? 1 : 0); u.uDir.value[k].set(p.di, p.dj, p.L, 0);
+        u.uPes.value[k].set(p.i, p.j, p.alpha, p.olhos ? 1 : 0); u.uDir.value[k].set(p.di, p.dj, p.L, p.bloco ? 1 : 0);
       }
     },
     liberar() { tPos.dispose(); mat.dispose(); },
@@ -263,11 +273,11 @@ function vistaDiagonal(c, motor) {
     centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), -st.x - (c ? (c.dj ?? 1) / 2 : 0)]; },
     sombraIJ: (s) => [FAIXA.calcadaFrente - s.z, -s.x],
     atualizarSombra: (s) => sombraChao?.atualizar(s ? { i: FAIXA.calcadaFrente - s.z, j: -s.x, R: s.R, t: s.t, cor: s.cor, borda: s.borda } : null),
-    // sombras em forma de pessoa: [{ x, z, alpha, def }] (def.sombraPessoa: { tamanho, direcao, olhos })
+    // sombras em forma de pessoa: [{ x, z, alpha, def }] (def.sombraPessoa: { tamanho, direcao, olhos, bloco })
     atualizarSombrasPessoa: (lista, t) => sombraChao?.pessoas(lista.map((p) => {
       const o = typeof p.def.sombraPessoa === 'object' ? p.def.sombraPessoa : {};
       const a = ((o.direcao ?? 0) * Math.PI) / 180;
-      return { i: FAIXA.calcadaFrente - p.z, j: -p.x, di: -Math.cos(a), dj: -Math.sin(a), L: o.tamanho ?? 2.6, alpha: p.alpha, olhos: !!o.olhos };
+      return { i: FAIXA.calcadaFrente - p.z, j: -p.x, di: -Math.cos(a), dj: -Math.sin(a), L: o.tamanho ?? 2.6, alpha: p.alpha, olhos: !!o.olhos, bloco: !!o.bloco };
     }), t),
     paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), -st.x, snap(st.y) + dy),
     posicionar(e, st, bob) {

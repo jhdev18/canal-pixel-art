@@ -21,7 +21,7 @@ avisar quando usar). Regra do canal: **todas as cenas no diorama** (rua, praça 
 | **Bolota** | `cao-guarda` | ✅ | Cão da delegacia, de uniforme (estilo RPG, de frente). Mascote cômico |
 | **Professora** | `professora` | ✅ | Coque ruivo, óculos, casaco verde, livro. Brava mas querida ("Sem correr, crianças!") |
 | Menino da coroa | `menino-coroa` | 🧪 | Menino com coroa dourada (pedrinhas), capa vermelha, túnica azul-real e cinto dourado; sorriso de canto, confiante. Bom para "o menino que se acha rei", príncipe da festa, rival do menino do topete. Anda, corre, senta, fica de costas e espirra |
-| Menino do topete | `menino-topete` | 🧪 | Protagonista masculino (nome a definir), colega de turma da Bia e da Nina; topete e cachecol azul |
+| **Léo** (menino do topete) | `menino-topete` | 🧪 | Protagonista masculino, colega de turma da Bia e da Nina; topete e cachecol azul |
 | Aluno / aluna | `aluno`, `aluna` | ✅ | Colegas de escola (crianças com mochila). Servem de protagonista ("o Caio") ou de turma. **Não use o mesmo sprite para dois personagens diferentes no mesmo vídeo** |
 | Caixa | `caixa` | ✅ | Moça do mercado, boné e avental verdes |
 | Robô-semáforo | `robo-semaforo` | ✅ | Robô de trânsito detalhado (ainda pouco usado) |
@@ -150,6 +150,52 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 - `tela-jogo`: monitor em close (`"tela": true`, `"escurecer"`) com interface de jogo (chat à esquerda, lista de jogadores à direita, barra no
   topo, baseplate e avatares); estados `jogando`, `chat` (mais mensagens, uma vermelha), `erro`.
 - Sons: `entrar-jogo`, `pulo-bloco`, `ai` (o "ui!" de quando o avatar cai), `chat`, `bug-jogo`.
+- Novos 🧪 (vitrine 65–68, teste em `projetos/teste-roblox`): `tela-jogo` ganhou `socorro` (avatar em close batendo no vidro, chorando, o vidro
+  rachando; 2 quadros), `chat-nao-sai` (4 jogadores mandando NÃO SAI em vermelho), `chat-banho` (VAI TOMAR / BANHO!) e `pausado` (jogo cinza com
+  o símbolo de pausa); `icone-pausa` (símbolo de pausa que flutua em quem congelou: `"sobre": { "id", "dy": 2.5 }`); rosto **`bug`** para as
+  pessoas (olhos quadrados ciano e fatias do rosto deslocadas, piscando rápido — a criança "trocada"); sombra de avatar
+  `"sombraPessoa": { "bloco": true }` (cabeça quadrada, braços e pernas retos, não tremula). Rosto macabro: em pele escura os olhos pretos aparecem
+  menos — preferir `bug` ou zoom 2 nesses casos.
+- **Lugares dos 3 vídeos de Roblox** 🧪: `quarto-leo-diorama` (quarto do Léo, o jogo aberto no monitor da escrivaninha — opção de móvel
+  `"jogo": true`; cadeira gamer verde), `quarto-nina-diorama` (roxo, computador DESLIGADO: ela parou de jogar), `mundo-bloco-tarde` (o lobby
+  ao pôr do sol: final do emocional), `parkour-campeonato` (v2: pilares em linha a cada 2,8 em x, z 2.6, alturas 1→4; o pilar verde é o checkpoint;
+  `arco-largada` na beira de trás do bloco de início — avatares na frente dele, z 2.3–3.0, `"y": 1` — e outro arco na chegada, `"y": 4`). Junto com os já existentes: `mundo-bloco` (lobby), `cidade-bloco`, `parkour-bloco`, `escola-patio`, `rua-comercial`,
+  `sala-de-estar-diorama`, `banheiro-diorama`, `quarto-menina-diorama` (Bia), `praca`/`praca-tarde`.
+- **`avatar-leo-1` / `avatar-leo-2`** 🧪: o avatar do Léo virando ele aos poucos (1 = roupa dele com o cabelo/pele do avatar azul;
+  2 = roupa + topete); o idêntico é o `avatar-topete`. **`celular-mao`** 🧪: celular aceso na mão de quem joga no mundo real
+  (`"sobre": { "id", "dx": 0.35, "dy": 0.95 }`). **Ação `congelar`** 🧪 (`{ "tipo": "congelar", "alvo", "inicio" }`): o elemento para
+  exatamente como estava (no meio do pulo, da corrida) — a "pausa" do jogo; use com um `pular` de verdade. **Spawn:** os avatares ficam
+  NA FRENTE da `plataforma-spawn` (x ~-5.6, z ~1.5), não em cima (em cima o desenho piscava).
+- **Andar e pular dos avatares (v2)** 🧪: o andar tem 6 quadros (perna da frente sobe aos poucos, a de trás fica atrás e mais escura, braço
+  oposto balança junto, corpo sobe 1 px no meio do passo; 9 q/s andando, 14 correndo). O pulo tem fases escolhidas sozinhas pelo motor
+  durante o `pular`: agacha (0–10%: corpo desce, braços para trás) → sobe (braços para cima, como no jogo) → desce (braços meio abertos, uma
+  perna dobrada) → aterrissa (90–100%: braços e pernas abertos). Os outros personagens continuam com o `pulando` de sempre.
+- **`cidade-bloco`** 🧪 — a cidade do jogo: rua de asfalto com faixa amarela (z 1.3–4.7), calçada dos prédios (z 5.0–6.5) e da frente
+  (z -0.5–1.0), gramado; no fundo casas, `loja-bloco-azul`/`-rosa`/`-verde` (toldo listrado e letreiro), `predio-bloco`; `poste-bloco` (luz
+  amarela) e `carro-bloco-vermelho`/`-azul`/`-amarelo`. Avatares andam nas calçadas (z ~5.2–6.0 ou ~0.2–0.8). Chão `"chao": "bloco-cidade"`.
+- **`parkour-bloco`** 🧪 — mar de lava (`"chao": "lava"`, brilha) com `pilar-bloco-1`…`-5` (pilar cinza saindo da lava e plataforma colorida em
+  cima; quem está em cima usa `"y": altura + 0.25`), `plataforma-inicio` (spawn; em cima `"y": 1`), `plataforma-chegada` (topo xadrez; em cima
+  `"y": 4`) e checkpoint no meio (`"y": 3.25` em cima do pilar 3). Avatares pulam com `pular` + `"para": [x, y]`.
+- **v5: dois lugares** 🧪 — `mundo-bloco` = o **lobby** (praça de baseplate, spawn, gramado, casinhas e árvores; sem peças soltas: o usuário
+  perguntou "esses blocos estão fazendo o quê?") e `mundo-bloco-corrida` = o **percurso** (o mesmo lobby com a corrida montada na beira de trás).
+  Use a corrida só quando a cena for de corrida/campeonato e os avatares estiverem pulando nas peças; o resto (chat, spawn, avatares
+  esperando, socorro) no lobby.
+- **`mundo-bloco` v4 (agora é o `mundo-bloco-corrida`)** 🧪 (pedido do usuário: "fundo e peças no nada" estavam estranhos): praça de baseplate (z -0.5 a 6.5)
+  cercada de **gramado**; no fundo (grama, z 7.4–9) um bairro de 4 `casa-bloco` e árvores; o percurso fica na beira de trás da praça
+  (z 5.4–6.2) e é **todo apoiado no chão** (escada de peças, 2 blocos neon, checkpoint, escada verde, chegada e
+  checkpoint 2). Nada flutuando sem apoio. Avatares em z ~1.4–4.4.
+- **`mundo-bloco` v3 — com referências dos jogos atuais** 🧪: peças de **plástico liso** (sem os pinos de LEGO; `{ pinos: true }` no código volta),
+  baseplate **cinza com grade** que vai longe até o fundo (sem a borda do céu na diagonal; `"rua": { "baseplateClassica": true }` volta aos pinos),
+  **checkpoints** verdes que brilham (`checkpoint-1`…`-5`, zona segura; vermelho neon = bloco que mata — o código de cores dos percursos).
+- **`mundo-bloco` v3 (mais cheio)** 🧪: casinhas do lobby (`casa-bloco`, x -10.6 e 11), `arvore-bloco` (6 pelo mapa, inclusive nos cantos da
+  frente x ±12), `torre-bloco` (peças coloridas empilhadas com luz no topo, ao fundo), `ponte-bloco` (passarela no ar), `bandeira-checkpoint`
+  (x -0.8, z 4.9), `trampolim-bloco` (x 5.6, z 4.8), `placa-jogo` (seta, junto do spawn), plataformas flutuando (a `nuvem-bloco` existe, mas saiu do mapa: ficava em cima do chão), mais
+  moedas. Os avatares continuam em z ~1.4–4.4 (a frente fica livre). Teste: vitrine 72.
+- **Cenas de jogo acontecem DENTRO do `mundo-bloco`** (pedido do usuário): chat = balão `falar` em cima do avatar (como o chat de balão do
+  jogo, com som `chat`); pausa = avatares parados no ar (`"y"` + `"pose": "pulando"`) com `icone-pausa` em cima (`"sobre"`, `dy` 3.0);
+  socorro = avatares andando até a frente da câmera (zoom 2, câmera z ~1.2) em `bug`, pulando com `tremer`. O `tela-jogo` (o monitor) fica só para um
+  close rápido e SEMPRE no mundo real, no quarto de quem joga (`quarto-leo-diorama`, `quarto-nina-diorama`...): nunca dentro do `mundo-bloco`
+  (um monitor no meio do jogo não faz sentido — o usuário apontou). Teste: vitrine 69–71.
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 
 ### Medieval (🧪)
@@ -224,7 +270,7 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 ## 4. Efeitos que dão vida (ações e climas)
 
 - **Expressão no rosto** 🧪 (moradores, Bia e cachorros de estimação; o cão policial não tem): ação `expressao` (`rosto`: feliz, rindo, triste,
-  chorando, bravo, surpreso, assustado, envergonhado, pensativo) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o
+  chorando, bravo, surpreso, assustado, envergonhado, pensativo, `macabro` 🧪 — dentes cerrados de ponta a ponta e olhos pretos com pupila branca, para terror; variações `macabro-fechado` e `macabro-boca`) ou fixa com `"pose": "rosto-triste"`. O ícone de `emocao` já muda o
   rosto junto (`!` surpreso, `?` pensativo, coração feliz, gota chorando, raiva bravo, `...` envergonhado). Guardiões e fantasmas usam o
   estado mais parecido. Só vale parado e sem `pose`. Triste = olho molhado (sem lágrima); choro forte = `chorando`. Usar em todo vídeo (ver CLAUDE.md, "Expressões no rosto").
 - **Ícone de emoção:** `emocao` com `!`, `?`, `coracao`, `...` e `zzz` (✅); `lampada`, `gota`, `raiva` e `nota` (🧪). Balão: `falar`. Pensamento: `pensar` 🧪.

@@ -1,0 +1,19 @@
+Nesse mundo, quando você sai do Roblox, seu avatar te espera — tempos ESTIMADOS (sem narração ainda) — total 0:57.7
+
+  início   fim     %    cena  o que tem               narração
+  0:00.0  0:04.4    0%    1   mov                     Nesse mundo, quando você sai do Roblox, seu avatar te espera.
+  0:04.4  0:09.1    8%    2   mov                     Ele fica no spawn, acenando, até você voltar. Às vezes por anos.
+  0:09.1  0:13.1   16%    3   mov som                 Por isso, a criançada entra todo dia só para dar um oi.
+  0:13.1  0:17.5   23%    4   mov som                 Mas a Nina parou de jogar de um dia para o outro. Sem tchau.
+  0:17.5  0:22.1   30%    5   mov                     Desde então, o avatar dela acena sozinho, cada dia mais devagar.
+  0:22.1  0:27.3   38%    6   mov som                 Até que avisaram: no domingo, o servidor da cidade ia fechar para sempre.
+  0:27.3  0:32.1   47%    7   mov som                 No jogo, os avatares começaram a apagar, um por um, ainda acenando.
+  0:32.1  0:36.2   56%    8   mov                     As crianças correram para a praça, com o celular na mão.
+  0:36.2  0:40.4   63%    9   mov                     A Nina disse que não ligava. Mas foi a primeira a chegar.
+  0:40.4  0:45.0   70%   10   mov som                 Ela entrou e parou na frente do próprio avatar. Só faltava ele.
+  0:45.0  0:47.4   78%   11   mov som                 Ele não esperava a volta dela.
+  0:47.4  0:49.0   82%   12   mov                     Esperava um tchau.
+  0:49.0  0:52.9   85%   13   mov som                 A Nina acenou. Ele acenou de volta e sumiu, sorrindo.
+  0:52.9  0:57.7   92%   14   mov                     E a Nina continuou acenando para o spawn vazio, até a tela apagar.
+
+  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.

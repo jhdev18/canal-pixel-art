@@ -1,0 +1,160 @@
+{
+  // TESTE dos assets de Roblox (mesmas cenas 65–68 da vitrine). npm run fotos -- teste-roblox
+  "titulo": "Teste Roblox",
+  "resolucao": [320, 180],
+  "volumeBaloes": 0.4,
+  "cenas": [
+    // 65. PROTÓTIPO (Roblox/terror): rosto "bug" (o rosto falha como avatar travando) e sombra quadrada de avatar ("sombraPessoa": { "bloco": true })
+    { "cenario": "rua-comercial", "duracao": 5, "transicao": "dither", "foto": [1.0, 3.6], "camera": { "x": 4.6, "z": 2.2, "y": 2.4, "zoom": 1.5 },
+      "legenda": "65. Rosto bug + sombra quadrada: a criança trocada tem a sombra de um avatar de bloco (a da Bia é normal).",
+      "elementos": [
+        { "id": "leo", "personagem": "menino-topete", "x": 6.4, "z": 4.2, "pose": "rosto-bug" },
+        { "id": "s1", "sombraPessoa": { "tamanho": 3.0, "direcao": 75, "bloco": true }, "x": 6.4, "z": 4.2 },
+        { "id": "aluna", "personagem": "aluna", "x": 4.2, "z": 4.6, "pose": "rosto-macabro" },
+        { "id": "s2", "sombraPessoa": { "tamanho": 3.0, "direcao": 75, "bloco": true }, "x": 4.2, "z": 4.6 },
+        { "id": "bia", "personagem": "menina-capa", "x": 2.0, "z": 4.2 },
+        { "id": "s3", "sombraPessoa": { "tamanho": 3.0, "direcao": 75 }, "x": 2.0, "z": 4.2 }
+      ],
+      "acoes": [
+        { "tipo": "expressao", "alvo": "bia", "rosto": "assustado", "inicio": 2.4, "duracao": 2.6 },
+        { "tipo": "trocar", "alvo": "aluna", "estado": "rosto-bug", "inicio": 3.2, "som": "bug-jogo" }
+      ] },
+    // 66. PROTÓTIPO (Roblox/terror): tela do jogo "socorro" — avatar batendo no vidro, chorando, o vidro rachando
+    { "cenario": "quarto-leo-diorama", "duracao": 4, "transicao": "dither", "foto": [1.0, 3.0], "camera": { "x": 0, "y": 3 },
+      "legenda": "66. tela-jogo: socorro (2 quadros batendo; rachaduras crescem).",
+      "elementos": [ { "id": "tv", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "socorro", "escurecer": 0.6 } ],
+      "acoes": [ { "tipo": "tremer", "inicio": 1.0, "duracao": 0.4 } ] },
+    // 67. PROTÓTIPO (Roblox): chat escrito (NÃO SAI / VAI TOMAR BANHO!) e jogo pausado
+    { "cenario": "quarto-leo-diorama", "duracao": 6, "transicao": "dither", "foto": [0.8, 2.8, 4.8], "camera": { "x": 0, "y": 3 },
+      "legenda": "67. tela-jogo: chat-nao-sai > chat-banho > pausado.",
+      "elementos": [ { "id": "tv", "sprite": "tela-jogo", "x": 0, "tela": true, "pose": "chat-nao-sai", "escurecer": 0.6 } ],
+      "acoes": [
+        { "tipo": "trocar", "alvo": "tv", "estado": "chat-banho", "inicio": 2.0, "som": "chat" },
+        { "tipo": "trocar", "alvo": "tv", "estado": "pausado", "inicio": 4.0 }
+      ] },
+    // 68. PROTÓTIPO (Roblox/comédia): ícone de pausa sobre quem congelou
+    { "cenario": "rua-comercial", "duracao": 4, "transicao": "dither", "foto": [2.0], "camera": { "x": 0.6, "z": 2.2, "y": 2.4, "zoom": 2 },
+      "legenda": "68. icone-pausa em cima do seu Tonho e do prefeito congelados.",
+      "elementos": [
+        { "id": "tonho", "personagem": "padeiro", "x": -0.4, "z": 4.6 },
+        { "id": "p1", "sprite": "icone-pausa", "sobre": { "id": "tonho", "dx": 0, "dy": 2.5 } },
+        { "id": "prefeito", "personagem": "prefeito", "x": 1.6, "z": 4.6, "pose": "espirro" },
+        { "id": "p2", "sprite": "icone-pausa", "sobre": { "id": "prefeito", "dx": 0, "dy": 2.5 } }
+      ],
+      "acoes": [] },
+    // 69. PROTÓTIPO (Roblox, dentro do mundo-bloco): chat em balão em cima dos avatares — NÃO SAI (terror) e VAI TOMAR BANHO! (comédia)
+    { "cenario": "mundo-bloco", "duracao": 6, "transicao": "dither", "foto": [2.4, 5.4], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "69. Mundo-bloco: chat em balão nos avatares (NÃO SAI > VAI TOMAR BANHO!).",
+      "elementos": [
+        { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 2.0 },
+        { "id": "anina", "personagem": "avatar-nina", "x": -3.0, "z": 3.4 },
+        { "id": "atop", "personagem": "avatar-topete", "x": 1.4, "z": 3.4 },
+        { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": 3.2, "z": 2.6 },
+        { "id": "a2", "personagem": "avatar-bloco-verde", "x": -4.8, "z": 2.4 },
+        { "id": "mae", "personagem": "avatar-bloco-roxo", "x": 5.0, "z": 3.8, "oculto": true }
+      ],
+      "acoes": [
+        { "tipo": "falar", "alvo": "anina", "texto": "NÃO SAI", "inicio": 0.3 }, { "tipo": "som", "som": "chat", "inicio": 0.3 },
+        { "tipo": "falar", "alvo": "atop", "texto": "NÃO SAI", "inicio": 0.9 }, { "tipo": "som", "som": "chat", "inicio": 0.9 },
+        { "tipo": "falar", "alvo": "a1", "texto": "NÃO SAI", "inicio": 1.5 }, { "tipo": "som", "som": "chat", "inicio": 1.5 },
+        { "tipo": "falar", "alvo": "a2", "texto": "NÃO SAI", "inicio": 2.0 }, { "tipo": "som", "som": "chat", "inicio": 2.0 },
+        { "tipo": "trocar", "alvo": "atop", "estado": "sorriso", "inicio": 2.6 },
+        { "tipo": "aparecer", "alvo": "mae", "inicio": 3.6 }, { "tipo": "som", "som": "entrar-jogo", "inicio": 3.6 },
+        { "tipo": "falar", "alvo": "mae", "texto": "VAI TOMAR BANHO!", "inicio": 4.4 }, { "tipo": "som", "som": "chat", "inicio": 4.4 }
+      ] },
+    // 70. PROTÓTIPO (Roblox, dentro do mundo-bloco): pausa — todos congelados no ar com o ícone de pausa, só o do Léo se mexe
+    { "cenario": "mundo-bloco", "duracao": 4, "transicao": "dither", "foto": [2.4], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "70. Mundo-bloco: avatares congelados no meio do pulo (ícone de pausa); só o avatar do Léo corre.",
+      "elementos": [
+        { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -3.6, "z": 3.4, "y": 0.6, "pose": "pulando" },
+        { "id": "p1", "sprite": "icone-pausa", "sobre": { "id": "a1", "dx": 0, "dy": 3.0 } },
+        { "id": "a2", "personagem": "avatar-bloco-azul", "x": -1.4, "z": 2.6, "y": 0.9, "pose": "pulando" },
+        { "id": "p2", "sprite": "icone-pausa", "sobre": { "id": "a2", "dx": 0, "dy": 3.0 } },
+        { "id": "a3", "personagem": "avatar-bloco-verde", "x": 2.6, "z": 3.8, "y": 0.5, "pose": "pulando" },
+        { "id": "p3", "sprite": "icone-pausa", "sobre": { "id": "a3", "dx": 0, "dy": 3.0 } },
+        { "id": "atop", "personagem": "avatar-topete", "x": -5.6, "z": 2.0 }
+      ],
+      "acoes": [
+        { "tipo": "flash", "inicio": 0.2 },
+        { "tipo": "correr", "alvo": "atop", "para": 5.2, "inicio": 0.6, "duracao": 3.2 },
+        { "tipo": "pular", "alvo": "atop", "inicio": 1.6 }, { "tipo": "som", "som": "pulo-bloco", "inicio": 1.6 }
+      ] },
+    // 71. PROTÓTIPO (Roblox/terror, dentro do mundo-bloco): socorro — os avatares presos vêm até a frente da câmera e batem no vidro
+    { "cenario": "mundo-bloco", "duracao": 5, "transicao": "dither", "foto": [1.2, 4.0], "camera": { "x": 0, "z": 1.2, "y": 2.0, "zoom": 2 },
+      "legenda": "71. Mundo-bloco: avatares presos andam até a câmera, travando (bug), e batem (tremer).",
+      "elementos": [
+        { "id": "atop", "personagem": "avatar-topete", "x": 0.2, "z": 3.6 },
+        { "id": "anina", "personagem": "avatar-nina", "x": -1.6, "z": 3.0 },
+        { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": 1.8, "z": 2.6 }
+      ],
+      "acoes": [
+        { "tipo": "andar", "alvo": "atop", "para": 0.6, "inicio": 0.2, "duracao": 1.4 },
+        { "tipo": "trocar", "alvo": "atop", "estado": "bug", "inicio": 1.6 }, { "tipo": "trocar", "alvo": "anina", "estado": "bug", "inicio": 2.0 },
+        { "tipo": "trocar", "alvo": "a1", "estado": "bug", "inicio": 2.4 }, { "tipo": "som", "som": "bug-jogo", "inicio": 1.6 },
+        { "tipo": "pular", "alvo": "atop", "inicio": 2.6 }, { "tipo": "tremer", "inicio": 2.8, "duracao": 0.3 },
+        { "tipo": "pular", "alvo": "anina", "inicio": 3.2 }, { "tipo": "tremer", "inicio": 3.4, "duracao": 0.3 },
+        { "tipo": "pular", "alvo": "a1", "inicio": 3.8 }, { "tipo": "tremer", "inicio": 4.0, "duracao": 0.5 }
+      ] },
+    // 72. mundo-bloco v3 (mais cheio): vista normal e vista alta
+    { "cenario": "mundo-bloco", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "72. mundo-bloco (lobby).",
+      "elementos": [ { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 2.4 }, { "id": "atop", "personagem": "avatar-topete", "x": 1.6, "z": 3.4 }, { "id": "anina", "personagem": "avatar-nina", "x": -4.2, "z": 3.0 } ],
+      "acoes": [] },
+    { "cenario": "mundo-bloco-corrida", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "73. mundo-bloco-corrida (o percurso).", "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -5.0, "z": 3.0 } ], "acoes": [] },
+    { "cenario": "cidade-bloco", "duracao": 3, "transicao": "dither", "foto": [1.4], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "74. cidade-bloco.",
+      "elementos": [ { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 5.6 }, { "id": "atop", "personagem": "avatar-topete", "x": 1.4, "z": 5.4 }, { "id": "anina", "personagem": "avatar-nina", "x": 3.4, "z": 0.4 } ],
+      "acoes": [ { "tipo": "andar", "alvo": "anina", "para": 1.0, "inicio": 0.2, "duracao": 2.6 } ] },
+    { "cenario": "parkour-bloco", "duracao": 3, "transicao": "dither", "foto": [1.4], "camera": { "x": 0, "z": 2.2, "y": 2.8 },
+      "legenda": "75. parkour-bloco.",
+      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -3.0, "z": 4.0, "y": 2.25 }, { "id": "abia", "personagem": "avatar-bia", "x": 1.8, "z": 3.6, "y": 3.25 }, { "id": "anina", "personagem": "avatar-nina", "x": -8.6, "z": 3.4, "y": 1 } ],
+      "acoes": [] },
+    { "cenario": "quarto-leo-diorama", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "76. quarto-leo-diorama.",
+      "elementos": [ { "id": "leo", "personagem": "menino-topete", "x": 0.6, "z": 1.6 } ], "acoes": [] },
+    { "cenario": "quarto-nina-diorama", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "77. quarto-nina-diorama.",
+      "elementos": [ { "id": "nina", "personagem": "nina", "x": 0.6, "z": 1.6 } ], "acoes": [] },
+    { "cenario": "mundo-bloco-tarde", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "78. mundo-bloco-tarde.",
+      "elementos": [ { "id": "anina", "personagem": "avatar-nina", "x": -6.4, "z": 2.6, "pose": "acenar" } ], "acoes": [], "camera": { "x": -4, "z": 2.2, "y": 2.6 } },
+    { "cenario": "parkour-campeonato", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "79. parkour-campeonato (largada).",
+      "camera": { "x": -6, "z": 2.2, "y": 2.8 },
+      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": -10.2, "z": 2.4, "y": 1 }, { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -8.6, "z": 2.8, "y": 1 } ], "acoes": [] },
+    { "cenario": "parkour-campeonato", "duracao": 3, "transicao": "dither", "foto": [1.4], "legenda": "80. parkour-campeonato (meio).",
+      "camera": { "x": 1, "z": 2.2, "y": 2.8 },
+      "elementos": [ { "id": "atop", "personagem": "avatar-topete", "x": 2.0, "z": 3.0, "y": 3.25 }, { "id": "a1", "personagem": "avatar-bloco-vermelho", "x": -3.6, "z": 3.0, "y": 2.25, "pose": "pulando" } ], "acoes": [] },
+    { "cenario": "mundo-bloco", "duracao": 2.4, "transicao": "dither", "foto": [1.0, 1.12, 1.24, 1.36], "legenda": "81. andar e pular (fases).",
+      "camera": { "x": -2.4, "z": 1.0, "y": 1.4, "zoom": 2 },
+      "elementos": [
+        { "id": "j1", "personagem": "avatar-bloco-vermelho", "x": -3.0, "z": 2.6 }, { "id": "j2", "personagem": "avatar-bloco-azul", "x": -1.6, "z": 2.6 },
+        { "id": "j3", "personagem": "avatar-bloco-verde", "x": -0.2, "z": 2.6 }, { "id": "j4", "personagem": "avatar-bloco-roxo", "x": 1.2, "z": 2.6 },
+        { "id": "w", "personagem": "avatar-topete", "x": -5.0, "z": 1.4 }, { "id": "w2", "personagem": "avatar-nina", "x": -4.2, "z": 0.8 }, { "id": "w3", "personagem": "avatar-bia", "x": -4.6, "z": 0.2 }
+      ],
+      "acoes": [
+        { "tipo": "pular", "alvo": "j1", "inicio": 0.95, "duracao": 1.0, "som": null }, { "tipo": "pular", "alvo": "j2", "inicio": 0.8, "duracao": 1.0, "som": null },
+        { "tipo": "pular", "alvo": "j3", "inicio": 0.4, "duracao": 1.0, "som": null }, { "tipo": "pular", "alvo": "j4", "inicio": 0.05, "duracao": 1.0, "som": null },
+        { "tipo": "andar", "alvo": "w", "para": -4.6, "inicio": 0, "duracao": 2.4 }, { "tipo": "andar", "alvo": "w2", "para": -3.8, "inicio": 0.03, "duracao": 2.4 }, { "tipo": "andar", "alvo": "w3", "para": -4.2, "inicio": 0.07, "duracao": 2.4 }
+      ] },
+    { "cenario": "rua-comercial", "duracao": 2, "transicao": "dither", "foto": [1.0], "legenda": "82. rosto macabro v7: só os dentes (padeiro, aluna, aluno, Bia) e boca fechada (professora).",
+      "camera": { "x": 0.8, "z": 4.6, "y": 0.9, "zoom": 2 },
+      "elementos": [
+        { "id": "m1", "personagem": "padeiro", "x": -1.0, "z": 4.6, "pose": "rosto-macabro" }, { "id": "m2", "personagem": "aluna", "x": 0.0, "z": 4.6, "pose": "rosto-macabro" },
+        { "id": "m3", "personagem": "aluno", "x": 1.0, "z": 4.6, "pose": "rosto-macabro" }, { "id": "m4", "personagem": "menina-capa", "x": 2.0, "z": 4.6, "pose": "rosto-macabro" },
+        { "id": "m5", "personagem": "professora", "x": 3.0, "z": 4.6, "pose": "rosto-macabro-fechado" }
+      ], "acoes": [] },
+    { "cenario": "rua-comercial", "duracao": 2, "transicao": "dither", "foto": [1.0], "legenda": "83. sorriso só dentes: A  B  C  atual",
+      "camera": { "x": 0.6, "z": 4.6, "y": 0.9, "zoom": 2 },
+      "elementos": [
+        { "id": "va", "personagem": "aluno", "x": -1.4, "z": 4.6, "pose": "rosto-macabro-a" }, { "id": "vb", "personagem": "aluno", "x": 0.0, "z": 4.6, "pose": "rosto-macabro-b" },
+        { "id": "vc", "personagem": "aluno", "x": 1.4, "z": 4.6, "pose": "rosto-macabro-c" }, { "id": "vd", "personagem": "aluno", "x": 2.8, "z": 4.6, "pose": "rosto-macabro" }
+      ], "acoes": [] },
+    // PROTÓTIPO: animações do sorriso macabro (v8): cresce (toca uma vez no trocar), range (dentes de baixo deslizando), abre (a boca abre e fecha)
+    { "cenario": "rua-comercial", "duracao": 5, "transicao": "dither", "foto": [0.6, 1.4, 3.0], "camera": { "x": 0.6, "z": 4.6, "y": 0.9, "zoom": 2 },
+      "legenda": "80. Sorriso macabro animado: cresce (aluno), range (aluna), abre (seu Tonho).",
+      "elementos": [
+        { "id": "m1", "personagem": "aluno", "x": -0.4, "z": 4.6, "pose": "rosto-feliz" },
+        { "id": "m2", "personagem": "aluna", "x": 0.8, "z": 4.6, "pose": "rosto-macabro-range" },
+        { "id": "m3", "personagem": "padeiro", "x": 2.0, "z": 4.6, "pose": "rosto-macabro-abre" }
+      ],
+      "acoes": [ { "tipo": "trocar", "alvo": "m1", "estado": "rosto-macabro-cresce", "inicio": 0.8, "som": "revelar" } ] }
+  ]
+}

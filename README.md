@@ -15,6 +15,7 @@ O fluxo tem duas etapas:
 |---|---|---|
 | 1. Rascunho | `npm run rascunho -- meu-video` | `rascunho.mp4` (960×540, 15 fps, só narração, marca d'água com cena e tempo) + `storyboard.png` (uma miniatura por cena) |
 | 2. Final | `npm run final -- meu-video` | **duas versões**: `final.mp4` (1920×1080, vídeo longo) e `final-shorts.mp4` (1080×1920, Shorts) — 30 fps, efeitos visuais + efeitos sonoros + ambiente + narração, áudio normalizado para -14 LUFS |
+| 2b. Final com música | `npm run final-musica -- meu-video --volume 0.25` | igual ao final, mas com a **sua música** (pasta `musicas/` ou `projetos/meu-video/musica/`) no lugar da trilha: `final-musica.mp4` e `final-shorts-musica.mp4`. O `final.mp4` padrão continua sem música. Ver `musicas/LEIA-ME.md` |
 
 ---
 

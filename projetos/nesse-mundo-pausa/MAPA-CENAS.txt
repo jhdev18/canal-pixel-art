@@ -1,0 +1,19 @@
+Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa — tempos ESTIMADOS (sem narração ainda) — total 0:57.9
+
+  início   fim     %    cena  o que tem               narração
+  0:00.0  0:04.5    0%    1   mov flash som           Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.
+  0:04.5  0:09.6    8%    2   mov corte flash som     O avatar parou no ar. O pão parou no ar. O prefeito, no meio do espirro.
+  0:09.6  0:13.7   17%    3   mov corte flash som     Por isso, a criançada joga Roblox trancada no banheiro.
+  0:13.7  0:17.3   24%    4   mov flash               Mas a mãe do Léo grita pausa vinte vezes por dia.
+  0:17.3  0:20.7   30%    5   mov balão               E ele sempre responde: mãe, online não pausa!
+  0:20.7  0:25.1   36%    6   mov flash som           Até que, no campeonato valendo mil Robux, ela gritou: pausa!
+  0:25.1  0:29.2   43%    7   mov som                 A cidade congelou. O servidor congelou. Menos um avatar.
+  0:29.2  0:34.3   50%    8   mov som                 Ele pulou de pilar em pilar e ganhou de doze estátuas.
+  0:34.3  0:38.4   59%    9   mov                     Na rua, o Léo pegou o pão do ar e a peruca do prefeito.
+  0:38.4  0:42.9   66%   10   mov flash               Foi aí que a mãe descongelou. Com a peruca bem na frente dela.
+  0:42.9  0:46.4   74%   11   mov som                 No dia seguinte, ela criou uma conta no Roblox.
+  0:46.4  0:50.4   80%   12   mov balão flash som     Entrou no campeonato do Léo e gritou, lá dentro: pausa!
+  0:50.4  0:52.3   87%   13   mov som                 Jogo online não pausa.
+  0:52.3  0:57.9   90%   14   mov balão som           Mas filho online, pausa. E o Léo ficou no ar até a hora do banho.
+
+  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.

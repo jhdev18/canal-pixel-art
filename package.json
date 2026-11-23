@@ -12,6 +12,7 @@
     "novo": "node src/cli.js novo",
     "rascunho": "node src/cli.js rascunho",
     "final": "node src/cli.js final",
+    "final-musica": "node src/cli.js final-musica",
     "previa": "node src/cli.js previa",
     "gpu": "node src/cli.js gpu",
     "sfx": "node src/cli.js sfx",

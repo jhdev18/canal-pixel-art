@@ -119,7 +119,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 4.6,
+     "x": 4.25,
      "z": 2.2,
      "y": 2.4
     }
@@ -177,7 +177,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 16.2,
+     "x": 15.6,
      "z": 2.2,
      "y": 2.4
     }
@@ -261,7 +261,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
+     "x": 1.6,
      "z": -9.6,
      "zoom": 2
     }
@@ -354,7 +354,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 10.6,
+     "x": 11.35,
      "z": 3.4,
      "y": 1.5,
      "zoom": 2
@@ -425,7 +425,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 1.37,
      "z": 0,
      "y": 2.4
     }
@@ -494,7 +494,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 3.65,
      "z": -8.5
     }
    }
@@ -559,7 +559,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1.6,
+     "x": -2.35,
      "y": 3
     }
    }
@@ -627,7 +627,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 3.65,
      "z": -8.5
     }
    }
@@ -693,7 +693,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 1.55,
      "z": 0,
      "y": 2.4
     }
@@ -794,9 +794,19 @@
    ],
    "vertical": {
     "camera": {
-     "x": 4,
+     "x": 3.3,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "caixa",
+     "ccaixa",
+     "cprof",
+     "prefeito",
+     "prof",
+     "cpref",
+     "ctonho",
+     "tonho"
+    ]
    },
    "momento": "debate"
   },
@@ -903,10 +913,17 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5.7,
+     "x": 5.75,
      "z": -7.8,
      "zoom": 2
-    }
+    },
+    "centrarEm": [
+     "ccaixa",
+     "caixa",
+     "prefeito",
+     "cprof",
+     "cpref"
+    ]
    },
    "momento": "debate"
   },
@@ -1044,9 +1061,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 0.55,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "ctonho",
+     "tonho",
+     "prof",
+     "cprof",
+     "policial",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -1145,9 +1171,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": -3,
+     "x": 0.55,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "policial",
+     "tonho",
+     "ctonho",
+     "prof",
+     "cprof",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -1277,9 +1312,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
+     "x": 0.55,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "tonho",
+     "ctonho",
+     "prof",
+     "policial",
+     "cprof",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -1386,10 +1430,16 @@
    ],
    "vertical": {
     "camera": {
-     "x": -0.5,
+     "x": -0.1,
      "z": -9.6,
      "zoom": 2
-    }
+    },
+    "centrarEm": [
+     "ctonho",
+     "prof",
+     "tonho",
+     "cprof"
+    ]
    },
    "momento": "debate"
   },
@@ -1482,9 +1532,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": -5,
+     "x": 0.55,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "policial",
+     "tonho",
+     "ctonho",
+     "prof",
+     "cprof",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -1589,9 +1648,19 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5,
+     "x": 3.3,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "ccaixa",
+     "caixa",
+     "prefeito",
+     "cprof",
+     "cpref",
+     "prof",
+     "ctonho",
+     "tonho"
+    ]
    },
    "momento": "debate"
   },
@@ -1716,9 +1785,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": -4.5,
+     "x": 0.76,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "policial",
+     "tonho",
+     "ctonho",
+     "prof",
+     "cprof",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -1836,9 +1914,19 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0,
+     "x": 0.85,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "ctonho",
+     "tonho",
+     "prof",
+     "cprof",
+     "policial",
+     "caio",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -1965,10 +2053,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": -0.9,
+     "x": -0.75,
      "z": -10.6,
      "zoom": 2
-    }
+    },
+    "centrarEm": [
+     "vira",
+     "prof",
+     "ctonho",
+     "cprof",
+     "tonho",
+     "caio"
+    ]
    },
    "momento": "debate"
   },
@@ -2075,10 +2171,18 @@
    ],
    "vertical": {
     "camera": {
-     "x": -0.9,
+     "x": -0.75,
      "z": -10.6,
      "zoom": 2
-    }
+    },
+    "centrarEm": [
+     "prof",
+     "vira",
+     "ctonho",
+     "cprof",
+     "tonho",
+     "caio"
+    ]
    },
    "momento": "debate"
   },
@@ -2193,9 +2297,20 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1,
+     "x": 0.85,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "tonho",
+     "ctonho",
+     "policial",
+     "prof",
+     "vira",
+     "cprof",
+     "caio",
+     "caixa",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -2245,7 +2360,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 4.6,
+     "x": 4.25,
      "z": 2.2,
      "y": 2.4
     }
@@ -2298,7 +2413,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 10.6,
+     "x": 11.35,
      "z": 3.4,
      "y": 1.5,
      "zoom": 2
@@ -2445,9 +2560,21 @@
    ],
    "vertical": {
     "camera": {
-     "x": 3.7,
+     "x": 3.3,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "caixa",
+     "caio",
+     "cprof",
+     "ccaixa",
+     "vira",
+     "prof",
+     "prefeito",
+     "ctonho",
+     "cpref",
+     "tonho"
+    ]
    },
    "momento": "debate"
   },
@@ -2567,9 +2694,21 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5,
+     "x": 3.3,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "ccaixa",
+     "caio",
+     "caixa",
+     "prefeito",
+     "cprof",
+     "cpref",
+     "vira",
+     "prof",
+     "ctonho",
+     "tonho"
+    ]
    },
    "momento": "debate"
   },
@@ -2696,9 +2835,21 @@
    ],
    "vertical": {
     "camera": {
-     "x": 2,
+     "x": 3.3,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "prof",
+     "vira",
+     "cprof",
+     "ctonho",
+     "caixa",
+     "caio",
+     "tonho",
+     "ccaixa",
+     "prefeito",
+     "cpref"
+    ]
    },
    "momento": "debate"
   },
@@ -2843,9 +2994,20 @@
    ],
    "vertical": {
     "camera": {
-     "x": -3,
+     "x": 0.85,
      "z": -8.5
-    }
+    },
+    "centrarEm": [
+     "policial",
+     "tonho",
+     "ctonho",
+     "prof",
+     "vira",
+     "cprof",
+     "caixa",
+     "caio",
+     "ccaixa"
+    ]
    },
    "momento": "debate"
   },
@@ -2929,7 +3091,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 10.6,
+     "x": 11.25,
      "z": 3.4,
      "y": 1.5,
      "zoom": 2
@@ -2989,7 +3151,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 10.6,
+     "x": 11.25,
      "z": 3.4,
      "y": 1.5,
      "zoom": 2

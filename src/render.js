@@ -82,6 +82,8 @@ function paraVertical(roteiro) {
       else c[k] = val;
     }
     delete c.vertical;
+    // ação com "vertical": { ... } usa esses campos só no Shorts (ex.: corte de zoom com outro "y")
+    c.acoes = (c.acoes || []).map(({ vertical: va, ...a }) => (va ? { ...a, ...va } : a));
   }
   return r;
 }
@@ -136,9 +138,17 @@ export async function renderizar(nome, modo, opc = {}) {
   const saidaDir = path.join(dir, 'saida');
   fs.mkdirSync(saidaDir, { recursive: true });
   const videoTmp = path.join(saidaDir, `.${modo}${sufixo}-video.mp4`);
-  let saidaFinal = path.join(saidaDir, `${modo}${sufixo}.mp4`);
+  // versão COM MÚSICA (npm run final-musica): sai como final-musica.mp4 / final-shorts-musica.mp4; o final.mp4 padrão (sem música) não muda.
+  // Se o final.mp4 já existe, reaproveita o vídeo dele (só refaz o áudio, em segundos); --renderizar força renderizar de novo.
+  const musica = opc.musica || null;
+  let saidaFinal = path.join(saidaDir, `${modo}${sufixo}${musica ? '-musica' : ''}.mp4`);
+  const videoPronto = path.join(saidaDir, `${modo}${sufixo}.mp4`);
+  const reaproveitar = musica && !opc.renderizarDeNovo && fs.existsSync(videoPronto) && fs.statSync(videoPronto).mtimeMs >= fs.statSync(path.join(dir, 'roteiro.json')).mtimeMs;
+  if (musica) console.log(`  Música: ${path.basename(musica.arquivo)}  •  volume ${musica.volume}${reaproveitar ? `  •  reaproveitando o vídeo de ${path.basename(videoPronto)} (só o áudio muda)` : ''}`);
+  if (musica && !reaproveitar && fs.existsSync(videoPronto)) console.log('  (o roteiro mudou depois do último final.mp4: renderizando o vídeo de novo)');
   if (vertical && roteiro.duracaoTotal > 180) avisos.push(`A versão Shorts tem ${roteiro.duracaoTotal.toFixed(0)}s; o YouTube aceita Shorts de até 3 minutos.`);
 
+  if (reaproveitar) { for (const a of avisos) console.log(`  ⚠ ${a}`); } else {
   const servidor = await iniciarServidor({ projetoDir: dir });
   let motor;
   try {
@@ -178,6 +188,7 @@ export async function renderizar(nome, modo, opc = {}) {
     await motor?.browser.close().catch(() => {});
     await servidor.fechar();
   }
+  }
 
   // ---------- Áudio ----------
   const narracoes = roteiro.cenas.filter((c) => c.narracao).map((c) => ({
@@ -188,7 +199,10 @@ export async function renderizar(nome, modo, opc = {}) {
     const sons = eventosSonoros(roteiro);
     const cache = new Map(), faltando = new Set();
     for (const e of sons.eventos) { const d = await carregarSom(dir, ff, e.som, cache, faltando); if (d) eventos.push({ ...e, dados: d }); }
-    for (const a of sons.ambientes) { const d = await carregarSom(dir, ff, a.som, cache, faltando); if (d) ambientes.push({ ...a, dados: d }); }
+    for (const a of sons.ambientes) {
+      if (musica && /^trilha-/.test(a.som)) continue;   // com música: a música do usuário entra no lugar da trilha gerada
+      const d = await carregarSom(dir, ff, a.som, cache, faltando); if (d) ambientes.push({ ...a, dados: d });
+    }
     for (const f of faltando) console.log(`  ⚠ ${f}`);
     console.log(`  Efeitos sonoros: ${eventos.length} eventos, ${ambientes.length} trechos de ambiente`);
   }
@@ -196,15 +210,17 @@ export async function renderizar(nome, modo, opc = {}) {
   // No Windows, se o vídeo antigo estiver aberto (player, OneDrive sincronizando), ele não pode ser substituído (EPERM/EBUSY).
   // Em vez de falhar, salva com outro nome e avisa — assim ninguém assiste ao vídeo velho achando que é o novo.
   saidaFinal = destinoLivre(saidaFinal);
-  if (!narracoes.length && !eventos.length && !ambientes.length) {
+  const fonteVideo = reaproveitar ? videoPronto : videoTmp;
+  const musicaMix = musica ? { dados: await decodificarAudio(ff, musica.arquivo), volume: musica.volume, abaixar: musica.abaixar } : null;
+  if (!narracoes.length && !eventos.length && !ambientes.length && !musicaMix) {
     renomearComTentativas(videoTmp, saidaFinal);
   } else {
-    const { L, R } = mixar({ duracao: roteiro.duracaoTotal, narracoes, eventos, ambientes, cfg: cfg.audio });
-    const wav = path.join(saidaDir, `${modo}${sufixo}-audio.wav`);
+    const { L, R } = mixar({ duracao: roteiro.duracaoTotal, narracoes, eventos, ambientes, musica: musicaMix, cfg: cfg.audio });
+    const wav = path.join(saidaDir, `${modo}${sufixo}${musica ? '-musica' : ''}-audio.wav`);
     escreverWav(wav, L, R);
     const af = modo === 'final' && cfg.audio.normalizar ? ['-af', `loudnorm=I=${cfg.audio.lufs}:TP=-1.5:LRA=11`] : [];
-    await executar(ff, ['-i', videoTmp, '-i', wav, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', ...af, '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-shortest', saidaFinal]);
-    fs.unlinkSync(videoTmp);
+    await executar(ff, ['-i', fonteVideo, '-i', wav, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', ...af, '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-shortest', saidaFinal]);
+    if (!reaproveitar) fs.unlinkSync(videoTmp);
   }
 
   console.log(`\n✔ Pronto em ${fmt((Date.now() - t0) / 1000)}: ${saidaFinal}`);
