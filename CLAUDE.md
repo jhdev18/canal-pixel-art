@@ -617,6 +617,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
+- **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
+  (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,
   `ccr-77868c41-s69pnw`, `claude/modest-hamilton-4p4851`, `jolly-archimedes`, `upbeat-mccarthy` e os anteriores).
   Antes: `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,
