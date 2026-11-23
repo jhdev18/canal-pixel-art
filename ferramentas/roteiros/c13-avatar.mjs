@@ -115,7 +115,7 @@ rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [8, 'mae', 'r
   [11, 'bia', 'assustado', 0.45]]);
 // a sombra do Léo (cena 7): elemento só de sombra
 C[6].elementos[1] = { id: 'sleo', sombraPessoa: { tamanho: 2.6, direcao: 75, bloco: true }, x: 2.2, z: 4.6 };
-alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -0.5 });
+alturaShorts(C, { 1: -0.5, 2: -1, 3: -1.25, 4: -1, 7: -1.25, 8: -1.25, 9: -1.25, 11: -1.25, 14: -3.75 });
 
 
 salvar('nesse-mundo-avatar', ['NESSE MUNDO (curto, TERROR de dia, Roblox) — "Nesse mundo, seu avatar do Roblox vai ficando igual a você."',
