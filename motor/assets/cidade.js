@@ -131,6 +131,12 @@ Object.assign(MOVEIS, {
     if (!aberto) L.caixa(i0, i1, j0 + 0.3, j1 - 0.3, 0, 34, { frente: (u, t) => (Math.floor(u * 16) % 4 === 0 || t === 2 || t === 32 ? '#2e7a46' : null), lado: '#2e7a46', topo: '#2e7a46' });
     else for (const b of [j0 + 0.3, j1 - 0.45]) L.caixa(i0 - 0.6, i0, b, b + 0.15, 0, 34, { frente: (u, t) => (t % 4 === 0 ? '#2e7a46' : null), lado: (u, t) => (Math.floor(u * 16) % 4 === 0 || t === 2 || t === 32 ? '#2e7a46' : null), topo: '#2e7a46' });
   } },
+  // muro baixo da escola (pintado, com grade verde em cima): em trechos de 4 de comprimento, na frente do pátio
+  'muro-escola': { di: 0.25, dj: 4.0, f(L, m) {
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 10, { frente: (u, t) => (t === 9 ? '#f4ecd8' : t < 2 ? '#a8946c' : Math.floor(u * 2) % 2 ? '#e8d8b0' : '#ecdcb6'), lado: '#c8b48c', topo: '#f4ecd8' });
+    L.caixa(i0 + 0.08, i1 - 0.08, j0, j1, 10, 12, { frente: (u, t) => (Math.floor(u * 16) % 4 === 0 || t === 11 ? '#2e7a46' : null), lado: (u, t) => (t === 11 ? '#2e7a46' : null), topo: '#2e7a46' });
+  } },
   trave: { di: 0.6, dj: 1.8, f(L, m) {
     const { i0, i1, j0, j1 } = m;
     for (const b of [j0, j1 - 0.08]) L.caixa(i1 - 0.08, i1, b, b + 0.08, 0, 22, '#f4f4f4');
@@ -263,13 +269,29 @@ Object.assign(MOVEIS, {
     L.caixa(i0, i0 + 0.15, j0, j1, 12, 14, { frente: (u, t) => (t > 11 ? '#5a9af0' : '#3a8ad8'), lado: '#2a5aa8', topo: '#5a9af0' });
   } },
   'barra-onibus': { di: 0.1, dj: 0.1, f(L, m) { L.caixa(m.i0, m.i1, m.j0, m.j1, 0, 60, '#f8d040'); } },
-  gondola: { di: 0.8, dj: 3.0, f(L, m) {   // prateleira do mercado cheia de produtos coloridos
-    const { i0, i1, j0, j1 } = m;
-    L.caixa(i0, i1, j0, j1, 0, 40, { frente: (u, t, l) => {
-      if (t % 10 < 2 || u < 0.05 || u > l - 0.05) return '#c8ccd8';
-      const k = Math.floor(u * 16 / 4) + Math.floor(t / 10) * 7, du = Math.floor(u * 16) % 4, alt = 5 + (k % 3);
-      return (t % 10) - 2 < alt && du < 3 ? PROD[k % PROD.length] : '#8a8e9c';
-    }, lado: '#9aa0ac', topo: '#e4e6ee' });
+  // prateleira do mercado (gôndola): estrutura de metal, 4 prateleiras com etiqueta de preço na borda e produtos de verdade
+  // em fileiras: caixas (com faixa de rótulo), garrafas (com tampa) e latas; cada trecho de prateleira tem um tipo de produto.
+  gondola: { di: 0.8, dj: 3.0, f(L, m) {
+    const { i0, i1, j0, j1 } = m, ALT = 48, PRAT = 11;
+    const produto = (sec, px, py) => {   // px: 0..15 dentro do trecho, py: 0..8 acima da prateleira (null = vazio/fundo)
+      const tipo = sec % 3, cor = PROD[(sec * 5) % PROD.length], col = px % 5;
+      if (tipo === 0) { if (col > 3 || py > 7) return null; return py === 5 ? '#ffffff' : py === 7 ? '#f4f4f4' : cor; }       // caixas (faixa de rótulo)
+      if (tipo === 1) { if (col !== 1 && col !== 2) return null; if (py > 8) return null; return py >= 7 ? '#e4e6ee' : py === 6 ? cor : py < 2 ? cor : '#a8d8f0'; }   // garrafas
+      if (col > 3 || py > 4) return null; return py === 4 ? '#c8ccd8' : py === 2 ? '#ffffff' : cor;                                   // latas
+    };
+    L.caixa(i0, i1, j0, j1, 0, ALT, {
+      frente: (u, t, l) => {
+        const px = Math.floor(u * 16);
+        if (px < 1 || px > Math.floor(l * 16) - 2 || t > ALT - 2) return '#9aa0ac';                                 // laterais e topo de metal
+        if (t < 3) return '#5a5e6a';                                                                              // rodapé
+        const nivel = Math.floor((t - 3) / PRAT), py = (t - 3) % PRAT;
+        if (py < 2) return py === 1 && px % 16 > 5 && px % 16 < 10 ? '#f8d040' : '#c8ccd8';                       // prateleira + etiqueta de preço
+        const sec = Math.floor(px / 16) * 7 + nivel * 3;
+        return produto(sec, px % 16, py - 2) || '#d8dce4';                                                         // fundo claro da gôndola
+      },
+      lado: (u, t) => (t > ALT - 2 || t < 3 ? '#5a5e6a' : t > 30 && t < 42 ? (Math.floor(u * 16) % 6 < 3 ? '#d83a3a' : '#f8d040') : '#b8bcc8'),   // cabeceira com faixa de oferta
+      topo: (a, b) => (Math.floor(b * 4) % 3 === 0 ? PROD[Math.floor(b * 4) % PROD.length] : '#c8ccd8'),
+    });
   } },
   freezer: { di: 0.9, dj: 2.0, f(L, m) {
     const { i0, i1, j0, j1 } = m;
@@ -316,10 +338,11 @@ PRESETS_INTERIORES.biblioteca = preset(['#e8d8b8', '#d4c098', '#a88e68'], { altu
 COMODOS_DIAGONAL['onibus-dentro'] = { estilo: 'onibus-dentro', inicio: -9, fim: 9,
   paredes: [{ tipo: 'janela-onibus', x: 0, w: 18, peitoril: 40 }, { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#cfe8f8', '#8ab8d8', '#5a5e6a'] }],
   moveis: [...[-6, -3, 0, 3, 6].map((x) => ({ tipo: 'banco-onibus', x, i: 0.2 })), ...[-4.5, -1.5, 1.5, 4.5].map((x) => ({ tipo: 'barra-onibus', x, i: 1.9 }))], piso: [] };
-// MERCADO POR DENTRO: gôndolas cheias, freezer, caixa com esteira, cartazes de oferta. Pessoas no corredor da frente (z 0–1.4).
+// MERCADO POR DENTRO: 2 gôndolas cheias no fundo, freezer, caixa com esteira, cartazes de oferta, um carrinho parado. Corredor livre
+// na frente (z 0–2); a caixa atende atrás do balcão (x ~5.6, z ~2.8).
 COMODOS_DIAGONAL['mercado-dentro'] = { estilo: 'mercado-dentro', inicio: -9, fim: 9,
   paredes: [{ tipo: 'cartaz-mercado', x: -4, w: 2.4, altura: 64 }, { tipo: 'cartaz-mercado', x: 3, w: 2.4, altura: 64 }, { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#cfe8f8', '#8ab8d8', '#5a5e6a'] }],
-  moveis: [{ tipo: 'gondola', x: -5.6, i: 0 }, { tipo: 'gondola', x: -1.8, i: 0 }, { tipo: 'freezer', x: 2.0, i: 0.1 }, { tipo: 'gondola', x: -3.6, i: 1.6, dj: 3.6 }, { tipo: 'caixa-mercado', x: 5.4, i: 1.4 }], piso: [] };
+  moveis: [{ tipo: 'gondola', x: -6.4, i: 0 }, { tipo: 'gondola', x: -3.0, i: 0 }, { tipo: 'freezer', x: 0.6, i: 0.1 }, { tipo: 'caixa-mercado', x: 5.4, i: 1.4 }, { tipo: 'carrinho-compras', x: 2.6, i: 0.2 }], piso: [{ x: -1.5, i0: 1.6, i1: 3.0, dj: 9, cor: ['#e4e6ee', '#d4d6de', '#c8ccd8'] }] };
 // CONSULTÓRIO (posto de saúde): maca, armário de remédios, mesa, quadro com cruz verde. Médica atrás da mesa (x ~4.6, z ~2.6).
 COMODOS_DIAGONAL.consultorio = { estilo: 'consultorio', inicio: -9, fim: 9,
   paredes: [{ tipo: 'quadro-saude', x: 0.6, w: 1.4, altura: 52, h: 22 }, { tipo: 'janela', x: -5.4, w: 2, peitoril: 44 }, { tipo: 'porta', lateral: true, x: 2.6, w: 1.8, cor: ['#f4f8fa', '#dce6ec', '#a8b8c4'] }],
@@ -333,7 +356,7 @@ COMODOS_DIAGONAL.biblioteca = { estilo: 'biblioteca', inicio: -9, fim: 9,
 // ------------------------------------------------------------------ registro
 const ISO = (tipo, op) => ({ tipo, op });
 registrarSprites({
-  ...Object.fromEntries(['carro-vermelho', 'carro-azul', 'carro-amarelo', 'carro-branco', 'onibus', 'bicicleta', 'ponto-onibus', 'escorregador', 'carrinho-compras', 'trave'].map((n) => [n, () => iso({ parado: ISO(n) })])),
+  ...Object.fromEntries(['carro-vermelho', 'carro-azul', 'carro-amarelo', 'carro-branco', 'onibus', 'bicicleta', 'ponto-onibus', 'escorregador', 'carrinho-compras', 'trave', 'muro-escola'].map((n) => [n, () => iso({ parado: ISO(n) })])),
   varal: () => { const s = iso({ a: ISO('varal', { f: 0 }), b: ISO('varal', { f: 1 }), c: ISO('varal', { f: 2 }), d: ISO('varal', { f: 3 }) }); s.anims = { parado: { q: [0, 1, 2, 3], fps: 4 } }; return s; },
   'mastro-bandeira': () => { const s = iso({ a: ISO('mastro-bandeira', { f: 0 }), b: ISO('mastro-bandeira', { f: 1 }), c: ISO('mastro-bandeira', { f: 2 }), d: ISO('mastro-bandeira', { f: 3 }) }); s.anims = { parado: { q: [0, 1, 2, 3], fps: 5 } }; return s; },
   semaforo: () => { const s = iso({ verde: ISO('semaforo', { luz: 'verde' }), amarelo: ISO('semaforo', { luz: 'amarelo' }), vermelho: ISO('semaforo', { luz: 'vermelho' }), apagado: ISO('semaforo', { luz: null }) }); s.anims.parado = s.anims.verde; s.anims.piscando = { q: [s.anims.amarelo.q[0], s.anims.apagado.q[0]], fps: 2 }; return s; },

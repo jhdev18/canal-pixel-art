@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (267)
+## Sprites (268)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -134,6 +134,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `escorregador` | 🧪 protótipo | parado | 91×63 |
 | `carrinho-compras` | 🧪 protótipo | parado | 27×30 |
 | `trave` | 🧪 protótipo | parado | 59×40 |
+| `muro-escola` | 🧪 protótipo | parado | 131×56 |
 | `varal` | 🧪 protótipo | parado | 85×58 |
 | `mastro-bandeira` | 🧪 protótipo | parado | 41×81 |
 | `semaforo` | 🧪 protótipo | verde, amarelo, vermelho, apagado, parado, piscando | 13×59 |
@@ -526,7 +527,7 @@ Uso: `{ "cenario": "nome" }`
 | `praca-parquinho` | 🧪 protótipo | diorama | 10 |
 | `rua-bairro` | 🧪 protótipo | diorama | 0 |
 | `casa-bia-fora` | 🧪 protótipo | diorama | 5 |
-| `escola-patio` | 🧪 protótipo | diorama | 5 |
+| `escola-patio` | 🧪 protótipo | diorama | 11 |
 | `onibus-dentro-diorama` | 🧪 protótipo | diorama (cômodo onibus-dentro) | 0 |
 | `mercado-dentro-diorama` | 🧪 protótipo | diorama (cômodo mercado-dentro) | 0 |
 | `consultorio-diorama` | 🧪 protótipo | diorama (cômodo consultorio) | 0 |

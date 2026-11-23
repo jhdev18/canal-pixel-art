@@ -103,10 +103,16 @@ export function gerarRuaDiagonal(opc = {}) {
     // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
     const terra = opc.chao === 'terra';
     const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
-    if (opc.chao === 'patio') {   // PROTÓTIPO: pátio de escola (cimento claro com quadra pintada: linhas brancas e círculo do meio)
-      const di = i - 3.2, dj = j - (opc.patioCentro ?? 0), r = Math.hypot(di, dj * 0.9);
-      const linha = Math.abs(Math.abs(di) - 2.6) < 0.05 && Math.abs(dj) < 6 || Math.abs(Math.abs(dj) - 6) < 0.06 && Math.abs(di) < 2.6 || Math.abs(dj) < 0.04 && Math.abs(di) < 2.6 || Math.abs(r - 1.1) < 0.05;
-      c = i < 0.2 ? '#c8c4bc' : linha ? '#f8f8f4' : Math.abs(di) < 2.6 && Math.abs(dj) < 6 ? (bayer(x, y) < 0.06 ? '#5a9a6a' : '#4a8a5a') : (bayer(x, y) < 0.05 ? '#c4c0b8' : '#d4d0c8');
+    if (opc.chao === 'patio') {   // PROTÓTIPO: pátio de escola: cimento claro em placas, quadra verde no meio (linhas brancas, círculo) e
+      // uma faixa de grama nas bordas; o pátio é fechado na frente pelo muro (sprite "muro-escola" + "portao-escola" no cenário)
+      const di = i - 3.0, dj = j - (opc.patioCentro ?? 0), r = Math.hypot(di, dj * 0.9);
+      const naQuadra = Math.abs(di) < 1.7 && Math.abs(dj) < 4.4;
+      const linha = naQuadra && (Math.abs(Math.abs(di) - 1.62) < 0.06 || Math.abs(Math.abs(dj) - 4.32) < 0.07 || Math.abs(dj) < 0.04 || Math.abs(r - 0.8) < 0.05);
+      const placa = ((i * 2) % 1 + 1) % 1 < 0.05 || ((j * 2) % 1 + 1) % 1 < 0.04;
+      if (i > 6.4) c = bayer(x, y) < 0.2 ? '#4a9a4a' : '#5aac54';                                           // grama na frente do muro
+      else if (linha) c = '#f8f8f4';
+      else if (naQuadra) c = bayer(x, y) < 0.05 ? '#5a9a6a' : '#4a8a5a';
+      else c = placa ? '#b8b4ac' : bayer(x, y) < 0.05 ? '#c4c0b8' : '#d0ccc4';
       pintar(x, y, c, i, j, 0); continue;
     }
     if (opc.chao === 'pedras') {   // PROTÓTIPO (medieval): calçamento de pedras (fileiras desencontradas), um pouco de musgo nas juntas

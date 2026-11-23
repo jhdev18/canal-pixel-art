@@ -170,15 +170,15 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 - **Cenários prontos:** `rua-viva` (vida na rua), `rua-transito` (carros, ônibus, ponto de ônibus, semáforo, placa, bicicleta), `rua-tarde` e
   `praca-tarde` (**pôr do sol**, `"periodo": "tarde"`: luz alaranjada, céu laranja e rosa — final sem escuro), `rua-vento` (clima `vento`),
   `rua-neblina` (neblina de dia), `rua-chuva` (já existia), `praca-parquinho`, `rua-bairro` (edifício x -11.4, posto de saúde -5.4,
-  biblioteca 0.1, casas 5.1 e 10.1), `casa-bia-fora` (casa amarela da Bia x 0.6 entre as dos vizinhos), `escola-patio` (pátio com quadra,
-  `"chao": "patio"`), e os interiores `onibus-dentro-diorama`, `mercado-dentro-diorama`, `consultorio-diorama`, `biblioteca-diorama`.
+  biblioteca 0.1, casas 5.1 e 10.1), `casa-bia-fora` (casa amarela da Bia x 0.6 entre as dos vizinhos), `escola-patio` (pátio fechado: cimento, quadra verde no meio,
+  muro baixo com grade `muro-escola` e portão na frente; `"chao": "patio"`), e os interiores `onibus-dentro-diorama`, `mercado-dentro-diorama`, `consultorio-diorama`, `biblioteca-diorama`.
 - **Parquinho:** `escorregador`, `balanco` (`parado`, `balancando`, `sozinho` = um assento balança sem ninguém), `gira-gira` (`girando`),
   `gangorra` (`subindo`).
 - **Rua:** `pombo-rua` (`parado` bicando, `voando`), `carro-vermelho`/`-azul`/`-amarelo`/`-branco`, `onibus`, `bicicleta`, `ponto-onibus`,
   `semaforo` (`verde`, `amarelo`, `vermelho`, `piscando`, `apagado`), `placa-rua` (`rua`, `pare`, `nao-olhe`, `vazia`), `relogio-digital`
   (`10-00`, `12-00`, `03-33` em vermelho, `00-00`, `piscando`), `cartaz-muda` (`circo`, `sorriso`, `olhos`, `vazio`), `janela-cortina` (para pôr
   na fachada com `"y"`: `fechada`, `aberta`, `balancando`, `acesa`, `vulto`), `varal` (roupas balançando), `mastro-bandeira` (tremulando),
-  `portao-escola` (`aberto`/`fechado`), `trave`, `bola`, `vassoura` (do gari, com `"sobre"`), `carrinho-compras`.
+  `portao-escola` (`aberto`/`fechado`), `muro-escola` (trechos de 4), `trave`, `bola`, `vassoura` (do gari, com `"sobre"`), `carrinho-compras`.
 - **Telas em close** (`"tela": true`): `tv-noticia` (`jornal`, `urgente`, `chuvisco`, `desligada`) — o "olhar de fora" da virada — e
   `celular` (`inicio`, `notificacao`, `mensagem`, `chamada` de "???", `camera` com alguém atrás, `rachado`, `sem-sinal`).
 - **Moradores:** `motorista` (do ônibus), `gari`, `pipoqueiro`, `medica`.

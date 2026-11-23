@@ -776,13 +776,16 @@
     "rua": { "periodo": "dia", "soPedidos": true, "ancoraPredios": -8, "predios": [ { "tipo": "casa-2", "largura": 5 }, { "tipo": "casa", "largura": 6 }, { "tipo": "casa-3", "largura": 5 } ] },
     "elementos": [ { "id": "correio", "sprite": "caixa-correio", "x": 3.0, "z": 5.4 }, { "id": "cerca1", "sprite": "cerca-madeira", "x": -7.6, "z": 5.6 },
       { "id": "cerca2", "sprite": "cerca-madeira", "x": 4.6, "z": 5.6 }, { "id": "arvore", "sprite": "arvore-iso", "x": -2.8, "z": 5.4 }, { "id": "bike", "sprite": "bicicleta", "x": -1.2, "z": 5.8 } ] },
-  // escola-patio: o pátio da escola (quadra pintada, portão, mastro com bandeira, trave, bola, banco). Escola no fundo (x ~0.6);
-  // crianças no pátio z ~1–5; portão aberto na frente (x ~-1.2, z 0.1).
+  // escola-patio: o pátio da escola, fechado: a escola no fundo (x ~0.6), cimento claro, quadra verde no meio (x -4.4 a 4.4, z ~1.6–5),
+  // mastro com bandeira, trave, bola, banco, árvore e o MURO baixo com grade na frente (z -0.3), com o portão aberto (x ~0.9).
+  // Crianças no pátio z ~1.4–5 (quem fica perto do muro, z < 1.4, tem os pés cobertos).
   "escola-patio": { "vista": "diorama", "camera": { "x": 0.4, "z": 2.2, "y": 2.6 },
     "rua": { "periodo": "dia", "chao": "patio", "soPedidos": true, "postes": false, "cerca": false, "ancoraPredios": -4, "predios": [ { "tipo": "escola", "largura": 8 } ] },
-    "elementos": [ { "id": "mastro", "sprite": "mastro-bandeira", "x": -5.6, "z": 5.4 }, { "id": "trave", "sprite": "trave", "x": -6.8, "z": 2.4 },
-      { "id": "bola", "sprite": "bola", "x": 1.4, "z": 2.6 }, { "id": "banco", "sprite": "banco-iso", "x": 5.8, "z": 5.2 },
-      { "id": "portao", "sprite": "portao-escola", "x": 2.4, "z": 0.1, "pose": "aberto" } ] },
+    "elementos": [ { "id": "mastro", "sprite": "mastro-bandeira", "x": -5.4, "z": 5.4 }, { "id": "trave1", "sprite": "trave", "x": -3.6, "z": 2.4 },
+      { "id": "bola", "sprite": "bola", "x": 1.6, "z": 2.8 }, { "id": "banco", "sprite": "banco-iso", "x": 6.2, "z": 5.0 }, { "id": "arvore", "sprite": "arvore-iso", "x": -7.6, "z": 5.0 },
+      { "id": "muro1", "sprite": "muro-escola", "x": 10.4, "z": -0.3 }, { "id": "muro2", "sprite": "muro-escola", "x": 6.4, "z": -0.3 },
+      { "id": "portao", "sprite": "portao-escola", "x": 2.4, "z": -0.3, "pose": "aberto" },
+      { "id": "muro3", "sprite": "muro-escola", "x": -0.6, "z": -0.3 }, { "id": "muro4", "sprite": "muro-escola", "x": -4.6, "z": -0.3 }, { "id": "muro5", "sprite": "muro-escola", "x": -8.6, "z": -0.3 } ] },
   // interiores novos (cômodos em diorama)
   "onibus-dentro-diorama":  { "vista": "diorama", "comodo": { "tipo": "onibus-dentro" } },
   "mercado-dentro-diorama": { "vista": "diorama", "comodo": { "tipo": "mercado-dentro" } },
