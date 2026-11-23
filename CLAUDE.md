@@ -459,6 +459,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 ## Produção de um episódio
 - Rascunho (16:9): `npm run rascunho -- <ep>`
 - Final (gera `final.mp4` 16:9 e `final-shorts.mp4` 9:16): `npm run final -- <ep>`
+- **Final COM música do usuário** (pedido do usuário; o `final` padrão continua SEM a música dele): `npm run final-musica -- <ep>
+  [--musica arquivo.mp3] [--volume 0.25] [--abaixar 0.5] [--renderizar]` → `final-musica.mp4` / `final-shorts-musica.mp4`. Música da pasta
+  `projetos/<ep>/musica/` ou `musicas/` (raiz); entra no lugar da trilha gerada, em loop, abaixando na fala; reaproveita o vídeo do
+  `final.mp4` se ele já existe (só refaz o áudio). Volume também por `"volumeMusica"`/`"abaixarMusica"` no roteiro. Ver `musicas/LEIA-ME.md`.
 - **Qualidade dos vídeos finais: Full HD** — Shorts **1080×1920** (pixels internos 180×320 × 6) e longo 1920×1080
   (320×180 × 6), 30 fps (`config.json` → `"final": { "resolucao": 1080, "fps": 30 }`). Não mudar sem o usuário pedir.
 - Texto para o ElevenLabs: `npm run narracao -- <ep>` (usa `"narracaoTexto"` de cada cena)

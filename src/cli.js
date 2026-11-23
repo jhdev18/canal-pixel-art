@@ -276,7 +276,9 @@ Gerador de vídeos pixel art (Three.js + GPU)
 
   npm run novo -- meu-video         cria projetos/meu-video  (--modelo diorama: começa de um modelo; veja FORMAS-DE-VIDEO.md)
   npm run rascunho -- meu-video     rascunho rápido (baixa resolução, só narração) + storyboard.png
-  npm run final -- meu-video        versão final 1080p com efeitos visuais e sonoros
+  npm run final -- meu-video        versão final 1080p com efeitos visuais e sonoros (sem música)
+  npm run final-musica -- meu-video versão final COM a sua música (musicas/ ou projetos/meu-video/musica/);
+                                    --volume 0.25  --abaixar 0.5  --musica nome.mp3  --renderizar
   npm run previa -- meu-video       prévia em tempo real no navegador
   npm run gpu                       verifica GPU (WebGL) e NVENC
   npm run narracao -- meu-video     monta o texto da narração para colar no ElevenLabs
@@ -292,6 +294,27 @@ Gerador de vídeos pixel art (Three.js + GPU)
 Opções: --fps 60   --escala 4   --crt   --formato normal|vertical|ambos
   (o rascunho sai no formato normal; o final gera normal + Shorts. Ex.: npm run final -- meu-video --formato normal)
 `;
+
+// Música da versão "final-musica": --musica <arquivo> (nome dentro da pasta ou caminho); sem isso, a 1ª música de
+// projetos/<p>/musica/ e, se não houver, a 1ª de musicas/ (na raiz). Volume: --volume (0–1) > "volumeMusica" do roteiro > 0.25.
+// Quanto ela abaixa quando o narrador fala: --abaixar (0–1) > "abaixarMusica" do roteiro > 0.5.
+function escolherMusica(nome, flags) {
+  const dirP = caminhoProjeto(nome), EXT = /\.(mp3|wav|m4a|ogg|flac|aac|opus)$/i;
+  const pastas = [path.join(dirP, 'musica'), path.join(RAIZ, 'musicas')];
+  for (const p of pastas) fs.mkdirSync(p, { recursive: true });
+  let arquivo = null;
+  if (flags.musica && flags.musica !== true) {
+    const cand = [flags.musica, ...pastas.map((p) => path.join(p, flags.musica))];
+    arquivo = cand.find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
+    if (!arquivo) throw new Error(`Não achei a música "${flags.musica}" (procurei em ${pastas.join(' e ')})`);
+  } else {
+    for (const p of pastas) { const f = fs.readdirSync(p).filter((x) => EXT.test(x)).sort()[0]; if (f) { arquivo = path.join(p, f); break; } }
+    if (!arquivo) throw new Error(`Nenhuma música encontrada. Coloque um .mp3/.wav em:\n  ${pastas.join('\n  ')}\n  (ou escolha com --musica nome.mp3)`);
+  }
+  let rot = {}; try { rot = lerRoteiro(dirP); } catch {}
+  const num = (v, pad) => { const n = Number(v); return Number.isFinite(n) && v !== true ? Math.max(0, Math.min(1.5, n)) : pad; };
+  return { arquivo, volume: num(flags.volume, num(rot.volumeMusica, 0.25)), abaixar: num(flags.abaixar, num(rot.abaixarMusica, 0.5)) };
+}
 
 try {
   const opc = {};
@@ -312,6 +335,16 @@ try {
       if (f !== 'vertical') feitos.push(await renderizar(pos[0], 'final', { ...opc, formato: 'normal' }));
       if (f !== 'normal') feitos.push(await renderizar(pos[0], 'final', { ...opc, formato: 'vertical' }));
       if (feitos.length > 1) console.log(`\n✔ Versões finais:\n  • Vídeo longo (16:9): ${feitos[0]}\n  • Shorts (9:16):     ${feitos[1]}`);
+      break;
+    }
+    case 'final-musica': {   // versão final COM a música do usuário (pasta musicas/ ou projetos/<p>/musica/); o final padrão continua sem
+      if (!pos[0]) throw new Error('Uso: npm run final-musica -- nome-do-projeto [--musica arquivo.mp3] [--volume 0.25] [--formato vertical]');
+      const musica = escolherMusica(pos[0], flags);
+      const f = flags.formato || 'ambos', feitos = [];
+      const o = { ...opc, musica, renderizarDeNovo: !!flags.renderizar };
+      if (f !== 'vertical') feitos.push(await renderizar(pos[0], 'final', { ...o, formato: 'normal' }));
+      if (f !== 'normal') feitos.push(await renderizar(pos[0], 'final', { ...o, formato: 'vertical' }));
+      console.log(`\n✔ Versões com música:\n${feitos.map((x) => '  • ' + x).join('\n')}`);
       break;
     }
     case 'previa': await previa(pos[0]); break;

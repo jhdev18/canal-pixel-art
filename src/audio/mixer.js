@@ -32,8 +32,10 @@ function somar(destino, fonte, inicio, ganho, taxa = 1, limite = Infinity) {
   }
 }
 
-// opcoes: { duracao, narracoes:[{dados,inicio}], eventos:[{dados,tempo,volume,pan,taxa}], ambientes:[{dados,inicio,fim,volume}], cfg }
-export function mixar({ duracao, narracoes = [], eventos = [], ambientes = [], cfg = {} }) {
+// opcoes: { duracao, narracoes:[{dados,inicio}], eventos:[{dados,tempo,volume,pan,taxa}], ambientes:[{dados,inicio,fim,volume}], musica, cfg }
+//   musica (versão "final-musica"): { dados, volume, abaixar } — a música do usuário em loop no vídeo inteiro, com entrada de 1 s,
+//   saída de 2,5 s no fim e abaixando sozinha quando o narrador fala (abaixar: 0 = não abaixa … 1 = some na fala)
+export function mixar({ duracao, narracoes = [], eventos = [], ambientes = [], musica = null, cfg = {} }) {
   const n = Math.ceil(duracao * SR);
   const narr = new Float32Array(n), fxL = new Float32Array(n), fxR = new Float32Array(n), amb = new Float32Array(n);
 
@@ -59,6 +61,13 @@ export function mixar({ duracao, narracoes = [], eventos = [], ambientes = [], c
     }
   }
 
+  const mus = new Float32Array(n);
+  if (musica?.dados?.length) {
+    const L = musica.dados.length, fIn = 1 * SR, fOut = 2.5 * SR;
+    for (let j = 0; j < n; j++) mus[j] = musica.dados[j % L] * Math.min(1, j / fIn, (n - j) / fOut);
+  }
+  const vM = musica?.volume ?? 0, kM = musica?.abaixar ?? 0.5;
+
   // Ducking: abaixa efeitos/ambiente enquanto há narração.
   const vN = cfg.volumeNarracao ?? 1, vE = cfg.volumeEfeitos ?? 0.7, vA = cfg.volumeAmbiente ?? 0.35;
   const k = cfg.abaixarEfeitosNaNarracao ?? 0.45;
@@ -69,7 +78,8 @@ export function mixar({ duracao, narracoes = [], eventos = [], ambientes = [], c
     const x = Math.abs(narr[i]);
     env = x > env ? atq * env + (1 - atq) * x : rel * env + (1 - rel) * x;
     const duck = 1 - k * Math.min(1, env / 0.08);
-    const base = narr[i] * vN + amb[i] * vA * duck;
+    const nivel = Math.min(1, env / 0.08);
+    const base = narr[i] * vN + amb[i] * vA * duck + mus[i] * vM * (1 - kM * nivel);
     L[i] = base + fxL[i] * vE * duck;
     R[i] = base + fxR[i] * vE * duck;
   }
