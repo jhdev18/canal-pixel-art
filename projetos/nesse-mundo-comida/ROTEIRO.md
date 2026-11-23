@@ -19,12 +19,12 @@
 **3.** `rua-comercial` — E o seu Tonho tranca os pães com cadeado.
 **4.** `rua-comercial` — Mas a Bia come devagarinho. E o lanche dela nunca fugiu.
 **5.** `rua-comercial` — Até que, num domingo, o seu Tonho assou o maior pão da história.
-**6.** `rua-comercial` — Mas o pão pulou da vitrine e saiu rolando rua abaixo.
+**6.** `rua-comercial` — E o pão pulou da vitrine e saiu quicando rua abaixo.
 **7.** `rua-comercial` — Primeiro o padeiro. Depois a professora. Em um minuto, a cidade inteira.
 **8.** `praca` — E quanto mais gente corria, mais rápido o pão fugia.
 **9.** `praca` — Só a Bia não correu. Ela parou no meio da praça e abriu a mão.
 **10.** `praca` — E o pão gigante freou, deu meia-volta e deitou do lado dela.
-**11.** `praca` — A comida nunca fugiu de quem deixava no prato. Fugia de quem comia correndo.
+**11.** `praca` — A comida nunca fugiu do prato. Fugia da pressa.
 **12.** `sala-de-aula-diorama` — Hoje, a cidade inteira almoça devagar. E a merenda dura quatro horas.
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

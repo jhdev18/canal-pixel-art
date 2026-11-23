@@ -30,6 +30,44 @@ function blocosLegenda(texto, max = 64) {
   return blocos;
 }
 
+// Legenda palavra por palavra: tempo de cada palavra (real, do alinhamento, ou estimado pelas letras e pausas)
+// e grupos curtos de palavras que aparecem juntos na tela (a palavra falada fica destacada).
+function palavrasLegenda(texto, ini, falaDur, reais = null, maxLetras = 16) {
+  const tk = texto.split(/\s+/).filter(Boolean);
+  if (!tk.length) return [];
+  const peso = tk.map((w) => w.length + 1 + (/[.!?…:]$/.test(w) ? 6 : /[,;]$/.test(w) ? 3 : 0));
+  const soma = peso.reduce((a, b) => a + b, 0);
+  let acc = 0;
+  const est = tk.map((w, i) => { const a = acc; acc += peso[i]; return { ini: ini + falaDur * (a / soma), fim: ini + falaDur * ((a + w.length + 1) / soma) }; });
+  let pal = est;
+  if (reais && reais.length === tk.length && reais.filter(Boolean).length >= tk.length * 0.5) {
+    // reais: alinhadas pelo que é falado; as que faltam ficam entre as vizinhas
+    pal = reais.map((r) => (r ? { ini: ini + r.ini, fim: ini + Math.max(r.ini + 0.05, r.fim) } : null));
+    for (let i = 0; i < pal.length; i++) if (!pal[i]) {
+      let a = i - 1; while (a >= 0 && !pal[a]) a--;
+      let b = i + 1; while (b < pal.length && !pal[b]) b++;
+      const t0 = a >= 0 ? pal[a].fim : ini, t1 = b < pal.length ? pal[b].ini : ini + falaDur;
+      const n = b - a - 1, k = i - a;
+      pal[i] = { ini: t0 + ((t1 - t0) * (k - 1)) / n, fim: t0 + ((t1 - t0) * k) / n };
+    }
+    for (let i = 1; i < pal.length; i++) if (pal[i].ini < pal[i - 1].ini) pal[i].ini = pal[i - 1].ini;
+  }
+  const grupos = [];
+  let g = null;
+  tk.forEach((w, i) => {
+    const txt = g ? g.palavras.map((p) => p.w).join(' ') + ' ' + w : w;
+    if (!g || txt.length > maxLetras) { g = { palavras: [] }; grupos.push(g); }
+    g.palavras.push({ w, ini: pal[i].ini, fim: pal[i].fim });
+    if (/[.!?…:,;]$/.test(w)) g = null;   // pontuação fecha o grupo
+  });
+  return grupos.map((gr, i) => ({
+    texto: gr.palavras.map((p) => p.w).join(' '),
+    palavras: gr.palavras,
+    ini: gr.palavras[0].ini,
+    fim: i + 1 < grupos.length ? grupos[i + 1].palavras[0].ini : Math.max(gr.palavras.at(-1).fim, ini + falaDur),
+  }));
+}
+
 function duracaoFala(texto) {
   return 1.2 + texto.length * 0.05;
 }
@@ -46,7 +84,13 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     cena.numero = indice + 1;
     cena.elementos = (cena.elementos || []).map((e, i) => ({ id: e.id || `el${i}`, ...e }));
     cena.acoes = (cena.acoes || []).map((a) => {
-      const acao = { ...a };
+      let acao = { ...a };
+      // "corte": troca de enquadramento instantânea no meio da cena (ex.: zoom 1 → 2 na palavra forte), sem movimento lento
+      if (acao.tipo === 'corte') {
+        const para = { ...(acao.para || {}) };
+        for (const k of ['zoom', 'x', 'y', 'z']) if (acao[k] != null) para[k] = acao[k];
+        acao = { tipo: 'camera', inicio: acao.inicio ?? 0, duracao: 0, para, corte: true };
+      }
       acao.inicio = acao.inicio ?? 0;
       if (acao.duracao == null) {
         acao.duracao = (acao.tipo === 'falar' || acao.tipo === 'pensar') ? duracaoFala(acao.texto || '') : (DURACAO_PADRAO[acao.tipo] ?? 1);
@@ -94,10 +138,16 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     if (cena.narracaoTexto && roteiro.legendasNarracao !== false && cena.legendaNarracao !== false) {
       const falaDur = narr ? narr.duracao : cena.narracaoTexto.length * SEG_POR_LETRA;
       if (!narr) dur = Math.max(dur, cena.narracaoInicio + falaDur + NARRACAO_FOLGA);
-      const blocos = blocosLegenda(cena.narracaoTexto);
-      const total = blocos.reduce((s, b) => s + b.length, 0) || 1;
-      let t0 = cena.narracaoInicio;
-      cena.legendasNarracao = blocos.map((b) => { const d = falaDur * (b.length / total); const r = { texto: b, ini: t0, fim: t0 + d }; t0 += d; return r; });
+      if ((roteiro.legendaEstilo || 'palavra') === 'palavra') {
+        // padrão: grupos curtos (até ~3 palavras) com a palavra falada destacada — segura quem assiste sem som
+        if (cena.legendaPosicao == null && roteiro.legendaPosicao != null) cena.legendaPosicao = roteiro.legendaPosicao;
+        cena.legendasNarracao = palavrasLegenda(cena.narracaoTexto, cena.narracaoInicio, falaDur, narr?.palavras, roteiro.legendaLetras || 16);
+      } else {
+        const blocos = blocosLegenda(cena.narracaoTexto);
+        const total = blocos.reduce((s, b) => s + b.length, 0) || 1;
+        let t0 = cena.narracaoInicio;
+        cena.legendasNarracao = blocos.map((b) => { const d = falaDur * (b.length / total); const r = { texto: b, ini: t0, fim: t0 + d }; t0 += d; return r; });
+      }
     }
     const fimAcoes = cena.acoes.reduce((m, a) => Math.max(m, a.inicio + a.duracao), 0);
     if (cena.duracao == null && !continuo) dur = Math.max(dur, fimAcoes + 0.5);
@@ -121,6 +171,8 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
     efeitos: { bloom: 0.8, vinheta: 0.3, aberracao: true, ...(roteiro.efeitos || {}) },
     fps,
     volumeBaloes: roteiro.volumeBaloes ?? 1,
+    trilha: roteiro.trilha || null,
+    volumeTrilha: roteiro.volumeTrilha ?? 0.7,
     cenas,
     duracaoTotal: inicio,
   };
@@ -491,6 +543,11 @@ export function eventosSonoros(roteiro) {
       if (cena.elementos.some((e) => e.sprite === 'fogueira' || e.sprite === 'tocha')) amb.push(['fogo', 0.6]);
     }
     for (const [som, volume] of amb) ambientes.push({ som, inicio: T0, fim: T0 + cena.duracao, volume });
+  }
+  // trilha de fundo do vídeo inteiro (baixa, abaixa sozinha com a narração): "trilha": "suspense" | "comedia" | "emocional"
+  if (roteiro.trilha) {
+    const fim = roteiro.cenas.reduce((m, c) => Math.max(m, c.inicio + c.duracao), 0);
+    ambientes.push({ som: `trilha-${roteiro.trilha}`, inicio: 0, fim, volume: roteiro.volumeTrilha ?? 0.7, entrada: 0.05 });
   }
   eventos.sort((a, b) => a.tempo - b.tempo);
   return { eventos: eventos.filter((e) => e.tempo >= 0), ambientes };

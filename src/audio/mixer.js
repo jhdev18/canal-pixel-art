@@ -51,9 +51,10 @@ export function mixar({ duracao, narracoes = [], eventos = [], ambientes = [], c
   for (const a of ambientes) {
     const i0 = Math.max(0, Math.round(a.inicio * SR)), i1 = Math.min(n, Math.round(a.fim * SR));
     const L = a.dados.length;
-    const off = Math.round(a.inicio * SR * 0.37) % L; // fases diferentes entre cenas
+    const off = a.entrada != null ? 0 : Math.round(a.inicio * SR * 0.37) % L; // fases diferentes entre cenas (a trilha começa do início)
+    const fIn = a.entrada != null ? Math.max(1, a.entrada * SR) : FADE;
     for (let j = i0; j < i1; j++) {
-      const env = Math.min(1, (j - i0) / FADE, (i1 - j) / FADE);
+      const env = Math.min(1, (j - i0) / fIn, (i1 - j) / FADE);
       amb[j] += a.dados[(j - i0 + off) % L] * a.volume * env;
     }
   }

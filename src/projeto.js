@@ -86,13 +86,23 @@ export function dividirPorPausas(dados, partes, pesos = null, fatorLimiar = null
   const cortes = cortesIdx.map((i) => pausas[i - 1]);
   // trechos contínuos: cada corte cai no meio da pausa e a pausa fica (metade em cada cena) — a voz não perde o ritmo
   const trechos = [];
-  let inicio = Math.max(0, ini - 5);
+  let inicio = Math.max(0, ini - 3);   // só 30 ms antes da 1ª palavra: sem silêncio no começo do vídeo
   for (const c of [...cortes, { meio: Math.min(n, fim + 15) }]) {
     const b2 = Math.round(c.meio);
     trechos.push({ dados: dados.slice(inicio * QUADRO, b2 * QUADRO), de: inicio / 100, ate: b2 / 100 });
     inicio = b2;
   }
   return { trechos, pausas: cortes.map((c) => c.dur) };
+}
+
+// Onde a voz começa (amostra): 1ª janela de 10 ms acima de 5% do pico típico, menos 30 ms de respiro.
+export function inicioDaVoz(dados) {
+  const Q = Math.round(SR * 0.01), n = Math.floor(dados.length / Q), rms = new Float32Array(n);
+  for (let i = 0; i < n; i++) { let s2 = 0; for (let k = 0; k < Q; k++) { const v = dados[i * Q + k]; s2 += v * v; } rms[i] = Math.sqrt(s2 / Q); }
+  const p95 = Array.from(rms).sort((a, b) => a - b)[Math.floor(n * 0.95)] || 0;
+  const lim = Math.max(0.004, p95 * 0.05);
+  let i = 0; while (i < n && rms[i] < lim) i++;
+  return i >= n ? 0 : Math.max(0, (i - 3) * Q);
 }
 
 export async function encontrarNarracoes(dir, roteiro, ff) {
@@ -113,13 +123,16 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
       try { pelaFala = await cortesPelaFala(dados, SR, alvo.map((i) => cenas[i].narracaoTexto || ''), pasta, path.join(pasta, unico)); }
       catch (e) { console.log(`  (reconhecimento de fala indisponível: ${String(e.message || e).split('\n')[0]} — usando as pausas)`); }
     }
+    // silêncio no começo do arquivo é cortado: a voz começa no 1º quadro do vídeo (o 1º segundo decide se o público fica)
+    const voz = inicioDaVoz(dados);
     if (pelaFala) {
-      const limites = [0, ...pelaFala.map((t) => Math.round(t * SR)), dados.length];
+      const limites = [voz, ...pelaFala.cortes.map((t) => Math.round(t * SR)), dados.length];
       alvo.forEach((ci, k) => {
         const a = limites[k], b = limites[k + 1];
-        mapa.set(ci, { arquivo: `${unico} [${(a / SR).toFixed(1)}s–${(b / SR).toFixed(1)}s] fala`, duracao: (b - a) / SR, dados: dados.slice(a, b), continuo: true });
+        const palavras = (pelaFala.palavras[k] || []).map((p) => (p ? { ini: Math.max(0, p.t - a / SR), fim: Math.max(0, p.f - a / SR) } : null));
+        mapa.set(ci, { arquivo: `${unico} [${(a / SR).toFixed(1)}s–${(b / SR).toFixed(1)}s] fala`, duracao: (b - a) / SR, dados: dados.slice(a, b), continuo: true, palavras });
       });
-      return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: alvo.length, metodo: 'fala' };
+      return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: alvo.length, metodo: 'fala', silencioInicio: voz / SR };
     }
     // 2º (reserva): pelas pausas. O nível de "silêncio" muda de áudio para áudio (respiração, ruído, emoções): testa vários e fica com o corte
     // cujos trechos mais combinam com o tamanho do texto de cada cena
@@ -134,7 +147,7 @@ export async function encontrarNarracoes(dir, roteiro, ff) {
     }
     if (r.erro) throw new Error(`Narração única (${unico}): ${r.erro}`);
     r.trechos.forEach((t, k) => mapa.set(alvo[k], { arquivo: `${unico} [${t.de.toFixed(1)}s–${t.ate.toFixed(1)}s]`, duracao: t.dados.length / SR, dados: t.dados, continuo: true }));
-    return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length, metodo: 'pausas' };
+    return { mapa, ignorados: arquivos.filter((f) => f !== unico), pasta, unico, trechos: r.trechos.length, metodo: 'pausas', silencioInicio: r.trechos[0]?.de ?? 0 };
   }
   const porNumero = new Map();
   for (const f of arquivos) {

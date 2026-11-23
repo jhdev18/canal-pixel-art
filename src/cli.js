@@ -50,6 +50,7 @@ const ROTEIRO_NOVO = (titulo) => ({
   titulo,
   resolucao: [320, 180],
   volumeBaloes: 0.4,
+  trilha: 'suspense',
   paleta: 'nenhuma',
   cenas: [
     {
@@ -86,6 +87,7 @@ async function novo(nome) {
     // Projetos novos: som dos balões mais baixo (narrador em destaque).
     let txt = fs.readFileSync(arq, 'utf8');
     if (!/"volumeBaloes"/.test(txt)) txt = txt.replace('{', '{\n  "volumeBaloes": 0.4,');
+    if (!/"trilha"/.test(txt)) txt = txt.replace('{', '{\n  "trilha": "suspense",');
     fs.writeFileSync(path.join(dir, 'roteiro.json'), txt);
   } else {
     fs.writeFileSync(path.join(dir, 'roteiro.json'), JSON.stringify(ROTEIRO_NOVO(nome.replace(/[-_]/g, ' ').toUpperCase()), null, 2));
@@ -140,6 +142,35 @@ async function gpu() {
   await s.fechar();
 }
 
+// Mapa das cenas no tempo (com a narração real, se já existir): para comparar com o gráfico de retenção do
+// YouTube Studio e achar a cena em que o público sai. Também salvo em MAPA-CENAS.txt do projeto.
+async function mapaCenas(nome) {
+  const cfg = carregarConfig();
+  const dir = caminhoProjeto(nome);
+  const bruto = lerRoteiro(dir);
+  let narr = { mapa: new Map() };
+  try { narr = await encontrarNarracoes(dir, bruto, cfg.ffmpeg); } catch (e) { console.log(`  (sem áudio da narração: ${String(e.message).split('\n')[0]} — tempos estimados)`); }
+  const r = resolverRoteiro(bruto, narr.mapa, { fps: 30 });
+  const mmss = (t) => `${Math.floor(t / 60)}:${(t % 60).toFixed(1).padStart(4, '0')}`;
+  const MOV = new Set(['andar', 'correr', 'mover', 'pular', 'sentar', 'levantar']);
+  const linhas = [`${r.titulo} — ${narr.mapa.size ? 'tempos reais (narração)' : 'tempos ESTIMADOS (sem narração ainda)'} — total ${mmss(r.duracaoTotal)}`, '',
+    '  início   fim     %    cena  o que tem               narração'];
+  for (const c of r.cenas) {
+    const tipos = new Set(c.acoes.map((a) => a.tipo));
+    const tags = [
+      [...tipos].some((t) => MOV.has(t)) || c.acoes.some((a) => a.tipo === 'camera' && !a.corte) ? 'mov' : 'PARADA',
+      tipos.has('falar') && 'balão', c.acoes.some((a) => a.corte) && 'corte',
+      (tipos.has('flash') || tipos.has('tremer')) && 'flash', c.acoes.some((a) => a.tipo === 'som') && 'som',
+      /noite/.test(c.cenario || c.fundo || '') && 'NOITE',
+    ].filter(Boolean).join(' ');
+    linhas.push(`  ${mmss(c.inicio).padStart(6)}  ${mmss(c.inicio + c.duracao).padStart(6)}  ${String(Math.round((c.inicio / r.duracaoTotal) * 100)).padStart(3)}%  ${String(c.numero).padStart(3)}   ${tags.padEnd(22)}  ${(c.narracaoTexto || '').slice(0, 80)}`);
+  }
+  linhas.push('', '  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.');
+  console.log('\n' + linhas.join('\n'));
+  fs.writeFileSync(path.join(dir, 'MAPA-CENAS.txt'), linhas.join('\n') + '\n');
+  console.log(`\n✔ ${path.join(dir, 'MAPA-CENAS.txt')}`);
+}
+
 // Monta os textos da narração (campo "narracaoTexto" de cada cena) para colar no ElevenLabs.
 async function verificarNarracao(nome) {
   const cfg = carregarConfig();
@@ -148,6 +179,7 @@ async function verificarNarracao(nome) {
   const n = await encontrarNarracoes(dir, r, cfg.ffmpeg);
   if (!n.mapa.size) throw new Error(`Nenhum áudio de narração em ${n.pasta} (nome esperado: narracao-completa.mp3).`);
   console.log(n.unico ? `\n▶ ${n.unico} → ${n.trechos} trechos (${n.metodo === 'fala' ? 'alinhado pelo que é falado' : 'cortado pelas pausas'})` : `\n▶ Narração por cena (${n.mapa.size} arquivos)`);
+  if (n.silencioInicio != null) console.log(`  Silêncio no começo do áudio: ${n.silencioInicio.toFixed(2)} s (cortado: a voz começa no 1º quadro)`);
   const linhas = [];
   for (const [i, v] of [...n.mapa.entries()].sort((a, b) => a[0] - b[0])) {
     const txt = r.cenas[i].narracaoTexto || '';
@@ -254,6 +286,7 @@ Gerador de vídeos pixel art (Three.js + GPU)
   npm run vitrine                   imagens das principais mudanças (projeto "vitrine")
   npm run catalogo                  lista todos os assets em biblioteca/CATALOGO.md
   npm run conferir -- meu-video     confere sem renderizar: gente coberta, continuidade, elenco, limites
+  npm run mapa -- meu-video         mapa segundo a segundo das cenas (para comparar com o gráfico de retenção)
   npm run lista [-- projeto]        lista fundos, sprites, sons e a biblioteca (personagens, cenários)
 
 Opções: --fps 60   --escala 4   --crt   --formato normal|vertical|ambos
@@ -290,6 +323,7 @@ try {
     case 'vitrine': await gerarFotos('vitrine', { escala: Number(flags.escala) || 4 }); break;
     case 'catalogo': { const c = await gerarCatalogo(); console.log(`✔ ${c.arq}\n  ${c.sprites} sprites, ${c.personagens} personagens, ${c.cenarios} cenários`); break; }
     case 'conferir': { if (!pos[0]) throw new Error('Uso: npm run conferir -- nome-do-projeto'); const { conferir } = await import('./conferir.js'); await conferir(pos[0]); break; }
+    case 'mapa': if (!pos[0]) throw new Error('Uso: npm run mapa -- nome-do-projeto'); await mapaCenas(pos[0]); break;
     case 'lista': await lista(); break;
     default: console.log(AJUDA);
   }

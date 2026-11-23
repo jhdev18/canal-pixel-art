@@ -233,6 +233,65 @@ const SONS = {
   ], L), 16),
 };
 
+// ---------------------------------------------------------------- trilhas de fundo (loop, chiptune baixinho)
+// "trilha" no roteiro: o vídeo inteiro ganha uma base musical que nunca deixa o som "vazio" entre as falas.
+// Um biblioteca/sfx/trilha-<nome>.mp3 substitui a gerada.
+const midi = (n) => 440 * Math.pow(2, (n - 69) / 12);
+// notas: [tempo em batidas, nota MIDI, duração em batidas, timbre, volume, curva]
+function musica(bpm, batidas, faixas) {
+  const b = 60 / bpm, L = batidas * b, partes = [];
+  for (const [ini, n, d, tipo = 'triangulo', vol = 0.1, curva = 1, duty = 0.5] of faixas) {
+    if (n == null) continue;
+    const dur = Math.min(d * b, L - ini * b);
+    partes.push([tom({ tipo, f0: midi(n), dur, vol, curva, duty, ataque: 0.01 }), ini * b]);
+  }
+  const out = misturar(partes, L);
+  // fade de 10 ms nas pontas: o loop emenda sem estalo
+  const f = Math.round(0.01 * SR);
+  for (let i = 0; i < f; i++) { out[i] *= i / f; out[out.length - 1 - i] *= i / f; }
+  let q = 0; for (const v of out) q += v * v;
+  const g = 0.08 / Math.max(1e-6, Math.sqrt(q / out.length));   // todas as trilhas no mesmo volume médio
+  for (let i = 0; i < out.length; i++) out[i] *= g;
+  return out;
+}
+const repetir = (padrao, vezes, passo) => [...Array(vezes).keys()].flatMap((k) => padrao.map(([t, ...r]) => [t + k * passo, ...r]));
+const TRILHAS = {
+  // suspense: baixo pulsando em lá menor, sino agudo raro e "tique" de relógio — tensão sem assustar
+  suspense: () => {
+    const baixo = [45, 45, 41, 40];   // Lá, Lá, Fá, Mi (2 compassos cada)
+    const f = [];
+    baixo.forEach((n, k) => { for (let i = 0; i < 8; i++) f.push([k * 8 + i, n, 0.5, 'triangulo', 0.16, 1.5]); });
+    baixo.forEach((n, k) => f.push([k * 8, n + 12, 8, 'seno', 0.05, 0.3], [k * 8, n + 19, 8, 'seno', 0.03, 0.3]));
+    for (let i = 0; i < 32; i++) f.push([i + 0.5, 96, 0.05, 'quadrada', 0.012, 3, 0.25]);
+    f.push([6, 81, 2, 'seno', 0.05, 2], [22, 80, 2, 'seno', 0.05, 2]);
+    return musica(96, 32, f);
+  },
+  // comédia: baixo saltitante + melodia de pizzicato em dó maior
+  comedia: () => {
+    const acordes = [[48, 52, 55], [53, 57, 60], [55, 59, 62], [48, 52, 55]];
+    const f = [];
+    acordes.forEach(([r, t3, q5], k) => {
+      for (let i = 0; i < 4; i++) f.push([k * 4 + i, i % 2 ? q5 - 12 : r - 12, 0.4, 'triangulo', 0.17, 2]);
+      for (let i = 0; i < 4; i++) f.push([k * 4 + i + 0.5, [r, t3, q5][i % 3] + 12, 0.25, 'quadrada', 0.035, 3, 0.25]);
+    });
+    const mel = [72, 74, 76, 79, 77, 76, 74, 72, 74, 76, 74, 71, 72, null, 67, null];
+    mel.forEach((n, i) => f.push([i, n, 0.35, 'quadrada', 0.04, 2.5, 0.125]));
+    return musica(124, 32, repetir(f, 2, 16));
+  },
+  // emocional: arpejo lento e suave
+  emocional: () => {
+    const acordes = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]];
+    const f = [];
+    acordes.forEach((ac, k) => {
+      f.push([k * 4, ac[0] - 12, 4, 'triangulo', 0.13, 0.6]);
+      [0, 1, 2, 1, 0, 1, 2, 1].forEach((j, i) => f.push([k * 4 + i * 0.5, ac[j] + 12, 0.9, 'seno', 0.06, 1.5]));
+    });
+    return musica(76, 32, repetir(f, 2, 16));
+  },
+};
+for (const [nome, fn] of Object.entries(TRILHAS)) SONS[`trilha-${nome}`] = fn;
+export const TRILHAS_DISPONIVEIS = Object.keys(TRILHAS);
+
 export const NOMES_SONS = Object.keys(SONS);
 export const AMBIENTES = ['chuva', 'vento', 'grilos', 'passaros', 'fogo', 'caverna', 'espaco', 'cidade'];
 

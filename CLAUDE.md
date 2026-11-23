@@ -57,6 +57,26 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
 - **Loop aberto no meio** ("mas o que ninguém sabia...") e **pergunta/voto só nos últimos ~3 s**.
 - **Shorts:** até 60 s, enquadramento `vertical` em toda cena com personagem.
 - Sugerir ao usuário narração no ElevenLabs um pouco mais rápida (velocidade ~1,1).
+- **1ª frase curta:** no máximo 12 palavras / ~65 letras (o ideal é ~8 palavras, ~2–3 s). O `npm run conferir` acusa `[gancho]`.
+- **Silêncio no começo do áudio é cortado sozinho** (a voz começa no 1º quadro; o `--verificar` mostra quanto foi cortado).
+- **Legenda palavra por palavra (padrão):** grupos de 2–3 palavras grandes, com a palavra falada em amarelo (tempo real das
+  palavras pelo alinhamento; sem áudio, estimado). **Posição fixa embaixo** (pedido do usuário: legenda trocando de lugar
+  confunde): Shorts a 76% da altura (logo acima dos 18% de baixo, onde ficam os botões do YouTube), 16:9 a 85%. Por isso, no
+  enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
+  câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
+  Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
+  Praça cheia (várias fileiras) não cabe toda: limitar a -2 e aceitar os pés da fileira da frente sob a legenda.
+  `"legendaPosicao"` (0–1, no roteiro ou na cena) muda; `"auto"` desvia sozinho de quem está na cena (`lugarLegenda` em `motor/ui.js`).
+  `"legendaEstilo": "caixa"` volta à legenda antiga; `"legendaLetras"` (padrão 16) muda o tamanho dos grupos.
+- **Corte de enquadramento dentro da cena** (quebra de padrão a cada ~2 s sem trocar de lugar): ação
+  `{ "tipo": "corte", "zoom": 2, "y": 1.5, "inicio" }` — troca instantânea (sem movimento lento), só com zoom redondo
+  (1, 1.5, 2, 3); usar em cenas de 3–4 s, na palavra forte. Nos scripts do Claude: `a(0.5, 'corte', { zoom: 2, y: 1.5 })`.
+- **Trilha de fundo em todo vídeo:** `"trilha": "suspense"` (terror), `"comedia"` ou `"emocional"` no roteiro (base chiptune
+  baixa em loop, abaixa sozinha com a narração; só no final, como os outros sons; `"volumeTrilha"` padrão 0.7;
+  `biblioteca/sfx/trilha-<nome>.mp3` substitui a gerada). Projetos novos já vêm com `"trilha": "suspense"`; o conferir acusa `[trilha]`.
+- **Medir pela retenção real:** `npm run mapa -- <projeto>` mostra cada cena no tempo (início, fim, %, se tem movimento,
+  corte, flash, noite) e salva `MAPA-CENAS.txt`. Quando o usuário mandar o gráfico de retenção do YouTube Studio, comparar
+  os segundos em que a linha cai com o mapa, achar a cena culpada e anotar a regra nova aqui.
 
 ## Estilo "Nesse Mundo" (vídeos de regra absurda)
 **O que é:** vídeos narrados (Shorts e longos) que começam com **uma regra absurda do mundo** — "Nesse mundo / Nessa
@@ -86,7 +106,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia de quem comia correndo (`nesse-mundo-comida`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -326,7 +346,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%; `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
+depois de 40%; `[trilha]` roteiro sem trilha; `[corte]` corte com zoom quebrado; `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em
@@ -436,6 +456,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
 - Texto para o ElevenLabs: `npm run narracao -- <ep>` (usa `"narracaoTexto"` de cada cena)
 - Conferir cortes da narração sem renderizar: `npm run narracao -- <ep> --verificar`
 - Conferir erros de cena sem renderizar (gente coberta, continuidade, elenco, limites): `npm run conferir -- <ep>`
+- Mapa das cenas no tempo (para comparar com o gráfico de retenção): `npm run mapa -- <ep>`
 - Cada cena pode ter um bloco `"vertical"` com o enquadramento do Shorts.
 - Transições curtas (0,2 s); cenas sem duração fixa (duram o tempo da fala/ações).
 - Narração sem `<break>` (um parágrafo por cena). Com o áudio, o corte é automático **pelo que é falado**
@@ -602,6 +623,8 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   (diorama e lateral; móveis `penteadeira`, `pufe`, `cavalete`). O modo `"exterior"` do diorama existe mas não é usado.
 - **Arte do canal "Histórias em Pixel" (protótipo):** geradores de banner e ícone em `projetos/canal/arte/`
   (`banner.html`, `icone.html`, `gerar.mjs`); o `banner.png` ainda não foi substituído.
+- **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
+  (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/happy-goldberg-q6y15g` (reúne TODOS os branches: `ccr-20c16939-ytgzvu`,
   `ccr-77868c41-s69pnw`, `claude/modest-hamilton-4p4851`, `jolly-archimedes`, `upbeat-mccarthy` e os anteriores).
   Antes: `ccr-20c16939-ytgzvu` (reúne `claude/modest-hamilton-4p4851`, que já tinha `jolly-archimedes`,

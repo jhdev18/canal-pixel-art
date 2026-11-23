@@ -9,6 +9,7 @@
   180
  ],
  "volumeBaloes": 0.4,
+ "trilha": "suspense",
  "cenas": [
   {
    "narracaoTexto": "Nessa cidade, se um gato começa a seguir você, é sorte pra vida inteira.",
@@ -206,7 +207,7 @@
     "camera": {
      "x": 9,
      "z": 2.2,
-     "y": 2.4
+     "y": 1.15
     }
    }
   },
@@ -273,7 +274,7 @@
     "camera": {
      "x": 1,
      "z": 0,
-     "y": 2.4
+     "y": 0.9
     }
    }
   },
@@ -359,7 +360,7 @@
    "vertical": {
     "camera": {
      "x": 0,
-     "y": 3
+     "y": 0.75
     }
    }
   },
@@ -480,7 +481,7 @@
     "camera": {
      "x": 8.6,
      "z": 2.2,
-     "y": 2.4
+     "y": 0.15
     }
    }
   },
@@ -680,7 +681,8 @@
    "vertical": {
     "camera": {
      "x": -1,
-     "z": -8.5
+     "z": -8.5,
+     "y": 0.2
     }
    },
    "momento": "praca"
@@ -822,7 +824,8 @@
     "camera": {
      "x": 0,
      "z": -9.6,
-     "zoom": 2
+     "zoom": 2,
+     "y": 0.2
     }
    },
    "momento": "praca"
@@ -967,7 +970,8 @@
    "vertical": {
     "camera": {
      "x": -3.4,
-     "z": -8.5
+     "z": -8.5,
+     "y": 0.7
     }
    },
    "momento": "praca"
@@ -1164,7 +1168,8 @@
    "vertical": {
     "camera": {
      "x": 1,
-     "z": -8.5
+     "z": -8.5,
+     "y": 0.2
     }
    },
    "momento": "praca"
@@ -1281,7 +1286,7 @@
     "camera": {
      "x": 4,
      "z": 2.2,
-     "y": 2.4
+     "y": 0.15
     }
    }
   },
@@ -1476,7 +1481,7 @@
     "camera": {
      "x": 8.6,
      "z": 2.2,
-     "y": 2.4
+     "y": 0.4
     }
    }
   },
@@ -1564,7 +1569,7 @@
     "camera": {
      "x": 1,
      "z": 0,
-     "y": 2.4
+     "y": 0.15
     }
    }
   }

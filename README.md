@@ -112,6 +112,8 @@ Outros comandos:
 |---|---|
 | `npm run previa -- meu-video` | Prévia em tempo real no navegador (sem áudio); recarrega quando o `roteiro.json` muda |
 | `npm run conferir -- meu-video` | Confere o roteiro sem renderizar: personagem coberto por objeto ou poste, em pé em cima de objeto baixo ou dos caixotes do mercado, continuidade (`momento`/`saiDeCena`/`salto`), mesmo sprite para dois personagens (`figurante` libera), fora do cômodo, sombras demais, quem para de andar antes do fim da fala |
+| `npm run mapa -- meu-video` | Mapa das cenas no tempo (início, fim, %, movimento, corte, flash, noite) para comparar com o gráfico de retenção do YouTube Studio; salva `MAPA-CENAS.txt` |
+| retenção no roteiro | `"trilha": "suspense" \| "comedia" \| "emocional"` (música de fundo baixa), `"legendaEstilo": "palavra"` (padrão: palavra falada em amarelo) ou `"caixa"`, ação `{ "tipo": "corte", "zoom": 2, "y": 1.5 }` (troca instantânea de enquadramento); o silêncio no começo da narração é cortado sozinho |
 | campos de continuidade | `"momento": "festa"` (cenas do mesmo instante: mesmo elenco), `"saiDeCena": ["tonho"]` (saiu pela história), `"salto": true` (pulo de tempo) — usados pelo `npm run conferir` |
 | `npm run lista` | Lista fundos, sprites, ações, efeitos sonoros, paletas e a biblioteca |
 | `npm run sprites` | Gera `sprites-disponiveis.png` com todos os sprites |
