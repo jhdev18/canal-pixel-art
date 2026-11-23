@@ -70,18 +70,24 @@ async function transcrever(d16) {
   return palavras;
 }
 
-// dados: áudio mono em SR (48 kHz). textos: fala de cada cena. Devolve os K-1 cortes (segundos) ou null.
+// dados: áudio mono em SR (48 kHz). textos: fala de cada cena.
+// Devolve { cortes: K-1 cortes (segundos), palavras: por cena, [{ t, f }] de cada palavra do texto (split por espaço;
+// null = não reconhecida) } — ou null. As palavras servem para a legenda palavra por palavra.
 export async function cortesPelaFala(dados, SR, textos, pastaNarracao, arquivo) {
   const est = fs.statSync(arquivo);
   const chave = crypto.createHash('sha1').update(JSON.stringify([est.size, est.mtimeMs, textos, MODELO])).digest('hex');
   const arqCache = path.join(pastaNarracao, '.alinhamento.json');
-  try { const c = JSON.parse(fs.readFileSync(arqCache, 'utf8')); if (c.chave === chave) return c.cortes; } catch { /* sem cache */ }
-  // 48 kHz -> 16 kHz (média de 3 amostras)
-  const passo = SR / SR_W, d16 = new Float32Array(Math.floor(dados.length / passo));
-  for (let i = 0; i < d16.length; i++) { let s = 0; for (let k = 0; k < passo; k++) s += dados[i * passo + k] || 0; d16[i] = s / passo; }
-  const R = await transcrever(d16);
-  const S = [], cenaDe = [];
-  textos.forEach((t, k) => { for (const w of t.split(/\s+/)) if (norm(w)) { S.push(norm(w)); cenaDe.push(k); } });
+  let R = null;
+  try { const c = JSON.parse(fs.readFileSync(arqCache, 'utf8')); if (c.chave === chave && Array.isArray(c.palavras)) R = c.palavras; } catch { /* sem cache */ }
+  if (!R) {
+    // 48 kHz -> 16 kHz (média de 3 amostras)
+    const passo = SR / SR_W, d16 = new Float32Array(Math.floor(dados.length / passo));
+    for (let i = 0; i < d16.length; i++) { let s = 0; for (let k = 0; k < passo; k++) s += dados[i * passo + k] || 0; d16[i] = s / passo; }
+    R = await transcrever(d16);
+  }
+  const S = [], cenaDe = [], tokenDe = [];
+  const tokens = textos.map((t) => t.split(/\s+/).filter(Boolean));
+  tokens.forEach((tk, k) => tk.forEach((w, j) => { if (norm(w)) { S.push(norm(w)); cenaDe.push(k); tokenDe.push(j); } }));
   const mapa = alinharSequencias(S, R.map((p) => p.w));
   const K = textos.length, cortes = [];
   for (let k = 1; k < K; k++) {
@@ -98,6 +104,8 @@ export async function cortesPelaFala(dados, SR, textos, pastaNarracao, arquivo) 
   for (let k = 1; k < cortes.length; k++) if (cortes[k] <= cortes[k - 1]) return null;
   const alinhadas = Array.from(mapa).filter((x) => x >= 0).length;
   if (alinhadas < S.length * 0.6) return null;                               // reconhecimento ruim demais
+  const palavras = tokens.map((tk) => tk.map(() => null));
+  for (let s = 0; s < S.length; s++) if (mapa[s] >= 0) { const r = R[mapa[s]]; palavras[cenaDe[s]][tokenDe[s]] = { t: r.t, f: r.f }; }
   try { fs.writeFileSync(arqCache, JSON.stringify({ chave, cortes, alinhadas, total: S.length, palavras: R })); } catch { /* ok */ }
-  return cortes;
+  return { cortes, palavras };
 }

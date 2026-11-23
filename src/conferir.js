@@ -11,6 +11,7 @@
 //   6. gancho: a 1ª cena precisa ter algo se mexendo antes de 0,6 s e não ser de noite
 //   8. atravessa: pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo)
 //   7. retenção no meio: cena parada antes de 70% do vídeo; "Até que..." depois de 40% do vídeo
+//   9. 1ª frase longa demais (gancho), roteiro sem "trilha", "corte" com zoom quebrado
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
@@ -149,6 +150,16 @@ export async function conferir(nome) {
     const prim = (c?.acoes || []).filter((a) => MEXE.includes(a.tipo)).sort((a, b) => a.inicio - b.inicio)[0];
     if (c && (!prim || prim.inicio > 0.6)) aviso(1, 'gancho', `a 1ª cena não tem nada se mexendo até ${prim ? prim.inicio.toFixed(1) + ' s' : 'o fim'} — o elemento da regra precisa se mexer na tela antes de 0,6 s (o público decide se passa o vídeo no 1º segundo)`);
     if (c && /noite/.test(c.cenarioBruto || c.cenario || '')) aviso(1, 'gancho', 'a 1ª cena é de noite — abrir de dia (imagem escura no celular perde o público no 1º segundo)');
+    // 1ª frase curta: a regra precisa estar entendida antes de o polegar passar (sombras: 12 palavras, 64 letras — não passar disso)
+    const f1 = (c?.narracaoTexto || '').match(/^[^.!?…]+[.!?…]?/)?.[0].trim() || '';
+    const pal = f1.split(/\s+/).filter(Boolean).length;
+    if (f1 && (f1.length > 66 || pal > 12)) aviso(1, 'gancho', `a 1ª frase tem ${pal} palavras (${f1.length} letras, ~${(f1.length * 0.065).toFixed(1)} s) — encurtar para no máximo 12 palavras / ~65 letras (o ideal é ~8): "${f1}"`);
+  }
+
+  // ---------- 9. RITMO: trilha de fundo (o som nunca fica vazio) e cortes de enquadramento com zoom redondo
+  if (!bruto.trilha) aviso(0, 'trilha', 'o roteiro não tem "trilha" — usar "trilha": "suspense" (terror), "comedia" ou "emocional" (base musical baixa, abaixa sozinha com a narração)');
+  for (const c of r.cenas) for (const a of c.acoes) {
+    if (a.tipo === 'camera' && a.corte && a.para?.zoom != null && Math.round(a.para.zoom * 2) !== a.para.zoom * 2) aviso(c.numero, 'corte', `corte com zoom ${a.para.zoom} — usar valores redondos (1, 1.5, 2, 3) para os pixels ficarem alinhados`);
   }
 
   // ---------- 7. RETENÇÃO NO MEIO (dados do canal: sombras segurou 0:43 de 0:50; guardiões só 0:26 — o público saiu nas cenas
@@ -248,6 +259,6 @@ export async function conferir(nome) {
 
   console.log(`\n▶ Conferência de ${nome}: ${r.cenas.length} cenas`);
   if (!av.length) console.log('  ✔ nenhum problema encontrado');
-  for (const a of av) console.log(`  ⚠ cena ${String(a.n).padStart(2)} [${a.tipo}] ${a.msg}`);
+  for (const a of av) console.log(`  ⚠ ${a.n ? `cena ${String(a.n).padStart(2)}` : 'vídeo  '} [${a.tipo}] ${a.msg}`);
   return av;
 }

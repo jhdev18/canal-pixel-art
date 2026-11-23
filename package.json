@@ -21,7 +21,8 @@
     "fotos": "node src/cli.js fotos",
     "vitrine": "node src/cli.js vitrine",
     "catalogo": "node src/cli.js catalogo",
-    "conferir": "node src/cli.js conferir"
+    "conferir": "node src/cli.js conferir",
+    "mapa": "node src/cli.js mapa"
   },
   "engines": {
     "node": ">=18"

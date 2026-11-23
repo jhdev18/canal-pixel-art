@@ -110,8 +110,9 @@ export class UI {
       if (a.tipo === 'continua') this.continua(a, t);
     }
     if (cena.legendasNarracao) {
-      const b = cena.legendasNarracao.find((l) => t >= l.ini && t < l.fim + 0.12);
-      if (b) this.legendaTexto(b.texto, b.ini, b.fim + 0.12, t);
+      const b = cena.legendasNarracao.find((l) => t >= l.ini && t < l.fim + (l.palavras ? 0 : 0.12));
+      if (b?.palavras) this.legendaPalavras(b, t);
+      else if (b) this.legendaTexto(b.texto, b.ini, b.fim + 0.12, t);
       else if (cena.legenda) this.legenda(cena, t);
     } else if (cena.legenda) this.legenda(cena, t);
     if (cena.titulo) this.titulo(cena, t);
@@ -285,6 +286,37 @@ export class UI {
     ctx.globalAlpha = alpha;
     linhas.forEach((l, i) => desenharTexto(ctx, l, Math.round((W - larguraTexto(l)) / 2), y0 + i * LINHA, BRANCO));
     ctx.globalAlpha = 1;
+  }
+
+  // Legenda palavra por palavra: 2-3 palavras grandes, com contorno, e a palavra que o narrador está falando em amarelo.
+  // No Shorts fica a ~66% da altura (fora da área coberta pelos botões e pelo título do YouTube).
+  legendaPalavras(b, t) {
+    const { ctx, W, H } = this;
+    const vertical = H > W;
+    let esc = 2;
+    if (larguraTexto(b.texto, esc) > W - 12) esc = 1;
+    const linhas = [];
+    let atual = [];
+    for (const p of b.palavras) {
+      const txt = [...atual, p].map((q) => q.w).join(' ');
+      if (atual.length && larguraTexto(txt, esc) > W - 12) { linhas.push(atual); atual = [p]; } else atual.push(p);
+    }
+    if (atual.length) linhas.push(atual);
+    const altLinha = 11 * esc;
+    const pop = clamp((t - b.ini) / 0.08);
+    const y0 = Math.round(H * (vertical ? 0.66 : 0.8) - (linhas.length * altLinha) / 2 + (1 - pop) * 2);
+    const espaco = larguraTexto(' ', esc) + esc;
+    linhas.forEach((ln, i) => {
+      const larg = ln.reduce((sm, p) => sm + larguraTexto(p.w, esc), 0) + espaco * (ln.length - 1);
+      let x = Math.round((W - larg) / 2);
+      const y = y0 + i * altLinha;
+      for (const p of ln) {
+        const falando = t >= p.ini && t < p.fim + 0.05;
+        desenharTexto(ctx, p.w, x + esc, y + esc, '#000000', esc);
+        desenharTextoContorno(ctx, p.w, x, y, falando ? '#ffe040' : BRANCO, K, esc);
+        x += larguraTexto(p.w, esc) + espaco;
+      }
+    });
   }
 
   titulo(cena, t) {
