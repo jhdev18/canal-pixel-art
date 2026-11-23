@@ -168,6 +168,59 @@ Object.assign(MOVEIS, {
   } },
 });
 
+
+// PROTÓTIPO (v3 do mundo de blocos, pedido do usuário "está muito vazio"): objetos para encher o mapa.
+const pinado = (cor) => (a, b, d) => { if (d < 0.05) return escuro(cor, 0.2); const fa = (a * 4) % 1, fb = (b * 4) % 1; return Math.hypot(fa - 0.5, fb - 0.5) < 0.22 ? (fa + fb < 0.95 ? claro(cor, 0.35) : escuro(cor, 0.12)) : cor; };
+const plast = (cor) => ({ frente: (u, t) => (t === 0 ? escuro(cor, 0.3) : u < 0.08 ? claro(cor, 0.15) : cor), lado: escuro(cor, 0.22), topo: pinado(cor) });
+Object.assign(MOVEIS, {
+  'arvore-bloco': { di: 1.2, dj: 1.2, f(L, m) {   // árvore de jogo: tronco quadrado e copa de dois cubos verdes
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0 + 0.45, i0 + 0.75, j0 + 0.45, j0 + 0.75, 0, 18, { frente: '#8a5a34', lado: '#6a4226', topo: '#a86a3e' });
+    L.caixa(i0, i1, j0, j1, 18, 20, plast('#46b056'));
+    L.caixa(i0 + 0.25, i1 - 0.25, j0 + 0.25, j1 - 0.25, 38, 12, plast('#5ad06a'));
+  } },
+  'casa-bloco': { di: 2.6, dj: 3.4, f(L, m) {   // casinha do mapa (lobby): parede creme, porta, janelas, telhado em degraus
+    const { i0, i1, j0, j1 } = m, cJ = (j0 + j1) / 2;
+    L.caixa(i0, i1, j0, j1, 0, 34, { frente: (u, t, l) => { const x = u, meio = l / 2;
+        if (Math.abs(x - meio) < 0.38 && t < 22) return t > 20 ? '#5a3a24' : '#8a5a34';                                  // porta
+        if ((Math.abs(x - meio + 1.05) < 0.3 || Math.abs(x - meio - 1.05) < 0.3) && t > 12 && t < 26) return t === 19 ? '#d8d0c0' : '#7ac8f0';   // janelas
+        return t === 0 ? '#b8a888' : u < 0.08 ? '#fff4dc' : '#f0e4c4'; },
+      lado: (u, t) => (Math.abs(u - 1.3) < 0.3 && t > 12 && t < 26 ? '#6ab8e0' : '#d8c8a4'), topo: '#f0e4c4' });
+    for (let k = 0; k < 4; k++) L.caixa(i0 - 0.1 + k * 0.32, i1 + 0.1 - k * 0.32, j0 - 0.1 + k * 0.32, j1 + 0.1 - k * 0.32, 34 + k * 6, 6, plast(k % 2 ? '#c83a3a' : '#e84a4a'));
+    L.caixa(i0 + 0.4, i0 + 0.8, cJ + 0.6, cJ + 1.0, 46, 16, plast('#8e8e98'));                                    // chaminé
+  } },
+  'placa-jogo': { di: 0.4, dj: 1.8, f(L, m) {   // placa do mapa com a seta "por aqui"
+    const { i0, j0, j1 } = m;
+    L.caixa(i0 + 0.1, i0 + 0.3, j0 + 0.8, j0 + 1.0, 0, 20, { frente: '#8a5a34', lado: '#6a4226', topo: '#a86a3e' });
+    L.caixa(i0, i0 + 0.4, j0, j1, 20, 16, { frente: (u, t, l) => { const x = u / l, y = t / 16;
+        const seta = (y > 0.35 && y < 0.65 && x > 0.18 && x < 0.62) || (x >= 0.62 && x < 0.86 && Math.abs(y - 0.5) < 0.42 * (0.86 - x) / 0.24);
+        return t === 0 || t === 15 || u < 0.08 || u > l - 0.08 ? '#2a5aa8' : seta ? '#f4f4f4' : '#3a8ad8'; }, lado: '#2a5aa8', topo: '#4a9ae8' });
+  } },
+  'bandeira-checkpoint': { di: 1.2, dj: 1.2, f(L, m) {   // checkpoint: base com pinos, mastro e bandeira verde
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 4, plast('#8e8e98'));
+    L.caixa(i0 + 0.5, i0 + 0.7, j0 + 0.5, j0 + 0.7, 4, 40, { frente: '#e8e8f0', lado: '#b8b8c0', topo: '#ffffff' });
+    L.caixa(i0 + 0.55, i0 + 0.65, j0 + 0.7, j0 + 1.9, 30, 12, { frente: (u, t) => (t > 8 ? '#7ae88a' : ['#3ab060', 2]), lado: '#2e8a3e', topo: '#5ad06a' });
+  } },
+  'trampolim-bloco': { di: 1.2, dj: 1.2, f(L, m) {   // trampolim: base cinza e almofada azul que brilha
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 6, plast('#5a5a64'));
+    L.caixa(i0 + 0.15, i1 - 0.15, j0 + 0.15, j1 - 0.15, 6, 3, { frente: ['#3ad0ff', 2], lado: ['#2aa0d8', 2], topo: (a, b, d) => (d < 0.08 ? '#2aa0d8' : ['#7ae8ff', 2]) });
+  } },
+  'ponte-bloco': { di: 1.0, dj: 4.0, f(L, m) {   // passarela de madeira com pinos (para ligar plataformas no ar)
+    const { i0, i1, j0, j1 } = m;
+    L.caixa(i0, i1, j0, j1, 0, 4, { frente: (u, t) => (t === 0 ? '#7a4a2a' : Math.floor(u * 2) % 2 ? '#b07a48' : '#c08a58'), lado: '#8a5a34', topo: pinado('#d8a060') });
+  } },
+  'torre-bloco': { di: 1.4, dj: 1.4, f(L, m) {   // torre colorida de peças empilhadas, alta (fundo do mapa)
+    const { i0, i1, j0, j1 } = m, cores = ['#e84a4a', '#f8d84a', '#4a8ae8', '#5ad06a', '#8a4ac8', '#e84a4a'];
+    cores.forEach((c, k) => L.caixa(i0, i1, j0, j1, k * 16, 16, plast(c)));
+    L.caixa(i0 + 0.5, i0 + 0.9, j0 + 0.5, j0 + 0.9, 96, 10, { frente: ['#f8e060', 2], lado: ['#d8b040', 2], topo: ['#fff4a0', 2] });   // luz no topo
+  } },
+  'nuvem-bloco': { di: 1.6, dj: 3.0, f(L, m) {   // nuvem quadrada (usar com "y" alto, no céu)
+    const { i0, i1, j0, j1 } = m, br = { frente: '#f4f8ff', lado: '#d8e4f4', topo: '#ffffff' };
+    L.caixa(i0, i1, j0, j1, 0, 10, br); L.caixa(i0 + 0.3, i1 - 0.3, j0 + 0.6, j0 + 1.8, 10, 8, br);
+  } },
+});
 // ------------------------------------------------------------------ tela do jogo (close) e moeda
 function telaJogo(modo) {
   const p = new Pix(96, 64);
@@ -295,6 +348,14 @@ registrarSprites({
   'placa-amarela': () => iso({ parado: { tipo: 'placa-amarela' } }),
   'bloco-neon': () => iso({ parado: { tipo: 'bloco-neon' } }),
   'trelica': () => iso({ parado: { tipo: 'trelica' } }),
+  'arvore-bloco': () => iso({ parado: { tipo: 'arvore-bloco' } }),
+  'casa-bloco': () => iso({ parado: { tipo: 'casa-bloco' } }),
+  'placa-jogo': () => iso({ parado: { tipo: 'placa-jogo' } }),
+  'bandeira-checkpoint': () => iso({ parado: { tipo: 'bandeira-checkpoint' } }),
+  'trampolim-bloco': () => iso({ parado: { tipo: 'trampolim-bloco' } }),
+  'ponte-bloco': () => iso({ parado: { tipo: 'ponte-bloco' } }),
+  'torre-bloco': () => iso({ parado: { tipo: 'torre-bloco' } }),
+  'nuvem-bloco': () => iso({ parado: { tipo: 'nuvem-bloco' } }),
   'tela-jogo': texJogo,
   'icone-pausa': () => ({ quadros: [iconePausa(0), iconePausa(1)], anims: { parado: { q: [0, 1], fps: 2 } }, sombra: false, flutua: true }),
   'moeda-bloco': () => ({ quadros: [0, 1, 2, 3].map(moeda), anims: { parado: { q: [0, 1, 2, 3], fps: 8 } }, sombra: true, flutua: true }),

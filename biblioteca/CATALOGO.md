@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (269)
+## Sprites (277)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -375,6 +375,14 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `placa-amarela` | 🧪 protótipo | parado | 67×37 |
 | `bloco-neon` | 🧪 protótipo | parado | 67×31 |
 | `trelica` | 🧪 protótipo | parado | 19×73 |
+| `arvore-bloco` | 🧪 protótipo | parado | 41×65 |
+| `casa-bloco` | 🧪 protótipo | parado | 117×93 |
+| `placa-jogo` | 🧪 protótipo | parado | 61×54 |
+| `bandeira-checkpoint` | 🧪 protótipo | parado | 45×55 |
+| `trampolim-bloco` | 🧪 protótipo | parado | 41×26 |
+| `ponte-bloco` | 🧪 protótipo | parado | 131×45 |
+| `torre-bloco` | 🧪 protótipo | parado | 47×120 |
+| `nuvem-bloco` | 🧪 protótipo | parado | 97×48 |
 | `tela-jogo` | 🧪 protótipo | parado, jogando, chat, erro, socorro, chat-nao-sai, chat-banho, pausado | 96×64 |
 | `icone-pausa` | 🧪 protótipo | parado | 12×12 |
 | `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
@@ -513,7 +521,7 @@ Uso: `{ "cenario": "nome" }`
 | `fabrica-brinquedos-diorama` | 🧪 protótipo | diorama (cômodo fabrica-brinquedos) | 0 |
 | `loja-fundos-diorama` | 🧪 protótipo | diorama (cômodo loja-fundos) | 0 |
 | `sala-manequins-diorama` | 🧪 protótipo | diorama (cômodo sala-manequins) | 0 |
-| `mundo-bloco` | 🧪 protótipo | diorama | 13 |
+| `mundo-bloco` | 🧪 protótipo | diorama | 36 |
 | `mundo-bloco-grama` | 🧪 protótipo | diorama | 14 |
 | `vila-medieval` | 🧪 protótipo | diorama | 8 |
 | `castelo-medieval` | 🧪 protótipo | diorama | 4 |

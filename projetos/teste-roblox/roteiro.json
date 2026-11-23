@@ -94,6 +94,13 @@
         { "tipo": "pular", "alvo": "atop", "inicio": 2.6 }, { "tipo": "tremer", "inicio": 2.8, "duracao": 0.3 },
         { "tipo": "pular", "alvo": "anina", "inicio": 3.2 }, { "tipo": "tremer", "inicio": 3.4, "duracao": 0.3 },
         { "tipo": "pular", "alvo": "a1", "inicio": 3.8 }, { "tipo": "tremer", "inicio": 4.0, "duracao": 0.5 }
-      ] }
+      ] },
+    // 72. mundo-bloco v3 (mais cheio): vista normal e vista alta
+    { "cenario": "mundo-bloco", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
+      "legenda": "72. Mundo-bloco v3: vista normal.",
+      "elementos": [ { "id": "abia", "personagem": "avatar-bia", "x": -1.0, "z": 2.4 }, { "id": "atop", "personagem": "avatar-topete", "x": 1.6, "z": 3.4 }, { "id": "anina", "personagem": "avatar-nina", "x": -4.2, "z": 3.0 } ],
+      "acoes": [] },
+    { "cenario": "mundo-bloco", "duracao": 3, "transicao": "dither", "foto": [1.0], "camera": { "x": 0, "z": 2.2, "y": 3.6 },
+      "legenda": "73. Mundo-bloco v3: câmera alta (céu).", "elementos": [], "acoes": [] }
   ]
 }

@@ -690,7 +690,23 @@
       { "id": "tr", "sprite": "trelica", "x": 4.8, "z": 6.2 },
       { "id": "placa2", "sprite": "placa-amarela", "x": 5.6, "z": 6.0, "y": 4 },
       { "id": "chegada", "sprite": "cubo-xadrez", "x": 7.2, "z": 5.6 },
-      { "id": "moeda1", "sprite": "moeda-bloco", "x": 2.4, "z": 5.4, "y": 1.2 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": -2.0, "z": 5.8, "y": 3.4 }
+      { "id": "moeda1", "sprite": "moeda-bloco", "x": 2.4, "z": 5.4, "y": 1.2 }, { "id": "moeda2", "sprite": "moeda-bloco", "x": -2.0, "z": 5.8, "y": 3.4 },
+      // v3 (mais cheio): casinhas do lobby, árvores de bloco, torre, ponte no ar, checkpoint, trampolim, placa, nuvens e plataformas no céu
+      { "id": "casa1", "sprite": "casa-bloco", "x": -10.6, "z": 7.0 }, { "id": "casa2", "sprite": "casa-bloco", "x": 11.0, "z": 7.6 },
+      { "id": "torre", "sprite": "torre-bloco", "x": -2.4, "z": 13.0 },
+      { "id": "arv1", "sprite": "arvore-bloco", "x": -8.2, "z": 5.0 }, { "id": "arv2", "sprite": "arvore-bloco", "x": -4.8, "z": 8.6 },
+      { "id": "arv3", "sprite": "arvore-bloco", "x": 6.0, "z": 8.8 }, { "id": "arv4", "sprite": "arvore-bloco", "x": 10.2, "z": 4.6 },
+      { "id": "arv5", "sprite": "arvore-bloco", "x": -12.2, "z": 3.0 }, { "id": "arv6", "sprite": "arvore-bloco", "x": 12.0, "z": 1.2 },
+      { "id": "ponte", "sprite": "ponte-bloco", "x": 0.6, "z": 5.9, "y": 2 },
+      { "id": "check", "sprite": "bandeira-checkpoint", "x": -0.8, "z": 4.9 },
+      { "id": "tramp", "sprite": "trampolim-bloco", "x": 5.6, "z": 4.8 },
+      { "id": "placa", "sprite": "placa-jogo", "x": -9.0, "z": 2.6 },
+      { "id": "plat1", "sprite": "placa-azul", "x": -6.6, "z": 8.2, "y": 4 }, { "id": "plat2", "sprite": "peca-amarela", "x": 2.6, "z": 11.4, "y": 3 },
+      { "id": "plat3", "sprite": "peca-vermelha", "x": 4.4, "z": 11.0, "y": 4 },
+      { "id": "nuvem1", "sprite": "nuvem-bloco", "x": -5.0, "z": 9.5, "y": 5.5 }, { "id": "nuvem2", "sprite": "nuvem-bloco", "x": 7.5, "z": 10.0, "y": 6.0 },
+      { "id": "nuvem3", "sprite": "nuvem-bloco", "x": 0.5, "z": 12.0, "y": 6.5 },
+      { "id": "moeda3", "sprite": "moeda-bloco", "x": 0.8, "z": 5.9, "y": 3.5 }, { "id": "moeda4", "sprite": "moeda-bloco", "x": 5.6, "z": 4.8, "y": 1.6 },
+      { "id": "moeda5", "sprite": "moeda-bloco", "x": -6.4, "z": 8.2, "y": 5.0 }, { "id": "moeda6", "sprite": "moeda-bloco", "x": 4.6, "z": 11.0, "y": 5.4 }
     ]
   },
   // mundo-bloco-grama: o mesmo mapa de cubos com chão de grama (fase "ao ar livre")
