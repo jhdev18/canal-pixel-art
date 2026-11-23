@@ -6,7 +6,7 @@
 
 **Pista plantada:** cena 4 (a Bia nunca jogou: o avatar dela não tem rosto) → cena 10 (ela abre o jogo pela primeira vez) → cena 14 (o avatar dela sorri: agora é a vez dela). A sombra quadrada (cenas 7–9 e 12) mostra a troca antes da virada.
 
-**Assets usados:** aprovados: `menina-capa`, `aluno`, `aluna`, `rua-comercial`. Protótipos 🧪: `mundo-bloco`, avatares (`avatar-bloco-*`, `avatar-leo-1`, `avatar-leo-2`, `avatar-topete`, `avatar-nina`), `tela-jogo` (jogando), `celular-mao`, rosto `macabro` (+ `-cresce`/`-abre`), `sombraPessoa` com `"bloco": true`, `quarto-leo-diorama`, `quarto-menina-diorama`, `escola-patio`, `menino-topete` (Léo), `rival` (Nina). "Roblox" só na narração e no título.
+**Assets usados:** aprovados: `menina-capa`, `aluno`, `aluna`, `rua-comercial`. Protótipos 🧪: `mundo-bloco`, avatares (`avatar-bloco-*`, `avatar-leo-1`, `avatar-leo-2`, `avatar-topete`, `avatar-nina`), `tela-jogo` (jogando → chat-nao-sai), `mundo-bloco-tarde` (última cena, pôr do sol), `celular-mao`, rosto `macabro` (+ `-cresce`/`-abre`), `sombraPessoa` com `"bloco": true`, `quarto-leo-diorama`, `quarto-menina-diorama`, `escola-patio`, `menino-topete` (Léo), `rival` (Nina). "Roblox" só na narração e no título.
 
 **Assets novos:** —
 
@@ -27,6 +27,6 @@
 **11.** `mundo-bloco` — Lá dentro, as crianças batiam na tela, pedindo socorro.
 **12.** `rua-comercial` — O avatar não aprendia a ser você.
 **13.** `mundo-bloco` — Ele tomava o seu lugar.
-**14.** `mundo-bloco` — E o avatar sem rosto da Bia, pela primeira vez, sorriu.
+**14.** `mundo-bloco-tarde` — E o avatar sem rosto da Bia, pela primeira vez, sorriu.
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

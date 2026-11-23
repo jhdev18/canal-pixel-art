@@ -81,7 +81,8 @@ C.push(cena('Só a Bia reparou: ninguém mais tinha sombra de gente.', {
 C.push(cena('Ela correu para casa e abriu o jogo pela primeira vez.', {
   cenario: 'quarto-menina-diorama', camera: { x: 0, y: 3 },
   elementos: [P('bia', 'menina-capa', -3.4, 1.6), S('tela', 'tela-jogo', 0, 0, { tela: true, pose: 'jogando', escurecer: 0.6, oculto: true })],
-  acoes: [a(0, 'correr', { alvo: 'bia', para: -0.6, durF: 0.45 }), a(0.55, 'aparecer', { alvo: 'tela', som: 'entrar-jogo' })],
+  acoes: [a(0, 'correr', { alvo: 'bia', para: -0.6, durF: 0.45 }), a(0.5, 'aparecer', { alvo: 'tela', som: 'entrar-jogo' }),
+    a(0.78, 'trocar', { alvo: 'tela', estado: 'chat-nao-sai', som: 'chat' }), a(0.8, 'tremer', { intensidade: 0.25, durF: 0.08 })],
 }));
 // 11. Lá dentro, as crianças de verdade: os avatares vêm até a câmera em "bug", batendo na tela
 C.push(cena('Lá dentro, as crianças batiam na tela, pedindo socorro.', {
@@ -106,7 +107,7 @@ C.push(cena('Ele tomava o seu lugar.', {
 }));
 // 14. Última imagem: a escolha da Bia cobra o preço — o avatar sem rosto dela, que ela acabou de abrir, anda até a frente e SORRI
 C.push(cena('E o avatar sem rosto da Bia, pela primeira vez, sorriu.', {
-  cenario: 'mundo-bloco', camera: { x: -5.0, z: 2.2, y: 1.8, zoom: 2 },
+  cenario: 'mundo-bloco-tarde', camera: { x: -5.0, z: 2.2, y: 1.8, zoom: 2 },
   elementos: [P('abiaSem', 'avatar-bloco-verde', -5.6, 1.5, { pose: 'sem-rosto' })],
   acoes: [a(0.1, 'andar', { alvo: 'abiaSem', para: -4.6, durF: 0.5 }), a(0.7, 'trocar', { alvo: 'abiaSem', estado: 'sorriso' }), a(0.7, 'som', { som: 'bug-jogo' }),
     a(0.72, 'tremer', { intensidade: 0.2, durF: 0.08 })],

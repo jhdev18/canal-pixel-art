@@ -81,39 +81,43 @@ const SB = (s = {}) => sp('sb', -5.1, -8.8, { tamanho: 1.6, direcao: 270, ...s }
 const GX = [0.4, 2.0, 3.6], GRUPO = [['tonho', 'padeiro'], ['prof', 'professora'], ['aluno', 'aluno']];
 const P9 = GRUPO.map(([id, q], i) => par(id, q, GX[i] + 4.4, GX[i], -8.4, { f0: i * 0.04, tam: 1.6 }));
 C.push(cena('Na praça, as sombras chegaram primeiro e pararam.', {
-  cenario: 'praca', camera: PRACA(-1), foco: ['bia', 'aluno'],
+  cenario: 'praca-parquinho', camera: PRACA(-1), foco: ['bia', 'aluno'],
   elementos: [BIA(), SB(), ...P9.flatMap((p) => p.el)],
-  acoes: [...P9.flatMap((p) => p.ac), a(0.75, 'emocao', { alvo: 'bia', icone: '?' })],
+  acoes: [...P9.flatMap((p) => p.ac), a(0.55, 'trocar', { alvo: 'balanco', estado: 'sozinho' }), a(0.65, 'trocar', { alvo: 'giragira', estado: 'girando' }),
+    a(0.75, 'emocao', { alvo: 'bia', icone: '?' })],
 }));
+// depois da cena 9, o balanço e o gira-gira continuam se mexendo sozinhos (mesmo id do cenário = ajusta o elemento)
+const BRINQUEDOS = () => [{ id: 'balanco', sprite: 'balanco', x: 2, z: -5.8, pose: 'sozinho' }, { id: 'giragira', sprite: 'gira-gira', x: -5.4, z: -6.4, pose: 'girando' }];
 const SOMBRAS_GRUPO = (s = {}) => GRUPO.map(([id], i) => sp('s-' + id, GX[i] - GAP, -8.2, { tamanho: 1.6, ...s }));
 const GRUPO_EL = () => GRUPO.map(([id, q], i) => P(id, q, GX[i], -8.4));
 C.push(cena('E se viraram, devagar, para os donos.', {
-  cenario: 'praca', camera: PRACA(-1), foco: ['bia', 'aluno'],
-  elementos: [BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
+  cenario: 'praca-parquinho', camera: PRACA(-1), foco: ['bia', 'aluno'],
+  elementos: [...BRINQUEDOS(), BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
   acoes: [a(0.55, 'flash', { intensidade: 0.5 }), a(0.55, 'som', { som: 'revelar' }), a(0.6, 'emocao', { alvo: 'bia', icone: '!' })],
 }));
 // 11–12. Virada em 2 frases curtíssimas: a escuridão nasce no meio do grupo, sobe pelas pessoas e elas desaparecem
 C.push(cena('Elas não iam na frente para guiar.', {
-  cenario: 'praca', camera: PRACA(-1), foco: ['bia', 'aluno'],
-  elementos: [BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
+  cenario: 'praca-parquinho', camera: PRACA(-1), foco: ['bia', 'aluno'],
+  elementos: [...BRINQUEDOS(), BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
   acoes: [a(0.05, 'sombra', { origem: [1.4, -8.4], raio: 2.8, durF: 0.95 }), a(0.3, 'tremer', { intensidade: 0.3, durF: 0.15 })],
 }));
 C.push(cena('Iam na frente para esperar.', {
-  cenario: 'praca', camera: PRACA(-1), foco: ['bia', 'aluno'],
-  elementos: [BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
+  cenario: 'praca-parquinho', camera: PRACA(-1), foco: ['bia', 'aluno'],
+  elementos: [...BRINQUEDOS(), BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
   acoes: [a(0.05, 'desaparecer', { alvo: 'tonho', durF: 0.4 }), a(0.2, 'desaparecer', { alvo: 'prof', durF: 0.4 }), a(0.35, 'desaparecer', { alvo: 'aluno', durF: 0.4 }),
     a(0.1, 'som', { som: 'sombra' }), a(0.4, 'tremer', { intensidade: 0.4, durF: 0.2 })],
   saiDeCena: ['tonho', 'prof', 'aluno'],
 }));
 // 13. Última imagem com a regra viva e emoção: na segunda, a praça vazia e a sombra da Bia escondida atrás dela, tremendo
 C.push(cena('Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.', {
-  cenario: 'praca', camera: { x: -4.6, z: -10.4, zoom: 2 }, foco: 'bia',
-  elementos: [BIA({ virado: undefined }), SB(), sp('s1', -1.0, -8.2, { tamanho: 1.6, direcao: 90, olhos: true })],
+  cenario: 'praca-parquinho', camera: { x: -4.6, z: -10.4, zoom: 2 }, foco: 'bia',
+  elementos: [...BRINQUEDOS(), BIA({ virado: undefined }), SB(), sp('s1', -1.0, -8.2, { tamanho: 1.6, direcao: 90, olhos: true })],
   acoes: [a(0.55, 'tremer', { intensidade: 0.25, durF: 0.4 }), a(0.6, 'emocao', { alvo: 'bia', icone: '...' })],
 }));
 
 marcar(C, { 'sabado-praca': [[9, 12]] });
-C[5].saiDeCena = ['policial'];   // o policial seguiu correndo pela rua (só o grupo chega na praça)
+C[5].saiDeCena = ['policial'];
+C[5].vidaNaRua = { pedestres: 3, pombos: 2 };   // pico de movimento: gente no fundo também correndo e pombos voando assustados   // o policial seguiu correndo pela rua (só o grupo chega na praça)
 rostos(C, [[1, 'tonho', 'feliz'], [2, 'prof', 'feliz'], [2, 'aluno', 'feliz'], [3, 'bia', 'pensativo', 0.7],
   [4, 'nina', 'rindo', 0.4], [4, 'aluna', 'rindo', 0.45], [4, 'leo', 'rindo', 0.5], [4, 'bia', 'envergonhado', 0.6],
   [7, 'bia', 'assustado', 0.45], [8, 'bia', 'triste', 0.05, 0.4],

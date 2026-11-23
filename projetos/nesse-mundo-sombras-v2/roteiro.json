@@ -610,7 +610,11 @@
    },
    "saiDeCena": [
     "policial"
-   ]
+   ],
+   "vidaNaRua": {
+    "pedestres": 3,
+    "pombos": 2
+   }
   },
   {
    "narracaoTexto": "A sombra da Bia agarrou o pé dela e não soltou mais.",
@@ -758,7 +762,7 @@
   },
   {
    "narracaoTexto": "Na praça, as sombras chegaram primeiro e pararam.",
-   "cenario": "praca",
+   "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
     "arvore4"
@@ -874,6 +878,18 @@
      "duracao": 2.8
     },
     {
+     "tipo": "trocar",
+     "alvo": "balanco",
+     "estado": "sozinho",
+     "inicio": 2.05
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "giragira",
+     "estado": "girando",
+     "inicio": 2.37
+    },
+    {
      "tipo": "emocao",
      "alvo": "bia",
      "icone": "?",
@@ -916,7 +932,7 @@
   },
   {
    "narracaoTexto": "E se viraram, devagar, para os donos.",
-   "cenario": "praca",
+   "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
     "arvore4"
@@ -926,6 +942,20 @@
     "z": -8.5
    },
    "elementos": [
+    {
+     "id": "balanco",
+     "sprite": "balanco",
+     "x": 2,
+     "z": -5.8,
+     "pose": "sozinho"
+    },
+    {
+     "id": "giragira",
+     "sprite": "gira-gira",
+     "x": -5.4,
+     "z": -6.4,
+     "pose": "girando"
+    },
     {
      "id": "bia",
      "personagem": "menina-capa",
@@ -1052,7 +1082,7 @@
   },
   {
    "narracaoTexto": "Elas não iam na frente para guiar.",
-   "cenario": "praca",
+   "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
     "arvore4"
@@ -1062,6 +1092,20 @@
     "z": -8.5
    },
    "elementos": [
+    {
+     "id": "balanco",
+     "sprite": "balanco",
+     "x": 2,
+     "z": -5.8,
+     "pose": "sozinho"
+    },
+    {
+     "id": "giragira",
+     "sprite": "gira-gira",
+     "x": -5.4,
+     "z": -6.4,
+     "pose": "girando"
+    },
     {
      "id": "bia",
      "personagem": "menina-capa",
@@ -1188,7 +1232,7 @@
   },
   {
    "narracaoTexto": "Iam na frente para esperar.",
-   "cenario": "praca",
+   "cenario": "praca-parquinho",
    "saiDeCena": [
     "tonho",
     "prof",
@@ -1203,6 +1247,20 @@
     "z": -8.5
    },
    "elementos": [
+    {
+     "id": "balanco",
+     "sprite": "balanco",
+     "x": 2,
+     "z": -5.8,
+     "pose": "sozinho"
+    },
+    {
+     "id": "giragira",
+     "sprite": "gira-gira",
+     "x": -5.4,
+     "z": -6.4,
+     "pose": "girando"
+    },
     {
      "id": "bia",
      "personagem": "menina-capa",
@@ -1321,7 +1379,7 @@
   },
   {
    "narracaoTexto": "Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.",
-   "cenario": "praca",
+   "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
     "arvore4"
@@ -1332,6 +1390,20 @@
     "zoom": 2
    },
    "elementos": [
+    {
+     "id": "balanco",
+     "sprite": "balanco",
+     "x": 2,
+     "z": -5.8,
+     "pose": "sozinho"
+    },
+    {
+     "id": "giragira",
+     "sprite": "gira-gira",
+     "x": -5.4,
+     "z": -6.4,
+     "pose": "girando"
+    },
     {
      "id": "bia",
      "personagem": "menina-capa",

@@ -921,7 +921,20 @@
      "tipo": "aparecer",
      "alvo": "tela",
      "som": "entrar-jogo",
-     "inicio": 2.23
+     "inicio": 2.06
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tela",
+     "estado": "chat-nao-sai",
+     "som": "chat",
+     "inicio": 3.04
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.25,
+     "inicio": 3.11,
+     "duracao": 0.28
     },
     {
      "tipo": "expressao",
@@ -1171,7 +1184,7 @@
   },
   {
    "narracaoTexto": "E o avatar sem rosto da Bia, pela primeira vez, sorriu.",
-   "cenario": "mundo-bloco",
+   "cenario": "mundo-bloco-tarde",
    "camera": {
     "x": -5,
     "z": 2.2,

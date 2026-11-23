@@ -6,11 +6,11 @@
 
 **Pista plantada:** cena 3 (a sombra dela anda para trás, grudada no calcanhar) → cena 7 (agarra o pé dela) → cena 13 (escondida atrás dela, tremendo: estava com medo e a protegia).
 
-**Assets usados:** aprovados: `menina-capa`, `padeiro`, `professora`, `aluno`, `aluna`, `policial`, `rua-comercial`, `praca`. Protótipos 🧪: `sombraPessoa` (com `olhos` nas cenas 10–13), ação `sombra`, `desaparecer`, expressões, `escola-patio`, `rival` (Nina), `menino-topete` (Léo).
+**Assets usados:** aprovados: `menina-capa`, `padeiro`, `professora`, `aluno`, `aluna`, `policial`, `rua-comercial`, `praca-parquinho` 🧪 (balanço `sozinho`, gira-gira `girando`), `"vidaNaRua"` 🧪. Protótipos 🧪: `sombraPessoa` (com `olhos` nas cenas 10–13), ação `sombra`, `desaparecer`, expressões, `escola-patio`, `rival` (Nina), `menino-topete` (Léo).
 
 **Assets novos:** —
 
-**Checklist de retenção (táticas do vídeo das sombras):** de dia do começo ao fim · gancho: a sombra do seu Tonho já anda na frente dele aos 0,3 s · 1ª frase com "sua/você" e algo do dia a dia · a regra (sombra) na tela em 12 de 13 cenas (só não no pátio, cena 4) · movimento em 11 de 13 (paradas só a reação da cena 10 e o fim) · diferença da Bia sem som (a sombra dela fica atrás) · escalada (1 sombra → 2 → 4 correndo sozinhas → a cidade correndo → as sombras esperando) · "Até que" aos ~35% · pico de movimento no meio (cena 6) · a Bia escolhe (passo para trás) · virada inverte a crença ("é só ir atrás dela" → "iam na frente para esperar") · 2 frases curtíssimas na virada · detalhe feliz sinistro (a cidade correndo, rindo) · 1 balão · última imagem: a sombra da Bia, viva, tremendo.
+**Checklist de retenção (táticas do vídeo das sombras):** de dia do começo ao fim · gancho: a sombra do seu Tonho já anda na frente dele aos 0,3 s · 1ª frase com "sua/você" e algo do dia a dia · a regra (sombra) na tela em 12 de 13 cenas (só não no pátio, cena 4) · movimento em 11 de 13 (paradas só a reação da cena 10 e o fim) · diferença da Bia sem som (a sombra dela fica atrás) · escalada (1 sombra → 2 → 4 correndo sozinhas → a cidade correndo → as sombras esperando) · "Até que" aos ~35% · pico de movimento no meio (cena 6, com gente correndo no fundo e pombos voando) · praça do parquinho com o balanço e o gira-gira se mexendo sozinhos (cenas 9–13) · a Bia escolhe (passo para trás) · virada inverte a crença ("é só ir atrás dela" → "iam na frente para esperar") · 2 frases curtíssimas na virada · detalhe feliz sinistro (a cidade correndo, rindo) · 1 balão · última imagem: a sombra da Bia, viva, tremendo.
 
 ---
 
@@ -23,10 +23,10 @@
 **6.** `rua-comercial` — E a cidade inteira correu atrás delas, rindo, sem olhar para os lados.
 **7.** `rua-comercial` — A sombra da Bia agarrou o pé dela e não soltou mais.
 **8.** `rua-comercial` — Então a Bia parou de lutar. E deu um passo para trás.
-**9.** `praca` — Na praça, as sombras chegaram primeiro e pararam.
-**10.** `praca` — E se viraram, devagar, para os donos.
-**11.** `praca` — Elas não iam na frente para guiar.
-**12.** `praca` — Iam na frente para esperar.
-**13.** `praca` — Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.
+**9.** `praca-parquinho` — Na praça, as sombras chegaram primeiro e pararam.
+**10.** `praca-parquinho` — E se viraram, devagar, para os donos.
+**11.** `praca-parquinho` — Elas não iam na frente para guiar.
+**12.** `praca-parquinho` — Iam na frente para esperar.
+**13.** `praca-parquinho` — Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).
