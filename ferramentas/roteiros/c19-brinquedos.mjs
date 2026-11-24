@@ -20,17 +20,17 @@ const CRESCE = (f, mini, grande) => [a(f, 'sumir', { alvo: mini, som: null }), a
 // 1. Gancho: o Léo anda com o robô; aos 0,3 s ele pula (brinca) e o robô CRESCE na hora (corda + faíscas)
 C.push(cena('Nessa cidade, seu brinquedo cresce toda vez que você brinca.', {
   cenario: 'rua-comercial', transicao: 'corte', camera: RUA(3.6), foco: ['leo', 'robo'],
-  elementos: [P('leo', 'menino-topete', 2.2, 5.0), MINI('robo-mini', 'brinquedo-robo', 1.4, 4.4, { figurante: true }), P('robo', 'brinquedo-robo', 1.4, 4.4, { oculto: true })],
-  acoes: [a(0, 'andar', { alvo: 'leo', para: 5.0, durF: 0.95 }), a(0, 'andar', { alvo: 'robo-mini', para: 4.2, durF: 0.95 }), a(0, 'andar', { alvo: 'robo', para: 4.2, durF: 0.95, som: null }),
+  elementos: [P('leo', 'menino-topete', 2.2, 5.0), MINI('robo-mini', 'brinquedo-robo', 0.6, 4.4, { figurante: true }), P('robo', 'brinquedo-robo', 0.6, 4.4, { oculto: true })],   // ao lado do Léo, não atrás (cobria)
+  acoes: [a(0, 'andar', { alvo: 'leo', para: 5.0, durF: 0.95 }), a(0, 'andar', { alvo: 'robo-mini', para: 3.4, durF: 0.95 }), a(0, 'andar', { alvo: 'robo', para: 3.4, durF: 0.95, som: null }),
     a(0.12, 'pular', { alvo: 'leo', altura: 0.45, durF: 0.12 }), ...CRESCE(0.16, 'robo-mini', 'robo')],
 }));
 // 2. Crença como AÇÃO: toda criança vai para a escola de mãos dadas com o brinquedo (cortejo na calçada da escola)
 C.push(cena('Por isso, toda criança anda de mãos dadas com o seu.', {
   cenario: 'rua-comercial', camera: RUA(3.0), titulo: 'SEU BRINQUEDO CRESCE QUANDO VOCÊ BRINCA', tituloInicio: 0.25, tituloDuracao: 2.6,
-  elementos: [P('nina', 'rival', -0.8, 5.0), MINI('boneca', 'brinquedo-boneca', -1.4, 4.4),
-    P('aluno', 'aluno', 1.4, 5.0), MINI('caixa', 'brinquedo-caixa', 0.8, 4.4)],
-  acoes: [a(0, 'andar', { alvo: 'nina', para: 2.0, durF: 0.95 }), a(0, 'andar', { alvo: 'boneca', para: 1.4, durF: 0.95 }),
-    a(0, 'andar', { alvo: 'aluno', para: 4.2, durF: 0.95 }), a(0, 'andar', { alvo: 'caixa', para: 3.6, durF: 0.95 })],
+  elementos: [P('nina', 'rival', -0.8, 5.0), MINI('boneca', 'brinquedo-boneca', -2.1, 4.4),
+    P('aluno', 'aluno', 1.4, 5.0), MINI('caixa', 'brinquedo-caixa', 0.1, 4.4)],
+  acoes: [a(0, 'andar', { alvo: 'nina', para: 2.0, durF: 0.95 }), a(0, 'andar', { alvo: 'boneca', para: 0.7, durF: 0.95 }),
+    a(0, 'andar', { alvo: 'aluno', para: 4.2, durF: 0.95 }), a(0, 'andar', { alvo: 'caixa', para: 2.9, durF: 0.95 })],
 }));
 // 3. Escalada: a Nina brinca e a boneca dela cresce até passar da professora (corte de zoom na hora)
 C.push(cena('A boneca da Nina já passou da altura da professora.', {
@@ -51,8 +51,8 @@ C.push(cena('Só o soldadinho da Bia é pequeno. Ela quase não brinca.', {
 C.push(cena('No recreio, a turma ri do brinquedo de bebê.', {
   cenario: 'escola-patio', camera: PATIO(0.6), foco: ['bia', 'nina'],
   elementos: [P('bia', 'menina-capa', 0.2, 3.2), MINI('sold', 'brinquedo-soldadinho', 0.8, 2.6),
-    P('nina', 'rival', -2.2, 3.0), P('boneca', 'brinquedo-boneca', -3.0, 3.8), P('aluno', 'aluno', 2.6, 3.0), P('caixa', 'brinquedo-caixa', 3.4, 3.8),
-    P('leo', 'menino-topete', 4.4, 2.4), P('robo', 'brinquedo-robo', 5.2, 3.2)],
+    P('nina', 'rival', -2.2, 3.0), P('boneca', 'brinquedo-boneca', -3.0, 3.8), P('aluno', 'aluno', 2.6, 3.0), P('caixa', 'brinquedo-caixa', 4.4, 3.8),
+    P('leo', 'menino-topete', 4.4, 2.4), P('robo', 'brinquedo-robo', 6.4, 3.2)],
   acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.35, durF: 0.15 }), a(0.15, 'trocar', { alvo: 'caixa', estado: 'cantando' }), a(0.2, 'pular', { alvo: 'nina', altura: 0.35, durF: 0.15 }),
     a(0.3, 'trocar', { alvo: 'boneca', estado: 'acenar' }), a(0.45, 'trocar', { alvo: 'robo', estado: 'acenar' }), a(0.6, 'emocao', { alvo: 'bia', icone: '...' })],
 }));
@@ -154,7 +154,7 @@ rostos(C, [[1, 'leo', 'feliz', 0.4], [2, 'nina', 'feliz', 0.96], [3, 'nina', 'ri
   [10, 'bia', 'assustado'], [11, 'bia', 'bravo', 0.2], [12, 'bia', 'assustado', 0.45], [13, 'bia', 'assustado'], [14, 'bia', 'assustado'], [15, 'bia', 'assustado', 0.5]]);
 
 // Shorts: a legenda grande (76% da altura) fica abaixo dos pés (medido com medir-altura-shorts.mjs)
-alturaShorts(C, { 3: -1.5, 4: -1, 5: -0.75, 6: -2, 7: -2.75, 8: -2.75, 9: -2.25, 10: -1.75, 11: -1, 12: -1.75, 13: -1.5, 14: -1.75, 15: -1.25 });
+alturaShorts(C, { 2: -0.25, 3: -1.5, 4: -1, 5: -0.75, 6: -2, 7: -2.75, 8: -2.75, 9: -2.25, 10: -1.75, 11: -1, 12: -1.75, 13: -1.5, 14: -1.75, 15: -1.25 });
 
 salvar('nesse-mundo-brinquedos', ['NESSE MUNDO (curto, terror de dia): "Nessa cidade, seu brinquedo cresce toda vez que você brinca."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-brinquedos',

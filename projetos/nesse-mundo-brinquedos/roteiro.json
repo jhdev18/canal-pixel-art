@@ -29,14 +29,14 @@
     {
      "id": "robo-mini",
      "sprite": "brinquedo-robo@mini",
-     "x": 1.4,
+     "x": 0.6,
      "z": 4.4,
      "figurante": true
     },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
-     "x": 1.4,
+     "x": 0.6,
      "z": 4.4,
      "oculto": true
     }
@@ -52,14 +52,14 @@
     {
      "tipo": "andar",
      "alvo": "robo-mini",
-     "para": 4.2,
+     "para": 3.4,
      "inicio": 0.3,
      "duracao": 3.71
     },
     {
      "tipo": "andar",
      "alvo": "robo",
-     "para": 4.2,
+     "para": 3.4,
      "som": null,
      "inicio": 0.3,
      "duracao": 3.71
@@ -98,7 +98,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 3.45,
+     "x": 3.18,
      "z": 2.2,
      "y": 2.4
     },
@@ -129,7 +129,7 @@
     {
      "id": "boneca",
      "sprite": "brinquedo-boneca@mini",
-     "x": -1.4,
+     "x": -2.1,
      "z": 4.4
     },
     {
@@ -141,7 +141,7 @@
     {
      "id": "caixa",
      "sprite": "brinquedo-caixa@mini",
-     "x": 0.8,
+     "x": 0.1,
      "z": 4.4
     }
    ],
@@ -156,7 +156,7 @@
     {
      "tipo": "andar",
      "alvo": "boneca",
-     "para": 1.4,
+     "para": 0.7,
      "inicio": 0.3,
      "duracao": 3.21
     },
@@ -170,7 +170,7 @@
     {
      "tipo": "andar",
      "alvo": "caixa",
-     "para": 3.6,
+     "para": 2.9,
      "inicio": 0.3,
      "duracao": 3.21
     },
@@ -186,7 +186,7 @@
     "camera": {
      "x": 1.65,
      "z": 2.2,
-     "y": 2.4
+     "y": 2.15
     }
    }
   },
@@ -418,7 +418,7 @@
     {
      "id": "caixa",
      "personagem": "brinquedo-caixa",
-     "x": 3.4,
+     "x": 4.4,
      "z": 3.8
     },
     {
@@ -430,7 +430,7 @@
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
-     "x": 5.2,
+     "x": 6.4,
      "z": 3.2
     }
    ],
