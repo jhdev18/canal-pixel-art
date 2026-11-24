@@ -14,6 +14,9 @@
    "narracaoTexto": "Nessa cidade, seu brinquedo cresce toda vez que você brinca.",
    "cenario": "rua-comercial",
    "transicao": "corte",
+   "titulo": "SEU BRINQUEDO CRESCE QUANDO VOCÊ BRINCA",
+   "tituloInicio": 0,
+   "tituloDuracao": 2.6,
    "camera": {
     "x": 3.6,
     "z": 2.2,
@@ -111,9 +114,6 @@
   {
    "narracaoTexto": "Por isso, toda criança anda de mãos dadas com o seu.",
    "cenario": "rua-comercial",
-   "titulo": "SEU BRINQUEDO CRESCE QUANDO VOCÊ BRINCA",
-   "tituloInicio": 0.25,
-   "tituloDuracao": 2.6,
    "camera": {
     "x": 3,
     "z": 2.2,

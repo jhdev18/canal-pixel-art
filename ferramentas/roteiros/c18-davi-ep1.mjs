@@ -14,6 +14,7 @@ const COMUM = ['cogumelo-comum', 'cogumelo-roxo', 'cogumelo-verde', 'cogumelo-co
 
 // 1. Gancho: aos 0,15 s o Davi brota do chão (puf) e pula; no meio da frase, espirra uma nuvenzinha azul
 C.push(cena('E se você renascesse como o monstro mais fraco do jogo?', {
+  titulo: 'E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
   cenario: 'floresta-isekai', transicao: 'corte', camera: PERTO(0, 1.8), foco: 'davi',
   elementos: [P('davi', 'cogumelo-davi', 0, 3.0, { oculto: true })],
   acoes: [{ tipo: 'aparecer', alvo: 'davi', inicio: 0.15 }, { tipo: 'pular', alvo: 'davi', altura: 0.5, inicio: 0.35, duracao: 0.5 },
@@ -24,7 +25,6 @@ C.push(cena('E se você renascesse como o monstro mais fraco do jogo?', {
 // 2. A desvantagem e a PISTA: ele tropeça, espirra de novo e o cogumelo ao lado cai no sono
 C.push(cena('Davi acordou sem braços, de perninhas curtas e chapéu gigante.', {
   cenario: 'floresta-isekai', camera: CAM(0.4), foco: 'davi',
-  titulo: 'E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?', tituloInicio: 0.3, tituloDuracao: 2.6,
   elementos: [P('davi', 'cogumelo-davi', -1.6, 3.0), P('c1', 'cogumelo-roxo', 1.8, 3.8, F)],
   acoes: [a(0, 'andar', { alvo: 'davi', para: 0.2, durF: 0.4 }), a(0.42, 'pular', { alvo: 'davi', altura: 0.15, durF: 0.08 }), a(0.44, 'som', { som: 'aterrissar' }),
     a(0.55, 'espirrar', { alvo: 'davi', duracao: 1, inspira: 0.6 }), a(0.8, 'emocao', { alvo: 'c1', icone: 'zzz' })],

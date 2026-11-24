@@ -19,6 +19,7 @@ const CRESCE = (f, mini, grande) => [a(f, 'sumir', { alvo: mini, som: null }), a
 
 // 1. Gancho: o Léo anda com o robô; aos 0,3 s ele pula (brinca) e o robô CRESCE na hora (corda + faíscas)
 C.push(cena('Nessa cidade, seu brinquedo cresce toda vez que você brinca.', {
+  titulo: 'SEU BRINQUEDO CRESCE QUANDO VOCÊ BRINCA', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
   cenario: 'rua-comercial', transicao: 'corte', camera: RUA(3.6), foco: ['leo', 'robo'],
   elementos: [P('leo', 'menino-topete', 2.2, 5.0), MINI('robo-mini', 'brinquedo-robo', 0.6, 4.4, { figurante: true }), P('robo', 'brinquedo-robo', 0.6, 4.4, { oculto: true })],   // ao lado do Léo, não atrás (cobria)
   acoes: [a(0, 'andar', { alvo: 'leo', para: 5.0, durF: 0.95 }), a(0, 'andar', { alvo: 'robo-mini', para: 3.4, durF: 0.95 }), a(0, 'andar', { alvo: 'robo', para: 3.4, durF: 0.95, som: null }),
@@ -26,7 +27,7 @@ C.push(cena('Nessa cidade, seu brinquedo cresce toda vez que você brinca.', {
 }));
 // 2. Crença como AÇÃO: toda criança vai para a escola de mãos dadas com o brinquedo (cortejo na calçada da escola)
 C.push(cena('Por isso, toda criança anda de mãos dadas com o seu.', {
-  cenario: 'rua-comercial', camera: RUA(3.0), titulo: 'SEU BRINQUEDO CRESCE QUANDO VOCÊ BRINCA', tituloInicio: 0.25, tituloDuracao: 2.6,
+  cenario: 'rua-comercial', camera: RUA(3.0),
   elementos: [P('nina', 'rival', -0.8, 5.0), MINI('boneca', 'brinquedo-boneca', -2.1, 4.4),
     P('aluno', 'aluno', 1.4, 5.0), MINI('caixa', 'brinquedo-caixa', 0.1, 4.4)],
   acoes: [a(0, 'andar', { alvo: 'nina', para: 2.0, durF: 0.95 }), a(0, 'andar', { alvo: 'boneca', para: 0.7, durF: 0.95 }),

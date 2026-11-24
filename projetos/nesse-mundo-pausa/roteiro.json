@@ -14,6 +14,9 @@
    "narracaoTexto": "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.",
    "cenario": "parkour-campeonato",
    "transicao": "corte",
+   "titulo": "PAUSA ESSE JOGO!",
+   "tituloInicio": 0,
+   "tituloDuracao": 2.6,
    "camera": {
     "x": -2,
     "z": 2.2,
@@ -92,9 +95,6 @@
   {
    "narracaoTexto": "O avatar parou no ar. O pão parou no ar. O prefeito, no meio do espirro.",
    "cenario": "rua-comercial",
-   "titulo": "PAUSA ESSE JOGO!",
-   "tituloInicio": 0.3,
-   "tituloDuracao": 2.2,
    "camera": {
     "x": 0.8,
     "z": 2.2,

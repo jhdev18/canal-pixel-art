@@ -14,6 +14,9 @@
    "narracaoTexto": "E se você renascesse como o monstro mais fraco do jogo?",
    "cenario": "floresta-isekai",
    "transicao": "corte",
+   "titulo": "E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?",
+   "tituloInicio": 0,
+   "tituloDuracao": 2.6,
    "camera": {
     "x": 0,
     "z": 2.2,
@@ -79,9 +82,6 @@
   {
    "narracaoTexto": "Davi acordou sem braços, de perninhas curtas e chapéu gigante.",
    "cenario": "floresta-isekai",
-   "titulo": "E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?",
-   "tituloInicio": 0.3,
-   "tituloDuracao": 2.6,
    "camera": {
     "x": 0.4,
     "z": 2.2,

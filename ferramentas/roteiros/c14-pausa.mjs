@@ -13,6 +13,7 @@ const pausa = (id, alvo, extra = {}) => S(id, 'icone-pausa', 0, 0, { sobre: { id
 
 // 1. Gancho: o avatar pula de um pilar e CONGELA no ar (ícone de pausa) aos ~0,4 s
 C.push(cena('Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.', {
+  titulo: 'PAUSA ESSE JOGO!', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
   cenario: 'parkour-campeonato', transicao: 'corte', camera: { x: -2.0, z: 2.2, y: 2.4, zoom: 1.5 },
   elementos: [P('a1', 'avatar-bloco-azul', ...[topo(1)[0], 3.2], { y: topo(1)[1] }), pausa('p1', 'a1')],
   // pulo de verdade (agacha → sobe com os braços para cima) até o próximo pilar, CONGELADO no meio do caminho (congelar)
@@ -22,7 +23,7 @@ C.push(cena('Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.', {
 }));
 // 2. Exemplos rápidos: o pão parado no ar, o prefeito congelado no meio do espirro
 C.push(cena('O avatar parou no ar. O pão parou no ar. O prefeito, no meio do espirro.', {
-  cenario: 'rua-comercial', camera: RUA(0.8), titulo: 'PAUSA ESSE JOGO!', tituloInicio: 0.3, tituloDuracao: 2.2,
+  cenario: 'rua-comercial', camera: RUA(0.8),
   elementos: [P('tonho', 'padeiro', -0.6, 5.2), S('pao', 'pao', 0.4, 4.3, { escala: 2, y: 0.3 }), P('prefeito', 'prefeito', 2.6, 5.2), pausa('p1', 'tonho'), pausa('p2', 'prefeito')],
   acoes: [a(0, 'mover', { alvo: 'pao', para: [1.0, 1.3], durF: 0.3 }), a(0.05, 'espirrar', { alvo: 'prefeito', durF: 0.4, inspira: 0.75 }),
     a(0.32, 'flash', { intensidade: 0.4 }), a(0.33, 'aparecer', { alvo: 'p1', som: null }), a(0.33, 'aparecer', { alvo: 'p2', som: null }), a(0.33, 'som', { som: 'erro' }),

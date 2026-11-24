@@ -265,15 +265,19 @@ vídeos seguidos.
 - Na tela: balões curtos com a reação errada, `pular`, ícones `!`/`?`/`...`, `tremer` leve, som `sucesso`/`puf`.
 - Termina leve: última piada curta, sem moral e sem ninguém sair machucado de verdade.
 
-**Terror** (curtos, normalmente; nunca gore):
+**Terror** (curtos, normalmente; nunca sangue nem gore):
 - **Medo pela sugestão**, não pelo sangue: o que some, o que olha de volta, o que estava errado desde o começo.
 - Começa **normal e até fofo** (a cidade gosta da regra) e vai esfriando: frases mais curtas, menos balões, silêncio.
 - **Reação antes da virada** (alguém congela, fica sério) e **última frase concreta e gelada** — termina seco, sem explicar demais.
 - Pode virar contra o protagonista (consequência inesperada) ou poupá-lo (exceção sortuda).
+- **Morte pode acontecer** (pedido do usuário, 24/11/2026: tom mais adulto): personagens podem morrer na história e a narração pode
+  dizer isso com todas as letras ("ele não acordou mais", "foi o último a ser visto vivo"). **Sem sangue, sem gore, sem ferimento
+  nem corpo machucado na tela:** a morte se mostra pelo efeito (`desaparecer`, cair e ficar imóvel, a sombra/alma saindo, o lugar
+  vazio, o objeto da pessoa largado no chão), não pela violência. Usar quando a história pedir peso, não como choque gratuito.
 - Na tela: **de dia** (ver "Táticas de retenção": os terrores noturnos tiveram retenção baixa; noite só em 1–2 cenas no fim),
   **sem filtro de cor** (`paleta` fria/noir/sépia/quente: o usuário pediu para tirar de todos os
   vídeos por enquanto; só usar se ele pedir), `desaparecer`, sombras, `flash` + `tremer` na palavra forte,
-  sons `suspense`/`revelar`/`sombra`/`trovao`; nada de sustos com sangue, morte explícita ou violência mostrada.
+  sons `suspense`/`revelar`/`sombra`/`trovao`; nada de sangue, gore, ferimento ou violência detalhada (a morte pode acontecer — ver acima).
 
 **Emocional** (às vezes, curto): a virada mostra um sacrifício ou um carinho escondido (a vovó que fica de fora); termina
 num gesto simples, sem discurso.
@@ -288,8 +292,8 @@ com a regra como única ameaça. Usar em mais ou menos **1 a cada 3 ou 4 vídeos
   mais rico da cidade").
 - **Virada:** a regra **se volta contra quem abusou** (comédia: ele vira piada; terror: ele é o primeiro a pagar) ou
   revela que o "benefício" era o preço de outra pessoa.
-- **Tom do abuso:** na comédia é um vilão bobo e ridículo, nunca cruel de verdade; no terror pode ser frio, mas o castigo
-  continua sugerido, não mostrado.
+- **Tom do abuso:** na comédia é um vilão bobo e ridículo, nunca cruel de verdade; no terror pode ser frio, e o castigo
+  pode ser a morte (sem sangue/gore, mostrada pelo efeito).
 - Não repetir o mesmo esquema seguido (prefeito mentiroso, prefeito com lei): variar quem abusa (comerciante, rival,
   a própria cidade inteira) ou deixar sem.
 
