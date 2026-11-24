@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-avatar-v2
 // Protótipos: jogo de blocos (mundo-bloco, avatares, avatar-leo-1/-2, tela-jogo), celular-mao, rosto macabro, sombra quadrada, quarto-leo-diorama, quarto-menina-diorama, escola-patio, menino-topete, rival.
 {
+ "postado": true,
  "titulo": "Nesse mundo, seu avatar do Roblox aprende a ser você",
  "narrador": "Narrador",
  "resolucao": [

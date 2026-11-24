@@ -117,6 +117,7 @@ marcar(C, {});
 rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [6, 'leo', 'rindo', 0.5], [9, 'bia', 'assustado', 0.5], [10, 'bia', 'assustado', 0.5]]);
 alturaShorts(C, { 1: -1.75, 2: -1.25, 3: -1.75, 4: -3, 5: -1.5, 6: -0.75, 9: -0.75, 14: -3 });
 
+R.postado = true;   // postado no canal Pixelverso em 24/11/2026 — não regenerar nem alterar
 salvar('nesse-mundo-avatar-v2', ['NESSE MUNDO (curto, TERROR de dia, Roblox) — v2 do avatar: "Nesse mundo, seu avatar do Roblox aprende a ser você."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-avatar-v2',
   'Protótipos: jogo de blocos (mundo-bloco, avatares, avatar-leo-1/-2, tela-jogo), celular-mao, rosto macabro, sombra quadrada, quarto-leo-diorama, quarto-menina-diorama, escola-patio, menino-topete, rival.'], R);

@@ -183,6 +183,14 @@ O usuário relatou que o vídeo das sombras foi o único com alta retenção. Co
 - **Guardiões:** abre com duas pessoas paradas e guardiões pequenos dormindo; a 1ª coisa só acontece aos 2,6 s.
 → **Regra do gancho:** na 1ª cena, o elemento da regra **se mexe antes de 0,6 s**, grande e visível, **de dia**. Nada de
 abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run conferir` acusa `[gancho]`.
+**Avatar-v2 (1º vídeo do canal novo, 24/11/2026):** 391 visualizações, só **~41% continuaram** (159 intencionais), mas duração média
+0:33 de ~0:48 (~69%) e 6% de gostei — quem fica assiste; a perda é no 1º segundo. O gancho já se mexia aos 0,15 s, então faltava:
+- **Título na tela no quadro 0 da cena 1** (`"titulo"` com a regra curta, `"tituloInicio"` ≤ 0,3 s): no avatar-v2 ele só entrava na
+  cena 2 (~3,5 s) e quem rola o feed sem som não entendia. O `npm run conferir` acusa `[gancho]`.
+- **1º quadro já com "algo errado"** (terror): o elemento estranho da regra visível desde o início (sorriso `macabro` olhando para a
+  câmera, sombra errada, brinquedo grande demais), e só depois a ação/transformação. Abrir com uma imagem normal e feliz não segura.
+- **O 1º quadro precisa dizer o tema sozinho** (Roblox → dentro do jogo de blocos ou a `tela-jogo` em close; isekai → batalha).
+- Horário de postagem pesa pouco no Shorts (o feed testa com quem está online); o que decide é o "continuaram" do 1º grupo.
 
 **Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
 justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:
@@ -548,7 +556,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
     que brincava com o brinquedo. Era ele que brincava com você." Miniaturas limpas `<sprite>@mini` (pedido do usuário: a escala 0.5 deixava
     crianças e brinquedos pequenos "bugados" — nunca encolher com `escala` < 1); crescer/encolher = o pequeno some e o grande aparece no mesmo lugar.
     `npm run conferir` sem avisos.
-  - `nesse-mundo-avatar-v2` (Roblox, terror de dia, 14 cenas, ~48 s; script `c17-avatar-v2.mjs`): v2 das crianças substituídas pelos
+  - `nesse-mundo-avatar-v2` (**POSTADO** em 24/11/2026, `"postado": true`; Roblox, terror de dia, 14 cenas, ~48 s; script `c17-avatar-v2.mjs`): v2 das crianças substituídas pelos
     avatares — sombra quadrada nas crianças trocadas, a Bia abre o jogo pela 1ª vez e o avatar sem rosto dela sorri no fim.
     `npm run conferir`: só [parado] nas cenas 7–8, de propósito (o Léo e a turma param para mostrar o sorriso macabro).
   - Roblox da leva anterior, ainda não postados: `nesse-mundo-pausa` (comédia, 14 cenas, ~49 s) e `nesse-mundo-espera` (emocional,

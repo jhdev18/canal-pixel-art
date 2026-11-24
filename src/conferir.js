@@ -8,7 +8,7 @@
 //   3. o mesmo sprite fazendo dois personagens diferentes no mesmo vídeo ("figurante": true libera os de fundo)
 //   4. personagem fora do cômodo (andando "na parede") ou da praça/rua
 //   5. sombras de pessoa demais na cena (máx. 4) e quem segue algo e para antes do fim da fala (vira para a câmera)
-//   6. gancho: a 1ª cena precisa ter algo se mexendo antes de 0,6 s e não ser de noite
+//   6. gancho: a 1ª cena precisa ter algo se mexendo antes de 0,6 s, título na tela até 0,3 s e não ser de noite
 //   8. atravessa: pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo)
 //   7. retenção no meio: cena parada antes de 70% do vídeo; "Até que..." depois de 40% do vídeo
 //   9. 1ª frase longa demais (gancho), roteiro sem "trilha", "corte" com zoom quebrado
@@ -163,6 +163,8 @@ export async function conferir(nome) {
     const c = r.cenas[0], MEXE = ['andar', 'correr', 'mover', 'pular', 'trocar', 'aparecer', 'sombra', 'tremer', 'flash', 'magia', 'explosao', 'fogos', 'espirrar', 'desaparecer', 'golpe', 'esporos', 'crescer'];
     const prim = (c?.acoes || []).filter((a) => MEXE.includes(a.tipo)).sort((a, b) => a.inicio - b.inicio)[0];
     if (c && (!prim || prim.inicio > 0.6)) aviso(1, 'gancho', `a 1ª cena não tem nada se mexendo até ${prim ? prim.inicio.toFixed(1) + ' s' : 'o fim'} — o elemento da regra precisa se mexer na tela antes de 0,6 s (o público decide se passa o vídeo no 1º segundo)`);
+    // texto na tela no 1º segundo (avatar-v2: título só na cena 2, aos ~3,5 s → 59% passaram; muita gente rola o feed sem som)
+    if (c && (!c.titulo || (c.tituloInicio ?? 0.15) > 0.3)) aviso(1, 'gancho', `a 1ª cena ${c.titulo ? 'mostra o título só aos ' + c.tituloInicio + ' s' : 'não tem título'} — pôr o "titulo" (a regra, curta) na cena 1 com "tituloInicio" ≤ 0,3 s: quem rola o feed sem som precisa entender no 1º segundo`);
     if (c && /noite/.test(c.cenarioBruto || c.cenario || '')) aviso(1, 'gancho', 'a 1ª cena é de noite — abrir de dia (imagem escura no celular perde o público no 1º segundo)');
     // 1ª frase curta: a regra precisa estar entendida antes de o polegar passar (sombras: 12 palavras, 64 letras — não passar disso)
     const f1 = (c?.narracaoTexto || '').match(/^[^.!?…]+[.!?…]?/)?.[0].trim() || '';
