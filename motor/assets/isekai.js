@@ -1,5 +1,5 @@
 // PROTÓTIPOS (aguardando aprovação) — série ISEKAI "E se você renascesse como o monstro mais fraco do jogo?":
-//   cogumelo-davi (o Davi, cogumelo protagonista), cogumelo-comum (os outros cogumelos da floresta), goblin (o rival necromante que anota tudo),
+//   cogumelo-davi (o Davi, cogumelo protagonista), cogumelo-comum (os outros cogumelos da floresta), goblin (o rival bruxo que anota tudo),
 //   heróis aventureiros (3 variações + versões deitadas, dormindo), espada-heroi (vai na mão com "sobre") e chapeu-davi (o chapéu que voa).
 //   Ações novas no motor: "golpe" (arco branco da espada) e "esporos" (nuvem colorida de esporos) — ver motor.js / particulas.js.
 //   Estilo próprio (nada copiado de jogos): contorno escuro, poucas cores, rosto expressivo.
@@ -115,45 +115,50 @@ function spriteCogumeloComum(cor) {
   return { quadros, anims: { parado: { q: [0, 0, 1, 1], fps: 3 }, andando: { q: [2, 0, 3, 0], fps: 8 }, correndo: { q: [2, 0, 3, 0], fps: 14 }, pulando: { q: [2], fps: 1 } }, sombra: true, personagem: true };
 }
 
-// ---------------------------------------------------------------- GOBLIN NECROMANTE, o rival da série (28x38)
-// Pedido do usuário: o goblin tem algo especial — é um NECROMANTE. Capuz e manto roxo-escuro (as orelhas pontudas furam o capuz),
+// ---------------------------------------------------------------- GOBLIN BRUXO, o rival da série (30x48)
+// Pedido do usuário: o goblin tem algo especial — é um BRUXO (necromante): chapéu pontudo de aba larga, manto roxo com estrelinhas,
 // olhos verdes que brilham, livro de feitiços (grimório roxo com runa verde) na mão esquerda e cajado com uma caveirinha e chama verde
 // na direita. Ele "anota" no grimório o que vê. Estados: parado (anotando: a página vira), anotando, feliz, rindo, alerta,
 // conjurar (cajado erguido, chama e olhos acesos mais fortes), andando/correndo. A chama e os olhos ficam na camada que brilha.
 const MANTO = ['#2a1a3e', '#3e2858', '#563878'], VERDE_MAGIA = ['#c8ffd8', '#7af0a0', '#2ec870'];
 function goblin({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjurar = false, chama = 0 } = {}) {
-  const W = 28, H = 38, p = new Pix(W, H), b = new Pix(W, H), cx = 13, G = ['#4a7a2a', '#6aa83a', '#8ac850'], y0 = 2 + dy;
+  // O = espaço em cima para o chapéu pontudo de bruxo (o desenho do corpo é o mesmo, descido O px)
+  const O = 10, W = 30, H = 48, p = new Pix(W, H), b = new Pix(W, H), cx = 13, G = ['#4a7a2a', '#6aa83a', '#8ac850'], y0 = 2 + dy + O;
   // cajado (atrás do corpo, na mão direita): erguido quando conjura
   const sx = cx + 9, topo = conjurar ? y0 - 1 : y0 + 4;
-  p.ret(sx, topo + 5, 1, 34 - topo - 5 + (conjurar ? -3 : 0), '#5a3a22'); p.ret(sx + 1, topo + 5, 1, 30 - topo, '#3a2414');
+  p.ret(sx, topo + 5, 1, 34 + O - topo - 5 + (conjurar ? -3 : 0), '#5a3a22'); p.ret(sx + 1, topo + 5, 1, 30 + O - topo, '#3a2414');
   p.elipse(sx + 0.5, topo + 3, 2.4, 2.2, '#e8e0c8'); p.set(sx - 1, topo + 3, '#2a1a1a'); p.set(sx + 1, topo + 3, '#2a1a1a'); p.ret(sx - 1, topo + 5, 3, 1, '#c8c0a8');   // caveirinha
   const ch = conjurar ? 4 : 2 + chama;                                                                                               // chama verde em cima
   for (let k = 0; k < ch + 2; k++) { const w = Math.max(0, Math.round((ch + 2 - k) * 0.6)); for (let x = -w; x <= w; x++) { const c = k < 1 ? VERDE_MAGIA[2] : x === 0 && k < ch ? VERDE_MAGIA[0] : VERDE_MAGIA[1]; p.set(sx + x, topo - k, c); b.set(sx + x, topo - k, c); } }
   // pernas e pés (aparecem embaixo do manto)
   const pernas = { parado: [[-4, 0], [2, 0]], a: [[-4, -1], [2, 0]], b: [[-4, 0], [2, -1]] }[perna];
-  for (const [px, py] of pernas) { p.ret(cx + px, 31 + py + dy, 3, 4, G[0]); p.ret(cx + px - 1, 34 + py + dy, 4, 2, '#2a1a14'); }
-  // manto roxo comprido, com barra verde
-  for (let y = 18; y < 33; y++) { const w = 5 + Math.round((y - 18) * 0.35); for (let x = -w; x <= w; x++) p.set(cx + x, y + dy, Pix.tom(MANTO, 0.75 - (x / w) * 0.3 - (y - 18) * 0.02, cx + x, y)); }
-  for (let x = -10; x <= 10; x++) if (p.opaco(cx + x, 32 + dy)) p.set(cx + x, 32 + dy, '#2ec870');
-  p.ret(cx - 1, 19 + dy, 2, 12, '#1e1230');
+  for (const [px, py] of pernas) { p.ret(cx + px, 31 + O + py + dy, 3, 4, G[0]); p.ret(cx + px - 1, 34 + O + py + dy, 4, 2, '#2a1a14'); }
+  // manto de bruxo roxo, comprido, com barra verde e estrelinhas
+  for (let y = 18; y < 33; y++) { const w = 5 + Math.round((y - 18) * 0.35); for (let x = -w; x <= w; x++) p.set(cx + x, y + dy + O, Pix.tom(MANTO, 0.75 - (x / w) * 0.3 - (y - 18) * 0.02, cx + x, y)); }
+  for (let x = -10; x <= 10; x++) if (p.opaco(cx + x, 32 + dy + O)) p.set(cx + x, 32 + dy + O, '#2ec870');
+  for (const [x, y] of [[-3, 22], [3, 25], [-5, 28], [4, 30], [0, 27]]) { p.set(cx + x, y + dy + O, '#f8e070'); }
+  p.ret(cx - 1, 19 + dy + O, 2, 12, '#1e1230');
   // braços: grimório (esquerda) e mão no cajado (direita)
-  p.ret(cx - 8, 21 + dy, 3, 6, MANTO[1]); p.ret(cx + 6, 21 + dy, 3, 6, MANTO[1]); p.ret(cx + 7, 27 + dy, 3, 2, G[1]);
-  const lx = cx - 13, ly = 22 + dy;
+  p.ret(cx - 8, 21 + dy + O, 3, 6, MANTO[1]); p.ret(cx + 6, 21 + dy + O, 3, 6, MANTO[1]); p.ret(cx + 7, 27 + dy + O, 3, 2, G[1]);
+  const lx = cx - 13, ly = 22 + dy + O;
   p.ret(lx, ly, 7, 8, '#4a2a6a'); p.ret(lx, ly, 7, 1, '#6a4a8a'); p.ret(lx + 6, ly, 1, 8, '#2a1a3e');                               // grimório
   p.ret(lx + 1, ly + 1, 5, 6, '#e8dcc0'); p.ret(lx + 3, ly + 1, 1, 6, '#b8a888');                                                    // páginas abertas
   for (const [x, y] of [[lx + 2, ly + 3], [lx + 4, ly + 2], [lx + 4, ly + 4]]) { p.set(x, y, '#2ec870'); b.set(x, y, '#2ec870'); }       // runas que brilham
   if (pagina) { p.ret(lx + 3, ly - 1, 3, 4, '#f4ecd8'); }                                                                          // a página virando
-  // capuz (por trás da cabeça) e cabeça
-  const hy = 10 + dy;
-  p.elipse(cx, hy - 1, 10, 9.5, (x, y, ex, ey) => Pix.tom(MANTO, 0.8 - ex * 0.3 - ey * 0.4, x, y));
-  for (let k = 0; k < 6; k++) p.ret(cx - 1 - Math.floor(k * 0.3), hy - 10 - k + 2, 3 - Math.floor(k * 0.4), 1, MANTO[2]);          // ponta do capuz
+  // cabeça, orelhas pontudas e nariz comprido
+  const hy = 10 + dy + O;
   p.elipse(cx, hy + 1, 7, 6.5, (x, y, ex, ey) => Pix.tom(G, 0.75 - ex * 0.3 - ey * 0.35, x, y));
-  for (const s2 of [-1, 1]) for (let k = 0; k < 7; k++) { const x = cx + s2 * (8 + k), y = hy - Math.round(k * 0.55); p.set(x, y, G[1]); p.set(x, y + 1, k < 4 ? G[1] : G[0]); if (k < 3) p.set(x, y + 2, G[0]); }   // orelhas furando o capuz
-  p.ret(cx - 1, hy + 2, 2, 4, G[0]); p.set(cx, hy + 6, G[0]);                                                                       // nariz comprido
+  for (const s2 of [-1, 1]) for (let k = 0; k < 7; k++) { const x = cx + s2 * (7 + k), y = hy + 1 - Math.round(k * 0.55); p.set(x, y, G[1]); p.set(x, y + 1, k < 4 ? G[1] : G[0]); if (k < 3) p.set(x, y + 2, G[0]); }
+  p.ret(cx - 1, hy + 2, 2, 4, G[0]); p.set(cx, hy + 6, G[0]);
+  // CHAPÉU DE BRUXO: aba larga e cone alto, torto para trás, com fita verde e estrelinha
+  const aba = hy - 4;
+  p.elipse(cx, aba, 11, 2.6, (x, y, ex, ey) => (ey < -0.1 ? MANTO[2] : MANTO[0]));
+  for (let k = 0; k < 16; k++) { const w = Math.max(0, Math.round(6.5 - k * 0.42)), dx = Math.round(k > 9 ? (k - 9) * 0.8 : 0); for (let x = -w; x <= w; x++) p.set(cx + x + dx, aba - 1 - k, Pix.tom(MANTO, 0.8 - (x / Math.max(1, w)) * 0.35, cx + x, aba - k)); }
+  for (let x = -6; x <= 6; x++) { p.set(cx + x, aba - 2, '#2ec870'); p.set(cx + x, aba - 3, '#1e9a50'); }                          // fita verde
+  for (const [x, y] of [[-2, -7], [2, -10], [-1, -12]]) p.set(cx + x, aba + y, '#f8e070');                                          // estrelinhas no chapéu
   // olhos verdes que brilham (sem pupila preta quando conjura)
   const olhos = (grande) => { for (const ox of [-5, 2]) { p.ret(cx + ox, hy - 1 - (grande ? 1 : 0), 3, grande ? 3 : 2, VERDE_MAGIA[1]); b.ret(cx + ox, hy - 1 - (grande ? 1 : 0), 3, grande ? 3 : 2, VERDE_MAGIA[1]); if (!conjurar) p.set(cx + ox + 1, hy, '#0e2a14'); } };
   olhos(face === 'alerta' || conjurar);
-  if (face === 'feliz' || face === 'normal') { p.ret(cx - 5, hy - 3, 3, 1, G[0]); p.ret(cx + 2, hy - 3, 3, 1, G[0]); }               // sobrancelhas tramando
   if (face === 'rindo' || conjurar) { for (let x = -4; x <= 4; x++) p.set(cx + x, hy + 7 - (Math.abs(x) > 2 ? 1 : 0), K); for (const x of [-2, 0, 2]) p.set(cx + x, hy + 6, '#ffffff'); }
   else if (face === 'alerta') { p.ret(cx - 1, hy + 6, 3, 2, K); }
   else { for (let x = -3; x <= 4; x++) p.set(cx + x, hy + 7 - (x > 1 ? 1 : 0), K); p.set(cx + 2, hy + 7, '#ffffff'); }              // sorriso torto com um dente
@@ -235,6 +240,6 @@ registrarSprites({
   'chapeu-davi': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
 }, { grupo: 'Isekai (o cogumelo Davi)', status: 'protótipo', descricoes: {
   'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',
-  goblin: 'o goblin NECROMANTE, rival da série: capuz e manto roxos, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
+  goblin: 'o goblin BRUXO (necromante), rival da série: chapéu pontudo de bruxo, manto roxo com estrelinhas, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
   'cogumelo-comum': 'os outros cogumelos da floresta (figurantes); também cogumelo-roxo e cogumelo-verde',
 } });

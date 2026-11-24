@@ -999,7 +999,7 @@
         { "tipo": "esporos", "alvo": "davi", "cor": "azul", "tamanho": "pequeno", "inicio": 2.7 },
         { "tipo": "trocar", "alvo": "davi", "estado": "grande", "inicio": 3.6 }, { "tipo": "magia", "alvo": "davi", "inicio": 3.6 } ] },
     { "cenario": "floresta-isekai", "duracao": 5, "transicao": "dither", "foto": [0.5, 1.5, 3.0], "camera": { "x": 0, "z": 2.2, "y": 2.6 },
-      "legenda": "83. Heróis (aventureiro, aventureira, grandão) com a espada na mão; golpe (arco branco); goblin necromante anotando (grimório, cajado com chama verde).",
+      "legenda": "83. Heróis (aventureiro, aventureira, grandão) com a espada na mão; golpe (arco branco); goblin bruxo anotando (grimório, cajado com chama verde).",
       "elementos": [ { "id": "h1", "personagem": "heroi-aventureiro", "x": -3.0, "z": 3.0 }, { "id": "e1", "sprite": "espada-heroi", "x": 0, "z": 0, "sobre": { "id": "h1", "dx": 0.45, "dy": 0.8 } },
         { "id": "h2", "personagem": "heroi-aventureira", "x": 0, "z": 3.6 }, { "id": "e2", "sprite": "espada-heroi", "x": 0, "z": 0, "sobre": { "id": "h2", "dx": 0.45, "dy": 0.8 } },
         { "id": "h3", "personagem": "heroi-grandao", "x": 3.0, "z": 3.0 }, { "id": "e3", "sprite": "espada-heroi", "x": 0, "z": 0, "sobre": { "id": "h3", "dx": 0.45, "dy": 0.8 } },

@@ -125,10 +125,10 @@ C.push(cena('Derrotavam antes que eles crescessem.', {
   acoes: [a(0, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'flutuando' }), a(0.35, 'trocar', { alvo: 'davi', estado: 'grande', som: 'revelar' }), a(0.35, 'magia', { alvo: 'davi' }),
     a(0.36, 'flash', { intensidade: 0.5 }), a(0.38, 'corte', { zoom: 2, x: -0.7, y: 1.8 }), a(0.6, 'pular', { alvo: 'davi', altura: 0.4, durF: 0.25 })],
 }));
-// 14. Gancho da série: na moita, o goblin NECROMANTE anota tudo no grimório; em volta dele flutuam chamas verdes — as almas dos
+// 14. Gancho da série: na moita, o goblin BRUXO anota tudo no grimório; em volta dele flutuam chamas verdes — as almas dos
 //     cogumelos que os heróis derrotaram (o mistério da série: o que ele vai fazer com elas?). No fim, ele ergue o cajado e ri.
 const ALMAS = [[4.6, 4.6, 1.4], [6.8, 4.4, 1.8], [5.4, 5.6, 2.2]];
-C.push(cena('E, escondido na moita, um goblin necromante anotava tudo.', {
+C.push(cena('E, escondido na moita, um goblin bruxo anotava tudo.', {
   cenario: 'floresta-isekai', camera: PERTO(6.0, 1.9), foco: 'gob',
   elementos: [P('gob', 'goblin', 5.6, 5.0), P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'grande' }),
     ...ALMAS.map(([x, z, y], k) => S('alma' + k, 'fogo-fatuo', x, z, { y, pose: 'verde', oculto: true }))],

@@ -2014,7 +2014,7 @@
    "momento": "ataque"
   },
   {
-   "narracaoTexto": "E, escondido na moita, um goblin necromante anotava tudo.",
+   "narracaoTexto": "E, escondido na moita, um goblin bruxo anotava tudo.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": 6,
@@ -2076,46 +2076,46 @@
      "tipo": "andar",
      "alvo": "gob",
      "para": 6,
-     "inicio": 0.49,
-     "duracao": 1.11
+     "inicio": 0.47,
+     "duracao": 1.01
     },
     {
      "tipo": "aparecer",
      "alvo": "alma0",
      "som": "fantasma",
-     "inicio": 1.41
+     "inicio": 1.31
     },
     {
      "tipo": "aparecer",
      "alvo": "alma1",
      "som": null,
-     "inicio": 1.78
+     "inicio": 1.65
     },
     {
      "tipo": "aparecer",
      "alvo": "alma2",
      "som": null,
-     "inicio": 2.15
+     "inicio": 1.99
     },
     {
      "tipo": "trocar",
      "alvo": "gob",
      "estado": "conjurar",
      "som": "magia",
-     "inicio": 2.71
+     "inicio": 2.5
     },
     {
      "tipo": "flash",
      "intensidade": 0.35,
      "cor": "#7af0a0",
-     "inicio": 2.75
+     "inicio": 2.53
     },
     {
      "tipo": "trocar",
      "alvo": "gob",
      "estado": "rindo",
      "som": "suspense",
-     "inicio": 3.45
+     "inicio": 3.17
     }
    ],
    "vertical": {
