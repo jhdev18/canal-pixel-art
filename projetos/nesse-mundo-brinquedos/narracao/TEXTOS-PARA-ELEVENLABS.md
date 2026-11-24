@@ -21,7 +21,7 @@ São **15 falas** (uma por cena com narração):
 | 9 | O soldadinho da Bia puxou a mão dela para longe. Com força. |
 | 10 | A caixa-surpresa chegou e chamou a Bia para brincar. |
 | 11 | E a Bia, pela primeira vez, disse não. |
-| 12 | Os brinquedos pararam. As crianças não estavam mais lá. |
+| 12 | Os brinquedos pararam. Cada um carregava a sua criança. |
 | 13 | Não era você que brincava com o brinquedo. |
 | 14 | Era ele que brincava com você. |
 | 15 | E o soldadinho da Bia, colado no pé dela, ainda dava corda sozinho. |

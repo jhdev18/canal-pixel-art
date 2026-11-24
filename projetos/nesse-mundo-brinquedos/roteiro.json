@@ -884,26 +884,33 @@
      "duracao": 2.03
     },
     {
-     "tipo": "desaparecer",
+     "tipo": "crescer",
      "alvo": "leo",
-     "inicio": 2.87,
-     "duracao": 0.74
+     "escala": 0.5,
+     "inicio": 2.8,
+     "duracao": 0.47
     },
     {
-     "tipo": "desaparecer",
+     "tipo": "magia",
+     "alvo": "leo",
+     "inicio": 2.68
+    },
+    {
+     "tipo": "crescer",
      "alvo": "aluno",
+     "escala": 0.5,
      "inicio": 3,
-     "duracao": 0.68
+     "duracao": 0.47
     },
     {
-     "tipo": "som",
-     "som": "sombra",
-     "inicio": 2.94
+     "tipo": "magia",
+     "alvo": "aluno",
+     "inicio": 2.68
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.75,
+     "x": 0.98,
      "z": -8.5,
      "y": -0.55
     },
@@ -972,6 +979,32 @@
      "x": 5.1,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -990,10 +1023,16 @@
      "duracao": 3.07
     },
     {
-     "tipo": "desaparecer",
+     "tipo": "crescer",
      "alvo": "nina",
+     "escala": 0.5,
      "inicio": 2.03,
-     "duracao": 1.15
+     "duracao": 0.58
+    },
+    {
+     "tipo": "magia",
+     "alvo": "nina",
+     "inicio": 2.03
     },
     {
      "tipo": "tremer",
@@ -1071,6 +1110,45 @@
      "x": 7.3,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "boneca",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -1158,6 +1236,45 @@
      "x": 7.3,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "boneca",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -1203,7 +1320,7 @@
    "momento": "sabado"
   },
   {
-   "narracaoTexto": "Os brinquedos pararam. As crianças não estavam mais lá.",
+   "narracaoTexto": "Os brinquedos pararam. Cada um carregava a sua criança.",
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
@@ -1251,6 +1368,45 @@
      "x": 7.3,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "boneca",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -1361,6 +1517,45 @@
      "x": 7.3,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "boneca",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -1461,6 +1656,45 @@
      "x": 7.3,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "boneca",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -1573,6 +1807,45 @@
      "x": 7.3,
      "z": -8,
      "escala": 0.5
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "robo",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno",
+     "personagem": "aluno",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "caixa",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 0,
+     "z": 0,
+     "escala": 0.5,
+     "sobre": {
+      "id": "boneca",
+      "dx": 0.5,
+      "dy": 0.95
+     },
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [

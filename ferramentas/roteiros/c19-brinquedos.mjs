@@ -69,6 +69,9 @@ const ELENCO = (pos = {}, poses = {}) => [
   ['leo', 'menino-topete', -3.0, ZK], ['robo', 'brinquedo-robo', -3.6, ZT], ['nina', 'rival', -0.6, ZK], ['boneca', 'brinquedo-boneca', -1.2, ZT],
   ['aluno', 'aluno', 1.8, ZK], ['caixa', 'brinquedo-caixa', 1.2, ZT], ['bia', 'menina-capa', 4.4, ZK], ['sold', 'brinquedo-soldadinho', 5.1, ZS],
 ].filter(([id]) => pos[id] !== null).map(([id, sp, x, z]) => P(id, sp, pos[id] ?? x, z, { ...(id === 'sold' ? { escala: 0.5 } : {}), ...(poses[id] ? { pose: poses[id] } : {}) }));
+// depois de pegas, as crianças pequenas ficam NA MÃO do próprio brinquedo (como uma boneca), com o rosto assustado
+const DONO = { leo: ['menino-topete', 'robo'], aluno: ['aluno', 'caixa'], nina: ['rival', 'boneca'] };
+const NA_MAO = (ids) => ids.map((id) => P(id, DONO[id][0], 0, 0, { escala: 0.5, sobre: { id: DONO[id][1], dx: 0.5, dy: 0.95 }, pose: 'rosto-assustado' }));
 const BALANCO = () => ({ id: 'balanco', sprite: 'balanco', x: 2.0, z: -5.8, pose: 'sozinho' });
 // 7. Pico de movimento no MEIO: os brinquedos chamam para o pega-pega e as crianças saem correndo, rindo (eles correm atrás)
 C.push(cena('E chamaram as crianças para brincar de pega-pega.', {
@@ -83,18 +86,19 @@ C.push(cena('As crianças corriam rindo, sem ver quem pegava quem.', {
   elementos: [BALANCO(), ...ELENCO({ leo: -6.0, nina: -3.6, aluno: -1.2, robo: -6.6, boneca: -4.2, caixa: -1.8 })],
   acoes: [a(0.05, 'correr', { alvo: 'leo', para: -3.0, durF: 0.6 }), a(0.07, 'correr', { alvo: 'nina', para: -0.6, durF: 0.6 }), a(0.09, 'correr', { alvo: 'aluno', para: 1.8, durF: 0.6 }),
     a(0.1, 'correr', { alvo: 'robo', para: -3.0, durF: 0.6 }), a(0.12, 'correr', { alvo: 'boneca', para: -0.6, durF: 0.6 }), a(0.14, 'correr', { alvo: 'caixa', para: 1.8, durF: 0.6 }),
-    a(0.76, 'desaparecer', { alvo: 'leo', durF: 0.22 }), a(0.8, 'desaparecer', { alvo: 'aluno', durF: 0.2 }), a(0.78, 'som', { som: 'sombra' })],
-  saiDeCena: ['leo', 'aluno'],
+    // pegos: o Léo e o aluno ENCOLHEM até o tamanho de um brinquedo (pedido do usuário: sumir de outro jeito — os papéis se invertem)
+    a(0.74, 'crescer', { alvo: 'leo', escala: 0.5, durF: 0.14 }), a(0.74, 'magia', { alvo: 'leo' }), a(0.8, 'crescer', { alvo: 'aluno', escala: 0.5, durF: 0.14 }), a(0.8, 'magia', { alvo: 'aluno' })],
+  saiDeCena: ['leo', 'aluno'],   // saem do chão: daqui em diante ficam pequenos, na mão do brinquedo ("sobre")
 }));
 // 9. O soldadinho puxa a Bia para longe; ao fundo, a Nina some do lado da boneca (a escalada continua)
 C.push(cena('O soldadinho da Bia puxou a mão dela para longe. Com força.', {
   cenario: 'praca-parquinho', camera: PRACA(2.4), foco: ['bia', 'sold'],
-  elementos: [BALANCO(), ...ELENCO({ leo: null, aluno: null, robo: -3.0, boneca: -0.6, caixa: 1.8 })],
+  elementos: [BALANCO(), ...ELENCO({ leo: null, aluno: null, robo: -3.0, boneca: -0.6, caixa: 1.8 }), ...NA_MAO(['leo', 'aluno'])],
   acoes: [a(0.1, 'andar', { alvo: 'sold', para: 7.3, durF: 0.8 }), a(0.12, 'andar', { alvo: 'bia', para: 6.6, durF: 0.8 }),
-    a(0.45, 'desaparecer', { alvo: 'nina', durF: 0.3 }), a(0.5, 'tremer', { intensidade: 0.25, durF: 0.12 })],
+    a(0.45, 'crescer', { alvo: 'nina', escala: 0.5, durF: 0.15 }), a(0.45, 'magia', { alvo: 'nina' }), a(0.5, 'tremer', { intensidade: 0.25, durF: 0.12 })],
   saiDeCena: ['nina'],
 }));
-const DEPOIS = (poses = {}, pos = {}) => [BALANCO(), ...ELENCO({ leo: null, aluno: null, nina: null, robo: -3.0, boneca: -0.6, caixa: 1.8, bia: 6.6, sold: 7.3, ...pos }, poses)];
+const DEPOIS = (poses = {}, pos = {}) => [BALANCO(), ...ELENCO({ leo: null, aluno: null, nina: null, robo: -3.0, boneca: -0.6, caixa: 1.8, bia: 6.6, sold: 7.3, ...pos }, poses), ...NA_MAO(['leo', 'aluno', 'nina'])];
 // 10. A caixa-surpresa vem aos pulinhos até a Bia e chama para brincar
 C.push(cena('A caixa-surpresa chegou e chamou a Bia para brincar.', {
   cenario: 'praca-parquinho', camera: PRACA(4.2), foco: ['bia', 'caixa'],
@@ -109,7 +113,7 @@ C.push(cena('E a Bia, pela primeira vez, disse não.', {
     a(0.65, 'andar', { alvo: 'caixa', para: 3.4, durF: 0.33 })],
 }));
 // 12. Reação antes da virada: a praça só com brinquedos parados onde estavam as crianças; a Bia congela
-C.push(cena('Os brinquedos pararam. As crianças não estavam mais lá.', {
+C.push(cena('Os brinquedos pararam. Cada um carregava a sua criança.', {
   cenario: 'praca-parquinho', camera: PRACA(1.6), foco: ['bia', 'boneca'],
   elementos: DEPOIS({}, { caixa: 3.4 }),
   acoes: [a(0.3, 'trocar', { alvo: 'robo', estado: 'olhos' }), a(0.35, 'trocar', { alvo: 'boneca', estado: 'olhos' }), a(0.4, 'trocar', { alvo: 'caixa', estado: 'olhos' }),
