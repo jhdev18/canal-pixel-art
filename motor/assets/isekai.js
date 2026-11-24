@@ -10,60 +10,62 @@ import { pessoaComSentado as pessoa } from './moradores.js';
 
 const K = '#2a1a1a';
 
-// ---------------------------------------------------------------- DAVI, o cogumelo (22x26)
+// ---------------------------------------------------------------- DAVI, o cogumelo (32x31)
+// v3 (pedido do usuário: "mais parecido com os outros cogumelos", juntando as opções B e C, e MAIOR que eles para ter destaque):
+// mesmo desenho dos cogumelos comuns (chapéu com bolinhas, caule claro, perninhas marrons), ~1,5 vez maior, chapéu mais alto,
+// olhos grandes com brilho e bochechas rosadas. Muitas expressões (rostoTico).
 // chapeu: 'normal' | 'sem' | 'grande'; perna: 'parado' | 'a' | 'b' | 'pulo'; face: expressão; dy: respiração; dx: tremor
 const CHAPEU = { luz: '#ff8a6a', base: '#e8483a', sombra: '#a82a2a', bola: '#fff8ec', bolaSombra: '#e8d8c8' };
 const CHAPEU_GRANDE = CHAPEU;   // o chapéu grande cresce mas NÃO muda de cor (o usuário achou que o Davi "mudava de cor" no fim com o dourado)
 const CAULE = { luz: '#fff8e8', base: '#f6ead0', sombra: '#d8c4a0' };
-function chapeuTico(p, cx, topo, grande, cores) {
-  const rx = grande ? 11 : 9.5, ry = grande ? 8 : 6.5, cy = topo + ry;
+function chapeuTico(p, cx, cy, grande, cores) {   // cy = centro do chapéu; a aba fica em cy + 1 (igual nos dois tamanhos)
+  const k = grande ? 1.2 : 1, rx = 11.25 * k, ry = 9.5 * k;
   p.elipse(cx, cy, rx, ry, (x, y, dx, dy) => (y > cy + 1 ? null : Pix.tom([cores.sombra, cores.base, cores.luz], 0.75 - dy * 0.55 - dx * 0.25, x, y)));
   for (let x = Math.round(cx - rx + 1); x <= Math.round(cx + rx - 1); x++) p.set(x, Math.round(cy + 1), cores.sombra);   // aba de baixo
-  const bolas = grande ? [[-6, -2, 2], [0, -5, 2.4], [5.5, -2.5, 2], [-2.5, 0, 1.4], [3, 0.4, 1.2]] : [[-5, -1.5, 1.8], [0, -4, 2.2], [4.8, -2, 1.6], [-1.5, 0.3, 1.1]];
-  for (const [bx, by, r] of bolas) p.circulo(cx + bx, cy + by, r, (x, y, dx, dy) => (dx + dy > 0.6 ? cores.bolaSombra : cores.bola));
+  for (const [bx, by, r] of [[-5.5, -2, 2], [0.5, -5.5, 2.3], [5.8, -2, 1.8], [-1.5, 0, 1]]) p.circulo(cx + bx * k, cy + by * k, r * k, (x, y, dx, dy) => (dx + dy > 0.6 ? cores.bolaSombra : cores.bola));
   return Math.round(cy + 1);
 }
-function rostoTico(p, cx, cy, e) {
+function rostoTico(p, cx, cy, e) {   // cy = linha dos olhos; olhos 2x2 em x -4..-3 e 3..4
   const set = (x, y, c) => p.set(Math.round(cx + x), Math.round(cy + y), c);
-  const olho = (x, y) => { set(x, y, K); set(x, y + 1, K); set(x, y - 0, K); };
-  const W = '#ffffff', B = '#5a2020', R = '#f08a8a', L = '#9ad8ff';
-  const ol = { esq: -3, dir: 2 };
-  const olhosNormais = () => { for (const ox of [ol.esq, ol.dir]) { set(ox, 0, K); set(ox, 1, K); set(ox + 1, 0, K); set(ox + 1, 1, K); set(ox, 0, W); } };
-  const fechados = () => { for (const ox of [ol.esq, ol.dir]) { set(ox, 1, K); set(ox + 1, 1, K); } };
-  const arcos = () => { for (const ox of [ol.esq, ol.dir]) { set(ox, 1, K); set(ox + 0.5, 0, K); set(ox + 1, 1, K); } };
+  const W = '#ffffff', B = '#5a2020', R = '#f08a8a', L = '#9ad8ff', LG = '#c84a5a';
+  const OLHOS = [-4, 3];
+  const olhos = (dx = 0, brilho = true, alto = 0) => { for (const ox of OLHOS) { for (let b = -1 - alto; b <= 1; b++) { set(ox + dx, b, K); set(ox + dx + 1, b, K); } if (brilho) set(ox + dx, -1 - alto, W); } };   // olhos 2x3 com brilho
+  const fechados = () => { for (const ox of OLHOS) { set(ox - 1, 1, K); set(ox, 1, K); set(ox + 1, 1, K); set(ox + 2, 1, K); } };
+  const arcos = () => { for (const ox of [-5, 3]) { set(ox, 1, K); set(ox + 1, 0, K); set(ox + 2, 1, K); } };   // ^ ^
+  const boca = (pts, c = B) => pts.forEach(([x, y]) => set(x, y, c));
+  const bochechas = (forte) => { for (const x of [-6, -5, 5, 6]) { set(x, 2, R); if (forte) set(x, 3, R); } };
+  let boch = true;
   switch (e) {
-    case 'feliz': arcos(); set(-1, 4, B); set(0, 5, B); set(1, 4, B); break;
-    case 'rindo': arcos(); for (let x = -1; x <= 1; x++) { set(x, 4, B); set(x, 5, B); } set(0, 5, '#c84a5a'); break;
-    case 'triste': olhosNormais(); set(ol.esq, 2, L); set(-1, 5, B); set(0, 4, B); set(1, 5, B); break;
-    case 'chorando': fechados(); set(ol.esq, 2, L); set(ol.esq, 3, L); set(ol.dir + 1, 2, L); set(ol.dir + 1, 3, L); for (let x = -1; x <= 1; x++) set(x, 4, B); set(0, 5, B); break;
-    case 'bravo': olhosNormais(); set(ol.esq - 1, -1, K); set(ol.esq, -1, K); set(ol.dir + 1, -1, K); set(ol.dir + 2, -1, K); set(-1, 5, B); set(0, 5, B); set(1, 5, B); break;
-    case 'surpreso': olhosNormais(); set(ol.esq, -1, K); set(ol.dir + 1, -1, K); set(0, 4, B); set(0, 5, B); break;
-    case 'assustado':   // olhos grandes brancos com pupila pequena, boca tremida
-      for (const ox of [ol.esq, ol.dir]) { for (const [dx, dy] of [[0, -1], [1, -1], [0, 0], [1, 0], [0, 1], [1, 1]]) set(ox + dx, dy, W); set(ox + (ox < 0 ? 1 : 0), 0, K); }
-      set(-1, 5, B); set(0, 4, B); set(1, 5, B); set(-2, 4, '#a8e0ff'); break;
-    case 'envergonhado': fechados(); set(-1, 4, B); set(0, 4, B); set(ol.esq - 1, 3, R); set(ol.dir + 2, 3, R); break;
-    case 'pensativo': for (const ox of [ol.esq, ol.dir]) { set(ox + 1, 0, K); set(ox + 1, 1, K); } set(0, 4, B); set(1, 4, B); break;
-    case 'inspira': fechados(); set(0, 4, B); break;                                     // "ah... ah..."
-    case 'espirro': for (const ox of [ol.esq, ol.dir]) { set(ox, 0, K); set(ox + 1, 1, K); set(ox, 1, K); } for (let x = -1; x <= 1; x++) for (let y = 3; y <= 5; y++) set(x, y, B); break;   // > < e boca aberta
-    case 'dormindo': fechados(); set(0, 4, B); break;
-    default: olhosNormais(); set(-1, 4, B); set(0, 4, B); set(1, 4, B);                 // neutro: sorrisinho
+    case 'feliz': arcos(); boca([[-2, 3], [-1, 4], [0, 4], [1, 4], [2, 3]]); break;
+    case 'rindo': arcos(); boca([[-2, 3], [-1, 3], [0, 3], [1, 3], [2, 3], [-1, 4], [0, 4], [1, 4]]); boca([[0, 4]], LG); break;
+    case 'triste': olhos(); set(-5, -2, K); set(-4, -2, K); set(4, -2, K); set(5, -2, K); set(-3, -3, K); set(3, -3, K); set(-4, 2, L); boca([[-1, 4], [0, 3], [1, 4], [-2, 5], [2, 5]]); boch = false; break;
+    case 'chorando': fechados(); for (const y of [2, 3, 4]) { set(-4, y, L); set(4, y, L); } set(-3, -2, K); set(3, -2, K); boca([[-1, 3], [0, 3], [1, 3], [-1, 4], [0, 4], [1, 4]]); boca([[0, 4]], LG); boch = false; break;
+    case 'bravo': olhos(0, false); boca([[-5, -2], [-4, -2], [-3, -1], [5, -2], [4, -2], [3, -1]], K); boca([[-1, 3], [0, 3], [1, 3], [-2, 4], [2, 4]]); boch = false; break;
+    case 'surpreso': olhos(0, true, 1); boca([[-4, -4], [-3, -4], [3, -4], [4, -4]], K); boca([[0, 3], [0, 4], [-1, 3], [-1, 4]]); boch = false; break;
+    case 'assustado':   // olhos brancos grandes com pupila pequena, boca tremida e gota de suor
+      for (const ox of OLHOS) { for (let a = -1; a <= 2; a++) for (let b = -1; b <= 1; b++) if (!((a === -1 || a === 2) && b !== 0)) set(ox + a, b, W); set(ox + (ox < 0 ? 1 : 0), 0, K); }
+      boca([[-2, 4], [-1, 3], [0, 4], [1, 3], [2, 4]]); set(-7, -1, L); set(-7, 0, L); boch = false; break;
+    case 'envergonhado': arcos(); boca([[-1, 4], [0, 4], [1, 4]]); bochechas(true); boch = false; break;
+    case 'pensativo': olhos(1, false); boca([[3, -2], [4, -3], [5, -3]], K); boca([[0, 4], [1, 4], [2, 3]]); break;
+    case 'inspira': for (const ox of OLHOS) { set(ox, 1, K); set(ox + 1, 1, K); set(ox, 0, K); set(ox + 1, 0, K); set(ox - 1, 0, K); set(ox + 2, 0, K); } boca([[0, 4]]); break;   // "ah... ah..."
+    case 'espirro': boca([[-5, -1], [-4, 0], [-3, 0], [-5, 1], [5, -1], [4, 0], [3, 0], [5, 1]], K); boca([[-1, 3], [0, 3], [1, 3], [-1, 4], [0, 4], [1, 4], [-1, 5], [0, 5], [1, 5]]); break;   // > < e boca aberta
+    case 'dormindo': fechados(); boca([[0, 4]]); break;
+    default: olhos(); boca([[-1, 3], [0, 4], [1, 3]]);                                   // neutro: sorrisinho
   }
-  if (['feliz', 'rindo', 'envergonhado'].includes(e)) { set(ol.esq - 1, 3, R); set(ol.dir + 2, 3, R); }
+  if (boch) bochechas(false);
 }
 function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx = 0 } = {}) {
-  const W = 24, H = 28, p = new Pix(W, H), cx = 12 + dx, pulo = perna === 'pulo' ? -1 : 0;
-  const topo = (chapeu === 'grande' ? 2 : 3) + dy + pulo;   // o chapéu encosta no caule (antes o grande ficava descolado, "flutuando")
-  // caule (corpo) — fica atrás da aba do chapéu
-  const cy = 18 + dy + pulo;
-  p.elipse(cx, cy, 6, 6, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3 - ey * 0.2, x, y));
-  // pezinhos redondos da cor do caule (antes eram toquinhos finos com ponta marrom: "pés estranhos"); andando, um sobe de cada vez
-  const pes = { parado: [[-3, 0], [3, 0]], a: [[-3, -1], [3, 0]], b: [[-3, 0], [3, -1]], pulo: [[-3, -1], [3, -1]] }[perna];
-  for (const [px, py] of pes) p.elipse(cx + px, 24.6 + py + dy + pulo, 2.4, 1.5, (x, y, ex, ey) => (ey > 0.25 ? CAULE.sombra : ex < -0.3 && ey < 0 ? CAULE.luz : '#ecdcbc'));
+  const W = 32, H = 31, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
+  const cy = 13 + oy, r = 6.75, sy = cy + r + 0.5;   // centro do chapéu e do caule
+  p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
+  // perninhas marrons como as dos cogumelos comuns; andando, uma sobe de cada vez; no pulo ficam esticadas
+  const pes = { parado: [[-4, 0], [3, 0]], a: [[-4, -1], [3, 0]], b: [[-4, 0], [3, -1]], pulo: [[-4, 1], [3, 1]] }[perna];
+  for (const [px, py] of pes) p.ret(cx + px, Math.round(sy + r - 0.5) + py, 2, 3, '#8a6a4a');
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
-    p.elipse(cx, 12 + dy + pulo, 5, 2.4, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
-    p.set(cx - 1, 10 + dy + pulo, '#d8c4a0'); p.set(cx + 1, 10 + dy + pulo, '#d8c4a0');
-  } else chapeuTico(p, cx, topo, chapeu === 'grande', chapeu === 'grande' ? CHAPEU_GRANDE : CHAPEU);
-  rostoTico(p, cx, 15 + dy + pulo, face);
+    p.elipse(cx, sy - r + 1.5, 6, 2.6, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
+    p.set(cx - 1, Math.round(sy - r), CAULE.sombra); p.set(cx + 1, Math.round(sy - r), CAULE.sombra);
+  } else chapeuTico(p, cx, cy, chapeu === 'grande', chapeu === 'grande' ? CHAPEU_GRANDE : CHAPEU);
+  rostoTico(p, cx, Math.round(sy - 1.5), face);
   return p.contorno(K);
 }
 function spriteTico() {
@@ -289,8 +291,8 @@ function espada(estado = 'parado') {
   return p.contorno('#1e1a24');
 }
 function chapeuSolto(grande) {   // o chapéu do Davi sozinho (voa com "mover"/"pular" e volta para a cabeça)
-  const p = new Pix(24, 14);
-  chapeuTico(p, 12, 1, grande, grande ? CHAPEU_GRANDE : CHAPEU);
+  const p = new Pix(32, 16);
+  chapeuTico(p, 16, 13, grande, grande ? CHAPEU_GRANDE : CHAPEU);
   return p.contorno(K);
 }
 
@@ -306,7 +308,7 @@ registrarSprites({
   'espada-heroi': () => ({ quadros: [espada(), espada('golpe-dir'), espada('golpe-esq')], anims: { parado: { q: [0] }, 'golpe-dir': { q: [1] }, 'golpe-esq': { q: [2] } }, sombra: false }),
   'chapeu-davi': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
 }, { grupo: 'Isekai (o cogumelo Davi)', status: 'protótipo', descricoes: {
-  'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',
+  'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante, mesma cor) e expressões (feliz, rindo, triste, chorando, bravo, surpreso, assustado, envergonhado, pensativo, dormindo)',
   'goblin-mago': 'goblin de chapéu de mago e manto roxo estrelado, guardado para personagens futuros; mesmos estados do goblin',
   goblin: 'o goblin BRUXO DAS TREVAS, rival da série: capuz pontudo preto com o rosto na sombra, manto preto rasgado, colar de ossinhos, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
   'cogumelo-comum': 'os outros cogumelos da floresta (figurantes); também cogumelo-roxo e cogumelo-verde',
