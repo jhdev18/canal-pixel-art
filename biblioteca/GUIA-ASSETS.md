@@ -204,7 +204,7 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   o usuário achou que o céu azul atrás da clareira parecia "flutuando/bugado"); árvores no fundo z ≥ 6.8,
   moitas `mato`, clima `polen`). Personagens na clareira em z ~1.2–4.6; câmera `{ "x", "z": 2.2, "y": 2.6 }`.
 - **`cogumelo-davi`** (personagem, 32x31, v3 aprovada no episódio): o cogumelo protagonista — mesmo desenho dos cogumelos comuns (chapéu vermelho de
-  bolinhas, caule creme, perninhas finas com sapatinho redondo — opção "H", retas e embaixo do corpo, sapatinho de frente; andando, um pé sobe reto), **~1,5 vez maior que eles** (destaque), chapéu alto, olhos 2x3 com brilho e bochechas rosadas. Estados: `parado`,
+  bolinhas, caule creme, perninhas curtas com sapatinho redondo — opção "H" encurtada, retas e embaixo do corpo, sapatinho de frente; andando, um pé sobe reto), **~1,5 vez maior que eles** (destaque), chapéu alto, olhos 2x3 com brilho e bochechas rosadas. Estados: `parado`,
   `andando`/`correndo` (passinhos), `pulando`, `assustado` (+`-andando`), `tremendo`, `sem-chapeu` (+`-andando`, `-tremendo`, `-inspira`,
   `-espirro`), `espirro-antes`/`espirro` (a ação `espirrar` funciona nele), `feliz`, `grande` (chapéu gigante, MESMA cor vermelha) e as expressões
   `feliz`, `rindo`, `triste`, `chorando`, `bravo`, `surpreso`, `assustado`, `envergonhado`, `pensativo` — que funcionam **também de chapéu grande e sem

@@ -55,7 +55,7 @@ function rostoTico(p, cx, cy, e) {   // cy = linha dos olhos; olhos 2x2 em x -4.
   if (boch) bochechas(false);
 }
 function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx = 0 } = {}) {
-  const W = 32, H = 33, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
+  const W = 32, H = 31, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
   const cy = 13 + oy, r = 6.75, sy = cy + r + 0.5;   // centro do chapéu e do caule
   p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
   // pernas "H" (escolhidas pelo usuário): perninha fina e comprida com sapatinho redondo. Andando, as pernas BALANÇAM
@@ -64,7 +64,7 @@ function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx
   const pes = { parado: [[-3, 0], [2, 0]], a: [[-3, 0], [2, -1]], b: [[-3, -1], [2, 0]], pulo: [[-3, 1], [2, 1]] }[perna];
   const y0 = Math.round(sy + r - 0.5);
   for (const [px, ergue] of pes) {
-    const xq = cx + px, pe = y0 + 3 + ergue;
+    const xq = cx + px, pe = y0 + 1 + ergue;   // perninha curta (pedido do usuário: menores)
     p.ret(xq, y0 - 1, 1, pe - (y0 - 1), '#6e4e34');
     p.elipse(xq + 0.5, pe + 0.2, 1.6, 1.2, (xx, yy, ex, ey) => (ey < -0.2 && ex < 0.2 ? '#8a5a3a' : '#5a3424'));
   }
