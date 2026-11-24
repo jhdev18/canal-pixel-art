@@ -3,7 +3,7 @@ import { alturaShorts, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs
 // A frase que toda criança ouve ("pausa esse jogo!") e a resposta de sempre ("online não pausa!") viram regra, pista e virada.
 // Gancho: o avatar congela no ar aos 0,3 s. Pico de movimento no meio (a corrida pelos pilares). Imagem cômica a cada ~4 s.
 // A mãe (vilã boba) usa a regra a favor; a virada inverte a pista ("online não pausa" → "filho online, pausa").
-const R = base('Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa', 'comedia');
+const R = base('Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa');   // sem música de fundo (pedido do usuário: só quando ele escolher)
 const C = R.cenas;
 const PK = (x, y = 2.8) => ({ x, z: 2.2, y });
 // pilares do parkour-campeonato: [x do pilar, altura] → avatar em cima em x+0.6, z 3.2, y altura+0.25

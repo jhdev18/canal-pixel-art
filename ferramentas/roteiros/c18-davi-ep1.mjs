@@ -4,7 +4,7 @@ import { alturaShorts, marcar, P, S, a, cena, salvar, base, rostos } from './nm.
 // escalada (1 herói → 2 → muitos; cogumelos 4 → 0); o "Até que" a ~35%; o Davi ESCOLHE espirrar de propósito (a pista do espirro
 // que fez o cogumelo dormir, cena 2); a virada inverte a crença ("o mais fraco" → "derrotavam antes que crescessem"); última imagem com
 // os esporos ainda boiando e o gancho do goblin (o rival da série). Tudo de dia, num lugar só (a floresta).
-const R = base('E se você renascesse como o monstro mais fraco do jogo?', 'comedia');
+const R = base('E se você renascesse como o monstro mais fraco do jogo?');   // sem música de fundo (pedido do usuário: só quando ele escolher)
 const C = R.cenas;
 const CAM = (x, y = 2.6) => ({ x, z: 2.2, y });
 const PERTO = (x, y = 1.8) => ({ x, z: 2.2, y, zoom: 2 });

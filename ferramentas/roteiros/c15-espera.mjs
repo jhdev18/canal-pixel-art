@@ -3,7 +3,7 @@ import { alturaShorts, marcar, P, S, PRACA, a, cena, salvar, base, rostos } from
 // Pista: a Nina parou de jogar "sem tchau" (cena 4). Mistério que se vê: o aceno dela ficando mais devagar, com os dias somando.
 // Evento (~38%): o servidor vai fechar. A Nina age (chega primeiro). A virada inverte a crença ("espera você voltar" → "esperava um tchau").
 // Última imagem: o avatar da Nina acenando para o spawn vazio, ao pôr do sol — agora é ela que espera.
-const R = base('Nesse mundo, quando você sai do Roblox, seu avatar te espera', 'emocional');
+const R = base('Nesse mundo, quando você sai do Roblox, seu avatar te espera');   // sem música de fundo (pedido do usuário: só quando ele escolher)
 const C = R.cenas;
 const JOGO = (x, extra = {}) => ({ x, z: 2.2, y: 2.6, ...extra });
 const SPAWN = { x: -5.6, z: 1.5, y: 0 };   // na frente da plataforma do spawn (em cima dela o desenho piscava)

@@ -98,9 +98,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   **Zoom na hora da transformação/revelação** (pedido do usuário): a cena fica no enquadramento normal e um `corte` de zoom entra
   no instante da mudança. Qualquer ação aceita `"vertical": { ... }` com campos só do Shorts (ex.: `a(0.68, 'corte', { zoom: 2, x, y: 1.2,
   vertical: { y: 0.4 } })`); dar o `x` de quem transforma (`xCentrado` do `centro.js`). Na rua, zoom 2 ≈ `y` 1.2 (16:9) / 0.4 (Shorts).
-- **Trilha de fundo em todo vídeo:** `"trilha": "suspense"` (terror), `"comedia"` ou `"emocional"` no roteiro (base chiptune
-  baixa em loop, abaixa sozinha com a narração; só no final, como os outros sons; `"volumeTrilha"` padrão 0.7;
-  `biblioteca/sfx/trilha-<nome>.mp3` substitui a gerada). Projetos novos já vêm com `"trilha": "suspense"`; o conferir acusa `[trilha]`.
+- **Sem música de fundo por padrão** (pedido do usuário): nenhum roteiro leva `"trilha"`; música só quando ele escolher —
+  a música dele (`npm run final-musica`, pasta `musicas/`) ou, se ele pedir a gerada, `"trilha": "suspense"`/`"comedia"`/`"emocional"`
+  (chiptune baixo em loop, abaixa com a narração; `"volumeTrilha"` padrão 0.7). Os efeitos sonoros continuam.
 - **Vida na rua:** em cenas de rua/praça paradas, `"vidaNaRua": true` põe gente passando no fundo e pombos voando (movimento sem
   atrapalhar a história). Para o fim do vídeo sem escuro, `"periodo": "tarde"` (pôr do sol).
 - **Medir pela retenção real:** `npm run mapa -- <projeto>` mostra cada cena no tempo (início, fim, %, se tem movimento,
@@ -403,7 +403,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%; `[trilha]` roteiro sem trilha; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[legenda]` no Shorts, a legenda em cima de personagem com papel ou objeto que age na cena (figurante, detalhe `"tela"` e só os pés encostando não contam; inclui o enquadramento depois de um `corte` de zoom; mesma conta de tela do motor, `yTela` em `centro.js`); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
+depois de 40%; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[legenda]` no Shorts, a legenda em cima de personagem com papel ou objeto que age na cena (figurante, detalhe `"tela"` e só os pés encostando não contam; inclui o enquadramento depois de um `corte` de zoom; mesma conta de tela do motor, `yTela` em `centro.js`); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em

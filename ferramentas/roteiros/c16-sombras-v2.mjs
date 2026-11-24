@@ -15,7 +15,7 @@ function par(id, quem, x0, x1, z, { f0 = 0, tam = 1.8, tipo = 'andar', s = {} } 
     ac: [a(f0, tipo, { alvo: sid, para: x1 + d * GAP, durF: 1 - f0 }), a(f0 + 0.04, tipo, { alvo: id, para: x1, durF: 0.96 - f0 })],
   };
 }
-const R = base('Nessa cidade, a sua sombra anda sempre na sua frente', 'suspense');
+const R = base('Nessa cidade, a sua sombra anda sempre na sua frente');   // sem música de fundo (pedido do usuário: só quando ele escolher)
 const C = R.cenas;
 
 // 1. Gancho: aos 0,3 s a sombra do seu Tonho já está andando BEM na frente dele (grande, de dia)

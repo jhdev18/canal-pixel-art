@@ -4,7 +4,7 @@ import { alturaShorts, marcar, P, S, RUA, FRENTE, a, cena, salvar, base, rostos 
 // a regra aparece no mundo real também (sombra QUADRADA de avatar nas crianças trocadas, cenas 7–9: o espectador vê a troca antes da
 // virada); a Bia AGE (corre para casa e abre o jogo pela 1ª vez) e é essa escolha que fecha o vídeo: o avatar sem rosto dela sorri.
 // Cenas de jogo DENTRO do mundo-bloco; a tela do jogo (monitor) só no mundo real. "Roblox" só na narração/título.
-const R = base('Nesse mundo, seu avatar do Roblox aprende a ser você', 'suspense');
+const R = base('Nesse mundo, seu avatar do Roblox aprende a ser você');   // sem música de fundo (pedido do usuário: só quando ele escolher)
 const C = R.cenas;
 const JOGO = (x) => ({ x, z: 2.2, y: 2.6 });
 const PERTO = (x, y = 1.6) => ({ x, z: 2.2, y, zoom: 2 });

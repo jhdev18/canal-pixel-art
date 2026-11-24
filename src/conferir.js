@@ -170,7 +170,7 @@ export async function conferir(nome) {
     const e = c.elementos.find((x) => x.id === a.alvo);
     if (e && ehPessoa(e, tam) && !(e.y > 0)) aviso(c.numero, 'altura', `"${a.alvo}" ${a.tipo} com "para": [${a.para}] — o 2º número é a ALTURA (sobe no ar), não a profundidade; para mudar de faixa, use outra cena ou outro "z" fixo`);
   }
-  if (!bruto.trilha) aviso(0, 'trilha', 'o roteiro não tem "trilha" — usar "trilha": "suspense" (terror), "comedia" ou "emocional" (base musical baixa, abaixa sozinha com a narração)');
+  // (sem aviso de "trilha": o usuário pediu vídeos SEM música de fundo por padrão — só quando ele escolher)
   for (const c of r.cenas) for (const a of c.acoes) {
     if (a.tipo === 'camera' && a.corte && a.para?.zoom != null && Math.round(a.para.zoom * 2) !== a.para.zoom * 2) aviso(c.numero, 'corte', `corte com zoom ${a.para.zoom} — usar valores redondos (1, 1.5, 2, 3) para os pixels ficarem alinhados`);
   }

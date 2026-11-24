@@ -149,7 +149,8 @@ export function salvar(nome, cabecalho, roteiro) {
   console.log(`${nome}: ${roteiro.cenas.length} cenas, fala ~${mm(fala)} (com folgas sem áudio ~${mm(tot)})`);
 }
 
-export const base = (titulo, trilha = 'suspense') => ({ titulo, narrador: 'Narrador', resolucao: [320, 180], volumeBaloes: 0.4, trilha, cenas: [] });   // trilha: suspense | comedia | emocional
+// trilha de fundo gerada: SÓ quando o usuário pedir música (pedido dele: sem música de fundo por padrão) — base(titulo, 'suspense' | 'comedia' | 'emocional')
+export const base = (titulo, trilha = null) => ({ titulo, narrador: 'Narrador', resolucao: [320, 180], volumeBaloes: 0.4, ...(trilha ? { trilha } : {}), cenas: [] });
 
 // Marca o "momento" da história em faixas de cenas (números de cena, começando em 1): { festa: [[10, 22], [25, 32]] }
 export function marcar(C, mapa) {
