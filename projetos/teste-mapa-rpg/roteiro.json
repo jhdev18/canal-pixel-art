@@ -1,0 +1,373 @@
+{
+ "titulo": "Teste: mapa de RPG",
+ "resolucao": [
+  320,
+  180
+ ],
+ "cenas": [
+  {
+   "vista": "diorama",
+   "angulo": "mapa-rpg",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "1. PRACA COM FONTE",
+   "camera": {
+    "x": 27.5,
+    "z": 18.5,
+    "y": 0
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 24.6,
+     "z": 17.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 6,
+     "z": 19.8
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 30.2,
+     "z": 16.4
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 35.5,
+     "z": 25.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 12.5,
+     "z": 8
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 33,
+     "z": 21
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": 22.4,
+     "z": 15.6
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": 26,
+     "inicio": 0,
+     "duracao": 2
+    }
+   ]
+  },
+  {
+   "vista": "diorama",
+   "angulo": "mapa-rpg",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "2. PADARIA NA ESTRADA",
+   "camera": {
+    "x": 10,
+    "z": 17.5,
+    "y": 0
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 24.6,
+     "z": 17.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 6,
+     "z": 19.8
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 30.2,
+     "z": 16.4
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 35.5,
+     "z": 25.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 12.5,
+     "z": 8
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 33,
+     "z": 21
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": 22.4,
+     "z": 15.6
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "vista": "diorama",
+   "angulo": "mapa-rpg",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "3. ESCOLA, PONTE E RIO",
+   "camera": {
+    "x": 30,
+    "z": 26,
+    "y": 0
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 24.6,
+     "z": 17.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 6,
+     "z": 19.8
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 30.2,
+     "z": 16.4
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 35.5,
+     "z": 25.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 12.5,
+     "z": 8
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 33,
+     "z": 21
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": 22.4,
+     "z": 15.6
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "vista": "diorama",
+   "angulo": "mapa-rpg",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "4. CASAS DE BAIXO E HORTA",
+   "camera": {
+    "x": 12,
+    "z": 6.5,
+    "y": 0
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 24.6,
+     "z": 17.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 6,
+     "z": 19.8
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 30.2,
+     "z": 16.4
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 35.5,
+     "z": 25.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 12.5,
+     "z": 8
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 33,
+     "z": 21
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": 22.4,
+     "z": 15.6
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "vista": "diorama",
+   "angulo": "mapa-rpg",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "5. MAPA DE LONGE (zoom 0,5)",
+   "camera": {
+    "x": 28,
+    "z": 18,
+    "y": 0,
+    "zoom": 0.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 24.6,
+     "z": 17.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 6,
+     "z": 19.8
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 30.2,
+     "z": 16.4
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 35.5,
+     "z": 25.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 12.5,
+     "z": 8
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 33,
+     "z": 21
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": 22.4,
+     "z": 15.6
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "vista": "diorama",
+   "angulo": "mapa-rpg",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "6. CLOSE (zoom 2)",
+   "camera": {
+    "x": 25.5,
+    "z": 17.6,
+    "y": 0,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 24.6,
+     "z": 17.2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 6,
+     "z": 19.8
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 30.2,
+     "z": 16.4
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 35.5,
+     "z": 25.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 12.5,
+     "z": 8
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": 33,
+     "z": 21
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": 22.4,
+     "z": 15.6
+    }
+   ],
+   "acoes": []
+  }
+ ]
+}

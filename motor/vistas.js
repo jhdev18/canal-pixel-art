@@ -11,6 +11,7 @@ import { gerarRuaDiagonal, FAIXA, nevoaCor, nevoaZ } from './cenarios/ruaDiagona
 import { gerarComodoDiagonal, COMODO, resolverAngulo } from './cenarios/comodoDiagonal.js';
 import { gerarPalco3d } from './cenarios/palco3d.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
+import { gerarMapaRPG } from './cenarios/mapaRPG.js';
 import { estadoCamera, estadoElemento } from './compartilhado/linhaDoTempo.js';
 import { obterSprite } from './sprites.js';
 import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
@@ -22,6 +23,7 @@ export const NOMES_VISTAS = ['lateral', 'diorama', '3d', 'avenida'];   // 'diago
 
 export function criarVista(c, motor) {
   // "diorama" com "comodo" = interior; sem "comodo" (ou "diagonal") = rua
+  if ((c.angulo ?? c.rua?.angulo) === 'mapa-rpg') return vistaMapaRPG(c, motor);   // PROTÓTIPO (teste): vila vista de cima, como um mapa de RPG
   if (c.vista === 'diorama' && c.comodo) return vistaComodo(c, motor);
   if (c.vista === 'diorama' || c.vista === 'diagonal') return vistaDiagonal(c, motor);
   if (c.vista === 'avenida') return vistaAvenida(c, motor);
@@ -332,6 +334,43 @@ function vistaDiagonal(c, motor) {
 }
 
 // Fundo do "mundo sombrio": preto com um padrão de losangos bem apagado (fica parado na tela).
+// ---------------------------------------------------------------- PROTÓTIPO: mapa de RPG (teste)
+// x = para a direita, z = para cima no mapa (1 unidade = 1 tile = 16 px), y = altura (pulo).
+// O chão é um plano só; casas/árvores/fonte são planos próprios ordenados pela base (mais embaixo = na frente).
+function vistaMapaRPG(c, motor) {
+  const { W, H } = motor;
+  const m = gerarMapaRPG({ semente: c.semente });
+  const cena = new THREE.Scene();
+  cena.background = new THREE.Color('#2e6a30');
+  const texs = [];
+  const plano = (cv, x0, y0) => {
+    const t = tex(cv); texs.push(t);
+    const me = new THREE.Mesh(new THREE.PlaneGeometry(cv.width / PPU, cv.height / PPU), new THREE.MeshBasicMaterial({ map: t, transparent: true, alphaTest: 0.5, depthWrite: false }));
+    me.position.set((x0 + cv.width / 2) / PPU, (m.H - y0 - cv.height / 2) / PPU, 0);
+    cena.add(me); return me;
+  };
+  plano(m.chao, 0, 0).renderOrder = 0;
+  const ordem = (z) => 2000 + Math.round((40 - z) * 40);
+  for (const p of m.pecas) plano(p.cv, p.x0, p.y0).renderOrder = ordem(p.zBase);
+  const ponto = (x, z, h = 0) => new THREE.Vector3(snap(x * m.T / PPU), snap(z * m.T / PPU) + h, 0.5);
+  const camera = new THREE.OrthographicCamera(-W / 2 / PPU, W / 2 / PPU, H / 2 / PPU, -H / 2 / PPU, -100, 100);
+  camera.position.z = 50;
+  return {
+    cena, camera, ambiente: ['#ffffff', 1.0], climaPadrao: null,
+    atualizar: () => {},
+    liberar: () => texs.forEach((t) => t.dispose()),
+    ordemInicial: (el) => ordem(el.z ?? 0),
+    paraMundo: (el, st, dy = 0) => ponto(st.x, st.z ?? el.z ?? 0, snap(st.y) + dy),
+    posicionar(e, st, bob) { const z = st.z ?? e.def.z ?? 0; e.malha.position.copy(ponto(st.x, z, snap(st.y) + bob)); e.malha.renderOrder = ordem(z) + 1; },
+    posicionarSombra(e, st) { const z = st.z ?? e.def.z ?? 0; e.sombra.position.copy(ponto(st.x, z, 1 / PPU)); e.sombra.renderOrder = ordem(z); },
+    atualizarCamera(cam, ef) {
+      const p = ponto(cam.x, cam.z ?? 0, cam.y ?? 0);
+      camera.position.set(snap(p.x) + ef.tremorX / PPU, snap(p.y) + ef.tremorY / PPU, 50);
+      camera.zoom = cam.zoom;
+    },
+  };
+}
+
 function fundoSombrio(W, H, tema) {
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const g = cv.getContext('2d');
