@@ -899,5 +899,18 @@
   "onibus-dentro-diorama":  { "vista": "diorama", "comodo": { "tipo": "onibus-dentro" } },
   "mercado-dentro-diorama": { "vista": "diorama", "comodo": { "tipo": "mercado-dentro" } },
   "consultorio-diorama":    { "vista": "diorama", "comodo": { "tipo": "consultorio" } },
-  "biblioteca-diorama":     { "vista": "diorama", "comodo": { "tipo": "biblioteca" } }
+  "biblioteca-diorama":     { "vista": "diorama", "comodo": { "tipo": "biblioteca" } },
+
+  // ---- PROTÓTIPO (isekai do cogumelo Tico): clareira da floresta de dia — grama, trilha de terra sinuosa, florzinhas,
+  // árvores no fundo e nos cantos, moitas. Personagens na clareira em z ~1.2–4.6 (a trilha passa em z ~3.4).
+  "floresta-isekai": { "vista": "diorama", "camera": { "x": 0, "z": 2.2, "y": 2.6 }, "clima": "polen",
+    "rua": { "periodo": "dia", "chao": "floresta", "semPredios": true, "postes": false, "cerca": false, "comprimento": 44 },
+    "elementos": [
+      { "id": "arv1", "sprite": "arvore-iso-grande", "x": -10.4, "z": 7.0 }, { "id": "arv2", "sprite": "arvore-iso-grande", "x": -4.6, "z": 8.0 },
+      { "id": "arv3", "sprite": "arvore-iso", "x": -0.8, "z": 7.4 }, { "id": "arv4", "sprite": "arvore-iso-grande", "x": 3.6, "z": 7.8 },
+      { "id": "arv5", "sprite": "arvore-iso-grande", "x": 8.8, "z": 7.2 }, { "id": "arv6", "sprite": "arvore-iso", "x": 13.4, "z": 6.8 },
+      { "id": "arv7", "sprite": "arvore-iso-grande", "x": -13.6, "z": 0.4 },
+      { "id": "mato1", "sprite": "mato", "x": -7.6, "z": 5.6 }, { "id": "mato2", "sprite": "mato", "x": 6.2, "z": 5.8 },
+      { "id": "mato3", "sprite": "mato", "x": -9.0, "z": 0.2 }, { "id": "mato4", "sprite": "mato", "x": 9.6, "z": 0.4 }
+    ] }
 }

@@ -127,8 +127,20 @@ export const RAJADAS = {
   'fogos-rosa': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#ffc0e0', '#ff60a8', '#a02a70'] },
   'fogos-azul': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#c0e8ff', '#50a8ff', '#2a4ab0'] },
   'fogos-verde': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#d0ffc0', '#60e070', '#1e8a3a'] },
+  // PROTÓTIPO (isekai): corte da espada — arco branco que abre na frente de quem ataca (golpe-dir / golpe-esq)
+  'golpe-dir': { n: 34, vel: [70, 82], ang: [-1.15, 1.15], grav: 0, arrasto: 0, vida: [0.1, 0.18], tam: 2, cores: ['#ffffff', '#ffffff', '#e8f0ff', '#a8c0e8'] },
+  'golpe-esq': { n: 34, vel: [70, 82], ang: [1.99, 4.29], grav: 0, arrasto: 0, vida: [0.1, 0.18], tam: 2, cores: ['#ffffff', '#ffffff', '#e8f0ff', '#a8c0e8'] },
   coracoes: { n: 8, vel: [15, 35], ang: [1.0, 2.14], grav: 10, arrasto: 1.5, vida: [0.7, 1.2], tam: 2, cores: ['#ff6a80', '#e83a4a', '#e83a4a', '#c82a3a'] },
 };
+
+// PROTÓTIPO (isekai): esporos do cogumelo — cor (azul = sono, amarelo = riso, rosa = amor) × tamanho
+// (pequeno = espirrinho; grande = nuvem que enche a tela; flutuando = esporos que ficam boiando em volta, sem parar)
+const CORES_ESPOROS = { azul: ['#ffffff', '#c8e8ff', '#7ab8f0', '#3a6ac8'], amarelo: ['#ffffff', '#fff4a0', '#f8d040', '#c8902a'], rosa: ['#ffffff', '#ffd0e8', '#ff8ac0', '#c84a8a'] };
+for (const [cor, cores] of Object.entries(CORES_ESPOROS)) {
+  RAJADAS[`esporos-${cor}-pequeno`] = { n: 18, vel: [10, 32], ang: [0, 6.283], grav: 6, arrasto: 2, vida: [0.8, 1.4], tam: 2, cintila: 1, cores };
+  RAJADAS[`esporos-${cor}-grande`] = { n: 320, vel: [30, 175], ang: [0, 6.283], achatar: 0.7, grav: 3, arrasto: 0.9, vida: [2.8, 4.2], tam: 3, cores };
+  RAJADAS[`esporos-${cor}-flutuando`] = { n: 40, vel: [6, 40], ang: [0, 6.283], grav: 5, arrasto: 0.6, vida: [2.5, 3.5], tam: 2, loop: 1, cintila: 1, cores };
+}
 
 const VERT_RAJADA = /* glsl */ `
 attribute vec4 aSeed;

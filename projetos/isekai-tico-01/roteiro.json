@@ -1,0 +1,2074 @@
+// ISEKAI (série do cogumelo Tico) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-tico-01
+// Protótipos: motor/assets/isekai.js (tico, cogumelos, goblin, heróis + dormindo, espada, chapéu), ações golpe e esporos, floresta-isekai.
+{
+ "titulo": "E se você renascesse como o monstro mais fraco do jogo?",
+ "narrador": "Narrador",
+ "resolucao": [
+  320,
+  180
+ ],
+ "volumeBaloes": 0.4,
+ "trilha": "comedia",
+ "cenas": [
+  {
+   "narracaoTexto": "E se você renascesse como o monstro mais fraco do jogo?",
+   "cenario": "floresta-isekai",
+   "transicao": "corte",
+   "camera": {
+    "x": 0,
+    "z": 2.2,
+    "y": 1.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": 0,
+     "z": 3,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "aparecer",
+     "alvo": "tico",
+     "inicio": null
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tico",
+     "altura": 0.5,
+     "inicio": null,
+     "duracao": 0.5
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "tico",
+     "duracao": 1,
+     "inspira": 0.6,
+     "inicio": 2.09
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 2.69
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.95,
+     "z": 2.2,
+     "y": 0.55,
+     "zoom": 2
+    },
+    "centrarEm": [
+     "tico"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Ele acordou sem braços, de perninhas curtas e chapéu gigante.",
+   "cenario": "floresta-isekai",
+   "titulo": "E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.6,
+   "camera": {
+    "x": 0.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1.6,
+     "z": 3
+    },
+    {
+     "id": "c1",
+     "personagem": "cogumelo-roxo",
+     "x": 1.8,
+     "z": 3.8,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "tico",
+     "para": 0.2,
+     "inicio": 0.3,
+     "duracao": 1.59
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tico",
+     "altura": 0.15,
+     "inicio": 1.97,
+     "duracao": 0.32
+    },
+    {
+     "tipo": "som",
+     "som": "aterrissar",
+     "inicio": 2.04
+    },
+    {
+     "tipo": "espirrar",
+     "alvo": "tico",
+     "duracao": 1,
+     "inspira": 0.6,
+     "inicio": 2.48
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c1",
+     "icone": "zzz",
+     "inicio": 3.07
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 3.08
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.65,
+     "z": 2.2,
+     "y": 1.85
+    },
+    "centrarEm": [
+     "tico"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 1.2,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1.4,
+     "z": 2.6
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 2,
+     "z": 4,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "c2",
+     "personagem": "cogumelo-comum",
+     "x": 3.4,
+     "z": 4,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "h1",
+     "para": 2.4,
+     "inicio": 0.51,
+     "duracao": 1.29
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h1",
+     "direcao": "direita",
+     "inicio": 2.02
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "c2",
+     "inicio": 2.19
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "tremendo",
+     "inicio": 2.27
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 2.44
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h1",
+     "rosto": "bravo",
+     "inicio": 2.87,
+     "duracao": 1.72
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2.15,
+     "z": 2.2,
+     "y": 1.6
+    },
+    "centrarEm": [
+     "tico",
+     "h1"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Por isso, todo herói novo vem treinar na floresta.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 1.6,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": -2.6,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h2",
+     "personagem": "heroi-aventureira",
+     "x": -4.6,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "e-h2",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h2",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": 5.4,
+     "z": 2.2
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "h1",
+     "para": 1.2,
+     "inicio": 0.3,
+     "duracao": 1.79
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h2",
+     "para": -0.8,
+     "inicio": 0.46,
+     "duracao": 1.79
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h1",
+     "direcao": "direita",
+     "inicio": 2.32
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h2",
+     "direcao": "esquerda",
+     "inicio": 2.74
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "assustado",
+     "inicio": 2.58
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h1",
+     "rosto": "feliz",
+     "inicio": 2.25,
+     "duracao": 1.3
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h2",
+     "rosto": "feliz",
+     "inicio": 2.58,
+     "duracao": 0.97
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.33,
+     "z": 2.2,
+     "y": 2.6
+    },
+    "centrarEm": [
+     "h1",
+     "h2"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Até que, numa manhã, vieram dez de uma vez.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 3.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 9.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h2",
+     "personagem": "heroi-aventureira",
+     "x": 11.4,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "e-h2",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h2",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h3",
+     "personagem": "heroi-grandao",
+     "x": 12.8,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "e-h3",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h3",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h4",
+     "personagem": "heroi-aventureiro",
+     "x": 14.2,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h4",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h4",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h5",
+     "personagem": "heroi-aventureira",
+     "x": 15.6,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h5",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h5",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h6",
+     "personagem": "heroi-grandao",
+     "x": 17,
+     "z": 4.4,
+     "figurante": true
+    },
+    {
+     "id": "e-h6",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h6",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "c1",
+     "personagem": "cogumelo-comum",
+     "x": 1.6,
+     "z": 1.6,
+     "figurante": true
+    },
+    {
+     "id": "c2",
+     "personagem": "cogumelo-roxo",
+     "x": 3.2,
+     "z": 1.6,
+     "figurante": true
+    },
+    {
+     "id": "c3",
+     "personagem": "cogumelo-verde",
+     "x": 4.8,
+     "z": 1.6,
+     "figurante": true
+    },
+    {
+     "id": "c4",
+     "personagem": "cogumelo-comum",
+     "x": 6.4,
+     "z": 1.6,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "correr",
+     "alvo": "h1",
+     "para": 0.8,
+     "inicio": 0.3,
+     "duracao": 1.96
+    },
+    {
+     "tipo": "correr",
+     "alvo": "h2",
+     "para": 2.4,
+     "inicio": 0.44,
+     "duracao": 1.96
+    },
+    {
+     "tipo": "correr",
+     "alvo": "h3",
+     "para": 3.8,
+     "inicio": 0.58,
+     "duracao": 1.96
+    },
+    {
+     "tipo": "correr",
+     "alvo": "h4",
+     "para": 5.2,
+     "inicio": 0.72,
+     "duracao": 1.96
+    },
+    {
+     "tipo": "correr",
+     "alvo": "h5",
+     "para": 6.6,
+     "inicio": 0.86,
+     "duracao": 1.96
+    },
+    {
+     "tipo": "correr",
+     "alvo": "h6",
+     "para": 8,
+     "inicio": 1,
+     "duracao": 1.96
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.25,
+     "inicio": 1.98,
+     "duracao": 0.28
+    },
+    {
+     "tipo": "som",
+     "som": "passo",
+     "inicio": 1.98
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c1",
+     "icone": "!",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c2",
+     "icone": "!",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c3",
+     "icone": "!",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "c4",
+     "icone": "!",
+     "inicio": 1.89
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 10.05,
+     "z": 2.2,
+     "y": 2.6
+    },
+    "centrarEm": [
+     "h1",
+     "h5"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Um por um, os cogumelos da floresta foram sumindo.",
+   "cenario": "floresta-isekai",
+   "saiDeCena": [
+    "c1",
+    "c2",
+    "c3",
+    "c4"
+   ],
+   "camera": {
+    "x": 3.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 1.4,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h2",
+     "personagem": "heroi-aventureira",
+     "x": 3,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "e-h2",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h2",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h3",
+     "personagem": "heroi-grandao",
+     "x": 4.3999999999999995,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "e-h3",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h3",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h4",
+     "personagem": "heroi-aventureiro",
+     "x": 5.8,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h4",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h4",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h5",
+     "personagem": "heroi-aventureira",
+     "x": 7.199999999999999,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h5",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h5",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h6",
+     "personagem": "heroi-grandao",
+     "x": 8.6,
+     "z": 4.4,
+     "figurante": true
+    },
+    {
+     "id": "e-h6",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h6",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "c1",
+     "personagem": "cogumelo-comum",
+     "x": 1.6,
+     "z": 1.6,
+     "figurante": true
+    },
+    {
+     "id": "c2",
+     "personagem": "cogumelo-roxo",
+     "x": 3.2,
+     "z": 1.6,
+     "figurante": true
+    },
+    {
+     "id": "c3",
+     "personagem": "cogumelo-verde",
+     "x": 4.8,
+     "z": 1.6,
+     "figurante": true
+    },
+    {
+     "id": "c4",
+     "personagem": "cogumelo-comum",
+     "x": 6.4,
+     "z": 1.6,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "h1",
+     "para": 0.8,
+     "inicio": 0.3,
+     "duracao": 3.12
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h2",
+     "para": 2.4,
+     "inicio": 0.43,
+     "duracao": 2.99
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h3",
+     "para": 3.8,
+     "inicio": 0.56,
+     "duracao": 2.86
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h4",
+     "para": 5.2,
+     "inicio": 0.69,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h5",
+     "para": 6.6,
+     "inicio": 0.82,
+     "duracao": 2.6
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h6",
+     "para": 8,
+     "inicio": 0.95,
+     "duracao": 2.47
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h1",
+     "direcao": "esquerda",
+     "inicio": 0.56
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "c1",
+     "inicio": 0.69
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h2",
+     "direcao": "esquerda",
+     "inicio": 1.21
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "c2",
+     "inicio": 1.34
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h3",
+     "direcao": "esquerda",
+     "inicio": 1.86
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "c3",
+     "inicio": 1.99
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h4",
+     "direcao": "esquerda",
+     "inicio": 2.51
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "c4",
+     "inicio": 2.64
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h5",
+     "rosto": "bravo",
+     "inicio": 1.93,
+     "duracao": 1.62
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h6",
+     "rosto": "bravo",
+     "inicio": 1.93,
+     "duracao": 1.62
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5.85,
+     "z": 2.2,
+     "y": 2.6
+    },
+    "centrarEm": [
+     "h1",
+     "h5"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Só sobrou o Tico. E ele fugia a passinhos deste tamanho.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": -0.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": 0.2,
+     "z": 3,
+     "pose": "assustado"
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 2.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "tico",
+     "para": -1,
+     "som": null,
+     "inicio": 1.21,
+     "duracao": 2.73
+    },
+    {
+     "tipo": "andar",
+     "alvo": "h1",
+     "para": 0.8,
+     "inicio": 1.39,
+     "duracao": 2.55
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 1.57
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 2.48
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 3.39
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h1",
+     "rosto": "bravo",
+     "inicio": 3.03,
+     "duracao": 0.91
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2.7,
+     "z": 2.2,
+     "y": 1.85
+    },
+    "centrarEm": [
+     "tico",
+     "h1"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "A espada desceu e levou o chapéu dele junto.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": -0.6,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "assustado"
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "chapeu",
+     "sprite": "chapeu-tico",
+     "x": -1,
+     "z": 3,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "golpe",
+     "alvo": "h1",
+     "direcao": "esquerda",
+     "inicio": 1.16
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "sem-chapeu-tremendo",
+     "inicio": 1.27
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "chapeu",
+     "som": null,
+     "inicio": 1.27
+    },
+    {
+     "tipo": "pular",
+     "alvo": "chapeu",
+     "para": -3.4,
+     "altura": 1.4,
+     "inicio": 1.27,
+     "duracao": 0.86
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.35,
+     "inicio": 1.33,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "som",
+     "som": "dano",
+     "inicio": 1.33
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h1",
+     "rosto": "bravo",
+     "inicio": 1.73,
+     "duracao": 1.43
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.85,
+     "z": 2.2,
+     "y": 0.85
+    },
+    "centrarEm": [
+     "tico",
+     "h1"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Então o Tico parou. Respirou fundo. E espirrou de propósito.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": -0.4,
+    "z": 2.2,
+    "y": 1.8,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "sem-chapeu-tremendo"
+    },
+    {
+     "id": "chapeu",
+     "sprite": "chapeu-tico",
+     "x": -3.4,
+     "z": 3
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 1.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h2",
+     "personagem": "heroi-aventureira",
+     "x": 2.4,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "e-h2",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h2",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h3",
+     "personagem": "heroi-grandao",
+     "x": 3.8,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "e-h3",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h3",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h4",
+     "personagem": "heroi-aventureiro",
+     "x": 5.2,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h4",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h4",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h5",
+     "personagem": "heroi-aventureira",
+     "x": 6.6,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h5",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h5",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h6",
+     "personagem": "heroi-grandao",
+     "x": 8,
+     "z": 4.4,
+     "figurante": true
+    },
+    {
+     "id": "e-h6",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h6",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "h1",
+     "para": 0.8,
+     "inicio": 0.5,
+     "duracao": 3.51
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "sem-chapeu",
+     "inicio": 1.47
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "sem-chapeu-inspira",
+     "som": "espirro-inspira",
+     "inicio": 2.25
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "sem-chapeu-espirro",
+     "som": "espirro",
+     "inicio": 3.65
+    },
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "pequeno",
+     "inicio": 3.73
+    },
+    {
+     "tipo": "golpe",
+     "alvo": "h1",
+     "direcao": "esquerda",
+     "inicio": 4.01
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h2",
+     "rosto": "bravo",
+     "inicio": 0.5,
+     "duracao": 3.7
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h3",
+     "rosto": "bravo",
+     "inicio": 0.5,
+     "duracao": 3.7
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.95,
+     "z": 2.2,
+     "y": 0.55,
+     "zoom": 2
+    },
+    "centrarEm": [
+     "tico"
+    ]
+   },
+   "momento": "ataque"
+  },
+  {
+   "narracaoTexto": "A floresta inteira ficou azul.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 2.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "sem-chapeu-espirro"
+    },
+    {
+     "id": "chapeu",
+     "sprite": "chapeu-tico",
+     "x": -3.4,
+     "z": 3
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h2",
+     "personagem": "heroi-aventureira",
+     "x": 2.4,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "e-h2",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h2",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h3",
+     "personagem": "heroi-grandao",
+     "x": 3.8,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "e-h3",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h3",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h4",
+     "personagem": "heroi-aventureiro",
+     "x": 5.2,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h4",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h4",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h5",
+     "personagem": "heroi-aventureira",
+     "x": 6.6,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h5",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h5",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h6",
+     "personagem": "heroi-grandao",
+     "x": 8,
+     "z": 4.4,
+     "figurante": true
+    },
+    {
+     "id": "e-h6",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h6",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "grande",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 0.4
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 0.5,
+     "duracao": 0.39
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "h1",
+     "icone": "!",
+     "inicio": 1.05
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "h2",
+     "icone": "!",
+     "inicio": 1.05
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "h3",
+     "icone": "!",
+     "inicio": 1.05
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h4",
+     "rosto": "surpreso",
+     "inicio": 1.08,
+     "duracao": 1.17
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h5",
+     "rosto": "surpreso",
+     "inicio": 1.08,
+     "duracao": 1.17
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "h6",
+     "rosto": "surpreso",
+     "inicio": 1.08,
+     "duracao": 1.17
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 4.65,
+     "z": 2.2,
+     "y": 0.85
+    },
+    "centrarEm": [
+     "tico",
+     "h5"
+    ]
+   },
+   "momento": "ataque"
+  },
+  {
+   "narracaoTexto": "E os dez heróis caíram dormindo.",
+   "cenario": "floresta-isekai",
+   "saiDeCena": [
+    "h1",
+    "e-h1",
+    "h2",
+    "e-h2",
+    "h3",
+    "e-h3",
+    "h4",
+    "e-h4",
+    "h5",
+    "e-h5",
+    "h6",
+    "e-h6"
+   ],
+   "camera": {
+    "x": 2.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "sem-chapeu"
+    },
+    {
+     "id": "chapeu",
+     "sprite": "chapeu-tico",
+     "x": -3.4,
+     "z": 3
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h2",
+     "personagem": "heroi-aventureira",
+     "x": 2.4,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "e-h2",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h2",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h3",
+     "personagem": "heroi-grandao",
+     "x": 3.8,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "e-h3",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h3",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h4",
+     "personagem": "heroi-aventureiro",
+     "x": 5.2,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h4",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h4",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h5",
+     "personagem": "heroi-aventureira",
+     "x": 6.6,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "e-h5",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h5",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "h6",
+     "personagem": "heroi-grandao",
+     "x": 8,
+     "z": 4.4,
+     "figurante": true
+    },
+    {
+     "id": "e-h6",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h6",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "dh1",
+     "personagem": "heroi-aventureiro-dormindo",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true,
+     "oculto": true
+    },
+    {
+     "id": "dh2",
+     "personagem": "heroi-aventureira-dormindo",
+     "x": 2.4,
+     "z": 3.8,
+     "figurante": true,
+     "oculto": true
+    },
+    {
+     "id": "dh3",
+     "personagem": "heroi-grandao-dormindo",
+     "x": 3.8,
+     "z": 2.6,
+     "figurante": true,
+     "oculto": true
+    },
+    {
+     "id": "dh4",
+     "personagem": "heroi-aventureiro-dormindo",
+     "x": 5.2,
+     "z": 4.2,
+     "figurante": true,
+     "oculto": true
+    },
+    {
+     "id": "dh5",
+     "personagem": "heroi-aventureira-dormindo",
+     "x": 6.6,
+     "z": 3.2,
+     "figurante": true,
+     "oculto": true
+    },
+    {
+     "id": "dh6",
+     "personagem": "heroi-grandao-dormindo",
+     "x": 8,
+     "z": 4.4,
+     "figurante": true,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "flutuando",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "h1",
+     "som": null,
+     "inicio": 0.47
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "e-h1",
+     "som": null,
+     "inicio": 0.47
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "dh1",
+     "som": "aterrissar",
+     "inicio": 0.47
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "h2",
+     "som": null,
+     "inicio": 0.72
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "e-h2",
+     "som": null,
+     "inicio": 0.72
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "dh2",
+     "som": null,
+     "inicio": 0.72
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "h3",
+     "som": null,
+     "inicio": 0.97
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "e-h3",
+     "som": null,
+     "inicio": 0.97
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "dh3",
+     "som": "aterrissar",
+     "inicio": 0.97
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "h4",
+     "som": null,
+     "inicio": 1.22
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "e-h4",
+     "som": null,
+     "inicio": 1.22
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "dh4",
+     "som": null,
+     "inicio": 1.22
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "h5",
+     "som": null,
+     "inicio": 1.46
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "e-h5",
+     "som": null,
+     "inicio": 1.46
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "dh5",
+     "som": "aterrissar",
+     "inicio": 1.46
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "h6",
+     "som": null,
+     "inicio": 1.71
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "e-h6",
+     "som": null,
+     "inicio": 1.71
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "dh6",
+     "som": null,
+     "inicio": 1.71
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "dh1",
+     "icone": "zzz",
+     "inicio": 1.18
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 3.59,
+     "z": 2.2,
+     "y": 1.35
+    },
+    "centrarEm": [
+     "tico",
+     "h5"
+    ]
+   },
+   "momento": "ataque"
+  },
+  {
+   "narracaoTexto": "Os heróis não derrotavam os cogumelos por serem fracos.",
+   "cenario": "floresta-isekai",
+   "saiDeCena": [
+    "chapeu"
+   ],
+   "camera": {
+    "x": 0.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "sem-chapeu"
+    },
+    {
+     "id": "chapeu",
+     "sprite": "chapeu-tico",
+     "x": -3.4,
+     "z": 3
+    },
+    {
+     "id": "dh1",
+     "personagem": "heroi-aventureiro-dormindo",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "dh2",
+     "personagem": "heroi-aventureira-dormindo",
+     "x": 2.4,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "dh3",
+     "personagem": "heroi-grandao-dormindo",
+     "x": 3.8,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "dh4",
+     "personagem": "heroi-aventureiro-dormindo",
+     "x": 5.2,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "dh5",
+     "personagem": "heroi-aventureira-dormindo",
+     "x": 6.6,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "dh6",
+     "personagem": "heroi-grandao-dormindo",
+     "x": 8,
+     "z": 4.4,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "flutuando",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "pular",
+     "alvo": "chapeu",
+     "para": -1,
+     "altura": 1,
+     "inicio": 1.02,
+     "duracao": 1.07
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "chapeu",
+     "som": null,
+     "inicio": 2.09
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "feliz",
+     "som": "sucesso",
+     "inicio": 2.09
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "dh2",
+     "icone": "zzz",
+     "inicio": 2.68
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.95,
+     "z": 2.2,
+     "y": 1.35
+    },
+    "centrarEm": [
+     "tico"
+    ]
+   },
+   "momento": "ataque"
+  },
+  {
+   "narracaoTexto": "Derrotavam antes que eles crescessem.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 0.4,
+    "z": 2.2,
+    "y": 2.6
+   },
+   "elementos": [
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "feliz"
+    },
+    {
+     "id": "dh1",
+     "personagem": "heroi-aventureiro-dormindo",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "dh2",
+     "personagem": "heroi-aventureira-dormindo",
+     "x": 2.4,
+     "z": 3.8,
+     "figurante": true
+    },
+    {
+     "id": "dh3",
+     "personagem": "heroi-grandao-dormindo",
+     "x": 3.8,
+     "z": 2.6,
+     "figurante": true
+    },
+    {
+     "id": "dh4",
+     "personagem": "heroi-aventureiro-dormindo",
+     "x": 5.2,
+     "z": 4.2,
+     "figurante": true
+    },
+    {
+     "id": "dh5",
+     "personagem": "heroi-aventureira-dormindo",
+     "x": 6.6,
+     "z": 3.2,
+     "figurante": true
+    },
+    {
+     "id": "dh6",
+     "personagem": "heroi-grandao-dormindo",
+     "x": 8,
+     "z": 4.4,
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "esporos",
+     "alvo": "tico",
+     "cor": "azul",
+     "tamanho": "flutuando",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "tico",
+     "estado": "grande",
+     "som": "revelar",
+     "inicio": 1.14
+    },
+    {
+     "tipo": "magia",
+     "alvo": "tico",
+     "inicio": 1.14
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 1.17
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -0.7,
+     "y": 1.8,
+     "inicio": 1.21,
+     "vertical": {
+      "y": 1.55
+     }
+    },
+    {
+     "tipo": "pular",
+     "alvo": "tico",
+     "altura": 0.4,
+     "inicio": 1.74,
+     "duracao": 0.6
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 0.95,
+     "z": 2.2,
+     "y": 2.35
+    },
+    "centrarEm": [
+     "tico"
+    ]
+   },
+   "momento": "ataque"
+  },
+  {
+   "narracaoTexto": "E, escondido na moita, um goblin anotava tudo.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 6,
+    "z": 2.2,
+    "y": 1.9,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "gob",
+     "personagem": "goblin",
+     "x": 5.6,
+     "z": 5
+    },
+    {
+     "id": "tico",
+     "personagem": "tico",
+     "x": -1,
+     "z": 3,
+     "pose": "grande"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "esporos",
+     "alvo": "gob",
+     "cor": "azul",
+     "tamanho": "flutuando",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "andar",
+     "alvo": "gob",
+     "para": 6.2,
+     "inicio": 0.6,
+     "duracao": 1.05
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "gob",
+     "estado": "rindo",
+     "som": "suspense",
+     "inicio": 2.54
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 5.94,
+     "z": 2.2,
+     "y": 1.9,
+     "zoom": 2
+    },
+    "centrarEm": [
+     "gob"
+    ]
+   }
+  }
+ ]
+}

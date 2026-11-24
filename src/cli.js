@@ -152,7 +152,7 @@ async function mapaCenas(nome) {
   try { narr = await encontrarNarracoes(dir, bruto, cfg.ffmpeg); } catch (e) { console.log(`  (sem áudio da narração: ${String(e.message).split('\n')[0]} — tempos estimados)`); }
   const r = resolverRoteiro(bruto, narr.mapa, { fps: 30 });
   const mmss = (t) => `${Math.floor(t / 60)}:${(t % 60).toFixed(1).padStart(4, '0')}`;
-  const MOV = new Set(['andar', 'correr', 'mover', 'pular', 'sentar', 'levantar']);
+  const MOV = new Set(['andar', 'correr', 'mover', 'pular', 'sentar', 'levantar', 'esporos']);
   const linhas = [`${r.titulo} — ${narr.mapa.size ? 'tempos reais (narração)' : 'tempos ESTIMADOS (sem narração ainda)'} — total ${mmss(r.duracaoTotal)}`, '',
     '  início   fim     %    cena  o que tem               narração'];
   for (const c of r.cenas) {

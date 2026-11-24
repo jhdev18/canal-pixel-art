@@ -19,6 +19,7 @@
 //   bloco.js                  PROTÓTIPO: jogo de blocos (avatares, cubos, tela do jogo) para vídeos sobre Roblox
 //   medieval.js               PROTÓTIPO: medieval (pessoas, objetos, salão do trono, taverna)
 //   cidade.js                 PROTÓTIPO: melhorias da cidade (vida na rua, parquinho, ônibus, telas, interiores novos)
+//   isekai.js                 PROTÓTIPO: série isekai do cogumelo Tico (tico, cogumelos, goblin, heróis, espada, chapéu)
 //   animatronicos.js          PROTÓTIPO: animatrônicos de terror (Pãozito, Sapo Bandinha, Mimosa, bailarina)
 import './rpg.js';
 import './personagens-detalhados.js';
@@ -38,3 +39,4 @@ import './loja-fabrica.js';
 import './bloco.js';
 import './medieval.js';
 import './cidade.js';
+import './isekai.js';

@@ -265,6 +265,17 @@ class Motor {
           add('fogos-' + (a.cor || 'dourado'), a.inicio + sub, fixo(pos));
           break;
         }
+        case 'golpe': {   // PROTÓTIPO (isekai): arco da espada na frente de quem ataca ("direcao": "direita" | "esquerda")
+          const e = porId.get(a.alvo); if (!e) break;
+          const dir = a.direcao === 'esquerda' ? -1 : 1, st = estadoElemento(c, e.def, a.inicio);
+          add(dir < 0 ? 'golpe-esq' : 'golpe-dir', a.inicio, fixo(vista.paraMundo(e.def, { ...st, x: st.x + dir * 0.7 }, e.h * st.escala * 0.45)));
+          break;
+        }
+        case 'esporos': {   // PROTÓTIPO (isekai): nuvem de esporos ("cor": azul | amarelo | rosa; "tamanho": pequeno | grande | flutuando)
+          const tam = a.tamanho || 'pequeno', cor = a.cor || 'azul';
+          add(`esporos-${cor}-${tam}`, a.inicio, daPosicao(a) || fixo(centroEl(a.alvo, a.inicio) || { x: 0, y: 1, z: 0 }));
+          break;
+        }
         default: break;
       }
     });

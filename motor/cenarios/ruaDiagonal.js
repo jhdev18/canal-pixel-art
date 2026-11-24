@@ -103,6 +103,14 @@ export function gerarRuaDiagonal(opc = {}) {
     // "semPredios": true (campo no lugar dos prédios), "pocas": true (poças de chuva)
     const terra = opc.chao === 'terra';
     const grama = () => { const v = (((Math.floor(i * 9) * 92821) ^ (Math.floor(j * 9) * 68917)) >>> 0) % 13; return v === 0 ? '#5aa85a' : v < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48'; };
+    if (opc.chao === 'floresta') {   // PROTÓTIPO (isekai): clareira de grama com trilha de terra sinuosa e florzinhas
+      const meio = 3.6 + Math.sin(j * 0.32) * 0.7 + Math.sin(j * 0.11 + 1) * 0.5, d = Math.abs(i - meio);
+      const h = (((Math.floor(i * 6) * 92821) ^ (Math.floor(j * 6) * 68917)) >>> 0) % 97;
+      if (d < 0.7) c = h < 6 ? '#8a6a44' : h < 12 ? '#c8a878' : bayer(x, y) < 0.1 ? '#9a7a50' : '#b08a5a';
+      else if (d < 0.85) c = '#6a8a3a';
+      else c = h === 0 ? '#f8f0f8' : h === 1 ? '#f8d040' : h === 2 ? '#f08ab8' : grama();
+      pintar(x, y, c, i, j, 0); continue;
+    }
     if (opc.chao === 'patio') {   // PROTÓTIPO: pátio de escola: cimento claro em placas, quadra verde no meio (linhas brancas, círculo) e
       // uma faixa de grama nas bordas; o pátio é fechado na frente pelo muro (sprite "muro-escola" + "portao-escola" no cenário)
       const di = i - 3.0, dj = j - (opc.patioCentro ?? 0), r = Math.hypot(di, dj * 0.9);

@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (301)
+## Sprites (314)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -411,6 +411,24 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `icone-pausa` | 🧪 protótipo | parado | 12×12 |
 | `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
 
+### Isekai (o cogumelo Tico)
+
+| Sprite | Status | Estados | Tamanho |
+|---|---|---|---|
+| `tico` | 🧪 protótipo | parado, assustado, assustado-andando, assustado-correndo, tremendo, sem-chapeu, sem-chapeu-andando, sem-chapeu-correndo, sem-chapeu-tremendo, sem-chapeu-inspira, sem-chapeu-espirro, espirro-antes, espirro, feliz, feliz-andando, feliz-correndo, grande, grande-andando, grande-correndo, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 24×28 |
+| `cogumelo-comum` | 🧪 protótipo | parado | 18×20 |
+| `cogumelo-roxo` | 🧪 protótipo | parado | 18×20 |
+| `cogumelo-verde` | 🧪 protótipo | parado | 18×20 |
+| `goblin` | 🧪 protótipo | parado, anotando, feliz, rindo, alerta | 28×36 |
+| `heroi-aventureiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 28×44 |
+| `heroi-aventureira` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 28×44 |
+| `heroi-grandao` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 28×44 |
+| `heroi-aventureiro-dormindo` | 🧪 protótipo | parado | 44×25 |
+| `heroi-aventureira-dormindo` | 🧪 protótipo | parado | 44×25 |
+| `heroi-grandao-dormindo` | 🧪 protótipo | parado | 44×26 |
+| `espada-heroi` | 🧪 protótipo | parado | 7×18 |
+| `chapeu-tico` | 🧪 protótipo | parado, grande | 24×14 |
+
 ## Personagens
 
 Uso: `{ "id": "x", "personagem": "nome" }`
@@ -479,6 +497,17 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `avatar-leo-2` | 🧪 protótipo | `avatar-leo-2` | 1.4 |
 | `manequim` | 🧪 protótipo | `manequim` | 0.9 |
 | `manequim-coberto` | 🧪 protótipo | `manequim-coberto` | 0.9 |
+| `tico` | 🧪 protótipo | `tico` | 1.5 |
+| `cogumelo-comum` | 🧪 protótipo | `cogumelo-comum` | 1.6 |
+| `cogumelo-roxo` | 🧪 protótipo | `cogumelo-roxo` | 1.6 |
+| `cogumelo-verde` | 🧪 protótipo | `cogumelo-verde` | 1.6 |
+| `goblin` | 🧪 protótipo | `goblin` | 1.3 |
+| `heroi-aventureiro` | 🧪 protótipo | `heroi-aventureiro` | 1 |
+| `heroi-aventureira` | 🧪 protótipo | `heroi-aventureira` | 1.15 |
+| `heroi-grandao` | 🧪 protótipo | `heroi-grandao` | 0.8 |
+| `heroi-aventureiro-dormindo` | 🧪 protótipo | `heroi-aventureiro-dormindo` |  |
+| `heroi-aventureira-dormindo` | 🧪 protótipo | `heroi-aventureira-dormindo` |  |
+| `heroi-grandao-dormindo` | 🧪 protótipo | `heroi-grandao-dormindo` |  |
 | `protagonista` | ✅ | `heroi` | 1 |
 | `companheira` | ✅ | `amiga` | 1.3 |
 | `anciao` | ✅ | `velho` | 0.8 |
@@ -574,6 +603,7 @@ Uso: `{ "cenario": "nome" }`
 | `mercado-dentro-diorama` | 🧪 protótipo | diorama (cômodo mercado-dentro) | 0 |
 | `consultorio-diorama` | 🧪 protótipo | diorama (cômodo consultorio) | 0 |
 | `biblioteca-diorama` | 🧪 protótipo | diorama (cômodo biblioteca) | 0 |
+| `floresta-isekai` | 🧪 protótipo | diorama | 11 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |
@@ -610,10 +640,10 @@ Uso: `{ "cenario": "nome" }`
 
 ## Ações
 
-`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `congelar`, `sentar`, `levantar`, `espirrar`, `fogos`, `expressao`, `trocar`, `desaparecer`, `numero`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
+`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `congelar`, `sentar`, `levantar`, `espirrar`, `fogos`, `expressao`, `trocar`, `desaparecer`, `numero`, `golpe`, `esporos`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
 
 ## Sons
 
-Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `miau-monstro`, `trovao`, `suspense`, `fantasma`, `servo`, `corda`, `caixinha-musica`, `falha-eletrica`, `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`, `trilha-suspense`, `trilha-comedia`, `trilha-emocional`
+Efeitos: `passo`, `pulo`, `aterrissar`, `moeda`, `item`, `vida`, `powerup`, `puf`, `explosao`, `tremor`, `blip`, `surpresa`, `duvida`, `amor`, `dano`, `magia`, `revelar`, `transicao`, `porta`, `clique`, `sucesso`, `erro`, `soco`, `espada`, `sombra-surge`, `sombra-some`, `sino`, `sino-relogio`, `cadeado`, `papel`, `sininho`, `sombra`, `espirro-inspira`, `espirro`, `esporos`, `fogos-sobe`, `fogos`, `guardiao-susto`, `miau`, `miau-monstro`, `trovao`, `suspense`, `fantasma`, `servo`, `corda`, `caixinha-musica`, `falha-eletrica`, `entrar-jogo`, `pulo-bloco`, `ai`, `chat`, `bug-jogo`, `trilha-suspense`, `trilha-comedia`, `trilha-emocional`
 
 Ambientes: `chuva`, `vento`, `grilos`, `passaros`, `fogo`, `caverna`, `espaco`, `cidade`

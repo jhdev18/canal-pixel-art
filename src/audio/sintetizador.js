@@ -176,6 +176,15 @@ const SONS = {
     [ruido({ dur: 0.38, vol: 0.75, f0: 6500, f1: 3000, filtro: 'passa-alta', ataque: 0.004, curva: 1.8, semente: 43 }), 0.05],
     [tom({ tipo: 'quadrada', f0: 760, f1: 520, dur: 0.12, vol: 0.14, duty: 0.25, curva: 1.4 }), 0.05],
   ]),
+  // isekai (PROTÓTIPO): espada cortando o ar e nuvem de esporos (sopro macio + brilhinhos)
+  espada: () => misturar([
+    [ruido({ dur: 0.18, vol: 0.55, filtro: 'passa-banda', q: 0.6, corteFn: (t, p) => 5200 - 3600 * p, envFn: (t, p) => Math.sin(Math.PI * Math.min(1, p * 1.3)) ** 2, semente: 81 })],
+    [tom({ tipo: 'triangulo', f0: 1600, f1: 900, dur: 0.12, vol: 0.06, curva: 1.5 }), 0.03],
+  ]),
+  esporos: () => misturar([
+    [ruido({ dur: 0.9, vol: 0.4, f0: 1800, f1: 600, filtro: 'passa-baixa', ataque: 0.06, curva: 1.6, semente: 83 })],
+    ...[0.12, 0.3, 0.5, 0.7].map((t0, k) => [tom({ tipo: 'seno', f0: 1800 + k * 300, f1: 2400 + k * 300, dur: 0.12, vol: 0.06, curva: 2 }), t0]),
+  ]),
   // fogos de artifício: assobio subindo e estouro com estalinhos
   'fogos-sobe': () => tom({ tipo: 'seno', f0: 900, f1: 2400, dur: 0.5, vol: 0.12, ataque: 0.05, curva: 0.6 }),
   fogos: () => misturar([

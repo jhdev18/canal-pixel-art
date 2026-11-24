@@ -131,7 +131,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); a sombra anda na sua frente — ia esperar (`nesse-mundo-sombras-v2`, v2 das sombras); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); a sombra anda na sua frente — ia esperar (`nesse-mundo-sombras-v2`, v2 das sombras); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Isekai: renasceu como o cogumelo mais fraco — derrotavam antes que crescesse (`isekai-tico-01`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -333,6 +333,20 @@ a virada vem a **~70%** e o resto é a solução e o fechamento.
   "Foi aí que... entendeu tudo", "Só faltava um".
 - **Tom:** cômico com um momento de aperto (parte 5); termina leve, sem moral explícita.
 
+## Formato "Isekai" (série de Shorts, aventura — pedido do usuário)
+**O que é:** série de episódios curtos (Shorts, ~45–55 s) em que alguém **renasce como algo fraco dentro de um mundo de aventura** e
+sobrevive pela esperteza, com **batalhas no diorama** (golpes de espada, inimigos, poderes) — inspirado no gênero dos jogos de aventura, sem
+copiar nenhum (nada de herói de túnica verde, Triforce, espada famosa, músicas). Primeira série: **o cogumelo Tico** (`projetos/isekai-tico-*`,
+script `c18-tico-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
+- **1ª frase = "E se você renascesse como...?"** (pedido do usuário: começar com uma pergunta "E se"). Fala com "você".
+- **Protagonista com desvantagem visível** (o usuário pediu): o Tico é o monstro mais fraco (lento, sem braços, perde o chapéu num golpe).
+  Ideias recusadas: herói de 1 coração, o vaso, o NPC de uma frase (o usuário pediu outras); goblin como protagonista "manjado" → o goblin virou
+  o **rival** da série (aproveita a busca por "goblin").
+- **Um poder novo por episódio** (para o público não precisar aprender tudo de uma vez): esporos azul = sono (ep. 1), amarelo = riso, rosa = amor.
+- Cada episódio: 1 batalha, a regra (os esporos) na tela em quase toda cena, a escolha ativa do protagonista, uma virada e um **gancho**
+  para o próximo (o goblin anotando). Seguir também as táticas de retenção do vídeo das sombras (dia, movimento, escalada, "Até que" cedo).
+- Título com termos que o público busca: "Reencarnei como... isekai"; tags `#isekai #reencarnei`.
+
 ## Objetos que contam a história (técnica aprovada pelo usuário no `nesse-mundo-espirro`)
 O usuário gostou de como os itens foram usados no vídeo do espirro — usar essa técnica nos próximos vídeos:
 - **Plantar cedo e mostrar na pessoa:** o objeto aparece logo no começo, preso a quem o carrega (`"sobre": { "id", "dx", "dy" }`),
@@ -514,6 +528,9 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   - Roblox da leva anterior, ainda não postados: `nesse-mundo-pausa` (comédia, 14 cenas, ~49 s) e `nesse-mundo-espera` (emocional,
     14 cenas, ~51 s); scripts `c14-pausa.mjs`, `c15-espera.mjs`.
   Cada um tem `ROTEIRO.md` (checklist de retenção) e `PUBLICACAO.md`; texto do ElevenLabs em `narracao/TEXTO-COMPLETO.txt`.
+- **Isekai (formato novo, série):** `isekai-tico-01` (ep. 1 do cogumelo Tico, 14 cenas, fala ~45 s; script `c18-tico-ep1.mjs`), aguardando o
+  usuário ver os protótipos (`npm run vitrine`, cenas 81–84), gravar a narração e renderizar. `npm run conferir`: só [atravessa] do chapéu
+  (cenas 8 e 12), de propósito.
 - `projetos/exemplo` continua (é o exemplo de formato usado no README).
 - **Recursos novos (protótipo, junto dos vídeos):** olhos das estrelas feitos em 3D (`motor/olho3d.js`, Three.js
   reduzido a pixel); ação `desaparecer` (some devagar, sem fumaça/som); elemento `"tela": true` (detalhe em close no

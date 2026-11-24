@@ -7,6 +7,7 @@ export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
   piscar: 0.8, camera: 1.5, magia: 1, som: 0, congelar: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
+  golpe: 0.3, esporos: 1.5,
   pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
@@ -570,6 +571,12 @@ export function eventosSonoros(roteiro) {
           if (semSom) break;
           add('espirro-inspira', a.inicio, { volume: 0.7 * vol, pan: panEl(a.alvo, a.inicio), taxa: el?.voz ?? 1 });
           add(somManual || 'espirro', a.inicio + a.duracao * (a.inspira ?? 0.6), { volume: vol, pan: panEl(a.alvo, a.inicio), taxa: el?.voz ?? 1 });
+          break;
+        case 'golpe':   // PROTÓTIPO (isekai): "vush" da espada
+          if (!semSom) add(somManual || 'espada', a.inicio, { volume: vol, pan: panEl(a.alvo, a.inicio) });
+          break;
+        case 'esporos':   // PROTÓTIPO (isekai): "fssh" macio com brilhinho (a nuvem grande é mais alta)
+          if (!semSom && a.tamanho !== 'flutuando') add(somManual || 'esporos', a.inicio, { volume: (a.tamanho === 'grande' ? 1 : 0.6) * vol, pan: a.alvo ? panEl(a.alvo, a.inicio) : 0 });
           break;
         case 'piscar':
           if (!semSom) add(somManual || 'dano', a.inicio, { volume: vol, pan: panEl(a.alvo, a.inicio) });
