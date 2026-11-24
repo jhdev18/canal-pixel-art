@@ -58,29 +58,16 @@ function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx
   const W = 32, H = 33, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
   const cy = 13 + oy, r = 6.75, sy = cy + r + 0.5;   // centro do chapéu e do caule
   p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
-  // perninhas marrons como as dos cogumelos comuns; andando, uma sobe de cada vez; no pulo ficam esticadas
-  // (testadas e recusadas pelo usuário: botinhas, pezinho redondo, perna gordinha, sem pés, pés do corpo, tronquinho — ficou esta)
-  const pes = { parado: [[-4, 0], [3, 0]], a: [[-4, -1], [3, 0]], b: [[-4, 0], [3, -1]], pulo: [[-4, 1], [3, 1]] }[perna];
-  const est = globalThis.__pernaDavi || 'V3', y0 = Math.round(sy + r - 0.5);
-  for (const [px, py] of pes) {
-    const esq = px < 0, x = cx + px, y = y0 + py;
-    if (est === 'G') {          // feijãozinho: pé arredondado marrom-escuro, com brilho
-      const bx = esq ? x - 1 : x;
-      p.ret(bx + 1, y, 2, 1, '#7a5a3c'); p.ret(bx, y + 1, 4, 1, '#5a3a26'); p.set(bx + 1, y + 1, '#8a6a4a'); p.ret(bx + 1, y + 2, 2, 1, '#4a2e1c');
-    } else if (est === 'H') {   // perninha fina e comprida + sapatinho redondo (cômico)
-      p.ret(x + (esq ? 1 : 0), y - 1, 1, 4, '#6e4e34');
-      p.elipse(x + (esq ? 0 : 1) + 0.5, y + 3.2, 1.9, 1.2, (xx, yy, ex, ey) => (ey < -0.2 && ex < 0.2 ? '#8a5a3a' : '#5a3424'));
-    } else if (est === 'I') {   // raizinhas (pé de cogumelo): três fiozinhos que se abrem no chão
-      const c1 = '#b89a70', c2 = '#8a6a4a';
-      p.ret(x, y, 2, 2, c1); p.set(x + 1, y, c2); p.set(x + 1, y + 1, c2);
-      p.set(x - 1, y + 2, c2); p.set(x, y + 2, c1); p.set(x + 1, y + 2, c2); p.set(x + 2, y + 2, c2);
-      p.set(esq ? x - 2 : x + 3, y + 2, c2);
-    } else if (est === 'J') {   // bermudinha: o pé do caule é marrom (como calça curta) e as perninhas cor de caule
-      p.ret(x, y, 2, 2, CAULE.base); p.set(x + 1, y, CAULE.sombra); p.set(x + 1, y + 1, CAULE.sombra);
-      p.ret(esq ? x - 1 : x, y + 2, 3, 1, '#5a3a26');
-    } else p.ret(x, y, 2, 3, '#8a6a4a');
+  // pernas "H" (escolhidas pelo usuário): perninha fina e comprida com sapatinho redondo. Andando, as pernas BALANÇAM
+  // (uma vai para a frente erguida, a outra para trás), em vez de só subir e descer. [x do quadril, pé erguido, balanço]
+  const pes = { parado: [[-3, 0, 0], [2, 0, 0]], a: [[-3, 0, 0], [2, -1, 1]], b: [[-3, -1, -1], [2, 0, 0]], pulo: [[-3, 1, -1], [2, 1, 1]] }[perna];   // pernas mais para o meio do corpo
+  const y0 = Math.round(sy + r - 0.5);
+  for (const [px, ergue, bal] of pes) {
+    const esq = px < 0, xq = cx + px + (esq ? 1 : 0), topo = y0 - 1, pe = y0 + 3 + ergue;   // quadril (escondido no corpo) até o pé
+    for (let y = topo; y < pe; y++) p.set(xq + Math.round((bal * (y - topo)) / Math.max(1, pe - topo)), y, '#6e4e34');
+    const xp = xq + bal + (esq ? -1 : 0) + 0.5 + (esq ? 0 : 1) - 0.5;
+    p.elipse(xp + 0.5, pe + 0.2, 1.9, 1.2, (xx, yy, ex, ey) => (ey < -0.2 && ex < 0.2 ? '#8a5a3a' : '#5a3424'));
   }
-  if (est === 'J') for (let yy = Math.round(sy + 4); yy <= y0 - 1 + Math.min(...pes.map((q) => q[1])); yy++) for (let xx = Math.ceil(cx - r); xx <= Math.floor(cx + r); xx++) if (p.opaco(xx, yy)) p.set(xx, yy, yy === Math.round(sy + 4) ? '#5a3a26' : xx < cx - 2 ? '#a07a56' : '#8a6a4a');
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
     p.elipse(cx, sy - r + 1.5, 6, 2.6, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
     p.set(cx - 1, Math.round(sy - r), CAULE.sombra); p.set(cx + 1, Math.round(sy - r), CAULE.sombra);
