@@ -552,7 +552,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   foram **apagados** de `projetos/` (episodio-01 e todos os `nesse-mundo-*` do canal antigo; ficam no histórico do git e os
   scripts continuam em `ferramentas/roteiros/`). **Não repostar vídeos antigos iguais no canal novo**: fazer versões novas (v2).
 - **Vídeos do canal novo, aguardando narração/render:**
-  - `nesse-mundo-sombras` (o ORIGINAL, recuperado do git a pedido do usuário: "o antigo era bem melhor"; o v2 foi apagado). 1º vídeo do
+  - `nesse-mundo-sombras` (**NÃO MEXER** — pedido do usuário; o aviso `[gancho]` de título nele é aceito. O ORIGINAL, recuperado do git a pedido do usuário: "o antigo era bem melhor"; o v2 foi apagado). 1º vídeo do
     canal novo; texto e cenas originais, só desmarcado o "postado" (era do canal antigo), Shorts recentralizado e câmera do Shorts abaixada
     para a legenda grande. `npm run conferir`: só [parado] na cena 3 (como no original).
   - `nesse-mundo-brinquedos` (terror de dia, 15 cenas, fala ~50 s; script `c19-brinquedos.mjs`): "Nessa cidade, seu brinquedo cresce toda vez

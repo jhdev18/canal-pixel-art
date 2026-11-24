@@ -11,9 +11,6 @@
    "narracaoTexto": "Nessa cidade, a sua sombra sempre chega um minuto antes de você.",
    "cenario": "rua-comercial",
    "transicao": "fade",
-   "titulo": "NESSA CIDADE, A SUA SOMBRA CHEGA ANTES",
-   "tituloInicio": 0,
-   "tituloDuracao": 2.6,
    "camera": {
     "x": 1,
     "z": 2.2,
@@ -70,6 +67,9 @@
   {
    "narracaoTexto": "Por isso, ninguém se perde. É só seguir a própria sombra.",
    "cenario": "rua-comercial",
+   "titulo": "NESSA CIDADE, A SUA SOMBRA CHEGA ANTES",
+   "tituloInicio": 0.3,
+   "tituloDuracao": 2.6,
    "camera": {
     "x": 5,
     "z": 2.2,
