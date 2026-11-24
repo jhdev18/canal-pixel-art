@@ -10,7 +10,7 @@ const SPAWN = { x: -5.6, z: 1.5, y: 0 };   // na frente da plataforma do spawn (
 
 // 1. Regra: aos 0,3 s um avatar corre até o spawn e começa a acenar
 C.push(cena('Nesse mundo, quando você sai do Roblox, seu avatar te espera.', {
-  titulo: 'SEU AVATAR TE ESPERA', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
+  titulo: 'ELE NUNCA ESQUECE', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
   cenario: 'mundo-bloco', transicao: 'corte', camera: { x: -4.6, z: 2.2, y: 2.0, zoom: 1.5 },
   elementos: [P('azul', 'avatar-bloco-azul', -2.0, 2.8, { figurante: true })],
   acoes: [{ tipo: 'correr', alvo: 'azul', para: -4.4, inicio: 0, duracao: 1.2 }, a(0.4, 'trocar', { alvo: 'azul', estado: 'acenar' })],
