@@ -1,4 +1,4 @@
-# Publicação — Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa (Short)
+# Publicação — Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa (Short, canal Pixelverso)
 
 ## Arquivos
 - Narração (ElevenLabs): `narracao/narracao-completa.mp3`
@@ -10,4 +10,8 @@ Nesse mundo, quando sua mãe manda pausar o Roblox, TUDO pausa ⏸️ #shorts
 ## Descrição
 Em Vila Serena, quando a mãe grita "pausa esse jogo!", o mundo inteiro congela. O Léo sempre responde: "mãe, online não pausa!"... e no campeonato valendo mil Robux, isso fez toda a diferença.
 
-#shorts #pixelart #animação #nessemundo #roblox #comedia #historiasempixel
+#shorts #pixelart #animação #nessemundo #roblox #comedia #pixelverso
+
+## Antes de publicar
+- Marcar **"Não, não é conteúdo para crianças"**.
+- Depois de postar, marcar `"postado": true` no `roteiro.json`.
