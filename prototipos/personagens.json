@@ -85,6 +85,7 @@
   "cogumelo-roxo": { "sprite": "cogumelo-roxo", "voz": 1.6 },
   "cogumelo-verde": { "sprite": "cogumelo-verde", "voz": 1.6 },
   "goblin": { "sprite": "goblin", "voz": 1.3 },
+  "goblin-mago": { "sprite": "goblin-mago", "voz": 1.3 },
   "heroi-aventureiro": { "sprite": "heroi-aventureiro", "voz": 1.0 },
   "heroi-aventureira": { "sprite": "heroi-aventureira", "voz": 1.15 },
   "heroi-grandao": { "sprite": "heroi-grandao", "voz": 0.8 },

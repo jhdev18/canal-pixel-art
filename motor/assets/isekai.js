@@ -121,7 +121,8 @@ function spriteCogumeloComum(cor) {
 // na direita. Ele "anota" no grimório o que vê. Estados: parado (anotando: a página vira), anotando, feliz, rindo, alerta,
 // conjurar (cajado erguido, chama e olhos acesos mais fortes), andando/correndo. A chama e os olhos ficam na camada que brilha.
 const MANTO = ['#2a1a3e', '#3e2858', '#563878'], VERDE_MAGIA = ['#c8ffd8', '#7af0a0', '#2ec870'];
-function goblin({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjurar = false, chama = 0 } = {}) {
+// goblinMago: o 1º desenho de bruxo (chapéu de mago e manto roxo estrelado) — o usuário gostou da ideia para PERSONAGENS FUTUROS (sprite goblin-mago).
+function goblinMago({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjurar = false, chama = 0 } = {}) {
   // O = espaço em cima para o chapéu pontudo de bruxo (o desenho do corpo é o mesmo, descido O px)
   const O = 10, W = 30, H = 48, p = new Pix(W, H), b = new Pix(W, H), cx = 13, G = ['#4a7a2a', '#6aa83a', '#8ac850'], y0 = 2 + dy + O;
   // cajado (atrás do corpo, na mão direita): erguido quando conjura
@@ -165,8 +166,65 @@ function goblin({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjura
   p.contorno('#140a1e');
   return [p, b];
 }
-function spriteGoblin() {
-  const quadros = [], brilho = [], add = (op) => { const [q, b] = goblin(op); quadros.push(q); brilho.push(b); return quadros.length - 1; };
+// GOBLIN BRUXO DAS TREVAS (o rival do Davi; pedido do usuário: "algo mais ameaçador", sem o manto roxo): capuz pontudo preto com o rosto
+// na sombra (só os olhos verdes acesos e o sorriso de dentes pontudos aparecem), manto preto rasgado em tiras, colar de ossinhos,
+// grimório preto com runas verdes e cajado retorcido com uma caveira de olhos verdes e chama verde; fumaça escura nos pés.
+const TREVAS = ['#0c0c10', '#18181f', '#26262f'], PELE_TREVAS = ['#2a4419', '#3a5a24', '#4c6e30'];
+function goblinTrevas({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjurar = false, chama = 0 } = {}) {
+  const O = 10, W = 30, H = 48, p = new Pix(W, H), b = new Pix(W, H), cx = 13, G = PELE_TREVAS, y0 = 2 + dy + O;
+  // cajado retorcido (atrás do corpo, na mão direita): erguido quando conjura
+  const sx = cx + 9, topo = conjurar ? y0 - 2 : y0 + 3;
+  for (let y = topo + 5; y < 36 + O + (conjurar ? -3 : 0); y++) { const tx = Math.round(Math.sin(y * 0.7) * 0.8); p.set(sx + tx, y, '#3a2a1e'); p.set(sx + tx + 1, y, '#241810'); }
+  p.set(sx - 1, topo + 8, '#3a2a1e'); p.set(sx - 2, topo + 7, '#3a2a1e'); p.set(sx + 2, topo + 10, '#3a2a1e');                     // galhos tortos
+  p.elipse(sx + 0.5, topo + 3, 3, 2.8, '#e0d8c0'); p.ret(sx - 1, topo + 5, 4, 1, '#b8b098');                                       // caveira
+  for (const x of [sx - 1, sx + 1]) { p.set(x, topo + 3, '#7af0a0'); b.set(x, topo + 3, '#7af0a0'); }                              // olhos da caveira acesos
+  const ch = conjurar ? 5 : 2 + chama;
+  for (let k = 0; k < ch + 2; k++) { const w = Math.max(0, Math.round((ch + 2 - k) * 0.6)); for (let x = -w; x <= w; x++) { const c = k < 1 ? VERDE_MAGIA[2] : x === 0 && k < ch ? VERDE_MAGIA[0] : VERDE_MAGIA[1]; p.set(sx + x, topo - k, c); b.set(sx + x, topo - k, c); } }
+  // pés e fumaça escura saindo do chão
+  const pernas = { parado: [[-4, 0], [2, 0]], a: [[-4, -1], [2, 0]], b: [[-4, 0], [2, -1]] }[perna];
+  for (const [px, py] of pernas) p.ret(cx + px - 1, 34 + O + py + dy, 4, 2, '#0a0a0c');
+  for (const [x, y] of [[-9, 35], [-7, 34], [7, 35], [9, 34], [-11, 36], [11, 36], [0, 36]]) p.set(cx + x, y + O + dy, '#2a2232');
+  // manto preto, comprido, rasgado em tiras na barra
+  for (let y = 17; y < 35; y++) { const w = 5 + Math.round((y - 17) * 0.4); for (let x = -w; x <= w; x++) {
+    if (y > 31 && ((x + 20) % 3 === 0 || (y > 33 && (x + 20) % 3 === 1))) continue;                                              // tiras rasgadas
+    p.set(cx + x, y + dy + O, Pix.tom(TREVAS, 0.75 - (x / w) * 0.35 - (y - 17) * 0.02, cx + x, y)); } }
+  p.ret(cx - 1, 19 + dy + O, 1, 12, '#050507');
+  for (const [x, y] of [[-4, 18], [-3, 19], [-1, 20], [1, 20], [3, 19], [4, 18]]) p.set(cx + x, y + dy + O, '#d8d0b8');             // colar de ossinhos
+  p.set(cx, 21 + dy + O, '#e8e0c8');
+  // braços: grimório preto (esquerda) e mão ossuda no cajado (direita)
+  p.ret(cx - 8, 21 + dy + O, 3, 6, TREVAS[1]); p.ret(cx + 6, 21 + dy + O, 3, 6, TREVAS[1]); p.ret(cx + 7, 27 + dy + O, 3, 2, G[1]);
+  const lx = cx - 13, ly = 22 + dy + O;
+  p.ret(lx, ly, 7, 8, '#141010'); p.ret(lx, ly, 7, 1, '#2a2020'); p.ret(lx + 6, ly, 1, 8, '#050505');
+  p.ret(lx + 1, ly + 1, 5, 6, '#c8bc9c'); p.ret(lx + 3, ly + 1, 1, 6, '#9a8e70');
+  for (const [x, y] of [[lx + 2, ly + 3], [lx + 4, ly + 2], [lx + 4, ly + 4], [lx + 2, ly + 5]]) { p.set(x, y, '#2ec870'); b.set(x, y, '#2ec870'); }
+  if (pagina) p.ret(lx + 3, ly - 1, 3, 4, '#d8ccac');
+  // capuz pontudo preto (atrás), cabeça escura e orelhas furando o capuz
+  const hy = 10 + dy + O;
+  p.elipse(cx, hy, 10, 9.5, (x, y, ex, ey) => Pix.tom(TREVAS, 0.7 - ex * 0.3 - ey * 0.4, x, y));
+  for (let k = 0; k < 9; k++) { const w = Math.max(0, Math.round(4 - k * 0.45)), dx = Math.round(k * 0.35); for (let x = -w; x <= w; x++) p.set(cx + x + dx, hy - 9 - k, TREVAS[k < 3 ? 1 : 2]); }   // ponta do capuz caída para trás
+  p.elipse(cx, hy + 1, 6.5, 6.2, (x, y, ex, ey) => Pix.tom(G, 0.7 - ex * 0.3 - ey * 0.35, x, y));
+  for (const s2 of [-1, 1]) for (let k = 0; k < 6; k++) { const x = cx + s2 * (9 + k), y = hy - Math.round(k * 0.6); p.set(x, y, G[1]); p.set(x, y + 1, G[0]); }
+  // sombra do capuz sobre a testa e os olhos (o rosto fica escondido)
+  for (let y = hy - 6; y <= hy; y++) for (let x = -7; x <= 7; x++) if (p.opaco(cx + x, y) && (y < hy - 2 || Math.abs(x) > 4 + (y - hy + 2))) p.set(cx + x, y, '#07090a');
+  p.ret(cx - 1, hy + 2, 2, 4, G[0]); p.set(cx, hy + 6, G[0]);                                                                       // nariz comprido
+  // olhos verdes acesos, puxados (bravos); maiores quando conjura ou em alerta
+  const grande = face === 'alerta' || conjurar;
+  for (const [ox, dir] of [[-5, 1], [2, -1]]) {
+    const pts = grande ? [[0, 0], [1, 0], [2, 0], [0, -1], [1, -1], [2, -1]] : [[0, 0], [1, 0], [2, 0], [dir > 0 ? 2 : 0, -1]];
+    for (const [x, y] of pts) { p.set(cx + ox + x, hy - 1 + y, VERDE_MAGIA[1]); b.set(cx + ox + x, hy - 1 + y, VERDE_MAGIA[1]); }
+    p.set(cx + ox + 1, hy - 1, VERDE_MAGIA[0]); b.set(cx + ox + 1, hy - 1, VERDE_MAGIA[0]);
+  }
+  // sorriso de dentes pontudos (abre mais rindo/conjurando)
+  const abre = face === 'rindo' || conjurar;
+  for (let x = -4; x <= 4; x++) { p.set(cx + x, hy + 6, '#0a0a0a'); if (abre) p.set(cx + x, hy + 7, '#0a0a0a'); }
+  for (const x of [-3, -1, 1, 3]) p.set(cx + x, hy + 6, '#f0ead8');
+  if (abre) for (const x of [-2, 0, 2]) p.set(cx + x, hy + 7, '#f0ead8');
+  p.contorno('#050507');
+  return [p, b];
+}
+
+function spriteGoblin(desenho) {
+  const quadros = [], brilho = [], add = (op) => { const [q, b] = desenho(op); quadros.push(q); brilho.push(b); return quadros.length - 1; };
   const a0 = add({}), a1 = add({ pagina: 1, chama: 1 }), a2 = add({ dy: 1, chama: 1 });
   const f0 = add({ face: 'feliz' }), f1 = add({ face: 'feliz', dy: 1, chama: 1 });
   const r0 = add({ face: 'rindo', chama: 1 }), r1 = add({ face: 'rindo', dy: 1 });
@@ -233,13 +291,15 @@ registrarSprites({
   'cogumelo-comum': () => spriteCogumeloComum(0),
   'cogumelo-roxo': () => spriteCogumeloComum(1),
   'cogumelo-verde': () => spriteCogumeloComum(2),
-  goblin: () => spriteGoblin(),
+  goblin: () => spriteGoblin(goblinTrevas),
+  'goblin-mago': () => spriteGoblin(goblinMago),
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k, () => pessoa(p)])),
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k + '-dormindo', () => deitado(p)])),
   'espada-heroi': () => ({ quadros: [espada(), espada('golpe-dir'), espada('golpe-esq')], anims: { parado: { q: [0] }, 'golpe-dir': { q: [1] }, 'golpe-esq': { q: [2] } }, sombra: false }),
   'chapeu-davi': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
 }, { grupo: 'Isekai (o cogumelo Davi)', status: 'protótipo', descricoes: {
   'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',
-  goblin: 'o goblin BRUXO (necromante), rival da série: chapéu pontudo de bruxo, manto roxo com estrelinhas, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
+  'goblin-mago': 'goblin de chapéu de mago e manto roxo estrelado, guardado para personagens futuros; mesmos estados do goblin',
+  goblin: 'o goblin BRUXO DAS TREVAS, rival da série: capuz pontudo preto com o rosto na sombra, manto preto rasgado, colar de ossinhos, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
   'cogumelo-comum': 'os outros cogumelos da floresta (figurantes); também cogumelo-roxo e cogumelo-verde',
 } });

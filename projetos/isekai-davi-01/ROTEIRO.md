@@ -32,7 +32,7 @@
 **12.** `floresta-isekai` — Os heróis não derrotavam os cogumelos por serem fracos.
 **13.** `floresta-isekai` — Derrotavam antes que eles crescessem.
 **14.** `floresta-isekai` — E, escondido na moita, um goblin bruxo anotava tudo.  
-   _Gancho da série:_ o goblin é um BRUXO (chapéu pontudo, manto roxo estrelado, grimório, cajado com caveirinha e chama verde); chamas verdes — as almas dos cogumelos derrotados — flutuam em volta dele; ele ergue o cajado e ri.
+   _Gancho da série:_ o goblin é um BRUXO DAS TREVAS (capuz preto com o rosto na sombra, olhos verdes, manto rasgado, grimório, cajado com caveirinha e chama verde); chamas verdes — as almas dos cogumelos derrotados — flutuam em volta dele; ele ergue o cajado e ri.
 **15.** `floresta-isekai` — Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.  
    _Final interativo:_ o Davi anda para um lado, para com "?" e volta; o placar no alto mostra "1 FLORESTA" e "2 VILA". O mais votado nos comentários decide o lugar do episódio 2 (mais fundo na floresta ou a vila dos heróis).
 

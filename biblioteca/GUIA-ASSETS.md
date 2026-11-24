@@ -207,9 +207,12 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   `andando`/`correndo` (passinhos), `pulando`, `assustado` (+`-andando`), `tremendo`, `sem-chapeu` (+`-andando`, `-tremendo`, `-inspira`,
   `-espirro`), `espirro-antes`/`espirro` (a ação `espirrar` funciona nele), `feliz`, `grande` (chapéu gigante dourado) e as expressões.
 - `cogumelo-comum`, `cogumelo-roxo`, `cogumelo-verde`: os outros cogumelos da floresta (figurantes; `sumir` = "puf" quando o herói golpeia).
-- **`goblin`** (personagem): o rival da série, um **goblin bruxo** (necromante) — chapéu pontudo de aba larga com fita verde e estrelinhas, manto roxo estrelado, grimório
-  roxo com runas verdes, cajado com caveirinha e chama verde, olhos verdes que brilham. `parado` (anotando: a página vira), `feliz`, `rindo`,
+- **`goblin`** (personagem): o rival da série, um **goblin bruxo das trevas** (pedido do usuário: ameaçador) — capuz pontudo preto com o rosto na
+  sombra (só os olhos verdes acesos e o sorriso de dentes pontudos), manto preto rasgado em tiras, colar de ossinhos, fumaça escura nos pés, grimório
+  preto com runas verdes, cajado retorcido com caveira de olhos verdes e chama verde. `parado` (anotando: a página vira), `feliz`, `rindo`,
   `alerta`, `conjurar` (cajado erguido, olhos acesos), andando. Combina com `fogo-fatuo` `verde` (as almas que ele junta) e `flash` com `cor` verde.
+- **`goblin-mago`** (personagem): o 1º desenho do goblin bruxo — chapéu de mago pontudo com fita verde e estrelinhas e manto roxo estrelado. O usuário
+  achou "mais para um mago" e guardou a ideia para **personagens futuros** (um mago bonzinho, um aprendiz). Mesmos estados do `goblin`.
 - Heróis (gerador de pessoas, com expressões): `heroi-aventureiro` (ruivo, capa vermelha), `heroi-aventureira` (rabo preto, capa azul),
   `heroi-grandao` (careca de bigode, capa amarela). Espada na mão: `{ "sprite": "espada-heroi", "sobre": { "id": "<herói>", "dx": 0.45, "dy": 0.8 } }`.
   Dormindo no chão: `heroi-*-dormindo` (deitado, olhos fechados) — troca com `sumir`/`aparecer` (`som: null`) no mesmo lugar + `emocao` `zzz`.

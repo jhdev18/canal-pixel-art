@@ -355,9 +355,11 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
   (ep. 1: "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.") com o `placar` no alto mostrando só as opções ("1 FLORESTA" /
   "2 VILA", sem números grandes); o mais votado vira o episódio seguinte. Votar em **poder** foi recusado (riso/amor "não têm sentido" para
   um cogumelo); poderes, quando vierem, devem ser coisas que cogumelo faz (brotar clones, raízes, brilhar no escuro, chapéu-escudo).
-- **O goblin é BRUXO (necromante)** (pedido do usuário: "característica especial" e depois "vestido de bruxo"): chapéu pontudo de bruxo, manto roxo com estrelinhas, grimório, cajado com caveirinha e chama verde,
+- **O goblin é BRUXO DAS TREVAS (necromante)** (pedidos do usuário: "característica especial", "vestido de bruxo" e "mais ameaçador, um bruxo das
+  trevas"): capuz pontudo preto com o rosto na sombra, manto preto rasgado, colar de ossinhos, sorriso de dentes pontudos, grimório, cajado com caveirinha e chama verde,
   olhos verdes que brilham (estado `conjurar`); no ep. 1 as almas dos cogumelos derrotados (`fogo-fatuo` verde) flutuam em volta dele —
-  mistério da série. Sem luz própria no sprite (a luz verde estourava o rosto dele).
+  mistério da série. Sem luz própria no sprite (a luz verde estourava o rosto dele). O desenho anterior (chapéu de mago + manto roxo
+  estrelado) virou o `goblin-mago`, guardado para personagens futuros (o usuário gostou da ideia, mas "é mais para um mago").
 
 ## Objetos que contam a história (técnica aprovada pelo usuário no `nesse-mundo-espirro`)
 O usuário gostou de como os itens foram usados no vídeo do espirro — usar essa técnica nos próximos vídeos:

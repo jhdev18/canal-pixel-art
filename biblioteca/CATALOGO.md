@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (314)
+## Sprites (315)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -420,6 +420,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `cogumelo-roxo` | 🧪 protótipo | parado | 18×20 |
 | `cogumelo-verde` | 🧪 protótipo | parado | 18×20 |
 | `goblin` | 🧪 protótipo | parado, anotando, feliz, rindo, alerta, conjurar | 30×48 |
+| `goblin-mago` | 🧪 protótipo | parado, anotando, feliz, rindo, alerta, conjurar | 30×48 |
 | `heroi-aventureiro` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 28×44 |
 | `heroi-aventureira` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 28×44 |
 | `heroi-grandao` | 🧪 protótipo | parado, sentado, sentado-lado, costas, sentado-costas, espirro-antes, espirro, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 28×44 |
@@ -502,6 +503,7 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `cogumelo-roxo` | 🧪 protótipo | `cogumelo-roxo` | 1.6 |
 | `cogumelo-verde` | 🧪 protótipo | `cogumelo-verde` | 1.6 |
 | `goblin` | 🧪 protótipo | `goblin` | 1.3 |
+| `goblin-mago` | 🧪 protótipo | `goblin-mago` | 1.3 |
 | `heroi-aventureiro` | 🧪 protótipo | `heroi-aventureiro` | 1 |
 | `heroi-aventureira` | 🧪 protótipo | `heroi-aventureira` | 1.15 |
 | `heroi-grandao` | 🧪 protótipo | `heroi-grandao` | 0.8 |
