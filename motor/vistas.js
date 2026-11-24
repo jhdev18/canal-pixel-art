@@ -12,6 +12,7 @@ import { gerarComodoDiagonal, COMODO, resolverAngulo } from './cenarios/comodoDi
 import { gerarPalco3d } from './cenarios/palco3d.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
 import { gerarMapaRPG } from './cenarios/mapaRPG.js';
+import { gerarMapaDiorama } from './cenarios/mapaDiorama.js';
 import { estadoCamera, estadoElemento } from './compartilhado/linhaDoTempo.js';
 import { obterSprite } from './sprites.js';
 import { PIXELS_POR_UNIDADE as PPU, FOV } from './compartilhado/util.js';
@@ -250,10 +251,11 @@ function vistaDiagonal(c, motor) {
   // No espelhado, j = +x (andar para +x continua indo para a direita na tela) e os prédios ficam na ordem contrária.
   const ang = op.angulo ?? c.angulo, esp = ang === 'espelhado', rpg = ang === 'rpg';   // "rpg": visto de cima e de frente
   const J = (x) => (esp ? x : -x);
-  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual, espelhar: esp, rpg });
+  // PROTÓTIPO (teste): "rua": { "mapa": "vila" } = mapa inteiro da vila no diorama clássico (motor/cenarios/mapaDiorama.js)
+  const rua = op.mapa ? gerarMapaDiorama({ semente: op.semente }) : gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual, espelhar: esp, rpg });
   const cena = new THREE.Scene();
   // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
-  cena.background = op.ceu === 'mata' ? mataDiagonal(W, H) : ceuDiagonal(W, H, rua.noite, rua.tarde);
+  cena.background = rua.mapa ? new THREE.Color(op.fundo || '#1c2030') : op.ceu === 'mata' ? mataDiagonal(W, H) : ceuDiagonal(W, H, rua.noite, rua.tarde);
   const cv = document.createElement('canvas'); cv.width = rua.W; cv.height = rua.H;
   cv.getContext('2d').putImageData(new ImageData(rua.imagem, rua.W, rua.H), 0, 0);
   const texMundo = tex(cv);
@@ -272,6 +274,13 @@ function vistaDiagonal(c, motor) {
     return new THREE.Vector3(Math.round(p.x) / PPU, (rua.H - Math.round(p.y)) / PPU + altura, 0.5);
   };
   const ordem = rpg ? (i, j) => 2000 + Math.round(i * 40 + j * 0.01) : (i, j) => 2000 + Math.round((i + j) * 20);   // no RPG: quem está mais perto (i maior) fica na frente
+  // peças do mapa (casas): planos próprios, ordenados com os personagens pelo centro da casa
+  const texPecas = (rua.pecas || []).map((p) => {
+    const t = tex(p.cv);
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(p.cv.width / PPU, p.cv.height / PPU), new THREE.MeshBasicMaterial({ map: t, transparent: true, alphaTest: 0.5, depthWrite: false }));
+    m.position.set((p.x0 + p.cv.width / 2) / PPU, (rua.H - p.y0 - p.cv.height / 2) / PPU, 0.4); m.renderOrder = ordem(p.i, p.j);
+    cena.add(m); return t;
+  });
 
   // postes da rua (sprites) + luz para iluminar os personagens que passam perto
   const decor = [];
@@ -301,7 +310,7 @@ function vistaDiagonal(c, motor) {
     visual: rua.VIS,
     nevoa: rua.VIS?.profundidade ? { cor: nevoaCor(rua.noite, rua.tarde), f: (z) => nevoaZ(z, rua.noite) } : null,
     atualizar: (t) => { for (const f of fumacas) { const k = Math.floor((t || 0) * f.fps) % f.texs.length; if (f.m.material.map !== f.texs[k]) { f.m.material.map = f.texs[k]; f.m.material.emissiveMap = f.texs[k]; f.m.material.needsUpdate = true; } } },
-    liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); fumacas.forEach((f) => f.texs.forEach((t) => t.dispose())); },
+    liberar: () => { texMundo.dispose(); texPecas.forEach((t) => t.dispose()); cena.background?.dispose?.(); sombraChao?.liberar(); fumacas.forEach((f) => f.texs.forEach((t) => t.dispose())); },
     ordemInicial: (el) => ordem(iDe(el), J(el.x ?? 0)),
     // sombra: posição (i, j) do centro do elemento e o estado da sombra no chão
     centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), J(st.x) - (c ? (c.dj ?? 1) / 2 : 0)]; },

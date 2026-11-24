@@ -1,0 +1,368 @@
+{
+ "titulo": "Teste: mapa no diorama classico",
+ "resolucao": [
+  320,
+  180
+ ],
+ "visual": true,
+ "cenas": [
+  {
+   "cenario": "mapa-vila",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "1. PRACA COM FONTE",
+   "camera": {
+    "x": 0,
+    "z": 4,
+    "y": 2.2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -11,
+     "z": 4.3
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 3,
+     "z": 5.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 6.5,
+     "z": 11.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.5,
+     "z": 8.4
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": -1.6,
+     "z": 1.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -7,
+     "z": -3
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "bia",
+     "para": -1,
+     "inicio": 0,
+     "duracao": 2
+    }
+   ]
+  },
+  {
+   "cenario": "mapa-vila",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "2. PADARIA NA ESTRADA",
+   "camera": {
+    "x": -11,
+    "z": 3.6,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -11,
+     "z": 4.3
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 3,
+     "z": 5.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 6.5,
+     "z": 11.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.5,
+     "z": 8.4
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": -1.6,
+     "z": 1.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -7,
+     "z": -3
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "cenario": "mapa-vila",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "3. ESCOLA, PONTE E RIO",
+   "camera": {
+    "x": 4,
+    "z": 12,
+    "y": 2.4
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -11,
+     "z": 4.3
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 3,
+     "z": 5.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 6.5,
+     "z": 11.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.5,
+     "z": 8.4
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": -1.6,
+     "z": 1.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -7,
+     "z": -3
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "cenario": "mapa-vila",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "4. CASAS DE BAIXO E HORTA",
+   "camera": {
+    "x": -9,
+    "z": -5,
+    "y": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -11,
+     "z": 4.3
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 3,
+     "z": 5.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 6.5,
+     "z": 11.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.5,
+     "z": 8.4
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": -1.6,
+     "z": 1.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -7,
+     "z": -3
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "cenario": "mapa-vila",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "5. MAQUETE DE LONGE (zoom 0,5)",
+   "camera": {
+    "x": 0,
+    "z": 3,
+    "y": 2,
+    "zoom": 0.5
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -11,
+     "z": 4.3
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 3,
+     "z": 5.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 6.5,
+     "z": 11.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.5,
+     "z": 8.4
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": -1.6,
+     "z": 1.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -7,
+     "z": -3
+    }
+   ],
+   "acoes": []
+  },
+  {
+   "cenario": "mapa-vila",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "legenda": "6. CLOSE (zoom 2)",
+   "camera": {
+    "x": -2,
+    "z": 3.2,
+    "y": 1.4,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": -3,
+     "z": 2
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": -11,
+     "z": 4.3
+    },
+    {
+     "id": "nina",
+     "personagem": "rival",
+     "x": 3,
+     "z": 5.6
+    },
+    {
+     "id": "leo",
+     "personagem": "menino-topete",
+     "x": 6.5,
+     "z": 11.6
+    },
+    {
+     "id": "vovo",
+     "personagem": "vovo",
+     "x": -4.5,
+     "z": 8.4
+    },
+    {
+     "id": "cao",
+     "personagem": "cachorro-caramelo",
+     "x": -1.6,
+     "z": 1.4
+    },
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -7,
+     "z": -3
+    }
+   ],
+   "acoes": []
+  }
+ ]
+}
