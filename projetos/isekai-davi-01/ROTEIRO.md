@@ -19,9 +19,9 @@
 ---
 
 **1.** `floresta-isekai` — E se você renascesse como o monstro mais fraco do jogo?
-**2.** `floresta-isekai` — Ele acordou sem braços, de perninhas curtas e chapéu gigante.
+**2.** `floresta-isekai` — Davi acordou sem braços, de perninhas curtas e chapéu gigante.
 **3.** `floresta-isekai` — Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.
-**4.** `floresta-isekai` — Por isso, todo herói novo vem treinar na floresta.
+**4.** `floresta-isekai` — Por isso, todo herói novo vem treinar na floresta. (um cogumelo verde se assusta e foge)
 **5.** `floresta-isekai` — Até que, numa manhã, vieram dez de uma vez.
 **6.** `floresta-isekai` — Um por um, os cogumelos da floresta foram sumindo.
 **7.** `floresta-isekai` — Só sobrou o Davi. E ele fugia a passinhos deste tamanho.

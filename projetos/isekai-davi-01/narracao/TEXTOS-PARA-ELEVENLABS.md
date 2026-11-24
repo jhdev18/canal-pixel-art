@@ -11,7 +11,7 @@ São **15 falas** (uma por cena com narração):
 | Cena | Fala |
 |---|---|
 | 1 | E se você renascesse como o monstro mais fraco do jogo? |
-| 2 | Ele acordou sem braços, de perninhas curtas e chapéu gigante. |
+| 2 | Davi acordou sem braços, de perninhas curtas e chapéu gigante. |
 | 3 | Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota. |
 | 4 | Por isso, todo herói novo vem treinar na floresta. |
 | 5 | Até que, numa manhã, vieram dez de uma vez. |

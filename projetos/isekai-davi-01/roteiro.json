@@ -78,7 +78,7 @@
    }
   },
   {
-   "narracaoTexto": "Ele acordou sem braços, de perninhas curtas e chapéu gigante.",
+   "narracaoTexto": "Davi acordou sem braços, de perninhas curtas e chapéu gigante.",
    "cenario": "floresta-isekai",
    "titulo": "E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?",
    "tituloInicio": 0.3,
@@ -109,45 +109,45 @@
      "alvo": "davi",
      "para": 0.2,
      "inicio": 0.3,
-     "duracao": 1.59
+     "duracao": 1.61
     },
     {
      "tipo": "pular",
      "alvo": "davi",
      "altura": 0.15,
-     "inicio": 1.97,
+     "inicio": 1.99,
      "duracao": 0.32
     },
     {
      "tipo": "som",
      "som": "aterrissar",
-     "inicio": 2.04
+     "inicio": 2.07
     },
     {
      "tipo": "espirrar",
      "alvo": "davi",
      "duracao": 1,
      "inspira": 0.6,
-     "inicio": 2.48
+     "inicio": 2.52
     },
     {
      "tipo": "emocao",
      "alvo": "c1",
      "icone": "zzz",
-     "inicio": 3.07
+     "inicio": 3.13
     },
     {
      "tipo": "esporos",
      "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
-     "inicio": 3.08
+     "inicio": 3.12
     },
     {
      "tipo": "expressao",
      "alvo": "davi",
      "rosto": "envergonhado",
-     "inicio": 3.67,
+     "inicio": 3.73,
      "duracao": 0.6
     }
    ],
@@ -308,10 +308,11 @@
      }
     },
     {
-     "id": "davi",
-     "personagem": "cogumelo-davi",
-     "x": 5.4,
-     "z": 2.2
+     "id": "c3",
+     "personagem": "cogumelo-verde",
+     "x": 4.2,
+     "z": 2.2,
+     "figurante": true
     }
    ],
    "acoes": [
@@ -342,10 +343,17 @@
      "inicio": 2.74
     },
     {
-     "tipo": "trocar",
-     "alvo": "davi",
-     "estado": "assustado",
-     "inicio": 2.58
+     "tipo": "emocao",
+     "alvo": "c3",
+     "icone": "!",
+     "inicio": 2.35
+    },
+    {
+     "tipo": "andar",
+     "alvo": "c3",
+     "para": 6.4,
+     "inicio": 2.64,
+     "duracao": 0.85
     },
     {
      "tipo": "expressao",

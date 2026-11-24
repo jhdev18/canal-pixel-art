@@ -22,7 +22,7 @@ C.push(cena('E se você renascesse como o monstro mais fraco do jogo?', {
 // o esporo sai no ATCHIM (início do espirro + 0,6 s)
 { const c = C[0], e = c.acoes.find((x) => x.tipo === 'espirrar'), s = c.acoes.find((x) => x.tipo === 'esporos'); s.inicio = +(e.inicio + 0.6).toFixed(2); }
 // 2. A desvantagem e a PISTA: ele tropeça, espirra de novo e o cogumelo ao lado cai no sono
-C.push(cena('Ele acordou sem braços, de perninhas curtas e chapéu gigante.', {
+C.push(cena('Davi acordou sem braços, de perninhas curtas e chapéu gigante.', {
   cenario: 'floresta-isekai', camera: CAM(0.4), foco: 'davi',
   titulo: 'E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?', tituloInicio: 0.3, tituloDuracao: 2.6,
   elementos: [P('davi', 'cogumelo-davi', -1.6, 3.0), P('c1', 'cogumelo-roxo', 1.8, 3.8, F)],
@@ -37,12 +37,12 @@ C.push(cena('Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota
   acoes: [a(0.05, 'andar', { alvo: 'h1', para: 2.4, durF: 0.3 }), a(0.4, 'golpe', { alvo: 'h1', direcao: 'direita' }), a(0.44, 'sumir', { alvo: 'c2' }),
     a(0.46, 'trocar', { alvo: 'davi', estado: 'tremendo' }), a(0.5, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' })],
 }));
-// 4. Mais heróis: dois chegam girando a espada no ar (treino)
+// 4. Mais heróis: dois chegam girando a espada no ar (treino); um cogumelo verde se assusta e foge (pedido do usuário: não o Davi)
 C.push(cena('Por isso, todo herói novo vem treinar na floresta.', {
   cenario: 'floresta-isekai', camera: CAM(1.6), foco: ['h1', 'h2'],
-  elementos: [P('h1', 'heroi-aventureiro', -2.6, 3.0, F), ESPADA('h1'), P('h2', 'heroi-aventureira', -4.6, 3.8, F), ESPADA('h2'), P('davi', 'cogumelo-davi', 5.4, 2.2)],
+  elementos: [P('h1', 'heroi-aventureiro', -2.6, 3.0, F), ESPADA('h1'), P('h2', 'heroi-aventureira', -4.6, 3.8, F), ESPADA('h2'), P('c3', 'cogumelo-verde', 4.2, 2.2, F)],
   acoes: [a(0, 'andar', { alvo: 'h1', para: 1.2, durF: 0.55 }), a(0.05, 'andar', { alvo: 'h2', para: -0.8, durF: 0.55 }),
-    a(0.62, 'golpe', { alvo: 'h1', direcao: 'direita' }), a(0.75, 'golpe', { alvo: 'h2', direcao: 'esquerda' }), a(0.7, 'trocar', { alvo: 'davi', estado: 'assustado' })],
+    a(0.62, 'golpe', { alvo: 'h1', direcao: 'direita' }), a(0.75, 'golpe', { alvo: 'h2', direcao: 'esquerda' }), a(0.66, 'emocao', { alvo: 'c3', icone: '!' }), a(0.72, 'andar', { alvo: 'c3', para: 6.4, durF: 0.26 })],   // outro cogumelo (não o Davi) se assusta e foge
 }));
 // Posições da manhã do ataque (cenas 5–13): o Davi na esquerda, os heróis espalhados pela clareira (cada um na sua faixa de z)
 const HEROIS = [['h1', 'heroi-aventureiro', 0.8, 3.0], ['h2', 'heroi-aventureira', 2.4, 3.8], ['h3', 'heroi-grandao', 3.8, 2.6],
