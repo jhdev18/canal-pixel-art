@@ -11,13 +11,14 @@
    "foto": [
     1
    ],
-   "visual": false,
+   "visual": true,
+   "semente": 26,
    "camera": {
     "x": 4.6,
     "z": 2.2,
     "y": 2.4
    },
-   "legenda": "ANTES: rua",
+   "legenda": "RUA (atual)",
    "elementos": [
     {
      "id": "bia",
@@ -43,8 +44,7 @@
      "x": 1.6,
      "z": 1.2
     }
-   ],
-   "semente": 26
+   ]
   },
   {
    "cenario": "rua-comercial",
@@ -53,170 +53,40 @@
     1
    ],
    "visual": true,
+   "semente": 26,
+   "angulo": "espelhado",
    "camera": {
-    "x": 4.6,
+    "x": -4.6,
     "z": 2.2,
     "y": 2.4
    },
-   "legenda": "DEPOIS: rua",
+   "legenda": "RUA ESPELHADA",
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": 3.6,
+     "x": -3.6,
      "z": 5
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": 5.4,
+     "x": -5.4,
      "z": 4.6
     },
     {
      "id": "pref",
      "personagem": "prefeito",
-     "x": 7.6,
+     "x": -7.6,
      "z": 2
     },
     {
      "id": "al",
      "personagem": "aluno",
-     "x": 1.6,
+     "x": -1.6,
      "z": 1.2
     }
-   ],
-   "semente": 26
-  },
-  {
-   "cenario": "praca",
-   "duracao": 2,
-   "foto": [
-    1
-   ],
-   "visual": false,
-   "camera": {
-    "x": 0,
-    "z": -8.5,
-    "y": 2.2
-   },
-   "remover": [
-    "arvore3",
-    "arvore4"
-   ],
-   "legenda": "ANTES: praça",
-   "elementos": [
-    {
-     "id": "bia",
-     "personagem": "menina-capa",
-     "x": -1.2,
-     "z": -8.6
-    },
-    {
-     "id": "nina",
-     "personagem": "rival",
-     "x": 0.6,
-     "z": -8.6
-    },
-    {
-     "id": "vovo",
-     "personagem": "vovo",
-     "x": 2.4,
-     "z": -8
-    },
-    {
-     "id": "cao",
-     "personagem": "cachorro-caramelo",
-     "x": -2.6,
-     "z": -9.2
-    }
-   ],
-   "semente": 26
-  },
-  {
-   "cenario": "praca",
-   "duracao": 2,
-   "foto": [
-    1
-   ],
-   "visual": true,
-   "camera": {
-    "x": 0,
-    "z": -8.5,
-    "y": 2.2
-   },
-   "remover": [
-    "arvore3",
-    "arvore4"
-   ],
-   "legenda": "DEPOIS: praça",
-   "elementos": [
-    {
-     "id": "bia",
-     "personagem": "menina-capa",
-     "x": -1.2,
-     "z": -8.6
-    },
-    {
-     "id": "nina",
-     "personagem": "rival",
-     "x": 0.6,
-     "z": -8.6
-    },
-    {
-     "id": "vovo",
-     "personagem": "vovo",
-     "x": 2.4,
-     "z": -8
-    },
-    {
-     "id": "cao",
-     "personagem": "cachorro-caramelo",
-     "x": -2.6,
-     "z": -9.2
-    }
-   ],
-   "semente": 26
-  },
-  {
-   "cenario": "floresta-isekai",
-   "duracao": 2,
-   "foto": [
-    1
-   ],
-   "visual": false,
-   "camera": {
-    "x": 0.6,
-    "z": 2.2,
-    "y": 1.35
-   },
-   "legenda": "ANTES: floresta",
-   "elementos": [
-    {
-     "id": "davi",
-     "personagem": "cogumelo-davi",
-     "x": -1.4,
-     "z": 2.6
-    },
-    {
-     "id": "h1",
-     "personagem": "heroi-aventureiro",
-     "x": 1.6,
-     "z": 3.6
-    },
-    {
-     "id": "c1",
-     "personagem": "cogumelo-roxo",
-     "x": 0.2,
-     "z": 1.8
-    },
-    {
-     "id": "c2",
-     "personagem": "cogumelo-verde",
-     "x": 3.2,
-     "z": 2.2
-    }
-   ],
-   "semente": 26
+   ]
   },
   {
    "cenario": "floresta-isekai",
@@ -225,13 +95,13 @@
     1
    ],
    "visual": true,
-   "camera": {
-    "x": 0.6,
-    "z": 2.2,
-    "y": 1.35
-   },
-   "legenda": "DEPOIS: floresta",
    "clima": "folhas",
+   "camera": {
+    "x": 0.6,
+    "z": 2.2,
+    "y": 1.35
+   },
+   "legenda": "FLORESTA (atual)",
    "elementos": [
     {
      "id": "davi",
@@ -257,8 +127,49 @@
      "x": 3.2,
      "z": 2.2
     }
+   ]
+  },
+  {
+   "cenario": "floresta-isekai",
+   "duracao": 2,
+   "foto": [
+    1
    ],
-   "semente": 26
+   "visual": true,
+   "clima": "folhas",
+   "angulo": "espelhado",
+   "camera": {
+    "x": -0.6,
+    "z": 2.2,
+    "y": 1.35
+   },
+   "legenda": "FLORESTA ESPELHADA",
+   "elementos": [
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 1.4,
+     "z": 2.6
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": -1.6,
+     "z": 3.6
+    },
+    {
+     "id": "c1",
+     "personagem": "cogumelo-roxo",
+     "x": -0.2,
+     "z": 1.8
+    },
+    {
+     "id": "c2",
+     "personagem": "cogumelo-verde",
+     "x": -3.2,
+     "z": 2.2
+    }
+   ]
   }
  ]
 }

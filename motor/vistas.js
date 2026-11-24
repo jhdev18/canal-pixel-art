@@ -244,7 +244,11 @@ function vistaDiagonal(c, motor) {
     for (const el of c.elementos) alcance = Math.max(alcance, Math.abs(estadoElemento(c, el, t).x));
   }
   const comprimento = Math.max(op.comprimento ?? 44, Math.ceil(2 * (alcance + 20)));
-  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual });
+  // PROTÓTIPO "angulo": "espelhado" (no cenário/cena, dentro de "rua" ou na cena): o diorama pelo outro lado da diagonal.
+  // No espelhado, j = +x (andar para +x continua indo para a direita na tela) e os prédios ficam na ordem contrária.
+  const esp = (op.angulo ?? c.angulo) === 'espelhado';
+  const J = (x) => (esp ? x : -x);
+  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual, espelhar: esp });
   const cena = new THREE.Scene();
   // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
   cena.background = op.ceu === 'mata' ? mataDiagonal(W, H) : ceuDiagonal(W, H, rua.noite, rua.tarde);
@@ -296,31 +300,31 @@ function vistaDiagonal(c, motor) {
     nevoa: rua.VIS?.profundidade ? { cor: nevoaCor(rua.noite, rua.tarde), f: (z) => nevoaZ(z, rua.noite) } : null,
     atualizar: (t) => { for (const f of fumacas) { const k = Math.floor((t || 0) * f.fps) % f.texs.length; if (f.m.material.map !== f.texs[k]) { f.m.material.map = f.texs[k]; f.m.material.emissiveMap = f.texs[k]; f.m.material.needsUpdate = true; } } },
     liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); fumacas.forEach((f) => f.texs.forEach((t) => t.dispose())); },
-    ordemInicial: (el) => ordem(iDe(el), -(el.x ?? 0)),
+    ordemInicial: (el) => ordem(iDe(el), J(el.x ?? 0)),
     // sombra: posição (i, j) do centro do elemento e o estado da sombra no chão
-    centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), -st.x - (c ? (c.dj ?? 1) / 2 : 0)]; },
-    sombraIJ: (s) => [FAIXA.calcadaFrente - s.z, -s.x],
-    atualizarSombra: (s) => sombraChao?.atualizar(s ? { i: FAIXA.calcadaFrente - s.z, j: -s.x, R: s.R, t: s.t, cor: s.cor, borda: s.borda } : null),
+    centroIJ: (e, st) => { const c = e.sprite.isoCentro; return [iDe(e.def, st) - (c ? (c.di ?? 1) / 2 : 0), J(st.x) - (c ? (c.dj ?? 1) / 2 : 0)]; },
+    sombraIJ: (s) => [FAIXA.calcadaFrente - s.z, J(s.x)],
+    atualizarSombra: (s) => sombraChao?.atualizar(s ? { i: FAIXA.calcadaFrente - s.z, j: J(s.x), R: s.R, t: s.t, cor: s.cor, borda: s.borda } : null),
     // sombras em forma de pessoa: [{ x, z, alpha, def }] (def.sombraPessoa: { tamanho, direcao, olhos, bloco })
     atualizarSombrasPessoa: (lista, t) => sombraChao?.pessoas(lista.map((p) => {
       const o = typeof p.def.sombraPessoa === 'object' ? p.def.sombraPessoa : {};
       const a = ((o.direcao ?? 0) * Math.PI) / 180;
-      return { i: FAIXA.calcadaFrente - p.z, j: -p.x, di: -Math.cos(a), dj: -Math.sin(a), L: o.tamanho ?? 2.6, alpha: p.alpha, olhos: !!o.olhos, bloco: !!o.bloco };
+      return { i: FAIXA.calcadaFrente - p.z, j: J(p.x), di: -Math.cos(a), dj: esp ? Math.sin(a) : -Math.sin(a), L: o.tamanho ?? 2.6, alpha: p.alpha, olhos: !!o.olhos, bloco: !!o.bloco };
     }), t),
-    paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), -st.x, snap(st.y) + dy),
+    paraMundo: (el, st, dy = 0) => ponto(iDe(el, st), J(st.x), snap(st.y) + dy),
     posicionar(e, st, bob) {
-      const i = iDe(e.def, st), j = -st.x;
+      const i = iDe(e.def, st), j = J(st.x);
       e.malha.position.copy(ponto(i, j, snap(st.y) + bob));
       // objetos isométricos (praça): a ordem usa o centro do objeto, não o canto da frente
       const c = e.sprite.isoCentro, ri = c ? (c.di ?? 1) / 2 : 0, rj = c ? (c.dj ?? 1) / 2 : 0;
       e.malha.renderOrder = ordem(i - ri, j - rj) + 1 + (e.def.sobre ? 2 : 0);   // o que está "sobre" alguém fica na frente dele
     },
     posicionarSombra(e, st) {
-      const i = iDe(e.def, st), j = -st.x;
+      const i = iDe(e.def, st), j = J(st.x);
       e.sombra.position.copy(ponto(i, j, 1 / PPU)); e.sombra.renderOrder = ordem(i, j);
     },
     atualizarCamera(cam, ef) {
-      const centro = ponto(FAIXA.meioRua - (cam.z ?? 0), -cam.x, cam.y);
+      const centro = ponto(FAIXA.meioRua - (cam.z ?? 0), J(cam.x), cam.y);
       camera.position.set(snap(centro.x) + ef.tremorX / PPU, snap(centro.y) + ef.tremorY / PPU, 50);
       camera.zoom = cam.zoom;
     },

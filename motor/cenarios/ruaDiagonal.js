@@ -8,12 +8,13 @@ import { rng } from '../compartilhado/util.js';
 import { desenharTexto, larguraTexto } from '../fonte.js';
 
 // Texto em pixel art como máscara (para escrever letreiros nas fachadas inclinadas).
+let ESPELHO = false;   // rua espelhada: os letreiros são escritos ao contrário para lerem certo depois que o desenho vira
 function mascaraTexto(texto) {
-  const w = larguraTexto(texto) + 2, h = 10;
+  const w = larguraTexto(texto) + 2, h = 10, esp = ESPELHO;
   const c = document.createElement('canvas'); c.width = w; c.height = h;
   const g = c.getContext('2d'); desenharTexto(g, texto, 1, 0, '#fff');
   const d = g.getImageData(0, 0, w, h).data;
-  return { w, h, tem: (x, y) => x >= 0 && y >= 0 && x < w && y < h && d[(y * w + x) * 4 + 3] > 0 };
+  return { w, h, tem: (x, y) => { if (esp) x = w - 1 - x; return x >= 0 && y >= 0 && x < w && y < h && d[(y * w + x) * 4 + 3] > 0; } };
 }
 
 // Estabelecimentos: cores, letreiro e térreo próprios. Padaria, mercado e farmácia são térreos (alt 82: térreo + letreiro + telhado).
@@ -67,6 +68,21 @@ export function opcoesVisual(v) {
 export const nevoaCor = (noite, tarde) => (noite ? [0.16, 0.19, 0.34] : tarde ? [0.96, 0.78, 0.66] : [0.80, 0.88, 0.96]);
 export const nevoaZ = (z, noite) => Math.max(0, Math.min(1, (z - 5) / 8)) * (noite ? 0.3 : 0.42);
 export function gerarRuaDiagonal(opc = {}) {
+  ESPELHO = !!opc.espelhar;
+  try { return espelharRua(gerarRuaBase(opc), opc.espelhar); } finally { ESPELHO = false; }
+}
+// PROTÓTIPO "angulo": "espelhado" — o mesmo diorama visto pelo outro lado da diagonal (prédios subindo para a direita).
+// A câmera não gira (regra 5): o desenho pronto é virado na horizontal, pixel por pixel (letreiros já escritos ao contrário).
+function espelharRua(r, esp) {
+  if (!esp) return r;
+  const { W, H } = r;
+  const vira4 = (img) => { const o = new Uint8ClampedArray(img.length); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) o.set(img.subarray((y * W + x) * 4, (y * W + x) * 4 + 4), (y * W + (W - 1 - x)) * 4); return o; };
+  const vira1 = (a) => { const o = new a.constructor(a.length); for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) o[y * W + (W - 1 - x)] = a[y * W + x]; return o; };
+  const proj = r.proj;
+  return { ...r, imagem: vira4(r.imagem), brilho: vira4(r.brilho), pi: vira1(r.pi), pj: vira1(r.pj), ph: vira1(r.ph), tipo: vira1(r.tipo),
+    proj: (i, j, h) => { const p = proj(i, j, h); return { x: W - p.x, y: p.y }; }, espelhado: true };
+}
+function gerarRuaBase(opc = {}) {
   const VIS = opcoesVisual(opc.visual);
   const comp = opc.comprimento ?? 44;
   const noite = (opc.periodo ?? 'noite') === 'noite';

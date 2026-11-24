@@ -709,6 +709,12 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   `rua-neblina`, `praca-parquinho`, `rua-bairro`, `casa-bia-fora`, `escola-patio`, `onibus-dentro-diorama`, `mercado-dentro-diorama`,
   `consultorio-diorama`, `biblioteca-diorama`; parquinho, trânsito, objetos que mudam de estado, `tv-noticia`, `celular`; moradores
   `motorista`, `gari`, `pipoqueiro`, `medica`. O usuário NÃO quis a dona da banca de jornal nem a bibliotecária. Teste: `projetos/vitrine` (cenas 48–63).
+- **Diorama — melhorias (PROTÓTIPO, teste em `projetos/teste-diorama`):** `"visual": true` no roteiro/cena (ou `{ profundidade, sombras,
+  luz, cor }`) = névoa de profundidade, sombra de contato, lado na sombra/oclusão no pé das paredes e cor mais viva; sem `"visual"`, nada muda.
+  **Outro ângulo do mesmo diorama:** `"angulo": "espelhado"` (na cena ou em `"rua"`) = a rua/praça/floresta vista pelo outro lado da diagonal
+  (o desenho vira, letreiros continuam legíveis; a câmera não gira). No espelhado, `+x` continua indo para a direita, mas os prédios ficam
+  na ordem contrária (padaria em x ≈ -0.6, escola -4.6...) e o `conferir` ainda não calcula os postes nesse modo. Lateral/avenida NÃO são
+  "outros ângulos" (regra 2): só se o usuário pedir.
 - **Scripts do Claude** (`nm.mjs`, `c11-gatos.mjs`, `c12-comida.mjs`, `l2-cachorros.mjs`...): ficam em `ferramentas/roteiros/`
   (ver o `LEIA-ME.md` de lá). Vídeo novo = copiar um script parecido; não regenerar os vídeos já postados.
 - **Branch de trabalho atual:** `claude/adoring-wright-3m65ne` (parte do `claude/happy-goldberg-q6y15g`, já mesclado no principal
