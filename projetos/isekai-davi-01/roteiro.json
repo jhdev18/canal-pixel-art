@@ -2014,7 +2014,7 @@
    "momento": "ataque"
   },
   {
-   "narracaoTexto": "E, escondido na moita, um goblin anotava tudo.",
+   "narracaoTexto": "E, escondido na moita, um goblin necromante anotava tudo.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": 6,
@@ -2035,6 +2035,33 @@
      "x": -1,
      "z": 3,
      "pose": "grande"
+    },
+    {
+     "id": "alma0",
+     "sprite": "fogo-fatuo",
+     "x": 4.6,
+     "z": 4.6,
+     "y": 1.4,
+     "pose": "verde",
+     "oculto": true
+    },
+    {
+     "id": "alma1",
+     "sprite": "fogo-fatuo",
+     "x": 6.8,
+     "z": 4.4,
+     "y": 1.8,
+     "pose": "verde",
+     "oculto": true
+    },
+    {
+     "id": "alma2",
+     "sprite": "fogo-fatuo",
+     "x": 5.4,
+     "z": 5.6,
+     "y": 2.2,
+     "pose": "verde",
+     "oculto": true
     }
    ],
    "acoes": [
@@ -2048,21 +2075,52 @@
     {
      "tipo": "andar",
      "alvo": "gob",
-     "para": 6.2,
-     "inicio": 0.6,
-     "duracao": 1.05
+     "para": 6,
+     "inicio": 0.49,
+     "duracao": 1.11
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "alma0",
+     "som": "fantasma",
+     "inicio": 1.41
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "alma1",
+     "som": null,
+     "inicio": 1.78
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "alma2",
+     "som": null,
+     "inicio": 2.15
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "gob",
+     "estado": "conjurar",
+     "som": "magia",
+     "inicio": 2.71
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.35,
+     "cor": "#7af0a0",
+     "inicio": 2.75
     },
     {
      "tipo": "trocar",
      "alvo": "gob",
      "estado": "rindo",
      "som": "suspense",
-     "inicio": 2.54
+     "inicio": 3.45
     }
    ],
    "vertical": {
     "camera": {
-     "x": 5.94,
+     "x": 5.83,
      "z": 2.2,
      "y": 1.9,
      "zoom": 2
@@ -2073,7 +2131,7 @@
    }
   },
   {
-   "narracaoTexto": "Qual poder ele descobre agora? Comenta: um, riso. Dois, amor.",
+   "narracaoTexto": "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": 0,
@@ -2085,75 +2143,54 @@
     {
      "id": "davi",
      "personagem": "cogumelo-davi",
-     "x": 0,
+     "x": 0.4,
      "z": 3,
      "pose": "grande"
     }
    ],
    "acoes": [
     {
-     "tipo": "pular",
-     "alvo": "davi",
-     "altura": 0.4,
-     "inicio": 0.38,
-     "duracao": 0.59
-    },
-    {
      "tipo": "placar",
      "opcoes": [
-      "RISO",
-      "AMOR"
+      "FLORESTA",
+      "VILA"
      ],
      "cores": [
-      "#f8d040",
-      "#ff8ac0"
+      "#3ac860",
+      "#f0a040"
      ],
-     "inicio": 0.5,
-     "duracao": 3.77
+     "inicio": 0.38,
+     "duracao": 3.87
     },
     {
-     "tipo": "esporos",
-     "posicao": [
-      -1.4,
-      1.2,
-      3
-     ],
-     "cor": "amarelo",
-     "tamanho": "pequeno",
-     "inicio": 1.89
-    },
-    {
-     "tipo": "som",
-     "som": "blip",
-     "inicio": 1.97
-    },
-    {
-     "tipo": "esporos",
-     "posicao": [
-      1.4,
-      1.2,
-      3
-     ],
-     "cor": "rosa",
-     "tamanho": "pequeno",
-     "inicio": 3.15
-    },
-    {
-     "tipo": "som",
-     "som": "blip",
-     "inicio": 3.23
-    },
-    {
-     "tipo": "pular",
+     "tipo": "andar",
      "alvo": "davi",
-     "altura": 0.3,
-     "inicio": 3.67,
-     "duracao": 0.48
+     "para": -0.6,
+     "inicio": 0.5,
+     "duracao": 1.21
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "davi",
+     "icone": "?",
+     "inicio": 1.91
+    },
+    {
+     "tipo": "andar",
+     "alvo": "davi",
+     "para": 1.2,
+     "inicio": 2.8,
+     "duracao": 1.21
+    },
+    {
+     "tipo": "som",
+     "som": "blip",
+     "inicio": 4.13
     }
    ],
    "vertical": {
     "camera": {
-     "x": 1.95,
+     "x": 2.11,
      "z": 2.2,
      "y": -0.45,
      "zoom": 2

@@ -23,7 +23,7 @@ São **15 falas** (uma por cena com narração):
 | 11 | E os dez heróis caíram dormindo. |
 | 12 | Os heróis não derrotavam os cogumelos por serem fracos. |
 | 13 | Derrotavam antes que eles crescessem. |
-| 14 | E, escondido na moita, um goblin anotava tudo. |
-| 15 | Qual poder ele descobre agora? Comenta: um, riso. Dois, amor. |
+| 14 | E, escondido na moita, um goblin necromante anotava tudo. |
+| 15 | Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila. |
 
 Depois rode `npm run rascunho -- isekai-davi-01`: o terminal mostra em quantos trechos o áudio foi cortado.

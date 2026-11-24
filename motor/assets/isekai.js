@@ -1,5 +1,5 @@
 // PROTÓTIPOS (aguardando aprovação) — série ISEKAI "E se você renascesse como o monstro mais fraco do jogo?":
-//   cogumelo-davi (o Davi, cogumelo protagonista), cogumelo-comum (os outros cogumelos da floresta), goblin (o rival que anota tudo),
+//   cogumelo-davi (o Davi, cogumelo protagonista), cogumelo-comum (os outros cogumelos da floresta), goblin (o rival necromante que anota tudo),
 //   heróis aventureiros (3 variações + versões deitadas, dormindo), espada-heroi (vai na mão com "sobre") e chapeu-davi (o chapéu que voa).
 //   Ações novas no motor: "golpe" (arco branco da espada) e "esporos" (nuvem colorida de esporos) — ver motor.js / particulas.js.
 //   Estilo próprio (nada copiado de jogos): contorno escuro, poucas cores, rosto expressivo.
@@ -115,49 +115,63 @@ function spriteCogumeloComum(cor) {
   return { quadros, anims: { parado: { q: [0, 0, 1, 1], fps: 3 }, andando: { q: [2, 0, 3, 0], fps: 8 }, correndo: { q: [2, 0, 3, 0], fps: 14 }, pulando: { q: [2], fps: 1 } }, sombra: true, personagem: true };
 }
 
-// ---------------------------------------------------------------- GOBLIN, o rival que anota tudo (26x34)
-// Cabeça grande, orelhas pontudas para os lados, nariz comprido, sorriso torto; caderninho na mão esquerda e lápis na direita.
-// Estados: parado (anotando — o lápis mexe), feliz, rindo (risadinha), alerta (olhos arregalados), andando/correndo.
-function goblin({ lapis = 0, face = 'normal', perna = 'parado', dy = 0 } = {}) {
-  const W = 28, H = 36, p = new Pix(W, H), cx = 14, G = ['#4a7a2a', '#6aa83a', '#8ac850'];
-  // pernas e pés
+// ---------------------------------------------------------------- GOBLIN NECROMANTE, o rival da série (28x38)
+// Pedido do usuário: o goblin tem algo especial — é um NECROMANTE. Capuz e manto roxo-escuro (as orelhas pontudas furam o capuz),
+// olhos verdes que brilham, livro de feitiços (grimório roxo com runa verde) na mão esquerda e cajado com uma caveirinha e chama verde
+// na direita. Ele "anota" no grimório o que vê. Estados: parado (anotando: a página vira), anotando, feliz, rindo, alerta,
+// conjurar (cajado erguido, chama e olhos acesos mais fortes), andando/correndo. A chama e os olhos ficam na camada que brilha.
+const MANTO = ['#2a1a3e', '#3e2858', '#563878'], VERDE_MAGIA = ['#c8ffd8', '#7af0a0', '#2ec870'];
+function goblin({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjurar = false, chama = 0 } = {}) {
+  const W = 28, H = 38, p = new Pix(W, H), b = new Pix(W, H), cx = 13, G = ['#4a7a2a', '#6aa83a', '#8ac850'], y0 = 2 + dy;
+  // cajado (atrás do corpo, na mão direita): erguido quando conjura
+  const sx = cx + 9, topo = conjurar ? y0 - 1 : y0 + 4;
+  p.ret(sx, topo + 5, 1, 34 - topo - 5 + (conjurar ? -3 : 0), '#5a3a22'); p.ret(sx + 1, topo + 5, 1, 30 - topo, '#3a2414');
+  p.elipse(sx + 0.5, topo + 3, 2.4, 2.2, '#e8e0c8'); p.set(sx - 1, topo + 3, '#2a1a1a'); p.set(sx + 1, topo + 3, '#2a1a1a'); p.ret(sx - 1, topo + 5, 3, 1, '#c8c0a8');   // caveirinha
+  const ch = conjurar ? 4 : 2 + chama;                                                                                               // chama verde em cima
+  for (let k = 0; k < ch + 2; k++) { const w = Math.max(0, Math.round((ch + 2 - k) * 0.6)); for (let x = -w; x <= w; x++) { const c = k < 1 ? VERDE_MAGIA[2] : x === 0 && k < ch ? VERDE_MAGIA[0] : VERDE_MAGIA[1]; p.set(sx + x, topo - k, c); b.set(sx + x, topo - k, c); } }
+  // pernas e pés (aparecem embaixo do manto)
   const pernas = { parado: [[-4, 0], [2, 0]], a: [[-4, -1], [2, 0]], b: [[-4, 0], [2, -1]] }[perna];
-  for (const [px, py] of pernas) { p.ret(cx + px, 29 + py + dy, 3, 5, G[0]); p.ret(cx + px - 1, 33 + py + dy, 4, 2, '#4a3424'); }
-  // túnica de pano com remendo e cinto de corda
-  p.elipse(cx, 25 + dy, 7, 6, (x, y, ex, ey) => Pix.tom(['#5a3a22', '#7a5434', '#9a7048'], 0.7 - ex * 0.3 - ey * 0.3, x, y));
-  p.ret(cx - 6, 27 + dy, 12, 1, '#c8a060'); p.ret(cx + 2, 22 + dy, 3, 3, '#9a8a5a');
-  // braços: caderninho (esquerda) e lápis (direita)
-  p.ret(cx - 9, 21 + dy, 3, 6, G[1]); p.ret(cx + 6, 21 + dy, 3, 6, G[1]);
-  p.ret(cx - 12, 22 + dy, 6, 7, '#f4ecd8'); p.ret(cx - 12, 22 + dy, 6, 1, '#c83a3a');                  // caderno com capa vermelha
-  for (const y of [24, 26]) p.ret(cx - 11, y + dy, 4, 1, '#8a8a9a');
-  const lx = cx + 8 + lapis, ly = 18 + dy - lapis;
-  for (let k = 0; k < 6; k++) p.set(lx - Math.floor(k * 0.5), ly + k, k === 5 ? '#2a2a2a' : k === 0 ? '#e86a8a' : '#f0c030');   // lápis amarelo inclinado
-  // cabeça
+  for (const [px, py] of pernas) { p.ret(cx + px, 31 + py + dy, 3, 4, G[0]); p.ret(cx + px - 1, 34 + py + dy, 4, 2, '#2a1a14'); }
+  // manto roxo comprido, com barra verde
+  for (let y = 18; y < 33; y++) { const w = 5 + Math.round((y - 18) * 0.35); for (let x = -w; x <= w; x++) p.set(cx + x, y + dy, Pix.tom(MANTO, 0.75 - (x / w) * 0.3 - (y - 18) * 0.02, cx + x, y)); }
+  for (let x = -10; x <= 10; x++) if (p.opaco(cx + x, 32 + dy)) p.set(cx + x, 32 + dy, '#2ec870');
+  p.ret(cx - 1, 19 + dy, 2, 12, '#1e1230');
+  // braços: grimório (esquerda) e mão no cajado (direita)
+  p.ret(cx - 8, 21 + dy, 3, 6, MANTO[1]); p.ret(cx + 6, 21 + dy, 3, 6, MANTO[1]); p.ret(cx + 7, 27 + dy, 3, 2, G[1]);
+  const lx = cx - 13, ly = 22 + dy;
+  p.ret(lx, ly, 7, 8, '#4a2a6a'); p.ret(lx, ly, 7, 1, '#6a4a8a'); p.ret(lx + 6, ly, 1, 8, '#2a1a3e');                               // grimório
+  p.ret(lx + 1, ly + 1, 5, 6, '#e8dcc0'); p.ret(lx + 3, ly + 1, 1, 6, '#b8a888');                                                    // páginas abertas
+  for (const [x, y] of [[lx + 2, ly + 3], [lx + 4, ly + 2], [lx + 4, ly + 4]]) { p.set(x, y, '#2ec870'); b.set(x, y, '#2ec870'); }       // runas que brilham
+  if (pagina) { p.ret(lx + 3, ly - 1, 3, 4, '#f4ecd8'); }                                                                          // a página virando
+  // capuz (por trás da cabeça) e cabeça
   const hy = 10 + dy;
-  p.elipse(cx, hy, 8, 7.5, (x, y, ex, ey) => Pix.tom(G, 0.75 - ex * 0.3 - ey * 0.35, x, y));
-  for (const s of [-1, 1]) for (let k = 0; k < 7; k++) { const x = cx + s * (7 + k), y = hy - 1 - Math.round(k * 0.55); p.set(x, y, G[1]); p.set(x, y + 1, k < 4 ? G[1] : G[0]); if (k < 3) p.set(x, y + 2, G[0]); }   // orelhas pontudas
-  p.set(cx - 9, hy + 1, '#d87a8a'); p.set(cx + 9, hy + 1, '#d87a8a');
-  // nariz comprido
-  p.ret(cx - 1, hy + 1, 2, 4, G[0]); p.set(cx, hy + 5, G[0]);
-  // olhos amarelos e boca
-  const Y = '#f8e040';
-  const olhos = (grande) => { for (const ox of [-5, 2]) { p.ret(cx + ox, hy - 2 - (grande ? 1 : 0), 3, grande ? 3 : 2, Y); p.set(cx + ox + 1, hy - 1, K); } };
-  if (face === 'alerta') olhos(true); else olhos(false);
-  if (face === 'feliz' || face === 'normal') { p.ret(cx - 4, hy - 4, 3, 1, G[0]); p.ret(cx + 2, hy - 4, 3, 1, G[0]); }   // sobrancelhas tramando
-  if (face === 'rindo') { for (let x = -4; x <= 4; x++) p.set(cx + x, hy + 6 - (Math.abs(x) > 2 ? 1 : 0), K); for (const x of [-2, 0, 2]) p.set(cx + x, hy + 5, '#ffffff'); }
+  p.elipse(cx, hy - 1, 10, 9.5, (x, y, ex, ey) => Pix.tom(MANTO, 0.8 - ex * 0.3 - ey * 0.4, x, y));
+  for (let k = 0; k < 6; k++) p.ret(cx - 1 - Math.floor(k * 0.3), hy - 10 - k + 2, 3 - Math.floor(k * 0.4), 1, MANTO[2]);          // ponta do capuz
+  p.elipse(cx, hy + 1, 7, 6.5, (x, y, ex, ey) => Pix.tom(G, 0.75 - ex * 0.3 - ey * 0.35, x, y));
+  for (const s2 of [-1, 1]) for (let k = 0; k < 7; k++) { const x = cx + s2 * (8 + k), y = hy - Math.round(k * 0.55); p.set(x, y, G[1]); p.set(x, y + 1, k < 4 ? G[1] : G[0]); if (k < 3) p.set(x, y + 2, G[0]); }   // orelhas furando o capuz
+  p.ret(cx - 1, hy + 2, 2, 4, G[0]); p.set(cx, hy + 6, G[0]);                                                                       // nariz comprido
+  // olhos verdes que brilham (sem pupila preta quando conjura)
+  const olhos = (grande) => { for (const ox of [-5, 2]) { p.ret(cx + ox, hy - 1 - (grande ? 1 : 0), 3, grande ? 3 : 2, VERDE_MAGIA[1]); b.ret(cx + ox, hy - 1 - (grande ? 1 : 0), 3, grande ? 3 : 2, VERDE_MAGIA[1]); if (!conjurar) p.set(cx + ox + 1, hy, '#0e2a14'); } };
+  olhos(face === 'alerta' || conjurar);
+  if (face === 'feliz' || face === 'normal') { p.ret(cx - 5, hy - 3, 3, 1, G[0]); p.ret(cx + 2, hy - 3, 3, 1, G[0]); }               // sobrancelhas tramando
+  if (face === 'rindo' || conjurar) { for (let x = -4; x <= 4; x++) p.set(cx + x, hy + 7 - (Math.abs(x) > 2 ? 1 : 0), K); for (const x of [-2, 0, 2]) p.set(cx + x, hy + 6, '#ffffff'); }
   else if (face === 'alerta') { p.ret(cx - 1, hy + 6, 3, 2, K); }
-  else { for (let x = -3; x <= 4; x++) p.set(cx + x, hy + 6 - (x > 1 ? 1 : 0), K); p.set(cx + 2, hy + 6, '#ffffff'); }   // sorriso torto com um dente
-  return p.contorno('#1a2a10');
+  else { for (let x = -3; x <= 4; x++) p.set(cx + x, hy + 7 - (x > 1 ? 1 : 0), K); p.set(cx + 2, hy + 7, '#ffffff'); }              // sorriso torto com um dente
+  p.contorno('#140a1e');
+  return [p, b];
 }
 function spriteGoblin() {
-  const quadros = [], add = (op) => { quadros.push(goblin(op)); return quadros.length - 1; };
-  const a0 = add({}), a1 = add({ lapis: 1 }), a2 = add({ dy: 1 });
-  const f0 = add({ face: 'feliz' }), f1 = add({ face: 'feliz', dy: 1 });
-  const r0 = add({ face: 'rindo' }), r1 = add({ face: 'rindo', dy: 1 });
+  const quadros = [], brilho = [], add = (op) => { const [q, b] = goblin(op); quadros.push(q); brilho.push(b); return quadros.length - 1; };
+  const a0 = add({}), a1 = add({ pagina: 1, chama: 1 }), a2 = add({ dy: 1, chama: 1 });
+  const f0 = add({ face: 'feliz' }), f1 = add({ face: 'feliz', dy: 1, chama: 1 });
+  const r0 = add({ face: 'rindo', chama: 1 }), r1 = add({ face: 'rindo', dy: 1 });
   const al = add({ face: 'alerta' });
-  const wa = add({ perna: 'a' }), wb = add({ perna: 'b', dy: 1 });
-  return { quadros, anims: { parado: { q: [a0, a1, a0, a1, a2, a0], fps: 6 }, anotando: { q: [a0, a1], fps: 6 }, feliz: { q: [f0, f0, f1, f1], fps: 3 },
-    rindo: { q: [r0, r1], fps: 6 }, alerta: { q: [al], fps: 1 }, andando: { q: [wa, a0, wb, a0], fps: 8 }, correndo: { q: [wa, a0, wb, a0], fps: 14 }, pulando: { q: [wa], fps: 1 } },
+  const c0 = add({ conjurar: true }), c1 = add({ conjurar: true, dy: -1 });
+  const wa = add({ perna: 'a' }), wb = add({ perna: 'b', dy: 1, chama: 1 });
+  return { quadros, brilho,
+    anims: { parado: { q: [a0, a1, a0, a1, a2, a0], fps: 6 }, anotando: { q: [a0, a1], fps: 6 }, feliz: { q: [f0, f0, f1, f1], fps: 3 },
+      rindo: { q: [r0, r1], fps: 6 }, alerta: { q: [al], fps: 1 }, conjurar: { q: [c0, c1], fps: 6 },
+      andando: { q: [wa, a0, wb, a0], fps: 8 }, correndo: { q: [wa, a0, wb, a0], fps: 14 }, pulando: { q: [wa], fps: 1 } },
     sombra: true, personagem: true };
 }
 
@@ -221,6 +235,6 @@ registrarSprites({
   'chapeu-davi': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
 }, { grupo: 'Isekai (o cogumelo Davi)', status: 'protótipo', descricoes: {
   'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',
-  goblin: 'o goblin rival que anota tudo (caderninho e lápis); parado/anotando, feliz, rindo, alerta, andando',
+  goblin: 'o goblin NECROMANTE, rival da série: capuz e manto roxos, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
   'cogumelo-comum': 'os outros cogumelos da floresta (figurantes); também cogumelo-roxo e cogumelo-verde',
 } });

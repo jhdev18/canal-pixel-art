@@ -2,7 +2,7 @@
 
 **Formato:** ISEKAI (série de Shorts, aventura com comédia, de dia). **Vista:** diorama em todas as cenas (floresta). **Narração:** narrador em 3ª pessoa, um único áudio. **Trilha:** comédia.
 
-**Ideia:** Um garoto renasce como o Davi, um cogumelo: o monstro mais fraco do jogo, que todo herói novo derrota para treinar. Ele é lento, não tem braços e tem um chapéu gigante — mas quando espirra solta esporos azuis que fazem dormir. Numa manhã, dez heróis invadem a floresta e os cogumelos somem um por um. O herói leva o chapéu do Davi; ele para, respira fundo e espirra de propósito: a floresta fica azul e os dez caem dormindo. Virada: os heróis não derrotavam os cogumelos por serem fracos — derrotavam antes que eles crescessem (o chapéu do Davi cresce, dourado). Gancho: um goblin, escondido na moita, anota tudo.
+**Ideia:** Um garoto renasce como o Davi, um cogumelo: o monstro mais fraco do jogo, que todo herói novo derrota para treinar. Ele é lento, não tem braços e tem um chapéu gigante — mas quando espirra solta esporos azuis que fazem dormir. Numa manhã, dez heróis invadem a floresta e os cogumelos somem um por um. O herói leva o chapéu do Davi; ele para, respira fundo e espirra de propósito: a floresta fica azul e os dez caem dormindo. Virada: os heróis não derrotavam os cogumelos por serem fracos — derrotavam antes que eles crescessem (o chapéu do Davi cresce, dourado). Gancho: um goblin necromante, escondido na moita, anota tudo, com as almas dos cogumelos derrotados flutuando em volta dele.
 
 **Pista plantada:** cena 1 (o primeiro espirro solta uma nuvenzinha azul) e cena 2 (o espirro faz o cogumelo ao lado dormir: "zzz"). Na cena 9 ele lembra disso e espirra de propósito.
 
@@ -31,8 +31,9 @@
 **11.** `floresta-isekai` — E os dez heróis caíram dormindo.
 **12.** `floresta-isekai` — Os heróis não derrotavam os cogumelos por serem fracos.
 **13.** `floresta-isekai` — Derrotavam antes que eles crescessem.
-**14.** `floresta-isekai` — E, escondido na moita, um goblin anotava tudo.
-**15.** `floresta-isekai` — Qual poder ele descobre agora? Comenta: um, riso. Dois, amor.  
-   _Final interativo:_ o Davi (chapéu dourado) solta uma nuvenzinha amarela e uma rosa; o placar no alto mostra "1 RISO" e "2 AMOR". O poder mais votado nos comentários é o do episódio 2.
+**14.** `floresta-isekai` — E, escondido na moita, um goblin necromante anotava tudo.  
+   _Gancho da série:_ o goblin é um NECROMANTE (capuz roxo, grimório, cajado com caveirinha e chama verde); chamas verdes — as almas dos cogumelos derrotados — flutuam em volta dele; ele ergue o cajado e ri.
+**15.** `floresta-isekai` — Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.  
+   _Final interativo:_ o Davi anda para um lado, para com "?" e volta; o placar no alto mostra "1 FLORESTA" e "2 VILA". O mais votado nos comentários decide o lugar do episódio 2 (mais fundo na floresta ou a vila dos heróis).
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

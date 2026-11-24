@@ -207,7 +207,9 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   `andando`/`correndo` (passinhos), `pulando`, `assustado` (+`-andando`), `tremendo`, `sem-chapeu` (+`-andando`, `-tremendo`, `-inspira`,
   `-espirro`), `espirro-antes`/`espirro` (a ação `espirrar` funciona nele), `feliz`, `grande` (chapéu gigante dourado) e as expressões.
 - `cogumelo-comum`, `cogumelo-roxo`, `cogumelo-verde`: os outros cogumelos da floresta (figurantes; `sumir` = "puf" quando o herói golpeia).
-- **`goblin`** (personagem): o rival da série — orelhas pontudas, nariz comprido, caderninho e lápis. `parado` (anotando), `feliz`, `rindo`, `alerta`, andando.
+- **`goblin`** (personagem): o rival da série, um **goblin necromante** — capuz e manto roxo-escuro, orelhas pontudas furando o capuz, grimório
+  roxo com runas verdes, cajado com caveirinha e chama verde, olhos verdes que brilham. `parado` (anotando: a página vira), `feliz`, `rindo`,
+  `alerta`, `conjurar` (cajado erguido, olhos acesos), andando. Combina com `fogo-fatuo` `verde` (as almas que ele junta) e `flash` com `cor` verde.
 - Heróis (gerador de pessoas, com expressões): `heroi-aventureiro` (ruivo, capa vermelha), `heroi-aventureira` (rabo preto, capa azul),
   `heroi-grandao` (careca de bigode, capa amarela). Espada na mão: `{ "sprite": "espada-heroi", "sobre": { "id": "<herói>", "dx": 0.45, "dy": 0.8 } }`.
   Dormindo no chão: `heroi-*-dormindo` (deitado, olhos fechados) — troca com `sumir`/`aparecer` (`som: null`) no mesmo lugar + `emocao` `zzz`.

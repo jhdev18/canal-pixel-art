@@ -125,24 +125,27 @@ C.push(cena('Derrotavam antes que eles crescessem.', {
   acoes: [a(0, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'flutuando' }), a(0.35, 'trocar', { alvo: 'davi', estado: 'grande', som: 'revelar' }), a(0.35, 'magia', { alvo: 'davi' }),
     a(0.36, 'flash', { intensidade: 0.5 }), a(0.38, 'corte', { zoom: 2, x: -0.7, y: 1.8 }), a(0.6, 'pular', { alvo: 'davi', altura: 0.4, durF: 0.25 })],
 }));
-// 14. Gancho da série: na moita, o goblin anota tudo e ri; os esporos azuis ainda boiando em volta
-C.push(cena('E, escondido na moita, um goblin anotava tudo.', {
+// 14. Gancho da série: na moita, o goblin NECROMANTE anota tudo no grimório; em volta dele flutuam chamas verdes — as almas dos
+//     cogumelos que os heróis derrotaram (o mistério da série: o que ele vai fazer com elas?). No fim, ele ergue o cajado e ri.
+const ALMAS = [[4.6, 4.6, 1.4], [6.8, 4.4, 1.8], [5.4, 5.6, 2.2]];
+C.push(cena('E, escondido na moita, um goblin necromante anotava tudo.', {
   cenario: 'floresta-isekai', camera: PERTO(6.0, 1.9), foco: 'gob',
-  elementos: [P('gob', 'goblin', 5.6, 5.0), P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'grande' })],
-  acoes: [a(0, 'esporos', { alvo: 'gob', cor: 'azul', tamanho: 'flutuando' }), a(0.1, 'andar', { alvo: 'gob', para: 6.2, durF: 0.35 }),
-    a(0.75, 'trocar', { alvo: 'gob', estado: 'rindo', som: 'suspense' })],
+  elementos: [P('gob', 'goblin', 5.6, 5.0), P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'grande' }),
+    ...ALMAS.map(([x, z, y], k) => S('alma' + k, 'fogo-fatuo', x, z, { y, pose: 'verde', oculto: true }))],
+  acoes: [a(0, 'esporos', { alvo: 'gob', cor: 'azul', tamanho: 'flutuando' }), a(0.05, 'andar', { alvo: 'gob', para: 6.0, durF: 0.3 }),
+    ...ALMAS.map((_, k) => a(0.3 + k * 0.1, 'aparecer', { alvo: 'alma' + k, som: k ? null : 'fantasma' })),
+    a(0.65, 'trocar', { alvo: 'gob', estado: 'conjurar', som: 'magia' }), a(0.66, 'flash', { intensidade: 0.35, cor: '#7af0a0' }),
+    a(0.85, 'trocar', { alvo: 'gob', estado: 'rindo', som: 'suspense' })],
 }));
-
-// 15. FINAL INTERATIVO (só nos últimos ~4 s): o público escolhe o poder do episódio 2 nos comentários.
-//     O Davi (chapéu dourado) no meio solta uma nuvenzinha amarela (riso) para a esquerda e uma rosa (amor) para a direita;
-//     o placar mostra as duas opções no alto (sem números grandes: só "1 RISO" e "2 AMOR").
-C.push(cena('Qual poder ele descobre agora? Comenta: um, riso. Dois, amor.', {
+// 15. FINAL INTERATIVO (últimos ~4 s): o público escolhe para onde o Davi vai no episódio 2 — mais fundo na floresta ou para a vila
+//     dos heróis. Na tela: o Davi (chapéu dourado) dá uns passos para um lado, para com "?", e volta; o placar mostra só as duas
+//     opções no alto ("1 FLORESTA" / "2 VILA", sem números grandes).
+C.push(cena('Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.', {
   cenario: 'floresta-isekai', camera: PERTO(0, 1.8), foco: 'davi',
-  elementos: [P('davi', 'cogumelo-davi', 0, 3.0, { pose: 'grande' })],
-  acoes: [a(0.02, 'pular', { alvo: 'davi', altura: 0.4, durF: 0.15 }), a(0.05, 'placar', { opcoes: ['RISO', 'AMOR'], cores: ['#f8d040', '#ff8ac0'], durF: 0.95 }),
-    a(0.4, 'esporos', { posicao: [-1.4, 1.2, 3.0], cor: 'amarelo', tamanho: 'pequeno' }), a(0.42, 'som', { som: 'blip' }),
-    a(0.72, 'esporos', { posicao: [1.4, 1.2, 3.0], cor: 'rosa', tamanho: 'pequeno' }), a(0.74, 'som', { som: 'blip' }),
-    a(0.85, 'pular', { alvo: 'davi', altura: 0.3, durF: 0.12 })],
+  elementos: [P('davi', 'cogumelo-davi', 0.4, 3.0, { pose: 'grande' })],
+  acoes: [a(0.02, 'placar', { opcoes: ['FLORESTA', 'VILA'], cores: ['#3ac860', '#f0a040'], durF: 0.96 }),
+    a(0.05, 'andar', { alvo: 'davi', para: -0.6, durF: 0.3 }), a(0.4, 'emocao', { alvo: 'davi', icone: '?' }),
+    a(0.62, 'andar', { alvo: 'davi', para: 1.2, durF: 0.3 }), a(0.95, 'som', { som: 'blip' })],
 }));
 
 marcar(C, { ataque: [[9, 13]] });

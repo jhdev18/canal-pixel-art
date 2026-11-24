@@ -345,15 +345,19 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
 - **1ª frase = "E se você renascesse como...?"** (pedido do usuário: começar com uma pergunta "E se"). Fala com "você".
 - **Protagonista com desvantagem visível** (o usuário pediu): o Davi é o monstro mais fraco (lento, sem braços, perde o chapéu num golpe).
   Ideias recusadas: herói de 1 coração, o vaso, o NPC de uma frase (o usuário pediu outras); goblin como protagonista "manjado" → o goblin virou
-  o **rival** da série (aproveita a busca por "goblin").
+  o **rival** da série (aproveita a busca por "goblin"), um goblin necromante.
 - **Um poder novo por episódio** (para o público não precisar aprender tudo de uma vez): esporos azul = sono (ep. 1), amarelo = riso, rosa = amor.
 - Cada episódio: 1 batalha, a regra (os esporos) na tela em quase toda cena, a escolha ativa do protagonista, uma virada e um **gancho**
   para o próximo (o goblin anotando). Seguir também as táticas de retenção do vídeo das sombras (dia, movimento, escalada, "Até que" cedo).
 - Título com termos que o público busca: "Reencarnei como... isekai"; tags `#isekai #reencarnei`.
 - **Nome do cogumelo: Davi** (escolhido pelo usuário; antes era Tico). Sprite `cogumelo-davi`, chapéu `chapeu-davi`; projeto `isekai-davi-01`.
-- **Final interativo** (pedido do usuário): a última cena (~4 s) pergunta qual poder ele descobre no próximo episódio ("Comenta: um, riso.
-  Dois, amor.") com o `placar` no alto mostrando só as opções ("1 RISO" / "2 AMOR", sem números grandes) e uma nuvenzinha de cada cor;
-  o mais votado nos comentários vira o poder do episódio seguinte. Repetir em todo episódio, com as opções novas.
+- **Final interativo** (pedido do usuário): a última cena (~4 s) pede ao público uma **decisão de caminho** para o próximo episódio
+  (ep. 1: "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.") com o `placar` no alto mostrando só as opções ("1 FLORESTA" /
+  "2 VILA", sem números grandes); o mais votado vira o episódio seguinte. Votar em **poder** foi recusado (riso/amor "não têm sentido" para
+  um cogumelo); poderes, quando vierem, devem ser coisas que cogumelo faz (brotar clones, raízes, brilhar no escuro, chapéu-escudo).
+- **O goblin é NECROMANTE** (pedido do usuário: "característica especial"): capuz/manto roxo, grimório, cajado com caveirinha e chama verde,
+  olhos verdes que brilham (estado `conjurar`); no ep. 1 as almas dos cogumelos derrotados (`fogo-fatuo` verde) flutuam em volta dele —
+  mistério da série. Sem luz própria no sprite (a luz verde estourava o rosto dele).
 
 ## Objetos que contam a história (técnica aprovada pelo usuário no `nesse-mundo-espirro`)
 O usuário gostou de como os itens foram usados no vídeo do espirro — usar essa técnica nos próximos vídeos:

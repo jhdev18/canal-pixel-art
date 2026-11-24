@@ -10,7 +10,7 @@ Reencarnei como o monstro mais fraco do isekai 🍄 #shorts
 ## Descrição
 E se você renascesse como o monstro mais fraco do jogo? O Davi é um cogumelo: lento, sem braços e o primeiro monstro que todo herói derrota... até a manhã em que dez heróis invadiram a floresta. Episódio 1.
 
-👉 Você decide o próximo poder do Davi: comenta 1 para RISO ou 2 para AMOR!
+👉 Você decide para onde o Davi vai: comenta 1 para FLORESTA ou 2 para VILA!
 
 #shorts #isekai #reencarnei #pixelart #animação #aventura #pixelverso
 
