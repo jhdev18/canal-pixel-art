@@ -6,7 +6,7 @@ const srv = await iniciarServidor({ projetoDir: 'projetos/teste-mapa-rpg' });
 const b = await chromium.launch(); const pg = await b.newPage();
 await pg.goto(srv.url || `http://localhost:${srv.porta}/`);
 const url = await pg.evaluate(async () => {
-  const { gerarMapaRPG } = await import('/motor/cenarios/mapaRPG.js');
+  await import('/motor/assets/index.js'); const { gerarMapaRPG } = await import('/motor/cenarios/mapaRPG.js');
   const m = gerarMapaRPG({}), E = 2, cv = document.createElement('canvas'); cv.width = m.W * E; cv.height = m.H * E;
   const g = cv.getContext('2d'); g.imageSmoothingEnabled = false;
   g.drawImage(m.chao, 0, 0, m.W * E, m.H * E);

@@ -7,7 +7,7 @@
 //   avenida  — avenida em perspectiva indo para o fundo
 import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
-import { gerarRuaDiagonal, FAIXA, nevoaCor, nevoaZ } from './cenarios/ruaDiagonal.js';
+import { gerarRuaDiagonal, FAIXA, nevoaCor, nevoaZ, opcoesVisual } from './cenarios/ruaDiagonal.js';
 import { gerarComodoDiagonal, COMODO, resolverAngulo } from './cenarios/comodoDiagonal.js';
 import { gerarPalco3d } from './cenarios/palco3d.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
@@ -356,7 +356,7 @@ function vistaMapaRPG(c, motor) {
   const camera = new THREE.OrthographicCamera(-W / 2 / PPU, W / 2 / PPU, H / 2 / PPU, -H / 2 / PPU, -100, 100);
   camera.position.z = 50;
   return {
-    cena, camera, ambiente: ['#ffffff', 1.0], climaPadrao: null,
+    cena, camera, ambiente: ['#ffffff', 1.0], climaPadrao: null, visual: opcoesVisual(c.visual),
     atualizar: () => {},
     liberar: () => texs.forEach((t) => t.dispose()),
     ordemInicial: (el) => ordem(el.z ?? 0),

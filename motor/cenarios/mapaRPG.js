@@ -1,15 +1,33 @@
-// PROTÓTIPO (só para teste, pedido do usuário): MAPA DE RPG — uma vila inteira vista de cima, tudo ligado:
-// caminhos de terra, praça de pedra com fonte, rio com ponte, casas com telhado grande (estilo RPG clássico),
-// padaria/escola/mercado com letreiro, árvores, cercas, horta, postes e flores. Estilo próprio (nada copiado de jogo).
+// PROTÓTIPO (só para teste, pedido do usuário): MAPA DE RPG — uma vila inteira vista de cima, tudo ligado.
+// v2: NO MESMO ESTILO DO DIORAMA (pedido do usuário: "o estilo mudou"): as mesmas texturas do chão do diorama (grama com
+// pontilhado, trilha de terra da floresta, pedras bege da praça), os MESMOS sprites (arvore-iso, poste-iso, fonte-iso), as cores
+// dos prédios da rua (padaria, mercado, escola, casas), letreiros com a mesma fonte/placa, contorno escuro e luz com pontilhado.
 // Coordenadas: x para a direita, z para CIMA no mapa (1 unidade = 1 tile de 16 px). O chão é uma imagem só; casas,
-// árvores, fonte, postes e cercas são "peças" separadas, ordenadas pela linha da base (quem está mais embaixo fica na frente).
+// árvores, fonte e postes são "peças" separadas, ordenadas pela linha da base (quem está mais embaixo fica na frente).
 import { desenharTexto, larguraTexto } from '../fonte.js';
+import { obterSprite } from '../sprites.js';
+import { hexParaRgb } from '../pixel.js';
 
-export const T = 16;                 // px por tile
+export const T = 16;                  // px por tile
 export const MAPA = { w: 56, h: 36 }; // tiles
+const K = '#2a1e24';                  // contorno (o mesmo tom escuro dos sprites)
 
 function rng(s) { return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+const B4 = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+const bayer = (x, y) => (B4[(y & 3) * 4 + (x & 3)] + 0.5) / 16;
 const canvas = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; };
+const hash = (a, b) => (((Math.floor(a) * 92821) ^ (Math.floor(b) * 68917)) >>> 0);
+
+// contorno de 1 px em volta do que foi desenhado (igual ao Pix.contorno dos sprites)
+function contorno(cv, cor = K) {
+  const c = cv.getContext('2d'), d = c.getImageData(0, 0, cv.width, cv.height), a = d.data, w = cv.width, h = cv.height;
+  const op = (x, y) => x >= 0 && y >= 0 && x < w && y < h && a[(y * w + x) * 4 + 3] > 0;
+  const [r, g, b] = hexParaRgb(cor), marcar = [];
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (!op(x, y) && (op(x - 1, y) || op(x + 1, y) || op(x, y - 1) || op(x, y + 1))) marcar.push((y * w + x) * 4);
+  for (const k of marcar) { a[k] = r; a[k + 1] = g; a[k + 2] = b; a[k + 3] = 255; }
+  c.putImageData(d, 0, 0);
+  return cv;
+}
 
 export function gerarMapaRPG(opc = {}) {
   const r = rng(opc.semente ?? 11);
@@ -19,161 +37,150 @@ export function gerarMapaRPG(opc = {}) {
   const pecas = [];   // { cv, x0, y0 (px do canto de cima), zBase }
   const peca = (cv, x0, y0, yBase) => pecas.push({ cv, x0: Math.round(x0), y0: Math.round(y0), zBase: (H - yBase) / T });
 
-  // ---------- chão: grama com variação, tufos e flores
-  for (let ty = 0; ty < MAPA.h; ty++) for (let tx = 0; tx < MAPA.w; tx++) R(g, tx * T, ty * T, T, T, (tx + ty) % 2 ? '#5aa04a' : '#56994a');
-  for (let k = 0; k < 2600; k++) { const x = r() * W, y = r() * H; R(g, x, y, 1, 2, r() < 0.5 ? '#6ab85a' : '#468a3c'); }
-  const flores = ['#f8e060', '#f0f0f0', '#f08ab0', '#a0c8f8'];
-  for (let k = 0; k < 160; k++) { const x = r() * W, y = r() * H, c = flores[Math.floor(r() * 4)]; R(g, x, y, 2, 2, c); R(g, x + 3, y + 1, 2, 2, c); R(g, x + 1, y + 3, 2, 2, c); }
+  // ---------- tipo de chão numa grade fina (1/4 de tile): 0 grama, 1 terra, 2 pedra, 3 água, 4 ponte, 5 horta
+  const GW = MAPA.w * 4, GH = MAPA.h * 4, tipoChao = new Uint8Array(GW * GH);
+  const G = (u, v) => { const a = Math.floor(u * 4), b = Math.floor(v * 4); return a < 0 || b < 0 || a >= GW || b >= GH ? 0 : tipoChao[b * GW + a]; };
+  const marca = (u0, v0, w, h, t) => { for (let v = Math.floor(v0 * 4); v < Math.ceil((v0 + h) * 4); v++) for (let u = Math.floor(u0 * 4); u < Math.ceil((u0 + w) * 4); u++) if (u >= 0 && v >= 0 && u < GW && v < GH) tipoChao[v * GW + u] = t; };
+  marca(0, 1, MAPA.w, 3, 3);                    // rio
+  marca(25, 0.5, 5, 4, 4);                      // ponte
+  marca(0, 18, MAPA.w, 3, 1);                   // estrada principal
+  marca(26, 4.5, 3, 27.5, 1);                   // estrada que sobe até a ponte e desce até o fim do mapa
+  marca(20, 13, 15, 13, 2);                     // praça de pedras
+  marca(3, 27, 9, 6.4, 5);                      // horta
+  const caminho = (u, v0, v1) => marca(u - 0.75, Math.min(v0, v1), 1.5, Math.abs(v1 - v0), 1);
 
-  // ---------- caminhos de terra (com borda e pedrinhas)
-  const terra = (x, y, w, h) => {
-    R(g, x * T, y * T, w * T, h * T, '#c8a670');
-    for (let k = 0; k < w * h * 6; k++) R(g, (x + r() * w) * T, (y + r() * h) * T, 2, 1, r() < 0.5 ? '#b08e5a' : '#dcc08a');
-  };
-  const bordaTerra = (x, y, w, h) => { R(g, x * T, y * T - 1, w * T, 2, '#9a7a48'); R(g, x * T, (y + h) * T - 1, w * T, 2, '#e0c890'); };
-  terra(0, 18, MAPA.w, 3); bordaTerra(0, 18, MAPA.w, 3);          // estrada principal (horizontal)
-  terra(26, 4, 3, 28);                                            // estrada que sobe até a ponte e desce até a horta
-  // ---------- praça de pedra no cruzamento
-  const pedra = (x, y, w, h) => {
-    for (let py = y * T; py < (y + h) * T; py += 8) for (let px = x * T + ((py / 8) % 2) * 4; px < (x + w) * T; px += 8) {
-      R(g, px, py, 8, 8, '#a8a8b0'); R(g, px, py, 7, 7, r() < 0.5 ? '#c4c4cc' : '#b8b8c2'); R(g, px + 1, py + 1, 3, 1, '#d8d8e0');
+  // ---------- casas — cores dos prédios da rua do diorama (casas, padaria, mercado, escola, pousada)
+  const TELHA = [['#d86a4a', '#b8543a', '#8a3a28'], ['#6a6e84', '#565a6e', '#3e4254'], ['#b87a3a', '#9a622c', '#6a4220'], ['#5a8ac8', '#4670a8', '#32507a'], ['#7a9a4a', '#62803a', '#46602a']];
+  const PAREDE = [['#f8d8a0', '#e8c488', '#b8945a'], ['#b8d8f0', '#a0c4e0', '#7898b8'], ['#d8f0c0', '#c0dca8', '#90b078'], ['#f0e0c0', '#e0ccaa', '#b09a78']];
+  const casas = [];
+  function casa(tx, tyBase, w, o = {}) {
+    const roofH = Math.round((o.alto ? 4.4 : 3.4) * T), wallH = Math.round((o.alto ? 2.8 : 2.2) * T), ov = 3;
+    const cv = canvas(w * T + ov * 2, roofH + wallH), c = cv.getContext('2d'), cw = cv.width;
+    const tel = o.telha || TELHA[Math.floor(r() * 3)], pal = o.pal || PAREDE[Math.floor(r() * 4)];
+    const [par, parS, parE] = pal;
+    // parede (com o pontilhado de sombra embaixo do beiral, como as fachadas do diorama)
+    for (let y = 0; y < wallH; y++) for (let x = ov; x < ov + w * T; x++) {
+      const sombra = y < 3 || (y < 7 && bayer(x, y) < (7 - y) / 6);
+      R(c, x, roofH + y, 1, 1, sombra ? parE : (x - ov < 2 || x > ov + w * T - 3) ? parS : par);
     }
-  };
-  pedra(20, 13, 15, 13);
-  R(g, 20 * T, 13 * T - 2, 15 * T, 2, '#8a8a94'); R(g, 20 * T, 26 * T, 15 * T, 2, '#8a8a94');
-
-  // ---------- rio com ponte (no alto do mapa)
-  for (let y = 1 * T; y < 4 * T; y++) for (let x = 0; x < W; x++) {
-    const onda = Math.sin(x * 0.18 + y * 0.5) > 0.86;
-    R(g, x, y, 1, 1, y < 1 * T + 2 || y > 4 * T - 3 ? '#3a6ab0' : onda ? '#bfe4ff' : (Math.floor(x / 5 + y / 3) % 7 === 0 ? '#5a9ae0' : '#4a86d0'));
-  }
-  R(g, 0, 1 * T - 2, W, 2, '#8a7050'); R(g, 0, 4 * T, W, 2, '#8a7050');   // barranco
-  for (let px = 25 * T; px < 30 * T; px += 4) { R(g, px, 0.6 * T, 4, 3.8 * T, '#a87a4a'); R(g, px, 0.6 * T, 1, 3.8 * T, '#7a5430'); }   // tábuas
-  R(g, 25 * T - 2, 0.6 * T, 2, 3.8 * T, '#5a3a20'); R(g, 30 * T, 0.6 * T, 2, 3.8 * T, '#5a3a20');                                   // corrimão
-
-  // ---------- horta cercada (embaixo à esquerda)
-  for (let fila = 0; fila < 5; fila++) {
-    const y = (27.5 + fila * 1.2) * T;
-    R(g, 3 * T, y, 9 * T, 10, '#7a5432');
-    for (let px = 3 * T + 4; px < 12 * T - 4; px += 9) { R(g, px, y - 3, 5, 5, fila % 2 ? '#3a9a3a' : '#5ab84a'); R(g, px + 1, y - 4, 3, 2, fila === 2 ? '#e06a3a' : '#7ad06a'); }
-  }
-
-  // ---------- casas (telhado grande visto de cima + parede da frente com porta)
-  const TELHADOS = [['#d85a4a', '#b8443a', '#8a2e28'], ['#4a7ac8', '#3a62a8', '#2a467a'], ['#6aa84a', '#4e8a3a', '#36622a'], ['#c88a3a', '#a86e2a', '#7a4e1e'], ['#8a6ab8', '#6e529a', '#4e3a72']];
-  const PAREDES = ['#f0e0c0', '#e8d0a8', '#f4ead8', '#d8c8b0'];
-  function casa(tx, tyBase, w, opcs = {}) {
-    const roofH = (opcs.alto ? 4.5 : 3.5) * T, wallH = (opcs.alto ? 2.6 : 2) * T, ov = 4;
-    const cv = canvas(w * T + ov * 2, roofH + wallH), c = cv.getContext('2d');
-    const tel = opcs.telhado || TELHADOS[Math.floor(r() * TELHADOS.length)], par = opcs.parede || PAREDES[Math.floor(r() * PAREDES.length)];
-    const cw = cv.width;
-    // parede
-    R(c, ov, roofH, w * T, wallH, par);
-    R(c, ov, roofH, w * T, 3, '#00000040');
-    for (let px = ov; px < ov + w * T; px += 16) R(c, px, roofH + 3, 2, wallH - 3, '#9a7a58');      // vigas de madeira
-    R(c, ov, roofH + wallH - 5, w * T, 5, '#8a8a8a'); R(c, ov, roofH + wallH - 5, w * T, 1, '#a8a8a8');   // base de pedra
-    // porta
-    const pw = opcs.portaLarga ? 18 : 12, px0 = Math.round(cw / 2 - pw / 2 + (opcs.portaDx ?? 0) * T), ph = Math.min(wallH - 6, 24);
-    R(c, px0 - 2, roofH + wallH - 5 - ph - 2, pw + 4, ph + 2, '#5a3a22');
-    R(c, px0, roofH + wallH - 5 - ph, pw, ph, opcs.portaVidro ? '#8ab8d8' : '#8a5a32');
-    if (!opcs.portaVidro) { R(c, px0 + 2, roofH + wallH - 5 - ph + 2, pw - 4, 1, '#a87040'); R(c, px0 + pw - 4, roofH + wallH - 5 - ph / 2, 2, 2, '#f0d060'); }
-    else R(c, px0 + pw / 2, roofH + wallH - 5 - ph, 1, ph, '#3a4a5a');
-    // janelas
+    if (o.base) for (let y = wallH - 9; y < wallH; y++) for (let x = ov; x < ov + w * T; x++)
+      R(c, x, roofH + y, 1, 1, (y % 4 === 0 || (x + (Math.floor(y / 4) % 2) * 4) % 8 === 0) ? '#6a3a2e' : o.base);   // tijolinho na base
+    else R(c, ov, roofH + wallH - 3, w * T, 3, parE);
+    // porta (madeira ou vidro, como no diorama)
+    const pw = o.portaLarga ? 20 : 12, ph = Math.min(wallH - 6, o.alto ? 30 : 24), px0 = Math.round(cw / 2 - pw / 2), py0 = roofH + wallH - ph;
+    R(c, px0 - 1, py0 - 1, pw + 2, ph + 1, '#2a2638');
+    for (let y = 0; y < ph; y++) R(c, px0, py0 + y, pw, 1, o.portaVidro ? (y > ph * 0.55 ? '#a8c8e0' : '#6a8aa8') : (y % 6 === 0 ? '#7a4a26' : '#9a6232'));
+    if (o.portaVidro) R(c, px0 + pw / 2, py0, 1, ph, '#2a2638'); else { R(c, px0 + pw - 4, py0 + ph / 2, 2, 2, '#f0d060'); R(c, px0 + 2, py0 + 3, pw - 4, 1, '#b07a40'); }
+    // janelas / vitrines
+    const vitrine = o.vitrine;
     for (const lado of [-1, 1]) {
-      const jx = Math.round(cw / 2 + lado * (w * T / 4 + 4) - 6), jy = roofH + 8;
-      if (jx < ov + 2 || jx + 12 > ov + w * T - 2) continue;
-      R(c, jx - 1, jy - 1, 14, 12, '#5a3a22'); R(c, jx, jy, 12, 10, opcs.vitrine ? '#ffe8a0' : '#9ad0f0'); R(c, jx, jy, 12, 3, '#c8e8ff');
-      R(c, jx + 5, jy, 2, 10, '#5a3a22');
-      if (!opcs.vitrine) { R(c, jx - 4, jy - 1, 3, 12, tel[1]); R(c, jx + 13, jy - 1, 3, 12, tel[1]); }
-      else for (let k = 0; k < 3; k++) R(c, jx + 1 + k * 4, jy + 6, 3, 3, '#c8803a');   // pães na vitrine
+      const jw = vitrine ? Math.min(28, Math.floor(w * T / 2 - pw / 2 - 10)) : 12, jh = vitrine ? 14 : 11;
+      const jx = Math.round(lado < 0 ? px0 - 8 - jw : px0 + pw + 8), jy = roofH + (vitrine ? 10 : 9);
+      if (jx < ov + 3 || jx + jw > ov + w * T - 3) continue;
+      R(c, jx - 1, jy - 1, jw + 2, jh + 2, '#2a2638');
+      for (let y = 0; y < jh; y++) for (let x = 0; x < jw; x++) R(c, jx + x, jy + y, 1, 1, vitrine === 'paes' ? (y > 9 ? '#fff2d0' : '#ffd890') : vitrine === 'frutas' ? '#e0f0d8' : ((x + y) < 6 ? '#e0f0f8' : y > jh * 0.6 ? '#a8c8e0' : '#6a8aa8'));
+      if (vitrine === 'paes') for (let k = 2; k < jw - 4; k += 6) { R(c, jx + k, jy + 5, 4, 3, '#d08a40'); R(c, jx + k + 1, jy + 5, 2, 1, '#e8b060'); }
+      if (vitrine === 'frutas') for (let k = 2; k < jw - 3; k += 4) R(c, jx + k, jy + 8, 3, 3, ['#e83a3a', '#f8c030', '#3aa838'][(k / 4) % 3 | 0]);
+      if (!vitrine) R(c, jx + jw / 2, jy, 1, jh, '#2a2638');
     }
-    // toldo listrado
-    if (opcs.toldo) for (let px = ov + 2; px < ov + w * T - 2; px += 6) R(c, px, roofH + 4, 6, 5, (px / 6) % 2 < 1 ? opcs.toldo : '#f4f0e8');
-    // telhado (de cima): faixas de telha, cumeeira no alto, beiral escuro
-    R(c, 0, 0, cw, roofH, tel[1]);
-    for (let py = 0; py < roofH; py += 5) { R(c, 0, py, cw, 1, tel[2]); for (let qx = (py / 5) % 2 * 4; qx < cw; qx += 8) R(c, qx, py + 1, 1, 4, tel[2]); }
-    R(c, 0, 0, cw, Math.round(roofH * 0.32), tel[0]);
-    for (let py = 0; py < roofH * 0.32; py += 5) R(c, 0, py, cw, 1, tel[1]);
-    R(c, 0, Math.round(roofH * 0.32), cw, 2, tel[2]);                                             // cumeeira
-    R(c, 0, roofH - 3, cw, 3, tel[2]); R(c, 0, roofH, cw, 2, '#00000055');                        // beiral + sombra
-    if (opcs.chamine !== false) { const chx = Math.round(cw * (r() < 0.5 ? 0.22 : 0.7)); R(c, chx, 2, 9, 12, '#8a5a44'); R(c, chx, 2, 9, 2, '#5a3a2a'); R(c, chx + 1, 4, 7, 1, '#a87058'); }
-    // letreiro
-    if (opcs.nome) {
-      const lw = larguraTexto(opcs.nome) + 8, lx = Math.round(cw / 2 - lw / 2), ly = roofH - 12;
-      R(c, lx - 1, ly - 1, lw + 2, 13, '#3a2416'); R(c, lx, ly, lw, 11, opcs.placa || '#6a3a1e');
-      desenharTexto(c, opcs.nome, lx + 4, ly + 1, '#fff0c0');
+    // toldo listrado (cores dos toldos do diorama)
+    if (o.toldo) for (let x = ov; x < ov + w * T; x++) for (let y = 0; y < 7; y++) R(c, x, roofH + 2 + y, 1, 1, y === 6 ? '#3a2a2a' : (Math.floor((x - ov) / 6) % 2 ? o.toldo[1] : o.toldo[0]));
+    // telhado visto de cima: telhas em fileiras, cumeeira, transição de luz com pontilhado
+    for (let y = 0; y < roofH; y++) for (let x = 0; x < cw; x++) {
+      const t = y / roofH;
+      let col = t < 0.3 ? (bayer(x, y) < (0.3 - t) * 4 ? tel[0] : tel[1]) : (bayer(x, y) < (t - 0.3) * 1.4 ? tel[2] : tel[1]);
+      if (y % 5 === 4 || ((x + (Math.floor(y / 5) % 2) * 4) % 8 === 0 && y % 5 > 0)) col = col === tel[0] ? tel[1] : tel[2];
+      if (Math.abs(t - 0.3) < 0.025 || y >= roofH - 3) col = tel[2];
+      R(c, x, y, 1, 1, col);
     }
+    if (o.chamine !== false) { const chx = Math.round(cw * (r() < 0.5 ? 0.2 : 0.72)); R(c, chx, 3, 9, 13, '#8a5a44'); R(c, chx, 3, 9, 2, '#5a3a2a'); R(c, chx + 1, 6, 1, 9, '#a87058'); }
+    // letreiro (mesmo estilo da fachada do diorama: placa com borda escura e letra clara)
+    if (o.nome) {
+      const lw = larguraTexto(o.nome) + 8, lx = Math.round(cw / 2 - lw / 2), ly = roofH - 14;
+      R(c, lx - 1, ly - 1, lw + 2, 14, '#2a2638'); R(c, lx, ly, lw, 12, o.placa[0]);
+      desenharTexto(c, o.nome, lx + 4, ly + 1, o.placa[1]);
+    }
+    contorno(cv);
     const x0 = tx * T - ov, yBase = tyBase * T;
     peca(cv, x0, yBase - cv.height, yBase);
-    // sombra no chão à direita e embaixo
-    R(g, x0 + cv.width, yBase - cv.height + 8, 6, cv.height - 8, '#00000030'); R(g, x0 + 6, yBase, cv.width, 4, '#00000030');
-    return { porta: { x: (x0 + px0 + pw / 2) / T, z: (H - yBase) / T } };
+    casas.push({ x0, y0: yBase - cv.height, w: cv.width, h: cv.height, yBase });
+    return { porta: { u: (x0 + px0 + pw / 2) / T, v: tyBase } };
   }
-  const caminho = (x, zDe, zAte) => { const ty0 = H / T - Math.max(zDe, zAte), ty1 = H / T - Math.min(zDe, zAte); terra(x - 0.75, ty0, 1.5, ty1 - ty0); };
-  // fileira de cima (porta virada para a estrada)
-  const casasCima = [
-    casa(3, 15.6, 6, { nome: 'PADARIA', toldo: '#d84a4a', vitrine: true, telhado: TELHADOS[0], placa: '#6a3a1e' }),
-    casa(11, 15.6, 5, {}), casa(37, 15.6, 6, { nome: 'MERCADO', toldo: '#2e8a4a', telhado: TELHADOS[2], placa: '#2e6a3a', portaLarga: true }),
+  const portasCima = [
+    casa(3, 15.6, 6, { nome: 'PADARIA', pal: ['#f0e0c0', '#e0ccaa', '#b09a78'], placa: ['#6a3a1e', '#ffe8a0'], toldo: ['#f4f0e8', '#c83c4c'], vitrine: 'paes', base: '#8a5a3a', telha: TELHA[0] }),
+    casa(11, 15.6, 5, {}), casa(17.2, 13.4, 2.4, { chamine: false, telha: TELHA[1] }),
+    casa(37, 15.6, 6, { nome: 'MERCADO', pal: ['#e8f0e0', '#d4e0c8', '#a8b89c'], placa: ['#2e8a4a', '#ffffff'], toldo: ['#f0f0e0', '#2e8a4a'], vitrine: 'frutas', portaLarga: true, telha: TELHA[4] }),
     casa(45, 15.6, 5, {}),
   ];
-  casasCima.push(casa(17.2, 13.2, 2.4, { chamine: false, telhado: TELHADOS[4] }));   // casinha pequena (depósito)
-  // escola grande atrás da praça (no alto, perto do rio)
-  const escola = casa(30.5, 9.8, 10, { nome: 'ESCOLA', telhado: TELHADOS[1], parede: '#f0e4c8', placa: '#2a5aa8', alto: true, portaVidro: true, portaLarga: true, chamine: false });
-  // fileira de baixo
-  const casasBaixo = [casa(14, 30.6, 5, {}), casa(37, 30.6, 6, { nome: 'POUSADA', telhado: TELHADOS[3], placa: '#7a4e1e' }), casa(46, 30.6, 5, {})];
-  // caminhos das portas até a estrada / praça
-  for (const k of casasCima) caminho(k.porta.x, k.porta.z, MAPA.h - 18);      // até a borda de cima da estrada
-  caminho(escola.porta.x, escola.porta.z, MAPA.h - 13);
-  caminho(escola.porta.x, MAPA.h - 12.9, MAPA.h - 13.1);                       // até a praça
-  for (const k of casasBaixo) caminho(k.porta.x, k.porta.z, MAPA.h - 21);     // até a borda de baixo da estrada
+  const escola = casa(30.5, 9.8, 10, { nome: 'ESCOLA', pal: ['#e8d8b0', '#d8c498', '#a8946c'], placa: ['#2a5aa8', '#ffffff'], base: '#a85a44', alto: true, portaVidro: true, portaLarga: true, chamine: false, telha: TELHA[3] });
+  const portasBaixo = [casa(14, 30.6, 5, {}), casa(37, 30.6, 6, { nome: 'POUSADA', pal: ['#e8d8b8', '#d4c098', '#a88e68'], placa: ['#6a3a1e', '#f0d890'], telha: TELHA[2] }), casa(46, 30.6, 5, {})];
+  for (const k of portasCima) caminho(k.porta.u, k.porta.v, 18);
+  caminho(escola.porta.u, escola.porta.v, 13);
+  for (const k of portasBaixo) caminho(k.porta.u, k.porta.v, 21);
 
-  // ---------- árvores (copa redonda vista de cima e de frente + tronco)
-  const arvore = (x, yBase, tam = 1) => {
-    const rr = Math.round(15 * tam), cv = canvas(rr * 2 + 4, rr * 2 + 10), c = cv.getContext('2d'), cx = cv.width / 2;
-    R(g, x * T - rr * 0.8, yBase * T - 3, rr * 1.6, 5, '#00000035');                                  // sombra no chão
-    R(c, cx - 3, rr * 2 - 2, 6, 12, '#7a4e2a'); R(c, cx - 3, rr * 2 - 2, 2, 12, '#9a6a3a');
-    const bola = (bx, by, br, cor) => { for (let y = -br; y <= br; y++) for (let xx = -br; xx <= br; xx++) if (xx * xx + y * y <= br * br) R(c, cx + bx + xx, rr + 2 + by + y, 1, 1, cor); };
-    bola(0, 0, rr, '#2e6a30'); bola(-rr * 0.35, -rr * 0.3, rr * 0.6, '#3e8a3a'); bola(rr * 0.3, -rr * 0.15, rr * 0.55, '#4a9a40'); bola(-rr * 0.2, -rr * 0.55, rr * 0.3, '#6ab84a');
-    for (let k = 0; k < 14; k++) { const a = r() * 6.28, d = r() * rr * 0.8; R(c, cx + Math.cos(a) * d, rr + 2 + Math.sin(a) * d, 2, 2, '#245a28'); }
-    if (r() < 0.3) for (let k = 0; k < 4; k++) R(c, cx + (r() - 0.5) * rr * 1.4, rr + 2 + (r() - 0.5) * rr * 1.2, 3, 3, '#e83a3a');   // maçãs
-    peca(cv, x * T - cx, yBase * T - cv.height, yBase * T);
+  // ---------- pinta o chão (texturas do diorama)
+  const pedra = (u, v) => {          // pedras bege em fileiras desencontradas (as da praça do diorama)
+    const fi = v * 2.4, k = Math.floor(fi), fj = u * 2.4 + (k % 2) * 0.5, kj = Math.floor(fj);
+    const ri = fi - k, rj = fj - kj, h = ((k * 73856093) ^ (kj * 19349663)) >>> 0;
+    if (ri < 0.12 || rj < 0.1) return '#9a8a74';
+    if (ri > 0.84) return '#e8dcc8';
+    return h % 5 === 0 ? '#b8a890' : h % 3 === 0 ? '#e8dcc8' : '#cfc0a8';
   };
-  const livre = (x, y) => !(y > 17 && y < 22) && !(x > 25 && x < 30) && !(x > 19 && x < 36 && y > 9 && y < 27) && !(y < 5.5) &&
-    !(y > 10 && y < 17 && ((x > 2 && x < 17) || (x > 36 && x < 51))) && !(y > 26 && y < 32 && ((x > 2 && x < 20) || (x > 36 && x < 52))) &&
-    !(x > 1.5 && x < 13.5 && y > 25.5 && y < 35) && !(x > 29 && x < 42 && y > 2 && y < 11);   // horta e escola livres
-  for (let k = 0; k < 70; k++) { const x = 1 + r() * (MAPA.w - 2), y = 6 + r() * (MAPA.h - 6); if (livre(x, y)) arvore(x, y, 0.8 + r() * 0.5); }
-  for (let x = 14; x < MAPA.w; x += 2.6) arvore(x + r(), MAPA.h - 0.3, 1.1);   // mata na beira de baixo (a horta fica livre)   // mata na beira de baixo
-
-  // ---------- fonte no meio da praça
-  {
-    const cv = canvas(64, 50), c = cv.getContext('2d');
-    const anel = (rx, ry, cor) => { for (let y = -ry; y <= ry; y++) for (let x = -rx; x <= rx; x++) if ((x * x) / (rx * rx) + (y * y) / (ry * ry) <= 1) R(c, 32 + x, 32 + y, 1, 1, cor); };
-    anel(30, 16, '#8a8a94'); anel(28, 14, '#c4c4cc'); anel(24, 11, '#4a86d0'); anel(18, 7, '#5a9ae0');
-    for (let k = 0; k < 10; k++) R(c, 12 + r() * 40, 26 + r() * 12, 3, 1, '#bfe4ff');
-    R(c, 29, 10, 6, 22, '#b8b8c2'); R(c, 29, 10, 2, 22, '#d8d8e0'); R(c, 24, 8, 16, 4, '#a8a8b0');
-    R(c, 31, 0, 2, 9, '#9ad8ff'); R(c, 27, 2, 2, 7, '#bfe4ff'); R(c, 35, 2, 2, 7, '#bfe4ff');
-    peca(cv, 27.5 * T - 32, 19.5 * T - 32, 19.5 * T + 16);
+  const img = g.createImageData(W, H), d = img.data;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const u = x / T, v = y / T, t = G(u, v);
+    let c;
+    if (t === 1) {   // trilha de terra da floresta do diorama (com a borda de grama mais escura)
+      const h = hash(u * 6, v * 6) % 97, borda = [[0, -0.25], [0, 0.25], [-0.25, 0], [0.25, 0]].some(([a, b]) => G(u + a, v + b) === 0);
+      c = borda ? '#6a8a3a' : h < 6 ? '#8a6a44' : h < 12 ? '#c8a878' : bayer(x, y) < 0.1 ? '#9a7a50' : '#b08a5a';
+    } else if (t === 2) c = pedra(u, v);
+    else if (t === 3) { const onda = Math.sin(x * 0.2 + y * 0.55) > 0.88; c = y < T + 2 || y > 4 * T - 3 ? '#2a5a9a' : onda ? '#bfe4ff' : bayer(x, y) < 0.08 ? '#5a9ae0' : '#4a86d0'; }
+    else if (t === 4) { const dx = x - 25 * T; c = dx < 2 || dx > 5 * T - 3 ? '#5a3a20' : dx % 5 === 0 ? '#6a4626' : Math.floor(dx / 5) % 2 ? '#a87a4a' : '#9a6e40'; }
+    else if (t === 5) { const fila = Math.floor((v - 27) / 1.28), dv = (v - 27) - fila * 1.28; c = dv < 0.62 ? (bayer(x, y) < 0.15 ? '#6a4628' : '#7a5432') : (hash(u * 3, fila) % 5 === 0 ? '#e06a3a' : (Math.floor(u * 2) % 2 ? '#3a8a3a' : '#4e9e44')); }
+    else {           // grama do diorama (com pontilhado e florzinhas)
+      const vv = hash(u * 9, v * 9) % 13, fl = hash(u * 6 + 3, v * 6 + 7) % 97;
+      c = fl === 0 ? '#f8f0f8' : fl === 1 ? '#f8d040' : fl === 2 ? '#f08ab8' : vv === 0 ? '#5aa85a' : vv < 3 ? '#2e6a3a' : bayer(x, y) < 0.08 ? '#4a9a5a' : '#3a7e48';
+    }
+    const [rr, gg, bb] = hexParaRgb(c), k = (y * W + x) * 4;
+    d[k] = rr; d[k + 1] = gg; d[k + 2] = bb; d[k + 3] = 255;
   }
-  // ---------- postes em volta da praça e na estrada
-  const poste = (x, y) => {
-    const cv = canvas(10, 34), c = cv.getContext('2d');
-    R(c, 4, 6, 2, 28, '#3a3a4a'); R(c, 1, 0, 8, 7, '#2a2a36'); R(c, 2, 2, 6, 4, '#ffe8a0'); R(c, 3, 32, 4, 2, '#2a2a36');
-    peca(cv, x * T - 5, y * T - 34, y * T);
+  g.putImageData(img, 0, 0);
+  R(g, 0, 4 * T, W, 2, '#5a4a30'); R(g, 0, T - 2, W, 2, '#5a4a30');                    // barranco do rio
+  // sombras das casas no chão (pontilhado, como a sombra de contato do diorama)
+  for (const k of casas) for (let y = k.yBase; y < k.yBase + 6; y++) for (let x = k.x0 + 4; x < k.x0 + k.w + 4; x++) if (bayer(x, y) < 0.5 - (y - k.yBase) * 0.08) R(g, x, y, 1, 1, '#1a2a1a');
+
+  // ---------- sprites do diorama: árvores, postes, fonte (iguais aos da rua/praça/floresta)
+  const sprite = (nome, est, u, v, sombra = true) => {
+    const s = obterSprite(nome); if (!s) return;
+    const q = s.quadros[(s.anims[est] || s.anims.parado || Object.values(s.anims)[0]).q[0]];
+    const yBase = v * T;
+    if (sombra) for (let y = yBase - 2; y < yBase + 3; y++) for (let x = Math.round(u * T - q.width * 0.3); x < u * T + q.width * 0.3; x++) if (bayer(x, y) < 0.4) R(g, x, y, 1, 1, '#1a2a1a');
+    peca(q, u * T - q.width / 2, yBase - q.height, yBase);
   };
-  for (const [x, y] of [[20.5, 13.6], [34.5, 13.6], [20.5, 25.8], [34.5, 25.8], [9, 18.2], [46, 18.2], [9, 21.2], [46, 21.2]]) poste(x, y);
-  // ---------- cerca da horta e placa
+  // árvores: a copa é grande (o mesmo sprite do diorama), então ficam longe dos caminhos, das casas (inclusive da que fica
+  // logo acima, que a copa cobriria) e umas das outras
+  const arvores = [];
+  const livre = (x, y) => {
+    for (let a = -2; a <= 2; a += 0.5) for (let b = -5; b <= 0.8; b += 0.5) if (G(x + a, y + b) !== 0 && !(b < -4 && G(x + a, y + b) === 3)) return false;
+    if (casas.some((k) => x * T > k.x0 - 40 && x * T < k.x0 + k.w + 40 && y * T > k.y0 - 10 && y * T < k.yBase + 5 * T)) return false;
+    return arvores.every(([ax, ay]) => Math.hypot(ax - x, (ay - y) * 1.4) > 4.2);
+  };
+  for (let k = 0; k < 400 && arvores.length < 26; k++) { const x = 1.5 + r() * (MAPA.w - 3), y = 6.5 + r() * (MAPA.h - 6.8); if (livre(x, y)) { arvores.push([x, y]); sprite(r() < 0.5 ? 'arvore-iso-grande' : 'arvore-iso', 'verde', x, y); } }
+  sprite('fonte-iso', 'cheia', 27.5, 20.8);
+  for (const [x, y] of [[20.6, 13.4], [34.4, 13.4], [20.6, 26], [34.4, 26], [9, 18], [46, 18], [9, 21.4], [46, 21.4]]) sprite('poste-iso', 'parado', x, y);
+  // cerca da horta e placa (madeira com contorno)
   const cercaH = (x0, x1, y) => {
     const cv = canvas((x1 - x0) * T, 12), c = cv.getContext('2d');
-    R(c, 0, 3, cv.width, 2, '#a87a4a'); R(c, 0, 7, cv.width, 2, '#a87a4a');
+    R(c, 0, 3, cv.width, 2, '#a87a4a'); R(c, 0, 7, cv.width, 2, '#8a5a32');
     for (let px = 0; px < cv.width; px += 8) { R(c, px, 0, 3, 12, '#8a5a32'); R(c, px, 0, 1, 12, '#b08050'); }
-    peca(cv, x0 * T, y * T - 12, y * T);
+    peca(contorno(cv), x0 * T, y * T - 12, y * T);
   };
-  cercaH(2.5, 12.5, 26.8); cercaH(2.5, 12.5, 33.6);
+  cercaH(2.5, 12.5, 26.8); cercaH(2.5, 12.5, 33.8);
   {
-    const cv = canvas(30, 26), c = cv.getContext('2d');
-    R(c, 13, 12, 4, 14, '#7a4e2a'); R(c, 0, 0, 30, 13, '#5a3a22'); R(c, 1, 1, 28, 11, '#c8a06a');
-    desenharTexto(c, 'VILA', 3, 2, '#3a2416');
-    peca(cv, 24 * T - 15, 17.6 * T - 26, 17.6 * T);
+    const cv = canvas(32, 26), c = cv.getContext('2d');
+    R(c, 14, 12, 4, 14, '#7a4e2a'); R(c, 0, 0, 32, 13, '#5a3a22'); R(c, 1, 1, 30, 11, '#c8a06a');
+    desenharTexto(c, 'VILA', 4, 2, '#3a2416');
+    peca(contorno(cv), 24 * T - 16, 17.4 * T - 26, 17.4 * T);
   }
-
   return { W, H, chao, pecas, T };
 }
