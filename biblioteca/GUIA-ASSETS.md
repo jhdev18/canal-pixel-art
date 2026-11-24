@@ -311,8 +311,11 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 - **Corpo:** `andar`, `correr`, `pular`, `virar`, `sentar`/`levantar`, `espirrar` 🧪 ("ah... ah..." + ATCHIM com gotinhas).
 - **Aparecer e sumir:** `aparecer`/`sumir` (com fumaça), `desaparecer` 🧪 (some devagar, ótimo no terror), `coletar`.
 - **Trocar estado de objeto:** `trocar` (`"estado"`); estado inicial com `"pose"`. Preso em alguém: `"sobre"`.
-- **Crescer** 🧪: `crescer` (`"escala": 2` = dobra; vale a partir dos pés e fica assim; som `corda`). Use escala inicial redonda (`"escala": 0.5`
-  no elemento → `crescer` 2 = tamanho normal) para os pixels ficarem certos. Feito para os brinquedos que crescem (`nesse-mundo-brinquedos`).
+- **Crescer** 🧪: `crescer` (`"escala": 2` = dobra; a partir dos pés; som `corda`). Só para AUMENTAR (escala ≥ 1); para começar pequeno, use a
+  miniatura `@mini` e troque pelo grande (ver "Miniatura") — encolher com escala < 1 deixa o desenho bugado.
+- **Miniatura** 🧪: qualquer sprite com `@mini` no nome (`{ "sprite": "brinquedo-robo@mini" }`, `menino-topete@mini`...) = o mesmo desenho
+  redesenhado na metade do tamanho, limpo (com contorno e as mesmas poses/rostos). **Não usar `"escala": 0.5`** para encolher: pula pixels e
+  fica "bugado" (o usuário apontou). Para crescer/encolher na tela: o pequeno `sumir` (`som: null`) e o grande `aparecer` no mesmo lugar e instante.
 - **Flash colorido:** `flash` com `"cor": "#5aa0f0"` tinge a tela daquela cor e volta (ex.: "a floresta ficou azul"; `durF` longo = o tom dura a frase).
 - **Impacto:** `flash`, `tremer`, `explosao`, `piscar` (vermelho: dano ou vergonha), `magia` (faíscas: transformação ou troca), `fogos` 🧪.
 - **Atenção:** `destaque` 🧪 (lupa), `contador` 🧪 (não usar: o usuário achou o número grande no alto estranho), `placar` 🧪 (votação), `continua` 🧪.

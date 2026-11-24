@@ -27,11 +27,18 @@
      "z": 5
     },
     {
+     "id": "robo-mini",
+     "sprite": "brinquedo-robo@mini",
+     "x": 1.4,
+     "z": 4.4,
+     "figurante": true
+    },
+    {
      "id": "robo",
      "personagem": "brinquedo-robo",
      "x": 1.4,
      "z": 4.4,
-     "escala": 0.5
+     "oculto": true
     }
    ],
    "acoes": [
@@ -44,8 +51,16 @@
     },
     {
      "tipo": "andar",
+     "alvo": "robo-mini",
+     "para": 4.2,
+     "inicio": 0.3,
+     "duracao": 3.71
+    },
+    {
+     "tipo": "andar",
      "alvo": "robo",
      "para": 4.2,
+     "som": null,
      "inicio": 0.3,
      "duracao": 3.71
     },
@@ -57,11 +72,16 @@
      "duracao": 0.47
     },
     {
-     "tipo": "crescer",
+     "tipo": "sumir",
+     "alvo": "robo-mini",
+     "som": null,
+     "inicio": 0.92
+    },
+    {
+     "tipo": "aparecer",
      "alvo": "robo",
-     "escala": 2,
-     "inicio": 0.92,
-     "duracao": 0.7
+     "som": "corda",
+     "inicio": 0.92
     },
     {
      "tipo": "magia",
@@ -108,10 +128,9 @@
     },
     {
      "id": "boneca",
-     "personagem": "brinquedo-boneca",
+     "sprite": "brinquedo-boneca@mini",
      "x": -1.4,
-     "z": 4.4,
-     "escala": 0.5
+     "z": 4.4
     },
     {
      "id": "aluno",
@@ -121,10 +140,9 @@
     },
     {
      "id": "caixa",
-     "personagem": "brinquedo-caixa",
+     "sprite": "brinquedo-caixa@mini",
      "x": 0.8,
-     "z": 4.4,
-     "escala": 0.5
+     "z": 4.4
     }
    ],
    "acoes": [
@@ -188,11 +206,18 @@
      "z": 3.4
     },
     {
+     "id": "boneca-mini",
+     "sprite": "brinquedo-boneca@mini",
+     "x": -0.2,
+     "z": 2.8,
+     "figurante": true
+    },
+    {
      "id": "boneca",
      "personagem": "brinquedo-boneca",
      "x": -0.2,
      "z": 2.8,
-     "escala": 0.5
+     "oculto": true
     },
     {
      "id": "prof",
@@ -210,11 +235,16 @@
      "duracao": 0.5
     },
     {
-     "tipo": "crescer",
+     "tipo": "sumir",
+     "alvo": "boneca-mini",
+     "som": null,
+     "inicio": 1.29
+    },
+    {
+     "tipo": "aparecer",
      "alvo": "boneca",
-     "escala": 2,
-     "inicio": 1.29,
-     "duracao": 0.83
+     "som": "corda",
+     "inicio": 1.29
     },
     {
      "tipo": "magia",
@@ -280,10 +310,9 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": -1.4,
-     "z": 2.6,
-     "escala": 0.5
+     "z": 2.6
     },
     {
      "id": "leo",
@@ -364,10 +393,9 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 0.8,
-     "z": 2.6,
-     "escala": 0.5
+     "z": 2.6
     },
     {
      "id": "nina",
@@ -545,10 +573,9 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 5.1,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     }
    ],
    "acoes": [
@@ -704,10 +731,9 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 5.1,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     }
    ],
    "acoes": [
@@ -786,7 +812,9 @@
    "cenario": "praca-parquinho",
    "saiDeCena": [
     "leo",
-    "aluno"
+    "aluno",
+    "leo-p",
+    "aluno-p"
    ],
    "remover": [
     "arvore3",
@@ -848,10 +876,25 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 5.1,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
+    },
+    {
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
+     "x": -3,
+     "z": -8.6,
+     "oculto": true,
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
+     "x": 1.8,
+     "z": -8.6,
+     "oculto": true,
+     "pose": "rosto-assustado"
     }
    ],
    "acoes": [
@@ -870,27 +913,37 @@
      "inicio": 1.26
     },
     {
-     "tipo": "crescer",
+     "tipo": "sumir",
      "alvo": "leo",
-     "escala": 0.5,
-     "inicio": 1.89,
-     "duracao": 0.48
-    },
-    {
-     "tipo": "magia",
-     "alvo": "leo",
+     "som": null,
      "inicio": 1.89
     },
     {
-     "tipo": "crescer",
-     "alvo": "aluno",
-     "escala": 0.5,
-     "inicio": 2.47,
-     "duracao": 0.48
+     "tipo": "aparecer",
+     "alvo": "leo-p",
+     "som": "corda",
+     "inicio": 1.89
     },
     {
      "tipo": "magia",
+     "alvo": "leo-p",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "sumir",
      "alvo": "aluno",
+     "som": null,
+     "inicio": 2.47
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "aluno-p",
+     "som": "corda",
+     "inicio": 2.47
+    },
+    {
+     "tipo": "magia",
+     "alvo": "aluno-p",
      "inicio": 2.47
     },
     {
@@ -923,7 +976,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 2.25,
+     "x": 2.73,
      "z": -8.5,
      "y": -0.55
     },
@@ -938,7 +991,8 @@
    "narracaoTexto": "O soldadinho da Bia puxou a mão dela para longe. Com força.",
    "cenario": "praca-parquinho",
    "saiDeCena": [
-    "nina"
+    "nina",
+    "nina-p"
    ],
    "remover": [
     "arvore3",
@@ -988,17 +1042,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 5.1,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1007,16 +1059,23 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
       "dy": 0.95
      },
+     "pose": "rosto-assustado"
+    },
+    {
+     "id": "nina-p",
+     "sprite": "rival@mini",
+     "x": -0.6,
+     "z": -8.6,
+     "oculto": true,
      "pose": "rosto-assustado"
     }
    ],
@@ -1036,15 +1095,20 @@
      "duracao": 3.07
     },
     {
-     "tipo": "crescer",
+     "tipo": "sumir",
      "alvo": "nina",
-     "escala": 0.5,
-     "inicio": 2.03,
-     "duracao": 0.58
+     "som": null,
+     "inicio": 2.03
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "nina-p",
+     "som": "corda",
+     "inicio": 2.03
     },
     {
      "tipo": "magia",
-     "alvo": "nina",
+     "alvo": "nina-p",
      "inicio": 2.03
     },
     {
@@ -1063,7 +1127,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 8.4,
+     "x": 8.35,
      "z": -8.5,
      "y": 0.2
     },
@@ -1119,17 +1183,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 7.3,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1138,11 +1200,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
@@ -1151,11 +1212,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "nina",
-     "personagem": "rival",
+     "id": "nina-p",
+     "sprite": "rival@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "boneca",
       "dx": 0.5,
@@ -1245,17 +1305,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 7.3,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1264,11 +1322,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
@@ -1277,11 +1334,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "nina",
-     "personagem": "rival",
+     "id": "nina-p",
+     "sprite": "rival@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "boneca",
       "dx": 0.5,
@@ -1377,17 +1433,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 7.3,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1396,11 +1450,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
@@ -1409,11 +1462,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "nina",
-     "personagem": "rival",
+     "id": "nina-p",
+     "sprite": "rival@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "boneca",
       "dx": 0.5,
@@ -1526,17 +1578,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 7.3,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1545,11 +1595,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
@@ -1558,11 +1607,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "nina",
-     "personagem": "rival",
+     "id": "nina-p",
+     "sprite": "rival@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "boneca",
       "dx": 0.5,
@@ -1665,17 +1713,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 7.3,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1684,11 +1730,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
@@ -1697,11 +1742,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "nina",
-     "personagem": "rival",
+     "id": "nina-p",
+     "sprite": "rival@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "boneca",
       "dx": 0.5,
@@ -1816,17 +1860,15 @@
     },
     {
      "id": "sold",
-     "personagem": "brinquedo-soldadinho",
+     "sprite": "brinquedo-soldadinho@mini",
      "x": 7.3,
-     "z": -8,
-     "escala": 0.5
+     "z": -8
     },
     {
-     "id": "leo",
-     "personagem": "menino-topete",
+     "id": "leo-p",
+     "sprite": "menino-topete@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "robo",
       "dx": 0.5,
@@ -1835,11 +1877,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "aluno",
-     "personagem": "aluno",
+     "id": "aluno-p",
+     "sprite": "aluno@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "caixa",
       "dx": 0.5,
@@ -1848,11 +1889,10 @@
      "pose": "rosto-assustado"
     },
     {
-     "id": "nina",
-     "personagem": "rival",
+     "id": "nina-p",
+     "sprite": "rival@mini",
      "x": 0,
      "z": 0,
-     "escala": 0.5,
      "sobre": {
       "id": "boneca",
       "dx": 0.5,
@@ -1885,7 +1925,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": 9,
+     "x": 8.95,
      "z": -9,
      "y": 0.2,
      "zoom": 2

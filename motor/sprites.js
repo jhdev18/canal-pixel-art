@@ -335,6 +335,16 @@ export function registrarSprites(fabricas, meta = {}) {
 
 // Recolore pixels de cores específicas (para variações de 'cores' em sprites prontos).
 export function obterSprite(nome, opcoes = {}) {
+  // PROTÓTIPO "<sprite>@mini": o mesmo sprite redesenhado na METADE do tamanho, sem pular pixels (escala 0.5 deixava "bugado"):
+  // cada bloco 2x2 vira 1 pixel com a cor mais comum do bloco (o contorno escuro só vence se o bloco for quase todo contorno, e os
+  // olhos — o pixel mais escuro dentro do rosto — são mantidos); depois o contorno é refeito em volta. Pedido do usuário (brinquedos).
+  if (nome && nome.endsWith('@mini')) {
+    const base = obterSprite(nome.slice(0, -5), opcoes);
+    if (!base) return null;
+    const mini = { ...base, nome, quadros: base.quadros.map(miniatura), brilho: base.brilho?.map(miniatura) };
+    if (base.luz) mini.luz = { ...base.luz };
+    return mini;
+  }
   const fab = FABRICAS[nome];
   if (!fab) return null;
   const s = fab({ semente: opcoes.semente ?? 1, cores: opcoes.cores });
@@ -342,6 +352,34 @@ export function obterSprite(nome, opcoes = {}) {
   s.quadros = s.quadros.map((q) => q.paraCanvas());
   if (s.brilho) s.brilho = s.brilho.map((q) => (q.paraCanvas ? q.paraCanvas() : q)); // camada que brilha sem depender da luz
   return s;
+}
+
+function miniatura(cv) {
+  const w = Math.ceil(cv.width / 2), h = Math.ceil(cv.height / 2);
+  const src = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data;
+  const out = document.createElement('canvas'); out.width = w; out.height = h;
+  const g = out.getContext('2d'), img = g.createImageData(w, h), d = img.data;
+  const lum = (r, gg, b) => r * 0.3 + gg * 0.59 + b * 0.11;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    const cores = new Map(); let opacos = 0, escuros = 0;
+    for (const [dx, dy] of [[0, 0], [1, 0], [0, 1], [1, 1]]) {
+      const X = x * 2 + dx, Y = y * 2 + dy; if (X >= cv.width || Y >= cv.height) continue;
+      const k = (Y * cv.width + X) * 4; if (src[k + 3] < 128) continue;
+      opacos++; const l = lum(src[k], src[k + 1], src[k + 2]); if (l < 45) escuros++;
+      const c = (src[k] << 16) | (src[k + 1] << 8) | src[k + 2];
+      cores.set(c, (cores.get(c) || 0) + (l < 45 ? 0.6 : 1));   // o contorno pesa menos
+    }
+    if (opacos < 2) continue;
+    let melhor = 0, n = -1; for (const [c, q] of cores) if (q > n) { n = q; melhor = c; }
+    if (escuros >= 3) { for (const [c] of cores) if (lum(c >> 16, (c >> 8) & 255, c & 255) < 45) { melhor = c; break; } }
+    const k = (y * w + x) * 4; d[k] = melhor >> 16; d[k + 1] = (melhor >> 8) & 255; d[k + 2] = melhor & 255; d[k + 3] = 255;
+  }
+  // contorno de 1 px em volta (como os sprites normais)
+  const op = (x, y) => x >= 0 && y >= 0 && x < w && y < h && d[(y * w + x) * 4 + 3] > 0, marcar = [];
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (!op(x, y) && (op(x - 1, y) || op(x + 1, y) || op(x, y - 1) || op(x, y + 1))) marcar.push((y * w + x) * 4);
+  for (const k of marcar) { d[k] = 26; d[k + 1] = 20; d[k + 2] = 30; d[k + 3] = 255; }
+  g.putImageData(img, 0, 0);
+  return out;
 }
 
 // Sprite a partir de PNG do usuário (folha horizontal com N quadros).
