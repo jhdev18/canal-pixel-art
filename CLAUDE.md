@@ -351,7 +351,8 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
   para o próximo (o goblin anotando). Seguir também as táticas de retenção do vídeo das sombras (dia, movimento, escalada, "Até que" cedo).
 - Título com termos que o público busca: "Reencarnei como... isekai"; tags `#isekai #reencarnei`.
 - **Nome do cogumelo: Davi** (escolhido pelo usuário; antes era Tico). O chapéu `grande` só cresce, sem mudar de cor (dourado parecia
-  "outra cor do Davi"). Sprite `cogumelo-davi`, chapéu `chapeu-davi`; projeto `isekai-davi-01`.
+  "outra cor do Davi"). **Desenho v3** (escolhido pelo usuário, opções B+C): igual aos cogumelos comuns, ~1,5 vez maior que eles, olhos com brilho,
+  bochechas e 9 expressões (também de chapéu grande/sem chapéu: o motor usa `<estado>-rosto-<x>`); ele reage com o rosto em toda cena parada. Sprite `cogumelo-davi`, chapéu `chapeu-davi`; projeto `isekai-davi-01`.
 - **Final interativo** (pedido do usuário): a última cena (~4 s) pede ao público uma **decisão de caminho** para o próximo episódio
   (ep. 1: "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.") com o `placar` `"estilo": "escolha"` no alto (painel de menu
   de jogo "VOCÊ DECIDE!" com um cartão por opção: número, ícone e nome — o placar simples foi achado sem graça); o mais votado vira o episódio seguinte. Votar em **poder** foi recusado (riso/amor "não têm sentido" para

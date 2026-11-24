@@ -150,8 +150,11 @@ C.push(cena('Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.', {
 
 marcar(C, { ataque: [[9, 13]] });
 rostos(C, [[3, 'h1', 'bravo', 0.6], [4, 'h1', 'feliz', 0.6], [4, 'h2', 'feliz', 0.7], [6, 'h5', 'bravo', 0.5], [6, 'h6', 'bravo', 0.5],
-  [7, 'h1', 'bravo', 0.75], [8, 'h1', 'bravo', 0.5], [9, 'h2', 'bravo'], [9, 'h3', 'bravo'], [10, 'h4', 'surpreso', 0.4], [10, 'h5', 'surpreso', 0.4], [10, 'h6', 'surpreso', 0.4]]);
-alturaShorts(C, { 15: -2.25, 1: -2.25, 2: -0.75, 3: -1, 5: -2.75, 6: -1.75, 7: -0.75, 8: -1.75, 9: -1.25, 10: -1.75, 11: -1.25, 12: -1.25, 13: -1.25 });
+  [7, 'h1', 'bravo', 0.75], [8, 'h1', 'bravo', 0.5], [9, 'h2', 'bravo'], [9, 'h3', 'bravo'], [10, 'h4', 'surpreso', 0.4], [10, 'h5', 'surpreso', 0.4], [10, 'h6', 'surpreso', 0.4],
+  // o Davi (v3) reage com o rosto em toda cena em que fica parado (também de chapéu grande e sem chapéu: "<estado>-rosto-x")
+  [1, 'davi', 'surpreso', 0.75], [2, 'davi', 'envergonhado', 0.85], [3, 'davi', 'pensativo', 0.05, 0.38], [9, 'davi', 'bravo', 0.31, 0.18],
+  [11, 'davi', 'surpreso', 0.35], [12, 'davi', 'rindo', 0.56], [13, 'davi', 'rindo', 0.86], [15, 'davi', 'feliz', 0.93]]);
+alturaShorts(C, { 15: -2.25, 1: -2.25, 2: -1, 3: -1.25, 4: -0.25, 5: -2.75, 6: -1.75, 7: -1.25, 8: -2, 9: -1.25, 10: -2.25, 11: -1.5, 12: -1.5, 13: -1.25 });   // refeito com o Davi v3 (maior)
 
 // 16:9: o Davi é baixinho e a legenda (85% da altura) cobria ele — a câmera do 16:9 desce 1,25 (os personagens sobem na tela) (o Shorts, já ajustado acima, não muda)
 for (const c of C) {

@@ -93,8 +93,15 @@ function spriteTico() {
   grupo('feliz', 'normal', 'feliz');
   grupo('grande', 'grande', 'feliz');
   const s = { quadros, anims, sombra: true, personagem: true };
-  return adicionarExpressoes(s, (e) => [tico({ face: e }), tico({ face: e, dy: 1 })]);
+  adicionarExpressoes(s, (e) => [tico({ face: e }), tico({ face: e, dy: 1 })]);
+  // expressões também de chapéu grande e sem chapéu (estado + "rosto-x": o motor usa "<estado>-rosto-<x>")
+  for (const e of ROSTOS_DAVI) {
+    anims['feliz-rosto-' + e] = anims['assustado-rosto-' + e] = anims['rosto-' + e];
+    for (const [estado, chapeu] of [['grande', 'grande'], ['sem-chapeu', 'sem']]) anims[estado + '-rosto-' + e] = { q: [add({ chapeu, face: e }), add({ chapeu, face: e, dy: 1 })].flatMap((n) => [n, n]), fps: 2 };
+  }
+  return s;
 }
+const ROSTOS_DAVI = ['feliz', 'rindo', 'triste', 'chorando', 'bravo', 'surpreso', 'assustado', 'envergonhado', 'pensativo'];
 
 // ---------------------------------------------------------------- cogumelo comum (os da floresta, 18x20)
 function cogumeloComum({ perna = 'parado', dy = 0, cor = 0 } = {}) {

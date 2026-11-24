@@ -334,11 +334,12 @@ function estadoLivre(cena, el, t, _prof = 0) {
       default: break;
     }
   }
+  const rostoPose = pose && anim === 'parado' && rosto ? rosto : null;   // o sprite pode ter "<estado>-rosto-<x>" (ex.: Davi de chapéu grande)
   if (pose && anim === 'parado') anim = pose;
   if (espirro && anim === 'parado' && !pose) anim = espirro;
   else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
   if (dono && !dono.visivel) visivel = false;
-  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, animInicio, alpha, escala, vermelho, alturaPulo: offY, fasePulo };
+  return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, rostoPose, animInicio, alpha, escala, vermelho, alturaPulo: offY, fasePulo };
 }
 
 export function elementoPorId(cena, id) {

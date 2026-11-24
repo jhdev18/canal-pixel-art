@@ -46,7 +46,7 @@ for (const [i, dy, area, topo] of out) (porCena[i] ||= []).push({ dy, area, topo
 if (process.argv[3]) for (const x of porCena[process.argv[3]]) console.log(x);
 for (const [i, l] of Object.entries(porCena)) {
   const ok = l.filter((x) => x.area === 0 && x.topo >= 2).sort((a, b) => Math.abs(a.dy) - Math.abs(b.dy))[0];
-  const min = l.filter((x) => x.topo >= 2).sort((a, b) => a.area - b.area)[0];
+  const min = l.filter((x) => x.topo >= 2).sort((a, b) => a.area - b.area)[0] || [...l].sort((a, b) => a.area - b.area)[0];
   console.log(`cena ${i}: ${ok ? `dy ${ok.dy}` : `SEM SOLUÇÃO (menor: dy ${min.dy}, cobre ${min.area})`}   (dy 0: cobre ${l[0].area}, topo ${l[0].topo})`);
 }
 await m.browser.close(); srv.fechar?.();

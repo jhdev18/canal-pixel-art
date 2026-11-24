@@ -56,6 +56,13 @@
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 2.69
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "surpreso",
+     "inicio": 2.98,
+     "duracao": 0.9
     }
    ],
    "vertical": {
@@ -135,13 +142,20 @@
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 3.08
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "envergonhado",
+     "inicio": 3.67,
+     "duracao": 0.6
     }
    ],
    "vertical": {
     "camera": {
      "x": 1.65,
      "z": 2.2,
-     "y": 1.85
+     "y": 1.6
     },
     "centrarEm": [
      "davi"
@@ -227,13 +241,20 @@
      "rosto": "bravo",
      "inicio": 2.87,
      "duracao": 1.72
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "pensativo",
+     "inicio": 0.51,
+     "duracao": 1.63
     }
    ],
    "vertical": {
     "camera": {
      "x": 2.15,
      "z": 2.2,
-     "y": 1.6
+     "y": 1.35
     },
     "centrarEm": [
      "davi",
@@ -345,7 +366,7 @@
     "camera": {
      "x": 0.33,
      "z": 2.2,
-     "y": 2.6
+     "y": 2.35
     },
     "centrarEm": [
      "h1",
@@ -940,7 +961,7 @@
     "camera": {
      "x": 2.7,
      "z": 2.2,
-     "y": 1.85
+     "y": 1.35
     },
     "centrarEm": [
      "davi",
@@ -1040,7 +1061,7 @@
     "camera": {
      "x": 1.85,
      "z": 2.2,
-     "y": 0.85
+     "y": 0.6
     },
     "centrarEm": [
      "davi",
@@ -1234,6 +1255,13 @@
      "rosto": "bravo",
      "inicio": 0.5,
      "duracao": 3.7
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "bravo",
+     "inicio": 1.51,
+     "duracao": 0.7
     }
    ],
    "vertical": {
@@ -1445,7 +1473,7 @@
     "camera": {
      "x": 4.65,
      "z": 2.2,
-     "y": 0.85
+     "y": 0.35
     },
     "centrarEm": [
      "davi",
@@ -1768,13 +1796,20 @@
      "alvo": "dh1",
      "icone": "zzz",
      "inicio": 1.18
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "surpreso",
+     "inicio": 1.03,
+     "duracao": 1.35
     }
    ],
    "vertical": {
     "camera": {
      "x": 3.59,
      "z": 2.2,
-     "y": 1.35
+     "y": 1.1
     },
     "centrarEm": [
      "davi",
@@ -1885,13 +1920,20 @@
      "alvo": "dh2",
      "icone": "zzz",
      "inicio": 2.68
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "rindo",
+     "inicio": 2.3,
+     "duracao": 1.58
     }
    ],
    "vertical": {
     "camera": {
      "x": 0.95,
      "z": 2.2,
-     "y": 1.35
+     "y": 1.1
     },
     "centrarEm": [
      "davi"
@@ -1999,6 +2041,13 @@
      "altura": 0.4,
      "inicio": 1.74,
      "duracao": 0.6
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "rindo",
+     "inicio": 2.37,
+     "duracao": 0.34
     }
    ],
    "vertical": {
@@ -2191,6 +2240,13 @@
      "tipo": "som",
      "som": "blip",
      "inicio": 4.13
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "davi",
+     "rosto": "feliz",
+     "inicio": 4.05,
+     "duracao": 0.28
     }
    ],
    "vertical": {

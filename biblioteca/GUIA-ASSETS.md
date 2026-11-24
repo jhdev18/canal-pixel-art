@@ -203,9 +203,12 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   no fundo (z 9.2–12.4) e, no lugar do céu, um fundo de copas escuras (`"rua": { "ceu": "mata" }`, serve para qualquer cena de mata:
   o usuário achou que o céu azul atrás da clareira parecia "flutuando/bugado"); árvores no fundo z ≥ 6.8,
   moitas `mato`, clima `polen`). Personagens na clareira em z ~1.2–4.6; câmera `{ "x", "z": 2.2, "y": 2.6 }`.
-- **`cogumelo-davi`** (personagem, 24x28): o cogumelo protagonista (chapéu vermelho de bolinhas, caule creme, perninhas). Estados: `parado`,
+- **`cogumelo-davi`** (personagem, 32x31, v3 aprovada no episódio): o cogumelo protagonista — mesmo desenho dos cogumelos comuns (chapéu vermelho de
+  bolinhas, caule creme, perninhas marrons), **~1,5 vez maior que eles** (destaque), chapéu alto, olhos 2x3 com brilho e bochechas rosadas. Estados: `parado`,
   `andando`/`correndo` (passinhos), `pulando`, `assustado` (+`-andando`), `tremendo`, `sem-chapeu` (+`-andando`, `-tremendo`, `-inspira`,
-  `-espirro`), `espirro-antes`/`espirro` (a ação `espirrar` funciona nele), `feliz`, `grande` (chapéu gigante dourado) e as expressões.
+  `-espirro`), `espirro-antes`/`espirro` (a ação `espirrar` funciona nele), `feliz`, `grande` (chapéu gigante, MESMA cor vermelha) e as expressões
+  `feliz`, `rindo`, `triste`, `chorando`, `bravo`, `surpreso`, `assustado`, `envergonhado`, `pensativo` — que funcionam **também de chapéu grande e sem
+  chapéu** (o motor usa `<estado>-rosto-<x>` quando o sprite tem: `rostos(C, [[cena, 'davi', 'rindo', f]])` com ele em `grande` mostra o chapéu grande rindo).
 - `cogumelo-comum`, `cogumelo-roxo`, `cogumelo-verde`: os outros cogumelos da floresta (figurantes; `sumir` = "puf" quando o herói golpeia).
 - **`goblin`** (personagem): o rival da série, um **goblin bruxo das trevas** (pedido do usuário: ameaçador) — capuz pontudo preto com o rosto na
   sombra (só os olhos verdes acesos e o sorriso de dentes pontudos), manto preto rasgado em tiras, colar de ossinhos, fumaça escura nos pés, grimório

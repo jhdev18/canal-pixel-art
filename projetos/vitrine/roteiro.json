@@ -990,7 +990,7 @@
       "acoes": [ { "tipo": "trocar", "alvo": "davi", "estado": "assustado", "inicio": 1.4 }, { "tipo": "trocar", "alvo": "davi", "estado": "feliz", "inicio": 2.8 },
         { "tipo": "andar", "alvo": "c1", "para": -1.6, "inicio": 0.2, "duracao": 3.0 } ] },
     { "cenario": "floresta-isekai", "duracao": 5, "transicao": "dither", "foto": [0.6, 1.6, 2.6, 3.6], "camera": { "x": 0, "z": 2.2, "y": 2.0, "zoom": 2 },
-      "legenda": "82. Davi: andando, sem chapéu (o chapéu voa), tremendo, inspira > espirro com esporos pequenos, chapéu grande dourado.",
+      "legenda": "82. Davi: andando, sem chapéu (o chapéu voa), tremendo, inspira > espirro com esporos pequenos, chapéu grande (mesma cor).",
       "elementos": [ { "id": "davi", "personagem": "cogumelo-davi", "x": -1.2, "z": 3.0 }, { "id": "chapeu", "sprite": "chapeu-davi", "x": 0.4, "z": 3.0, "oculto": true } ],
       "acoes": [ { "tipo": "andar", "alvo": "davi", "para": 0, "inicio": 0, "duracao": 1.0 },
         { "tipo": "trocar", "alvo": "davi", "estado": "sem-chapeu-tremendo", "inicio": 1.1 }, { "tipo": "aparecer", "alvo": "chapeu", "inicio": 1.1, "som": null },
