@@ -49,16 +49,20 @@ const HEROIS = [['h1', 'heroi-aventureiro', 0.8, 3.0], ['h2', 'heroi-aventureira
   ['h4', 'heroi-aventureiro', 5.2, 4.2], ['h5', 'heroi-aventureira', 6.6, 3.2], ['h6', 'heroi-grandao', 8.0, 4.4]];
 const COGUMELOS = [['c1', 1.6, 1.6], ['c2', 3.2, 1.6], ['c3', 4.8, 1.6], ['c4', 6.4, 1.6]];
 const HER = (extra = {}) => HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x, z, { ...F, ...extra }), ESPADA(id)]);
+// Shorts das cenas 5 e 6: o grupo inteiro no meio, câmera fixa (os heróis entram correndo de fora, pela direita)
+const ATAQUE_SHORTS = () => ({ x: 5.6, z: 2.2, y: 2.6, travado: true });
 // 5. O evento (~30%): seis heróis entram correndo de uma vez pela direita (cada um na sua faixa); os cogumelos levam susto ("!")
 C.push(cena('Até que, numa manhã, vieram seis de uma vez.', {
-  cenario: 'floresta-isekai', camera: CAM(3.4), foco: ['c2', 'c3'],   // Shorts: câmera nos cogumelos, os heróis entram correndo pela direita
-  elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 5, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F))],
+  cenario: 'floresta-isekai', camera: CAM(6.2),
+  // enquadramento: o grupo inteiro (heróis + cogumelos, como fica no fim) no meio da tela; os heróis entram correndo de FORA, pela direita
+  vertical: { camera: ATAQUE_SHORTS() },
+  elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 9, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F))],
   acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.03, 'correr', { alvo: id, para: x, durF: 0.6 })), a(0.6, 'tremer', { intensidade: 0.25, durF: 0.1 }), a(0.6, 'som', { som: 'passo' }),
     ...COGUMELOS.map(([id], k) => a(0.72 + k * 0.04, 'emocao', { alvo: id, icone: '!' }))],
 }));
 // 6. Escalada: um por um, os cogumelos fazem "puf" (cada herói golpeia o da frente)
 C.push(cena('Um por um, os cogumelos da floresta foram sumindo.', {
-  cenario: 'floresta-isekai', camera: CAM(3.4), foco: ['h1', 'h5'],
+  cenario: 'floresta-isekai', camera: CAM(3.4), vertical: { camera: ATAQUE_SHORTS() },
   // cada herói dá um passo para a esquerda e golpeia (termina na posição da manhã do ataque)
   elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 0.6, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F))],
   acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.04, 'andar', { alvo: id, para: x, durF: 0.96 - k * 0.04 })),
@@ -154,7 +158,7 @@ rostos(C, [[3, 'h1', 'bravo', 0.6], [4, 'h1', 'feliz', 0.6], [4, 'h2', 'feliz', 
   // o Davi (v3) reage com o rosto em toda cena em que fica parado (também de chapéu grande e sem chapéu: "<estado>-rosto-x")
   [1, 'davi', 'surpreso', 0.75], [2, 'davi', 'envergonhado', 0.85], [3, 'davi', 'pensativo', 0.05, 0.38], [9, 'davi', 'bravo', 0.31, 0.18],
   [11, 'davi', 'surpreso', 0.35], [12, 'davi', 'rindo', 0.56], [13, 'davi', 'rindo', 0.86], [15, 'davi', 'feliz', 0.93]]);
-alturaShorts(C, { 15: -2.25, 1: -2.25, 2: -1, 3: -1.25, 4: -0.25, 5: -2.75, 6: -1.75, 7: -1.25, 8: -2, 9: -1.25, 10: -2.25, 11: -1.5, 12: -1.5, 13: -1.25 });   // refeito com o Davi v3 (maior)
+alturaShorts(C, { 15: -2.25, 1: -2.25, 2: -1, 3: -1.25, 4: -0.25, 5: -2.25, 6: -2.25, 7: -1.25, 8: -2, 9: -1.25, 10: -2.25, 11: -1.5, 12: -1.5, 13: -1.25 });   // refeito com o Davi v3 (maior)
 
 // 16:9: o Davi é baixinho e a legenda (85% da altura) cobria ele — a câmera do 16:9 desce 1,25 (os personagens sobem na tela) (o Shorts, já ajustado acima, não muda)
 for (const c of C) {

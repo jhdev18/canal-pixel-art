@@ -386,7 +386,7 @@
    "narracaoTexto": "Até que, numa manhã, vieram seis de uma vez.",
    "cenario": "floresta-isekai",
    "camera": {
-    "x": 3.4,
+    "x": 6.2,
     "z": 2.2,
     "y": 1.35
    },
@@ -394,7 +394,7 @@
     {
      "id": "h1",
      "personagem": "heroi-aventureiro",
-     "x": 5.8,
+     "x": 9.8,
      "z": 3,
      "figurante": true
     },
@@ -412,7 +412,7 @@
     {
      "id": "h2",
      "personagem": "heroi-aventureira",
-     "x": 7.4,
+     "x": 11.4,
      "z": 3.8,
      "figurante": true
     },
@@ -430,7 +430,7 @@
     {
      "id": "h3",
      "personagem": "heroi-grandao",
-     "x": 8.8,
+     "x": 12.8,
      "z": 2.6,
      "figurante": true
     },
@@ -448,7 +448,7 @@
     {
      "id": "h4",
      "personagem": "heroi-aventureiro",
-     "x": 10.2,
+     "x": 14.2,
      "z": 4.2,
      "figurante": true
     },
@@ -466,7 +466,7 @@
     {
      "id": "h5",
      "personagem": "heroi-aventureira",
-     "x": 11.6,
+     "x": 15.6,
      "z": 3.2,
      "figurante": true
     },
@@ -484,7 +484,7 @@
     {
      "id": "h6",
      "personagem": "heroi-grandao",
-     "x": 13,
+     "x": 17,
      "z": 4.4,
      "figurante": true
     },
@@ -609,14 +609,11 @@
    ],
    "vertical": {
     "camera": {
-     "x": 7.35,
+     "x": 5.6,
      "z": 2.2,
-     "y": -0.15
-    },
-    "centrarEm": [
-     "c2",
-     "c3"
-    ]
+     "y": 0.35,
+     "travado": true
+    }
    }
   },
   {
@@ -875,14 +872,11 @@
    ],
    "vertical": {
     "camera": {
-     "x": 5.85,
+     "x": 5.6,
      "z": 2.2,
-     "y": 0.85
-    },
-    "centrarEm": [
-     "h1",
-     "h5"
-    ]
+     "y": 0.35,
+     "travado": true
+    }
    }
   },
   {
