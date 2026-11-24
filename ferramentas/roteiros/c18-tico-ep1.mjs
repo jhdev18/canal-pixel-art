@@ -138,6 +138,11 @@ rostos(C, [[3, 'h1', 'bravo', 0.6], [4, 'h1', 'feliz', 0.6], [4, 'h2', 'feliz', 
   [7, 'h1', 'bravo', 0.75], [8, 'h1', 'bravo', 0.5], [9, 'h2', 'bravo'], [9, 'h3', 'bravo'], [10, 'h4', 'surpreso', 0.4], [10, 'h5', 'surpreso', 0.4], [10, 'h6', 'surpreso', 0.4]]);
 alturaShorts(C, { 1: -2.25, 2: -0.75, 3: -1, 5: -2.75, 6: -1.75, 7: -0.75, 8: -1.75, 9: -1.25, 10: -1.75, 11: -1.25, 12: -1.25, 13: -1.25 });
 
+// 16:9: o Tico é baixinho e a legenda (85% da altura) cobria ele — a câmera do 16:9 desce 1,25 (os personagens sobem na tela) (o Shorts, já ajustado acima, não muda)
+for (const c of C) {
+  if (c.camera?.y != null) c.camera = { ...c.camera, y: +(c.camera.y - 1.25).toFixed(2) };
+  for (const ac of c.acoes) if (ac.tipo === 'corte' && ac.y != null) { ac.vertical = { y: ac.vertical?.y ?? ac.y, ...(ac.vertical || {}) }; ac.y = +(ac.y - 1.25).toFixed(2); }
+}
 salvar('isekai-tico-01', ['ISEKAI (série do cogumelo Tico) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-tico-01',
   'Protótipos: motor/assets/isekai.js (tico, cogumelos, goblin, heróis + dormindo, espada, chapéu), ações golpe e esporos, floresta-isekai.'], R);

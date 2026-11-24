@@ -200,7 +200,8 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 
 ### Isekai do cogumelo Tico (🧪, série isekai — `motor/assets/isekai.js`)
 - `floresta-isekai`: clareira de dia (chão `"chao": "floresta"` = grama com trilha de terra sinuosa e florzinhas; mata fechada de 4 fileiras
-  no fundo (z 9.2–12.4, o usuário não quis o céu azul aparecendo atrás); árvores no fundo z ≥ 6.8,
+  no fundo (z 9.2–12.4) e, no lugar do céu, um fundo de copas escuras (`"rua": { "ceu": "mata" }`, serve para qualquer cena de mata:
+  o usuário achou que o céu azul atrás da clareira parecia "flutuando/bugado"); árvores no fundo z ≥ 6.8,
   moitas `mato`, clima `polen`). Personagens na clareira em z ~1.2–4.6; câmera `{ "x", "z": 2.2, "y": 2.6 }`.
 - **`tico`** (personagem, 24x28): o cogumelo protagonista (chapéu vermelho de bolinhas, caule creme, perninhas). Estados: `parado`,
   `andando`/`correndo` (passinhos), `pulando`, `assustado` (+`-andando`), `tremendo`, `sem-chapeu` (+`-andando`, `-tremendo`, `-inspira`,

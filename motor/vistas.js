@@ -109,6 +109,32 @@ function ceuDiagonal(W, H, noite, tarde = false) {
   return tex(cv);
 }
 
+// PROTÓTIPO (isekai): fundo de MATA FECHADA no lugar do céu ("rua": { "ceu": "mata" }): fileiras de copas de árvore escuras
+// (mais escuras embaixo, com brilho de folha em cima), para a clareira não parecer uma ilha flutuando no céu azul.
+function mataDiagonal(W, H) {
+  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+  const g = cv.getContext('2d');
+  let sem = 11;
+  const rnd = () => ((sem = (sem * 16807) % 2147483647) / 2147483647);
+  g.fillStyle = '#16341e'; g.fillRect(0, 0, W, H);
+  const FILEIRAS = [['#1e4426', '#265030', '#2e5e36'], ['#24502c', '#2e6036', '#3a7040'], ['#2a5a30', '#36683a', '#447a46']];
+  const passo = Math.max(10, Math.round(H / 9));
+  for (let lin = -1; lin * passo < H + passo; lin++) {
+    const cores = FILEIRAS[((lin % 3) + 3) % 3];
+    for (let x0 = -12 + (lin % 2) * 9; x0 < W + 12; x0 += 14 + Math.floor(rnd() * 6)) {
+      const r = 9 + Math.floor(rnd() * 5), cx = x0, cy = lin * passo + Math.floor(rnd() * 4);
+      for (let y = -r; y <= r; y++) for (let x = -r; x <= r; x++) {
+        if (x * x + y * y > r * r) continue;
+        const luz = (-x - y) / (r * 1.6);   // luz vindo de cima à esquerda
+        g.fillStyle = luz > 0.45 ? cores[2] : luz > -0.2 ? cores[1] : cores[0];
+        g.fillRect(cx + x, cy + y, 1, 1);
+      }
+      for (let k = 0; k < 3; k++) { g.fillStyle = '#4e8a4c'; g.fillRect(cx - Math.floor(rnd() * r * 0.6), cy - Math.floor(rnd() * r * 0.6), 1, 1); }   // folhinhas claras
+    }
+  }
+  return tex(cv);
+}
+
 // ---------------------------------------------------------------- sombra que se alastra (diorama de rua)
 export const GLSL_BAYER = /* glsl */ `
 float bayer4(vec2 p) {
@@ -221,7 +247,7 @@ function vistaDiagonal(c, motor) {
   const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13 });
   const cena = new THREE.Scene();
   // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
-  cena.background = ceuDiagonal(W, H, rua.noite, rua.tarde);
+  cena.background = op.ceu === 'mata' ? mataDiagonal(W, H) : ceuDiagonal(W, H, rua.noite, rua.tarde);
   const cv = document.createElement('canvas'); cv.width = rua.W; cv.height = rua.H;
   cv.getContext('2d').putImageData(new ImageData(rua.imagem, rua.W, rua.H), 0, 0);
   const texMundo = tex(cv);
