@@ -191,6 +191,8 @@ abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run c
   câmera, sombra errada, brinquedo grande demais), e só depois a ação/transformação. Abrir com uma imagem normal e feliz não segura.
 - **O 1º quadro precisa dizer o tema sozinho** (Roblox → dentro do jogo de blocos ou a `tela-jogo` em close; isekai → batalha).
 - Horário de postagem pesa pouco no Shorts (o feed testa com quem está online); o que decide é o "continuaram" do 1º grupo.
+- Com 1h14 no ar: **52,1% continuaram** (270 intencionais, 16 gostei), 2º grupo de teste aos ~60 min; duração média caiu para 0:30
+  (normal quando o público fica mais amplo). Não julgar um Short antes de ~24 h.
 
 **Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
 justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:
