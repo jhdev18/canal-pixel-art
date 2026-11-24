@@ -14,13 +14,13 @@ São **15 falas** (uma por cena com narração):
 | 2 | Davi acordou sem braços, de perninhas curtas e chapéu gigante. |
 | 3 | Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota. |
 | 4 | Por isso, todo herói novo vem treinar na floresta. |
-| 5 | Até que, numa manhã, vieram dez de uma vez. |
+| 5 | Até que, numa manhã, vieram seis de uma vez. |
 | 6 | Um por um, os cogumelos da floresta foram sumindo. |
 | 7 | Só sobrou o Davi. E ele fugia a passinhos deste tamanho. |
 | 8 | A espada desceu e levou o chapéu dele junto. |
 | 9 | Então o Davi parou. Respirou fundo. E espirrou de propósito. |
 | 10 | A floresta inteira ficou azul. |
-| 11 | E os dez heróis caíram dormindo. |
+| 11 | E os seis heróis caíram dormindo. |
 | 12 | Os heróis não derrotavam os cogumelos por serem fracos. |
 | 13 | Derrotavam antes que eles crescessem. |
 | 14 | E, escondido na moita, um goblin bruxo anotava tudo. |

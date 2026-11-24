@@ -49,11 +49,11 @@ const HEROIS = [['h1', 'heroi-aventureiro', 0.8, 3.0], ['h2', 'heroi-aventureira
   ['h4', 'heroi-aventureiro', 5.2, 4.2], ['h5', 'heroi-aventureira', 6.6, 3.2], ['h6', 'heroi-grandao', 8.0, 4.4]];
 const COGUMELOS = [['c1', 1.6, 1.6], ['c2', 3.2, 1.6], ['c3', 4.8, 1.6], ['c4', 6.4, 1.6]];
 const HER = (extra = {}) => HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x, z, { ...F, ...extra }), ESPADA(id)]);
-// 5. O evento (~35%): muitos heróis entram correndo de uma vez (vindos da direita, cada um na sua faixa)
-C.push(cena('Até que, numa manhã, vieram dez de uma vez.', {
-  cenario: 'floresta-isekai', camera: CAM(3.4), foco: ['h1', 'h5'],
-  elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 9, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F))],
-  acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.05, 'correr', { alvo: id, para: x, durF: 0.7 })), a(0.6, 'tremer', { intensidade: 0.25, durF: 0.1 }), a(0.6, 'som', { som: 'passo' }),
+// 5. O evento (~30%): seis heróis entram correndo de uma vez pela direita (cada um na sua faixa); os cogumelos levam susto ("!")
+C.push(cena('Até que, numa manhã, vieram seis de uma vez.', {
+  cenario: 'floresta-isekai', camera: CAM(3.4), foco: ['c2', 'c3'],   // Shorts: câmera nos cogumelos, os heróis entram correndo pela direita
+  elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 5, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F))],
+  acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.03, 'correr', { alvo: id, para: x, durF: 0.6 })), a(0.6, 'tremer', { intensidade: 0.25, durF: 0.1 }), a(0.6, 'som', { som: 'passo' }),
     ...COGUMELOS.map(([id], k) => a(0.72 + k * 0.04, 'emocao', { alvo: id, icone: '!' }))],
 }));
 // 6. Escalada: um por um, os cogumelos fazem "puf" (cada herói golpeia o da frente)
@@ -100,7 +100,7 @@ C.push(cena('A floresta inteira ficou azul.', {
 }));
 // 11. Os heróis caem dormindo um por um (a pessoa some e entra a versão deitada, com "zzz")
 const DORMEM = HEROIS.map(([id, sp, x, z]) => P('d' + id, sp + '-dormindo', x, z, { ...F, oculto: true }));
-C.push(cena('E os dez heróis caíram dormindo.', {
+C.push(cena('E os seis heróis caíram dormindo.', {
   cenario: 'floresta-isekai', camera: CAM(2.4), foco: ['davi', 'h5'],
   elementos: [DAVI('sem-chapeu'), CHAPEU(), ...HER(), ...DORMEM],
   acoes: [a(0, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'flutuando' }),

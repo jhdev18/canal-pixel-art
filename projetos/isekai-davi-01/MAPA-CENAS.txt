@@ -1,20 +1,20 @@
-E se você renascesse como o monstro mais fraco do jogo? — tempos ESTIMADOS (sem narração ainda) — total 0:58.3
+E se você renascesse como o monstro mais fraco do jogo? — tempos ESTIMADOS (sem narração ainda) — total 0:58.4
 
   início   fim     %    cena  o que tem               narração
   0:00.0  0:04.3    0%    1   mov                     E se você renascesse como o monstro mais fraco do jogo?
   0:04.3  0:09.0    7%    2   mov som                 Davi acordou sem braços, de perninhas curtas e chapéu gigante.
   0:09.0  0:13.8   15%    3   mov                     Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.
   0:13.8  0:17.5   24%    4   mov                     Por isso, todo herói novo vem treinar na floresta.
-  0:17.5  0:20.8   30%    5   mov flash som           Até que, numa manhã, vieram dez de uma vez.
+  0:17.5  0:20.8   30%    5   mov flash som           Até que, numa manhã, vieram seis de uma vez.
   0:20.8  0:24.5   36%    6   mov                     Um por um, os cogumelos da floresta foram sumindo.
   0:24.5  0:29.5   42%    7   mov                     Só sobrou o Davi. E ele fugia a passinhos deste tamanho.
-  0:29.5  0:32.8   51%    8   mov flash som           A espada desceu e levou o chapéu dele junto.
-  0:32.8  0:38.1   56%    9   mov                     Então o Davi parou. Respirou fundo. E espirrou de propósito.
-  0:38.1  0:40.5   65%   10   mov flash               A floresta inteira ficou azul.
-  0:40.5  0:43.1   70%   11   mov                     E os dez heróis caíram dormindo.
-  0:43.1  0:47.1   74%   12   mov                     Os heróis não derrotavam os cogumelos por serem fracos.
-  0:47.1  0:50.0   81%   13   mov corte flash         Derrotavam antes que eles crescessem.
-  0:50.0  0:53.8   86%   14   mov flash               E, escondido na moita, um goblin bruxo anotava tudo.
-  0:53.8  0:58.3   92%   15   mov som                 Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.
+  0:29.5  0:32.9   51%    8   mov flash som           A espada desceu e levou o chapéu dele junto.
+  0:32.9  0:38.2   56%    9   mov                     Então o Davi parou. Respirou fundo. E espirrou de propósito.
+  0:38.2  0:40.6   65%   10   mov flash               A floresta inteira ficou azul.
+  0:40.6  0:43.2   69%   11   mov                     E os seis heróis caíram dormindo.
+  0:43.2  0:47.2   74%   12   mov                     Os heróis não derrotavam os cogumelos por serem fracos.
+  0:47.2  0:50.1   81%   13   mov corte flash         Derrotavam antes que eles crescessem.
+  0:50.1  0:53.9   86%   14   mov flash               E, escondido na moita, um goblin bruxo anotava tudo.
+  0:53.9  0:58.4   92%   15   mov som                 Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.
 
   Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.

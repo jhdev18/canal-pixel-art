@@ -2,7 +2,7 @@
 
 **Formato:** ISEKAI (série de Shorts, aventura com comédia, de dia). **Vista:** diorama em todas as cenas (floresta). **Narração:** narrador em 3ª pessoa, um único áudio. **Trilha:** comédia.
 
-**Ideia:** Um garoto renasce como o Davi, um cogumelo: o monstro mais fraco do jogo, que todo herói novo derrota para treinar. Ele é lento, não tem braços e tem um chapéu gigante — mas quando espirra solta esporos azuis que fazem dormir. Numa manhã, dez heróis invadem a floresta e os cogumelos somem um por um. O herói leva o chapéu do Davi; ele para, respira fundo e espirra de propósito: a floresta fica azul e os dez caem dormindo. Virada: os heróis não derrotavam os cogumelos por serem fracos — derrotavam antes que eles crescessem (o chapéu do Davi cresce, dourado). Gancho: um goblin bruxo, escondido na moita, anota tudo, com as almas dos cogumelos derrotados flutuando em volta dele.
+**Ideia:** Um garoto renasce como o Davi, um cogumelo: o monstro mais fraco do jogo, que todo herói novo derrota para treinar. Ele é lento, não tem braços e tem um chapéu gigante — mas quando espirra solta esporos azuis que fazem dormir. Numa manhã, seis heróis invadem a floresta e os cogumelos somem um por um. O herói leva o chapéu do Davi; ele para, respira fundo e espirra de propósito: a floresta fica azul e os seis caem dormindo. Virada: os heróis não derrotavam os cogumelos por serem fracos — derrotavam antes que eles crescessem (o chapéu do Davi cresce, sem mudar de cor). Gancho: um goblin bruxo, escondido na moita, anota tudo, com as almas dos cogumelos derrotados flutuando em volta dele.
 
 **Pista plantada:** cena 1 (o primeiro espirro solta uma nuvenzinha azul) e cena 2 (o espirro faz o cogumelo ao lado dormir: "zzz"). Na cena 9 ele lembra disso e espirra de propósito.
 
@@ -22,13 +22,13 @@
 **2.** `floresta-isekai` — Davi acordou sem braços, de perninhas curtas e chapéu gigante.
 **3.** `floresta-isekai` — Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.
 **4.** `floresta-isekai` — Por isso, todo herói novo vem treinar na floresta. (um cogumelo verde se assusta e foge)
-**5.** `floresta-isekai` — Até que, numa manhã, vieram dez de uma vez.
+**5.** `floresta-isekai` — Até que, numa manhã, vieram seis de uma vez.
 **6.** `floresta-isekai` — Um por um, os cogumelos da floresta foram sumindo.
 **7.** `floresta-isekai` — Só sobrou o Davi. E ele fugia a passinhos deste tamanho.
 **8.** `floresta-isekai` — A espada desceu e levou o chapéu dele junto.
 **9.** `floresta-isekai` — Então o Davi parou. Respirou fundo. E espirrou de propósito.
 **10.** `floresta-isekai` — A floresta inteira ficou azul.
-**11.** `floresta-isekai` — E os dez heróis caíram dormindo.
+**11.** `floresta-isekai` — E os seis heróis caíram dormindo.
 **12.** `floresta-isekai` — Os heróis não derrotavam os cogumelos por serem fracos.
 **13.** `floresta-isekai` — Derrotavam antes que eles crescessem.
 **14.** `floresta-isekai` — E, escondido na moita, um goblin bruxo anotava tudo.  

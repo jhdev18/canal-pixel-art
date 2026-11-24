@@ -383,7 +383,7 @@
    }
   },
   {
-   "narracaoTexto": "Até que, numa manhã, vieram dez de uma vez.",
+   "narracaoTexto": "Até que, numa manhã, vieram seis de uma vez.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": 3.4,
@@ -394,7 +394,7 @@
     {
      "id": "h1",
      "personagem": "heroi-aventureiro",
-     "x": 9.8,
+     "x": 5.8,
      "z": 3,
      "figurante": true
     },
@@ -412,7 +412,7 @@
     {
      "id": "h2",
      "personagem": "heroi-aventureira",
-     "x": 11.4,
+     "x": 7.4,
      "z": 3.8,
      "figurante": true
     },
@@ -430,7 +430,7 @@
     {
      "id": "h3",
      "personagem": "heroi-grandao",
-     "x": 12.8,
+     "x": 8.8,
      "z": 2.6,
      "figurante": true
     },
@@ -448,7 +448,7 @@
     {
      "id": "h4",
      "personagem": "heroi-aventureiro",
-     "x": 14.2,
+     "x": 10.2,
      "z": 4.2,
      "figurante": true
     },
@@ -466,7 +466,7 @@
     {
      "id": "h5",
      "personagem": "heroi-aventureira",
-     "x": 15.6,
+     "x": 11.6,
      "z": 3.2,
      "figurante": true
     },
@@ -484,7 +484,7 @@
     {
      "id": "h6",
      "personagem": "heroi-grandao",
-     "x": 17,
+     "x": 13,
      "z": 4.4,
      "figurante": true
     },
@@ -534,88 +534,88 @@
      "alvo": "h1",
      "para": 0.8,
      "inicio": 0.3,
-     "duracao": 1.96
+     "duracao": 1.72
     },
     {
      "tipo": "correr",
      "alvo": "h2",
      "para": 2.4,
-     "inicio": 0.44,
-     "duracao": 1.96
+     "inicio": 0.39,
+     "duracao": 1.72
     },
     {
      "tipo": "correr",
      "alvo": "h3",
      "para": 3.8,
-     "inicio": 0.58,
-     "duracao": 1.96
+     "inicio": 0.47,
+     "duracao": 1.72
     },
     {
      "tipo": "correr",
      "alvo": "h4",
      "para": 5.2,
-     "inicio": 0.72,
-     "duracao": 1.96
+     "inicio": 0.56,
+     "duracao": 1.72
     },
     {
      "tipo": "correr",
      "alvo": "h5",
      "para": 6.6,
-     "inicio": 0.86,
-     "duracao": 1.96
+     "inicio": 0.64,
+     "duracao": 1.72
     },
     {
      "tipo": "correr",
      "alvo": "h6",
      "para": 8,
-     "inicio": 1,
-     "duracao": 1.96
+     "inicio": 0.73,
+     "duracao": 1.72
     },
     {
      "tipo": "tremer",
      "intensidade": 0.25,
-     "inicio": 1.98,
-     "duracao": 0.28
+     "inicio": 2.02,
+     "duracao": 0.29
     },
     {
      "tipo": "som",
      "som": "passo",
-     "inicio": 1.98
+     "inicio": 2.02
     },
     {
      "tipo": "emocao",
      "alvo": "c1",
      "icone": "!",
-     "inicio": 1.89
+     "inicio": 1.96
     },
     {
      "tipo": "emocao",
      "alvo": "c2",
      "icone": "!",
-     "inicio": 1.89
+     "inicio": 1.96
     },
     {
      "tipo": "emocao",
      "alvo": "c3",
      "icone": "!",
-     "inicio": 1.89
+     "inicio": 1.96
     },
     {
      "tipo": "emocao",
      "alvo": "c4",
      "icone": "!",
-     "inicio": 1.89
+     "inicio": 1.96
     }
    ],
    "vertical": {
     "camera": {
-     "x": 10.05,
+     "x": 7.35,
      "z": 2.2,
      "y": -0.15
     },
     "centrarEm": [
-     "h1",
-     "h5"
+     "c2",
+     "c3"
     ]
    }
   },
@@ -1491,7 +1491,7 @@
    "momento": "ataque"
   },
   {
-   "narracaoTexto": "E os dez heróis caíram dormindo.",
+   "narracaoTexto": "E os seis heróis caíram dormindo.",
    "cenario": "floresta-isekai",
    "saiDeCena": [
     "h1",
@@ -1713,104 +1713,104 @@
      "tipo": "sumir",
      "alvo": "h2",
      "som": null,
-     "inicio": 0.72
+     "inicio": 0.73
     },
     {
      "tipo": "sumir",
      "alvo": "e-h2",
      "som": null,
-     "inicio": 0.72
+     "inicio": 0.73
     },
     {
      "tipo": "aparecer",
      "alvo": "dh2",
      "som": null,
-     "inicio": 0.72
+     "inicio": 0.73
     },
     {
      "tipo": "sumir",
      "alvo": "h3",
      "som": null,
-     "inicio": 0.97
+     "inicio": 0.99
     },
     {
      "tipo": "sumir",
      "alvo": "e-h3",
      "som": null,
-     "inicio": 0.97
+     "inicio": 0.99
     },
     {
      "tipo": "aparecer",
      "alvo": "dh3",
      "som": "aterrissar",
-     "inicio": 0.97
+     "inicio": 0.99
     },
     {
      "tipo": "sumir",
      "alvo": "h4",
      "som": null,
-     "inicio": 1.22
+     "inicio": 1.24
     },
     {
      "tipo": "sumir",
      "alvo": "e-h4",
      "som": null,
-     "inicio": 1.22
+     "inicio": 1.24
     },
     {
      "tipo": "aparecer",
      "alvo": "dh4",
      "som": null,
-     "inicio": 1.22
+     "inicio": 1.24
     },
     {
      "tipo": "sumir",
      "alvo": "h5",
      "som": null,
-     "inicio": 1.46
+     "inicio": 1.5
     },
     {
      "tipo": "sumir",
      "alvo": "e-h5",
      "som": null,
-     "inicio": 1.46
+     "inicio": 1.5
     },
     {
      "tipo": "aparecer",
      "alvo": "dh5",
      "som": "aterrissar",
-     "inicio": 1.46
+     "inicio": 1.5
     },
     {
      "tipo": "sumir",
      "alvo": "h6",
      "som": null,
-     "inicio": 1.71
+     "inicio": 1.76
     },
     {
      "tipo": "sumir",
      "alvo": "e-h6",
      "som": null,
-     "inicio": 1.71
+     "inicio": 1.76
     },
     {
      "tipo": "aparecer",
      "alvo": "dh6",
      "som": null,
-     "inicio": 1.71
+     "inicio": 1.76
     },
     {
      "tipo": "emocao",
      "alvo": "dh1",
      "icone": "zzz",
-     "inicio": 1.18
+     "inicio": 1.24
     },
     {
      "tipo": "expressao",
      "alvo": "davi",
      "rosto": "surpreso",
-     "inicio": 1.03,
-     "duracao": 1.35
+     "inicio": 1.05,
+     "duracao": 1.39
     }
    ],
    "vertical": {
