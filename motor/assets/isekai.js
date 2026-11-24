@@ -52,13 +52,13 @@ function rostoTico(p, cx, cy, e) {
 }
 function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx = 0 } = {}) {
   const W = 24, H = 28, p = new Pix(W, H), cx = 12 + dx, pulo = perna === 'pulo' ? -1 : 0;
-  const topo = (chapeu === 'grande' ? 0 : 2) + dy + pulo;
+  const topo = (chapeu === 'grande' ? 2 : 3) + dy + pulo;   // o chapéu encosta no caule (antes o grande ficava descolado, "flutuando")
   // caule (corpo) — fica atrás da aba do chapéu
   const cy = 18 + dy + pulo;
   p.elipse(cx, cy, 6, 6, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3 - ey * 0.2, x, y));
-  // pernas
-  const pernas = { parado: [[-3, 0], [2, 0]], a: [[-3, -1], [2, 0]], b: [[-3, 0], [2, -1]], pulo: [[-3, -1], [2, -1]] }[perna];
-  for (const [px, py] of pernas) { p.ret(cx + px, 23 + py + dy + pulo, 2, 3, '#e8dcc0'); p.ret(cx + px - 0.5, 25 + py + dy + pulo, 3, 1, '#8a6a4a'); }
+  // pezinhos redondos da cor do caule (antes eram toquinhos finos com ponta marrom: "pés estranhos"); andando, um sobe de cada vez
+  const pes = { parado: [[-3, 0], [3, 0]], a: [[-3, -1], [3, 0]], b: [[-3, 0], [3, -1]], pulo: [[-3, -1], [3, -1]] }[perna];
+  for (const [px, py] of pes) p.elipse(cx + px, 24.6 + py + dy + pulo, 2.4, 1.5, (x, y, ex, ey) => (ey > 0.25 ? CAULE.sombra : ex < -0.3 && ey < 0 ? CAULE.luz : '#ecdcbc'));
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
     p.elipse(cx, 12 + dy + pulo, 5, 2.4, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
     p.set(cx - 1, 10 + dy + pulo, '#d8c4a0'); p.set(cx + 1, 10 + dy + pulo, '#d8c4a0');
