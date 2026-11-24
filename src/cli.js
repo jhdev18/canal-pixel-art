@@ -300,10 +300,16 @@ function escolherMusica(nome, flags) {
   const dirP = caminhoProjeto(nome), EXT = /\.(mp3|wav|m4a|ogg|flac|aac|opus)$/i;
   const pastas = [path.join(dirP, 'musica'), path.join(RAIZ, 'musicas')];
   for (const p of pastas) fs.mkdirSync(p, { recursive: true });
+  if (fs.existsSync(path.join(RAIZ, 'musica'))) pastas.push(path.join(RAIZ, 'musica'));   // a pasta "musica" (sem s) na raiz também vale
   let arquivo = null;
   if (flags.musica && flags.musica !== true) {
     const cand = [flags.musica, ...pastas.map((p) => path.join(p, flags.musica))];
     arquivo = cand.find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
+    // sem a extensão e sem ligar para maiúsculas: --musica "fallen down" acha "Fallen Down.mp3"
+    if (!arquivo) for (const p of pastas) {
+      const f = fs.readdirSync(p).find((x) => EXT.test(x) && x.replace(EXT, '').toLowerCase() === String(flags.musica).replace(EXT, '').toLowerCase());
+      if (f) { arquivo = path.join(p, f); break; }
+    }
     if (!arquivo) throw new Error(`Não achei a música "${flags.musica}" (procurei em ${pastas.join(' e ')})`);
   } else {
     for (const p of pastas) { const f = fs.readdirSync(p).filter((x) => EXT.test(x)).sort()[0]; if (f) { arquivo = path.join(p, f); break; } }
