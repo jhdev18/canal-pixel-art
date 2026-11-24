@@ -1,0 +1,17 @@
+Nessa cidade, a sua sombra chega antes de você — tempos ESTIMADOS (sem narração ainda) — total 0:56.5
+
+  início   fim     %    cena  o que tem               narração
+  0:00.0  0:05.1    0%    1   mov                     Nessa cidade, a sua sombra sempre chega um minuto antes de você.
+  0:05.1  0:09.7    9%    2   mov                     Por isso, ninguém se perde. É só seguir a própria sombra.
+  0:09.7  0:14.1   17%    3   mov                     Mas a sombra da Bia sempre vai para o lado contrário.
+  0:14.1  0:18.8   25%    4   mov balão               Ela chega atrasada em tudo. Na escola, a chamam de perdida.
+  0:18.8  0:23.8   33%    5   mov som                 Até que, num domingo, todas as sombras saíram andando sozinhas.
+  0:23.8  0:28.8   42%    6   mov                     E os moradores foram atrás delas, sorrindo, um atrás do outro.
+  0:28.8  0:33.3   51%    7   mov flash               Só a sombra da Bia puxava para o outro lado. Com força.
+  0:33.3  0:38.7   59%    8   mov                     A Bia parou na esquina. E, pela primeira vez, seguiu a própria sombra.
+  0:38.7  0:42.7   69%    9   PARADA som              Lá de longe, ela olhou para trás e congelou.
+  0:42.7  0:46.8   76%   10   PARADA flash            As sombras não mostravam o caminho. Elas levavam.
+  0:46.8  0:52.2   83%   11   PARADA flash som        Na segunda, a praça amanheceu cheia de sombras. Sem ninguém em cima.
+  0:52.2  0:56.5   92%   12   PARADA flash            E a sombra da Bia, colada nos pés dela, ainda tremia.
+
+  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.
