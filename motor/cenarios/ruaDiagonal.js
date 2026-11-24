@@ -89,9 +89,14 @@ function gerarRuaBase(opc = {}) {
   const tarde = opc.periodo === 'tarde';   // PROTÓTIPO: pôr do sol (luz alaranjada, céu laranja e rosa); continua claro
   const semente = opc.semente ?? 7;
   const J0 = -comp / 2, J1 = comp / 2, I0 = ['baseplate', 'bloco-cidade', 'lava'].includes(opc.chao) ? -16 : -4.5, I1 = 24, HMAX = 200;   // baseplate: chão bem maior para o fundo (horizonte longe, como no jogo)   // I1 largo: o canteiro vai até a borda
-  const OX = -(I0 - J1) * 16 + 4, OY = -(I0 + J0) * 8 + HMAX;
-  const W = Math.ceil((I1 - J0) * 16 + OX + 8), H = Math.ceil((I1 + J1) * 8 + OY + 8);
-  const proj = (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
+  // PROTÓTIPO "angulo": "rpg" — o MESMO diorama visto de cima e de frente, como num RPG clássico: as fachadas ficam retas
+  // de frente para a câmera e o chão aparece de cima (profundidade achatada: K px por unidade de z). O desenho de cada
+  // prédio/objeto é o mesmo (as faces "lado" não aparecem). x = -j na tela (16 px por unidade), y = i * K.
+  const RPG = !!opc.rpg, K = 10;
+  const OX = RPG ? J1 * 16 + 4 : -(I0 - J1) * 16 + 4, OY = RPG ? -I0 * K + HMAX : -(I0 + J0) * 8 + HMAX;
+  const W = RPG ? Math.ceil((J1 - J0) * 16 + 8) : Math.ceil((I1 - J0) * 16 + OX + 8), H = RPG ? Math.ceil((I1 - I0) * K + HMAX + 8) : Math.ceil((I1 + J1) * 8 + OY + 8);
+  const proj = RPG ? (i, j, h = 0) => ({ x: -j * 16 + OX, y: i * K + OY - h }) : (i, j, h = 0) => ({ x: (i - j) * 16 + OX, y: (i + j) * 8 + OY - h });
+  const doPixel = RPG ? (x, y, h = 0) => [(y + h - OY) / K, -(x - OX) / 16] : (x, y, h = 0) => { const X = (x - OX) / 16, Y = (y + h - OY) / 8; return [(Y + X) / 2, (Y - X) / 2]; };
 
   // buffers: cor base, posição 3D, tipo (0 vazio, 1 superfície, 2 emissivo), fator da face
   const N = W * H;
@@ -122,8 +127,7 @@ function gerarRuaBase(opc = {}) {
     return h % 5 === 0 ? '#b8a890' : h % 3 === 0 ? '#e8dcc8' : '#cfc0a8';
   };
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-    const X = (x - OX) / 16, Y = (y - OY) / 8;
-    const i = (Y + X) / 2, j = (Y - X) / 2;
+    const [i, j] = doPixel(x, y);
     if (i < I0 || i > I1 || j < J0 - 2 || j > J1 + 2) continue;
     let c;
     const calcada = (i >= 0 && i < 1.5) || (i > 5.5 && i < 7);
@@ -250,23 +254,22 @@ function gerarRuaBase(opc = {}) {
   // faces visíveis: frente (plano i = i1, de frente para a rua), lado (plano j = j1) e topo.
   function prisma(i0, i1, j0, j1, h0, h, pint) {
     for (let x = 0; x < W; x++) {               // frente
-      const s = i1 - (x - OX) / 16;
+      const s = RPG ? -(x - OX) / 16 : i1 - (x - OX) / 16;
       if (s < j0 || s > j1) continue;
-      const base = (i1 + s) * 8 + OY - h0;
+      const base = RPG ? i1 * K + OY - h0 : (i1 + s) * 8 + OY - h0;
       const u = Math.floor((s - j0) * 16), larg = Math.floor((j1 - j0) * 16);
       for (let t = 0; t <= h; t++) pint.frente(x, Math.round(base - t), u, t, larg, s);
     }
-    for (let x = 0; x < W; x++) {               // lado
+    if (!RPG) for (let x = 0; x < W; x++) {     // lado (no RPG não aparece: a câmera olha de frente)
       const s = (x - OX) / 16 + j1;
       if (s < i0 || s > i1) continue;
       const base = (s + j1) * 8 + OY - h0;
       const u = Math.floor((s - i0) * 16);
       for (let t = 0; t <= h; t++) pint.lado(x, Math.round(base - t), u, t, s);
     }
-    const yTop0 = Math.floor((i0 + j0) * 8 + OY - h0 - h) - 2, yTop1 = Math.ceil((i1 + j1) * 8 + OY - h0 - h) + 2;
+    const yTop0 = Math.floor(RPG ? i0 * K + OY - h0 - h : (i0 + j0) * 8 + OY - h0 - h) - 2, yTop1 = Math.ceil(RPG ? i1 * K + OY - h0 - h : (i1 + j1) * 8 + OY - h0 - h) + 2;
     for (let y = Math.max(0, yTop0); y < Math.min(H, yTop1); y++) for (let x = 0; x < W; x++) {
-      const X = (x - OX) / 16, Y = (y + h0 + h - OY) / 8;
-      const i = (Y + X) / 2, j = (Y - X) / 2;
+      const [i, j] = doPixel(x, y, h0 + h);
       if (i < i0 || i > i1 || j < j0 || j > j1) continue;
       pint.topo(x, y, i, j, Math.min(i - i0, i1 - i, j - j0, j1 - j));
     }
@@ -791,5 +794,5 @@ function gerarRuaBase(opc = {}) {
     if (NEV && tipo[k] === 1) { const n = nevoaZ(FAIXA.calcadaFrente - pi[k], noite); R += (NEV[0] - R) * n; G += (NEV[1] - G) * n; B += (NEV[2] - B) * n; }
     saida.set([Math.min(255, R * 255), Math.min(255, G * 255), Math.min(255, B * 255), 255], k * 4);
   }
-  return { W, H, imagem: saida, brilho, proj, postes, fumacas, J0, J1, noite, tarde, pi, pj, ph, tipo, VIS };
+  return { W, H, imagem: saida, brilho, proj, postes, fumacas, J0, J1, noite, tarde, pi, pj, ph, tipo, VIS, rpg: RPG };
 }

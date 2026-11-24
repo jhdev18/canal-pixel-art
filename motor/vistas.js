@@ -246,9 +246,9 @@ function vistaDiagonal(c, motor) {
   const comprimento = Math.max(op.comprimento ?? 44, Math.ceil(2 * (alcance + 20)));
   // PROTÓTIPO "angulo": "espelhado" (no cenário/cena, dentro de "rua" ou na cena): o diorama pelo outro lado da diagonal.
   // No espelhado, j = +x (andar para +x continua indo para a direita na tela) e os prédios ficam na ordem contrária.
-  const esp = (op.angulo ?? c.angulo) === 'espelhado';
+  const ang = op.angulo ?? c.angulo, esp = ang === 'espelhado', rpg = ang === 'rpg';   // "rpg": visto de cima e de frente
   const J = (x) => (esp ? x : -x);
-  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual, espelhar: esp });
+  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual, espelhar: esp, rpg });
   const cena = new THREE.Scene();
   // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
   cena.background = op.ceu === 'mata' ? mataDiagonal(W, H) : ceuDiagonal(W, H, rua.noite, rua.tarde);
@@ -269,7 +269,7 @@ function vistaDiagonal(c, motor) {
     const p = rua.proj(i, j);
     return new THREE.Vector3(Math.round(p.x) / PPU, (rua.H - Math.round(p.y)) / PPU + altura, 0.5);
   };
-  const ordem = (i, j) => 2000 + Math.round((i + j) * 20);
+  const ordem = rpg ? (i, j) => 2000 + Math.round(i * 40 + j * 0.01) : (i, j) => 2000 + Math.round((i + j) * 20);   // no RPG: quem está mais perto (i maior) fica na frente
 
   // postes da rua (sprites) + luz para iluminar os personagens que passam perto
   const decor = [];

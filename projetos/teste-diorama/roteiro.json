@@ -54,36 +54,78 @@
    ],
    "visual": true,
    "semente": 26,
-   "angulo": "espelhado",
+   "angulo": "rpg",
    "camera": {
-    "x": -4.6,
+    "x": 4.6,
     "z": 2.2,
-    "y": 2.4
+    "y": 1.2
    },
-   "legenda": "RUA ESPELHADA",
+   "legenda": "RUA RPG",
    "elementos": [
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -3.6,
+     "x": 3.6,
      "z": 5
     },
     {
      "id": "tonho",
      "personagem": "padeiro",
-     "x": -5.4,
+     "x": 5.4,
      "z": 4.6
     },
     {
      "id": "pref",
      "personagem": "prefeito",
-     "x": -7.6,
+     "x": 7.6,
      "z": 2
     },
     {
      "id": "al",
      "personagem": "aluno",
-     "x": -1.6,
+     "x": 1.6,
+     "z": 1.2
+    }
+   ]
+  },
+  {
+   "cenario": "rua-comercial",
+   "duracao": 2,
+   "foto": [
+    1
+   ],
+   "visual": true,
+   "semente": 26,
+   "angulo": "rpg",
+   "camera": {
+    "x": 4.6,
+    "z": 2.2,
+    "y": 2.8
+   },
+   "legenda": "RUA RPG (camera mais alta)",
+   "elementos": [
+    {
+     "id": "bia",
+     "personagem": "menina-capa",
+     "x": 3.6,
+     "z": 5
+    },
+    {
+     "id": "tonho",
+     "personagem": "padeiro",
+     "x": 5.4,
+     "z": 4.6
+    },
+    {
+     "id": "pref",
+     "personagem": "prefeito",
+     "x": 7.6,
+     "z": 2
+    },
+    {
+     "id": "al",
+     "personagem": "aluno",
+     "x": 1.6,
      "z": 1.2
     }
    ]
@@ -137,36 +179,36 @@
    ],
    "visual": true,
    "clima": "folhas",
-   "angulo": "espelhado",
+   "angulo": "rpg",
    "camera": {
-    "x": -0.6,
+    "x": 0.6,
     "z": 2.2,
-    "y": 1.35
+    "y": 0.6
    },
-   "legenda": "FLORESTA ESPELHADA",
+   "legenda": "FLORESTA RPG",
    "elementos": [
     {
      "id": "davi",
      "personagem": "cogumelo-davi",
-     "x": 1.4,
+     "x": -1.4,
      "z": 2.6
     },
     {
      "id": "h1",
      "personagem": "heroi-aventureiro",
-     "x": -1.6,
+     "x": 1.6,
      "z": 3.6
     },
     {
      "id": "c1",
      "personagem": "cogumelo-roxo",
-     "x": -0.2,
+     "x": 0.2,
      "z": 1.8
     },
     {
      "id": "c2",
      "personagem": "cogumelo-verde",
-     "x": -3.2,
+     "x": 3.2,
      "z": 2.2
     }
    ]
