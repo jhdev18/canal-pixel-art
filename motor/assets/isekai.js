@@ -60,19 +60,19 @@ function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx
   p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
   // perninhas marrons como as dos cogumelos comuns; andando, uma sobe de cada vez; no pulo ficam esticadas
   const pes = { parado: [[-4, 0], [3, 0]], a: [[-4, -1], [3, 0]], b: [[-4, 0], [3, -1]], pulo: [[-4, 1], [3, 1]] }[perna];
-  const est = globalThis.__pernaDavi || 'A', y0 = Math.round(sy + r - 0.5);
-  for (const [px, py] of pes) {
-    const x = cx + px, y = y0 + py, fora = px < 0 ? -1 : 1;   // fora: o pé aponta para o lado de fora
-    if (est === 'A') {          // perninha sombreada + botinha virada para fora
-      p.ret(x, y, 1, 3, '#a07a56'); p.ret(x + 1, y, 1, 3, '#6e4e34');
-      p.ret(fora < 0 ? x - 1 : x, y + 2, 3, 1, '#4a3020'); p.set(fora < 0 ? x - 1 : x + 2, y + 2, '#5a3a26');
-    } else if (est === 'B') {   // perna sombreada + pezinho redondo escuro
-      p.ret(x, y, 1, 3, '#a07a56'); p.ret(x + 1, y, 1, 3, '#6e4e34');
-      p.elipse(x + 0.5 + fora * 0.5, y + 3, 1.8, 1, (xx, yy, ex, ey) => (ey < -0.3 && ex < 0.3 ? '#6a4a34' : '#4a3020'));
-    } else {                    // perna gordinha cor do caule + sapatinho marrom
-      const xx = fora < 0 ? x - 1 : x;
-      p.ret(xx, y, 1, 2, CAULE.base); p.ret(xx + 1, y, 1, 2, CAULE.base); p.ret(xx + 2, y, 1, 2, CAULE.sombra);
-      p.ret(xx - (fora < 0 ? 1 : 0), y + 2, 4, 1, '#6e4e34'); p.set(xx - (fora < 0 ? 1 : 0) + (fora < 0 ? 0 : 3), y + 2, '#4a3020'); p.ret(xx, y + 1, 3, 1, '#8a6a4a');
+  const est = globalThis.__pernaDavi || 'A1', y0 = Math.round(sy + r - 0.5);
+  const DX = { A1: [-3, 2], A2: [-4, 3], A3: [-3, 2] }[est] || [-4, 3];
+  const pes2 = pes.map(([px, py], i) => [DX[i] + (px - pes[i][0]), py, px < 0 ? -1 : 1]);
+  for (const [px, py, fora] of pes2) {
+    const x = cx + px, y = y0 + py;
+    if (est === 'A1') {          // perninhas curtas, mais juntas, botinha arredondada para fora
+      p.ret(x, y - 1, 1, 3, '#a07a56'); p.ret(x + 1, y - 1, 1, 3, '#6e4e34');
+      const bx = fora < 0 ? x - 1 : x; p.ret(bx, y + 1, 3, 1, '#4a3020'); p.set(fora < 0 ? bx : bx + 2, y + 1, '#5a3a26');
+    } else if (est === 'A2') {   // perna mais grossa (3 px) com bota
+      p.ret(x, y, 1, 2, '#a07a56'); p.ret(x + 1, y, 1, 2, '#8a6a4a'); p.ret(x + 2, y, 1, 2, '#6e4e34');
+      p.ret(fora < 0 ? x - 1 : x, y + 2, 4, 1, '#4a3020');
+    } else {                     // A3: só a botinha aparecendo debaixo do corpo (pernas escondidas)
+      const bx = fora < 0 ? x - 1 : x; p.ret(bx, y, 3, 2, '#5a3a26'); p.ret(bx, y, 3, 1, '#7a5a3c'); p.set(fora < 0 ? bx : bx + 2, y + 1, '#3a2418');
     }
   }
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
