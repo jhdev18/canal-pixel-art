@@ -132,13 +132,15 @@ Quando o usuário pedir "Nesse Mundo" sem dizer o formato, perguntar: **curto** 
 6. Conferir por texto: JSON válido, duração estimada total, regra 10 (ações terminam junto com a fala),
    **checklist de retenção do vídeo das sombras** (abaixo) e **`npm run conferir -- <projeto>`** sem avisos (ver "Regras de cena").
 
+**Premissas das referências (de outro canal, NUNCA usar):** número na cabeça = quantas pessoas você eliminou (referência 4; o usuário
+sugeriu "o número cresce quando você mata alguém" — é a mesma premissa, recusar e explicar).
 **Premissas já usadas (não repetir):** mentira acende estrela no céu (`nesse-mundo-estrelas`); toda noite alguém some /
 caderno que escolhe (`nesse-mundo-caderno`); cada um carrega o próprio tempo na cabeça (`nesse-mundo-tempo`); cada rua tem
 um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse-mundo-sombras`); todo fantasma precisa
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Isekai: renasceu como o cogumelo mais fraco — derrotavam antes que crescesse (`isekai-davi-01`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`); seu brinquedo cresce toda vez que você brinca — era ele que brincava com você (`nesse-mundo-brinquedos`). Isekai: renasceu como o cogumelo mais fraco — derrotavam antes que crescesse (`isekai-davi-01`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -541,6 +543,10 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   - `nesse-mundo-sombras` (o ORIGINAL, recuperado do git a pedido do usuário: "o antigo era bem melhor"; o v2 foi apagado). 1º vídeo do
     canal novo; texto e cenas originais, só desmarcado o "postado" (era do canal antigo), Shorts recentralizado e câmera do Shorts abaixada
     para a legenda grande. `npm run conferir`: só [parado] na cena 3 (como no original).
+  - `nesse-mundo-brinquedos` (terror de dia, 15 cenas, fala ~50 s; script `c19-brinquedos.mjs`): "Nessa cidade, seu brinquedo cresce toda vez
+    que você brinca" — brinquedos de corda gigantes, o soldadinho pequeno da Bia, pega-pega na praça, a Bia diz "não"; virada "Não era você
+    que brincava com o brinquedo. Era ele que brincava com você." Ação nova `crescer` (`{ "tipo": "crescer", "alvo", "escala": 2 }`, a partir
+    dos pés, som de corda). `npm run conferir` sem avisos.
   - `nesse-mundo-avatar-v2` (Roblox, terror de dia, 14 cenas, ~48 s; script `c17-avatar-v2.mjs`): v2 das crianças substituídas pelos
     avatares — sombra quadrada nas crianças trocadas, a Bia abre o jogo pela 1ª vez e o avatar sem rosto dela sorri no fim.
     `npm run conferir`: só [parado] nas cenas 7–8, de propósito (o Léo e a turma param para mostrar o sorriso macabro).

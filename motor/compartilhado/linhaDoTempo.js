@@ -7,7 +7,7 @@ export const DURACAO_PADRAO = {
   andar: 1.5, correr: 1, mover: 1.5, pular: 0.6, virar: 0, falar: null, coletar: 0.6,
   aparecer: 0.4, sumir: 0.4, explosao: 0.9, tremer: 0.4, flash: 0.25, emocao: 1.2,
   piscar: 0.8, camera: 1.5, magia: 1, som: 0, congelar: 0, sentar: 0, levantar: 0, espirrar: 1, fogos: 1.5, expressao: 1.5, trocar: 0, desaparecer: 1.2, numero: 0.3,
-  golpe: 0.3, esporos: 1.5,
+  golpe: 0.3, esporos: 1.5, crescer: 0.6,
   pensar: null, destaque: 1.5, sombra: 4, contador: 3, placar: 3, continua: 2,
 };
 
@@ -278,6 +278,7 @@ function estadoLivre(cena, el, t, _prof = 0) {
   }
   let visivel = !el.oculto;
   let anim = 'parado', alpha = 1, offY = 0, escala = 1, vermelho = 0;
+  let cres = 1;   // PROTÓTIPO ação "crescer": multiplica o tamanho (a partir dos pés) e fica assim depois
   // pose de quando está parado: "pose": "sentado" (de frente) ou "sentado-lado"; muda com as ações sentar/levantar
   let pose = el.pose || null;
   let espirro = null, rosto = null;
@@ -316,6 +317,7 @@ function estadoLivre(cena, el, t, _prof = 0) {
       case 'virar':
         virado = a.direcao === 'esquerda' ? -1 : a.direcao === 'direita' ? 1 : -virado;
         break;
+      case 'crescer': { const alvo = a.escala ?? 2; const q = Math.min(1, p); cres += (alvo - cres) * (q < 1 ? 1 - (1 - q) * (1 - q) : 1); break; }
       case 'aparecer':
         visivel = true;
         if (p < 1) escala = Math.max(0, easeOutBack(p));
@@ -341,6 +343,7 @@ function estadoLivre(cena, el, t, _prof = 0) {
   if (espirro && anim === 'parado' && !pose) anim = espirro;
   else if (rosto && anim === 'parado' && !pose) anim = 'rosto-' + rosto;
   if (dono && !dono.visivel) visivel = false;
+  escala *= cres;
   return { x, y: y + offY, yBase: y, z, virado, visivel, anim, pose, rostoPose, animInicio, alpha, escala, vermelho, alturaPulo: offY, fasePulo };
 }
 
@@ -593,6 +596,9 @@ export function eventosSonoros(roteiro) {
           break;
         case 'magia':
           if (!semSom) add(somManual || 'magia', a.inicio, { volume: vol, pan: a.alvo ? panEl(a.alvo, a.inicio) : 0 });
+          break;
+        case 'crescer':   // PROTÓTIPO: o brinquedo cresce com o som da corda
+          if (!semSom) add(somManual || 'corda', a.inicio, { volume: vol, pan: a.alvo ? panEl(a.alvo, a.inicio) : 0 });
           break;
         case 'som':
           if (a.som) add(a.som, a.inicio, { volume: vol, taxa: a.taxa ?? 1, pan: a.pan ?? 0 });

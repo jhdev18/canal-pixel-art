@@ -1,0 +1,20 @@
+Nessa cidade, seu brinquedo cresce toda vez que você brinca — tempos ESTIMADOS (sem narração ainda) — total 0:56.5
+
+  início   fim     %    cena  o que tem               narração
+  0:00.0  0:04.4    0%    1   mov                     Nessa cidade, seu brinquedo cresce toda vez que você brinca.
+  0:04.4  0:08.2    8%    2   mov                     Por isso, toda criança anda de mãos dadas com o seu.
+  0:08.2  0:12.0   15%    3   mov corte               A boneca da Nina já passou da altura da professora.
+  0:12.0  0:16.0   21%    4   mov                     Só o soldadinho da Bia é pequeno. Ela quase não brinca.
+  0:16.0  0:19.3   28%    5   mov                     No recreio, a turma ri do brinquedo de bebê.
+  0:19.3  0:23.4   34%    6   mov                     Até que, num sábado, os brinquedos deram corda sozinhos.
+  0:23.4  0:27.1   41%    7   mov                     E chamaram as crianças para brincar de pega-pega.
+  0:27.1  0:30.9   48%    8   mov som                 As crianças corriam rindo, sem ver quem pegava quem.
+  0:30.9  0:35.2   55%    9   mov flash               O soldadinho da Bia puxou a mão dela para longe. Com força.
+  0:35.2  0:39.1   62%   10   mov                     A caixa-surpresa chegou e chamou a Bia para brincar.
+  0:39.1  0:42.0   69%   11   mov balão               E a Bia, pela primeira vez, disse não.
+  0:42.0  0:46.0   74%   12   PARADA flash som        Os brinquedos pararam. As crianças não estavam mais lá.
+  0:46.0  0:49.2   82%   13   PARADA corte            Não era você que brincava com o brinquedo.
+  0:49.2  0:51.6   87%   14   PARADA flash som        Era ele que brincava com você.
+  0:51.6  0:56.5   91%   15   PARADA flash            E o soldadinho da Bia, colado no pé dela, ainda dava corda sozinho.
+
+  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.
