@@ -60,13 +60,13 @@ function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx
   p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
   // pernas "H" (escolhidas pelo usuário): perninha fina e comprida com sapatinho redondo. Andando, as pernas BALANÇAM
   // (uma vai para a frente erguida, a outra para trás), em vez de só subir e descer. [x do quadril, pé erguido, balanço]
-  const pes = { parado: [[-3, 0, 0], [2, 0, 0]], a: [[-3, 0, 0], [2, -1, 1]], b: [[-3, -1, -1], [2, 0, 0]], pulo: [[-3, 1, -1], [2, 1, 1]] }[perna];   // pernas mais para o meio do corpo
+  // pernas retas, embaixo do corpo, com o sapatinho de frente (centrado na perna, nada virado para o lado); andando, um pé sobe reto
+  const pes = { parado: [[-3, 0], [2, 0]], a: [[-3, 0], [2, -1]], b: [[-3, -1], [2, 0]], pulo: [[-3, 1], [2, 1]] }[perna];
   const y0 = Math.round(sy + r - 0.5);
-  for (const [px, ergue, bal] of pes) {
-    const esq = px < 0, xq = cx + px + (esq ? 1 : 0), topo = y0 - 1, pe = y0 + 3 + ergue;   // quadril (escondido no corpo) até o pé
-    for (let y = topo; y < pe; y++) p.set(xq + Math.round((bal * (y - topo)) / Math.max(1, pe - topo)), y, '#6e4e34');
-    const xp = xq + bal + (esq ? -1 : 0) + 0.5 + (esq ? 0 : 1) - 0.5;
-    p.elipse(xp + 0.5, pe + 0.2, 1.9, 1.2, (xx, yy, ex, ey) => (ey < -0.2 && ex < 0.2 ? '#8a5a3a' : '#5a3424'));
+  for (const [px, ergue] of pes) {
+    const xq = cx + px, pe = y0 + 3 + ergue;
+    p.ret(xq, y0 - 1, 1, pe - (y0 - 1), '#6e4e34');
+    p.elipse(xq + 0.5, pe + 0.2, 1.6, 1.2, (xx, yy, ex, ey) => (ey < -0.2 && ex < 0.2 ? '#8a5a3a' : '#5a3424'));
   }
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
     p.elipse(cx, sy - r + 1.5, 6, 2.6, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
