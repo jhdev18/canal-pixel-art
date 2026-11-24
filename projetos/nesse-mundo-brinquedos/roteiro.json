@@ -424,13 +424,13 @@
     {
      "id": "leo",
      "personagem": "menino-topete",
-     "x": 4.4,
+     "x": 3.6,
      "z": 2.4
     },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
-     "x": 6.4,
+     "x": 5.4,
      "z": 3.2
     }
    ],
@@ -504,13 +504,14 @@
    ],
    "vertical": {
     "camera": {
-     "x": 0.85,
+     "x": 4.05,
      "z": 2.2,
-     "y": 1.85
+     "y": 0.1
     },
     "centrarEm": [
      "bia",
-     "nina"
+     "aluno",
+     "leo"
     ]
    }
   },

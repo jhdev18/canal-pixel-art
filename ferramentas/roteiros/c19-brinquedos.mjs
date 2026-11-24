@@ -49,10 +49,10 @@ C.push(cena('Só o soldadinho da Bia é pequeno. Ela quase não brinca.', {
 }));
 // 5. O sofrimento dura 1 cena: no recreio, a turma (com os brinquedos gigantes) ri do brinquedo de bebê dela
 C.push(cena('No recreio, a turma ri do brinquedo de bebê.', {
-  cenario: 'escola-patio', camera: PATIO(0.6), foco: ['bia', 'nina'],
+  cenario: 'escola-patio', camera: PATIO(0.6), foco: ['bia', 'aluno', 'leo'],   // a turma rindo em volta da Bia (o Léo ficava fora do Shorts)
   elementos: [P('bia', 'menina-capa', 0.2, 3.2), MINI('sold', 'brinquedo-soldadinho', 0.8, 2.6),
     P('nina', 'rival', -2.2, 3.0), P('boneca', 'brinquedo-boneca', -3.0, 3.8), P('aluno', 'aluno', 2.6, 3.0), P('caixa', 'brinquedo-caixa', 4.4, 3.8),
-    P('leo', 'menino-topete', 4.4, 2.4), P('robo', 'brinquedo-robo', 6.4, 3.2)],
+    P('leo', 'menino-topete', 3.6, 2.4), P('robo', 'brinquedo-robo', 5.4, 3.2)],
   acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.35, durF: 0.15 }), a(0.15, 'trocar', { alvo: 'caixa', estado: 'cantando' }), a(0.2, 'pular', { alvo: 'nina', altura: 0.35, durF: 0.15 }),
     a(0.3, 'trocar', { alvo: 'boneca', estado: 'acenar' }), a(0.45, 'trocar', { alvo: 'robo', estado: 'acenar' }), a(0.6, 'emocao', { alvo: 'bia', icone: '...' })],
 }));
@@ -154,7 +154,7 @@ rostos(C, [[1, 'leo', 'feliz', 0.4], [2, 'nina', 'feliz', 0.96], [3, 'nina', 'ri
   [10, 'bia', 'assustado'], [11, 'bia', 'bravo', 0.2], [12, 'bia', 'assustado', 0.45], [13, 'bia', 'assustado'], [14, 'bia', 'assustado'], [15, 'bia', 'assustado', 0.5]]);
 
 // Shorts: a legenda grande (76% da altura) fica abaixo dos pés (medido com medir-altura-shorts.mjs)
-alturaShorts(C, { 2: -0.25, 3: -1.5, 4: -1, 5: -0.75, 6: -2, 7: -2.75, 8: -2.75, 9: -2.25, 10: -1.75, 11: -1, 12: -1.75, 13: -1.5, 14: -1.75, 15: -1.25 });
+alturaShorts(C, { 2: -0.25, 3: -1.5, 4: -1, 5: -2.5, 6: -2, 7: -2.75, 8: -2.75, 9: -2.25, 10: -1.75, 11: -1, 12: -1.75, 13: -1.5, 14: -1.75, 15: -1.25 });
 
 salvar('nesse-mundo-brinquedos', ['NESSE MUNDO (curto, terror de dia): "Nessa cidade, seu brinquedo cresce toda vez que você brinca."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-brinquedos',
