@@ -27,7 +27,7 @@ cena 11 (ela recusa brincar) → virada (quem brinca muito é pego) → cena 15 
 **3.** `escola-patio` — A boneca da Nina já passou da altura da professora. (cresce + corte de zoom)
 **4.** `escola-patio` — Só o soldadinho da Bia é pequeno. Ela quase não brinca. (robô gigante passa atrás)
 **5.** `escola-patio` — No recreio, a turma ri do brinquedo de bebê.
-**6.** `praca-parquinho` — Até que, num sábado, os brinquedos deram corda sozinhos. (desligados → ligam um por um; balanço vazio)
+**6.** `praca-parquinho` — Até que, num sábado, os brinquedos deram corda sozinhos. (desligados → ligam um por um)
 **7.** `praca-parquinho` — E chamaram as crianças para brincar. (os brinquedos atravessam a praça até elas; elas pulam de alegria)
 **8.** `praca-parquinho` — As crianças riam tanto que nem sentiram o abraço. (o robô e a caixa abrem os braços; o Léo e o aluno encolhem até o tamanho de um brinquedo)
 **9.** `praca-parquinho` — O soldadinho da Bia puxou a mão dela para longe. Com força. (a Nina encolhe ao fundo; o robô e a caixa já carregam o Léo e o aluno na mão)
@@ -39,4 +39,4 @@ cena 11 (ela recusa brincar) → virada (quem brinca muito é pego) → cena 15 
 **15.** `praca-parquinho` — E o soldadinho da Bia, colado no pé dela, ainda dava corda sozinho. (close)
 
 **Assets (protótipos — avisar):** `brinquedo-robo`/`-boneca`/`-caixa`/`-soldadinho` (animatronicos.js), ação nova `crescer`, `praca-parquinho`,
-`escola-patio`, `balanco` (sozinho), `rival` (Nina), `menino-topete` (Léo). Sons: `corda`, `caixinha-musica`, `servo`, `falha-eletrica`, `revelar`.
+`escola-patio`, `rival` (Nina), `menino-topete` (Léo). Sons: `corda`, `caixinha-musica`, `servo`, `falha-eletrica`, `revelar`.

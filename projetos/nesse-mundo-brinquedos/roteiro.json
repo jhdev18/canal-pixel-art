@@ -519,7 +519,9 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": -2.4,
@@ -574,7 +576,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 5.1,
+     "x": 5.9,
      "z": -8
     }
    ],
@@ -622,12 +624,6 @@
      "inicio": 2.3
     },
     {
-     "tipo": "trocar",
-     "alvo": "balanco",
-     "estado": "sozinho",
-     "inicio": 2.48
-    },
-    {
      "tipo": "emocao",
      "alvo": "bia",
      "icone": "?",
@@ -673,20 +669,15 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": -1.6,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "leo",
      "personagem": "menino-topete",
@@ -732,7 +723,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 5.1,
+     "x": 5.9,
      "z": -8
     }
    ],
@@ -810,28 +801,23 @@
   {
    "narracaoTexto": "As crianças riam tanto que nem sentiram o abraço.",
    "cenario": "praca-parquinho",
+   "remover": [
+    "arvore3",
+    "arvore4",
+    "balanco",
+    "escorregador"
+   ],
    "saiDeCena": [
     "leo",
     "aluno",
     "leo-p",
     "aluno-p"
    ],
-   "remover": [
-    "arvore3",
-    "arvore4"
-   ],
    "camera": {
     "x": -1.6,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "leo",
      "personagem": "menino-topete",
@@ -877,7 +863,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 5.1,
+     "x": 5.9,
      "z": -8
     },
     {
@@ -990,26 +976,21 @@
   {
    "narracaoTexto": "O soldadinho da Bia puxou a mão dela para longe. Com força.",
    "cenario": "praca-parquinho",
+   "remover": [
+    "arvore3",
+    "arvore4",
+    "balanco",
+    "escorregador"
+   ],
    "saiDeCena": [
     "nina",
     "nina-p"
-   ],
-   "remover": [
-    "arvore3",
-    "arvore4"
    ],
    "camera": {
     "x": 2.4,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1043,7 +1024,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 5.1,
+     "x": 5.9,
      "z": -8
     },
     {
@@ -1053,8 +1034,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1065,8 +1046,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1083,7 +1064,7 @@
     {
      "tipo": "andar",
      "alvo": "sold",
-     "para": 7.3,
+     "para": 8.1,
      "inicio": 0.68,
      "duracao": 3.07
     },
@@ -1127,9 +1108,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": 8.35,
+     "x": 8.73,
      "z": -8.5,
-     "y": 0.2
+     "y": -0.05
     },
     "centrarEm": [
      "bia",
@@ -1143,20 +1124,15 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": 4.2,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1184,7 +1160,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 7.3,
+     "x": 8.1,
      "z": -8
     },
     {
@@ -1194,8 +1170,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1206,8 +1182,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1218,8 +1194,8 @@
      "z": 0,
      "sobre": {
       "id": "boneca",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     }
@@ -1251,7 +1227,7 @@
     "camera": {
      "x": 7.46,
      "z": -8.5,
-     "y": 0.7
+     "y": 0.45
     },
     "centrarEm": [
      "bia",
@@ -1265,20 +1241,15 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": 4.2,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1306,7 +1277,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 7.3,
+     "x": 8.1,
      "z": -8
     },
     {
@@ -1316,8 +1287,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1328,8 +1299,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1340,8 +1311,8 @@
      "z": 0,
      "sobre": {
       "id": "boneca",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     }
@@ -1393,20 +1364,15 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": 1.6,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1434,7 +1400,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 7.3,
+     "x": 8.1,
      "z": -8
     },
     {
@@ -1444,8 +1410,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1456,8 +1422,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1468,8 +1434,8 @@
      "z": 0,
      "sobre": {
       "id": "boneca",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     }
@@ -1535,20 +1501,15 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": 1.6,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1579,7 +1540,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 7.3,
+     "x": 8.1,
      "z": -8
     },
     {
@@ -1589,8 +1550,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1601,8 +1562,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1613,8 +1574,8 @@
      "z": 0,
      "sobre": {
       "id": "boneca",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     }
@@ -1670,20 +1631,15 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": 1.6,
     "z": -8.5
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1714,7 +1670,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 7.3,
+     "x": 8.1,
      "z": -8
     },
     {
@@ -1724,8 +1680,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1736,8 +1692,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1748,8 +1704,8 @@
      "z": 0,
      "sobre": {
       "id": "boneca",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     }
@@ -1815,7 +1771,9 @@
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
-    "arvore4"
+    "arvore4",
+    "balanco",
+    "escorregador"
    ],
    "camera": {
     "x": 6.2,
@@ -1824,13 +1782,6 @@
     "zoom": 2
    },
    "elementos": [
-    {
-     "id": "balanco",
-     "sprite": "balanco",
-     "x": 2,
-     "z": -5.8,
-     "pose": "sozinho"
-    },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
@@ -1861,7 +1812,7 @@
     {
      "id": "sold",
      "sprite": "brinquedo-soldadinho@mini",
-     "x": 7.3,
+     "x": 8.1,
      "z": -8
     },
     {
@@ -1871,8 +1822,8 @@
      "z": 0,
      "sobre": {
       "id": "robo",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1883,8 +1834,8 @@
      "z": 0,
      "sobre": {
       "id": "caixa",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     },
@@ -1895,8 +1846,8 @@
      "z": 0,
      "sobre": {
       "id": "boneca",
-      "dx": 0.5,
-      "dy": 0.95
+      "dx": 1.05,
+      "dy": 0.65
      },
      "pose": "rosto-assustado"
     }
@@ -1925,9 +1876,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": 8.95,
+     "x": 9.4,
      "z": -9,
-     "y": 0.2,
+     "y": -0.05,
      "zoom": 2
     },
     "centrarEm": [
