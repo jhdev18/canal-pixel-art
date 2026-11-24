@@ -55,7 +55,19 @@ const PALETAS = {
 };
 const TOLDOS = [['#e8e0d0', '#c83c4c'], ['#e8e0d0', '#3aa868'], ['#e8e0d0', '#3a6ac8'], ['#f0d040', '#5a3a6a'], ['#e8e0d0', '#e87a3a']];
 
+// PROTÓTIPO "visual" (melhorias do diorama, pedido do usuário). true = tudo ligado; ou { profundidade, sombras, luz, cor }.
+export function opcoesVisual(v) {
+  if (!v) return null;
+  const tudo = v === true || v === 'v2';
+  const o = typeof v === 'object' ? v : {};
+  const pega = (k) => (o[k] ?? tudo) !== false && (o[k] ?? tudo);
+  return { profundidade: !!pega('profundidade'), sombras: !!pega('sombras'), luz: !!pega('luz'), cor: !!pega('cor') };
+}
+// névoa de profundidade: o que está longe (z grande) mistura com a cor do ar
+export const nevoaCor = (noite, tarde) => (noite ? [0.16, 0.19, 0.34] : tarde ? [0.96, 0.78, 0.66] : [0.80, 0.88, 0.96]);
+export const nevoaZ = (z, noite) => Math.max(0, Math.min(1, (z - 5) / 8)) * (noite ? 0.3 : 0.42);
 export function gerarRuaDiagonal(opc = {}) {
+  const VIS = opcoesVisual(opc.visual);
   const comp = opc.comprimento ?? 44;
   const noite = (opc.periodo ?? 'noite') === 'noite';
   const tarde = opc.periodo === 'tarde';   // PROTÓTIPO: pôr do sol (luz alaranjada, céu laranja e rosa); continua claro
@@ -730,6 +742,14 @@ export function gerarRuaDiagonal(opc = {}) {
   const amb = noite ? [0.70, 0.74, 0.94] : tarde ? [1.07, 0.86, 0.72] : [1, 1, 1];
   const corLuz = [1.0, 0.86, 0.6];
   const saida = new Uint8ClampedArray(N * 4), brilho = new Uint8ClampedArray(N * 4);
+  // VISUAL "luz": oclusão no pé das paredes (o chão logo na frente de uma parede fica mais escuro, como numa maquete)
+  const ao = VIS?.luz ? new Float32Array(N) : null;
+  if (ao) for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const k = y * W + x;
+    if (tipo[k] !== 1 || ph[k] > 1.5) continue;
+    for (let d = 1; d <= 6 && y - d >= 0; d++) { const q = k - d * W; if (tipo[q] && ph[q] > 3 && Math.abs(pi[q] - pi[k]) < 1.2) { ao[k] = (1 - (d - 1) / 6) * 0.3; break; } }
+  }
+  const NEV = VIS?.profundidade ? nevoaCor(noite, tarde) : null;
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const k = y * W + x;
     if (!tipo[k]) continue;
@@ -746,12 +766,14 @@ export function gerarRuaDiagonal(opc = {}) {
       nivel = Math.min(1, nivel);
       // 3 faixas sólidas; o dithering aparece só numa borda estreita entre elas
       const q = Math.max(0, Math.min(3, Math.floor(nivel * 3 + 0.5 + (bayer(x, y) - 0.5) * 0.35))) / 3;
-      const f = face[k];
+      let f = face[k];
+      if (VIS?.luz) f = (f < 1 ? f * 0.85 : f > 1 ? f * 1.06 : f) * (1 - (ao ? ao[k] : 0));   // lado na sombra mais escuro, topo mais claro
       R = R * f * (amb[0] + q * corLuz[0] * 0.6);
       G = G * f * (amb[1] + q * corLuz[1] * 0.6);
       B = B * f * (amb[2] + q * corLuz[2] * 0.6);
     }
+    if (NEV && tipo[k] === 1) { const n = nevoaZ(FAIXA.calcadaFrente - pi[k], noite); R += (NEV[0] - R) * n; G += (NEV[1] - G) * n; B += (NEV[2] - B) * n; }
     saida.set([Math.min(255, R * 255), Math.min(255, G * 255), Math.min(255, B * 255), 255], k * 4);
   }
-  return { W, H, imagem: saida, brilho, proj, postes, fumacas, J0, J1, noite, tarde, pi, pj, ph, tipo };
+  return { W, H, imagem: saida, brilho, proj, postes, fumacas, J0, J1, noite, tarde, pi, pj, ph, tipo, VIS };
 }

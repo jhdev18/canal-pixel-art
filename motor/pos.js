@@ -21,7 +21,7 @@ uniform sampler2D tCena;
 uniform vec2 uRes;
 uniform int uFinal, uTipo, uUsaPaleta, uNumCores;
 uniform vec3 uFlashCor;
-uniform float uFade, uFlash, uBloom, uVinheta, uAberracao, uNiveis, uSaturacao;
+uniform float uFade, uFlash, uBloom, uVinheta, uAberracao, uNiveis, uSaturacao, uContraste;
 uniform vec2 uCentro;
 uniform vec3 uPaleta[32];
 varying vec2 vUv;
@@ -60,6 +60,7 @@ void main() {
     }
     float l = dot(c, vec3(0.299, 0.587, 0.114));
     c = mix(vec3(l), c, uSaturacao);
+    if (uContraste != 1.0) c = (c - 0.5) * uContraste + 0.5;   // VISUAL "cor"
     if (uVinheta > 0.0) {
       vec2 d = (px + 0.5) / uRes - 0.5;
       d.x *= uRes.x / uRes.y;
@@ -104,7 +105,7 @@ export class PosProcessamento {
       uniforms: {
         tCena: { value: null }, uRes: { value: new THREE.Vector2(W, H) }, uFinal: { value: 0 }, uTipo: { value: 0 },
         uUsaPaleta: { value: 0 }, uNumCores: { value: 0 }, uFade: { value: 0 }, uFlash: { value: 0 }, uFlashCor: { value: new THREE.Vector3(1, 1, 1) }, uBloom: { value: 0 },
-        uVinheta: { value: 0 }, uAberracao: { value: 0 }, uNiveis: { value: 8 }, uSaturacao: { value: 1 },
+        uVinheta: { value: 0 }, uAberracao: { value: 0 }, uNiveis: { value: 8 }, uSaturacao: { value: 1 }, uContraste: { value: 1 },
         uCentro: { value: new THREE.Vector2(W / 2, H / 2) },
         uPaleta: { value: Array.from({ length: 32 }, () => new THREE.Vector3()) },
       },
@@ -139,6 +140,7 @@ export class PosProcessamento {
     u.uAberracao.value = o.aberracao ?? 0;
     u.uNiveis.value = o.niveis ?? 8;
     u.uSaturacao.value = o.saturacao ?? 1;
+    u.uContraste.value = o.contraste ?? 1;
     if (o.centro) u.uCentro.value.set(o.centro.x, o.centro.y);
   }
 }

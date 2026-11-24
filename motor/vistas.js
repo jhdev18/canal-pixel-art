@@ -7,7 +7,7 @@
 //   avenida  — avenida em perspectiva indo para o fundo
 import * as THREE from 'three';
 import { criarFundo, ordemPorZ, NOMES_FUNDOS } from './fundos.js';
-import { gerarRuaDiagonal, FAIXA } from './cenarios/ruaDiagonal.js';
+import { gerarRuaDiagonal, FAIXA, nevoaCor, nevoaZ } from './cenarios/ruaDiagonal.js';
 import { gerarComodoDiagonal, COMODO, resolverAngulo } from './cenarios/comodoDiagonal.js';
 import { gerarPalco3d } from './cenarios/palco3d.js';
 import { gerarAvenida, ceuAvenida } from './cenarios/avenida.js';
@@ -244,7 +244,7 @@ function vistaDiagonal(c, motor) {
     for (const el of c.elementos) alcance = Math.max(alcance, Math.abs(estadoElemento(c, el, t).x));
   }
   const comprimento = Math.max(op.comprimento ?? 44, Math.ceil(2 * (alcance + 20)));
-  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13 });
+  const rua = gerarRuaDiagonal({ ...op, comprimento, semente: op.semente ?? c.semente ?? c.numero * 13, visual: c.visual });
   const cena = new THREE.Scene();
   // Céu em degradê (pixel art) atrás de tudo: aparece acima dos prédios em vez de um fundo vazio.
   cena.background = op.ceu === 'mata' ? mataDiagonal(W, H) : ceuDiagonal(W, H, rua.noite, rua.tarde);
@@ -292,6 +292,8 @@ function vistaDiagonal(c, motor) {
     cena, camera,
     ambiente: rua.noite ? ['#9aa0d0', 0.78] : rua.tarde ? ['#ffd8b8', 1.0] : ['#ffffff', 1.0],
     climaPadrao: null,
+    visual: rua.VIS,
+    nevoa: rua.VIS?.profundidade ? { cor: nevoaCor(rua.noite, rua.tarde), f: (z) => nevoaZ(z, rua.noite) } : null,
     atualizar: (t) => { for (const f of fumacas) { const k = Math.floor((t || 0) * f.fps) % f.texs.length; if (f.m.material.map !== f.texs[k]) { f.m.material.map = f.texs[k]; f.m.material.emissiveMap = f.texs[k]; f.m.material.needsUpdate = true; } } },
     liberar: () => { texMundo.dispose(); cena.background?.dispose?.(); sombraChao?.liberar(); fumacas.forEach((f) => f.texs.forEach((t) => t.dispose())); },
     ordemInicial: (el) => ordem(iDe(el), -(el.x ?? 0)),

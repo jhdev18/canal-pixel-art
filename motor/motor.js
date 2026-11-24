@@ -189,6 +189,8 @@ class Motor {
       const obj = { def: el, sprite, texturas, malha, mat, w: w * esc, h: h * esc, esc, realce: el.realce ?? realce };
       // sombra que se alastra: o sprite escurece de baixo para cima quando a sombra chega nele
       if (temSombra && !el.tela && vista.centroIJ) obj.somU = sombraNoSprite(mat, texturas[0].image.height, vazio);
+      // VISUAL "profundidade": quem está longe (z grande) mistura com a cor do ar, igual ao cenário
+      if (vista.nevoa && !el.tela && !el.sobre) obj.nevU = nevoaNoSprite(mat, vista.nevoa.cor);
       // "tela": true — detalhe em close (ex.: página de um caderno), no centro da tela, por cima da cena,
       // com o fundo escurecido ("escurecer": 0..1, padrão 0.6). "telaX"/"telaY" deslocam em pixels.
       if (el.tela) {
@@ -209,10 +211,16 @@ class Motor {
         obj.brilho = { malha: brilho, mat: mb, texturas: sprite._texBrilho };
       }
       if (sprite.sombra && el.sombra !== false) {
-        const p = new Pix(Math.max(6, texturas[0].image.width - 4), 4);
-        p.elipse(p.w / 2, 2, p.w / 2, 2, '#000000');
+        const contato = vista.visual?.sombras;   // VISUAL "sombras": núcleo escuro colado nos pés + borda suave (dá peso, tira o "flutuando")
+        const p = new Pix(Math.max(6, texturas[0].image.width - 4) + (contato ? 2 : 0), contato ? 5 : 4);
+        if (contato) {
+          for (let y = 0; y < p.h; y++) for (let x = 0; x < p.w; x++) {
+            const dx = (x + 0.5 - p.w / 2) / (p.w / 2), dy = (y + 0.5 - p.h / 2) / (p.h / 2), d = dx * dx + dy * dy;
+            if (d <= 1) p.set(x, y, '#140c18', d < 0.3 ? 175 : d < 0.65 ? 120 : 65);
+          }
+        } else p.elipse(p.w / 2, 2, p.w / 2, 2, '#000000');
         const sm = new THREE.Mesh(new THREE.PlaneGeometry(p.w / PPU, p.h / PPU),
-          new THREE.MeshBasicMaterial({ map: texturaCanvas(p.paraCanvas()), transparent: true, opacity: 0.3, depthWrite: false }));
+          new THREE.MeshBasicMaterial({ map: texturaCanvas(p.paraCanvas()), transparent: true, opacity: contato ? 1 : 0.3, depthWrite: false }));
         sm.renderOrder = malha.renderOrder - 1;
         if (vista.sombraDeitada) sm.rotation.x = -Math.PI / 2;
         cena.add(sm);
@@ -407,6 +415,7 @@ class Motor {
       }
       if (e.mat.emissive) e.mat.emissive.setRGB(e.realce + st.vermelho * 0.9, e.realce * (1 - st.vermelho), e.realce * (1 - st.vermelho));
       else e.mat.color.setRGB(1, 1 - st.vermelho * 0.6, 1 - st.vermelho * 0.6);
+      if (e.nevU) e.nevU.uNev.value = vista.nevoa.f(st.z ?? e.def.z ?? 0);
       if (e.sombra) {
         const enc = Math.max(0.4, 1 - st.alturaPulo * 0.25);
         vista.posicionarSombra(e, st);
@@ -537,7 +546,7 @@ class Motor {
     this.pos.configurar({
       textura: this.rtCena.texture, final: this.final, transicao: ef.transicao, fade: ef.fade, flash: ef.flash, flashCor: ef.flashCor,
       bloom: fx.bloom, vinheta: fx.vinheta, aberracao: fx.aberracao && ef.tremor > 0.25 ? 1 : 0,
-      niveis: this.r.niveis, saturacao: c.saturacao ?? fx.saturacao ?? 1, centro: this.focoTransicao(obj, t),
+      niveis: this.r.niveis, saturacao: c.saturacao ?? fx.saturacao ?? (obj?.vista?.visual?.cor ? 1.15 : 1), contraste: obj?.vista?.visual?.cor ? 1.08 : 1, centro: this.focoTransicao(obj, t),
     });
     R.setRenderTarget(this.rtSaida);
     R.render(this.pos.cena, this.pos.camera);
@@ -635,6 +644,20 @@ class Motor {
     };
     loop();
   }
+}
+
+// VISUAL "profundidade": mistura o sprite com a cor do ar (uNev 0..1). Encadeia com outro onBeforeCompile (sombra que sobe).
+function nevoaNoSprite(mat, cor) {
+  const u = { uNev: { value: 0 }, uNevCor: { value: new THREE.Color(...cor) } };
+  const antes = mat.onBeforeCompile, chave = mat.customProgramCacheKey;
+  mat.onBeforeCompile = (sh, r) => {
+    antes?.call(mat, sh, r);
+    Object.assign(sh.uniforms, u);
+    sh.fragmentShader = 'uniform float uNev; uniform vec3 uNevCor;\n' + sh.fragmentShader.replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor.rgb = mix(gl_FragColor.rgb, uNevCor, uNev);');
+  };
+  mat.customProgramCacheKey = () => (chave ? chave.call(mat) : '') + '-nevoa';
+  mat.needsUpdate = true;
+  return u;
 }
 
 // Injeta no material do sprite a sombra que sobe de baixo para cima (uSomNivel = px cobertos, a partir da base).
