@@ -40,6 +40,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
     personagem, cenário, objeto, efeito e som é, onde posicionar e o que o usuário recusou) e conferir os nomes em
     `biblioteca/CATALOGO.md`. Não inventar nomes de sprite/cenário nem usar asset marcado como "não usar"/recusado. Obrigatório
     em todo formato (Nesse Mundo, episódio, Shorts, longo).
+14. **Cenários de teste não entram em vídeo** (pedido do usuário): `mapa-vila` (mapa da vila no diorama clássico), o mapa de RPG
+    (`"angulo": "mapa-rpg"`) e o ângulo `"rpg"` da rua servem só para **testar e como referência** (projetos `teste-*`, planejar a vila,
+    comparar estilos). **Nunca** usar numa cena de vídeo real; o `npm run conferir` acusa `[teste]`.
 
 ## Ritmo dos próximos vídeos (retenção)
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
@@ -403,7 +406,7 @@ da rua; `[em cima]` em pé em cima de objeto baixo (canteiro, fonte, banco, barr
 quem falta num `momento` ou some e reaparece; `[elenco]` mesmo sprite para dois personagens; `[fora]` fora do cômodo (andando na parede);
 `[sombras]` mais de 4 `sombraPessoa`; `[parado]` quem segue algo e para antes do fim da fala; `[gancho]` a 1ª cena não
 tem nada se mexendo antes de 0,6 s ou é de noite; `[parada]` cena sem nada se mexendo antes de 70% do vídeo ou "Até que..."
-depois de 40%; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[legenda]` no Shorts, a legenda em cima de personagem com papel ou objeto que age na cena (figurante, detalhe `"tela"` e só os pés encostando não contam; inclui o enquadramento depois de um `corte` de zoom; mesma conta de tela do motor, `yTela` em `centro.js`); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
+depois de 40%; `[altura]` andar/mover com `"para": [x, y]` numa pessoa (o 2º número é a ALTURA: ela sobe no ar — o `z` não anda); `[corte]` corte com zoom quebrado; `[teste]` cenário só de teste (`mapa-vila`, mapa de RPG, ângulo `"rpg"`) num vídeo (regra 14); `[centro]` no Shorts, quem conta a história fora do meio (ou grupo largo demais); `[legenda]` no Shorts, a legenda em cima de personagem com papel ou objeto que age na cena (figurante, detalhe `"tela"` e só os pés encostando não contam; inclui o enquadramento depois de um `corte` de zoom; mesma conta de tela do motor, `yTela` em `centro.js`); `[atravessa]` pessoa/objeto que se mexe passando por dentro de outro (mesmo lugar ao mesmo tempo). **Ao criar um objeto novo desenhado
 no fundo da rua** (que não é elemento, como postes e caixotes), acrescentar a área dele em `FIXOS_RUA` no `src/conferir.js`.
 **Quando o usuário apontar um erro de cena que a conferência não pegou**, além de corrigir o vídeo, ensinar a conferência
 (nova checagem em `src/conferir.js`) e anotar a regra aqui, para não repetir em vídeos futuros. Os erros abaixo aconteceram em

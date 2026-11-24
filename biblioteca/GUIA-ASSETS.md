@@ -267,6 +267,12 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 Cenários laterais (`escola`, `padaria`, `cidade-rpg`, `vila`...), a avenida e o modo 3D. Eles existem, mas a regra
 do canal é o diorama.
 
+### Só para teste/referência — NUNCA numa cena de vídeo (pedido do usuário)
+- **`mapa-vila`** (mapa inteiro da vila no diorama clássico, `"rua": { "mapa": "vila" }`), o **mapa de RPG** (`"angulo": "mapa-rpg"`) e o
+  ângulo **`"rpg"`** da rua: serviram para testar o que dá para fazer. Podem ser usados como **referência** (projetos `teste-*`, ideias de
+  layout, conferir proporções, planejar onde fica cada lugar da vila), mas **não entram em roteiro de vídeo**. O `npm run conferir` acusa
+  `[teste]` se aparecerem num projeto que não começa com `teste-`.
+
 ---
 
 ## 3. Objetos que contam história

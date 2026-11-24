@@ -56,6 +56,13 @@ export async function conferir(nome) {
   const av = [];
   const aviso = (n, tipo, msg) => av.push({ n, tipo, msg });
 
+  // ---------- 0. cenários só de teste/referência (pedido do usuário): mapa-vila, mapa de RPG e o ângulo "rpg" nunca numa cena de vídeo
+  if (!/^teste-/.test(nome)) bruto.cenas.forEach((cb, i) => {
+    const ang = cb.angulo ?? cb.rua?.angulo;
+    if (cb.cenario === 'mapa-vila' || cb.rua?.mapa || ang === 'mapa-rpg' || ang === 'rpg')
+      aviso(i + 1, 'teste', `cenário/ângulo só de teste ("${cb.cenario === 'mapa-vila' || cb.rua?.mapa ? 'mapa-vila' : ang}") — serve só como referência; use o diorama normal (rua, praça, cômodo)`);
+  });
+
   // ---------- 1. coberto por objeto alto (diorama de rua/praça: quem tem x + z menor fica na frente)
   const vistos = new Set();
   for (const c of r.cenas) {
