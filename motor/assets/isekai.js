@@ -55,30 +55,13 @@ function rostoTico(p, cx, cy, e) {   // cy = linha dos olhos; olhos 2x2 em x -4.
   if (boch) bochechas(false);
 }
 function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx = 0 } = {}) {
-  const W = 32, H = 32, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
+  const W = 32, H = 31, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
   const cy = 13 + oy, r = 6.75, sy = cy + r + 0.5;   // centro do chapéu e do caule
-  const est = globalThis.__pernaDavi || 'A3', tomC = (x, y, ex) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y);
+  p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
+  // perninhas marrons como as dos cogumelos comuns; andando, uma sobe de cada vez; no pulo ficam esticadas
+  // (testadas e recusadas pelo usuário: botinhas, pezinho redondo, perna gordinha, sem pés, pés do corpo, tronquinho — ficou esta)
   const pes = { parado: [[-4, 0], [3, 0]], a: [[-4, -1], [3, 0]], b: [[-4, 0], [3, -1]], pulo: [[-4, 1], [3, 1]] }[perna];
-  const y0 = Math.round(sy + r - 0.5);
-  if (est === 'D') {          // sem pés: o caule desce reto e alarga embaixo (base chata, como um cogumelo de verdade)
-    p.elipse(cx, sy, r, r, (x, y, ex) => tomC(x, y, ex));
-    const ab = perna === 'a' || perna === 'b' ? 1 : 0;   // andando: a base "pisa" (achata 1 px)
-    for (let y = Math.round(sy); y <= y0 + 1 - ab; y++) { const t = (y - sy) / (r + 1), hw = r * (0.95 + 0.15 * t); for (let x = Math.ceil(cx - hw); x <= Math.floor(cx + hw); x++) p.set(x, y, tomC(x, y, (x - cx) / hw)); }
-    for (let x = Math.ceil(cx - r); x <= Math.floor(cx + r); x++) p.set(x, y0 + 1 - ab, CAULE.sombra);
-  } else if (est === 'E') {   // pezinhos da cor do corpo, colados nele (dois "dedões" com um risquinho no meio)
-    for (const [px, py] of pes) p.elipse(cx + (px < 0 ? -3 : 3), y0 + py, 2.6, 1.8, (x, y, ex, ey) => (ey > 0.3 ? CAULE.sombra : tomC(x, y, ex)));
-    p.elipse(cx, sy, r, r, (x, y, ex) => tomC(x, y, ex));
-    p.set(cx, y0, CAULE.sombra); p.set(cx, y0 - 1, CAULE.sombra);
-  } else if (est === 'F') {   // caule de cogumelo (mais estreito e alto, "tronquinho") com botinhas
-    for (let y = Math.round(sy - r); y <= y0; y++) { const t = (y - (sy - r)) / (2 * r), hw = 5.2 + 0.8 * t; for (let x = Math.ceil(cx - hw); x <= Math.floor(cx + hw); x++) p.set(x, y, tomC(x, y, (x - cx) / hw)); }
-    for (const [px, py] of pes) { const x = cx + (px < 0 ? -4 : 2), y = y0 + 1 + py; p.ret(x, y, 3, 2, '#5a3a26'); p.ret(x, y, 3, 1, '#7a5a3c'); }
-  } else {                    // A3: botinhas marrons aparecendo debaixo do corpo
-    p.elipse(cx, sy, r, r, (x, y, ex) => tomC(x, y, ex));
-    for (const [px, py] of pes) {
-      const fora = px < 0 ? -1 : 1, x = cx + (fora < 0 ? -3 : 2), y = y0 + py, bx = fora < 0 ? x - 1 : x;
-      p.ret(bx, y, 3, 2, '#5a3a26'); p.ret(bx, y, 3, 1, '#7a5a3c'); p.set(fora < 0 ? bx : bx + 2, y + 1, '#3a2418');
-    }
-  }
+  for (const [px, py] of pes) p.ret(cx + px, Math.round(sy + r - 0.5) + py, 2, 3, '#8a6a4a');
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
     p.elipse(cx, sy - r + 1.5, 6, 2.6, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
     p.set(cx - 1, Math.round(sy - r), CAULE.sombra); p.set(cx + 1, Math.round(sy - r), CAULE.sombra);
