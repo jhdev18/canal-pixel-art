@@ -55,12 +55,26 @@ function rostoTico(p, cx, cy, e) {   // cy = linha dos olhos; olhos 2x2 em x -4.
   if (boch) bochechas(false);
 }
 function tico({ chapeu = 'normal', perna = 'parado', face = 'normal', dy = 0, dx = 0 } = {}) {
-  const W = 32, H = 31, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
+  const W = 32, H = 32, p = new Pix(W, H), cx = 16 + dx, oy = dy + (perna === 'pulo' ? -1 : 0);
   const cy = 13 + oy, r = 6.75, sy = cy + r + 0.5;   // centro do chapéu e do caule
   p.elipse(cx, sy, r, r, (x, y, ex, ey) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
   // perninhas marrons como as dos cogumelos comuns; andando, uma sobe de cada vez; no pulo ficam esticadas
   const pes = { parado: [[-4, 0], [3, 0]], a: [[-4, -1], [3, 0]], b: [[-4, 0], [3, -1]], pulo: [[-4, 1], [3, 1]] }[perna];
-  for (const [px, py] of pes) p.ret(cx + px, Math.round(sy + r - 0.5) + py, 2, 3, '#8a6a4a');
+  const est = globalThis.__pernaDavi || 'A', y0 = Math.round(sy + r - 0.5);
+  for (const [px, py] of pes) {
+    const x = cx + px, y = y0 + py, fora = px < 0 ? -1 : 1;   // fora: o pé aponta para o lado de fora
+    if (est === 'A') {          // perninha sombreada + botinha virada para fora
+      p.ret(x, y, 1, 3, '#a07a56'); p.ret(x + 1, y, 1, 3, '#6e4e34');
+      p.ret(fora < 0 ? x - 1 : x, y + 2, 3, 1, '#4a3020'); p.set(fora < 0 ? x - 1 : x + 2, y + 2, '#5a3a26');
+    } else if (est === 'B') {   // perna sombreada + pezinho redondo escuro
+      p.ret(x, y, 1, 3, '#a07a56'); p.ret(x + 1, y, 1, 3, '#6e4e34');
+      p.elipse(x + 0.5 + fora * 0.5, y + 3, 1.8, 1, (xx, yy, ex, ey) => (ey < -0.3 && ex < 0.3 ? '#6a4a34' : '#4a3020'));
+    } else {                    // perna gordinha cor do caule + sapatinho marrom
+      const xx = fora < 0 ? x - 1 : x;
+      p.ret(xx, y, 1, 2, CAULE.base); p.ret(xx + 1, y, 1, 2, CAULE.base); p.ret(xx + 2, y, 1, 2, CAULE.sombra);
+      p.ret(xx - (fora < 0 ? 1 : 0), y + 2, 4, 1, '#6e4e34'); p.set(xx - (fora < 0 ? 1 : 0) + (fora < 0 ? 0 : 3), y + 2, '#4a3020'); p.ret(xx, y + 1, 3, 1, '#8a6a4a');
+    }
+  }
   if (chapeu === 'sem') {   // careca: topo do caule à mostra (cômico)
     p.elipse(cx, sy - r + 1.5, 6, 2.6, (x, y, ex, ey) => (ey < -0.2 ? CAULE.luz : CAULE.base));
     p.set(cx - 1, Math.round(sy - r), CAULE.sombra); p.set(cx + 1, Math.round(sy - r), CAULE.sombra);
