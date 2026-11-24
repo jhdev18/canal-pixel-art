@@ -13,7 +13,7 @@ const K = '#2a1a1a';
 // ---------------------------------------------------------------- DAVI, o cogumelo (22x26)
 // chapeu: 'normal' | 'sem' | 'grande'; perna: 'parado' | 'a' | 'b' | 'pulo'; face: expressão; dy: respiração; dx: tremor
 const CHAPEU = { luz: '#ff8a6a', base: '#e8483a', sombra: '#a82a2a', bola: '#fff8ec', bolaSombra: '#e8d8c8' };
-const CHAPEU_GRANDE = { luz: '#ffb070', base: '#f05a3a', sombra: '#b8322a', bola: '#fff4a0', bolaSombra: '#f8d040' };
+const CHAPEU_GRANDE = CHAPEU;   // o chapéu grande cresce mas NÃO muda de cor (o usuário achou que o Davi "mudava de cor" no fim com o dourado)
 const CAULE = { luz: '#fff8e8', base: '#f6ead0', sombra: '#d8c4a0' };
 function chapeuTico(p, cx, topo, grande, cores) {
   const rx = grande ? 11 : 9.5, ry = grande ? 8 : 6.5, cy = topo + ry;

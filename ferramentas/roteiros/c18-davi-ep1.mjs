@@ -139,11 +139,11 @@ C.push(cena('E, escondido na moita, um goblin bruxo anotava tudo.', {
 }));
 // 15. FINAL INTERATIVO (últimos ~4 s): o público escolhe para onde o Davi vai no episódio 2 — mais fundo na floresta ou para a vila
 //     dos heróis. Na tela: o Davi (chapéu dourado) dá uns passos para um lado, para com "?", e volta; o placar mostra só as duas
-//     opções no alto ("1 FLORESTA" / "2 VILA", sem números grandes).
+//     opções no alto: cartaz "VOCÊ DECIDE!" com dois cartões (número, ícone de árvore/casa e o nome) que entram pulando.
 C.push(cena('Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.', {
   cenario: 'floresta-isekai', camera: PERTO(0, 1.8), foco: 'davi',
   elementos: [P('davi', 'cogumelo-davi', 0.4, 3.0, { pose: 'grande' })],
-  acoes: [a(0.02, 'placar', { opcoes: ['FLORESTA', 'VILA'], cores: ['#3ac860', '#f0a040'], durF: 0.96 }),
+  acoes: [a(0.02, 'placar', { estilo: 'escolha', opcoes: ['FLORESTA', 'VILA'], icones: ['arvore', 'casa'], cores: ['#3ac860', '#f0a040'], durF: 0.96 }),
     a(0.05, 'andar', { alvo: 'davi', para: -0.6, durF: 0.3 }), a(0.4, 'emocao', { alvo: 'davi', icone: '?' }),
     a(0.62, 'andar', { alvo: 'davi', para: 1.2, durF: 0.3 }), a(0.95, 'som', { som: 'blip' })],
 }));

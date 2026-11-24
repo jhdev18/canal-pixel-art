@@ -304,7 +304,10 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 - **Trocar estado de objeto:** `trocar` (`"estado"`); estado inicial com `"pose"`. Preso em alguém: `"sobre"`.
 - **Flash colorido:** `flash` com `"cor": "#5aa0f0"` tinge a tela daquela cor e volta (ex.: "a floresta ficou azul"; `durF` longo = o tom dura a frase).
 - **Impacto:** `flash`, `tremer`, `explosao`, `piscar` (vermelho: dano ou vergonha), `magia` (faíscas: transformação ou troca), `fogos` 🧪.
-- **Atenção:** `destaque` 🧪 (lupa), `contador` 🧪, `placar` 🧪 (votação), `continua` 🧪.
+- **Atenção:** `destaque` 🧪 (lupa), `contador` 🧪 (não usar: o usuário achou o número grande no alto estranho), `placar` 🧪 (votação), `continua` 🧪.
+- **Votação bonita** 🧪: `placar` com `"estilo": "escolha"`, `"opcoes"`, `"icones"` (`arvore`, `casa`, `caveira`, `castelo`) e `"cores"` —
+  painel de menu de jogo com moldura dourada, "VOCÊ DECIDE!" (`"titulo"` troca) e um cartão por opção (selo com o número, ícone grande, nome),
+  entrando pulando; a borda pisca. É o final interativo do isekai (pedido do usuário: "a votação poderia ser mais bonita").
 - **Climas:** `chuva`, `neve`, `vagalumes`, `brasas`, `poeira`, `folhas`, `calor`, `neblina` 🧪 (terror), `polen` 🧪 (primavera), `vento` 🧪
   (rajadas atravessando a tela).
 - **Hora do dia (rua/praça):** `"periodo": "dia"`, `"tarde"` 🧪 (pôr do sol: luz alaranjada, céu laranja e rosa — final sem escuro) ou `"noite"`.

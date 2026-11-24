@@ -350,10 +350,11 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
 - Cada episódio: 1 batalha, a regra (os esporos) na tela em quase toda cena, a escolha ativa do protagonista, uma virada e um **gancho**
   para o próximo (o goblin anotando). Seguir também as táticas de retenção do vídeo das sombras (dia, movimento, escalada, "Até que" cedo).
 - Título com termos que o público busca: "Reencarnei como... isekai"; tags `#isekai #reencarnei`.
-- **Nome do cogumelo: Davi** (escolhido pelo usuário; antes era Tico). Sprite `cogumelo-davi`, chapéu `chapeu-davi`; projeto `isekai-davi-01`.
+- **Nome do cogumelo: Davi** (escolhido pelo usuário; antes era Tico). O chapéu `grande` só cresce, sem mudar de cor (dourado parecia
+  "outra cor do Davi"). Sprite `cogumelo-davi`, chapéu `chapeu-davi`; projeto `isekai-davi-01`.
 - **Final interativo** (pedido do usuário): a última cena (~4 s) pede ao público uma **decisão de caminho** para o próximo episódio
-  (ep. 1: "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.") com o `placar` no alto mostrando só as opções ("1 FLORESTA" /
-  "2 VILA", sem números grandes); o mais votado vira o episódio seguinte. Votar em **poder** foi recusado (riso/amor "não têm sentido" para
+  (ep. 1: "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.") com o `placar` `"estilo": "escolha"` no alto (painel de menu
+  de jogo "VOCÊ DECIDE!" com um cartão por opção: número, ícone e nome — o placar simples foi achado sem graça); o mais votado vira o episódio seguinte. Votar em **poder** foi recusado (riso/amor "não têm sentido" para
   um cogumelo); poderes, quando vierem, devem ser coisas que cogumelo faz (brotar clones, raízes, brilhar no escuro, chapéu-escudo).
 - **O goblin é BRUXO DAS TREVAS (necromante)** (pedidos do usuário: "característica especial", "vestido de bruxo" e "mais ameaçador, um bruxo das
   trevas"): capuz pontudo preto com o rosto na sombra, manto preto rasgado, colar de ossinhos, sorriso de dentes pontudos, grimório, cajado com caveirinha e chama verde,

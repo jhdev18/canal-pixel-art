@@ -7,6 +7,15 @@ const K = '#1a1c2c';
 const BRANCO = '#f4f4f4';
 const LINHA = 10;
 
+// Ícones 8x8 (desenhados 2x) dos cartões do placar "escolha"
+const PAL_ESCOLHA = { g: '#3ac860', G: '#1e8a3e', t: '#8a5a34', r: '#e05a4a', R: '#a83a30', w: '#f4ecd8', y: '#f8d040', k: '#1a1c2c', c: '#9aa0ac', s: '#e0d8c0' };
+const ICONES_ESCOLHA = {
+  arvore: ['...gg...', '..gggg..', '.ggGggg.', 'gggggGgg', '.gGgggg.', '...tt...', '...tt...', '..tttt..'],
+  casa: ['...rr...', '..rrrr..', '.rrrrrr.', 'RRRRRRRR', '.wwwwww.', '.wkwwyw.', '.wkwwww.', '.wwwwww.'],
+  caveira: ['..ssss..', '.ssssss.', 'skksskks', 'skksskks', 'ssssssss', '.ss..ss.', '.s.ss.s.', '........'],
+  castelo: ['c.c..c.c', 'cccccccc', '.cccccc.', '.cckkcc.', '.cckkcc.', '.cccccc.', '.cccccc.', '........'],
+};
+
 function caixa(ctx, x, y, w, h, fundo, borda) {
   ctx.fillStyle = borda;
   ctx.fillRect(x + 1, y, w - 2, h); ctx.fillRect(x, y + 1, w, h - 2);
@@ -107,7 +116,7 @@ export class UI {
       if (t < a.inicio || t > a.inicio + a.duracao) continue;
       if (a.tipo === 'destaque') this.destaque(a, t, a.alvo ? cabeca(a.alvo, t) : null);
       if (a.tipo === 'contador') this.contador(a, t);
-      if (a.tipo === 'placar') this.placar(a, t);
+      if (a.tipo === 'placar') (a.estilo === 'escolha' ? this.placarEscolha(a, t) : this.placar(a, t));
       if (a.tipo === 'continua') this.continua(a, t);
     }
     if (cena.legendasNarracao) {
@@ -255,6 +264,47 @@ export class UI {
         ctx.fillStyle = cores[i % cores.length]; ctx.fillRect(x + 4, y + 16, bw, 6);
         desenharTexto(ctx, `${Math.round(pct)}%`, x + 4, y + 20, BRANCO);
       }
+    });
+  }
+
+  // PROTÓTIPO (isekai, pedido do usuário "a votação poderia ser mais bonita"): "estilo": "escolha" — cartaz "VOCÊ DECIDE!" com dois (ou três)
+  // cartões grandes: número num selo redondo, ícone em pixel ("icones": ["arvore", "casa", ...]) e o nome. Entram pulando, um depois do
+  // outro, e a borda pisca devagar. "titulo" troca o "VOCÊ DECIDE!".
+  placarEscolha(a, t) {
+    const { ctx, W } = this;
+    const ops = a.opcoes || ['1', '2'], cores = a.cores || ['#3ac860', '#f0a040'], ics = a.icones || [];
+    const dt = t - a.inicio, n = ops.length;
+    const tit = normalizar(a.titulo || 'VOCÊ DECIDE!'), et = larguraTexto(tit, 2) <= W - 24 ? 2 : 1, lt = larguraTexto(tit, et);
+    const gap = 6, cw = Math.min(110, Math.floor((W - 20 - (n - 1) * gap) / n)), ch = 50;
+    const x0 = Math.round((W - (n * cw + (n - 1) * gap)) / 2);
+    // painel de menu de jogo (moldura dourada) que desce do alto
+    const pP = clamp(dt / 0.3), desce = Math.round((1 - easeOutBack(pP)) * -40);
+    const px = x0 - 5, pw = n * cw + (n - 1) * gap + 10, py = 4 + desce, ph = 11 * et + 8 + ch + 10;
+    caixa(ctx, px - 1, py - 1, pw + 2, ph + 2, '#1a1c2c', '#1a1c2c');
+    caixa(ctx, px, py, pw, ph, '#161a30', '#f8d040');
+    ctx.fillStyle = '#c8901e'; ctx.fillRect(px + 2, py + ph - 3, pw - 4, 1);
+    for (const [cx2, cy2] of [[px + 2, py + 2], [px + pw - 4, py + 2]]) { ctx.fillStyle = '#fff4a0'; ctx.fillRect(cx2, cy2, 2, 2); }   // rebites
+    desenharTextoContorno(ctx, tit, Math.round((W - lt) / 2), py + 5, '#fff4a0', '#5a3a10', et);
+    const yC = py + 11 * et + 8;
+    ops.forEach((o, i) => {
+      const p = clamp((dt - 0.2 - i * 0.18) / 0.3);
+      if (p <= 0) return;
+      const cor = cores[i % cores.length], x = x0 + i * (cw + gap), y = Math.round(yC - (1 - easeOutBack(p)) * 18);
+      const pisca = Math.floor(dt * 2.5 + i) % 2 === 0;
+      caixa(ctx, x - 1, y - 1, cw + 2, ch + 2, pisca ? '#ffffff' : cor, pisca ? '#ffffff' : cor);
+      caixa(ctx, x, y, cw, ch, '#242a46', cor);
+      ctx.fillStyle = cor; ctx.fillRect(x + 2, y + 2, cw - 4, 2);
+      // selo redondo com o número (canto de cima à esquerda)
+      const sx = x + 3, sy = y + 6;
+      ctx.fillStyle = '#1a1c2c'; ctx.fillRect(sx, sy, 13, 13);
+      ctx.fillStyle = cor; ctx.fillRect(sx + 2, sy + 1, 9, 11); ctx.fillRect(sx + 1, sy + 2, 11, 9);
+      desenharDigito(ctx, String(i + 1), sx + 4, sy + 3, 1, '#1a1c2c', null);
+      // ícone grande (8x8 desenhado 3x) no meio
+      const ic = ICONES_ESCOLHA[ics[i]];
+      if (ic) { const e = 3, ix = Math.round(x + (cw - 8 * e) / 2), iy = y + 5; ic.forEach((l, j) => [...l].forEach((c, k) => { if (c !== '.') { ctx.fillStyle = PAL_ESCOLHA[c]; ctx.fillRect(ix + k * e, iy + j * e, e, e); } })); }
+      // nome embaixo, centralizado
+      const nome = normalizar(String(o)).toUpperCase(), ln = larguraTexto(nome, 1);
+      desenharTextoContorno(ctx, nome, Math.round(x + (cw - ln) / 2), y + ch - 12, '#ffffff', '#1a1c2c', 1);
     });
   }
 

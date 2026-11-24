@@ -2151,9 +2151,14 @@
    "acoes": [
     {
      "tipo": "placar",
+     "estilo": "escolha",
      "opcoes": [
       "FLORESTA",
       "VILA"
+     ],
+     "icones": [
+      "arvore",
+      "casa"
      ],
      "cores": [
       "#3ac860",
