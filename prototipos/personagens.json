@@ -79,8 +79,8 @@
   "manequim":             { "sprite": "manequim", "voz": 0.9 },
   "manequim-coberto":     { "sprite": "manequim-coberto", "voz": 0.9 },
 
-  // ---- PROTÓTIPO (isekai do cogumelo Tico, motor/assets/isekai.js)
-  "tico": { "sprite": "tico", "voz": 1.5 },
+  // ---- PROTÓTIPO (isekai do cogumelo Davi, motor/assets/isekai.js)
+  "cogumelo-davi": { "sprite": "cogumelo-davi", "voz": 1.5 },
   "cogumelo-comum": { "sprite": "cogumelo-comum", "voz": 1.6 },
   "cogumelo-roxo": { "sprite": "cogumelo-roxo", "voz": 1.6 },
   "cogumelo-verde": { "sprite": "cogumelo-verde", "voz": 1.6 },

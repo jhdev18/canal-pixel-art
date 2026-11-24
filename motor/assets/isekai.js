@@ -1,6 +1,6 @@
 // PROTÓTIPOS (aguardando aprovação) — série ISEKAI "E se você renascesse como o monstro mais fraco do jogo?":
-//   tico (o cogumelo protagonista), cogumelo-comum (os outros cogumelos da floresta), goblin (o rival que anota tudo),
-//   heróis aventureiros (3 variações + versões deitadas, dormindo), espada-heroi (vai na mão com "sobre") e chapeu-tico (o chapéu que voa).
+//   cogumelo-davi (o Davi, cogumelo protagonista), cogumelo-comum (os outros cogumelos da floresta), goblin (o rival que anota tudo),
+//   heróis aventureiros (3 variações + versões deitadas, dormindo), espada-heroi (vai na mão com "sobre") e chapeu-davi (o chapéu que voa).
 //   Ações novas no motor: "golpe" (arco branco da espada) e "esporos" (nuvem colorida de esporos) — ver motor.js / particulas.js.
 //   Estilo próprio (nada copiado de jogos): contorno escuro, poucas cores, rosto expressivo.
 import { Pix } from '../pixel.js';
@@ -10,7 +10,7 @@ import { pessoaComSentado as pessoa } from './moradores.js';
 
 const K = '#2a1a1a';
 
-// ---------------------------------------------------------------- TICO, o cogumelo (22x26)
+// ---------------------------------------------------------------- DAVI, o cogumelo (22x26)
 // chapeu: 'normal' | 'sem' | 'grande'; perna: 'parado' | 'a' | 'b' | 'pulo'; face: expressão; dy: respiração; dx: tremor
 const CHAPEU = { luz: '#ff8a6a', base: '#e8483a', sombra: '#a82a2a', bola: '#fff8ec', bolaSombra: '#e8d8c8' };
 const CHAPEU_GRANDE = { luz: '#ffb070', base: '#f05a3a', sombra: '#b8322a', bola: '#fff4a0', bolaSombra: '#f8d040' };
@@ -76,6 +76,7 @@ function spriteTico() {
     anims[nome || 'parado'] = { q: [n0, n0, n1, n1], fps: 3 };
     anims[pre + 'andando'] = { q: [a, n0, b, n0], fps: 8 };
     anims[pre + 'correndo'] = { q: [a, n1, b, n1], fps: 14 };
+    if (nome) anims[pre + 'pulando'] = { q: [add({ chapeu, face, perna: 'pulo' })], fps: 1 };   // o pulo mantém o chapéu/rosto do estado
   };
   grupo('', 'normal', 'normal');
   anims.pulando = { q: [add({ perna: 'pulo' })], fps: 1 };
@@ -202,14 +203,14 @@ function espada(estado = 'parado') {
   }
   return p.contorno('#1e1a24');
 }
-function chapeuSolto(grande) {   // o chapéu do Tico sozinho (voa com "mover"/"pular" e volta para a cabeça)
+function chapeuSolto(grande) {   // o chapéu do Davi sozinho (voa com "mover"/"pular" e volta para a cabeça)
   const p = new Pix(24, 14);
   chapeuTico(p, 12, 1, grande, grande ? CHAPEU_GRANDE : CHAPEU);
   return p.contorno(K);
 }
 
 registrarSprites({
-  tico: () => spriteTico(),
+  'cogumelo-davi': () => spriteTico(),
   'cogumelo-comum': () => spriteCogumeloComum(0),
   'cogumelo-roxo': () => spriteCogumeloComum(1),
   'cogumelo-verde': () => spriteCogumeloComum(2),
@@ -217,9 +218,9 @@ registrarSprites({
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k, () => pessoa(p)])),
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k + '-dormindo', () => deitado(p)])),
   'espada-heroi': () => ({ quadros: [espada(), espada('golpe-dir'), espada('golpe-esq')], anims: { parado: { q: [0] }, 'golpe-dir': { q: [1] }, 'golpe-esq': { q: [2] } }, sombra: false }),
-  'chapeu-tico': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
-}, { grupo: 'Isekai (o cogumelo Tico)', status: 'protótipo', descricoes: {
-  tico: 'o cogumelo protagonista do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',
+  'chapeu-davi': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
+}, { grupo: 'Isekai (o cogumelo Davi)', status: 'protótipo', descricoes: {
+  'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',
   goblin: 'o goblin rival que anota tudo (caderninho e lápis); parado/anotando, feliz, rindo, alerta, andando',
   'cogumelo-comum': 'os outros cogumelos da floresta (figurantes); também cogumelo-roxo e cogumelo-verde',
 } });

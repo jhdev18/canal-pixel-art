@@ -1,6 +1,6 @@
-// ISEKAI (série do cogumelo Tico) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"
-// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-tico-01
-// Protótipos: motor/assets/isekai.js (tico, cogumelos, goblin, heróis + dormindo, espada, chapéu), ações golpe e esporos, floresta-isekai.
+// ISEKAI (série do cogumelo Davi) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"
+// Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-davi-01
+// Protótipos: motor/assets/isekai.js (cogumelo-davi, cogumelos, goblin, heróis + dormindo, espada, chapéu), ações golpe e esporos, floresta-isekai.
 {
  "titulo": "E se você renascesse como o monstro mais fraco do jogo?",
  "narrador": "Narrador",
@@ -23,8 +23,8 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": 0,
      "z": 3,
      "oculto": true
@@ -33,26 +33,26 @@
    "acoes": [
     {
      "tipo": "aparecer",
-     "alvo": "tico",
+     "alvo": "davi",
      "inicio": null
     },
     {
      "tipo": "pular",
-     "alvo": "tico",
+     "alvo": "davi",
      "altura": 0.5,
      "inicio": null,
      "duracao": 0.5
     },
     {
      "tipo": "espirrar",
-     "alvo": "tico",
+     "alvo": "davi",
      "duracao": 1,
      "inspira": 0.6,
      "inicio": 2.09
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 2.69
@@ -66,7 +66,7 @@
      "zoom": 2
     },
     "centrarEm": [
-     "tico"
+     "davi"
     ]
    }
   },
@@ -83,8 +83,8 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1.6,
      "z": 3
     },
@@ -99,14 +99,14 @@
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "tico",
+     "alvo": "davi",
      "para": 0.2,
      "inicio": 0.3,
      "duracao": 1.59
     },
     {
      "tipo": "pular",
-     "alvo": "tico",
+     "alvo": "davi",
      "altura": 0.15,
      "inicio": 1.97,
      "duracao": 0.32
@@ -118,7 +118,7 @@
     },
     {
      "tipo": "espirrar",
-     "alvo": "tico",
+     "alvo": "davi",
      "duracao": 1,
      "inspira": 0.6,
      "inicio": 2.48
@@ -131,7 +131,7 @@
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 3.08
@@ -144,7 +144,7 @@
      "y": 1.85
     },
     "centrarEm": [
-     "tico"
+     "davi"
     ]
    }
   },
@@ -158,8 +158,8 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1.4,
      "z": 2.6
     },
@@ -210,13 +210,13 @@
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "tremendo",
      "inicio": 2.27
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 2.44
@@ -236,7 +236,7 @@
      "y": 1.6
     },
     "centrarEm": [
-     "tico",
+     "davi",
      "h1"
     ]
    }
@@ -287,8 +287,8 @@
      }
     },
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": 5.4,
      "z": 2.2
     }
@@ -322,7 +322,7 @@
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "assustado",
      "inicio": 2.58
     },
@@ -857,7 +857,7 @@
    }
   },
   {
-   "narracaoTexto": "Só sobrou o Tico. E ele fugia a passinhos deste tamanho.",
+   "narracaoTexto": "Só sobrou o Davi. E ele fugia a passinhos deste tamanho.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": -0.4,
@@ -866,8 +866,8 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": 0.2,
      "z": 3,
      "pose": "assustado"
@@ -894,7 +894,7 @@
    "acoes": [
     {
      "tipo": "andar",
-     "alvo": "tico",
+     "alvo": "davi",
      "para": -1,
      "som": null,
      "inicio": 1.21,
@@ -909,21 +909,21 @@
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 1.57
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 2.48
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 3.39
@@ -943,7 +943,7 @@
      "y": 1.85
     },
     "centrarEm": [
-     "tico",
+     "davi",
      "h1"
     ]
    }
@@ -958,8 +958,8 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "assustado"
@@ -984,7 +984,7 @@
     },
     {
      "id": "chapeu",
-     "sprite": "chapeu-tico",
+     "sprite": "chapeu-davi",
      "x": -1,
      "z": 3,
      "oculto": true
@@ -999,7 +999,7 @@
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "sem-chapeu-tremendo",
      "inicio": 1.27
     },
@@ -1043,13 +1043,13 @@
      "y": 0.85
     },
     "centrarEm": [
-     "tico",
+     "davi",
      "h1"
     ]
    }
   },
   {
-   "narracaoTexto": "Então o Tico parou. Respirou fundo. E espirrou de propósito.",
+   "narracaoTexto": "Então o Davi parou. Respirou fundo. E espirrou de propósito.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": -0.4,
@@ -1059,15 +1059,15 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "sem-chapeu-tremendo"
     },
     {
      "id": "chapeu",
-     "sprite": "chapeu-tico",
+     "sprite": "chapeu-davi",
      "x": -3.4,
      "z": 3
     },
@@ -1190,27 +1190,27 @@
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "sem-chapeu",
      "inicio": 1.47
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "sem-chapeu-inspira",
      "som": "espirro-inspira",
      "inicio": 2.25
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "sem-chapeu-espirro",
      "som": "espirro",
      "inicio": 3.65
     },
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
      "inicio": 3.73
@@ -1244,7 +1244,7 @@
      "zoom": 2
     },
     "centrarEm": [
-     "tico"
+     "davi"
     ]
    },
    "momento": "ataque"
@@ -1259,15 +1259,15 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "sem-chapeu-espirro"
     },
     {
      "id": "chapeu",
-     "sprite": "chapeu-tico",
+     "sprite": "chapeu-davi",
      "x": -3.4,
      "z": 3
     },
@@ -1383,7 +1383,7 @@
    "acoes": [
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "grande",
      "inicio": 0.3
@@ -1448,7 +1448,7 @@
      "y": 0.85
     },
     "centrarEm": [
-     "tico",
+     "davi",
      "h5"
     ]
    },
@@ -1478,15 +1478,15 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "sem-chapeu"
     },
     {
      "id": "chapeu",
-     "sprite": "chapeu-tico",
+     "sprite": "chapeu-davi",
      "x": -3.4,
      "z": 3
     },
@@ -1650,7 +1650,7 @@
    "acoes": [
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "flutuando",
      "inicio": 0.3
@@ -1777,7 +1777,7 @@
      "y": 1.35
     },
     "centrarEm": [
-     "tico",
+     "davi",
      "h5"
     ]
    },
@@ -1796,15 +1796,15 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "sem-chapeu"
     },
     {
      "id": "chapeu",
-     "sprite": "chapeu-tico",
+     "sprite": "chapeu-davi",
      "x": -3.4,
      "z": 3
     },
@@ -1854,7 +1854,7 @@
    "acoes": [
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "flutuando",
      "inicio": 0.3
@@ -1875,7 +1875,7 @@
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "feliz",
      "som": "sucesso",
      "inicio": 2.09
@@ -1894,7 +1894,7 @@
      "y": 1.35
     },
     "centrarEm": [
-     "tico"
+     "davi"
     ]
    },
    "momento": "ataque"
@@ -1909,8 +1909,8 @@
    },
    "elementos": [
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "feliz"
@@ -1961,21 +1961,21 @@
    "acoes": [
     {
      "tipo": "esporos",
-     "alvo": "tico",
+     "alvo": "davi",
      "cor": "azul",
      "tamanho": "flutuando",
      "inicio": 0.3
     },
     {
      "tipo": "trocar",
-     "alvo": "tico",
+     "alvo": "davi",
      "estado": "grande",
      "som": "revelar",
      "inicio": 1.14
     },
     {
      "tipo": "magia",
-     "alvo": "tico",
+     "alvo": "davi",
      "inicio": 1.14
     },
     {
@@ -1995,7 +1995,7 @@
     },
     {
      "tipo": "pular",
-     "alvo": "tico",
+     "alvo": "davi",
      "altura": 0.4,
      "inicio": 1.74,
      "duracao": 0.6
@@ -2008,7 +2008,7 @@
      "y": 1.35
     },
     "centrarEm": [
-     "tico"
+     "davi"
     ]
    },
    "momento": "ataque"
@@ -2030,8 +2030,8 @@
      "z": 5
     },
     {
-     "id": "tico",
-     "personagem": "tico",
+     "id": "davi",
+     "personagem": "cogumelo-davi",
      "x": -1,
      "z": 3,
      "pose": "grande"
@@ -2069,6 +2069,97 @@
     },
     "centrarEm": [
      "gob"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "Qual poder ele descobre agora? Comenta: um, riso. Dois, amor.",
+   "cenario": "floresta-isekai",
+   "camera": {
+    "x": 0,
+    "z": 2.2,
+    "y": 0.55,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": 0,
+     "z": 3,
+     "pose": "grande"
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "pular",
+     "alvo": "davi",
+     "altura": 0.4,
+     "inicio": 0.38,
+     "duracao": 0.59
+    },
+    {
+     "tipo": "placar",
+     "opcoes": [
+      "RISO",
+      "AMOR"
+     ],
+     "cores": [
+      "#f8d040",
+      "#ff8ac0"
+     ],
+     "inicio": 0.5,
+     "duracao": 3.77
+    },
+    {
+     "tipo": "esporos",
+     "posicao": [
+      -1.4,
+      1.2,
+      3
+     ],
+     "cor": "amarelo",
+     "tamanho": "pequeno",
+     "inicio": 1.89
+    },
+    {
+     "tipo": "som",
+     "som": "blip",
+     "inicio": 1.97
+    },
+    {
+     "tipo": "esporos",
+     "posicao": [
+      1.4,
+      1.2,
+      3
+     ],
+     "cor": "rosa",
+     "tamanho": "pequeno",
+     "inicio": 3.15
+    },
+    {
+     "tipo": "som",
+     "som": "blip",
+     "inicio": 3.23
+    },
+    {
+     "tipo": "pular",
+     "alvo": "davi",
+     "altura": 0.3,
+     "inicio": 3.67,
+     "duracao": 0.48
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.95,
+     "z": 2.2,
+     "y": -0.45,
+     "zoom": 2
+    },
+    "centrarEm": [
+     "davi"
     ]
    }
   }

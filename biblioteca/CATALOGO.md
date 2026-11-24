@@ -411,11 +411,11 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `icone-pausa` | 🧪 protótipo | parado | 12×12 |
 | `moeda-bloco` | 🧪 protótipo | parado | 10×10 |
 
-### Isekai (o cogumelo Tico)
+### Isekai (o cogumelo Davi)
 
 | Sprite | Status | Estados | Tamanho |
 |---|---|---|---|
-| `tico` | 🧪 protótipo | parado, assustado, assustado-andando, assustado-correndo, tremendo, sem-chapeu, sem-chapeu-andando, sem-chapeu-correndo, sem-chapeu-tremendo, sem-chapeu-inspira, sem-chapeu-espirro, espirro-antes, espirro, feliz, feliz-andando, feliz-correndo, grande, grande-andando, grande-correndo, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 24×28 |
+| `cogumelo-davi` | 🧪 protótipo | parado, assustado, assustado-andando, assustado-correndo, tremendo, sem-chapeu, sem-chapeu-andando, sem-chapeu-correndo, sem-chapeu-tremendo, sem-chapeu-inspira, sem-chapeu-espirro, espirro-antes, espirro, feliz, feliz-andando, feliz-correndo, grande, grande-andando, grande-correndo, rosto-macabro-cresce, rosto-macabro-range, rosto-macabro-abre, rosto-feliz, rosto-rindo, rosto-triste, rosto-chorando, rosto-bravo, rosto-surpreso, rosto-assustado, rosto-envergonhado, rosto-pensativo, rosto-macabro, rosto-macabro-fechado, rosto-macabro-boca, rosto-macabro-a, rosto-macabro-b, rosto-macabro-c, rosto-macabro-v2, rosto-bug | 24×28 |
 | `cogumelo-comum` | 🧪 protótipo | parado | 18×20 |
 | `cogumelo-roxo` | 🧪 protótipo | parado | 18×20 |
 | `cogumelo-verde` | 🧪 protótipo | parado | 18×20 |
@@ -427,7 +427,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `heroi-aventureira-dormindo` | 🧪 protótipo | parado | 44×25 |
 | `heroi-grandao-dormindo` | 🧪 protótipo | parado | 44×26 |
 | `espada-heroi` | 🧪 protótipo | parado, golpe-dir, golpe-esq | 40×20 |
-| `chapeu-tico` | 🧪 protótipo | parado, grande | 24×14 |
+| `chapeu-davi` | 🧪 protótipo | parado, grande | 24×14 |
 
 ## Personagens
 
@@ -497,7 +497,7 @@ Uso: `{ "id": "x", "personagem": "nome" }`
 | `avatar-leo-2` | 🧪 protótipo | `avatar-leo-2` | 1.4 |
 | `manequim` | 🧪 protótipo | `manequim` | 0.9 |
 | `manequim-coberto` | 🧪 protótipo | `manequim-coberto` | 0.9 |
-| `tico` | 🧪 protótipo | `tico` | 1.5 |
+| `cogumelo-davi` | 🧪 protótipo | `cogumelo-davi` | 1.5 |
 | `cogumelo-comum` | 🧪 protótipo | `cogumelo-comum` | 1.6 |
 | `cogumelo-roxo` | 🧪 protótipo | `cogumelo-roxo` | 1.6 |
 | `cogumelo-verde` | 🧪 protótipo | `cogumelo-verde` | 1.6 |

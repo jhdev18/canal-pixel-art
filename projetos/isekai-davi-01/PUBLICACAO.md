@@ -1,4 +1,4 @@
-# Publicação — Isekai do Tico, Ep. 1 (Short, canal Pixelverso)
+# Publicação — Isekai do Davi, Ep. 1 (Short, canal Pixelverso)
 
 ## Arquivos
 - Narração (ElevenLabs): `narracao/narracao-completa.mp3`
@@ -8,7 +8,9 @@
 Reencarnei como o monstro mais fraco do isekai 🍄 #shorts
 
 ## Descrição
-E se você renascesse como o monstro mais fraco do jogo? O Tico é um cogumelo: lento, sem braços e o primeiro monstro que todo herói derrota... até a manhã em que dez heróis invadiram a floresta. Episódio 1.
+E se você renascesse como o monstro mais fraco do jogo? O Davi é um cogumelo: lento, sem braços e o primeiro monstro que todo herói derrota... até a manhã em que dez heróis invadiram a floresta. Episódio 1.
+
+👉 Você decide o próximo poder do Davi: comenta 1 para RISO ou 2 para AMOR!
 
 #shorts #isekai #reencarnei #pixelart #animação #aventura #pixelverso
 
