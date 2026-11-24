@@ -172,14 +172,22 @@ function goblinMago({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, con
 const TREVAS = ['#0c0c10', '#18181f', '#26262f'], PELE_TREVAS = ['#2a4419', '#3a5a24', '#4c6e30'];
 function goblinTrevas({ pagina = 0, face = 'normal', perna = 'parado', dy = 0, conjurar = false, chama = 0 } = {}) {
   const O = 10, W = 30, H = 48, p = new Pix(W, H), b = new Pix(W, H), cx = 13, G = PELE_TREVAS, y0 = 2 + dy + O;
-  // cajado retorcido (atrás do corpo, na mão direita): erguido quando conjura
-  const sx = cx + 9, topo = conjurar ? y0 - 2 : y0 + 3;
-  for (let y = topo + 5; y < 36 + O + (conjurar ? -3 : 0); y++) { const tx = Math.round(Math.sin(y * 0.7) * 0.8); p.set(sx + tx, y, '#3a2a1e'); p.set(sx + tx + 1, y, '#241810'); }
-  p.set(sx - 1, topo + 8, '#3a2a1e'); p.set(sx - 2, topo + 7, '#3a2a1e'); p.set(sx + 2, topo + 10, '#3a2a1e');                     // galhos tortos
-  p.elipse(sx + 0.5, topo + 3, 3, 2.8, '#e0d8c0'); p.ret(sx - 1, topo + 5, 4, 1, '#b8b098');                                       // caveira
-  for (const x of [sx - 1, sx + 1]) { p.set(x, topo + 3, '#7af0a0'); b.set(x, topo + 3, '#7af0a0'); }                              // olhos da caveira acesos
-  const ch = conjurar ? 5 : 2 + chama;
-  for (let k = 0; k < ch + 2; k++) { const w = Math.max(0, Math.round((ch + 2 - k) * 0.6)); for (let x = -w; x <= w; x++) { const c = k < 1 ? VERDE_MAGIA[2] : x === 0 && k < ch ? VERDE_MAGIA[0] : VERDE_MAGIA[1]; p.set(sx + x, topo - k, c); b.set(sx + x, topo - k, c); } }
+  // CAJADO DE CAVEIRA (pedido do usuário): cabo retorcido e, na ponta, uma caveira grande com os olhos verdes acesos;
+  // a chama verde sai do alto da caveira (mais alta quando conjura). Erguido quando conjura.
+  const sx = cx + 10, topo = conjurar ? y0 - 6 : y0 - 3;
+  for (let y = topo + 8; y < 36 + O + (conjurar ? -3 : 0); y++) { const tx = Math.round(Math.sin(y * 0.7) * 0.8); p.set(sx + tx, y, '#3a2a1e'); p.set(sx + tx + 1, y, '#241810'); }
+  p.set(sx - 1, topo + 11, '#3a2a1e'); p.set(sx - 2, topo + 10, '#3a2a1e'); p.set(sx + 2, topo + 13, '#3a2a1e');                   // galhos tortos
+  const CAV = ['.XXXXX.', 'XXXXXXX', 'XEEXEEX', 'XEEXEEX', 'XXXNXXX', '.XXXXX.', '.TDTDT.'];
+  const OSSO = '#e8e0c8', OSSO2 = '#b8b098', ESC = '#1a1414';
+  CAV.forEach((l, j) => [...l].forEach((c, i) => {
+    const x = sx - 3 + i, y = topo + j;
+    if (c === 'X') p.set(x, y, i >= 5 || j >= 5 ? OSSO2 : OSSO);
+    else if (c === 'E') { p.set(x, y, VERDE_MAGIA[1]); b.set(x, y, VERDE_MAGIA[1]); }
+    else if (c === 'N' || c === 'D') p.set(x, y, ESC);
+    else if (c === 'T') p.set(x, y, OSSO);
+  }));
+  const ch = conjurar ? 5 : 2 + chama;                                                                                               // chama verde saindo do alto da caveira
+  for (let k = 0; k < ch + 1; k++) { const w = Math.max(0, Math.round((ch + 1 - k) * 0.5)); for (let x = -w; x <= w; x++) { const c = k < 1 ? VERDE_MAGIA[2] : x === 0 && k < ch ? VERDE_MAGIA[0] : VERDE_MAGIA[1]; p.set(sx + x, topo - 1 - k, c); b.set(sx + x, topo - 1 - k, c); } }
   // pés e fumaça escura saindo do chão
   const pernas = { parado: [[-4, 0], [2, 0]], a: [[-4, -1], [2, 0]], b: [[-4, 0], [2, -1]] }[perna];
   for (const [px, py] of pernas) p.ret(cx + px - 1, 34 + O + py + dy, 4, 2, '#0a0a0c');

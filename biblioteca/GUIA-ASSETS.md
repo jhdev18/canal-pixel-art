@@ -209,7 +209,7 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 - `cogumelo-comum`, `cogumelo-roxo`, `cogumelo-verde`: os outros cogumelos da floresta (figurantes; `sumir` = "puf" quando o herói golpeia).
 - **`goblin`** (personagem): o rival da série, um **goblin bruxo das trevas** (pedido do usuário: ameaçador) — capuz pontudo preto com o rosto na
   sombra (só os olhos verdes acesos e o sorriso de dentes pontudos), manto preto rasgado em tiras, colar de ossinhos, fumaça escura nos pés, grimório
-  preto com runas verdes, cajado retorcido com caveira de olhos verdes e chama verde. `parado` (anotando: a página vira), `feliz`, `rindo`,
+  preto com runas verdes, cajado de caveira (cabo retorcido; na ponta uma caveira grande de olhos verdes acesos, nariz e dentes, com a chama verde saindo do alto, acima do ombro). `parado` (anotando: a página vira), `feliz`, `rindo`,
   `alerta`, `conjurar` (cajado erguido, olhos acesos), andando. Combina com `fogo-fatuo` `verde` (as almas que ele junta) e `flash` com `cor` verde.
 - **`goblin-mago`** (personagem): o 1º desenho do goblin bruxo — chapéu de mago pontudo com fita verde e estrelinhas e manto roxo estrelado. O usuário
   achou "mais para um mago" e guardou a ideia para **personagens futuros** (um mago bonzinho, um aprendiz). Mesmos estados do `goblin`.
