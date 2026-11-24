@@ -84,7 +84,7 @@
     "camera": {
      "x": 0.41,
      "z": 2.2,
-     "y": 0.55,
+     "y": 0.05,
      "zoom": 2
     }
    }
@@ -295,7 +295,7 @@
     "camera": {
      "x": 2.35,
      "z": 2.2,
-     "y": 1.6
+     "y": 0.85
     }
    }
   },
@@ -514,7 +514,7 @@
    "vertical": {
     "camera": {
      "x": 0.5,
-     "y": 3
+     "y": 2.25
     }
    }
   },
@@ -876,7 +876,7 @@
     "camera": {
      "x": 4.75,
      "z": 0,
-     "y": 2.4
+     "y": 1.65
     },
     "centrarEm": [
      "bia",
@@ -926,14 +926,20 @@
     {
      "tipo": "trocar",
      "alvo": "tela",
-     "estado": "chat-nao-sai",
-     "som": "chat",
-     "inicio": 3.04
+     "estado": "socorro",
+     "som": "bug-jogo",
+     "inicio": 2.83
     },
     {
      "tipo": "tremer",
-     "intensidade": 0.25,
-     "inicio": 3.11,
+     "intensidade": 0.3,
+     "inicio": 2.9,
+     "duracao": 0.28
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.3,
+     "inicio": 3.32,
      "duracao": 0.28
     },
     {

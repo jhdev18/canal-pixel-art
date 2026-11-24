@@ -426,7 +426,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `heroi-aventureiro-dormindo` | 🧪 protótipo | parado | 44×25 |
 | `heroi-aventureira-dormindo` | 🧪 protótipo | parado | 44×25 |
 | `heroi-grandao-dormindo` | 🧪 protótipo | parado | 44×26 |
-| `espada-heroi` | 🧪 protótipo | parado | 7×18 |
+| `espada-heroi` | 🧪 protótipo | parado, golpe-dir, golpe-esq | 40×20 |
 | `chapeu-tico` | 🧪 protótipo | parado, grande | 24×14 |
 
 ## Personagens
@@ -603,7 +603,7 @@ Uso: `{ "cenario": "nome" }`
 | `mercado-dentro-diorama` | 🧪 protótipo | diorama (cômodo mercado-dentro) | 0 |
 | `consultorio-diorama` | 🧪 protótipo | diorama (cômodo consultorio) | 0 |
 | `biblioteca-diorama` | 🧪 protótipo | diorama (cômodo biblioteca) | 0 |
-| `floresta-isekai` | 🧪 protótipo | diorama | 11 |
+| `floresta-isekai` | 🧪 protótipo | diorama | 77 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |

@@ -95,7 +95,7 @@ C.push(cena('Então o Tico parou. Respirou fundo. E espirrou de propósito.', {
 C.push(cena('A floresta inteira ficou azul.', {
   cenario: 'floresta-isekai', camera: CAM(2.4), foco: ['tico', 'h5'],
   elementos: [TICO('sem-chapeu-espirro'), CHAPEU(), ...HER()],
-  acoes: [a(0, 'esporos', { alvo: 'tico', cor: 'azul', tamanho: 'grande' }), a(0.05, 'flash', { intensidade: 0.4 }), a(0.1, 'tremer', { intensidade: 0.3, durF: 0.2 }),
+  acoes: [a(0, 'esporos', { alvo: 'tico', cor: 'azul', tamanho: 'grande' }), a(0.05, 'flash', { intensidade: 0.5, cor: '#5aa0f0', durF: 0.95 }), a(0.1, 'tremer', { intensidade: 0.3, durF: 0.2 }),
     ...HEROIS.slice(0, 3).map(([id], k) => a(0.4 + k * 0.1, 'emocao', { alvo: id, icone: '!' }))],
 }));
 // 11. Os heróis caem dormindo um por um (a pessoa some e entra a versão deitada, com "zzz")
@@ -136,7 +136,7 @@ C.push(cena('E, escondido na moita, um goblin anotava tudo.', {
 marcar(C, { ataque: [[9, 13]] });
 rostos(C, [[3, 'h1', 'bravo', 0.6], [4, 'h1', 'feliz', 0.6], [4, 'h2', 'feliz', 0.7], [6, 'h5', 'bravo', 0.5], [6, 'h6', 'bravo', 0.5],
   [7, 'h1', 'bravo', 0.75], [8, 'h1', 'bravo', 0.5], [9, 'h2', 'bravo'], [9, 'h3', 'bravo'], [10, 'h4', 'surpreso', 0.4], [10, 'h5', 'surpreso', 0.4], [10, 'h6', 'surpreso', 0.4]]);
-alturaShorts(C, { 1: -1.25, 2: -0.75, 3: -1, 7: -0.75, 8: -1.75, 9: -1.25, 10: -1.75, 11: -1.25, 12: -1.25, 13: -0.25 });
+alturaShorts(C, { 1: -2.25, 2: -0.75, 3: -1, 5: -2.75, 6: -1.75, 7: -0.75, 8: -1.75, 9: -1.25, 10: -1.75, 11: -1.25, 12: -1.25, 13: -1.25 });
 
 salvar('isekai-tico-01', ['ISEKAI (série do cogumelo Tico) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-tico-01',

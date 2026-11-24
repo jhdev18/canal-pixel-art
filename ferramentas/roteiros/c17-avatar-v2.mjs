@@ -77,12 +77,12 @@ C.push(cena('Só a Bia reparou: ninguém mais tinha sombra de gente.', {
   acoes: [...PASSAM.flatMap(([id, , , x]) => [a(0, 'andar', { alvo: id, para: x + 5, durF: 1 }), a(0, 'andar', { alvo: 's-' + id, para: x + 5, durF: 1, som: null })]),
     a(0.5, 'emocao', { alvo: 'bia', icone: '!' }), a(0.5, 'som', { som: 'surpresa' })],
 }));
-// 10. A Bia ESCOLHE agir: corre para casa e abre o jogo pela primeira vez (a tela aparece em close)
+// 10. A Bia ESCOLHE agir: corre para casa e abre o jogo pela primeira vez; na tela, o garoto preso batendo no vidro para sair (socorro)
 C.push(cena('Ela correu para casa e abriu o jogo pela primeira vez.', {
   cenario: 'quarto-menina-diorama', camera: { x: 0, y: 3 },
   elementos: [P('bia', 'menina-capa', -3.4, 1.6), S('tela', 'tela-jogo', 0, 0, { tela: true, pose: 'jogando', escurecer: 0.6, oculto: true })],
   acoes: [a(0, 'correr', { alvo: 'bia', para: -0.6, durF: 0.45 }), a(0.5, 'aparecer', { alvo: 'tela', som: 'entrar-jogo' }),
-    a(0.78, 'trocar', { alvo: 'tela', estado: 'chat-nao-sai', som: 'chat' }), a(0.8, 'tremer', { intensidade: 0.25, durF: 0.08 })],
+    a(0.72, 'trocar', { alvo: 'tela', estado: 'socorro', som: 'bug-jogo' }), a(0.74, 'tremer', { intensidade: 0.3, durF: 0.08 }), a(0.86, 'tremer', { intensidade: 0.3, durF: 0.08 })],
 }));
 // 11. Lá dentro, as crianças de verdade: os avatares vêm até a câmera em "bug", batendo na tela
 C.push(cena('Lá dentro, as crianças batiam na tela, pedindo socorro.', {
@@ -115,7 +115,7 @@ C.push(cena('E o avatar sem rosto da Bia, pela primeira vez, sorriu.', {
 
 marcar(C, {});
 rostos(C, [[3, 'aluna', 'rindo', 0.1], [3, 'aluno', 'rindo', 0.5], [6, 'leo', 'rindo', 0.5], [9, 'bia', 'assustado', 0.5], [10, 'bia', 'assustado', 0.5]]);
-alturaShorts(C, { 1: -1.25, 2: -1.25, 3: -1, 4: -3, 5: -1.5, 14: -3 });
+alturaShorts(C, { 1: -1.75, 2: -1.25, 3: -1.75, 4: -3, 5: -1.5, 6: -0.75, 9: -0.75, 14: -3 });
 
 salvar('nesse-mundo-avatar-v2', ['NESSE MUNDO (curto, TERROR de dia, Roblox) — v2 do avatar: "Nesse mundo, seu avatar do Roblox aprende a ser você."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-avatar-v2',

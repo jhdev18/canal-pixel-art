@@ -35,14 +35,17 @@ C.push(cena('Por isso, a criançada joga Roblox trancada no banheiro.', {
   acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.4 }), a(0.25, 'corte', { zoom: 2, y: 2.2 }), a(0.4, 'som', { som: 'porta' }), a(0.55, 'som', { som: 'porta' }), a(0.55, 'emocao', { alvo: 'aluno', icone: '!' }),
     a(0.7, 'tremer', { intensidade: 0.15, durF: 0.08 })],
 }));
-// 4. A mãe do Léo (a vilã boba): pausa a cidade vinte vezes por dia — anda, congela, anda, congela, com o contador subindo
+// 4. A mãe do Léo (a vilã boba): pausa a cidade vinte vezes por dia — anda, congela, anda, congela; a cada pausa o ícone de pausa
+//    aparece em cima de quem congelou (sem contador no alto da tela: o usuário achou estranho)
 C.push(cena('Mas a mãe do Léo grita pausa vinte vezes por dia.', {
   cenario: 'rua-comercial', camera: RUA(5.0),
-  elementos: [P('mae', 'mae', 2.6, 5.0), P('caixa', 'caixa', 4.2, 4.6, { figurante: true }), P('policial', 'policial', 6.6, 4.2, { figurante: true })],
+  elementos: [P('mae', 'mae', 2.6, 5.0), P('caixa', 'caixa', 4.2, 4.6, { figurante: true }), P('policial', 'policial', 6.6, 4.2, { figurante: true }),
+    S('pz1', 'icone-pausa', 0, 0, { sobre: { id: 'caixa', dy: 2.5 }, oculto: true }), S('pz2', 'icone-pausa', 0, 0, { sobre: { id: 'policial', dy: 2.5 }, oculto: true })],
   acoes: [a(0, 'andar', { alvo: 'caixa', para: 5.4, durF: 0.2 }), a(0, 'andar', { alvo: 'policial', para: 7.6, durF: 0.2 }), a(0.22, 'flash', { intensidade: 0.3 }),
     a(0.35, 'andar', { alvo: 'caixa', para: 6.6, durF: 0.18 }), a(0.35, 'andar', { alvo: 'policial', para: 8.6, durF: 0.18 }), a(0.55, 'flash', { intensidade: 0.3 }),
     a(0.68, 'andar', { alvo: 'caixa', para: 7.8, durF: 0.2 }), a(0.68, 'andar', { alvo: 'policial', para: 9.6, durF: 0.2 }),
-    a(0.1, 'contador', { de: 20, durF: 0.8 }), a(0.5, 'emocao', { alvo: 'mae', icone: 'raiva' })],
+    ...[[0.22, 0.35], [0.55, 0.68]].flatMap(([f0, f1]) => ['pz1', 'pz2'].flatMap((id) => [a(f0, 'aparecer', { alvo: id, som: null }), a(f1, 'sumir', { alvo: id, som: null })])),
+    a(0.22, 'som', { som: 'erro' }), a(0.55, 'som', { som: 'erro' }), a(0.5, 'emocao', { alvo: 'mae', icone: 'raiva' })],
 }));
 // 5. A pista (o único balão): "MÃE, ONLINE NÃO PAUSA!"
 C.push(cena('E ele sempre responde: mãe, online não pausa!', {
@@ -123,7 +126,7 @@ C.push(cena('Mas filho online, pausa. E o Léo ficou no ar até a hora do banho.
 
 rostos(C, [[2, 'tonho', 'surpreso', 0.3], [4, 'mae', 'bravo', 0.25], [5, 'leo', 'bravo', 0.3], [5, 'mae', 'rindo', 0.35], [9, 'tonho', 'surpreso', 0.3],
   [10, 'leo', 'envergonhado', 0.1], [10, 'mae', 'bravo', 0.4]]);
-alturaShorts(C, { 2: -1.25, 3: -1.25, 4: -1.25, 5: -1.25, 9: -1.25, 10: -0.5 });
+alturaShorts(C, { 2: -1.25, 3: -2, 4: -1.25, 5: -1.25, 6: -0.75, 7: -0.5, 9: -1.25, 10: -1.25, 11: -1.5, 12: -1.75, 13: -0.5 });
 
 
 salvar('nesse-mundo-pausa', ['NESSE MUNDO (curto, COMÉDIA de dia, Roblox) — "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa."',

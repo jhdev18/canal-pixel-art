@@ -182,11 +182,24 @@ function deitado(preset) {
 }
 
 // ---------------------------------------------------------------- objetos
-function espada() {   // espada curta de ferro, de pé (vai na mão do herói com "sobre": { id, dx: 0.45, dy: 0.8 })
-  const p = new Pix(7, 18);
-  p.ret(3, 0, 1, 1, '#f0f4fa'); p.ret(2, 1, 3, 10, '#c8ccd8'); p.ret(3, 1, 1, 10, '#f0f4fa'); p.ret(4, 2, 1, 9, '#8a8e9a');
-  p.ret(0, 11, 7, 2, '#8a6a3a'); p.ret(0, 11, 7, 1, '#c8a060');                                     // guarda
-  p.ret(2, 13, 3, 4, '#5a3a22'); p.ret(2, 17, 3, 1, '#c8a060');                                     // cabo
+// espada curta de ferro (vai na mão do herói com "sobre": { id, dx: 0.45, dy: 0.8 }). Todos os estados no mesmo quadro de 40x20,
+// com o cabo no meio-embaixo (a mão): parado = de pé; golpe-dir / golpe-esq = deitada, apontando para o lado do golpe (a ação
+// "golpe" troca sozinha para esse estado por ~0,25 s e volta).
+function espada(estado = 'parado') {
+  const W = 40, H = 20, p = new Pix(W, H), L = '#f0f4fa', M = '#c8ccd8', S = '#8a8e9a', G = '#8a6a3a', g = '#c8a060', C = '#5a3a22';
+  if (estado === 'parado') {
+    const x0 = 17;
+    p.ret(x0 + 3, 1, 1, 1, L); p.ret(x0 + 2, 2, 3, 10, M); p.ret(x0 + 3, 2, 1, 10, L); p.ret(x0 + 4, 3, 1, 9, S);
+    p.ret(x0, 12, 7, 2, G); p.ret(x0, 12, 7, 1, g); p.ret(x0 + 2, 14, 3, 4, C); p.ret(x0 + 2, 18, 3, 1, g);
+  } else {
+    const d = estado === 'golpe-esq' ? -1 : 1, X = (x) => (d > 0 ? x : W - 1 - x), y = 11;
+    for (let x = 22; x <= 37; x++) { p.set(X(x), y - 1, L); p.set(X(x), y, M); p.set(X(x), y + 1, S); }   // lâmina deitada
+    p.set(X(38), y, L);
+    for (let k = -3; k <= 3; k++) p.set(X(21), y + k, k === -3 ? g : G);                                     // guarda
+    for (let x = 17; x <= 20; x++) { p.set(X(x), y - 1, C); p.set(X(x), y, C); p.set(X(x), y + 1, C); }      // cabo
+    p.set(X(16), y, g);
+    for (const [x, yy] of [[30, y - 3], [34, y - 4], [26, y - 2]]) p.set(X(x), yy, '#ffffff');               // brilho do corte
+  }
   return p.contorno('#1e1a24');
 }
 function chapeuSolto(grande) {   // o chapéu do Tico sozinho (voa com "mover"/"pular" e volta para a cabeça)
@@ -203,7 +216,7 @@ registrarSprites({
   goblin: () => spriteGoblin(),
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k, () => pessoa(p)])),
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k + '-dormindo', () => deitado(p)])),
-  'espada-heroi': () => ({ quadros: [espada()], anims: { parado: { q: [0] } }, sombra: false }),
+  'espada-heroi': () => ({ quadros: [espada(), espada('golpe-dir'), espada('golpe-esq')], anims: { parado: { q: [0] }, 'golpe-dir': { q: [1] }, 'golpe-esq': { q: [2] } }, sombra: false }),
   'chapeu-tico': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
 }, { grupo: 'Isekai (o cogumelo Tico)', status: 'protótipo', descricoes: {
   tico: 'o cogumelo protagonista do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante dourado) e expressões',

@@ -336,7 +336,7 @@
     "camera": {
      "x": 2.33,
      "z": 2.2,
-     "y": 0.85
+     "y": 0.1
     },
     "centrarEm": [
      "bia",
@@ -775,8 +775,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -4.6,
-     "z": -9,
+     "x": -2.6,
+     "z": -8.8,
      "virado": "direita"
     },
     {
@@ -785,8 +785,8 @@
       "tamanho": 1.6,
       "direcao": 270
      },
-     "x": -5.1,
-     "z": -8.8
+     "x": -3.1,
+     "z": -8.6
     },
     {
      "id": "tonho",
@@ -919,9 +919,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": 3.7,
+     "x": 4.6,
      "z": -8.5,
-     "y": -0.55
+     "y": -1.05
     },
     "centrarEm": [
      "bia",
@@ -959,8 +959,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -4.6,
-     "z": -9,
+     "x": -2.6,
+     "z": -8.8,
      "virado": "direita"
     },
     {
@@ -969,8 +969,8 @@
       "tamanho": 1.6,
       "direcao": 270
      },
-     "x": -5.1,
-     "z": -8.8
+     "x": -3.1,
+     "z": -8.6
     },
     {
      "id": "tonho",
@@ -1069,9 +1069,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": 2.45,
+     "x": 3.35,
      "z": -8.5,
-     "y": -0.55
+     "y": -1.05
     },
     "centrarEm": [
      "bia",
@@ -1083,6 +1083,11 @@
   {
    "narracaoTexto": "Elas não iam na frente para guiar.",
    "cenario": "praca-parquinho",
+   "saiDeCena": [
+    "tonho",
+    "prof",
+    "aluno"
+   ],
    "remover": [
     "arvore3",
     "arvore4"
@@ -1109,8 +1114,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -4.6,
-     "z": -9,
+     "x": -2.6,
+     "z": -8.8,
      "virado": "direita"
     },
     {
@@ -1119,8 +1124,8 @@
       "tamanho": 1.6,
       "direcao": 270
      },
-     "x": -5.1,
-     "z": -8.8
+     "x": -3.1,
+     "z": -8.6
     },
     {
      "id": "tonho",
@@ -1179,14 +1184,32 @@
       -8.4
      ],
      "raio": 2.8,
-     "inicio": 0.41,
-     "duracao": 2.1
+     "inicio": 0.34,
+     "duracao": 1.33
     },
     {
      "tipo": "tremer",
      "intensidade": 0.3,
      "inicio": 0.96,
      "duracao": 0.33
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "tonho",
+     "inicio": 1.29,
+     "duracao": 0.77
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "prof",
+     "inicio": 1.52,
+     "duracao": 0.77
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "aluno",
+     "inicio": 1.74,
+     "duracao": 0.77
     },
     {
      "tipo": "expressao",
@@ -1199,29 +1222,29 @@
      "tipo": "expressao",
      "alvo": "tonho",
      "rosto": "feliz",
-     "inicio": 0.41,
-     "duracao": 2.1
+     "inicio": 0.34,
+     "duracao": 0.88
     },
     {
      "tipo": "expressao",
      "alvo": "prof",
      "rosto": "feliz",
-     "inicio": 0.41,
-     "duracao": 2.1
+     "inicio": 0.34,
+     "duracao": 1.11
     },
     {
      "tipo": "expressao",
      "alvo": "aluno",
      "rosto": "feliz",
-     "inicio": 0.41,
-     "duracao": 2.1
+     "inicio": 0.34,
+     "duracao": 1.33
     }
    ],
    "vertical": {
     "camera": {
-     "x": 2.45,
+     "x": 2.94,
      "z": -8.5,
-     "y": -0.55
+     "y": -1.05
     },
     "centrarEm": [
      "bia",
@@ -1233,11 +1256,6 @@
   {
    "narracaoTexto": "Iam na frente para esperar.",
    "cenario": "praca-parquinho",
-   "saiDeCena": [
-    "tonho",
-    "prof",
-    "aluno"
-   ],
    "remover": [
     "arvore3",
     "arvore4"
@@ -1264,8 +1282,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -4.6,
-     "z": -9,
+     "x": -2.6,
+     "z": -8.8,
      "virado": "direita"
     },
     {
@@ -1274,32 +1292,14 @@
       "tamanho": 1.6,
       "direcao": 270
      },
-     "x": -5.1,
-     "z": -8.8
-    },
-    {
-     "id": "tonho",
-     "personagem": "padeiro",
-     "x": 0.4,
-     "z": -8.4
-    },
-    {
-     "id": "prof",
-     "personagem": "professora",
-     "x": 2,
-     "z": -8.4
-    },
-    {
-     "id": "aluno",
-     "personagem": "aluno",
-     "x": 3.6,
-     "z": -8.4
+     "x": -3.1,
+     "z": -8.6
     },
     {
      "id": "s-tonho",
      "sombraPessoa": {
       "tamanho": 1.6,
-      "direcao": 90,
+      "direcao": 270,
       "olhos": true
      },
      "x": -0.9999999999999999,
@@ -1309,7 +1309,7 @@
      "id": "s-prof",
      "sombraPessoa": {
       "tamanho": 1.6,
-      "direcao": 90,
+      "direcao": 270,
       "olhos": true
      },
      "x": 0.6000000000000001,
@@ -1319,7 +1319,7 @@
      "id": "s-aluno",
      "sombraPessoa": {
       "tamanho": 1.6,
-      "direcao": 90,
+      "direcao": 270,
       "olhos": true
      },
      "x": 2.2,
@@ -1328,33 +1328,45 @@
    ],
    "acoes": [
     {
-     "tipo": "desaparecer",
-     "alvo": "tonho",
-     "inicio": 0.39,
-     "duracao": 0.7
+     "tipo": "andar",
+     "alvo": "s-tonho",
+     "para": -1.7999999999999998,
+     "som": null,
+     "inicio": 0.48,
+     "duracao": 1.49
     },
     {
-     "tipo": "desaparecer",
-     "alvo": "prof",
-     "inicio": 0.65,
-     "duracao": 0.7
+     "tipo": "andar",
+     "alvo": "s-prof",
+     "para": -0.19999999999999996,
+     "som": null,
+     "inicio": 0.58,
+     "duracao": 1.39
     },
     {
-     "tipo": "desaparecer",
-     "alvo": "aluno",
-     "inicio": 0.91,
-     "duracao": 0.7
+     "tipo": "andar",
+     "alvo": "s-aluno",
+     "para": 1.4000000000000001,
+     "som": null,
+     "inicio": 0.69,
+     "duracao": 1.28
     },
     {
      "tipo": "som",
      "som": "sombra",
-     "inicio": 0.48
+     "inicio": 0.65
     },
     {
      "tipo": "tremer",
-     "intensidade": 0.4,
-     "inicio": 1,
-     "duracao": 0.35
+     "intensidade": 0.3,
+     "inicio": 1.27,
+     "duracao": 0.26
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "bia",
+     "icone": "!",
+     "inicio": 0.86
     },
     {
      "tipo": "expressao",
@@ -1366,13 +1378,13 @@
    ],
    "vertical": {
     "camera": {
-     "x": 1.36,
+     "x": 1.58,
      "z": -8.5,
-     "y": -0.55
+     "y": -1.05
     },
     "centrarEm": [
      "bia",
-     "aluno"
+     "s-prof"
     ]
    },
    "momento": "sabado-praca"
@@ -1385,8 +1397,8 @@
     "arvore4"
    ],
    "camera": {
-    "x": -4.6,
-    "z": -10.4,
+    "x": -2.6,
+    "z": -10.2,
     "zoom": 2
    },
    "elementos": [
@@ -1407,8 +1419,8 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": -4.6,
-     "z": -9
+     "x": -2.6,
+     "z": -8.8
     },
     {
      "id": "sb",
@@ -1416,8 +1428,8 @@
       "tamanho": 1.6,
       "direcao": 270
      },
-     "x": -5.1,
-     "z": -8.8
+     "x": -3.1,
+     "z": -8.6
     },
     {
      "id": "s1",
@@ -1453,10 +1465,10 @@
    ],
    "vertical": {
     "camera": {
-     "x": -3.25,
-     "z": -10.4,
+     "x": -1.25,
+     "z": -10.2,
      "zoom": 2,
-     "y": 1.2
+     "y": 0.2
     },
     "centrarEm": [
      "bia"

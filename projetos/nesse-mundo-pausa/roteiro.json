@@ -197,7 +197,10 @@
      "tipo": "corte",
      "zoom": 2,
      "y": 1.6,
-     "inicio": 3.81
+     "inicio": 3.81,
+     "vertical": {
+      "y": 0.35
+     }
     },
     {
      "tipo": "expressao",
@@ -252,7 +255,10 @@
      "tipo": "corte",
      "zoom": 2,
      "y": 2.2,
-     "inicio": 1.19
+     "inicio": 1.19,
+     "vertical": {
+      "y": 0.2
+     }
     },
     {
      "tipo": "som",
@@ -280,7 +286,7 @@
    "vertical": {
     "camera": {
      "x": -0.5,
-     "y": 1.75
+     "y": 1
     }
    }
   },
@@ -312,6 +318,28 @@
      "x": 6.6,
      "z": 4.2,
      "figurante": true
+    },
+    {
+     "id": "pz1",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "caixa",
+      "dy": 2.5
+     },
+     "oculto": true
+    },
+    {
+     "id": "pz2",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "policial",
+      "dy": 2.5
+     },
+     "oculto": true
     }
    ],
    "acoes": [
@@ -368,10 +396,62 @@
      "duracao": 0.64
     },
     {
-     "tipo": "contador",
-     "de": 20,
-     "inicio": 0.62,
-     "duracao": 2.55
+     "tipo": "aparecer",
+     "alvo": "pz1",
+     "som": null,
+     "inicio": 1
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "pz1",
+     "som": null,
+     "inicio": 1.41
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "pz2",
+     "som": null,
+     "inicio": 1
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "pz2",
+     "som": null,
+     "inicio": 1.41
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "pz1",
+     "som": null,
+     "inicio": 2.05
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "pz1",
+     "som": null,
+     "inicio": 2.47
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "pz2",
+     "som": null,
+     "inicio": 2.05
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "pz2",
+     "som": null,
+     "inicio": 2.47
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": 1
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": 2.05
     },
     {
      "tipo": "emocao",
@@ -554,7 +634,7 @@
     "camera": {
      "x": -7.65,
      "z": 2.2,
-     "y": 2.8
+     "y": 2.05
     }
    }
   },
@@ -645,7 +725,7 @@
     "camera": {
      "x": -5.99,
      "z": 2.2,
-     "y": 2.8
+     "y": 2.3
     }
    }
   },
@@ -973,7 +1053,7 @@
     "camera": {
      "x": 3.06,
      "z": 2.2,
-     "y": 1.1,
+     "y": 0.35,
      "zoom": 2
     }
    }
@@ -1032,7 +1112,7 @@
     "camera": {
      "x": -2.3,
      "z": 2.2,
-     "y": 2,
+     "y": 0.5,
      "zoom": 1.5
     }
    }
@@ -1100,7 +1180,7 @@
     "camera": {
      "x": -3.4,
      "z": 2.2,
-     "y": 2.8
+     "y": 1.05
     }
    }
   },
@@ -1179,7 +1259,7 @@
     "camera": {
      "x": 0.95,
      "z": 2.2,
-     "y": 2,
+     "y": 1.5,
      "zoom": 2
     },
     "centrarEm": [

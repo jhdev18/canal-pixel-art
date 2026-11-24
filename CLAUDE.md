@@ -48,6 +48,8 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   `expressao` / `"pose": "rosto-<x>"`; o `emocao` já muda o rosto junto —,
   ícone de emoção, alguém andando) e de partículas (`clima` do cenário: `poeira`, `neve`, `vagalumes`). Mover a câmera só quando ajudar a história; evitar
   pan/zoom que deixe os pixels estranhos (nada de zoom lento quebrado; se usar, curto e terminando em valor redondo).
+- **Nada de `contador` no alto da tela** (o usuário achou o número grande em cima estranho): mostrar a contagem dentro da cena
+  (ícone em cima de cada um, gesto que se repete mais devagar, objeto que muda de estado).
 - **Quebra de padrão a cada ~5 s:** `flash`, `tremer`, ícone de emoção ou SFX na palavra forte da narração.
 - **Variar o visual dentro do diorama:** troque de lugar (rua, praça, cômodo) e de enquadramento, não de
   estilo. Lugares da cidade sem interior (escola, delegacia, padaria, mercado): a cena acontece na rua
@@ -73,7 +75,9 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   enquadramento `vertical`, deixar os personagens e o que importa **acima de ~70% da altura** (não no rodapé): abaixar a
   câmera do Shorts — `alturaShorts(C, { cena: dy })` do `nm.mjs` (dy em múltiplos de 0,25 = 8 px; -1 a -2,25 é o normal).
   Medir com `node ferramentas/roteiros/medir-altura-shorts.mjs <projeto>` (mostra o dy de cada cena; não gera imagem).
-  O `npm run conferir` acusa `[legenda]` sem abrir o navegador. **Corte de zoom no Shorts:** o `y` do corte vale também no Shorts;
+  O `npm run conferir` acusa `[legenda]` sem abrir o navegador, mas deixa passar a legenda sobre as pernas/pés (o usuário pediu para a legenda
+  não atrapalhar): quando o usuário pedir para conferir, `node ferramentas/roteiros/fotos-shorts.mjs <projeto> [cenas]` tira fotos 9:16 COM a
+  legenda (2 por cena, `saida/fotos-shorts/folha.png`) e o `medir-altura-shorts.mjs` dá o dy que falta (soma ao que já está no `alturaShorts`). **Corte de zoom no Shorts:** o `y` do corte vale também no Shorts;
   o `alturaShorts` agora desce o corte junto (`vertical.y` automático), e um `"vertical": { "y" }` escrito no corte manda.
   **Centralizar no Shorts (pedido do usuário: personagens descentralizados):** a câmera do diorama NÃO fica em cima de quem tem o mesmo `x`
   (o `z` também desloca na tela). **Automático (não fazer à mão):** o `cena()` do `nm.mjs` centraliza a câmera do `vertical` sozinho e o

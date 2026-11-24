@@ -128,8 +128,10 @@ export const RAJADAS = {
   'fogos-azul': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#c0e8ff', '#50a8ff', '#2a4ab0'] },
   'fogos-verde': { n: 60, vel: [35, 75], ang: [0, 6.283], grav: -30, arrasto: 2.2, vida: [0.9, 1.6], tam: 1, cintila: 1, cores: ['#ffffff', '#d0ffc0', '#60e070', '#1e8a3a'] },
   // PROTÓTIPO (isekai): corte da espada — arco branco que abre na frente de quem ataca (golpe-dir / golpe-esq)
-  'golpe-dir': { n: 34, vel: [70, 82], ang: [-1.15, 1.15], grav: 0, arrasto: 0, vida: [0.1, 0.18], tam: 2, cores: ['#ffffff', '#ffffff', '#e8f0ff', '#a8c0e8'] },
-  'golpe-esq': { n: 34, vel: [70, 82], ang: [1.99, 4.29], grav: 0, arrasto: 0, vida: [0.1, 0.18], tam: 2, cores: ['#ffffff', '#ffffff', '#e8f0ff', '#a8c0e8'] },
+  // v2: as partículas param num raio fixo (vel/arrasto ≈ 14 px) e ficam ~0,25 s: um arco branco nítido e grosso, não um borrifo
+  'golpe-dir': { n: 90, vel: [150, 185], ang: [-1.3, 1.3], grav: 0, arrasto: 12, vida: [0.2, 0.3], tam: 3, cores: ['#ffffff', '#ffffff', '#dfe8ff', '#9ab8f0'] },
+  'golpe-esq': { n: 90, vel: [150, 185], ang: [1.84, 4.44], grav: 0, arrasto: 12, vida: [0.2, 0.3], tam: 3, cores: ['#ffffff', '#ffffff', '#dfe8ff', '#9ab8f0'] },
+  'golpe-faisca': { n: 14, vel: [40, 90], ang: [0, 6.283], grav: -60, arrasto: 3, vida: [0.2, 0.4], tam: 1, cintila: 1, cores: ['#ffffff', '#fff4a0', '#f8d040', '#f8a040'] },
   coracoes: { n: 8, vel: [15, 35], ang: [1.0, 2.14], grav: 10, arrasto: 1.5, vida: [0.7, 1.2], tam: 2, cores: ['#ff6a80', '#e83a4a', '#e83a4a', '#c82a3a'] },
 };
 
@@ -137,9 +139,9 @@ export const RAJADAS = {
 // (pequeno = espirrinho; grande = nuvem que enche a tela; flutuando = esporos que ficam boiando em volta, sem parar)
 const CORES_ESPOROS = { azul: ['#ffffff', '#c8e8ff', '#7ab8f0', '#3a6ac8'], amarelo: ['#ffffff', '#fff4a0', '#f8d040', '#c8902a'], rosa: ['#ffffff', '#ffd0e8', '#ff8ac0', '#c84a8a'] };
 for (const [cor, cores] of Object.entries(CORES_ESPOROS)) {
-  RAJADAS[`esporos-${cor}-pequeno`] = { n: 18, vel: [10, 32], ang: [0, 6.283], grav: 6, arrasto: 2, vida: [0.8, 1.4], tam: 2, cintila: 1, cores };
-  RAJADAS[`esporos-${cor}-grande`] = { n: 320, vel: [30, 175], ang: [0, 6.283], achatar: 0.7, grav: 3, arrasto: 0.9, vida: [2.8, 4.2], tam: 3, cores };
-  RAJADAS[`esporos-${cor}-flutuando`] = { n: 40, vel: [6, 40], ang: [0, 6.283], grav: 5, arrasto: 0.6, vida: [2.5, 3.5], tam: 2, loop: 1, cintila: 1, cores };
+  RAJADAS[`esporos-${cor}-pequeno`] = { n: 40, vel: [12, 40], ang: [0, 6.283], grav: 6, arrasto: 2, vida: [0.9, 1.5], tam: 3, cores: [cores[1], cores[2], cores[2], cores[3]] };
+  RAJADAS[`esporos-${cor}-grande`] = { n: 900, vel: [20, 210], ang: [0, 6.283], achatar: 0.75, grav: 4, arrasto: 0.8, vida: [3.0, 4.5], tam: 4, cores: [cores[1], cores[2], cores[2], cores[3]] };
+  RAJADAS[`esporos-${cor}-flutuando`] = { n: 90, vel: [6, 60], ang: [0, 6.283], grav: 5, arrasto: 0.6, vida: [2.5, 3.5], tam: 2, loop: 1, cintila: 1, cores: [cores[1], cores[2], cores[2], cores[3]] };
 }
 
 const VERT_RAJADA = /* glsl */ `

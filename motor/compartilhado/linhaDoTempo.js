@@ -137,6 +137,13 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
       }
       return acao;
     }).sort((a, b) => a.inicio - b.inicio);
+    // PROTÓTIPO (isekai): "golpe" gira a espada de quem ataca (elemento espada-heroi "sobre" ele) por ~0,25 s e volta a ficar de pé
+    for (const g of cena.acoes.filter((x) => x.tipo === 'golpe' && x.alvo)) {
+      for (const esp of cena.elementos.filter((e) => e.sprite === 'espada-heroi' && (e.sobre?.id ?? e.sobre) === g.alvo)) {
+        cena.acoes.push({ tipo: 'trocar', alvo: esp.id, estado: g.direcao === 'esquerda' ? 'golpe-esq' : 'golpe-dir', inicio: g.inicio, duracao: 0, auto: true },
+          { tipo: 'trocar', alvo: esp.id, estado: 'parado', inicio: +(g.inicio + 0.25).toFixed(3), duracao: 0, auto: true });
+      }
+    }
     // Elementos que "aparecem" começam ocultos.
     for (const el of cena.elementos) {
       if (el.oculto == null) {
@@ -416,7 +423,7 @@ export function estadoSombra(cena, t) {
 export const raioNoAngulo = (R, ang, t) => R * (0.8 + 0.14 * Math.sin(ang * 5 + 1.3) + 0.06 * Math.sin(ang * 13 + t * 1.7));
 
 export function efeitosTela(cena, t) {
-  let tremor = 0, flash = 0;
+  let tremor = 0, flash = 0, flashCor = null;
   for (const a of cena.acoes) {
     if (t < a.inicio) continue;
     const dt = t - a.inicio;
@@ -425,7 +432,7 @@ export function efeitosTela(cena, t) {
       if (dt < 0.5) tremor = Math.max(tremor, (a.intensidade ?? 1) * 1.4 * (1 - dt / 0.5));
       if (dt < 0.12) flash = Math.max(flash, 0.85 * (1 - dt / 0.12));
     }
-    if (a.tipo === 'flash' && dt < a.duracao) flash = Math.max(flash, (a.intensidade ?? 1) * (1 - dt / a.duracao));
+    if (a.tipo === 'flash' && dt < a.duracao) { const v = (a.intensidade ?? 1) * (1 - dt / a.duracao); if (v > flash) { flash = v; flashCor = a.cor || null; } }
   }
   const amp = tremor * 4; // pixels
   const tremorX = Math.round(ruido1(t * 38, 1) * amp);
@@ -439,7 +446,7 @@ export function efeitosTela(cena, t) {
     const f = 1 - resto / d;
     if (f > fade) { fade = f; tipo = cena.transicaoSaida; }
   }
-  return { tremorX, tremorY, tremor, flash, fade: clamp(fade), transicao: tipo };
+  return { tremorX, tremorY, tremor, flash, flashCor, fade: clamp(fade), transicao: tipo };
 }
 
 export function larguraVisivel(roteiro, zoom = 1) {

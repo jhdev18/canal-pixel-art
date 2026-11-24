@@ -20,6 +20,7 @@ const FRAG = /* glsl */ `
 uniform sampler2D tCena;
 uniform vec2 uRes;
 uniform int uFinal, uTipo, uUsaPaleta, uNumCores;
+uniform vec3 uFlashCor;
 uniform float uFade, uFlash, uBloom, uVinheta, uAberracao, uNiveis, uSaturacao;
 uniform vec2 uCentro;
 uniform vec3 uPaleta[32];
@@ -65,7 +66,7 @@ void main() {
       c *= 1.0 - uVinheta * smoothstep(0.35, 1.0, length(d) * 1.25);
     }
   }
-  c = mix(c, vec3(1.0), uFlash);
+  c = mix(c, uFlashCor, uFlash);
 
   float bay = bayer4(px);
   if (uFade > 0.0) {
@@ -102,7 +103,7 @@ export class PosProcessamento {
     this.material = new THREE.ShaderMaterial({
       uniforms: {
         tCena: { value: null }, uRes: { value: new THREE.Vector2(W, H) }, uFinal: { value: 0 }, uTipo: { value: 0 },
-        uUsaPaleta: { value: 0 }, uNumCores: { value: 0 }, uFade: { value: 0 }, uFlash: { value: 0 }, uBloom: { value: 0 },
+        uUsaPaleta: { value: 0 }, uNumCores: { value: 0 }, uFade: { value: 0 }, uFlash: { value: 0 }, uFlashCor: { value: new THREE.Vector3(1, 1, 1) }, uBloom: { value: 0 },
         uVinheta: { value: 0 }, uAberracao: { value: 0 }, uNiveis: { value: 8 }, uSaturacao: { value: 1 },
         uCentro: { value: new THREE.Vector2(W / 2, H / 2) },
         uPaleta: { value: Array.from({ length: 32 }, () => new THREE.Vector3()) },
@@ -132,6 +133,7 @@ export class PosProcessamento {
     u.uTipo.value = TIPOS[o.transicao] ?? 0;
     u.uFade.value = o.fade;
     u.uFlash.value = o.flash;
+    if (o.flashCor) u.uFlashCor.value.set(...hexParaRgb(o.flashCor).map((v) => v / 255)); else u.uFlashCor.value.set(1, 1, 1);
     u.uBloom.value = o.bloom ?? 0;
     u.uVinheta.value = o.vinheta ?? 0;
     u.uAberracao.value = o.aberracao ?? 0;

@@ -62,7 +62,7 @@
     "camera": {
      "x": 1.95,
      "z": 2.2,
-     "y": 0.55,
+     "y": -0.45,
      "zoom": 2
     },
     "centrarEm": [
@@ -582,7 +582,7 @@
     "camera": {
      "x": 10.05,
      "z": 2.2,
-     "y": 2.6
+     "y": -0.15
     },
     "centrarEm": [
      "h1",
@@ -848,7 +848,7 @@
     "camera": {
      "x": 5.85,
      "z": 2.2,
-     "y": 2.6
+     "y": 0.85
     },
     "centrarEm": [
      "h1",
@@ -1390,8 +1390,10 @@
     },
     {
      "tipo": "flash",
-     "intensidade": 0.4,
-     "inicio": 0.4
+     "intensidade": 0.5,
+     "cor": "#5aa0f0",
+     "inicio": 0.4,
+     "duracao": 1.85
     },
     {
      "tipo": "tremer",
@@ -1988,7 +1990,7 @@
      "y": 1.8,
      "inicio": 1.21,
      "vertical": {
-      "y": 1.55
+      "y": 0.55
      }
     },
     {
@@ -2003,7 +2005,7 @@
     "camera": {
      "x": 0.95,
      "z": 2.2,
-     "y": 2.35
+     "y": 1.35
     },
     "centrarEm": [
      "tico"

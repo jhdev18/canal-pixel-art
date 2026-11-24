@@ -39,7 +39,10 @@ C.push(cena('Desde então, o avatar dela acena sozinho, cada dia mais devagar.',
   cenario: 'mundo-bloco', camera: { x: -5.4, z: 2.2, y: 2.0, zoom: 1.5 },
   elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }), P('a2', 'avatar-bloco-verde', -2.0, 3.6, { figurante: true }),
     P('a3', 'avatar-bloco-vermelho', -1.0, 2.0, { figurante: true })],
-  acoes: [a(0, 'andar', { alvo: 'a2', para: 2.0, durF: 0.6 }), a(0.1, 'pular', { alvo: 'a3', altura: 0.6 }), a(0.15, 'contador', { de: 300, durF: 0.75 })],
+  acoes: [a(0, 'andar', { alvo: 'a2', para: 2.0, durF: 0.6 }), a(0.1, 'pular', { alvo: 'a3', altura: 0.6 }),
+    // sem contador no alto (o usuário achou estranho): o aceno vai cansando — acena, para, acena, para mais tempo...
+    a(0.25, 'trocar', { alvo: 'anina', estado: 'parado' }), a(0.35, 'trocar', { alvo: 'anina', estado: 'acenar' }),
+    a(0.55, 'trocar', { alvo: 'anina', estado: 'parado' }), a(0.75, 'trocar', { alvo: 'anina', estado: 'acenar' }), a(0.85, 'trocar', { alvo: 'anina', estado: 'parado' })],
 }));
 // 6. Evento (~38%): o servidor da cidade vai fechar (a tela do jogo em close, no quarto da Nina — mundo real)
 C.push(cena('Até que avisaram: no domingo, o servidor da cidade ia fechar para sempre.', {
@@ -105,7 +108,7 @@ C.push(cena('E a Nina continuou acenando para o spawn vazio, até a tela apagar.
 marcar(C, { praca: [[9, 9], [12, 12]] });
 rostos(C, [[3, 'aluno', 'rindo', 0.1], [3, 'aluna', 'rindo', 0.4], [3, 'leo', 'feliz', 0.5], [4, 'nina', 'bravo', 0.02, 0.05], [6, 'nina', 'surpreso', 0.4],
   [9, 'nina', 'triste', 0.65], [12, 'nina', 'chorando', 0.1]]);
-alturaShorts(C, { 3: -1.75, 4: -1.25, 6: -1.25, 8: -1.25, 9: -1.75, 12: -0.5 });
+alturaShorts(C, { 1: -1.25, 2: -1.25, 3: -2, 4: -1.25, 5: -2, 6: -1.25, 7: -1.75, 8: -1.75, 9: -3.5, 10: -3, 11: -3, 12: -3.5, 13: -2.75, 14: -2.25 });
 
 
 salvar('nesse-mundo-espera', ['NESSE MUNDO (curto, EMOCIONAL de dia, Roblox) — "Nesse mundo, quando você sai do Roblox, seu avatar te espera."',

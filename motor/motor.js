@@ -268,7 +268,9 @@ class Motor {
         case 'golpe': {   // PROTÓTIPO (isekai): arco da espada na frente de quem ataca ("direcao": "direita" | "esquerda")
           const e = porId.get(a.alvo); if (!e) break;
           const dir = a.direcao === 'esquerda' ? -1 : 1, st = estadoElemento(c, e.def, a.inicio);
-          add(dir < 0 ? 'golpe-esq' : 'golpe-dir', a.inicio, fixo(vista.paraMundo(e.def, { ...st, x: st.x + dir * 0.7 }, e.h * st.escala * 0.45)));
+          const p = vista.paraMundo(e.def, { ...st, x: st.x + dir * 0.55 }, e.h * st.escala * 0.45);
+          add(dir < 0 ? 'golpe-esq' : 'golpe-dir', a.inicio, fixo(p));
+          add('golpe-faisca', a.inicio + 0.05, fixo(vista.paraMundo(e.def, { ...st, x: st.x + dir * 1.0 }, e.h * st.escala * 0.4)));
           break;
         }
         case 'esporos': {   // PROTÓTIPO (isekai): nuvem de esporos ("cor": azul | amarelo | rosa; "tamanho": pequeno | grande | flutuando)
@@ -533,7 +535,7 @@ class Motor {
     const paleta = c.paleta || this.r.paleta;
     if (paleta !== this.paletaAtual) { this.pos.definirPaleta(paleta); this.paletaAtual = paleta; }
     this.pos.configurar({
-      textura: this.rtCena.texture, final: this.final, transicao: ef.transicao, fade: ef.fade, flash: ef.flash,
+      textura: this.rtCena.texture, final: this.final, transicao: ef.transicao, fade: ef.fade, flash: ef.flash, flashCor: ef.flashCor,
       bloom: fx.bloom, vinheta: fx.vinheta, aberracao: fx.aberracao && ef.tremor > 0.25 ? 1 : 0,
       niveis: this.r.niveis, saturacao: c.saturacao ?? fx.saturacao ?? 1, centro: this.focoTransicao(obj, t),
     });

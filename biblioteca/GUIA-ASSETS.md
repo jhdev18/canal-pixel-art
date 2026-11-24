@@ -199,7 +199,8 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
 - Truque de terror: o avatar de uma pessoa da cidade faz algo no jogo e a pessoa faz igual na rua (ou o contrário); `bug` na palavra forte.
 
 ### Isekai do cogumelo Tico (🧪, série isekai — `motor/assets/isekai.js`)
-- `floresta-isekai`: clareira de dia (chão `"chao": "floresta"` = grama com trilha de terra sinuosa e florzinhas; árvores no fundo z ≥ 6.8,
+- `floresta-isekai`: clareira de dia (chão `"chao": "floresta"` = grama com trilha de terra sinuosa e florzinhas; mata fechada de 4 fileiras
+  no fundo (z 9.2–12.4, o usuário não quis o céu azul aparecendo atrás); árvores no fundo z ≥ 6.8,
   moitas `mato`, clima `polen`). Personagens na clareira em z ~1.2–4.6; câmera `{ "x", "z": 2.2, "y": 2.6 }`.
 - **`tico`** (personagem, 24x28): o cogumelo protagonista (chapéu vermelho de bolinhas, caule creme, perninhas). Estados: `parado`,
   `andando`/`correndo` (passinhos), `pulando`, `assustado` (+`-andando`), `tremendo`, `sem-chapeu` (+`-andando`, `-tremendo`, `-inspira`,
@@ -210,7 +211,8 @@ nem a moeda oficial do Roblox; o nome "Roblox" pode aparecer na narração/títu
   `heroi-grandao` (careca de bigode, capa amarela). Espada na mão: `{ "sprite": "espada-heroi", "sobre": { "id": "<herói>", "dx": 0.45, "dy": 0.8 } }`.
   Dormindo no chão: `heroi-*-dormindo` (deitado, olhos fechados) — troca com `sumir`/`aparecer` (`som: null`) no mesmo lugar + `emocao` `zzz`.
 - `chapeu-tico` (`parado`/`grande`): o chapéu sozinho, para voar (`aparecer` + `pular` com `para`) e voltar para a cabeça.
-- **Ações:** `golpe` (`alvo` = quem ataca, `"direcao": "direita" | "esquerda"`): arco branco da espada + som `espada`.
+- **Ações:** `golpe` (`alvo` = quem ataca, `"direcao": "direita" | "esquerda"`): arco branco nítido da espada + faíscas + som `espada`; a
+  `espada-heroi` presa nele (`"sobre"`) gira sozinha para `golpe-dir`/`golpe-esq` por ~0,25 s e volta.
   `esporos` (`alvo` ou `posicao`, `"cor": "azul" | "amarelo" | "rosa"`, `"tamanho": "pequeno" | "grande" | "flutuando"`): espirrinho, nuvem que
   enche a tela ou esporos boiando sem parar (bom para a última imagem) + som `esporos`. Cores: azul = sono, amarelo = riso, rosa = amor.
 - Nada copiado de jogos (nem herói de túnica verde, gorro pontudo ou espada famosa). Teste: `projetos/vitrine` (cenas 81–84).
@@ -294,6 +296,7 @@ Números sobre a cabeça: campo `"numero"` no personagem e ação `numero` para 
 - **Corpo:** `andar`, `correr`, `pular`, `virar`, `sentar`/`levantar`, `espirrar` 🧪 ("ah... ah..." + ATCHIM com gotinhas).
 - **Aparecer e sumir:** `aparecer`/`sumir` (com fumaça), `desaparecer` 🧪 (some devagar, ótimo no terror), `coletar`.
 - **Trocar estado de objeto:** `trocar` (`"estado"`); estado inicial com `"pose"`. Preso em alguém: `"sobre"`.
+- **Flash colorido:** `flash` com `"cor": "#5aa0f0"` tinge a tela daquela cor e volta (ex.: "a floresta ficou azul"; `durF` longo = o tom dura a frase).
 - **Impacto:** `flash`, `tremer`, `explosao`, `piscar` (vermelho: dano ou vergonha), `magia` (faíscas: transformação ou troca), `fogos` 🧪.
 - **Atenção:** `destaque` 🧪 (lupa), `contador` 🧪, `placar` 🧪 (votação), `continua` 🧪.
 - **Climas:** `chuva`, `neve`, `vagalumes`, `brasas`, `poeira`, `folhas`, `calor`, `neblina` 🧪 (terror), `polen` 🧪 (primavera), `vento` 🧪
