@@ -95,9 +95,10 @@ C.push(cena('E se viraram, devagar, para os donos.', {
   elementos: [...BRINQUEDOS(), BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
   acoes: [a(0.55, 'flash', { intensidade: 0.5 }), a(0.55, 'som', { som: 'revelar' }), a(0.6, 'emocao', { alvo: 'bia', icone: '!' })],
 }));
-// 11–12. Virada em 2 frases curtíssimas.
+// 11–12. Virada (v3, pedido do usuário: "uma virada forte"): a sombra da frente nunca foi sua — a verdadeira é a que anda atrás, com medo
+//        (a pista da cena 3: só a da Bia é de verdade). 13: fala com quem assiste e termina com a sombra falsa ainda ali.
 // 11: a escuridão nasce no meio do grupo, sobe pelas pessoas e elas desaparecem (o engolir acontece todo nesta cena).
-C.push(cena('Elas não iam na frente para guiar.', {
+C.push(cena('A sombra que ia na sua frente nunca foi sua.', {
   cenario: 'praca-parquinho', camera: PRACA(-1), foco: ['bia', 'aluno'],
   elementos: [...BRINQUEDOS(), BIA(), SB(), ...GRUPO_EL(), ...SOMBRAS_GRUPO({ direcao: 90, olhos: true })],
   acoes: [a(0.02, 'sombra', { origem: [1.4, -8.4], raio: 2.8, durF: 0.6 }), a(0.3, 'tremer', { intensidade: 0.3, durF: 0.15 }),
@@ -105,14 +106,14 @@ C.push(cena('Elas não iam na frente para guiar.', {
   saiDeCena: ['tonho', 'prof', 'aluno'],
 }));
 // 12: sem ninguém em cima, as sombras de olhos viram para a Bia e vêm devagar na direção dela; a sombra da Bia treme e ela recua
-C.push(cena('Iam na frente para esperar.', {
+C.push(cena('A sua de verdade sempre andou atrás. Com medo dela.', {
   cenario: 'praca-parquinho', camera: PRACA(-1), foco: ['bia', 's-prof'],
   elementos: [...BRINQUEDOS(), BIA(), SB(), ...SOMBRAS_GRUPO({ direcao: 270, olhos: true })],
   acoes: [...GRUPO.map(([id], k) => a(0.1 + k * 0.06, 'andar', { alvo: 's-' + id, para: GX[k] - GAP - 0.8, durF: 0.85 - k * 0.06, som: null })),
     a(0.2, 'som', { som: 'sombra' }), a(0.55, 'tremer', { intensidade: 0.3, durF: 0.15 }), a(0.6, 'emocao', { alvo: 'bia', icone: '!' })],
 }));
-// 13. Última imagem com a regra viva e emoção: na segunda, a praça vazia e a sombra da Bia escondida atrás dela, tremendo
-C.push(cena('Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.', {
+// 13. Última imagem com a regra viva: a Bia com a sombra de verdade atrás dela e uma sombra de olhos (falsa) ainda no chão; pergunta ao público
+C.push(cena('Agora olhe para os seus pés. A sua sombra está na frente?', {
   cenario: 'praca-parquinho', camera: { x: -2.6, z: -10.2, zoom: 2 }, foco: 'bia',
   elementos: [...BRINQUEDOS(), BIA({ virado: undefined }), SB(), sp('s1', -1.0, -8.2, { tamanho: 1.6, direcao: 90, olhos: true })],
   acoes: [a(0.55, 'tremer', { intensidade: 0.25, durF: 0.4 }), a(0.6, 'emocao', { alvo: 'bia', icone: '...' })],
@@ -127,7 +128,7 @@ rostos(C, [[1, 'tonho', 'feliz'], [2, 'prof', 'feliz'], [2, 'aluno', 'feliz'], [
   [9, 'tonho', 'feliz', 0.8], [9, 'prof', 'feliz', 0.8], [9, 'aluno', 'feliz', 0.8],
   [10, 'bia', 'assustado', 0.6], [10, 'tonho', 'feliz'], [10, 'prof', 'feliz'], [10, 'aluno', 'feliz'],
   [11, 'bia', 'assustado'], [11, 'tonho', 'feliz', 0.02, 0.4], [11, 'prof', 'feliz', 0.02, 0.5], [11, 'aluno', 'feliz', 0.02, 0.6], [12, 'bia', 'assustado'], [13, 'bia', 'triste', 0.4]]);
-alturaShorts(C, { 3: -1, 4: -2.5, 7: -2.5, 8: -1, 9: -3.25, 10: -3.25, 11: -3.25, 12: -3.25, 13: -2 });
+alturaShorts(C, { 1: -0.25, 3: -1.25, 4: -2.5, 6: -1, 7: -2.75, 8: -1.25, 9: -3.25, 10: -3.25, 11: -3.25, 12: -3.25, 13: -2 });
 
 salvar('nesse-mundo-sombras-v2', ['NESSE MUNDO (curto, terror de dia) — v2 das sombras para o canal novo: "Nessa cidade, a sua sombra anda sempre na sua frente."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-sombras-v2',

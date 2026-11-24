@@ -63,7 +63,7 @@
     "camera": {
      "x": -0.57,
      "z": 2.2,
-     "y": 2.4
+     "y": 2.15
     },
     "centrarEm": [
      "tonho"
@@ -223,7 +223,7 @@
     "camera": {
      "x": 1.55,
      "z": 0,
-     "y": 1.4
+     "y": 1.15
     },
     "centrarEm": [
      "bia"
@@ -604,7 +604,7 @@
     "camera": {
      "x": 5.98,
      "z": 2.2,
-     "y": 2.4
+     "y": 1.4
     }
    },
    "saiDeCena": [
@@ -692,7 +692,7 @@
     "camera": {
      "x": 3,
      "z": 0,
-     "y": -0.1
+     "y": -0.35
     },
     "centrarEm": [
      "bia"
@@ -752,7 +752,7 @@
     "camera": {
      "x": 2.27,
      "z": 0,
-     "y": 1.4
+     "y": 1.15
     },
     "centrarEm": [
      "bia"
@@ -1080,7 +1080,7 @@
    "momento": "sabado-praca"
   },
   {
-   "narracaoTexto": "Elas não iam na frente para guiar.",
+   "narracaoTexto": "A sombra que ia na sua frente nunca foi sua.",
    "cenario": "praca-parquinho",
    "saiDeCena": [
     "tonho",
@@ -1183,60 +1183,60 @@
       -8.4
      ],
      "raio": 2.8,
-     "inicio": 0.34,
-     "duracao": 1.33
+     "inicio": 0.36,
+     "duracao": 1.72
     },
     {
      "tipo": "tremer",
      "intensidade": 0.3,
-     "inicio": 0.96,
-     "duracao": 0.33
+     "inicio": 1.16,
+     "duracao": 0.43
     },
     {
      "tipo": "desaparecer",
      "alvo": "tonho",
-     "inicio": 1.29,
-     "duracao": 0.77
+     "inicio": 1.59,
+     "duracao": 1
     },
     {
      "tipo": "desaparecer",
      "alvo": "prof",
-     "inicio": 1.52,
-     "duracao": 0.77
+     "inicio": 1.87,
+     "duracao": 1
     },
     {
      "tipo": "desaparecer",
      "alvo": "aluno",
-     "inicio": 1.74,
-     "duracao": 0.77
+     "inicio": 2.16,
+     "duracao": 1
     },
     {
      "tipo": "expressao",
      "alvo": "bia",
      "rosto": "assustado",
-     "inicio": 0.41,
-     "duracao": 2.1
+     "inicio": 0.44,
+     "duracao": 2.72
     },
     {
      "tipo": "expressao",
      "alvo": "tonho",
      "rosto": "feliz",
-     "inicio": 0.34,
-     "duracao": 0.88
+     "inicio": 0.36,
+     "duracao": 1.14
     },
     {
      "tipo": "expressao",
      "alvo": "prof",
      "rosto": "feliz",
-     "inicio": 0.34,
-     "duracao": 1.11
+     "inicio": 0.36,
+     "duracao": 1.43
     },
     {
      "tipo": "expressao",
      "alvo": "aluno",
      "rosto": "feliz",
-     "inicio": 0.34,
-     "duracao": 1.33
+     "inicio": 0.36,
+     "duracao": 1.72
     }
    ],
    "vertical": {
@@ -1253,7 +1253,7 @@
    "momento": "sabado-praca"
   },
   {
-   "narracaoTexto": "Iam na frente para esperar.",
+   "narracaoTexto": "A sua de verdade sempre andou atrás. Com medo dela.",
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
@@ -1331,48 +1331,48 @@
      "alvo": "s-tonho",
      "para": -1.7999999999999998,
      "som": null,
-     "inicio": 0.48,
-     "duracao": 1.49
+     "inicio": 0.63,
+     "duracao": 2.82
     },
     {
      "tipo": "andar",
      "alvo": "s-prof",
      "para": -0.19999999999999996,
      "som": null,
-     "inicio": 0.58,
-     "duracao": 1.39
+     "inicio": 0.83,
+     "duracao": 2.62
     },
     {
      "tipo": "andar",
      "alvo": "s-aluno",
      "para": 1.4000000000000001,
      "som": null,
-     "inicio": 0.69,
-     "duracao": 1.28
+     "inicio": 1.03,
+     "duracao": 2.42
     },
     {
      "tipo": "som",
      "som": "sombra",
-     "inicio": 0.65
+     "inicio": 0.96
     },
     {
      "tipo": "tremer",
      "intensidade": 0.3,
-     "inicio": 1.27,
-     "duracao": 0.26
+     "inicio": 2.12,
+     "duracao": 0.5
     },
     {
      "tipo": "emocao",
      "alvo": "bia",
      "icone": "!",
-     "inicio": 0.86
+     "inicio": 2.29
     },
     {
      "tipo": "expressao",
      "alvo": "bia",
      "rosto": "assustado",
-     "inicio": 0.39,
-     "duracao": 1.67
+     "inicio": 0.47,
+     "duracao": 3.14
     }
    ],
    "vertical": {
@@ -1389,7 +1389,7 @@
    "momento": "sabado-praca"
   },
   {
-   "narracaoTexto": "Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.",
+   "narracaoTexto": "Agora olhe para os seus pés. A sua sombra está na frente?",
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
@@ -1445,21 +1445,21 @@
     {
      "tipo": "tremer",
      "intensidade": 0.25,
-     "inicio": 2.8,
-     "duracao": 1.82
+     "inicio": 2.34,
+     "duracao": 1.48
     },
     {
      "tipo": "emocao",
      "alvo": "bia",
      "icone": "...",
-     "inicio": 3.03
+     "inicio": 2.52
     },
     {
      "tipo": "expressao",
      "alvo": "bia",
      "rosto": "triste",
-     "inicio": 2.12,
-     "duracao": 2.73
+     "inicio": 1.78,
+     "duracao": 2.22
     }
    ],
    "vertical": {

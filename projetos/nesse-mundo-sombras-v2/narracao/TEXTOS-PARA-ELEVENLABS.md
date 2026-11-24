@@ -20,8 +20,8 @@ São **13 falas** (uma por cena com narração):
 | 8 | Então a Bia parou de lutar. E deu um passo para trás. |
 | 9 | Na praça, as sombras chegaram primeiro e pararam. |
 | 10 | E se viraram, devagar, para os donos. |
-| 11 | Elas não iam na frente para guiar. |
-| 12 | Iam na frente para esperar. |
-| 13 | Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo. |
+| 11 | A sombra que ia na sua frente nunca foi sua. |
+| 12 | A sua de verdade sempre andou atrás. Com medo dela. |
+| 13 | Agora olhe para os seus pés. A sua sombra está na frente? |
 
 Depois rode `npm run rascunho -- nesse-mundo-sombras-v2`: o terminal mostra em quantos trechos o áudio foi cortado.

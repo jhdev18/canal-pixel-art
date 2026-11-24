@@ -2,9 +2,9 @@
 
 **Formato:** curto (Shorts), terror DE DIA — versão 2 do vídeo das sombras para o canal novo (não é repost: texto, cenas e final novos; o original `nesse-mundo-sombras` era do canal antigo). **Vista:** diorama em todas as cenas. **Narração:** narrador em 3ª pessoa, um único áudio.
 
-**Ideia:** A sombra de todo mundo anda na frente, e ninguém usa mapa: é só ir atrás dela. A sombra da Bia anda para trás, grudada no calcanhar, e ela tropeça em tudo (a turma ri no recreio). Num sábado de sol, as sombras começam a correr e a cidade inteira corre atrás, rindo. A sombra da Bia agarra o pé dela; a Bia para de lutar e dá um passo para trás. Na praça, as sombras chegam primeiro, param e se viram para os donos. A virada: elas não iam na frente para guiar, iam para esperar. Na segunda, a sombra da Bia continua escondida atrás dela, tremendo.
+**Ideia:** A sombra de todo mundo anda na frente, e ninguém usa mapa: é só ir atrás dela. A sombra da Bia anda para trás, grudada no calcanhar, e ela tropeça em tudo (a turma ri no recreio). Num sábado de sol, as sombras começam a correr e a cidade inteira corre atrás, rindo. A sombra da Bia agarra o pé dela; a Bia para de lutar e dá um passo para trás. Na praça, as sombras chegam primeiro, param e se viram para os donos. A virada (v3): a sombra que ia na sua frente nunca foi sua — a de verdade sempre andou atrás, com medo dela (só a Bia tinha a sombra de verdade). Fim falando com quem assiste: "Agora olhe para os seus pés. A sua sombra está na frente?"
 
-**Pista plantada:** cena 3 (a sombra dela anda para trás, grudada no calcanhar) → cena 7 (agarra o pé dela) → cena 13 (escondida atrás dela, tremendo: estava com medo e a protegia).
+**Pista plantada:** cena 3 (a sombra dela anda para trás, grudada no calcanhar) → cena 7 (agarra o pé dela) → cenas 11–12 (a virada explica: a da Bia era a única de verdade, escondida atrás, com medo da falsa) → cena 13 (a pergunta faz o público olhar a própria sombra).
 
 **Assets usados:** aprovados: `menina-capa`, `padeiro`, `professora`, `aluno`, `aluna`, `policial`, `rua-comercial`, `praca-parquinho` 🧪 (balanço `sozinho`, gira-gira `girando`), `"vidaNaRua"` 🧪. Protótipos 🧪: `sombraPessoa` (com `olhos` nas cenas 10–13), ação `sombra`, `desaparecer`, expressões, `escola-patio`, `rival` (Nina), `menino-topete` (Léo).
 
@@ -25,8 +25,8 @@
 **8.** `rua-comercial` — Então a Bia parou de lutar. E deu um passo para trás.
 **9.** `praca-parquinho` — Na praça, as sombras chegaram primeiro e pararam.
 **10.** `praca-parquinho` — E se viraram, devagar, para os donos.
-**11.** `praca-parquinho` — Elas não iam na frente para guiar.
-**12.** `praca-parquinho` — Iam na frente para esperar.
-**13.** `praca-parquinho` — Na segunda, a sombra da Bia continuava escondida atrás dela. Tremendo.
+**11.** `praca-parquinho` — A sombra que ia na sua frente nunca foi sua.
+**12.** `praca-parquinho` — A sua de verdade sempre andou atrás. Com medo dela.
+**13.** `praca-parquinho` — Agora olhe para os seus pés. A sua sombra está na frente?
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

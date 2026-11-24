@@ -138,7 +138,7 @@ um monstro (`rua-monstros`, substituído); a sombra chega antes de você (`nesse
 de um grito (`nesse-mundo-fantasminha`); relógio da virada anda para trás (`nesse-mundo-relogio`); quem espirra troca de
 corpo (`nesse-mundo-espirro`); cachorro fala o que o dono pensa (`nesse-mundo-cachorros`); guardião que só acorda no perigo — o da Bia nunca
 dorme (`nesse-mundo-guardioes`); número na cabeça = quantas vezes disseram seu nome (`nesse-mundo-numeros`); gato que segue você é sorte — vinham buscar
-(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); a sombra anda na sua frente — ia esperar (`nesse-mundo-sombras-v2`, v2 das sombras); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Isekai: renasceu como o cogumelo mais fraco — derrotavam antes que crescesse (`isekai-davi-01`). Atualizar esta lista a cada vídeo novo.
+(`nesse-mundo-gatos`); a comida que você deixa no prato foge — fugia da pressa (`nesse-mundo-comida`); a sombra anda na sua frente — a da frente nunca foi sua, a de verdade anda atrás (`nesse-mundo-sombras-v2`, v2 das sombras); avatar aprende a ser você — tomava o seu lugar (`nesse-mundo-avatar-v2`); seu avatar do Roblox fica igual a você — trocava de lugar (`nesse-mundo-avatar`); a mãe manda pausar e tudo pausa — online não pausa, filho pausa (`nesse-mundo-pausa`); seu avatar te espera no spawn — esperava um tchau (`nesse-mundo-espera`). Isekai: renasceu como o cogumelo mais fraco — derrotavam antes que crescesse (`isekai-davi-01`). Atualizar esta lista a cada vídeo novo.
 
 **Formato comum (aparece nos curtos e no longo):**
 `Regra → o que a cidade acredita → protagonista diferente → evento que testa a regra → a verdade da regra`.
@@ -539,8 +539,9 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   scripts continuam em `ferramentas/roteiros/`). **Não repostar vídeos antigos iguais no canal novo**: fazer versões novas (v2).
 - **Vídeos do canal novo, aguardando narração/render:**
   - `nesse-mundo-sombras-v2` (1º vídeo do canal; terror de dia, 13 cenas, fala ~44 s; script `c16-sombras-v2.mjs`): mesma regra das
-    sombras com texto, cenas e final novos — a sombra anda na frente, a da Bia fica grudada atrás; virada "não iam na frente para guiar,
-    iam para esperar". `npm run conferir` sem avisos.
+    sombras com texto, cenas e final novos — a sombra anda na frente, a da Bia fica grudada atrás; virada (v3, pedido do usuário: "virada forte")
+    "a sombra que ia na sua frente nunca foi sua; a de verdade sempre andou atrás, com medo dela" e fim perguntando ao público "A sua sombra
+    está na frente?". `npm run conferir` sem avisos.
   - `nesse-mundo-avatar-v2` (Roblox, terror de dia, 14 cenas, ~48 s; script `c17-avatar-v2.mjs`): v2 das crianças substituídas pelos
     avatares — sombra quadrada nas crianças trocadas, a Bia abre o jogo pela 1ª vez e o avatar sem rosto dela sorri no fim.
     `npm run conferir`: só [parado] nas cenas 7–8, de propósito (o Léo e a turma param para mostrar o sorriso macabro).
