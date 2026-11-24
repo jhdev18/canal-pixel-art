@@ -55,10 +55,10 @@ C.push(cena('No recreio, a turma ri do brinquedo de bebê.', {
 const ZK = -8.6, ZT = -7.4, ZS = -8.0;   // crianças, brinquedos grandes, soldadinho da Bia (logo atrás dela; na frente ficava no canteiro)
 // 6. O evento cedo (~33%): os brinquedos "desligados" dão corda sozinhos, um por um; o balanço vazio começa a balançar
 C.push(cena('Até que, num sábado, os brinquedos deram corda sozinhos.', {
-  cenario: 'praca-parquinho', camera: PRACA(0.4), foco: ['leo', 'aluno'],
-  elementos: [P('leo', 'menino-topete', -3.0, ZK), P('robo', 'brinquedo-robo', -3.6, ZT, { pose: 'desligado' }),
-    P('nina', 'rival', -0.6, ZK), P('boneca', 'brinquedo-boneca', -1.2, ZT, { pose: 'desligado' }),
-    P('aluno', 'aluno', 1.8, ZK), P('caixa', 'brinquedo-caixa', 1.2, ZT, { pose: 'fechada' }),
+  cenario: 'praca-parquinho', camera: PRACA(-2.4), foco: ['robo', 'caixa'],
+  elementos: [P('leo', 'menino-topete', -3.0, ZK), P('robo', 'brinquedo-robo', -8.4, ZT, { pose: 'desligado' }),
+    P('nina', 'rival', -0.6, ZK), P('boneca', 'brinquedo-boneca', -6.8, ZT, { pose: 'desligado' }),
+    P('aluno', 'aluno', 1.8, ZK), P('caixa', 'brinquedo-caixa', -5.2, ZT, { pose: 'fechada' }),
     P('bia', 'menina-capa', 4.4, ZK), P('sold', 'brinquedo-soldadinho', 5.1, ZS, { escala: 0.5 })],
   acoes: [a(0.02, 'pular', { alvo: 'leo', altura: 0.4, durF: 0.12 }), a(0.12, 'pular', { alvo: 'aluno', altura: 0.35, durF: 0.12 }), a(0.85, 'pular', { alvo: 'nina', altura: 0.3, durF: 0.12 }),
     a(0.25, 'trocar', { alvo: 'robo', estado: 'parado', som: 'corda' }), a(0.4, 'trocar', { alvo: 'boneca', estado: 'parado', som: 'corda' }),
@@ -66,28 +66,29 @@ C.push(cena('Até que, num sábado, os brinquedos deram corda sozinhos.', {
     a(0.75, 'emocao', { alvo: 'bia', icone: '?' })],
 }));
 const ELENCO = (pos = {}, poses = {}) => [
-  ['leo', 'menino-topete', -3.0, ZK], ['robo', 'brinquedo-robo', -3.6, ZT], ['nina', 'rival', -0.6, ZK], ['boneca', 'brinquedo-boneca', -1.2, ZT],
-  ['aluno', 'aluno', 1.8, ZK], ['caixa', 'brinquedo-caixa', 1.2, ZT], ['bia', 'menina-capa', 4.4, ZK], ['sold', 'brinquedo-soldadinho', 5.1, ZS],
+  ['leo', 'menino-topete', -3.0, ZK], ['robo', 'brinquedo-robo', -8.4, ZT], ['nina', 'rival', -0.6, ZK], ['boneca', 'brinquedo-boneca', -6.8, ZT],
+  ['aluno', 'aluno', 1.8, ZK], ['caixa', 'brinquedo-caixa', -5.2, ZT], ['bia', 'menina-capa', 4.4, ZK], ['sold', 'brinquedo-soldadinho', 5.1, ZS],
 ].filter(([id]) => pos[id] !== null).map(([id, sp, x, z]) => P(id, sp, pos[id] ?? x, z, { ...(id === 'sold' ? { escala: 0.5 } : {}), ...(poses[id] ? { pose: poses[id] } : {}) }));
 // depois de pegas, as crianças pequenas ficam NA MÃO do próprio brinquedo (como uma boneca), com o rosto assustado
 const DONO = { leo: ['menino-topete', 'robo'], aluno: ['aluno', 'caixa'], nina: ['rival', 'boneca'] };
 const NA_MAO = (ids) => ids.map((id) => P(id, DONO[id][0], 0, 0, { escala: 0.5, sobre: { id: DONO[id][1], dx: 0.5, dy: 0.95 }, pose: 'rosto-assustado' }));
 const BALANCO = () => ({ id: 'balanco', sprite: 'balanco', x: 2.0, z: -5.8, pose: 'sozinho' });
-// 7. Pico de movimento no MEIO: os brinquedos chamam para o pega-pega e as crianças saem correndo, rindo (eles correm atrás)
-C.push(cena('E chamaram as crianças para brincar de pega-pega.', {
-  cenario: 'praca-parquinho', camera: PRACA(-1.6), foco: ['leo', 'aluno'],
+// 7. Pico de movimento no MEIO: os brinquedos vêm andando até as crianças; elas pulam de alegria (cada um vai até o seu dono)
+//    (v2, pedido do usuário: o pega-pega com as crianças indo e voltando ficou esquisito — agora o movimento é num sentido só)
+C.push(cena('E chamaram as crianças para brincar.', {
+  cenario: 'praca-parquinho', camera: PRACA(-1.6), foco: ['leo', 'nina'],
   elementos: [BALANCO(), ...ELENCO()],
-  acoes: [a(0.1, 'correr', { alvo: 'leo', para: -6.0, durF: 0.8 }), a(0.12, 'correr', { alvo: 'nina', para: -3.6, durF: 0.8 }), a(0.14, 'correr', { alvo: 'aluno', para: -1.2, durF: 0.8 }),
-    a(0.2, 'correr', { alvo: 'robo', para: -6.6, durF: 0.75 }), a(0.22, 'correr', { alvo: 'boneca', para: -4.2, durF: 0.75 }), a(0.24, 'correr', { alvo: 'caixa', para: -1.8, durF: 0.75 })],
+  acoes: [a(0.02, 'andar', { alvo: 'robo', para: -3.0, durF: 0.95 }), a(0.02, 'andar', { alvo: 'boneca', para: -0.6, durF: 0.95 }), a(0.02, 'andar', { alvo: 'caixa', para: 1.8, durF: 0.95 }),
+    a(0.3, 'pular', { alvo: 'leo', altura: 0.4, durF: 0.12 }), a(0.4, 'pular', { alvo: 'nina', altura: 0.4, durF: 0.12 }), a(0.5, 'pular', { alvo: 'aluno', altura: 0.35, durF: 0.12 }),
+    a(0.7, 'pular', { alvo: 'leo', altura: 0.4, durF: 0.12 }), a(0.8, 'pular', { alvo: 'aluno', altura: 0.35, durF: 0.12 })],
 }));
-// 8. Detalhe feliz que fica sinistro: as crianças voltam correndo e rindo; os brinquedos alcançam e duas crianças somem
-C.push(cena('As crianças corriam rindo, sem ver quem pegava quem.', {
+// 8. Detalhe feliz que fica sinistro: as crianças riem; o brinquedo abre os braços ("abraço") e o Léo e o aluno ENCOLHEM até o tamanho de um brinquedo
+C.push(cena('As crianças riam tanto que nem sentiram o abraço.', {
   cenario: 'praca-parquinho', camera: PRACA(-1.6), foco: ['leo', 'aluno'],
-  elementos: [BALANCO(), ...ELENCO({ leo: -6.0, nina: -3.6, aluno: -1.2, robo: -6.6, boneca: -4.2, caixa: -1.8 })],
-  acoes: [a(0.05, 'correr', { alvo: 'leo', para: -3.0, durF: 0.6 }), a(0.07, 'correr', { alvo: 'nina', para: -0.6, durF: 0.6 }), a(0.09, 'correr', { alvo: 'aluno', para: 1.8, durF: 0.6 }),
-    a(0.1, 'correr', { alvo: 'robo', para: -3.0, durF: 0.6 }), a(0.12, 'correr', { alvo: 'boneca', para: -0.6, durF: 0.6 }), a(0.14, 'correr', { alvo: 'caixa', para: 1.8, durF: 0.6 }),
-    // pegos: o Léo e o aluno ENCOLHEM até o tamanho de um brinquedo (pedido do usuário: sumir de outro jeito — os papéis se invertem)
-    a(0.74, 'crescer', { alvo: 'leo', escala: 0.5, durF: 0.14 }), a(0.74, 'magia', { alvo: 'leo' }), a(0.8, 'crescer', { alvo: 'aluno', escala: 0.5, durF: 0.14 }), a(0.8, 'magia', { alvo: 'aluno' })],
+  elementos: [BALANCO(), ...ELENCO({ robo: -3.0, boneca: -0.6, caixa: 1.8 })],
+  acoes: [a(0.2, 'trocar', { alvo: 'robo', estado: 'acenar', som: 'servo' }), a(0.3, 'trocar', { alvo: 'caixa', estado: 'acenar', som: 'servo' }),
+    a(0.5, 'crescer', { alvo: 'leo', escala: 0.5, durF: 0.15 }), a(0.5, 'magia', { alvo: 'leo' }), a(0.68, 'crescer', { alvo: 'aluno', escala: 0.5, durF: 0.15 }), a(0.68, 'magia', { alvo: 'aluno' }),
+    a(0.85, 'emocao', { alvo: 'nina', icone: '?' })],
   saiDeCena: ['leo', 'aluno'],   // saem do chão: daqui em diante ficam pequenos, na mão do brinquedo ("sobre")
 }));
 // 9. O soldadinho puxa a Bia para longe; ao fundo, a Nina some do lado da boneca (a escalada continua)
@@ -141,7 +142,7 @@ C.push(cena('E o soldadinho da Bia, colado no pé dela, ainda dava corda sozinho
 marcar(C, { sabado: [[6, 15]] });
 rostos(C, [[1, 'leo', 'feliz', 0.4], [2, 'nina', 'feliz', 0.96], [3, 'nina', 'rindo', 0.35], [3, 'prof', 'surpreso', 0.6], [4, 'bia', 'pensativo', 0.7],
   [5, 'nina', 'rindo', 0.4], [5, 'aluno', 'rindo', 0.45], [5, 'leo', 'rindo', 0.5], [5, 'bia', 'envergonhado', 0.55],
-  [6, 'leo', 'surpreso', 0.3], [6, 'nina', 'feliz', 0.45], [6, 'aluno', 'feliz', 0.6], [9, 'bia', 'assustado', 0.95],
+  [6, 'leo', 'surpreso', 0.3], [6, 'nina', 'feliz', 0.45], [6, 'aluno', 'feliz', 0.6], [8, 'leo', 'rindo', 0.02, 0.45], [8, 'aluno', 'rindo', 0.02, 0.62], [8, 'nina', 'rindo', 0.02, 0.8], [9, 'bia', 'assustado', 0.95],
   [10, 'bia', 'assustado'], [11, 'bia', 'bravo', 0.2], [12, 'bia', 'assustado', 0.45], [13, 'bia', 'assustado'], [14, 'bia', 'assustado'], [15, 'bia', 'assustado', 0.5]]);
 
 // Shorts: a legenda grande (76% da altura) fica abaixo dos pés (medido com medir-altura-shorts.mjs)

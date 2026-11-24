@@ -544,7 +544,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
     canal novo; texto e cenas originais, só desmarcado o "postado" (era do canal antigo), Shorts recentralizado e câmera do Shorts abaixada
     para a legenda grande. `npm run conferir`: só [parado] na cena 3 (como no original).
   - `nesse-mundo-brinquedos` (terror de dia, 15 cenas, fala ~50 s; script `c19-brinquedos.mjs`): "Nessa cidade, seu brinquedo cresce toda vez
-    que você brinca" — brinquedos de corda gigantes, o soldadinho pequeno da Bia, pega-pega na praça, a Bia diz "não"; virada "Não era você
+    que você brinca" — brinquedos de corda gigantes, o soldadinho pequeno da Bia, os brinquedos vêm até as crianças e elas encolhem no "abraço" (ficam na mão deles), a Bia diz "não"; virada "Não era você
     que brincava com o brinquedo. Era ele que brincava com você." Ação nova `crescer` (`{ "tipo": "crescer", "alvo", "escala": 2 }`, a partir
     dos pés, som de corda). `npm run conferir` sem avisos.
   - `nesse-mundo-avatar-v2` (Roblox, terror de dia, 14 cenas, ~48 s; script `c17-avatar-v2.mjs`): v2 das crianças substituídas pelos

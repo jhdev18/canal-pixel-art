@@ -16,8 +16,8 @@ São **15 falas** (uma por cena com narração):
 | 4 | Só o soldadinho da Bia é pequeno. Ela quase não brinca. |
 | 5 | No recreio, a turma ri do brinquedo de bebê. |
 | 6 | Até que, num sábado, os brinquedos deram corda sozinhos. |
-| 7 | E chamaram as crianças para brincar de pega-pega. |
-| 8 | As crianças corriam rindo, sem ver quem pegava quem. |
+| 7 | E chamaram as crianças para brincar. |
+| 8 | As crianças riam tanto que nem sentiram o abraço. |
 | 9 | O soldadinho da Bia puxou a mão dela para longe. Com força. |
 | 10 | A caixa-surpresa chegou e chamou a Bia para brincar. |
 | 11 | E a Bia, pela primeira vez, disse não. |

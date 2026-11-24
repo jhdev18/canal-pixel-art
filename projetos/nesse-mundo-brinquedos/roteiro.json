@@ -494,7 +494,7 @@
     "arvore4"
    ],
    "camera": {
-    "x": 0.4,
+    "x": -2.4,
     "z": -8.5
    },
    "elementos": [
@@ -507,7 +507,7 @@
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
-     "x": -3.6,
+     "x": -8.4,
      "z": -7.4,
      "pose": "desligado"
     },
@@ -520,7 +520,7 @@
     {
      "id": "boneca",
      "personagem": "brinquedo-boneca",
-     "x": -1.2,
+     "x": -6.8,
      "z": -7.4,
      "pose": "desligado"
     },
@@ -533,7 +533,7 @@
     {
      "id": "caixa",
      "personagem": "brinquedo-caixa",
-     "x": 1.2,
+     "x": -5.2,
      "z": -7.4,
      "pose": "fechada"
     },
@@ -630,19 +630,19 @@
    ],
    "vertical": {
     "camera": {
-     "x": 2.25,
+     "x": -5.15,
      "z": -8.5,
      "y": 0.2
     },
     "centrarEm": [
-     "leo",
-     "aluno"
+     "robo",
+     "caixa"
     ]
    },
    "momento": "sabado"
   },
   {
-   "narracaoTexto": "E chamaram as crianças para brincar de pega-pega.",
+   "narracaoTexto": "E chamaram as crianças para brincar.",
    "cenario": "praca-parquinho",
    "remover": [
     "arvore3",
@@ -669,7 +669,7 @@
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
-     "x": -3.6,
+     "x": -8.4,
      "z": -7.4
     },
     {
@@ -681,7 +681,7 @@
     {
      "id": "boneca",
      "personagem": "brinquedo-boneca",
-     "x": -1.2,
+     "x": -6.8,
      "z": -7.4
     },
     {
@@ -693,7 +693,7 @@
     {
      "id": "caixa",
      "personagem": "brinquedo-caixa",
-     "x": 1.2,
+     "x": -5.2,
      "z": -7.4
     },
     {
@@ -712,63 +712,77 @@
    ],
    "acoes": [
     {
-     "tipo": "correr",
-     "alvo": "leo",
-     "para": -6,
-     "inicio": 0.62,
-     "duracao": 2.55
-    },
-    {
-     "tipo": "correr",
-     "alvo": "nina",
-     "para": -3.6,
-     "inicio": 0.68,
-     "duracao": 2.55
-    },
-    {
-     "tipo": "correr",
-     "alvo": "aluno",
-     "para": -1.2,
-     "inicio": 0.75,
-     "duracao": 2.55
-    },
-    {
-     "tipo": "correr",
+     "tipo": "andar",
      "alvo": "robo",
-     "para": -6.6,
-     "inicio": 0.94,
-     "duracao": 2.39
+     "para": -3,
+     "inicio": 0.35,
+     "duracao": 2.22
     },
     {
-     "tipo": "correr",
+     "tipo": "andar",
      "alvo": "boneca",
-     "para": -4.2,
-     "inicio": 1,
-     "duracao": 2.39
+     "para": -0.6,
+     "inicio": 0.35,
+     "duracao": 2.22
     },
     {
-     "tipo": "correr",
+     "tipo": "andar",
      "alvo": "caixa",
-     "para": -1.8,
-     "inicio": 1.06,
-     "duracao": 2.39
+     "para": 1.8,
+     "inicio": 0.35,
+     "duracao": 2.22
+    },
+    {
+     "tipo": "pular",
+     "alvo": "leo",
+     "altura": 0.4,
+     "inicio": 1,
+     "duracao": 0.28
+    },
+    {
+     "tipo": "pular",
+     "alvo": "nina",
+     "altura": 0.4,
+     "inicio": 1.24,
+     "duracao": 0.28
+    },
+    {
+     "tipo": "pular",
+     "alvo": "aluno",
+     "altura": 0.35,
+     "inicio": 1.47,
+     "duracao": 0.28
+    },
+    {
+     "tipo": "pular",
+     "alvo": "leo",
+     "altura": 0.4,
+     "inicio": 1.94,
+     "duracao": 0.28
+    },
+    {
+     "tipo": "pular",
+     "alvo": "aluno",
+     "altura": 0.35,
+     "inicio": 2.17,
+     "duracao": 0.28
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.75,
+     "x": 1.05,
      "z": -8.5,
      "y": -0.55
     },
     "centrarEm": [
      "leo",
-     "aluno"
+     "nina"
     ]
    },
    "momento": "sabado"
   },
   {
-   "narracaoTexto": "As crianças corriam rindo, sem ver quem pegava quem.",
+   "narracaoTexto": "As crianças riam tanto que nem sentiram o abraço.",
    "cenario": "praca-parquinho",
    "saiDeCena": [
     "leo",
@@ -793,37 +807,37 @@
     {
      "id": "leo",
      "personagem": "menino-topete",
-     "x": -6,
+     "x": -3,
      "z": -8.6
     },
     {
      "id": "robo",
      "personagem": "brinquedo-robo",
-     "x": -6.6,
+     "x": -3,
      "z": -7.4
     },
     {
      "id": "nina",
      "personagem": "rival",
-     "x": -3.6,
+     "x": -0.6,
      "z": -8.6
     },
     {
      "id": "boneca",
      "personagem": "brinquedo-boneca",
-     "x": -4.2,
+     "x": -0.6,
      "z": -7.4
     },
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": -1.2,
+     "x": 1.8,
      "z": -8.6
     },
     {
      "id": "caixa",
      "personagem": "brinquedo-caixa",
-     "x": -1.8,
+     "x": 1.8,
      "z": -7.4
     },
     {
@@ -842,75 +856,74 @@
    ],
    "acoes": [
     {
-     "tipo": "correr",
-     "alvo": "leo",
-     "para": -3,
-     "inicio": 0.47,
-     "duracao": 2.03
-    },
-    {
-     "tipo": "correr",
-     "alvo": "nina",
-     "para": -0.6,
-     "inicio": 0.54,
-     "duracao": 2.03
-    },
-    {
-     "tipo": "correr",
-     "alvo": "aluno",
-     "para": 1.8,
-     "inicio": 0.6,
-     "duracao": 2.03
-    },
-    {
-     "tipo": "correr",
+     "tipo": "trocar",
      "alvo": "robo",
-     "para": -3,
-     "inicio": 0.64,
-     "duracao": 2.03
+     "estado": "acenar",
+     "som": "servo",
+     "inicio": 0.94
     },
     {
-     "tipo": "correr",
-     "alvo": "boneca",
-     "para": -0.6,
-     "inicio": 0.71,
-     "duracao": 2.03
-    },
-    {
-     "tipo": "correr",
+     "tipo": "trocar",
      "alvo": "caixa",
-     "para": 1.8,
-     "inicio": 0.77,
-     "duracao": 2.03
+     "estado": "acenar",
+     "som": "servo",
+     "inicio": 1.26
     },
     {
      "tipo": "crescer",
      "alvo": "leo",
      "escala": 0.5,
-     "inicio": 2.8,
-     "duracao": 0.47
+     "inicio": 1.89,
+     "duracao": 0.48
     },
     {
      "tipo": "magia",
      "alvo": "leo",
-     "inicio": 2.68
+     "inicio": 1.89
     },
     {
      "tipo": "crescer",
      "alvo": "aluno",
      "escala": 0.5,
-     "inicio": 3,
-     "duracao": 0.47
+     "inicio": 2.47,
+     "duracao": 0.48
     },
     {
      "tipo": "magia",
      "alvo": "aluno",
-     "inicio": 2.68
+     "inicio": 2.47
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "nina",
+     "icone": "?",
+     "inicio": 2.29
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "leo",
+     "rosto": "rindo",
+     "inicio": 0.36,
+     "duracao": 1.43
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "aluno",
+     "rosto": "rindo",
+     "inicio": 0.36,
+     "duracao": 1.97
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "nina",
+     "rosto": "rindo",
+     "inicio": 0.36,
+     "duracao": 2.55
     }
    ],
    "vertical": {
     "camera": {
-     "x": 0.98,
+     "x": 2.25,
      "z": -8.5,
      "y": -0.55
     },
