@@ -13,8 +13,8 @@ const ESPADA = (heroi) => S('e-' + heroi, 'espada-heroi', 0, 0, { sobre: { id: h
 const COMUM = ['cogumelo-comum', 'cogumelo-roxo', 'cogumelo-verde', 'cogumelo-comum'];
 
 // 1. Gancho: aos 0,15 s o Davi brota do chão (puf) e pula; no meio da frase, espirra uma nuvenzinha azul
-C.push(cena('E se você renascesse como o monstro mais fraco do jogo?', {
-  titulo: 'E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
+C.push(cena('como o monstro mais fraco do jogo?', {
+  continuaFrase: true, titulo: 'E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?', tituloInicio: 0, tituloDuracao: 2.0, tituloSemEntrada: true, tituloPosicao: 0.13,   // o título já entrou na abertura
   cenario: 'floresta-isekai', transicao: 'corte', camera: PERTO(0, 1.8), foco: 'davi',
   elementos: [P('davi', 'cogumelo-davi', 0, 3.0, { oculto: true })],
   acoes: [{ tipo: 'aparecer', alvo: 'davi', inicio: 0.15 }, { tipo: 'pular', alvo: 'davi', altura: 0.5, inicio: 0.35, duracao: 0.5 },
@@ -165,6 +165,17 @@ for (const c of C) {
   if (c.camera?.y != null) c.camera = { ...c.camera, y: +(c.camera.y - 1.25).toFixed(2) };
   for (const ac of c.acoes) if (ac.tipo === 'corte' && ac.y != null) { ac.vertical = { y: ac.vertical?.y ?? ac.y, ...(ac.vertical || {}) }; ac.y = +(ac.y - 1.25).toFixed(2); }
 }
+// ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;
+// a cena 1 continua a frase ("continuaFrase": o mesmo parágrafo no ElevenLabs). Entra no começo só agora (os números de cena acima são da 1ª em diante).
+{ const abre = [cena('E se você renascesse', {   // a espadada que leva o chapéu do Davi, de perto
+    titulo: 'E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?', tituloInicio: 0, tituloDuracao: 2.6, tituloPosicao: 0.13,
+    cenario: 'floresta-isekai', transicao: 'corte', camera: { x: -0.2, z: 2.2, y: 1.4, zoom: 3 }, foco: ['davi', 'h1', 'chapeu'],
+    elementos: [P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 0.8, 3.0, F), ESPADA('h1'), S('chapeu', 'chapeu-davi', -1.0, 3.0, { oculto: true })],
+    acoes: [a(0, 'golpe', { alvo: 'h1', direcao: 'esquerda' }), a(0, 'som', { som: 'dano' }), a(0.04, 'trocar', { alvo: 'davi', estado: 'sem-chapeu-tremendo' }),
+      a(0.04, 'aparecer', { alvo: 'chapeu', som: null }), a(0.04, 'pular', { alvo: 'chapeu', para: -3.4, altura: 1.4, durF: 0.6 }), a(0.05, 'tremer', { intensidade: 0.35, durF: 0.15 }), a(0.05, 'flash', { intensidade: 0.4 })],
+  })];
+  alturaShorts(abre, { 1: -2 }); C.unshift(abre[0]); }
+
 salvar('isekai-davi-01', ['ISEKAI (série do cogumelo Davi) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-davi-01',
   'Protótipos: motor/assets/isekai.js (cogumelo-davi, cogumelos, goblin, heróis + dormindo, espada, chapéu), ações golpe e esporos, floresta-isekai.'], R);

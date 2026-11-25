@@ -421,7 +421,7 @@ export class UI {
     const dur = cena.tituloDuracao ?? Math.min(cena.duracao - 0.3, 3.5);
     const ini = cena.tituloInicio ?? 0.15;
     if (t < ini || t > ini + dur) return;
-    const p = clamp((t - ini) / 0.45);
+    const p = cena.tituloSemEntrada ? 1 : clamp((t - ini) / 0.45);   // continua o título da cena anterior (abertura) sem pular de novo
     const alpha = clamp((ini + dur - t) / 0.3);
     const esc = cena.tituloEscala ?? (Math.max(W, H) >= 320 ? 2 : 1);
     const linhas = quebrarLinhas(cena.titulo, W - 20, esc);

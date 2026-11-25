@@ -77,7 +77,7 @@ export function cena(texto, o) {
     return ac;
   });
   const c = { narracaoTexto: texto };
-  for (const k of ['cenario', 'vista', 'rua', 'comodo', 'fundo', 'transicao', 'clima', 'paleta', 'titulo', 'subtitulo', 'tituloInicio', 'tituloDuracao', 'remover', 'ambiente', 'seguir', 'momento', 'saiDeCena', 'salto']) if (o[k] != null) c[k] = o[k];
+  for (const k of ['cenario', 'vista', 'rua', 'comodo', 'fundo', 'transicao', 'clima', 'paleta', 'titulo', 'subtitulo', 'tituloInicio', 'tituloDuracao', 'remover', 'ambiente', 'seguir', 'momento', 'saiDeCena', 'salto', 'continuaFrase', 'tituloSemEntrada', 'tituloPosicao']) if (o[k] != null) c[k] = o[k];
   // praça: as árvores da frente (arvore3/arvore4) cobrem quem está na frente; saem por padrão
   if (/^praca/.test(o.cenario || '') && !o.remover) c.remover = ['arvore3', 'arvore4'];
   if (o.camera) c.camera = o.camera;

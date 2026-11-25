@@ -192,12 +192,13 @@ function narracao(nome) {
   if (flags.verificar) return verificarNarracao(nome);
   const dir = caminhoProjeto(nome);
   const r = lerRoteiro(dir);
-  const falas = (r.cenas || []).map((c, i) => ({ n: i + 1, texto: c.narracaoTexto })).filter((f) => f.texto);
+  const falas = (r.cenas || []).map((c, i) => ({ n: i + 1, texto: c.narracaoTexto, junta: c.continuaFrase })).filter((f) => f.texto);
   if (!falas.length) throw new Error('Nenhuma cena tem "narracaoTexto" no roteiro.');
   const pasta = path.join(dir, PASTA_NARRACAO);
   fs.mkdirSync(pasta, { recursive: true });
   const pausa = '\n\n';   // um parágrafo por cena (a pausa natural da voz basta para o corte; sem <break>, a fala flui melhor)
-  fs.writeFileSync(path.join(pasta, 'TEXTO-COMPLETO.txt'), falas.map((f) => f.texto).join(pausa) + '\n');
+  // "continuaFrase": a cena continua a frase da anterior (abertura em close + resto da 1ª frase): mesmo parágrafo, sem pausa na voz
+  fs.writeFileSync(path.join(pasta, 'TEXTO-COMPLETO.txt'), falas.map((f, k) => (k && f.junta ? ' ' : k ? pausa : '') + f.texto).join('') + '\n');
   const narrador = r.narrador ? ` (narrado por ${r.narrador})` : '';
   const md = [`# Narração — ${r.titulo || nome}${narrador}`, '',
     'Gere **um único áudio** com todo o texto de `TEXTO-COMPLETO.txt` e salve nesta pasta como',

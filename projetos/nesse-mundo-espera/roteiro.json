@@ -11,12 +11,86 @@
  "volumeBaloes": 0.4,
  "cenas": [
   {
-   "narracaoTexto": "Nesse mundo, quando você sai do Roblox, seu avatar te espera.",
+   "narracaoTexto": "Nesse mundo,",
    "cenario": "mundo-bloco",
    "transicao": "corte",
    "titulo": "ELE NUNCA ESQUECE",
    "tituloInicio": 0,
    "tituloDuracao": 2.6,
+   "tituloPosicao": 0.13,
+   "camera": {
+    "x": -5.4,
+    "z": 2.2,
+    "y": 1.4,
+    "zoom": 3
+   },
+   "elementos": [
+    {
+     "id": "anina",
+     "personagem": "avatar-nina",
+     "x": -5.6,
+     "z": 1.5,
+     "y": 0,
+     "pose": "acenar"
+    },
+    {
+     "id": "azul",
+     "personagem": "avatar-bloco-azul",
+     "x": -3,
+     "z": 2.6,
+     "pose": "acenar",
+     "figurante": true
+    },
+    {
+     "id": "a1",
+     "personagem": "avatar-bloco-vermelho",
+     "x": -7.4,
+     "z": 2,
+     "pose": "acenar",
+     "figurante": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "desaparecer",
+     "alvo": "azul",
+     "inicio": 0.3,
+     "duracao": 0.47
+    },
+    {
+     "tipo": "som",
+     "som": "magia",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "desaparecer",
+     "alvo": "a1",
+     "inicio": 0.53,
+     "duracao": 0.47
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": -2.15,
+     "z": 2.2,
+     "y": -1.85,
+     "zoom": 3
+    },
+    "centrarEm": [
+     "anina"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "quando você sai do Roblox, seu avatar te espera.",
+   "cenario": "mundo-bloco",
+   "transicao": "corte",
+   "titulo": "ELE NUNCA ESQUECE",
+   "tituloInicio": 0,
+   "tituloDuracao": 2,
+   "continuaFrase": true,
+   "tituloSemEntrada": true,
+   "tituloPosicao": 0.13,
    "camera": {
     "x": -4.6,
     "z": 2.2,
@@ -44,12 +118,12 @@
      "tipo": "trocar",
      "alvo": "azul",
      "estado": "acenar",
-     "inicio": 1.89
+     "inicio": 1.55
     }
    ],
    "vertical": {
     "camera": {
-     "x": -1.77,
+     "x": -1.73,
      "z": 2.2,
      "y": 0.75,
      "zoom": 1.5

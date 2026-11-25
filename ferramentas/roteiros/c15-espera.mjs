@@ -9,8 +9,8 @@ const JOGO = (x, extra = {}) => ({ x, z: 2.2, y: 2.6, ...extra });
 const SPAWN = { x: -5.6, z: 1.5, y: 0 };   // na frente da plataforma do spawn (em cima dela o desenho piscava)
 
 // 1. Regra: aos 0,3 s um avatar corre até o spawn e começa a acenar
-C.push(cena('Nesse mundo, quando você sai do Roblox, seu avatar te espera.', {
-  titulo: 'ELE NUNCA ESQUECE', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
+C.push(cena('quando você sai do Roblox, seu avatar te espera.', {
+  continuaFrase: true, titulo: 'ELE NUNCA ESQUECE', tituloInicio: 0, tituloDuracao: 2.0, tituloSemEntrada: true, tituloPosicao: 0.13,   // o título já entrou na abertura
   cenario: 'mundo-bloco', transicao: 'corte', camera: { x: -4.6, z: 2.2, y: 2.0, zoom: 1.5 },
   elementos: [P('azul', 'avatar-bloco-azul', -2.0, 2.8, { figurante: true })],
   acoes: [{ tipo: 'correr', alvo: 'azul', para: -4.4, inicio: 0, duracao: 1.2 }, a(0.4, 'trocar', { alvo: 'azul', estado: 'acenar' })],
@@ -111,6 +111,17 @@ rostos(C, [[3, 'aluno', 'rindo', 0.1], [3, 'aluna', 'rindo', 0.4], [3, 'leo', 'f
   [9, 'nina', 'triste', 0.65], [12, 'nina', 'chorando', 0.1]]);
 alturaShorts(C, { 1: -1.25, 2: -1.25, 3: -2, 4: -1.25, 5: -2, 6: -1.25, 7: -1.75, 8: -1.75, 9: -3.5, 10: -3, 11: -3, 12: -3.5, 13: -2.75, 14: -2.25 });
 
+
+// ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;
+// a cena 1 continua a frase ("continuaFrase": o mesmo parágrafo no ElevenLabs). Entra no começo só agora (os números de cena acima são da 1ª em diante).
+{ const abre = [cena('Nesse mundo,', {   // o avatar da Nina acenando no spawn enquanto os do lado se apagam, de perto
+    titulo: 'ELE NUNCA ESQUECE', tituloInicio: 0, tituloDuracao: 2.6, tituloPosicao: 0.13,
+    cenario: 'mundo-bloco', transicao: 'corte', foco: 'anina', camera: { x: -5.4, z: 2.2, y: 1.4, zoom: 3 },
+    elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }), P('azul', 'avatar-bloco-azul', -3.0, 2.6, { pose: 'acenar', figurante: true }),
+      P('a1', 'avatar-bloco-vermelho', -7.4, 2.0, { pose: 'acenar', figurante: true })],
+    acoes: [a(0, 'desaparecer', { alvo: 'azul', durF: 0.6 }), a(0, 'som', { som: 'magia' }), a(0.3, 'desaparecer', { alvo: 'a1', durF: 0.6 })],
+  })];
+  alturaShorts(abre, { 1: -3.25 }); C.unshift(abre[0]); }
 
 salvar('nesse-mundo-espera', ['NESSE MUNDO (curto, EMOCIONAL de dia, Roblox) — "Nesse mundo, quando você sai do Roblox, seu avatar te espera."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-espera',

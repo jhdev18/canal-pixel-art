@@ -11,12 +11,121 @@
  "volumeBaloes": 0.4,
  "cenas": [
   {
-   "narracaoTexto": "E se você renascesse como o monstro mais fraco do jogo?",
+   "narracaoTexto": "E se você renascesse",
    "cenario": "floresta-isekai",
    "transicao": "corte",
    "titulo": "E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?",
    "tituloInicio": 0,
    "tituloDuracao": 2.6,
+   "tituloPosicao": 0.13,
+   "camera": {
+    "x": -0.2,
+    "z": 2.2,
+    "y": 1.4,
+    "zoom": 3
+   },
+   "elementos": [
+    {
+     "id": "davi",
+     "personagem": "cogumelo-davi",
+     "x": -1,
+     "z": 3,
+     "pose": "assustado"
+    },
+    {
+     "id": "h1",
+     "personagem": "heroi-aventureiro",
+     "x": 0.8,
+     "z": 3,
+     "figurante": true
+    },
+    {
+     "id": "e-h1",
+     "sprite": "espada-heroi",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "h1",
+      "dx": 0.45,
+      "dy": 0.8
+     }
+    },
+    {
+     "id": "chapeu",
+     "sprite": "chapeu-davi",
+     "x": -1,
+     "z": 3,
+     "oculto": true
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "golpe",
+     "alvo": "h1",
+     "direcao": "esquerda",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "som",
+     "som": "dano",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "trocar",
+     "alvo": "davi",
+     "estado": "sem-chapeu-tremendo",
+     "inicio": 0.35
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "chapeu",
+     "som": null,
+     "inicio": 0.35
+    },
+    {
+     "tipo": "pular",
+     "alvo": "chapeu",
+     "para": -3.4,
+     "altura": 1.4,
+     "inicio": 0.35,
+     "duracao": 0.78
+    },
+    {
+     "tipo": "tremer",
+     "intensidade": 0.35,
+     "inicio": 0.37,
+     "duracao": 0.2
+    },
+    {
+     "tipo": "flash",
+     "intensidade": 0.4,
+     "inicio": 0.37
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 1.17,
+     "z": 2.2,
+     "y": -0.6,
+     "zoom": 3
+    },
+    "centrarEm": [
+     "davi",
+     "h1",
+     "chapeu"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "como o monstro mais fraco do jogo?",
+   "cenario": "floresta-isekai",
+   "transicao": "corte",
+   "titulo": "E SE VOCÊ RENASCESSE COMO O MONSTRO MAIS FRACO?",
+   "tituloInicio": 0,
+   "tituloDuracao": 2,
+   "continuaFrase": true,
+   "tituloSemEntrada": true,
+   "tituloPosicao": 0.13,
    "camera": {
     "x": 0,
     "z": 2.2,
@@ -50,21 +159,21 @@
      "alvo": "davi",
      "duracao": 1,
      "inspira": 0.6,
-     "inicio": 2.09
+     "inicio": 1.41
     },
     {
      "tipo": "esporos",
      "alvo": "davi",
      "cor": "azul",
      "tamanho": "pequeno",
-     "inicio": 2.69
+     "inicio": 2.01
     },
     {
      "tipo": "expressao",
      "alvo": "davi",
      "rosto": "surpreso",
-     "inicio": 2.98,
-     "duracao": 0.9
+     "inicio": 1.96,
+     "duracao": 0.55
     }
    ],
    "vertical": {

@@ -12,8 +12,8 @@ const topo = (k) => [+(PIL[k][0] + 0.6).toFixed(2), PIL[k][1] + 0.25];
 const pausa = (id, alvo, extra = {}) => S(id, 'icone-pausa', 0, 0, { sobre: { id: alvo, dx: 0, dy: 3.0 }, oculto: true, ...extra });
 
 // 1. Gancho: o avatar pula de um pilar e CONGELA no ar (ícone de pausa) aos ~0,4 s
-C.push(cena('Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.', {
-  titulo: 'PAUSA ESSE JOGO!', tituloInicio: 0, tituloDuracao: 2.6,   // título no quadro 0 da cena 1 (regra do gancho)
+C.push(cena('quando sua mãe manda pausar o Roblox, tudo pausa.', {
+  continuaFrase: true, titulo: 'PAUSA ESSE JOGO!', tituloInicio: 0, tituloDuracao: 2.0, tituloSemEntrada: true, tituloPosicao: 0.1,   // o título já entrou na abertura
   cenario: 'parkour-campeonato', transicao: 'corte', camera: { x: -2.0, z: 2.2, y: 2.4, zoom: 1.5 },
   elementos: [P('a1', 'avatar-bloco-azul', ...[topo(1)[0], 3.2], { y: topo(1)[1] }), pausa('p1', 'a1')],
   // pulo de verdade (agacha → sobe com os braços para cima) até o próximo pilar, CONGELADO no meio do caminho (congelar)
@@ -129,6 +129,16 @@ rostos(C, [[2, 'tonho', 'surpreso', 0.3], [4, 'mae', 'bravo', 0.25], [5, 'leo', 
   [10, 'leo', 'envergonhado', 0.1], [10, 'mae', 'bravo', 0.4]]);
 alturaShorts(C, { 2: -1.25, 3: -2, 4: -1.25, 5: -1.25, 6: -0.75, 7: -0.5, 9: -1.25, 10: -1.25, 11: -1.5, 12: -1.75, 13: -0.5 });
 
+
+// ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;
+// a cena 1 continua a frase ("continuaFrase": o mesmo parágrafo no ElevenLabs). Entra no começo só agora (os números de cena acima são da 1ª em diante).
+{ const abre = [cena('Nesse mundo,', {   // o Léo congelado no ar e o avatar da mãe pulando por cima dele, de perto
+    titulo: 'PAUSA ESSE JOGO!', tituloInicio: 0, tituloDuracao: 2.6, tituloPosicao: 0.1,
+    cenario: 'parkour-campeonato', transicao: 'corte', foco: 'atop', camera: { x: 0.8, z: 2.2, y: 4.0, zoom: 2 },
+    elementos: [P('atop', 'avatar-topete', 0.39, 3.2, { y: 3.75, pose: 'pulando-sobe' }), pausa('p', 'atop', { oculto: false }), P('amae', 'avatar-bloco-roxo', topo(2)[0], 3.2, { y: topo(2)[1] })],
+    acoes: [a(0, 'flash', { intensidade: 0.5 }), a(0, 'som', { som: 'erro' }), a(0, 'pular', { alvo: 'amae', para: topo(3), altura: 6, durF: 0.95 }), a(0, 'som', { som: 'pulo-bloco' })],
+  })];
+  alturaShorts(abre, { 1: -1 }); C.unshift(abre[0]); }
 
 salvar('nesse-mundo-pausa', ['NESSE MUNDO (curto, COMÉDIA de dia, Roblox) — "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-pausa',

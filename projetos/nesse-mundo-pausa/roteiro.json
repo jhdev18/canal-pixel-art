@@ -11,12 +11,98 @@
  "volumeBaloes": 0.4,
  "cenas": [
   {
-   "narracaoTexto": "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa.",
+   "narracaoTexto": "Nesse mundo,",
    "cenario": "parkour-campeonato",
    "transicao": "corte",
    "titulo": "PAUSA ESSE JOGO!",
    "tituloInicio": 0,
    "tituloDuracao": 2.6,
+   "tituloPosicao": 0.1,
+   "camera": {
+    "x": 0.8,
+    "z": 2.2,
+    "y": 4,
+    "zoom": 2
+   },
+   "elementos": [
+    {
+     "id": "atop",
+     "personagem": "avatar-topete",
+     "x": 0.39,
+     "z": 3.2,
+     "y": 3.75,
+     "pose": "pulando-sobe"
+    },
+    {
+     "id": "p",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "atop",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": false
+    },
+    {
+     "id": "amae",
+     "personagem": "avatar-bloco-roxo",
+     "x": -0.8,
+     "z": 3.2,
+     "y": 2.25
+    }
+   ],
+   "acoes": [
+    {
+     "tipo": "flash",
+     "intensidade": 0.5,
+     "inicio": 0.3
+    },
+    {
+     "tipo": "som",
+     "som": "erro",
+     "inicio": 0.3
+    },
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "para": [
+      2,
+      3.25
+     ],
+     "altura": 6,
+     "inicio": 0.3,
+     "duracao": 0.74
+    },
+    {
+     "tipo": "som",
+     "som": "pulo-bloco",
+     "inicio": 0.3
+    }
+   ],
+   "vertical": {
+    "camera": {
+     "x": 2.14,
+     "z": 2.2,
+     "y": 3,
+     "zoom": 2
+    },
+    "centrarEm": [
+     "atop"
+    ]
+   }
+  },
+  {
+   "narracaoTexto": "quando sua mãe manda pausar o Roblox, tudo pausa.",
+   "cenario": "parkour-campeonato",
+   "transicao": "corte",
+   "titulo": "PAUSA ESSE JOGO!",
+   "tituloInicio": 0,
+   "tituloDuracao": 2,
+   "continuaFrase": true,
+   "tituloSemEntrada": true,
+   "tituloPosicao": 0.1,
    "camera": {
     "x": -2,
     "z": 2.2,

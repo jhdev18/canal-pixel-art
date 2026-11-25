@@ -198,6 +198,11 @@ abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run c
   personagens pequenos**, e no celular isso não para o polegar. Próximos vídeos: **abrir com a imagem mais forte do vídeo em close**
   (zoom 2–3: o rosto/a anomalia enchendo a tela — ex.: o brinquedo gigante segurando a criança) por ~1 s, com SFX forte no quadro 0,
   e só depois voltar ao começo da história ("Nessa cidade..."). Medir de novo pelo "continuaram"; a meta é ≥ 65%.
+  **Como fazer (aplicado em isekai, pausa e espera):** uma cena de ABERTURA (~1 s) com o começo da 1ª frase ("Nesse mundo," / "E se você
+  renascesse") em cima da imagem forte (zoom 2–3, SFX e movimento no quadro 0, título já no quadro 0 com `"tituloPosicao": 0.1`–`0.13`,
+  acima das cabeças); a cena seguinte continua a frase com `"continuaFrase": true` (o `npm run narracao` junta as duas no mesmo parágrafo
+  do ElevenLabs — o texto falado não muda) e repete o título com `"tituloSemEntrada": true` (não pula de novo). Nos scripts: montar a
+  abertura no fim e `C.unshift(...)` antes do `salvar()` (os números de cena de `rostos`/`alturaShorts`/`marcar` continuam os de antes).
 
 **Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
 justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:
