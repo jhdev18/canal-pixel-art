@@ -145,7 +145,7 @@ C.push(cena('Era ele que brincava com você.', {
 C.push(cena('E o soldadinho da Bia, colado no pé dela, ainda dava corda sozinho.', {
   cenario: 'praca-parquinho', remover: SEM_PARQUINHO, camera: PERTO(6.2, 1.2, -9.0), foco: ['bia', 'sold'],
   elementos: DEPOIS({ robo: 'sem-rosto', boneca: 'sem-rosto', caixa: 'sem-rosto' }, { caixa: 3.4 }),
-  acoes: [a(0.45, 'trocar', { alvo: 'sold', estado: 'cantando', som: 'corda' }), a(0.75, 'tremer', { intensidade: 0.2, durF: 0.2 })],
+  acoes: [a(0.45, 'som', { som: 'corda' }), a(0.75, 'tremer', { intensidade: 0.2, durF: 0.2 })],
 }));
 
 marcar(C, { sabado: [[6, 15]] });

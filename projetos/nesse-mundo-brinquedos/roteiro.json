@@ -1855,9 +1855,7 @@
    ],
    "acoes": [
     {
-     "tipo": "trocar",
-     "alvo": "sold",
-     "estado": "cantando",
+     "tipo": "som",
      "som": "corda",
      "inicio": 2.26
     },
