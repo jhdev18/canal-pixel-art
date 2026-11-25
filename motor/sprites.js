@@ -341,7 +341,8 @@ export function obterSprite(nome, opcoes = {}) {
   if (nome && nome.endsWith('@mini')) {
     const base = obterSprite(nome.slice(0, -5), opcoes);
     if (!base) return null;
-    const mini = { ...base, nome, quadros: base.quadros.map(miniatura), brilho: base.brilho?.map(miniatura) };
+    const px = faseMini(base.quadros[0]);
+    const mini = { ...base, nome, quadros: base.quadros.map((q) => miniatura(q, px, MINI_OLHOS[nome.slice(0, -5)] ?? true)), brilho: base.brilho?.map((q) => miniatura(q, px, false)) };
     if (base.luz) mini.luz = { ...base.luz };
     return mini;
   }
@@ -354,8 +355,56 @@ export function obterSprite(nome, opcoes = {}) {
   return s;
 }
 
-function miniatura(cv) {
-  const w = Math.ceil(cv.width / 2), h = Math.ceil(cv.height / 2);
+// Fase da redução (0 ou 1 px à esquerda): o eixo do desenho cai na divisa entre dois blocos, para os dois olhos ficarem
+// simétricos. Calculada no 1º quadro e usada em todos (senão o desenho tremeria entre quadros).
+function faseMini(cv) {
+  const d = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data;
+  let x0 = cv.width, x1 = -1;
+  for (let y = 0; y < cv.height; y++) for (let x = 0; x < cv.width; x++) if (d[(y * cv.width + x) * 4 + 3] >= 128) { if (x < x0) x0 = x; if (x > x1) x1 = x; }
+  if (x1 < 0) return 0;
+  const eixo = (x0 + x1 + 1) / 2;   // em px; o eixo + fase precisa ser par
+  return Math.round(eixo) % 2;
+}
+
+// Olhos do desenho original: manchas escuras por dentro do desenho, na parte de cima, em par simétrico na mesma altura.
+export function acharOlhos(src, W, H, alto = false) {
+  const op = (x, y) => x >= 0 && y >= 0 && x < W && y < H && src[(y * W + x) * 4 + 3] >= 128;
+  const lumP = (x, y) => { const k = (y * W + x) * 4; return src[k] * 0.3 + src[k + 1] * 0.59 + src[k + 2] * 0.11; };
+  let topo = H, base = 0, x0 = W, x1 = -1;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (op(x, y)) { topo = Math.min(topo, y); base = Math.max(base, y); x0 = Math.min(x0, x); x1 = Math.max(x1, x); }
+  const eixo = (x0 + x1 + 1) / 2, lim = topo + (base - topo) * 0.45;
+  const marca = new Int32Array(W * H).fill(-1), comps = [];
+  for (let y = topo; y < lim; y++) for (let x = 0; x < W; x++) {
+    if (marca[y * W + x] >= 0 || !op(x, y) || lumP(x, y) >= 45) continue;
+    if (!(op(x - 1, y) && op(x + 1, y) && op(x, y - 1) && op(x, y + 1))) continue;
+    const pilha = [[x, y]], c = { n: 0, sx: 0, sy: 0, borda: false }; marca[y * W + x] = comps.length;
+    while (pilha.length) {
+      const [a, b] = pilha.pop(); c.n++; c.sx += a; c.sy += b;
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const X = a + dx, Y = b + dy; if (!op(X, Y)) { c.borda = true; continue; }
+        if (Y >= lim || marca[Y * W + X] >= 0 || lumP(X, Y) >= 45) continue;
+        if (!(op(X - 1, Y) && op(X + 1, Y) && op(X, Y - 1) && op(X, Y + 1))) { c.borda = true; continue; }
+        marca[Y * W + X] = comps.length; pilha.push([X, Y]);
+      }
+    }
+    c.cx = c.sx / c.n + 0.5; c.cy = c.sy / c.n + 0.5; comps.push(c);
+  }
+  let melhor = null, nota = -1;
+  for (let i = 0; i < comps.length; i++) for (let j = 0; j < comps.length; j++) {
+    const A = comps[i], B = comps[j]; if (A.borda || B.borda || A.cx >= B.cx || A.n > 9 || B.n > 9) continue;
+    if (Math.abs(A.cy - B.cy) > 1 || Math.abs(A.cx + B.cx - 2 * eixo) > 2 || B.cx - A.cx < 3 || B.cx - A.cx > 12) continue;
+    const q = alto ? Math.min(A.n, B.n) * 10 + A.cy                // brinquedos: as manchas maiores (abaixo vem bigode/boca)
+      : (A.cy + B.cy) * 1.5 + Math.min(A.n, B.n, 4) * 2;            // pessoas: as mais de baixo (olho, não cabelo/sobrancelha)
+    if (q > nota) { nota = q; melhor = [A, B]; }
+  }
+  return melhor;
+}
+
+// olhos nas miniaturas: false = não mexe (olhos que não são escuros, como os do robô); 'alto' = escolhe as manchas maiores
+const MINI_OLHOS = { 'brinquedo-robo': false, 'brinquedo-soldadinho': 'alto', 'brinquedo-boneca': 'alto', 'brinquedo-caixa': false };
+
+function miniatura(cv, px = 0, comOlhos = false) {
+  const w = Math.ceil((cv.width + px) / 2), h = Math.ceil(cv.height / 2);
   const src = cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data;
   const out = document.createElement('canvas'); out.width = w; out.height = h;
   const g = out.getContext('2d'), img = g.createImageData(w, h), d = img.data;
@@ -363,7 +412,7 @@ function miniatura(cv) {
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
     const cores = new Map(); let opacos = 0, escuros = 0;
     for (const [dx, dy] of [[0, 0], [1, 0], [0, 1], [1, 1]]) {
-      const X = x * 2 + dx, Y = y * 2 + dy; if (X >= cv.width || Y >= cv.height) continue;
+      const X = x * 2 + dx - px, Y = y * 2 + dy; if (X < 0 || X >= cv.width || Y >= cv.height) continue;
       const k = (Y * cv.width + X) * 4; if (src[k + 3] < 128) continue;
       opacos++; const l = lum(src[k], src[k + 1], src[k + 2]); if (l < 45) escuros++;
       const c = (src[k] << 16) | (src[k + 1] << 8) | src[k + 2];
@@ -373,6 +422,27 @@ function miniatura(cv) {
     let melhor = 0, n = -1; for (const [c, q] of cores) if (q > n) { n = q; melhor = c; }
     if (escuros >= 3) { for (const [c] of cores) if (lum(c >> 16, (c >> 8) & 255, c & 255) < 45) { melhor = c; break; } }
     const k = (y * w + x) * 4; d[k] = melhor >> 16; d[k + 1] = (melhor >> 8) & 255; d[k + 2] = melhor & 255; d[k + 3] = 255;
+  }
+  // os olhos: 1 pixel escuro cada, simétricos (a redução sozinha apagava um e borrava o outro)
+  const olhos = comOlhos && acharOlhos(src, cv.width, cv.height, comOlhos === 'alto');
+  if (olhos) {
+    const ey = Math.floor((olhos[0].cy + olhos[1].cy) / 4);
+    const xl = Math.floor((olhos[0].cx + px) / 2), xr = Math.floor((olhos[1].cx + px) / 2);
+    const L = (k) => d[k] * 0.3 + d[k + 1] * 0.59 + d[k + 2] * 0.11;
+    // pele = cor clara mais comum entre os olhos (linha dos olhos e as 2 de baixo)
+    const conta = new Map();
+    for (let y = ey; y <= ey + 2 && y < h; y++) for (let x = xl; x <= xr; x++) { const k = (y * w + x) * 4; if (d[k + 3] && L(k) >= 70) { const c = (d[k] << 16) | (d[k + 1] << 8) | d[k + 2]; conta.set(c, (conta.get(c) || 0) + 1); } }
+    let pele = -1, n = 0; for (const [c, q] of conta) if (q > n) { n = q; pele = c; }
+    // tira as manchas escuras em volta dos olhos (o borrão da redução), deixando só o pixel de cada olho
+    if (pele >= 0) for (let y = ey - 1; y <= ey + 1; y++) for (let x = xl - 1; x <= xr + 1; x++) {
+      if ((x === xl - 1 || x === xr + 1) && y !== ey) continue;
+      if (x === xl - 1 || x === xr + 1) { const f = ((ey * w + (x === xl - 1 ? x - 1 : x + 1)) * 4); if (x - 1 < 0 || x + 1 >= w || !d[f + 3] || L(f) < 70) continue; }   // ao lado do olho só se depois vier pele (não come o contorno)
+      if (y < 0 || y >= h || (y === ey && (x === xl || x === xr))) continue;
+      const k = (y * w + x) * 4; if (!d[k + 3] || L(k) >= 70) continue;
+      if (y === ey - 1 && x !== xl && x !== xr) continue;   // a linha de cima só em cima do olho (franja/sobrancelha ficam)
+      d[k] = pele >> 16; d[k + 1] = (pele >> 8) & 255; d[k + 2] = pele & 255;
+    }
+    for (const x of [xl, xr]) { const k = (ey * w + x) * 4; if (d[k + 3]) { d[k] = 26; d[k + 1] = 20; d[k + 2] = 30; } }
   }
   // contorno de 1 px em volta (como os sprites normais)
   const op = (x, y) => x >= 0 && y >= 0 && x < w && y < h && d[(y * w + x) * 4 + 3] > 0, marcar = [];

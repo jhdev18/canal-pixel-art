@@ -230,7 +230,7 @@ function spriteBrinquedo(tipo, assustador = false) {
   const ANTES = add({ olhos: 'normal' }, { chave: 0 }, true);                                            // o rosto antigo, para a falha
   const e = (q, fps = 6) => ({ q, fps });
   return { quadros, brilho, sombra: true, personagem: true, anims: {
-    parado: e([P[0], P[1], P[2], P[3], P[0], P[1], T, P[3]], 6), desligado: e([D], 1), cantando: e(C, 5), acenar: e(AC, 4),
+    parado: e([P[0], P[1], P[2], P[3]], 6)   /* sem o quadro de cabeça torta: o rosto "pulava" de lado (pedido do usuário) */, desligado: e([D], 1), cantando: e(C, 5), acenar: e(AC, 4),
     virado: e(V, 6), olhos: e(O, 6), rachado: e(R, 6),
     falha: e(assustador ? [P[0], ANTES, P[2], P[3], ANTES, V[0]] : [P[0], R[1], P[2], V[0], R[0], P[3]], 12),
     'sem-rosto': e(SR, 6), 'sem-rosto-andando': e(ASR, 5), 'sem-rosto-correndo': e(ASR, 9),
@@ -295,14 +295,14 @@ function spriteCaixa(assustador = false) {
   const quadros = [], brilho = [];
   const S = (op) => (assustador && !op.fechada ? { ...op, semRosto: true, estrago: true } : assustador ? { ...op, estrago: true } : op);
   const add = (op, f, cru = false) => { const { p, b } = quadroCaixa(cru ? op : S(op), f); quadros.push(p); brilho.push(b); return quadros.length - 1; };
-  const bal = [0, 1, 2, 1, 0, -1, -2, -1];
+  const bal = [0, 0, 0, 0, 0, 0, 0, 0];   // a cabeça não balança mais de lado: o rosto parecia escorregar (pedido do usuário); a manivela gira
   const ciclo = (op, f = {}) => bal.map((v, k) => add(op, { ...f, balanco: v, manivela: k % 3 }));
   const nor = { olhos: 'normal' };
   const F = [0, 1, 2].map((k) => add({ fechada: true }, { manivela: k }));
   const P = ciclo(nor), O = ciclo({ olhos: 'oco' }), R = ciclo({ olhos: 'normal', rachado: true }), V = ciclo(nor, { inclina: 3 });
   const C = [add({ olhos: 'normal', boca: 1 }, { balanco: 1 }), add(nor, { balanco: -1 })];
   const D = add(nor, { frouxa: true });
-  const pula = (op) => [0, 2, 3, 2, 0, 0].map((h, k) => add(op, { pulo: h, balanco: [0, -1, -2, -1, 1, 0][k], manivela: k % 3 }));
+  const pula = (op) => [0, 2, 3, 2, 0, 0].map((h, k) => add(op, { pulo: h, manivela: k % 3 }));
   const AN = pula(nor), AO = pula({ olhos: 'oco' }), AR = pula({ olhos: 'normal', rachado: true });
   const AF = [0, 2, 3, 2, 0, 0].map((h, k) => add({ fechada: true }, { pulo: h, manivela: k % 3 }));
   const sr = { olhos: 'normal', semRosto: true, estrago: assustador }, SR = ciclo(sr), ASR = pula(sr);
