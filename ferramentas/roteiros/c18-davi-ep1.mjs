@@ -1,4 +1,4 @@
-import { alturaShorts, marcar, P, S, a, cena, salvar, base, rostos } from './nm.mjs';
+import { zoomShorts, alturaShorts, marcar, P, S, a, cena, salvar, base, rostos } from './nm.mjs';
 // ISEKAI — série do cogumelo Davi, EPISÓDIO 1 (Shorts, aventura de dia). "E se você renascesse como o monstro mais fraco do jogo?"
 // Táticas de retenção (as mesmas do vídeo das sombras): a regra (os esporos) se mexe na tela desde 0,6 s e aparece em quase toda cena;
 // escalada (1 herói → 2 → muitos; cogumelos 4 → 0); o "Até que" a ~35%; o Davi ESCOLHE espirrar de propósito (a pista do espirro
@@ -165,6 +165,10 @@ for (const c of C) {
   if (c.camera?.y != null) c.camera = { ...c.camera, y: +(c.camera.y - 1.25).toFixed(2) };
   for (const ac of c.acoes) if (ac.tipo === 'corte' && ac.y != null) { ac.vertical = { y: ac.vertical?.y ?? ac.y, ...(ac.vertical || {}) }; ac.y = +(ac.y - 1.25).toFixed(2); }
 }
+// formato novo (pedido do usuário 25/11/2026): personagens maiores no Shorts (zoom 1,5) e a regra fixa no alto o vídeo inteiro
+zoomShorts(C);
+R.tituloFixo = 'RENASCI COMO O MONSTRO MAIS FRACO';
+
 // ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;
 // a cena 1 continua a frase ("continuaFrase": o mesmo parágrafo no ElevenLabs). Entra no começo só agora (os números de cena acima são da 1ª em diante).
 { const abre = [cena('E se você renascesse', {   // a espadada que leva o chapéu do Davi, de perto

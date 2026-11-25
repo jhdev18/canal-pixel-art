@@ -126,6 +126,7 @@ export class UI {
       else if (cena.legenda) this.legenda(cena, t);
     } else if (cena.legenda) this.legenda(cena, t);
     if (cena.titulo) this.titulo(cena, t);
+    if (cena.tituloFixo) this.tituloFixo(cena, t);
     if (rascunho && info) {
       const txt = normalizar(info);
       const w = larguraTexto(txt) + 6;
@@ -414,6 +415,27 @@ export class UI {
     b._lugar = cobre(daCena, caixas) === 0 ? daCena : escolher(caixas);
     b._cobre = Math.round(cobre(b._lugar, caixas));
     return b._lugar;
+  }
+
+  // PROTÓTIPO (pedido do usuário, 25/11/2026): faixa com a regra/pergunta fixa no alto durante o vídeo inteiro ("tituloFixo" no
+  // roteiro) — some só enquanto o título grande da cena está na tela. Funciona como a "capa": quem cai no meio entende o tema.
+  tituloFixo(cena, t) {
+    if (cena.titulo) {
+      const ini = cena.tituloInicio ?? 0.15, dur = cena.tituloDuracao ?? Math.min(cena.duracao - 0.3, 3.5);
+      if (t >= ini && t <= ini + dur + 0.2) return;
+    }
+    if ((cena.acoes || []).some((a) => (a.tipo === 'placar' || a.tipo === 'continua') && t >= a.inicio - 0.1)) return;   // não cobre o placar/"continua"
+    const { ctx, W } = this;
+    const esc = cena.tituloFixoEscala ?? 1;
+    const linhas = quebrarLinhas(cena.tituloFixo, W - 12, esc);
+    const altLinha = 11 * esc, y0 = Math.round(cena.tituloFixoPosicao ?? 6);
+    ctx.globalAlpha = 0.55; ctx.fillStyle = '#000';
+    ctx.fillRect(0, y0 - 3, W, linhas.length * altLinha + 6); ctx.globalAlpha = 1;
+    linhas.forEach((l, i) => {
+      const x = Math.round((W - larguraTexto(l, esc)) / 2), y = y0 + i * altLinha;
+      desenharTextoContorno(ctx, l, x, y, cena.tituloCor || '#ffe040', K, esc);
+    });
+    ctx.globalAlpha = 1;
   }
 
   titulo(cena, t) {

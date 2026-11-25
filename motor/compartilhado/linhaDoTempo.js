@@ -210,6 +210,8 @@ export function resolverRoteiro(roteiro, narracoes = new Map(), opcoes = {}) {
   });
   // PROTÓTIPO "visual" (melhorias do diorama): no roteiro vale para todas as cenas; a cena pode mudar ("visual": false desliga)
   for (const c of cenas) if (c.visual === undefined && roteiro.visual !== undefined) c.visual = roteiro.visual;
+  // PROTÓTIPO: faixa de título fixa no alto (vale para o vídeo inteiro; "tituloFixo": false numa cena tira só dela)
+  for (const c of cenas) if (c.tituloFixo === undefined && roteiro.tituloFixo) c.tituloFixo = roteiro.tituloFixo;
   for (let i = 0; i < cenas.length; i++) {
     cenas[i].transicaoSaida = i + 1 < cenas.length ? cenas[i + 1].transicao : (cenas[i].transicaoSaida || 'fade');
   }

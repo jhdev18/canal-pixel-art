@@ -263,7 +263,8 @@
     "camera": {
      "x": 1.65,
      "z": 2.2,
-     "y": 1.6
+     "y": 0.27,
+     "zoom": 1.5
     },
     "centrarEm": [
      "davi"
@@ -362,7 +363,8 @@
     "camera": {
      "x": 2.15,
      "z": 2.2,
-     "y": 1.35
+     "y": -0.08,
+     "zoom": 1.5
     },
     "centrarEm": [
      "davi",
@@ -1071,7 +1073,8 @@
     "camera": {
      "x": 2.7,
      "z": 2.2,
-     "y": 1.35
+     "y": 0.13,
+     "zoom": 1.5
     },
     "centrarEm": [
      "davi",
@@ -1171,7 +1174,8 @@
     "camera": {
      "x": 1.85,
      "z": 2.2,
-     "y": 0.6
+     "y": -0.4,
+     "zoom": 1.5
     },
     "centrarEm": [
      "davi",
@@ -2371,5 +2375,6 @@
     ]
    }
   }
- ]
+ ],
+ "tituloFixo": "RENASCI COMO O MONSTRO MAIS FRACO"
 }

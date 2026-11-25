@@ -203,6 +203,11 @@ abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run c
   acima das cabeças); a cena seguinte continua a frase com `"continuaFrase": true` (o `npm run narracao` junta as duas no mesmo parágrafo
   do ElevenLabs — o texto falado não muda) e repete o título com `"tituloSemEntrada": true` (não pula de novo). Nos scripts: montar a
   abertura no fim e `C.unshift(...)` antes do `salvar()` (os números de cena de `rostos`/`alturaShorts`/`marcar` continuam os de antes).
+  **Formato novo em teste (isekai, pausa, espera — pedido do usuário):** `"tituloFixo": "<regra curta>"` no roteiro = faixa fina com a regra
+  no alto o vídeo inteiro (some enquanto o título grande da cena ou um `placar`/`continua` está na tela; `"tituloFixoEscala"` muda o
+  tamanho) e `zoomShorts(C)` do `nm.mjs` (chamar depois do `alturaShorts`) = personagens 50% maiores no Shorts (zoom 1,5 mantendo os pés na
+  mesma altura da tela; pula cena com zoom próprio, corte, panorâmica, câmera `travado` ou grupo largo demais). Comparar o "continuaram"
+  desses três com o brinquedos (46,6%) antes de virar padrão.
 
 **Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
 justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:

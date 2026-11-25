@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { lerJsonFlexivel } from '../../src/biblioteca.js';
 import { fileURLToPath } from 'node:url';
-import { xCentrado, centrarCena } from '../../motor/compartilhado/centro.js';
+import { xCentrado, centrarCena, yTela, temPanoramica } from '../../motor/compartilhado/centro.js';
 import { lerRoteiro } from '../../src/projeto.js';
 import { resolverRoteiro, estadoElemento } from '../../motor/compartilhado/linhaDoTempo.js';
 const RAIZ_PROJ = fileURLToPath(new URL('../../', import.meta.url));
@@ -125,6 +125,30 @@ export const troca = (f, a1, a2) => [
   a(f, 'flash', { intensidade: 0.7 }), a(f, 'magia', { alvo: a1 }), a(f, 'magia', { alvo: a2 }),
   a(f + 0.12, 'emocao', { alvo: a1, icone: '?' }), a(f + 0.14, 'emocao', { alvo: a2, icone: '?' }),
 ];
+
+// PROTÓTIPO (pedido do usuário, 25/11/2026): personagens MAIORES no Shorts. Cena com zoom 1 no "vertical" passa a 1,5; a câmera sobe/desce
+// para os pés de quem está mais embaixo continuarem na MESMA altura da tela (a legenda não cobre ninguém novo). Não mexe em cena com zoom
+// próprio, panorâmica ou corte de zoom. Chamar depois do alturaShorts e antes do salvar() (o salvar recentra o x com o zoom novo).
+export function zoomShorts(C, zoom = 1.5) {
+  for (const c of C) {
+    const v = (c.vertical ||= {}), cam = { ...(c.camera || {}), ...(v.camera || {}) };
+    if ((cam.zoom ?? 1) !== 1 || cam.travado || temPanoramica(c) || (c.acoes || []).some((a) => a.tipo === 'corte')) continue;
+    const comodo = !!(c.comodo || /-diorama$/.test(c.cenario || ''));
+    let quem = (c.elementos || []).filter((e) => e.personagem && !e.sobre && !e.tela && !e.figurante);
+    if (!quem.length) quem = (c.elementos || []).filter((e) => (e.personagem || e.sprite) && !e.sobre && !e.tela);
+    if (!quem.length) continue;
+    // grupo largo (ex.: 6 heróis) não cabe com zoom 1,5 (170 px de tela): fica no zoom 1, com todo mundo — conta também os figurantes
+    const todos = (c.elementos || []).filter((e) => e.personagem && !e.sobre && !e.tela);
+    const xs = todos.flatMap((e) => [e.x ?? 0, ...(c.acoes || []).filter((a) => a.alvo === e.id && a.para != null).map((a) => (Array.isArray(a.para) ? a.para[0] : a.para))]
+      .map((x) => xCentrado(x, e.z ?? 0, cam.z ?? 0, comodo) * 16));
+    if (xs.length && (Math.max(...xs) - Math.min(...xs) + 28) * zoom > 165) continue;
+    cam.y ??= comodo ? 3 : 2.2;
+    const pes = Math.max(...quem.map((e) => yTela(e.x ?? 0, e.z ?? 0, e.y ?? 0, cam, comodo)));
+    // ponto do mundo que está nos pés (em unidades de altura) e a câmera nova que o mantém no mesmo pixel
+    const P = cam.y + (160 - pes) / 16;
+    v.camera = { ...cam, zoom, y: +(P - (160 - pes) / (16 * zoom)).toFixed(2) };
+  }
+}
 
 export function salvar(nome, cabecalho, roteiro) {
   const dir = path.join(RAIZ_PROJ, 'projetos', nome);
