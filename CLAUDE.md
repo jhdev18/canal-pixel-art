@@ -193,6 +193,11 @@ abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run c
 - Horário de postagem pesa pouco no Shorts (o feed testa com quem está online); o que decide é o "continuaram" do 1º grupo.
 - Com 1h14 no ar: **52,1% continuaram** (270 intencionais, 16 gostei), 2º grupo de teste aos ~60 min; duração média caiu para 0:30
   (normal quando o público fica mais amplo). Não julgar um Short antes de ~24 h.
+- O avatar-v2 parou em ~1,3 mil visualizações. **Brinquedos** (postado 25/11/2026, já com o título no quadro 0): **48,6% continuaram**
+  com 1 h (390 visualizações, 152 intencionais) — igual ao avatar. O título sozinho não resolveu: o 1º quadro é **plano aberto com
+  personagens pequenos**, e no celular isso não para o polegar. Próximos vídeos: **abrir com a imagem mais forte do vídeo em close**
+  (zoom 2–3: o rosto/a anomalia enchendo a tela — ex.: o brinquedo gigante segurando a criança) por ~1 s, com SFX forte no quadro 0,
+  e só depois voltar ao começo da história ("Nessa cidade..."). Medir de novo pelo "continuaram"; a meta é ≥ 65%.
 
 **Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
 justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:
@@ -557,7 +562,7 @@ fixo → **atualizar o `GUIA-ASSETS.md`** junto.
   - `nesse-mundo-sombras` (**NÃO MEXER** — pedido do usuário; o aviso `[gancho]` de título nele é aceito. O ORIGINAL, recuperado do git a pedido do usuário: "o antigo era bem melhor"; o v2 foi apagado). 1º vídeo do
     canal novo; texto e cenas originais, só desmarcado o "postado" (era do canal antigo), Shorts recentralizado e câmera do Shorts abaixada
     para a legenda grande. `npm run conferir`: só [parado] na cena 3 (como no original).
-  - `nesse-mundo-brinquedos` (terror de dia, 15 cenas, fala ~50 s; script `c19-brinquedos.mjs`): "Nessa cidade, seu brinquedo cresce toda vez
+  - `nesse-mundo-brinquedos` (**POSTADO** em 25/11/2026, `"postado": true`; terror de dia, 15 cenas, fala ~50 s; script `c19-brinquedos.mjs`): "Nessa cidade, seu brinquedo cresce toda vez
     que você brinca" — brinquedos de corda gigantes, o soldadinho pequeno da Bia, os brinquedos vêm até as crianças e elas encolhem no "abraço" (ficam na mão deles), a Bia diz "não"; virada "Não era você
     que brincava com o brinquedo. Era ele que brincava com você." Miniaturas limpas `<sprite>@mini` (pedido do usuário: a escala 0.5 deixava
     crianças e brinquedos pequenos "bugados" — nunca encolher com `escala` < 1); crescer/encolher = o pequeno some e o grande aparece no mesmo lugar. As miniaturas desenham os 2 olhos de propósito (1 pixel cada, simétricos; `acharOlhos`/`MINI_OLHOS` em `motor/sprites.js` — a redução sozinha borrava o rosto, pedido do usuário); robô/boneca/soldadinho grandes não inclinam mais a cabeça no `parado` (o rosto "escorregava"); a caixa-surpresa continua balançando na mola (o usuário preferiu).

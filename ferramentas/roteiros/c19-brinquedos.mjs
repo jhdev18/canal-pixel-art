@@ -157,6 +157,7 @@ rostos(C, [[1, 'leo', 'feliz', 0.4], [2, 'nina', 'feliz', 0.96], [3, 'nina', 'ri
 // Shorts: a legenda grande (76% da altura) fica abaixo dos pés (medido com medir-altura-shorts.mjs)
 alturaShorts(C, { 2: -0.25, 3: -1.5, 4: -1, 5: -2.5, 6: -2, 7: -2.75, 8: -2.75, 9: -2.25, 10: -1.75, 11: -1, 12: -1.75, 13: -1.5, 14: -1.75, 15: -1.25 });
 
+R.postado = true;   // postado no canal Pixelverso em 25/11/2026 — não regenerar nem alterar
 salvar('nesse-mundo-brinquedos', ['NESSE MUNDO (curto, terror de dia): "Nessa cidade, seu brinquedo cresce toda vez que você brinca."',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-brinquedos',
   'Protótipos: brinquedos de corda (animatronicos.js), ação crescer, praca-parquinho, escola-patio, rival (Nina), menino-topete (Léo).'], R);

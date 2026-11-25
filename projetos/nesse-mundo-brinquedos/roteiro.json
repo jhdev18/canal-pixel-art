@@ -2,6 +2,7 @@
 // Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- nesse-mundo-brinquedos
 // Protótipos: brinquedos de corda (animatronicos.js), ação crescer, praca-parquinho, escola-patio, rival (Nina), menino-topete (Léo).
 {
+ "postado": true,
  "titulo": "Nessa cidade, seu brinquedo cresce toda vez que você brinca",
  "narrador": "Narrador",
  "resolucao": [
