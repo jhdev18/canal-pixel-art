@@ -90,6 +90,10 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
   goblin**. Desde então usam a essência roubada para **viver mais** (são velhíssimos debaixo do capuz) e **mantêm a mentira** para continuar
   recebendo essência e poder. Não são enganados como os heróis de hoje: **sabem a verdade e escolheram o poder.**
   **Motivo: ganância** — heróis que cederam à vontade de ter mais poder (nada de doença ou desculpa).
+- **Hierarquia (definida pelo usuário):** **os encapuzados criaram a guilda**, mas **o goblin é o mestre deles**. Ele é mais forte e pode
+  **tirar a essência de qualquer encapuzado a qualquer momento** (e eles vivem de essência: perder tudo = envelhecer de uma vez e morrer).
+  Por isso entregam quase toda a essência a ele e obedecem: é **medo**, não lealdade. Na tela: um encapuzado que falha é "esvaziado" pelo
+  goblin (a chama verde sai do peito dele e o capuz cai sobre um corpo velho/vazio, sem gore) — boa cena para mostrar quem manda.
 - **Os encapuzados** (nome a escolher; sugestão: *Os Colhedores*) **controlam a Guilda dos Heróis** por trás: dão as missões, pagam as
   recompensas e **ensinam aos humanos a história do passado — contada do jeito deles**: "um rei-monstro de cogumelo quase devorou a vila;
   se um cogumelo crescer, ele volta". É assim que espalham o **medo**.
