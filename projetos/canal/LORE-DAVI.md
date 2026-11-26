@@ -94,7 +94,9 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
   recompensas e **ensinam aos humanos a história do passado — contada do jeito deles**: "um rei-monstro de cogumelo quase devorou a vila;
   se um cogumelo crescer, ele volta". É assim que espalham o **medo**.
 - **Os heróis levam os cogumelos para a guilda** (por isso a carroça do ep. 2: vivos, presos). **Lá os encapuzados extraem as almas**
-  (a essência). **Quase toda a essência vai para o goblin**; **uma pequena fração volta para o herói como "XP"**, junto com o **ouro**.
+  (a essência) **diretamente, com as próprias mãos, do mesmo jeito que o goblin** (definido pelo usuário): aprenderam com ele e têm o mesmo
+  poder de extrair (não dependem de máquina, ritual nem do goblin presente). Por isso também são perigosos sozinhos — numa cena, um
+  encapuzado pode arrancar a alma de um cogumelo na frente do Davi (a alma sai verde e vira chama, sem sangue: o cogumelo fica cinza e imóvel). **Quase toda a essência vai para o goblin**; **uma pequena fração volta para o herói como "XP"**, junto com o **ouro**.
 - O XP é **essência de alma extraída**, não experiência de jogo: o herói fica mais forte com a vida roubada de um cogumelo. Os heróis
   viciam em ficar fortes e em ganhar ouro — e não sabem de onde vem.
 - **O rei humano é um velho mantido vivo pelo goblin** com essência de cogumelo; obedece para não morrer.
