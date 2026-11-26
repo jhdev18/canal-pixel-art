@@ -11,6 +11,9 @@ const PERTO = (x, y = 1.8) => ({ x, z: 2.2, y, zoom: 2 });
 const F = { figurante: true };
 const ESPADA = (heroi) => S('e-' + heroi, 'espada-heroi', 0, 0, { sobre: { id: heroi, dx: 0.45, dy: 0.8 } });
 const COMUM = ['cogumelo-comum', 'cogumelo-roxo', 'cogumelo-verde', 'cogumelo-comum'];
+// Derrotar = CAPTURAR (lore): o cogumelo golpeado some do chão e aparece erguido acima da cabeça do herói, que o leva vivo (para a guilda)
+const PRESO = (id, sp, heroi) => P('k-' + id, sp, 0, 0, { ...F, oculto: true, sobre: { id: heroi, dx: 0, dy: 1.55 } });
+const CAPTURA = (id, f) => [a(f, 'sumir', { alvo: id, som: null }), a(f, 'aparecer', { alvo: 'k-' + id, som: 'item' })];
 
 // 1. Gancho: aos 0,15 s o Davi brota do chão (puf) e pula; no meio da frase, espirra uma nuvenzinha azul
 C.push(cena('como o monstro mais fraco do jogo?', {
@@ -33,8 +36,10 @@ C.push(cena('Davi acordou sem braços, de perninhas curtas e chapéu gigante.', 
 // 3. A crença como AÇÃO: ao fundo, um herói derrota um cogumelo com um golpe (puf); o Davi assiste, assustado
 C.push(cena('Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.', {
   cenario: 'floresta-isekai', camera: CAM(1.2), foco: ['davi', 'h1'],
-  elementos: [P('davi', 'cogumelo-davi', -1.4, 2.6), P('h1', 'heroi-aventureiro', 2.0, 4.0, F), ESPADA('h1'), P('c2', 'cogumelo-comum', 3.4, 4.0, F)],
-  acoes: [a(0.05, 'andar', { alvo: 'h1', para: 2.4, durF: 0.3 }), a(0.4, 'golpe', { alvo: 'h1', direcao: 'direita' }), a(0.44, 'sumir', { alvo: 'c2' }),
+  elementos: [P('davi', 'cogumelo-davi', -1.4, 2.6), P('h1', 'heroi-aventureiro', 2.0, 4.0, F), ESPADA('h1'), P('c2', 'cogumelo-comum', 3.4, 4.0, F), PRESO('c2', 'cogumelo-comum', 'h1')],
+  // o herói captura o cogumelo e vai embora com ele erguido (derrotar = capturar)
+  acoes: [a(0.05, 'andar', { alvo: 'h1', para: 2.4, durF: 0.3 }), a(0.4, 'golpe', { alvo: 'h1', direcao: 'direita' }), ...CAPTURA('c2', 0.44),
+    a(0.56, 'andar', { alvo: 'h1', para: 5.6, durF: 0.44 }),
     a(0.46, 'trocar', { alvo: 'davi', estado: 'tremendo' }), a(0.5, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' })],
 }));
 // 4. Mais heróis: dois chegam girando a espada no ar (treino); um cogumelo verde se assusta e foge (pedido do usuário: não o Davi)
@@ -60,14 +65,15 @@ C.push(cena('Até que, numa manhã, vieram seis de uma vez.', {
   acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.03, 'correr', { alvo: id, para: x, durF: 0.6 })), a(0.6, 'tremer', { intensidade: 0.25, durF: 0.1 }), a(0.6, 'som', { som: 'passo' }),
     ...COGUMELOS.map(([id], k) => a(0.72 + k * 0.04, 'emocao', { alvo: id, icone: '!' }))],
 }));
-// 6. Escalada: um por um, os cogumelos fazem "puf" (cada herói golpeia o da frente)
+// 6. Escalada: um por um, os cogumelos são capturados (cada herói golpeia o da frente e o ergue acima da cabeça)
 C.push(cena('Um por um, os cogumelos da floresta foram sumindo.', {
   cenario: 'floresta-isekai', camera: CAM(3.4), vertical: { camera: ATAQUE_SHORTS() },
   // cada herói dá um passo para a esquerda e golpeia (termina na posição da manhã do ataque)
-  elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 0.6, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F))],
+  elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 0.6, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F)),
+    ...COGUMELOS.map(([id], k) => PRESO(id, COMUM[k], HEROIS[k][0]))],
   acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.04, 'andar', { alvo: id, para: x, durF: 0.96 - k * 0.04 })),
-    ...COGUMELOS.flatMap(([id], k) => [a(0.08 + k * 0.2, 'golpe', { alvo: HEROIS[k][0], direcao: 'esquerda' }), a(0.12 + k * 0.2, 'sumir', { alvo: id })])],
-  saiDeCena: COGUMELOS.map(([id]) => id),
+    ...COGUMELOS.flatMap(([id], k) => [a(0.08 + k * 0.2, 'golpe', { alvo: HEROIS[k][0], direcao: 'esquerda' }), ...CAPTURA(id, 0.12 + k * 0.2)])],
+  saiDeCena: COGUMELOS.flatMap(([id]) => [id, 'k-' + id]),
 }));
 // 7. Só sobrou o Davi: foge a passinhos minúsculos, soltando um esporo de medo a cada passo; o herói vem atrás, sem pressa
 C.push(cena('Só sobrou o Davi. E ele fugia a passinhos deste tamanho.', {

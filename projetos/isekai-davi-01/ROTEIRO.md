@@ -2,7 +2,7 @@
 
 **Formato:** ISEKAI (série de Shorts, aventura com comédia, de dia). **Vista:** diorama em todas as cenas (floresta). **Narração:** narrador em 3ª pessoa, um único áudio. **Trilha:** comédia.
 
-**Ideia:** Um garoto renasce como o Davi, um cogumelo: o monstro mais fraco do jogo, que todo herói novo derrota para treinar. Ele é lento, não tem braços e tem um chapéu gigante — mas quando espirra solta esporos azuis que fazem dormir. Numa manhã, seis heróis invadem a floresta e os cogumelos somem um por um. O herói leva o chapéu do Davi; ele para, respira fundo e espirra de propósito: a floresta fica azul e os seis caem dormindo. Virada: os heróis não derrotavam os cogumelos por serem fracos — derrotavam antes que eles crescessem (o chapéu do Davi cresce, sem mudar de cor). Gancho: um goblin bruxo, escondido na moita, anota tudo, com as almas dos cogumelos derrotados flutuando em volta dele.
+**Ideia:** Um garoto renasce como o Davi, um cogumelo: o monstro mais fraco do jogo, que todo herói novo derrota para treinar. Ele é lento, não tem braços e tem um chapéu gigante — mas quando espirra solta esporos azuis que fazem dormir. Numa manhã, seis heróis invadem a floresta e os cogumelos são capturados um por um (derrotar = capturar: o herói golpeia e leva o cogumelo vivo, erguido acima da cabeça). O herói leva o chapéu do Davi; ele para, respira fundo e espirra de propósito: a floresta fica azul e os seis caem dormindo. Virada: os heróis não derrotavam os cogumelos por serem fracos — derrotavam antes que eles crescessem (o chapéu do Davi cresce, sem mudar de cor). Gancho: um goblin bruxo, escondido na moita, anota tudo, com as almas verdes — almas reais de cogumelos já extraídas — flutuando em volta dele.
 
 **Pista plantada:** cena 1 (o primeiro espirro solta uma nuvenzinha azul) e cena 2 (o espirro faz o cogumelo ao lado dormir: "zzz"). Na cena 9 ele lembra disso e espirra de propósito.
 
@@ -32,7 +32,7 @@
 **12.** `floresta-isekai` — Os heróis não derrotavam os cogumelos por serem fracos.
 **13.** `floresta-isekai` — Derrotavam antes que eles crescessem.
 **14.** `floresta-isekai` — E, escondido na moita, um goblin bruxo anotava tudo.  
-   _Gancho da série:_ o goblin é um BRUXO DAS TREVAS (capuz preto com o rosto na sombra, olhos verdes, manto rasgado, grimório, cajado com caveirinha e chama verde); chamas verdes — as almas dos cogumelos derrotados — flutuam em volta dele; ele ergue o cajado e ri.
+   _Gancho da série:_ o goblin é um BRUXO DAS TREVAS (capuz preto com o rosto na sombra, olhos verdes, manto rasgado, grimório, cajado com caveirinha e chama verde); chamas verdes — almas reais de cogumelos capturados, já extraídas — flutuam em volta dele; ele ergue o cajado e ri.
 **15.** `floresta-isekai` — Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.  
    _Final interativo:_ o Davi anda para um lado, para com "?" e volta; o placar no alto mostra "1 FLORESTA" e "2 VILA". O mais votado nos comentários decide o lugar do episódio 2 (mais fundo na floresta ou a vila dos heróis).
 

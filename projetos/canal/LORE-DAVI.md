@@ -9,13 +9,16 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
 2. **O Rei Cogumelo tinha o poder da vida** (fazer crescer, curar, acordar). É o oposto do poder do **goblin bruxo necromante**,
    que vive de almas.
 3. **O necromante atacou o reino para roubar a alma do rei.** O rei **se sacrificou**: usou todo o poder para esconder o coração da
-   floresta e virou o **cogumelo gigante de pedra** no centro das ruínas (opção B). O necromante não levou a alma dele (opção A, só em parte).
+   floresta e virou o **cogumelo gigante de pedra** no centro das ruínas. **O rei antigo está MORTO** (definido pelo usuário): gastou as
+   últimas energias nesse sacrifício final; a pedra é o corpo/túmulo dele, e o necromante não levou a alma dele. Ele **não volta**.
 4. **Desde então, o necromante sussurra para os humanos** (ao chefe da guilda de heróis / ao rei humano): "se um cogumelo crescer,
    ele vira um monstro e devora a vila". Os humanos acreditam que estão se protegendo — **não são vilões, foram enganados**.
-5. **Por isso os heróis derrotam os cogumelos antes que cresçam** (virada do ep. 1) e levam os presos em carroças (ep. 2).
-   As **almas verdes em volta do goblin** são dos cogumelos derrotados: ele as coleciona para ficar mais forte.
-6. **A profecia:** "Um dia, um cogumelo cresceria e seria o novo rei." O novo rei pode **libertar as almas** e acordar o rei antigo —
-   por isso o necromante teme o Davi. O "Achei." do fim do ep. 2 é ele descobrindo quem é.
+5. **Por isso os heróis derrotam os cogumelos antes que cresçam** (virada do ep. 1). **Derrotar = CAPTURAR** (definido pelo usuário):
+   o cogumelo golpeado não morre nem some — o herói o leva **vivo** (no ep. 1, erguido acima da cabeça; no ep. 2, em carroças) para a guilda.
+   As **almas verdes em volta do goblin** são **almas reais de cogumelos, já extraídas** (o estoque que os encapuzados entregam a ele):
+   ele as guarda para ficar mais forte. Não são "efeito" nem decoração — cada chama verde foi um cogumelo.
+6. **A profecia:** "Um dia, um cogumelo cresceria e seria o novo rei." O novo rei pode **libertar as almas** presas
+   (as chamas verdes voltam a ser cogumelos/esporos) — por isso o necromante teme o Davi. O rei antigo não volta (está morto). O "Achei." do fim do ep. 2 é ele descobrindo quem é.
 
 ## A essência da vida (a regra do mundo, definida pelo usuário em 27/11/2026)
 Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são opostos:
@@ -115,7 +118,7 @@ querem, e quando ele desperta alguém, aquele cogumelo vira o que ele já tinha 
 | 2 | **Chamado:** os cogumelos da floresta respondem a ele e vêm ajudar | dezenas de cogumelos saindo da terra e correndo atrás dele | ep. 2–3 (a 1ª vez que o chapéu cresce) |
 | 3 | **Despertar:** toca um cogumelo e ele vira o que nasceu para ser (guarda de chapéu-escudo, curandeiro, batedor veloz, gigante) | o cogumelo brilha e se transforma | ep. 4–5 (cada despertado vira personagem fixo) |
 | 4 | **Dar vida:** faz a terra/árvores crescerem, cura plantações (o poder que fazia a paz com os humanos) | flores e plantas subindo pelo chão | perto do fim |
-| 5 | **Acordar o rei de pedra e libertar as almas** | o cogumelo gigante de pedra rachando; almas verdes virando azuis e voando | final da temporada |
+| 5 | **Libertar as almas** (o rei antigo está morto; a pedra dele só reage — brilha/racha — quando o novo rei chega) | almas verdes virando azuis e voando de volta para a floresta | final da temporada |
 Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas sempre como coisa de cogumelo — nada de poder "de mago".
 
 ## Ideia guardada para o futuro: o aprendiz do goblin (outro renascido)
@@ -136,7 +139,11 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 | 7–8 | Na guilda, os encapuzados extraem as almas dos presos; o "XP" dos heróis é essência roubada; o rei humano vive à custa dela | quem é o goblin de verdade? |
 | 9 | Os encapuzados são os primeiros heróis, que cederam à ganância e vivem há séculos com essência roubada | o medo deles: envelhecer de uma vez |
 | Final | O goblin era o amigo e aprendiz do ancião; descobriu sozinho como roubar a essência (o ancião nunca soube) | o reencontro dos dois |
-| Final | O rei antigo é o cogumelo gigante de pedra; o Davi liberta as almas | o necromante enfrenta o Davi |
+| Final | O cogumelo gigante de pedra é o túmulo do rei antigo (ele morreu no sacrifício); o Davi liberta as almas | o necromante enfrenta o Davi |
+
+## Em aberto (decidir depois com o usuário)
+- **De onde veio o Davi** (por que ele renasceu como cogumelo, quem era antes): fica em aberto por enquanto (pedido do usuário).
+- **Por que o goblin precisa dos humanos** (em vez de caçar sozinho): o usuário vai dizer.
 
 ## Regras
 - Recapitulação só embutida na 1ª frase (ver CLAUDE.md, formato Isekai).

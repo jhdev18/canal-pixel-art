@@ -430,7 +430,7 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
   um cogumelo); poderes, quando vierem, devem ser coisas que cogumelo faz (brotar clones, raízes, brilhar no escuro, chapéu-escudo).
 - **O goblin é BRUXO DAS TREVAS (necromante)** (pedidos do usuário: "característica especial", "vestido de bruxo" e "mais ameaçador, um bruxo das
   trevas"): capuz pontudo preto com o rosto na sombra, manto preto rasgado, colar de ossinhos, sorriso de dentes pontudos, grimório, cajado com caveirinha e chama verde,
-  olhos verdes que brilham (estado `conjurar`); no ep. 1 as almas dos cogumelos derrotados (`fogo-fatuo` verde) flutuam em volta dele —
+  olhos verdes que brilham (estado `conjurar`); no ep. 1 as almas verdes (`fogo-fatuo` verde, almas reais de cogumelos capturados, já extraídas) flutuam em volta dele —
   mistério da série. Sem luz própria no sprite (a luz verde estourava o rosto dele). O desenho anterior (chapéu de mago + manto roxo
   estrelado) virou o `goblin-mago`, guardado para personagens futuros (o usuário gostou da ideia, mas "é mais para um mago").
 
