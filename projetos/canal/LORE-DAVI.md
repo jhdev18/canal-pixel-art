@@ -64,16 +64,23 @@ Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são o
 terror do canal. Na cura, a sombra recolhe para dentro dele (`recolher` da ação `sombra`) e o musgo verde volta. Pode usar também o
 `fantasma-sombra`/`vulto` como "fumaça" saindo do corpo.
 
-## De onde vêm os poderes do goblin (a origem do vilão) — EM ABERTO
-O usuário não gostou da origem "jardineiro do rei" nem das opções "renasceu como o Davi", "maior herói da vila" e "goblins nascem vazios"
-(desta última ficou só a ideia de que os primeiros heróis viraram os encapuzados). Até decidir, valem só os fatos: ele **extrai a essência
-da vida**, é o oposto do rei, vive de essência roubada e ensinou o XP aos primeiros heróis.
+## De onde vêm os poderes do goblin (a origem do vilão) — decidido pelo usuário, 27/11/2026
+- **O goblin era o melhor amigo e aprendiz do ancião cogumelo**, há mil anos. Era o único goblin que vivia na floresta do reino.
+- O ancião o ensinou a **sentir a essência da vida** (ouvir a floresta, saber o que está vivo) — só isso, como se ensina a um amigo.
+- **Foi o próprio goblin quem descobriu, sozinho e em segredo, como ROUBAR a essência.** O ancião **nunca soube**: confiava nele e não viu.
+- Com a essência roubada ele vive há mil anos e ficou cada vez mais forte; ele tem medo de que o novo rei devolva as essências e ele
+  envelheça mil anos de uma vez.
+- **Revelação emocional (fim da temporada):** o ancião descobre que o necromante é o amigo de quem ele sentia falta — e que tudo o que ele
+  ensinou foi usado para destruir o reino. Fala possível: "Eu te ensinei a ouvir a floresta. Nunca te ensinei a calar ela."
+- A ideia "ele é a essência roubada que ganhou vontade" ficou de fora (o usuário achou que tem mais cara de entidade maligna); se um dia
+  servir, pode ser só o **efeito** de tanta essência nele (perto do fim ele já parece menos goblin e mais sombra).
 
 ## Os encapuzados e a guilda (como ele controla tantos humanos)
 Nada de controle da mente: ele usa **medo + ouro + poder**.
 - **Quem são os encapuzados (decidido pelo usuário, 27/11/2026):** são **os primeiros heróis humanos**, que **descobriram o XP por meio do
   goblin**. Desde então usam a essência roubada para **viver mais** (são velhíssimos debaixo do capuz) e **mantêm a mentira** para continuar
   recebendo essência e poder. Não são enganados como os heróis de hoje: **sabem a verdade e escolheram o poder.**
+  **Motivo: ganância** — heróis que cederam à vontade de ter mais poder (nada de doença ou desculpa).
 - **Os encapuzados** (nome a escolher; sugestão: *Os Colhedores*) **controlam a Guilda dos Heróis** por trás: dão as missões, pagam as
   recompensas e **ensinam aos humanos a história do passado — contada do jeito deles**: "um rei-monstro de cogumelo quase devorou a vila;
   se um cogumelo crescer, ele volta". É assim que espalham o **medo**.
@@ -113,7 +120,8 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 | 3–4 | As ruínas: um mural mostra humanos e cogumelos juntos (eles já viveram em paz!); a corrupção da floresta aparece e os monstros ficam violentos | quem quebrou a paz? |
 | 5–6 | Um humano (herói que duvida ou criança) ouve o goblin sussurrando para o conselho; o amuleto verde no peito do chefe da guilda | os humanos foram enganados |
 | 7–8 | Na guilda, os encapuzados extraem as almas dos presos; o "XP" dos heróis é essência roubada; o rei humano vive à custa dela | quem é o goblin de verdade? |
-| 9 | Os encapuzados são os primeiros heróis, vivos há séculos com essência roubada; a origem do goblin (a definir) | o medo deles: envelhecer de uma vez |
+| 9 | Os encapuzados são os primeiros heróis, que cederam à ganância e vivem há séculos com essência roubada | o medo deles: envelhecer de uma vez |
+| Final | O goblin era o amigo e aprendiz do ancião; descobriu sozinho como roubar a essência (o ancião nunca soube) | o reencontro dos dois |
 | Final | O rei antigo é o cogumelo gigante de pedra; o Davi liberta as almas | o necromante enfrenta o Davi |
 
 ## Regras
