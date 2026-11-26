@@ -23,9 +23,18 @@ Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são o
 - **O goblin necromante EXTRAI a essência da vida** das pessoas e a guarda para ele (as almas verdes em volta dele).
 
 ## O equilíbrio da floresta e a corrupção (ideia do usuário, 27/11/2026)
-- **Cogumelos e humanos mantinham juntos o ecossistema da floresta.** Os cogumelos devolvem a essência de tudo que morre para a terra
-  (na vida real os fungos são os grandes "recicladores": decompõem folhas e madeira e devolvem os nutrientes ao solo); os humanos plantavam,
-  podavam e protegiam as árvores.
+- **Cogumelos e humanos mantinham juntos o ecossistema da floresta — um precisa do outro** (o usuário apontou que os humanos pareciam
+  irrelevantes; agora cada lado faz o que o outro NÃO consegue):
+  - **Os cogumelos devolvem a vida à terra:** transformam o que morre (folhas, madeira, bichos) em essência de novo — na vida real os fungos
+    são os "recicladores" da floresta. Mas **não têm braços nem andam longe** (como o Davi): a essência fica presa onde eles estão.
+  - **Os humanos são as mãos e os pés da floresta:** **levam os esporos e as sementes** de um lugar para outro (nas roupas, nas carroças, nas
+    mãos — na vida real pessoas e animais espalham sementes e esporos), plantam, regam e podam. Sem eles, a floresta não se espalha nem se renova.
+  - **O pacto antigo:** "os cogumelos dão a vida, os humanos a levam". A terra adubada pelos cogumelos dava as colheitas da vila; as colheitas
+    alimentavam os humanos, que plantavam mais floresta. **Um ciclo só.**
+  - **Por isso o plano do goblin é esperto:** ao jogar os humanos contra os cogumelos, ele quebra o ciclo **dos dois lados** de uma vez — sem
+    cogumelos a terra morre; sem humanos plantando, a floresta não se recupera. E a essência que sobra vai para ele.
+  - **Para a história:** o Davi (sem braços) **precisa de um humano** para devolver a floresta — o humano que duvida vira "as mãos do rei".
+    Imagem forte para o fim: um humano carregando o Davi no ombro, plantando por onde ele aponta.
 - **Sem os cogumelos** (caçados) **e com o goblin roubando a essência de tudo o que ele quer**, a essência não volta mais para a terra:
   - os **monstros ficam violentos** (olhos verdes como os do goblin — a essência roubada os deixa famintos);
   - a **floresta se corrompe**: árvores secas e retorcidas, chão roxo/cinza, flores murchas, névoa; a corrupção avança a cada episódio.
@@ -61,7 +70,8 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
 - **Ancião cogumelo** — o mais velho da floresta (~mil anos; na vida real a raiz/micélio de um fungo pode viver milhares de anos).
   Era guarda do rei antigo e jurou esperar o novo rei. Fala marcante: "Faz mil anos que nenhum cogumelo cresce."
 - **Goblin bruxo necromante** — o vilão da série; manipula os humanos de longe, nunca luta de frente até o fim da temporada.
-- **Humanos/heróis** — enganados, não malvados. Abre espaço para **um humano aliado** no futuro (uma criança ou um herói que duvida).
+- **Humanos/heróis** — enganados, não malvados. São metade do equilíbrio da floresta (as mãos que levam a vida). Um **humano aliado** (criança
+  ou herói que duvida) vira "as mãos do rei" e é peça-chave do final.
 
 ## Os poderes do rei (o Davi ganha um por episódio — regra do formato: um poder novo por vez)
 Ideia do usuário (27/11/2026): além de dar vida, o rei **comanda os súditos cogumelos e desperta o verdadeiro potencial** deles.
