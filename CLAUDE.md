@@ -413,6 +413,8 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
 - **Um poder novo por episódio** (para o público não precisar aprender tudo de uma vez): esporos azul = sono (ep. 1), amarelo = riso, rosa = amor.
 - Cada episódio: 1 batalha, a regra (os esporos) na tela em quase toda cena, a escolha ativa do protagonista, uma virada e um **gancho**
   para o próximo (o goblin anotando). Seguir também as táticas de retenção do vídeo das sombras (dia, movimento, escalada, "Até que" cedo).
+- **Lore da série: `projetos/canal/LORE-DAVI.md`** (escolhida pelo usuário: humanos e cogumelos viviam em paz; o rei antigo se sacrificou;
+  o necromante engana os humanos para caçarem os cogumelos e impedir o novo rei). Ler antes de escrever qualquer episódio; uma revelação por episódio.
 - **Recapitulação embutida no começo de todo episódio a partir do 2º** (pedido do usuário, 27/11/2026: no feed quase ninguém vê em ordem):
   a 1ª frase já diz quem é e qual a desvantagem, junto da ação nova — "O Davi, o cogumelo mais fraco do jogo, chegou na vila." (≤ 12 palavras,
   ~2–3 s), em cima da abertura em close. Nada de "no episódio anterior..." nem montagem de cenas antigas (isso é o que faz passar o vídeo).
