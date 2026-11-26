@@ -18,11 +18,24 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
    por isso o necromante teme o Davi. O "Achei." do fim do ep. 2 é ele descobrindo quem é.
 
 ## Personagens
-- **Davi** — o cogumelo mais fraco; o chapéu começa a crescer quando ele protege alguém (não quando ele luta).
+- **Davi** — o cogumelo mais fraco; o chapéu começa a crescer quando ele protege alguém (não quando ele luta). É um rei que **chama**, não que obriga.
 - **Ancião cogumelo** — o mais velho da floresta (~mil anos; na vida real a raiz/micélio de um fungo pode viver milhares de anos).
   Era guarda do rei antigo e jurou esperar o novo rei. Fala marcante: "Faz mil anos que nenhum cogumelo cresce."
 - **Goblin bruxo necromante** — o vilão da série; manipula os humanos de longe, nunca luta de frente até o fim da temporada.
 - **Humanos/heróis** — enganados, não malvados. Abre espaço para **um humano aliado** no futuro (uma criança ou um herói que duvida).
+
+## Os poderes do rei (o Davi ganha um por episódio — regra do formato: um poder novo por vez)
+Ideia do usuário (27/11/2026): além de dar vida, o rei **comanda os súditos cogumelos e desperta o verdadeiro potencial** deles.
+**Contraste com o vilão:** o necromante **obriga** (prende almas, manda nos mortos); o Davi **chama** — os cogumelos o seguem porque
+querem, e quando ele desperta alguém, aquele cogumelo vira o que ele já tinha dentro. O mesmo poder ("mandar em outros") com sentido oposto.
+| Nível | Poder | Na tela | Quando |
+|---|---|---|---|
+| 1 | Esporos do sono (já tem) | nuvem azul | ep. 1 |
+| 2 | **Chamado:** os cogumelos da floresta respondem a ele e vêm ajudar | dezenas de cogumelos saindo da terra e correndo atrás dele | ep. 2–3 (a 1ª vez que o chapéu cresce) |
+| 3 | **Despertar:** toca um cogumelo e ele vira o que nasceu para ser (guarda de chapéu-escudo, curandeiro, batedor veloz, gigante) | o cogumelo brilha e se transforma | ep. 4–5 (cada despertado vira personagem fixo) |
+| 4 | **Dar vida:** faz a terra/árvores crescerem, cura plantações (o poder que fazia a paz com os humanos) | flores e plantas subindo pelo chão | perto do fim |
+| 5 | **Acordar o rei de pedra e libertar as almas** | o cogumelo gigante de pedra rachando; almas verdes virando azuis e voando | final da temporada |
+Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas sempre como coisa de cogumelo — nada de poder "de mago".
 
 ## Ordem das revelações (uma por episódio)
 | Ep. | Revelação nova | Gancho |
