@@ -5,7 +5,7 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
 
 ## A verdade (o que só o fim da temporada revela inteiro)
 1. **Há mil anos, humanos e cogumelos viviam em paz.** O Reino Cogumelo ficava no coração da floresta e a vila dos humanos na borda.
-   Os cogumelos faziam a terra dar comida (os esporos do rei curavam plantações); os humanos protegiam a floresta.
+   Os cogumelos devolviam a vida à terra e os humanos a levavam (sementes e esporos) — ver "O equilíbrio da floresta".
 2. **O Rei Cogumelo tinha o poder da vida** (fazer crescer, curar, acordar). É o oposto do poder do **goblin bruxo necromante**,
    que vive de almas.
 3. **O necromante atacou o reino para roubar a alma do rei.** O rei **se sacrificou**: usou todo o poder para esconder o coração da
