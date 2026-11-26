@@ -26,6 +26,23 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
 - Com ela, ele teria **essência infinita** (os cogumelos nascem lá sem parar). Por isso, por mil anos, ele só pega os cogumelos que se
   espalham pela floresta, e por isso o "Achei." do ep. 2 é tão perigoso: seguindo o Davi, ele descobre o caminho da vila.
 
+## A profecia (definida pelo usuário: mistura das ideias 1, 3 e 4)
+- **Foi o ancião quem a criou**, para passar a história adiante: "um dia, um cogumelo pode crescer e se tornar rei".
+- **No fundo é uma regra da essência, não magia:** **qualquer** cogumelo pode crescer e virar rei se não for capturado antes. O ancião contou
+  isso como história para os pequenos. Mil anos depois, nem ele sabe se ainda é verdade e conta para não desistir (fala possível:
+  "Eu contava essa história para não desistir").
+- **O goblin aprendeu a mesma lição com o ancião**, há mil anos. Para o rei ela era esperança; para o goblin é o **mapa do que ele precisa
+  impedir**. Por isso ele caça os cogumelos há mil anos e por isso os heróis "derrotam antes que cresçam" (a virada do ep. 1).
+- **Condições para virar rei (PROPOSTA, aguardando o usuário):**
+  1. **Não ser capturado** enquanto cresce (precisa de tempo; a caçada impede isso há mil anos).
+  2. **Crescer DANDO, não tirando:** a essência do cogumelo cresce quando ele a usa para proteger ou ajudar alguém (o chapéu do Davi já
+     cresce quando ele protege, não quando luta). É o oposto do goblin, que fica forte tirando. O rei antigo morreu dando tudo, a prova máxima.
+  3. **Ser seguido por escolha:** os outros cogumelos precisam responder ao chamado porque querem (poder 2), não por medo. Um "rei" que
+     obriga vira o que o goblin é.
+  - **Por que ninguém cresceu em mil anos:** além da caçada, os poucos que escapavam viviam fugindo e escondidos, sem proteger ninguém
+    (o medo os mantinha pequenos). **O Davi é o primeiro que escolhe proteger** (no ep. 1, ele espirra de propósito).
+  - **Coroação (final):** o chapéu chega ao tamanho máximo e as almas verdes presas respondem a ele (poder 5).
+
 ## A essência da vida (a regra do mundo, definida pelo usuário em 27/11/2026)
 Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são opostos:
 - **O rei cogumelo DÁ essência** às pessoas e **desperta a essência que elas já têm** (o cogumelo vira o que nasceu para ser).
@@ -172,7 +189,7 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 ## Em aberto (decidir depois com o usuário)
 - **De onde veio o Davi** (por que ele renasceu como cogumelo, quem era antes): fica em aberto por enquanto (pedido do usuário).
 - **Por que o ancião nunca reconheceu o goblin** no ataque de mil anos atrás (precisa fechar antes da revelação final): em aberto (pedido do usuário).
-- **Quem fez a profecia** e por que um cogumelo comum (o Davi) pode virar rei.
+- **As condições para um cogumelo virar rei:** proposta abaixo ("A profecia"), aguardando o usuário.
 - **"Necromante":** ele também levanta/controla mortos, ou só extrai e guarda almas?
 - **O rei humano:** é um dos encapuzados ou só um fantoche da guilda?
 
