@@ -46,6 +46,24 @@ Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são o
 - **Na tela (com o que já existe):** a ação `sombra` que se alastra, com `cor`/`corBorda` roxas, faz a corrupção avançar pelo chão;
   `arvore-iso` no estado `seca`; clima `neblina`; monstros com olhos verdes. Asset novo útil: versão "corrompida" da `floresta-isekai`.
 
+## Os monstros (bichos da floresta adoecidos pela corrupção — não são maus)
+- **Regra visual:** saudável = cores vivas, olhos normais, calmo; **corrompido** = manchas roxas/cinzas, espinhos/rachaduras e **olhos verdes
+  brilhando** (a marca do goblin). Quando o Davi usa o "dar vida", o verde some e o bicho volta ao normal (às vezes vira aliado).
+  Cada monstro = **um sprite com 2 estados** (`normal` / `corrompido`) — a troca rende um corte de zoom.
+- O Davi **não mata ninguém** (faz dormir; depois cura). Os **heróis humanos matam os monstros** — e essa essência também vai para o goblin.
+- **No máximo um monstro novo por episódio.**
+| Tamanho | Saudável | Corrompido | Uso |
+|---|---|---|---|
+| Pequeno | vagalumes que iluminam a floresta | enxame de luz verde que suga essência | ameaça em grupo |
+| Pequeno | sapo-folha | sapo inchado de língua roxa | piada/susto rápido |
+| Médio | **javali de musgo** (o musgo nas costas é um jardim) | **javali de espinhos feito de sombra**: o corpo solta fumaça de sombra e, por onde ele corre, **a sombra roxa se alastra pelo chão** e sobe nas árvores e nas pessoas (ação `sombra` do motor, `cor`/`corBorda` roxas, `origem` seguindo o javali); olhos verdes no meio da sombra | 1ª batalha de verdade (ep. 3) |
+| Médio | coruja-galho | coruja seca que grita e chama os outros | vigia do goblin |
+| Grande | urso de casca | urso rachado com seiva verde | chefe do meio da temporada |
+| Chefe | o guardião da floresta (árvore antiga que anda) | árvore seca e retorcida, controlada pelo goblin | quase-final: o Davi cura e ela vira aliada |
+**Javali corrompido (pedido do usuário: usar as sombras):** a corrupção dele é **a sombra viva** — a mesma sombra que se alastra dos vídeos de
+terror do canal. Na cura, a sombra recolhe para dentro dele (`recolher` da ação `sombra`) e o musgo verde volta. Pode usar também o
+`fantasma-sombra`/`vulto` como "fumaça" saindo do corpo.
+
 ## De onde vêm os poderes do goblin (a origem do vilão)
 - **Ele era o jardineiro do Rei Cogumelo** — o único que não era cogumelo na corte. Cuidava das plantações com a magia do rei.
 - Os cogumelos vivem mil anos; um goblin, uns poucos. **Com medo de morrer**, ele pegou o livro do rei e **escreveu a magia ao contrário**:
