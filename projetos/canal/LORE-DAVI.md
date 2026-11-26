@@ -4,7 +4,7 @@ Combinação escolhida pelo usuário (27/11/2026): as opções A + B **com os hu
 Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
 
 ## A verdade (o que só o fim da temporada revela inteiro)
-1. **Há mil anos, humanos e cogumelos viviam em paz.** O Reino Cogumelo ficava no coração da floresta e a vila dos humanos na borda.
+1. **Há mil anos, humanos e cogumelos viviam em paz.** O Reino Cogumelo ficava no centro da floresta (onde hoje fica a vila cogumelo) e a vila dos humanos na borda.
    Os cogumelos devolviam a vida à terra e os humanos a levavam (sementes e esporos) — ver "O equilíbrio da floresta".
 2. **O Rei Cogumelo tinha o poder da vida** (fazer crescer, curar, acordar). É o oposto do poder do **goblin bruxo necromante**,
    que vive de almas.
