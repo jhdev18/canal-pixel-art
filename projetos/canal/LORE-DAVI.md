@@ -64,15 +64,16 @@ Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são o
 terror do canal. Na cura, a sombra recolhe para dentro dele (`recolher` da ação `sombra`) e o musgo verde volta. Pode usar também o
 `fantasma-sombra`/`vulto` como "fumaça" saindo do corpo.
 
-## De onde vêm os poderes do goblin (a origem do vilão)
-- **Ele era o jardineiro do Rei Cogumelo** — o único que não era cogumelo na corte. Cuidava das plantações com a magia do rei.
-- Os cogumelos vivem mil anos; um goblin, uns poucos. **Com medo de morrer**, ele pegou o livro do rei e **escreveu a magia ao contrário**:
-  em vez de dar essência, aprendeu a **extrair**. O grimório dele é o livro do rei reescrito (pista: o símbolo do rei de cabeça para baixo na capa).
-- **A essência extraída dá anos de vida a ele** — por isso está vivo há mil anos. Se o novo rei devolver as essências, ele **envelhece mil
-  anos de uma vez**. É do que ele tem medo.
+## De onde vêm os poderes do goblin (a origem do vilão) — EM ABERTO
+O usuário não gostou da origem "jardineiro do rei" nem das opções "renasceu como o Davi", "maior herói da vila" e "goblins nascem vazios"
+(desta última ficou só a ideia de que os primeiros heróis viraram os encapuzados). Até decidir, valem só os fatos: ele **extrai a essência
+da vida**, é o oposto do rei, vive de essência roubada e ensinou o XP aos primeiros heróis.
 
 ## Os encapuzados e a guilda (como ele controla tantos humanos)
 Nada de controle da mente: ele usa **medo + ouro + poder**.
+- **Quem são os encapuzados (decidido pelo usuário, 27/11/2026):** são **os primeiros heróis humanos**, que **descobriram o XP por meio do
+  goblin**. Desde então usam a essência roubada para **viver mais** (são velhíssimos debaixo do capuz) e **mantêm a mentira** para continuar
+  recebendo essência e poder. Não são enganados como os heróis de hoje: **sabem a verdade e escolheram o poder.**
 - **Os encapuzados** (nome a escolher; sugestão: *Os Colhedores*) **controlam a Guilda dos Heróis** por trás: dão as missões, pagam as
   recompensas e **ensinam aos humanos a história do passado — contada do jeito deles**: "um rei-monstro de cogumelo quase devorou a vila;
   se um cogumelo crescer, ele volta". É assim que espalham o **medo**.
@@ -112,7 +113,7 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 | 3–4 | As ruínas: um mural mostra humanos e cogumelos juntos (eles já viveram em paz!); a corrupção da floresta aparece e os monstros ficam violentos | quem quebrou a paz? |
 | 5–6 | Um humano (herói que duvida ou criança) ouve o goblin sussurrando para o conselho; o amuleto verde no peito do chefe da guilda | os humanos foram enganados |
 | 7–8 | Na guilda, os encapuzados extraem as almas dos presos; o "XP" dos heróis é essência roubada; o rei humano vive à custa dela | quem é o goblin de verdade? |
-| 9 | O goblin era o jardineiro do rei; o grimório é o livro do rei escrito ao contrário (dar ↔ extrair essência) | o medo dele: envelhecer mil anos |
+| 9 | Os encapuzados são os primeiros heróis, vivos há séculos com essência roubada; a origem do goblin (a definir) | o medo deles: envelhecer de uma vez |
 | Final | O rei antigo é o cogumelo gigante de pedra; o Davi liberta as almas | o necromante enfrenta o Davi |
 
 ## Regras
