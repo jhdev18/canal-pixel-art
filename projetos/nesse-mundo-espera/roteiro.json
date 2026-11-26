@@ -330,6 +330,17 @@
      "rosto": "bravo",
      "inicio": 0.38,
      "duracao": 0.2
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -1.5,
+     "y": 1.59,
+     "inicio": 3.03,
+     "vertical": {
+      "x": -1.5,
+      "y": 2.02
+     }
     }
    ],
    "vertical": {
@@ -477,6 +488,17 @@
      "rosto": "surpreso",
      "inicio": 2.2,
      "duracao": 2.85
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 0.5,
+     "y": 1.59,
+     "inicio": 3.15,
+     "vertical": {
+      "x": 0.5,
+      "y": 2.02
+     }
     }
    ],
    "vertical": {
@@ -568,6 +590,17 @@
      "tipo": "som",
      "som": "magia",
      "inicio": 2.91
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -2.15,
+     "y": -1.76,
+     "inicio": 3.57,
+     "vertical": {
+      "x": -2.15,
+      "y": -1.33
+     }
     }
    ],
    "vertical": {
@@ -1043,6 +1076,17 @@
      "alvo": "avis",
      "inicio": 3.95,
      "duracao": 0.64
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -2.05,
+     "y": -1.26,
+     "inicio": 2.87,
+     "vertical": {
+      "x": -2.05,
+      "y": -0.83
+     }
     }
    ],
    "vertical": {

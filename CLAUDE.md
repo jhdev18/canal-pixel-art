@@ -208,6 +208,10 @@ abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run c
   tamanho) e `zoomShorts(C)` do `nm.mjs` (chamar depois do `alturaShorts`) = personagens 50% maiores no Shorts (zoom 1,5 mantendo os pés na
   mesma altura da tela; pula cena com zoom próprio, corte, panorâmica, câmera `travado` ou grupo largo demais). Comparar o "continuaram"
   desses três com o brinquedos (46,6%) antes de virar padrão.
+  **Cortes de zoom frequentes** (pedido do usuário, 26/11/2026): `cortesZoom(C, [[cena, id, f], ...])` do `nm.mjs` (depois do `zoomShorts`) põe um
+  `corte` de zoom 2 centrado em quem reage, no instante f da fala (pés a ~80% no 16:9 e ~71% no Shorts, posição de quem anda calculada).
+  Meta: ~1 cena a cada 2 (5–7 por vídeo), nas reações e revelações; não usar em cena com gente na fileira da frente (a legenda cobre —
+  o `npm run conferir` acusa `[legenda]`).
 
 **Duração média (dados reais):** sombras **0:43 de ~0:50** (86%); guardiões **0:26** (~52%) — o público dos guardiões saiu
 justo quando o vídeo ficou parado e escuro (cenas 4–9, de 11 a 39 s). Cena por cena, o que segurou o público nas sombras:

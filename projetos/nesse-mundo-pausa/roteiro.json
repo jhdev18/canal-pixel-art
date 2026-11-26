@@ -550,6 +550,17 @@
      "rosto": "bravo",
      "inicio": 1.1,
      "duracao": 2.38
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 2.55,
+     "y": 1.74,
+     "inicio": 2.05,
+     "vertical": {
+      "x": 2.55,
+      "y": 2.17
+     }
     }
    ],
    "vertical": {
@@ -625,6 +636,17 @@
      "rosto": "rindo",
      "inicio": 1.32,
      "duracao": 1.91
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 2.3,
+     "y": 1.59,
+     "inicio": 2.2,
+     "vertical": {
+      "x": 2.3,
+      "y": 2.03
+     }
     }
    ],
    "vertical": {
@@ -806,6 +828,17 @@
      "alvo": "atop",
      "icone": "!",
      "inicio": 2.74
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -4.31,
+     "y": 0.34,
+     "inicio": 3.03,
+     "vertical": {
+      "x": -4.31,
+      "y": 0.77
+     }
     }
    ],
    "vertical": {
@@ -1052,6 +1085,17 @@
      "rosto": "surpreso",
      "inicio": 1.37,
      "duracao": 2.51
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 2.35,
+     "y": 1.14,
+     "inicio": 2.98,
+     "vertical": {
+      "x": 2.35,
+      "y": 1.58
+     }
     }
    ],
    "vertical": {
@@ -1263,6 +1307,17 @@
      "intensidade": 0.3,
      "inicio": 2.8,
      "duracao": 0.36
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -7.05,
+     "y": 0.34,
+     "inicio": 2.98,
+     "vertical": {
+      "x": -7.05,
+      "y": 0.77
+     }
     }
    ],
    "vertical": {

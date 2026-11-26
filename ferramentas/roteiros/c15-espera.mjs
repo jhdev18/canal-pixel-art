@@ -1,4 +1,4 @@
-import { zoomShorts, alturaShorts, marcar, P, S, PRACA, a, cena, salvar, base, rostos } from './nm.mjs';
+import { cortesZoom, zoomShorts, alturaShorts, marcar, P, S, PRACA, a, cena, salvar, base, rostos } from './nm.mjs';
 // NESSE MUNDO curto, EMOCIONAL de dia (Roblox). "Nesse mundo, quando você sai do Roblox, seu avatar te espera."
 // Pista: a Nina parou de jogar "sem tchau" (cena 4). Mistério que se vê: o aceno dela ficando mais devagar, com os dias somando.
 // Evento (~38%): o servidor vai fechar. A Nina age (chega primeiro). A virada inverte a crença ("espera você voltar" → "esperava um tchau").
@@ -114,6 +114,7 @@ alturaShorts(C, { 1: -1.25, 2: -1.25, 3: -2, 4: -1.25, 5: -2, 6: -1.25, 7: -1.75
 
 // formato novo (pedido do usuário 25/11/2026): personagens maiores no Shorts (zoom 1,5) e a regra fixa no alto o vídeo inteiro
 zoomShorts(C);
+cortesZoom(C, [[4, 'nina', 0.7], [6, 'nina', 0.6], [7, 'anina', 0.75], [14, 'avis', 0.6]]);   // quebra de padrão: zoom 2 na palavra forte (números = cenas sem a abertura)
 R.tituloFixo = 'SEU AVATAR NUNCA ESQUECE VOCÊ';
 
 // ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;

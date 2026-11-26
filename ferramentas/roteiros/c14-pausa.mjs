@@ -1,4 +1,4 @@
-import { zoomShorts, alturaShorts, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs';
+import { cortesZoom, zoomShorts, alturaShorts, P, S, RUA, a, cena, salvar, base, rostos } from './nm.mjs';
 // NESSE MUNDO curto, COMÉDIA de dia (Roblox). "Nesse mundo, quando sua mãe manda pausar o Roblox, tudo pausa."
 // A frase que toda criança ouve ("pausa esse jogo!") e a resposta de sempre ("online não pausa!") viram regra, pista e virada.
 // Gancho: o avatar congela no ar aos 0,3 s. Pico de movimento no meio (a corrida pelos pilares). Imagem cômica a cada ~4 s.
@@ -132,6 +132,7 @@ alturaShorts(C, { 2: -1.25, 3: -2, 4: -1.25, 5: -1.25, 6: -0.75, 7: -0.5, 9: -1.
 
 // formato novo (pedido do usuário 25/11/2026): personagens maiores no Shorts (zoom 1,5) e a regra fixa no alto o vídeo inteiro
 zoomShorts(C);
+cortesZoom(C, [[4, 'mae', 0.55], [5, 'leo', 0.65], [7, 'atop', 0.75], [9, 'leo', 0.75], [12, 'amae', 0.75]]);   // quebra de padrão: zoom 2 na palavra forte (números = cenas sem a abertura)
 R.tituloFixo = 'QUANDO A MÃE PAUSA, TUDO PAUSA';
 
 // ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;

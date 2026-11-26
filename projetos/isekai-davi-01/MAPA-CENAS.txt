@@ -3,17 +3,17 @@ E se você renascesse como o monstro mais fraco do jogo? — tempos ESTIMADOS (s
   início   fim     %    cena  o que tem               narração
   0:00.0  0:01.8    0%    1   mov flash som           E se você renascesse
   0:01.8  0:05.4    3%    2   mov                     como o monstro mais fraco do jogo?
-  0:05.4  0:10.1    9%    3   mov som                 Davi acordou sem braços, de perninhas curtas e chapéu gigante.
-  0:10.1  0:14.9   17%    4   mov                     Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.
+  0:05.4  0:10.1    9%    3   mov corte som           Davi acordou sem braços, de perninhas curtas e chapéu gigante.
+  0:10.1  0:14.9   17%    4   mov corte               Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.
   0:14.9  0:18.6   25%    5   mov                     Por isso, todo herói novo vem treinar na floresta.
   0:18.6  0:21.9   31%    6   mov flash som           Até que, numa manhã, vieram seis de uma vez.
   0:21.9  0:25.6   37%    7   mov                     Um por um, os cogumelos da floresta foram sumindo.
-  0:25.6  0:30.6   43%    8   mov                     Só sobrou o Davi. E ele fugia a passinhos deste tamanho.
+  0:25.6  0:30.6   43%    8   mov corte               Só sobrou o Davi. E ele fugia a passinhos deste tamanho.
   0:30.6  0:34.0   51%    9   mov flash som           A espada desceu e levou o chapéu dele junto.
   0:34.0  0:39.3   57%   10   mov                     Então o Davi parou. Respirou fundo. E espirrou de propósito.
-  0:39.3  0:41.7   66%   11   mov flash               A floresta inteira ficou azul.
+  0:39.3  0:41.7   66%   11   mov corte flash         A floresta inteira ficou azul.
   0:41.7  0:44.3   70%   12   mov                     E os seis heróis caíram dormindo.
-  0:44.3  0:48.3   74%   13   mov                     Os heróis não derrotavam os cogumelos por serem fracos.
+  0:44.3  0:48.3   74%   13   mov corte               Os heróis não derrotavam os cogumelos por serem fracos.
   0:48.3  0:51.2   81%   14   mov corte flash         Derrotavam antes que eles crescessem.
   0:51.2  0:55.0   86%   15   mov flash               E, escondido na moita, um goblin bruxo anotava tudo.
   0:55.0  0:59.5   92%   16   mov som                 Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.

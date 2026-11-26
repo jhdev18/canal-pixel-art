@@ -126,6 +126,29 @@ export const troca = (f, a1, a2) => [
   a(f + 0.12, 'emocao', { alvo: a1, icone: '?' }), a(f + 0.14, 'emocao', { alvo: a2, icone: '?' }),
 ];
 
+// Corte de zoom (quebra de padrão, pedido do usuário 26/11/2026) na palavra forte: lista [[cena, id, f]] — no instante f da fala a câmera
+// "pula" para zoom 2 centrada em quem está em "id" (posição naquele instante, andando ou não), pés a ~80% (16:9) / ~71% (Shorts) da altura.
+// Usar nas reações e revelações, ~1 cena a cada 2. Chamar depois do zoomShorts (cena com corte não ganha o zoom 1,5 de base).
+export function cortesZoom(C, lista, zoom = 2) {
+  for (const [n, id, f] of lista) {
+    const c = C[n - 1], e = (c.elementos || []).find((el) => el.id === id);
+    if (!e) throw new Error(`cortesZoom: cena ${n} não tem "${id}"`);
+    const t = INI + f * c.narracaoTexto.length * SEG;
+    let x = e.x ?? 0;
+    for (const ac of (c.acoes || []).filter((ac) => ac.alvo === id && ['andar', 'correr', 'mover', 'pular'].includes(ac.tipo) && ac.para != null).sort((p, q) => p.inicio - q.inicio)) {
+      const px = Array.isArray(ac.para) ? ac.para[0] : ac.para, d = ac.duracao || 1;
+      if (t >= ac.inicio + d) x = px; else if (t > ac.inicio) x += (px - x) * (t - ac.inicio) / d;
+    }
+    const base = CENARIOS[c.cenario] || {}, comodo = !!(base.comodo || c.comodo || /-diorama$/.test(c.cenario || ''));
+    const camZ = c.camera?.z ?? base.camera?.z ?? 0, z = e.z ?? 0;
+    const cx = +xCentrado(x, z, camZ, comodo).toFixed(2);
+    const i = (comodo ? 4.2 : 6.25) - z, ic = (comodo ? 2.5 : 3.5) - camZ;
+    const pes = -((i - x) - (ic - cx)) / 2 + (e.y ?? 0);   // altura do mundo que cai nos pés (mesma conta do yTela)
+    const yPara = (H, Y) => +(pes - (H / 2 - Y) / (16 * zoom)).toFixed(2);
+    c.acoes.push({ tipo: 'corte', zoom, x: cx, y: yPara(180, 144), inicio: r2(t), vertical: { x: cx, y: yPara(320, 228) } });
+  }
+}
+
 // PROTÓTIPO (pedido do usuário, 25/11/2026): personagens MAIORES no Shorts. Cena com zoom 1 no "vertical" passa a 1,5; a câmera sobe/desce
 // para os pés de quem está mais embaixo continuarem na MESMA altura da tela (a legenda não cobre ninguém novo). Não mexe em cena com zoom
 // próprio, panorâmica ou corte de zoom. Chamar depois do alturaShorts e antes do salvar() (o salvar recentra o x com o zoom novo).

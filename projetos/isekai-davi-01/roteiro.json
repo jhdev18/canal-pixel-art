@@ -257,6 +257,17 @@
      "rosto": "envergonhado",
      "inicio": 3.73,
      "duracao": 0.6
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 2.15,
+     "y": -0.26,
+     "inicio": 3.12,
+     "vertical": {
+      "x": 2.15,
+      "y": 0.18
+     }
     }
    ],
    "vertical": {
@@ -357,6 +368,17 @@
      "rosto": "pensativo",
      "inicio": 0.51,
      "duracao": 1.63
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 0.95,
+     "y": -0.66,
+     "inicio": 3.3,
+     "vertical": {
+      "x": 0.95,
+      "y": -0.23
+     }
     }
    ],
    "vertical": {
@@ -1067,6 +1089,17 @@
      "rosto": "bravo",
      "inicio": 3.03,
      "duracao": 0.91
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 1.35,
+     "y": -0.26,
+     "inicio": 3.03,
+     "vertical": {
+      "x": 1.35,
+      "y": 0.18
+     }
     }
    ],
    "vertical": {
@@ -1581,6 +1614,17 @@
      "rosto": "surpreso",
      "inicio": 1.08,
      "duracao": 1.17
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 0.95,
+     "y": -0.26,
+     "inicio": 1.28,
+     "vertical": {
+      "x": 0.95,
+      "y": 0.17
+     }
     }
    ],
    "vertical": {
@@ -2041,6 +2085,17 @@
      "rosto": "rindo",
      "inicio": 2.3,
      "duracao": 1.58
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": 0.95,
+     "y": -0.26,
+     "inicio": 2.62,
+     "vertical": {
+      "x": 0.95,
+      "y": 0.17
+     }
     }
    ],
    "vertical": {
