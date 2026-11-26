@@ -45,6 +45,15 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
     comparar estilos). **Nunca** usar numa cena de vídeo real; o `npm run conferir` acusa `[teste]`.
 
 ## Ritmo dos próximos vídeos (retenção)
+- **FORMATO PADRÃO DO SHORTS (aprovado pelo usuário em 26/11/2026 no isekai e no pausa: "ficaram legais") — usar em TODO vídeo novo:**
+  1. **Abertura em close (~1 s)** com a imagem mais forte do vídeo (zoom 2–3, movimento e SFX no quadro 0, título já no quadro 0),
+     falando o começo da 1ª frase; a cena seguinte continua a frase (`"continuaFrase": true`, `"tituloSemEntrada": true`).
+  2. **Faixa com a regra fixa no alto** o vídeo inteiro (`R.tituloFixo = '<regra curta>'`).
+  3. **Personagens maiores no Shorts:** `zoomShorts(C)` depois do `alturaShorts`.
+  4. **Cortes de zoom 2 nas palavras fortes**, ~1 cena a cada 2 (5–7 por vídeo), centrados em quem reage: `cortesZoom(C, [[cena, id, f]])`.
+  5. **Nenhuma cena parada** no `npm run mapa` (nem a abertura: desaparecer/aparecer sozinho não conta — pôr alguém andando/pulando).
+  Detalhes e como montar: seção "Estilo Nesse Mundo" → dados do brinquedos/avatar. Conferir com fotos 9:16 (`fotos-shorts.mjs`) quando o
+  usuário permitir: ninguém cortado na borda, legenda fora dos personagens, a faixa não cobre placar.
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.
 - **Uma frase do narrador = uma cena curta** (2–4 s). Evitar "..." longos no texto do narrador.
 - **Nada parado, mas com sentido:** a vida da cena vem de preferência dos **personagens** (expressões no rosto — ação
