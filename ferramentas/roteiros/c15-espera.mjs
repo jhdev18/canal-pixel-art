@@ -123,7 +123,7 @@ R.tituloFixo = 'SEU AVATAR NUNCA ESQUECE VOCÊ';
     cenario: 'mundo-bloco', transicao: 'corte', foco: 'anina', camera: { x: -5.4, z: 2.2, y: 1.4, zoom: 3 },
     elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }), P('azul', 'avatar-bloco-azul', -3.0, 2.6, { pose: 'acenar', figurante: true }),
       P('a1', 'avatar-bloco-vermelho', -7.4, 2.0, { pose: 'acenar', figurante: true })],
-    acoes: [a(0, 'desaparecer', { alvo: 'azul', durF: 0.6 }), a(0, 'som', { som: 'magia' }), a(0.3, 'desaparecer', { alvo: 'a1', durF: 0.6 })],
+    acoes: [a(0, 'andar', { alvo: 'a1', para: -6.9, durF: 0.5 }), a(0, 'desaparecer', { alvo: 'azul', durF: 0.6 }), a(0, 'som', { som: 'magia' }), a(0.5, 'desaparecer', { alvo: 'a1', durF: 0.5 })],
   })];
   alturaShorts(abre, { 1: -3.25 }); C.unshift(abre[0]); }
 
