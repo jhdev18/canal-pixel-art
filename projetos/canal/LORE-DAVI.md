@@ -22,6 +22,21 @@ Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são o
 - **O rei cogumelo DÁ essência** às pessoas e **desperta a essência que elas já têm** (o cogumelo vira o que nasceu para ser).
 - **O goblin necromante EXTRAI a essência da vida** das pessoas e a guarda para ele (as almas verdes em volta dele).
 
+## O equilíbrio da floresta e a corrupção (ideia do usuário, 27/11/2026)
+- **Cogumelos e humanos mantinham juntos o ecossistema da floresta.** Os cogumelos devolvem a essência de tudo que morre para a terra
+  (na vida real os fungos são os grandes "recicladores": decompõem folhas e madeira e devolvem os nutrientes ao solo); os humanos plantavam,
+  podavam e protegiam as árvores.
+- **Sem os cogumelos** (caçados) **e com o goblin roubando a essência de tudo o que ele quer**, a essência não volta mais para a terra:
+  - os **monstros ficam violentos** (olhos verdes como os do goblin — a essência roubada os deixa famintos);
+  - a **floresta se corrompe**: árvores secas e retorcidas, chão roxo/cinza, flores murchas, névoa; a corrupção avança a cada episódio.
+- **Escalada da série:** cada episódio a corrupção está um pouco maior (começa na borda, chega na vila cogumelo, ameaça a vila humana).
+- **Ponte para os humanos:** as plantações da vila começam a secar; os humanos culpam os cogumelos (é o que os encapuzados ensinam),
+  mas o público vê que é o contrário — gancho para o humano que duvida.
+- **O poder "dar vida" do Davi cura a corrupção** (a terra volta a verde por onde ele passa) — prova visual de que o novo rei é o
+  remédio, não o monstro.
+- **Na tela (com o que já existe):** a ação `sombra` que se alastra, com `cor`/`corBorda` roxas, faz a corrupção avançar pelo chão;
+  `arvore-iso` no estado `seca`; clima `neblina`; monstros com olhos verdes. Asset novo útil: versão "corrompida" da `floresta-isekai`.
+
 ## De onde vêm os poderes do goblin (a origem do vilão)
 - **Ele era o jardineiro do Rei Cogumelo** — o único que não era cogumelo na corte. Cuidava das plantações com a magia do rei.
 - Os cogumelos vivem mil anos; um goblin, uns poucos. **Com medo de morrer**, ele pegou o livro do rei e **escreveu a magia ao contrário**:
@@ -66,7 +81,7 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 |---|---|---|
 | 1 | Os heróis derrotam os cogumelos antes que cresçam | o goblin anotando |
 | 2 | A carroça de presos; o ancião; a profecia ("um novo rei") | o chapéu cresce um pouquinho; o goblin: "Achei." |
-| 3–4 | As ruínas: um mural mostra humanos e cogumelos juntos (eles já viveram em paz!) | quem quebrou a paz? |
+| 3–4 | As ruínas: um mural mostra humanos e cogumelos juntos (eles já viveram em paz!); a corrupção da floresta aparece e os monstros ficam violentos | quem quebrou a paz? |
 | 5–6 | Um humano (herói que duvida ou criança) ouve o goblin sussurrando para o conselho; o amuleto verde no peito do chefe da guilda | os humanos foram enganados |
 | 7–8 | Na guilda, os encapuzados extraem as almas dos presos; o "XP" dos heróis é essência roubada; o rei humano vive à custa dela | quem é o goblin de verdade? |
 | 9 | O goblin era o jardineiro do rei; o grimório é o livro do rei escrito ao contrário (dar ↔ extrair essência) | o medo dele: envelhecer mil anos |
