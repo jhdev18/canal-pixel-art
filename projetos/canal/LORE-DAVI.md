@@ -8,8 +8,9 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
    Os cogumelos devolviam a vida à terra e os humanos a levavam (sementes e esporos) — ver "O equilíbrio da floresta".
 2. **O Rei Cogumelo tinha o poder da vida** (fazer crescer, curar, acordar). É o oposto do poder do **goblin bruxo necromante**,
    que vive de almas.
-3. **O necromante atacou o reino para roubar a alma do rei.** O rei **se sacrificou**: usou todo o poder para esconder o coração da
-   floresta e virou o **cogumelo gigante de pedra** no centro das ruínas. **O rei antigo está MORTO** (definido pelo usuário): gastou as
+3. **Por que o goblin traiu o rei (definido pelo usuário):** **inveja** e vontade de **mais poder**. Ele mostrou ao rei o "novo método"
+   (tirar a essência), que ele achava **revolucionário**, e o rei **não apoiou**. Então o necromante atacou o reino para roubar a alma do rei.
+   O rei **se sacrificou**: usou todo o poder para proteger a **vila cogumelo** (que o goblin nunca mais achou) e virou o **cogumelo gigante de pedra** no centro das ruínas. **O rei antigo está MORTO** (definido pelo usuário): gastou as
    últimas energias nesse sacrifício final; a pedra é o corpo/túmulo dele, e o necromante não levou a alma dele. Ele **não volta**.
 4. **Desde então, o necromante sussurra para os humanos** (ao chefe da guilda de heróis / ao rei humano): "se um cogumelo crescer,
    ele vira um monstro e devora a vila". Os humanos acreditam que estão se protegendo — **não são vilões, foram enganados**.
@@ -19,6 +20,11 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
    ele as guarda para ficar mais forte. Não são "efeito" nem decoração — cada chama verde foi um cogumelo.
 6. **A profecia:** "Um dia, um cogumelo cresceria e seria o novo rei." O novo rei pode **libertar as almas** presas
    (as chamas verdes voltam a ser cogumelos/esporos) — por isso o necromante teme o Davi. O rei antigo não volta (está morto). O "Achei." do fim do ep. 2 é ele descobrindo quem é.
+
+## O que o goblin procura: a vila cogumelo (definido pelo usuário)
+- **Não existe "coração da floresta".** O que o goblin quer é achar **a vila — o centro onde os cogumelos vivem e de onde surgem**.
+- Com ela, ele teria **essência infinita** (os cogumelos nascem lá sem parar). Por isso, por mil anos, ele só pega os cogumelos que se
+  espalham pela floresta, e por isso o "Achei." do ep. 2 é tão perigoso: seguindo o Davi, ele descobre o caminho da vila.
 
 ## A essência da vida (a regra do mundo, definida pelo usuário em 27/11/2026)
 Tudo que é vivo tem uma **essência da vida**. Os dois poderes da série são opostos:
@@ -86,6 +92,9 @@ terror do canal. Na cura, a sombra recolhe para dentro dele (`recolher` da açã
 
 ## Os encapuzados e a guilda (como ele controla tantos humanos)
 Nada de controle da mente: ele usa **medo + ouro + poder**.
+- **Mil anos sem um cogumelo crescer (definido pelo usuário):** no começo era o **próprio necromante** que caçava os cogumelos, sozinho.
+  Em certo ponto, ele **deu XP aos primeiros heróis humanos que o ajudaram na caça**. Mais tarde esses heróis **criaram a guilda** e se
+  tornaram **os encapuzados**. A caçada passou a ser feita por centenas de heróis, e nenhum cogumelo cresce desde então.
 - **Quem são os encapuzados (decidido pelo usuário, 27/11/2026):** são **os primeiros heróis humanos**, que **descobriram o XP por meio do
   goblin**. Desde então usam a essência roubada para **viver mais** (são velhíssimos debaixo do capuz) e **mantêm a mentira** para continuar
   recebendo essência e poder. Não são enganados como os heróis de hoje: **sabem a verdade e escolheram o poder.**
@@ -108,7 +117,9 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
 - **Os encapuzados** (nome a escolher; sugestão: *Os Colhedores*) **controlam a Guilda dos Heróis** por trás: dão as missões, pagam as
   recompensas e **ensinam aos humanos a história do passado — contada do jeito deles**: "um rei-monstro de cogumelo quase devorou a vila;
   se um cogumelo crescer, ele volta". É assim que espalham o **medo**.
-- **Os heróis levam os cogumelos para a guilda** (por isso a carroça do ep. 2: vivos, presos). **Lá os encapuzados extraem as almas**
+- **Os heróis levam os cogumelos para a guilda** (por isso a carroça do ep. 2: vivos, presos). **Por que vivos (definido pelo usuário):** a
+  extração é feita **escondida**, para os heróis não saberem de onde vem o XP; e os encapuzados **não saem nas missões de coleta menos
+  importantes**, então os heróis só trazem os presos. **Lá os encapuzados extraem as almas**
   (a essência) **diretamente, com as próprias mãos, do mesmo jeito que o goblin** (definido pelo usuário): aprenderam com ele e têm o mesmo
   poder de extrair (não dependem de máquina, ritual nem do goblin presente). Por isso também são perigosos sozinhos — numa cena, um
   encapuzado pode arrancar a alma de um cogumelo na frente do Davi (a alma sai verde e vira chama, sem sangue: o cogumelo fica cinza e imóvel). **Quase toda a essência vai para o goblin**; **uma pequena fração volta para o herói como "XP"**, junto com o **ouro**.
@@ -160,6 +171,10 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 
 ## Em aberto (decidir depois com o usuário)
 - **De onde veio o Davi** (por que ele renasceu como cogumelo, quem era antes): fica em aberto por enquanto (pedido do usuário).
+- **Por que o ancião nunca reconheceu o goblin** no ataque de mil anos atrás (precisa fechar antes da revelação final): em aberto (pedido do usuário).
+- **Quem fez a profecia** e por que um cogumelo comum (o Davi) pode virar rei.
+- **"Necromante":** ele também levanta/controla mortos, ou só extrai e guarda almas?
+- **O rei humano:** é um dos encapuzados ou só um fantoche da guilda?
 
 ## Regras
 - Recapitulação só embutida na 1ª frase (ver CLAUDE.md, formato Isekai).
