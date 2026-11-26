@@ -94,10 +94,12 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
   (goblin → encapuzados → guilda → heróis → vila).
 - **Por que os humanos são fáceis de dominar (ponta 2, fechada pelo usuário):** **sem os cogumelos, os humanos não alcançam o verdadeiro
   potencial deles.** No tempo da paz, a essência dos cogumelos (e o rei, que desperta a essência de cada um) deixava os humanos usarem a
-  própria essência. Sem cogumelos, eles **não conseguem usar a essência**: só têm o **corpo físico** para lutar. Fracos assim, dependem do
-  "XP" da guilda para ficar fortes — e quem depende é fácil de manipular e dominar. **Caçar os cogumelos mantém os humanos fracos**: o
+  própria essência. Sem cogumelos, eles **não conseguem usar a essência**: só têm o **corpo físico** para lutar. **O XP funciona de verdade:** a essência
+  extraída deixa o herói mais forte, **tanto quanto o despertar deixaria** — mas é essência **emprestada**, que vem do goblin. Quem fica forte
+  pelo XP precisa de mais XP e **fica dependente do goblin** (e quem depende é fácil de manipular e dominar). O despertar dá a mesma força,
+  mas **própria**, sem dono. **Caçar os cogumelos mantém os humanos fracos**: o
   goblin ganha almas E prende os humanos na dependência, as duas coisas com a mesma caçada.
-  Consequência para a história: quando o Davi **despertar** um humano (poder 3), ele mostra que os humanos têm poder próprio sem o "XP" —
+  Consequência para a história: quando o Davi **despertar** um humano (poder 3), ele mostra que dá para ter a mesma força do "XP" sem depender de ninguém —
   é o que pode virar os humanos contra a guilda (revelação dos ep. 5–8).
 - **Hierarquia (definida pelo usuário):** **os encapuzados criaram a guilda**, mas **o goblin é o mestre deles**. Ele é mais forte e pode
   **tirar a essência de qualquer encapuzado a qualquer momento** (e eles vivem de essência: perder tudo = envelhecer de uma vez e morrer).
