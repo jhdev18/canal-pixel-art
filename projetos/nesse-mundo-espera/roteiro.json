@@ -118,6 +118,18 @@
      "alvo": "azul",
      "estado": "acenar",
      "inicio": 1.55
+    },
+    {
+     "tipo": "pular",
+     "alvo": "azul",
+     "altura": 0.5,
+     "inicio": 2.17
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "azul",
+     "icone": "coracao",
+     "inicio": 2.22
     }
    ],
    "vertical": {
@@ -913,6 +925,12 @@
      "tipo": "som",
      "som": "revelar",
      "inicio": 1.28
+    },
+    {
+     "tipo": "pular",
+     "alvo": "anina",
+     "altura": 0.3,
+     "inicio": 1.37
     }
    ],
    "vertical": {

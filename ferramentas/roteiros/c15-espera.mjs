@@ -13,7 +13,7 @@ C.push(cena('quando você sai do Roblox, seu avatar te espera.', {
   continuaFrase: true, titulo: 'ELE NUNCA ESQUECE', tituloInicio: 0, tituloDuracao: 2.0, tituloSemEntrada: true, tituloPosicao: 0.13,   // o título já entrou na abertura
   cenario: 'mundo-bloco', transicao: 'corte', camera: { x: -4.6, z: 2.2, y: 2.0, zoom: 1.5 },
   elementos: [P('azul', 'avatar-bloco-azul', -2.0, 2.8, { figurante: true })],
-  acoes: [{ tipo: 'correr', alvo: 'azul', para: -4.4, inicio: 0, duracao: 1.2 }, a(0.4, 'trocar', { alvo: 'azul', estado: 'acenar' })],
+  acoes: [{ tipo: 'correr', alvo: 'azul', para: -4.4, inicio: 0, duracao: 1.2 }, a(0.4, 'trocar', { alvo: 'azul', estado: 'acenar' }), a(0.6, 'pular', { alvo: 'azul', altura: 0.5 }), a(0.8, 'emocao', { alvo: 'azul', icone: 'coracao' })],
 }));
 // 2. Ele fica no spawn acenando até você voltar (vários avatares esperando)
 C.push(cena('Ele fica no spawn, acenando, até você voltar. Às vezes por anos.', {
@@ -85,7 +85,7 @@ C.push(cena('Ela entrou e parou na frente do próprio avatar. Só faltava ele.',
 C.push(cena('Ele não esperava a volta dela.', {
   cenario: 'mundo-bloco-tarde', camera: { x: -5.6, z: 2.2, y: 1.6, zoom: 2 },
   elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }), P('avis', 'avatar-bloco-roxo', -4.0, 2.0)],
-  acoes: [a(0, 'andar', { alvo: 'avis', para: -4.4, durF: 0.35 }), a(0.1, 'pular', { alvo: 'anina', altura: 0.3 }), a(0.5, 'som', { som: 'revelar' })],
+  acoes: [a(0, 'andar', { alvo: 'avis', para: -4.4, durF: 0.35 }), a(0.1, 'pular', { alvo: 'anina', altura: 0.3 }), a(0.5, 'som', { som: 'revelar' }), a(0.55, 'pular', { alvo: 'anina', altura: 0.3 })]
 }));
 C.push(cena('Esperava um tchau.', {
   cenario: 'praca-tarde', foco: 'nina', camera: { x: -1.0, z: -8.5, y: 1.4, zoom: 2 },

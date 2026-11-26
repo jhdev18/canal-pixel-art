@@ -59,6 +59,13 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
      (nada de zoom em alguém de costas ou andando de lado); e em toda cena "de espera" põe um gesto pequeno (pulinho, passo) para não parecer parada.
   8. **Ninguém na mesma coluna da tela que o protagonista** (coluna = `x − z` no diorama): na praça a Bia em 0.2/-7.6 e a Nina em -1/-8.6
      viravam "uma pessoa só"; manter ≥ 1,6 de diferença em `x − z` entre quem está perto.
+  9. **Como achar o momento do zoom/reação (ferramentas, pedido do usuário):** o `npm run mapa` mostra em cada cena a **palavra forte**
+     («sem», «sozinhas», «anos»...) e o `f` dela (a fração da fala, que vai direto no `cortesZoom`/`rostos`) e quanto da cena tem movimento
+     (`%mov`). Heurística em `src/ritmo.js` (`palavraForte`): palavra de choque/virada > o que vem depois de ":" > número > última palavra
+     da frase. Escolher pelo sentido (a reação de quem sofre a regra, a revelação), não só pela palavra.
+  10. **Bastante movimento (retenção):** o `npm run conferir` acusa `[movimento]` (cena com menos de 35% do tempo com algo se mexendo),
+     `[ritmo]` (mais de 8 s sem quebra de padrão: corte, flash, tremor, ícone ou rosto) e `[zoom]` (menos de 1 corte a cada 3 cenas, já
+     sugerindo as palavras). Cena "de espera" também precisa de gesto (pulinho, passo, alguém passando ao fundo).
   Detalhes e como montar: seção "Estilo Nesse Mundo" → dados do brinquedos/avatar. Conferir com fotos 9:16 (`fotos-shorts.mjs`) quando o
   usuário permitir: ninguém cortado na borda, legenda fora dos personagens, a faixa não cobre placar.
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.

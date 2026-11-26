@@ -13,6 +13,7 @@
 //   7. retenção no meio: cena parada antes de 70% do vídeo; "Até que..." depois de 40% do vídeo
 //   9. 1ª frase longa demais (gancho), roteiro sem "trilha", "corte" com zoom quebrado
 // São avisos (heurística): conferir cada um e corrigir ou justificar.
+import { palavraForte, coberturaMovimento, QUEBRA } from './ritmo.js';
 import { lerRoteiro, caminhoProjeto } from './projeto.js';
 import { lerJsonFlexivel } from './biblioteca.js';
 import { resolverRoteiro, estadoElemento, estadoCamera } from '../motor/compartilhado/linhaDoTempo.js';
@@ -197,6 +198,29 @@ export async function conferir(nome) {
     }
     let t1 = 0; const ev = r.cenas.find((c) => { if (/^\s*Até que/i.test(c.narracaoTexto || '')) return true; t1 += c.duracao; return false; });
     if (ev && t1 > total * 0.4) aviso(ev.numero, 'parada', `o evento ("Até que...") só começa aos ${Math.round(t1)} s (${Math.round(100 * t1 / total)}% do vídeo) — traga para antes de 40% (no das sombras foi aos 35%)`);
+  }
+
+  // ---------- 7b. MOVIMENTO E ZOOM (pedido do usuário, 26/11/2026: "bastante movimento na tela" e zoom no momento certo; ver src/ritmo.js)
+  {
+    const total = r.cenas.reduce((a, c) => a + c.duracao, 0);
+    let t0 = 0, ultimaQuebra = 0, piorVazio = 0, ondeVazio = null;
+    for (const c of r.cenas) {
+      const cob = coberturaMovimento(c);
+      if (t0 < total * 0.9 && c.duracao > 2 && cob < 0.35 && !/congel/i.test(c.narracaoTexto || ''))
+        aviso(c.numero, 'movimento', `só ${Math.round(cob * 100)}% da cena tem algo se mexendo — ponha alguém andando/pulando ou um gesto na outra metade (cena "de espera" também: pulinho, passo, alguém passando)`);
+      for (const a of (c.acoes || []).filter(QUEBRA).sort((p, q) => p.inicio - q.inicio)) {
+        const t = t0 + a.inicio; if (t - ultimaQuebra > piorVazio) { piorVazio = t - ultimaQuebra; ondeVazio = c.numero; } ultimaQuebra = t;
+      }
+      t0 += c.duracao;
+    }
+    if (total - ultimaQuebra > piorVazio) { piorVazio = total - ultimaQuebra; ondeVazio = r.cenas.at(-1)?.numero; }
+    if (piorVazio > 8) aviso(ondeVazio, 'ritmo', `${piorVazio.toFixed(0)} s seguidos sem quebra de padrão (corte de zoom, flash, tremor, ícone ou rosto de reação) — ponha uma na palavra forte (o \`npm run mapa\` sugere qual)`);
+    const cortes = r.cenas.filter((c) => (c.acoes || []).some((a) => a.corte)).length;
+    if (r.cenas.length >= 8 && cortes < Math.floor((r.cenas.length - 1) / 3)) {
+      const sug = r.cenas.filter((c) => !(c.acoes || []).some((a) => a.corte) && (c.camera?.zoom ?? 1) < 2).slice(0, 6)
+        .map((c) => { const p = palavraForte(c.narracaoTexto); return p ? `${c.numero}: «${p.palavra}» (f ${p.f})` : null; }).filter(Boolean).join(', ');
+      aviso(null, 'zoom', `só ${cortes} cortes de zoom em ${r.cenas.length} cenas — a meta é ~1 a cada 2 (cortesZoom do nm.mjs). Sugestões de palavra forte: ${sug}`);
+    }
   }
 
   // ---------- 2. continuidade: mesmo lugar E mesmo enquadramento (câmera perto) em cenas seguidas

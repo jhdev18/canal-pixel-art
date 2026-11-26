@@ -1,20 +1,20 @@
 Nesse mundo, quando você sai do Roblox, seu avatar te espera — tempos ESTIMADOS (sem narração ainda) — total 0:58.1
 
-  início   fim     %    cena  o que tem               narração
-  0:00.0  0:01.2    0%    1   mov som                 Nesse mundo,
-  0:01.2  0:04.8    2%    2   mov                     quando você sai do Roblox, seu avatar te espera.
-  0:04.8  0:09.5    8%    3   mov corte               Ele fica no spawn, acenando, até você voltar. Às vezes por anos.
-  0:09.5  0:13.5   16%    4   mov som                 Por isso, a criançada entra todo dia só para dar um oi.
-  0:13.5  0:17.9   23%    5   mov corte som           Mas a Nina parou de jogar de um dia para o outro. Sem tchau.
-  0:17.9  0:22.5   31%    6   mov corte               Desde então, o avatar dela acena sozinho, cada dia mais devagar.
-  0:22.5  0:27.7   39%    7   mov som                 Até que avisaram: no domingo, o servidor da cidade ia fechar para sempre.
-  0:27.7  0:32.5   48%    8   mov corte som           No jogo, os avatares começaram a apagar, um por um, ainda acenando.
-  0:32.5  0:36.6   56%    9   mov                     As crianças correram para a praça, com o celular na mão.
-  0:36.6  0:40.8   63%   10   mov                     A Nina disse que não ligava. Mas foi a primeira a chegar.
-  0:40.8  0:45.4   70%   11   mov corte som           Ela entrou e parou na frente do próprio avatar. Só faltava ele.
-  0:45.4  0:47.8   78%   12   mov som                 Ele não esperava a volta dela.
-  0:47.8  0:49.4   82%   13   mov                     Esperava um tchau.
-  0:49.4  0:53.3   85%   14   mov corte som           A Nina acenou. Ele acenou de volta e sumiu, sorrindo.
-  0:53.3  0:58.1   92%   15   mov                     E a Nina continuou acenando para o spawn vazio, até a tela apagar.
+  início   fim     %    cena  o que tem (e % com movimento)   palavra forte (zoom/reação)  narração
+  0:00.0  0:01.2    0%    1   mov som 61%mov                  «mundo» f0.5          Nesse mundo,
+  0:01.2  0:04.8    2%    2   mov 33%mov                      «espera» f0.85        quando você sai do Roblox, seu avatar te espera.
+  0:04.8  0:09.5    8%    3   mov corte 67%mov                «anos» f0.9           Ele fica no spawn, acenando, até você voltar. Às vezes por anos.
+  0:09.5  0:13.5   16%    4   mov som 45%mov                  «só» f0.67            Por isso, a criançada entra todo dia só para dar um oi.
+  0:13.5  0:17.9   23%    5   mov corte som 36%mov            «Sem» f0.83           Mas a Nina parou de jogar de um dia para o outro. Sem tchau.
+  0:17.9  0:22.5   31%    6   mov corte 54%mov                «sozinho» f0.52       Desde então, o avatar dela acena sozinho, cada dia mais devagar.
+  0:22.5  0:27.7   39%    7   mov som 35%mov                  «sempre» f0.9         Até que avisaram: no domingo, o servidor da cidade ia fechar para semp
+  0:27.7  0:32.5   48%    8   mov corte som 68%mov            «apagar» f0.49        No jogo, os avatares começaram a apagar, um por um, ainda acenando.
+  0:32.5  0:36.6   56%    9   mov 84%mov                      «mão» f0.9            As crianças correram para a praça, com o celular na mão.
+  0:36.6  0:40.8   63%   10   mov 89%mov                      «primeira» f0.68      A Nina disse que não ligava. Mas foi a primeira a chegar.
+  0:40.8  0:45.4   70%   11   mov corte som 54%mov            «Só» f0.76            Ela entrou e parou na frente do próprio avatar. Só faltava ele.
+  0:45.4  0:47.8   78%   12   mov som 33%mov                  «dela» f0.83          Ele não esperava a volta dela.
+  0:47.8  0:49.4   82%   13   mov 24%mov                      «tchau» f0.67         Esperava um tchau.
+  0:49.4  0:53.3   85%   14   mov corte som 51%mov            «sorrindo» f0.83      A Nina acenou. Ele acenou de volta e sumiu, sorrindo.
+  0:53.3  0:58.1   92%   15   mov 40%mov                      «apagar» f0.89        E a Nina continuou acenando para o spawn vazio, até a tela apagar.
 
   Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.

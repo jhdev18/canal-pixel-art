@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // Linha de comando: novo | rascunho | final | previa | gpu | sfx | sprites | lista
+import { palavraForte, coberturaMovimento } from './ritmo.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { RAIZ, carregarConfig } from './config.js';
@@ -152,7 +153,7 @@ async function mapaCenas(nome) {
   const mmss = (t) => `${Math.floor(t / 60)}:${(t % 60).toFixed(1).padStart(4, '0')}`;
   const MOV = new Set(['andar', 'correr', 'mover', 'pular', 'sentar', 'levantar', 'esporos', 'crescer']);
   const linhas = [`${r.titulo} — ${narr.mapa.size ? 'tempos reais (narração)' : 'tempos ESTIMADOS (sem narração ainda)'} — total ${mmss(r.duracaoTotal)}`, '',
-    '  início   fim     %    cena  o que tem               narração'];
+    '  início   fim     %    cena  o que tem (e % com movimento)   palavra forte (zoom/reação)  narração'];
   for (const c of r.cenas) {
     const tipos = new Set(c.acoes.map((a) => a.tipo));
     const tags = [
@@ -161,7 +162,8 @@ async function mapaCenas(nome) {
       (tipos.has('flash') || tipos.has('tremer')) && 'flash', c.acoes.some((a) => a.tipo === 'som') && 'som',
       /noite/.test(c.cenario || c.fundo || '') && 'NOITE',
     ].filter(Boolean).join(' ');
-    linhas.push(`  ${mmss(c.inicio).padStart(6)}  ${mmss(c.inicio + c.duracao).padStart(6)}  ${String(Math.round((c.inicio / r.duracaoTotal) * 100)).padStart(3)}%  ${String(c.numero).padStart(3)}   ${tags.padEnd(22)}  ${(c.narracaoTexto || '').slice(0, 80)}`);
+    const pf = palavraForte(c.narracaoTexto), cob = Math.round(coberturaMovimento(c) * 100);
+    linhas.push(`  ${mmss(c.inicio).padStart(6)}  ${mmss(c.inicio + c.duracao).padStart(6)}  ${String(Math.round((c.inicio / r.duracaoTotal) * 100)).padStart(3)}%  ${String(c.numero).padStart(3)}   ${(tags + ' ' + cob + '%mov').padEnd(30)}  ${(pf ? `«${pf.palavra}» f${pf.f}` : '').padEnd(20)}  ${(c.narracaoTexto || '').slice(0, 70)}`);
   }
   linhas.push('', '  Compare com o gráfico de retenção (YouTube Studio > Análise > Retenção): onde a linha cai, veja a cena desse segundo.');
   console.log('\n' + linhas.join('\n'));
