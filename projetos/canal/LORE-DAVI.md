@@ -65,7 +65,13 @@ terror do canal. Na cura, a sombra recolhe para dentro dele (`recolher` da açã
 `fantasma-sombra`/`vulto` como "fumaça" saindo do corpo.
 
 ## De onde vêm os poderes do goblin (a origem do vilão) — decidido pelo usuário, 27/11/2026
-- **O goblin era o melhor amigo e aprendiz do ancião cogumelo**, há mil anos. Era o único goblin que vivia na floresta do reino.
+- **O ancião foi o mestre dos dois: do antigo rei e do goblin.** Os dois eram **prodígios** e aprenderam juntos — amigos e, aos poucos, rivais
+  (o príncipe cogumelo que ia ser rei e o único goblin da floresta, sempre tentando provar que era tão bom quanto ele).
+- O ancião ensinou os dois a **sentir a essência da vida**. O futuro rei aprendeu a **dar** essência; o goblin, sem o dom do rei,
+  descobriu sozinho o caminho contrário: **tirar**. Mesmo mestre, mesma lição, caminhos opostos.
+- **O Davi é o terceiro aluno do ancião** (a série repete a história: mestre → aluno que dá × aluno que tira). O ancião treinar o Davi
+  é ver tudo de novo — e ter medo de errar outra vez.
+- **O goblin era o melhor amigo do futuro rei e aprendiz do ancião**, há mil anos. Era o único goblin que vivia na floresta do reino.
 - O ancião o ensinou a **sentir a essência da vida** (ouvir a floresta, saber o que está vivo) — só isso, como se ensina a um amigo.
 - **Foi o próprio goblin quem descobriu, sozinho e em segredo, como ROUBAR a essência.** O ancião **nunca soube**: confiava nele e não viu.
 - Com a essência roubada ele vive há mil anos e ficou cada vez mais forte; ele tem medo de que o novo rei devolva as essências e ele
@@ -94,7 +100,7 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
 ## Personagens
 - **Davi** — o cogumelo mais fraco; o chapéu começa a crescer quando ele protege alguém (não quando ele luta). É um rei que **chama**, não que obriga.
 - **Ancião cogumelo** — o mais velho da floresta (~mil anos; na vida real a raiz/micélio de um fungo pode viver milhares de anos).
-  Era guarda do rei antigo e jurou esperar o novo rei. Fala marcante: "Faz mil anos que nenhum cogumelo cresce."
+  Foi o mestre do antigo rei e do goblin (os dois eram prodígios); jurou esperar o novo rei e vira o mestre do Davi. Fala marcante: "Faz mil anos que nenhum cogumelo cresce."
 - **Goblin bruxo necromante** — o vilão da série; manipula os humanos de longe, nunca luta de frente até o fim da temporada.
 - **Humanos/heróis** — enganados, não malvados. São metade do equilíbrio da floresta (as mãos que levam a vida). Um **humano aliado** (criança
   ou herói que duvida) vira "as mãos do rei" e é peça-chave do final.
