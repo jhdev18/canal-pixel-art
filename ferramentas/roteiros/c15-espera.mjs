@@ -20,7 +20,7 @@ C.push(cena('Ele fica no spawn, acenando, até você voltar. Às vezes por anos.
   cenario: 'mundo-bloco', camera: JOGO(-4.6),
   elementos: [P('azul', 'avatar-bloco-azul', -4.4, 2.8, { pose: 'acenar', figurante: true }), P('a1', 'avatar-bloco-vermelho', -7.4, 1.6, { pose: 'acenar', figurante: true }),
     P('a2', 'avatar-bloco-verde', -1.0, 2.2, { figurante: true })],
-  acoes: [a(0, 'andar', { alvo: 'a2', para: -4.2, durF: 0.7 }), a(0.72, 'trocar', { alvo: 'a2', estado: 'acenar' })],
+  acoes: [a(0, 'andar', { alvo: 'a2', para: -4.2, durF: 0.7 }), a(0.72, 'trocar', { alvo: 'a2', estado: 'acenar' }), a(0.35, 'pular', { alvo: 'a1', altura: 0.5 }), a(0.6, 'pular', { alvo: 'azul', altura: 0.5 })],
 }));
 // 3. Crença como AÇÃO: a criançada entra todo dia só para dar um oi (praça, celulares, pulinhos)
 C.push(cena('Por isso, a criançada entra todo dia só para dar um oi.', {
@@ -33,7 +33,7 @@ C.push(cena('Por isso, a criançada entra todo dia só para dar um oi.', {
 C.push(cena('Mas a Nina parou de jogar de um dia para o outro. Sem tchau.', {
   cenario: 'quarto-nina-diorama', camera: { x: 1.0, y: 3 },
   elementos: [P('nina', 'rival', 1.0, 1.6)],
-  acoes: [a(0.05, 'andar', { alvo: 'nina', para: -1.6, durF: 0.4 }), a(0.5, 'trocar', { alvo: 'nina', estado: 'costas' }), a(0.55, 'som', { som: 'porta' })],
+  acoes: [a(0.05, 'andar', { alvo: 'nina', para: -1.6, durF: 0.4 }), a(0.55, 'som', { som: 'porta' }), a(0.6, 'expressao', { alvo: 'nina', rosto: 'triste', durF: 0.4 })],
 }));
 // 5. Mistério que se vê: o avatar dela acenando sozinho, cada dia mais devagar (os dias somando)
 C.push(cena('Desde então, o avatar dela acena sozinho, cada dia mais devagar.', {
@@ -68,7 +68,7 @@ C.push(cena('As crianças correram para a praça, com o celular na mão.', {
 }));
 // 9. Na praça: a Nina chega PRIMEIRO e para; as outras crianças chegam logo atrás e ficam em volta (momento "praca", cenas 9 e 12)
 // faixas de z fora dos canteiros (x -6.7..-4.3 e 4.3..6.7, z -9.9..-9.1): quem corre vem pela frente deles (z ≤ -10) ou por trás (z ≥ -8.6)
-const NA_PRACA = [['aluno', 'aluno', -3.2, -10.5], ['aluna', 'aluna', -4.4, -8.0], ['leo', 'menino-topete', 1.2, -10.0], ['bia', 'menina-capa', 0.2, -7.6]];
+const NA_PRACA = [['aluno', 'aluno', -6.6, -10.5], ['aluna', 'aluna', -4.4, -8.0], ['leo', 'menino-topete', 1.2, -10.0], ['bia', 'menina-capa', 1.9, -7.6]];   // x 1.9: em 0.2 ficava na mesma coluna da tela que a Nina (pareciam uma só)
 C.push(cena('A Nina disse que não ligava. Mas foi a primeira a chegar.', {
   cenario: 'praca-tarde', foco: 'nina', camera: PRACA(-1),
   elementos: [P('nina', 'rival', -11.0, -8.6), ...NA_PRACA.map(([id, sp, , z]) => P(id, sp, -13.0, z))],
@@ -85,7 +85,7 @@ C.push(cena('Ela entrou e parou na frente do próprio avatar. Só faltava ele.',
 C.push(cena('Ele não esperava a volta dela.', {
   cenario: 'mundo-bloco-tarde', camera: { x: -5.6, z: 2.2, y: 1.6, zoom: 2 },
   elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }), P('avis', 'avatar-bloco-roxo', -4.0, 2.0)],
-  acoes: [a(0.1, 'pular', { alvo: 'anina', altura: 0.3 }), a(0.5, 'som', { som: 'revelar' })],
+  acoes: [a(0, 'andar', { alvo: 'avis', para: -4.4, durF: 0.35 }), a(0.1, 'pular', { alvo: 'anina', altura: 0.3 }), a(0.5, 'som', { som: 'revelar' })],
 }));
 C.push(cena('Esperava um tchau.', {
   cenario: 'praca-tarde', foco: 'nina', camera: { x: -1.0, z: -8.5, y: 1.4, zoom: 2 },
@@ -113,8 +113,8 @@ alturaShorts(C, { 1: -1.25, 2: -1.25, 3: -2, 4: -1.25, 5: -2, 6: -1.25, 7: -1.75
 
 
 // formato novo (pedido do usuário 25/11/2026): personagens maiores no Shorts (zoom 1,5) e a regra fixa no alto o vídeo inteiro
-zoomShorts(C);
-cortesZoom(C, [[4, 'nina', 0.7], [6, 'nina', 0.6], [7, 'anina', 0.75], [14, 'avis', 0.6]]);   // quebra de padrão: zoom 2 na palavra forte (números = cenas sem a abertura)
+zoomShorts(C, 1.5, { zoom2: [6], pular: [4] });   // a Nina (pixel art detalhado) com zoom inteiro
+cortesZoom(C, [[2, 'azul', 0.8], [4, 'nina', 0.75], [5, 'anina', 0.8], [7, 'anina', 0.8], [10, 'anina', 0.85], [13, 'anina', 0.45]]);   // quebra de padrão: zoom 2 na palavra forte (números = cenas sem a abertura)
 R.tituloFixo = 'SEU AVATAR NUNCA ESQUECE VOCÊ';
 
 // ABERTURA (gancho, pedido do usuário 25/11/2026): ~1 s com a imagem mais forte do vídeo EM CLOSE, falando o começo da 1ª frase;
@@ -122,9 +122,9 @@ R.tituloFixo = 'SEU AVATAR NUNCA ESQUECE VOCÊ';
 { const abre = [cena('Nesse mundo,', {   // o avatar da Nina acenando no spawn enquanto os do lado se apagam, de perto
     titulo: 'ELE NUNCA ESQUECE', tituloInicio: 0, tituloDuracao: 2.6, tituloPosicao: 0.13,
     cenario: 'mundo-bloco', transicao: 'corte', foco: 'anina', camera: { x: -5.4, z: 2.2, y: 1.4, zoom: 3 },
-    elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }), P('azul', 'avatar-bloco-azul', -3.0, 2.6, { pose: 'acenar', figurante: true }),
+    elementos: [P('anina', 'avatar-nina', SPAWN.x, SPAWN.z, { y: SPAWN.y, pose: 'acenar' }),
       P('a1', 'avatar-bloco-vermelho', -7.4, 2.0, { pose: 'acenar', figurante: true })],
-    acoes: [a(0, 'andar', { alvo: 'a1', para: -6.9, durF: 0.5 }), a(0, 'desaparecer', { alvo: 'azul', durF: 0.6 }), a(0, 'som', { som: 'magia' }), a(0.5, 'desaparecer', { alvo: 'a1', durF: 0.5 })],
+    acoes: [a(0, 'andar', { alvo: 'a1', para: -6.6, durF: 0.5 }), a(0, 'som', { som: 'magia' }), a(0.45, 'desaparecer', { alvo: 'a1', durF: 0.5 }), a(0.1, 'pular', { alvo: 'anina', altura: 0.3 })],
   })];
   alturaShorts(abre, { 1: -3.25 }); C.unshift(abre[0]); }
 

@@ -52,6 +52,13 @@ Gerador de vídeos pixel art (Three.js no Chrome/Edge com GPU → FFmpeg/NVENC).
   3. **Personagens maiores no Shorts:** `zoomShorts(C)` depois do `alturaShorts`.
   4. **Cortes de zoom 2 nas palavras fortes**, ~1 cena a cada 2 (5–7 por vídeo), centrados em quem reage: `cortesZoom(C, [[cena, id, f]])`.
   5. **Nenhuma cena parada** no `npm run mapa` (nem a abertura: desaparecer/aparecer sozinho não conta — pôr alguém andando/pulando).
+  6. **Gente com rosto detalhado (Nina, Bia, moradores) só em zoom INTEIRO (1 ou 2):** no 1,5 os pixels ficam tortos (o usuário viu a Nina
+     "com a pixel art meio ruim" no espera). `zoomShorts(C, 1.5, { zoom2: [cenas], pular: [cenas] })`: 1,5 só nos avatares de bloco/cogumelos;
+     cena de gente sozinha → `zoom2`; cena de gente com corte → `pular` (fica no 1 e o corte vai a 2).
+  7. **O corte entra na palavra que a narração destaca** (o "sem tchau", o "só faltava ele", o "sumiu sorrindo"), com o rosto DE FRENTE
+     (nada de zoom em alguém de costas ou andando de lado); e em toda cena "de espera" põe um gesto pequeno (pulinho, passo) para não parecer parada.
+  8. **Ninguém na mesma coluna da tela que o protagonista** (coluna = `x − z` no diorama): na praça a Bia em 0.2/-7.6 e a Nina em -1/-8.6
+     viravam "uma pessoa só"; manter ≥ 1,6 de diferença em `x − z` entre quem está perto.
   Detalhes e como montar: seção "Estilo Nesse Mundo" → dados do brinquedos/avatar. Conferir com fotos 9:16 (`fotos-shorts.mjs`) quando o
   usuário permitir: ninguém cortado na borda, legenda fora dos personagens, a faixa não cobre placar.
 - **Gancho nos 2 primeiros segundos:** abrir com algo acontecendo ou uma pergunta/mistério; o título entra depois.

@@ -34,14 +34,6 @@
      "pose": "acenar"
     },
     {
-     "id": "azul",
-     "personagem": "avatar-bloco-azul",
-     "x": -3,
-     "z": 2.6,
-     "pose": "acenar",
-     "figurante": true
-    },
-    {
      "id": "a1",
      "personagem": "avatar-bloco-vermelho",
      "x": -7.4,
@@ -54,15 +46,9 @@
     {
      "tipo": "andar",
      "alvo": "a1",
-     "para": -6.9,
+     "para": -6.6,
      "inicio": 0.3,
      "duracao": 0.39
-    },
-    {
-     "tipo": "desaparecer",
-     "alvo": "azul",
-     "inicio": 0.3,
-     "duracao": 0.47
     },
     {
      "tipo": "som",
@@ -72,8 +58,14 @@
     {
      "tipo": "desaparecer",
      "alvo": "a1",
-     "inicio": 0.69,
+     "inicio": 0.65,
      "duracao": 0.39
+    },
+    {
+     "tipo": "pular",
+     "alvo": "anina",
+     "altura": 0.3,
+     "inicio": 0.38
     }
    ],
    "vertical": {
@@ -183,6 +175,29 @@
      "alvo": "a2",
      "estado": "acenar",
      "inicio": 3.3
+    },
+    {
+     "tipo": "pular",
+     "alvo": "a1",
+     "altura": 0.5,
+     "inicio": 1.76
+    },
+    {
+     "tipo": "pular",
+     "alvo": "azul",
+     "altura": 0.5,
+     "inicio": 2.8
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -2.25,
+     "y": -0.46,
+     "inicio": 3.63,
+     "vertical": {
+      "x": -2.25,
+      "y": -0.03
+     }
     }
    ],
    "vertical": {
@@ -314,15 +329,16 @@
      "duracao": 1.56
     },
     {
-     "tipo": "trocar",
-     "alvo": "nina",
-     "estado": "costas",
-     "inicio": 2.25
-    },
-    {
      "tipo": "som",
      "som": "porta",
      "inicio": 2.45
+    },
+    {
+     "tipo": "expressao",
+     "alvo": "nina",
+     "rosto": "triste",
+     "inicio": 2.64,
+     "duracao": 1.56
     },
     {
      "tipo": "expressao",
@@ -336,7 +352,7 @@
      "zoom": 2,
      "x": -1.5,
      "y": 1.59,
-     "inicio": 3.03,
+     "inicio": 3.23,
      "vertical": {
       "x": -1.5,
       "y": 2.02
@@ -346,8 +362,7 @@
    "vertical": {
     "camera": {
      "x": -0.66,
-     "y": 1.35,
-     "zoom": 1.5
+     "y": 1.75
     }
    }
   },
@@ -427,6 +442,17 @@
      "alvo": "anina",
      "estado": "parado",
      "inicio": 3.84
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -2.15,
+     "y": -1.76,
+     "inicio": 3.63,
+     "vertical": {
+      "x": -2.15,
+      "y": -1.33
+     }
     }
    ],
    "vertical": {
@@ -488,24 +514,13 @@
      "rosto": "surpreso",
      "inicio": 2.2,
      "duracao": 2.85
-    },
-    {
-     "tipo": "corte",
-     "zoom": 2,
-     "x": 0.5,
-     "y": 1.59,
-     "inicio": 3.15,
-     "vertical": {
-      "x": 0.5,
-      "y": 2.02
-     }
     }
    ],
    "vertical": {
     "camera": {
      "x": 0.03,
-     "y": 0.97,
-     "zoom": 1.5
+     "y": 0.58,
+     "zoom": 2
     }
    }
   },
@@ -596,7 +611,7 @@
      "zoom": 2,
      "x": -2.15,
      "y": -1.76,
-     "inicio": 3.57,
+     "inicio": 3.78,
      "vertical": {
       "x": -2.15,
       "y": -1.33
@@ -744,7 +759,7 @@
     {
      "tipo": "correr",
      "alvo": "aluno",
-     "para": -3.2,
+     "para": -6.6,
      "inicio": 1.41,
      "duracao": 2.04
     },
@@ -765,7 +780,7 @@
     {
      "tipo": "correr",
      "alvo": "bia",
-     "para": 0.2,
+     "para": 1.9,
      "inicio": 1.97,
      "duracao": 2.04
     },
@@ -833,6 +848,17 @@
      "para": -4,
      "inicio": 0.71,
      "duracao": 2.25
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -2.15,
+     "y": -1.76,
+     "inicio": 3.78,
+     "vertical": {
+      "x": -2.15,
+      "y": -1.33
+     }
     }
    ],
    "vertical": {
@@ -871,6 +897,13 @@
    ],
    "acoes": [
     {
+     "tipo": "andar",
+     "alvo": "avis",
+     "para": -4.4,
+     "inicio": 0.3,
+     "duracao": 0.68
+    },
+    {
      "tipo": "pular",
      "alvo": "anina",
      "altura": 0.3,
@@ -884,7 +917,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -1.6,
+     "x": -1.74,
      "z": 2.2,
      "y": -1.4,
      "zoom": 2
@@ -914,7 +947,7 @@
     {
      "id": "aluno",
      "personagem": "aluno",
-     "x": -3.2,
+     "x": -6.6,
      "z": -10.5
     },
     {
@@ -932,7 +965,7 @@
     {
      "id": "bia",
      "personagem": "menina-capa",
-     "x": 0.2,
+     "x": 1.9,
      "z": -7.6
     }
    ],
@@ -1025,6 +1058,17 @@
      "tipo": "som",
      "som": "magia",
      "inicio": 2.19
+    },
+    {
+     "tipo": "corte",
+     "zoom": 2,
+     "x": -2.15,
+     "y": -1.76,
+     "inicio": 1.85,
+     "vertical": {
+      "x": -2.15,
+      "y": -1.33
+     }
     }
    ],
    "vertical": {
@@ -1076,17 +1120,6 @@
      "alvo": "avis",
      "inicio": 3.95,
      "duracao": 0.64
-    },
-    {
-     "tipo": "corte",
-     "zoom": 2,
-     "x": -2.05,
-     "y": -1.26,
-     "inicio": 2.87,
-     "vertical": {
-      "x": -2.05,
-      "y": -0.83
-     }
     }
    ],
    "vertical": {

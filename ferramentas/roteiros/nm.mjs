@@ -152,8 +152,11 @@ export function cortesZoom(C, lista, zoom = 2) {
 // PROTÓTIPO (pedido do usuário, 25/11/2026): personagens MAIORES no Shorts. Cena com zoom 1 no "vertical" passa a 1,5; a câmera sobe/desce
 // para os pés de quem está mais embaixo continuarem na MESMA altura da tela (a legenda não cobre ninguém novo). Não mexe em cena com zoom
 // próprio, panorâmica ou corte de zoom. Chamar depois do alturaShorts e antes do salvar() (o salvar recentra o x com o zoom novo).
-export function zoomShorts(C, zoom = 1.5) {
-  for (const c of C) {
+export function zoomShorts(C, zoomPadrao = 1.5, { zoom2 = [], pular = [] } = {}) {
+  // zoom2: cenas (números) que usam zoom 2 inteiro — rosto de gente detalhada (Nina, Bia) fica com pixels tortos no 1,5
+  for (const [k, c] of C.entries()) {
+    if (pular.includes(k + 1)) continue;   // ex.: cena da Nina com corte de zoom 2 (fica no zoom 1 inteiro até o corte)
+    const zoom = zoom2.includes(k + 1) ? 2 : zoomPadrao;
     const v = (c.vertical ||= {}), cam = { ...(c.camera || {}), ...(v.camera || {}) };
     if ((cam.zoom ?? 1) !== 1 || cam.travado || temPanoramica(c) || (c.acoes || []).some((a) => a.tipo === 'corte')) continue;
     const comodo = !!(c.comodo || /-diorama$/.test(c.cenario || ''));
