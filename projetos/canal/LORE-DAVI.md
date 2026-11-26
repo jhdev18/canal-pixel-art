@@ -118,6 +118,14 @@ querem, e quando ele desperta alguém, aquele cogumelo vira o que ele já tinha 
 | 5 | **Acordar o rei de pedra e libertar as almas** | o cogumelo gigante de pedra rachando; almas verdes virando azuis e voando | final da temporada |
 Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas sempre como coisa de cogumelo — nada de poder "de mago".
 
+## Ideia guardada para o futuro: o aprendiz do goblin (outro renascido)
+- **Outra pessoa do nosso mundo também renasce** neste mundo, fraca como o Davi — e vira **aprendiz do goblin necromante**.
+- O goblin ensina a ele o caminho de **tirar** a essência; o ancião ensina ao Davi o de **dar**. A história do rei e do goblin se repete
+  com os dois renascidos.
+- **Os dois "campeões" se enfrentam** (o aluno do ancião × o aluno do goblin) — o confronto de uma temporada futura.
+- Pode ter sido escolhido pelo goblin justamente por ser de fora ("conhece as regras do jogo" — faz anotações, fala de níveis e XP).
+- Não usar antes de fechar a 1ª temporada (pedido do usuário: ideia guardada).
+
 ## Ordem das revelações (uma por episódio)
 | Ep. | Revelação nova | Gancho |
 |---|---|---|
