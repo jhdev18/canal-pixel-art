@@ -413,6 +413,11 @@ script `c18-davi-ep1.mjs`; assets em `motor/assets/isekai.js`, ver o GUIA).
 - **Um poder novo por episódio** (para o público não precisar aprender tudo de uma vez): esporos azul = sono (ep. 1), amarelo = riso, rosa = amor.
 - Cada episódio: 1 batalha, a regra (os esporos) na tela em quase toda cena, a escolha ativa do protagonista, uma virada e um **gancho**
   para o próximo (o goblin anotando). Seguir também as táticas de retenção do vídeo das sombras (dia, movimento, escalada, "Até que" cedo).
+- **Recapitulação embutida no começo de todo episódio a partir do 2º** (pedido do usuário, 27/11/2026: no feed quase ninguém vê em ordem):
+  a 1ª frase já diz quem é e qual a desvantagem, junto da ação nova — "O Davi, o cogumelo mais fraco do jogo, chegou na vila." (≤ 12 palavras,
+  ~2–3 s), em cima da abertura em close. Nada de "no episódio anterior..." nem montagem de cenas antigas (isso é o que faz passar o vídeo).
+  Na 2ª frase, no máximo uma linha do que importa do episódio anterior ("Ele sabe fazer qualquer um dormir com um espirro."). Cada episódio
+  tem começo, meio e fim próprios + o gancho/votação no fim. Na faixa fixa, o nome da série + nº ("DAVI • EP. 2").
 - Título com termos que o público busca: "Reencarnei como... isekai"; tags `#isekai #reencarnei`.
 - **Nome do cogumelo: Davi** (escolhido pelo usuário; antes era Tico). O chapéu `grande` só cresce, sem mudar de cor (dourado parecia
   "outra cor do Davi"). **Desenho v3** (escolhido pelo usuário, opções B+C): igual aos cogumelos comuns, ~1,5 vez maior que eles, olhos com brilho,
