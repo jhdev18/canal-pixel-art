@@ -90,6 +90,15 @@ Nada de controle da mente: ele usa **medo + ouro + poder**.
   goblin**. Desde então usam a essência roubada para **viver mais** (são velhíssimos debaixo do capuz) e **mantêm a mentira** para continuar
   recebendo essência e poder. Não são enganados como os heróis de hoje: **sabem a verdade e escolheram o poder.**
   **Motivo: ganância** — heróis que cederam à vontade de ter mais poder (nada de doença ou desculpa).
+- **A organização (definida pelo usuário):** o goblin e os encapuzados são **uma organização só**, com o goblin como **líder supremo**
+  (goblin → encapuzados → guilda → heróis → vila).
+- **Por que os humanos são fáceis de dominar (ponta 2, fechada pelo usuário):** **sem os cogumelos, os humanos não alcançam o verdadeiro
+  potencial deles.** No tempo da paz, a essência dos cogumelos (e o rei, que desperta a essência de cada um) deixava os humanos usarem a
+  própria essência. Sem cogumelos, eles **não conseguem usar a essência**: só têm o **corpo físico** para lutar. Fracos assim, dependem do
+  "XP" da guilda para ficar fortes — e quem depende é fácil de manipular e dominar. **Caçar os cogumelos mantém os humanos fracos**: o
+  goblin ganha almas E prende os humanos na dependência, as duas coisas com a mesma caçada.
+  Consequência para a história: quando o Davi **despertar** um humano (poder 3), ele mostra que os humanos têm poder próprio sem o "XP" —
+  é o que pode virar os humanos contra a guilda (revelação dos ep. 5–8).
 - **Hierarquia (definida pelo usuário):** **os encapuzados criaram a guilda**, mas **o goblin é o mestre deles**. Ele é mais forte e pode
   **tirar a essência de qualquer encapuzado a qualquer momento** (e eles vivem de essência: perder tudo = envelhecer de uma vez e morrer).
   Por isso entregam quase toda a essência a ele e obedecem: é **medo**, não lealdade. Na tela: um encapuzado que falha é "esvaziado" pelo
@@ -149,7 +158,6 @@ Os esporos podem ganhar cores novas com o despertar (amarelo, rosa...), mas semp
 
 ## Em aberto (decidir depois com o usuário)
 - **De onde veio o Davi** (por que ele renasceu como cogumelo, quem era antes): fica em aberto por enquanto (pedido do usuário).
-- **Por que o goblin precisa dos humanos** (em vez de caçar sozinho): o usuário vai dizer.
 
 ## Regras
 - Recapitulação só embutida na 1ª frase (ver CLAUDE.md, formato Isekai).
