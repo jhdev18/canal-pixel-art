@@ -1134,7 +1134,7 @@
     {
      "id": "h1",
      "personagem": "heroi-aventureiro",
-     "x": 0.8,
+     "x": 2.2,
      "z": 3,
      "figurante": true
     },
@@ -1158,6 +1158,26 @@
     }
    ],
    "acoes": [
+    {
+     "tipo": "andar",
+     "alvo": "h1",
+     "para": 0.8,
+     "inicio": 0.3,
+     "duracao": 0.8
+    },
+    {
+     "tipo": "pular",
+     "alvo": "davi",
+     "altura": 0.35,
+     "inicio": 1.87,
+     "duracao": 0.34
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "davi",
+     "icone": "gota",
+     "inicio": 1.96
+    },
     {
      "tipo": "golpe",
      "alvo": "h1",
@@ -1205,9 +1225,9 @@
    ],
    "vertical": {
     "camera": {
-     "x": 1.85,
+     "x": 2.02,
      "z": 2.2,
-     "y": -0.4,
+     "y": -0.52,
      "zoom": 1.5
     },
     "centrarEm": [

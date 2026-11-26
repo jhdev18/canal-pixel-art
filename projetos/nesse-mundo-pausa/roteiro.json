@@ -128,6 +128,46 @@
       "dy": 3
      },
      "oculto": true
+    },
+    {
+     "id": "a5",
+     "personagem": "avatar-bloco-verde",
+     "x": -6.4,
+     "z": 3.2,
+     "y": 1.25,
+     "figurante": true
+    },
+    {
+     "id": "p5",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "a5",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
+    },
+    {
+     "id": "a6",
+     "personagem": "avatar-bloco-vermelho",
+     "x": 2,
+     "z": 3.2,
+     "y": 3.25,
+     "figurante": true
+    },
+    {
+     "id": "p6",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "a6",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
     }
    ],
    "acoes": [
@@ -167,6 +207,50 @@
      "tipo": "som",
      "som": "erro",
      "inicio": null
+    },
+    {
+     "tipo": "pular",
+     "alvo": "a5",
+     "para": [
+      -3.6,
+      2.25
+     ],
+     "altura": 1.1,
+     "inicio": null,
+     "duracao": 0.8
+    },
+    {
+     "tipo": "congelar",
+     "alvo": "a5",
+     "inicio": null
+    },
+    {
+     "tipo": "pular",
+     "alvo": "a6",
+     "para": [
+      4.8,
+      3.25
+     ],
+     "altura": 1.1,
+     "inicio": null,
+     "duracao": 0.8
+    },
+    {
+     "tipo": "congelar",
+     "alvo": "a6",
+     "inicio": null
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "p5",
+     "som": "erro",
+     "inicio": 1.73
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "p6",
+     "som": "erro",
+     "inicio": 2.21
     }
    ],
    "vertical": {
@@ -337,6 +421,20 @@
      "inicio": 0.48
     },
     {
+     "tipo": "andar",
+     "alvo": "aluno",
+     "para": 0.6,
+     "inicio": 0.73,
+     "duracao": 1.07
+    },
+    {
+     "tipo": "pular",
+     "alvo": "aluno",
+     "altura": 0.5,
+     "inicio": 2.98,
+     "duracao": 0.54
+    },
+    {
      "tipo": "corte",
      "zoom": 2,
      "y": 2.2,
@@ -370,7 +468,7 @@
    ],
    "vertical": {
     "camera": {
-     "x": -0.5,
+     "x": 0.28,
      "y": 1
     }
    }
@@ -1272,6 +1370,18 @@
      "x": -3.6,
      "z": 3.2,
      "y": 2.25
+    },
+    {
+     "id": "pt",
+     "sprite": "icone-pausa",
+     "x": 0,
+     "z": 0,
+     "sobre": {
+      "id": "atop",
+      "dx": 0,
+      "dy": 3
+     },
+     "oculto": true
     }
    ],
    "acoes": [
@@ -1285,6 +1395,32 @@
      "altura": 1.1,
      "inicio": 0.48,
      "duracao": 0.79
+    },
+    {
+     "tipo": "emocao",
+     "alvo": "amae",
+     "icone": "raiva",
+     "inicio": 0.73
+    },
+    {
+     "tipo": "pular",
+     "alvo": "amae",
+     "altura": 0.6,
+     "inicio": 1.19,
+     "duracao": 0.54
+    },
+    {
+     "tipo": "pular",
+     "alvo": "atop",
+     "altura": 0.4,
+     "inicio": 1.91,
+     "duracao": 0.46
+    },
+    {
+     "tipo": "aparecer",
+     "alvo": "pt",
+     "som": "erro",
+     "inicio": 2.87
     },
     {
      "tipo": "falar",

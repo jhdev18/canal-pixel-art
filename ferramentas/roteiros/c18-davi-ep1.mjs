@@ -80,8 +80,9 @@ C.push(cena('Só sobrou o Davi. E ele fugia a passinhos deste tamanho.', {
 // 8. A espada desce e leva o chapéu: ele fica careca e treme; o chapéu voa para a esquerda
 C.push(cena('A espada desceu e levou o chapéu dele junto.', {
   cenario: 'floresta-isekai', camera: CAM(-0.6), foco: ['davi', 'h1'],
-  elementos: [P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 0.8, 3.0, F), ESPADA('h1'), S('chapeu', 'chapeu-davi', -1.0, 3.0, { oculto: true })],
-  acoes: [a(0.3, 'golpe', { alvo: 'h1', direcao: 'esquerda' }), a(0.34, 'trocar', { alvo: 'davi', estado: 'sem-chapeu-tremendo' }), a(0.34, 'aparecer', { alvo: 'chapeu', som: null }),
+  elementos: [P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 2.2, 3.0, F), ESPADA('h1'), S('chapeu', 'chapeu-davi', -1.0, 3.0, { oculto: true })],
+  // o herói chega andando, golpeia; o Davi dá um pulinho de susto no lugar e fica com a gota de medo (pedido do usuário: mais movimento)
+  acoes: [a(0, 'andar', { alvo: 'h1', para: 0.8, durF: 0.28 }), a(0.55, 'pular', { alvo: 'davi', altura: 0.35, durF: 0.12 }), a(0.75, 'emocao', { alvo: 'davi', icone: 'gota' }), a(0.3, 'golpe', { alvo: 'h1', direcao: 'esquerda' }), a(0.34, 'trocar', { alvo: 'davi', estado: 'sem-chapeu-tremendo' }), a(0.34, 'aparecer', { alvo: 'chapeu', som: null }),
     a(0.34, 'pular', { alvo: 'chapeu', para: -3.4, altura: 1.4, durF: 0.3 }), a(0.36, 'tremer', { intensidade: 0.35, durF: 0.12 }), a(0.36, 'som', { som: 'dano' })],
 }));
 // 9–13: o mesmo instante (o Davi careca no meio dos heróis; o chapéu caído à esquerda)

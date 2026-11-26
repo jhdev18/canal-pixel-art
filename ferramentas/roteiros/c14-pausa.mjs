@@ -15,11 +15,15 @@ const pausa = (id, alvo, extra = {}) => S(id, 'icone-pausa', 0, 0, { sobre: { id
 C.push(cena('quando sua mãe manda pausar o Roblox, tudo pausa.', {
   continuaFrase: true, titulo: 'PAUSA ESSE JOGO!', tituloInicio: 0, tituloDuracao: 2.0, tituloSemEntrada: true, tituloPosicao: 0.1,   // o título já entrou na abertura
   cenario: 'parkour-campeonato', transicao: 'corte', camera: { x: -2.0, z: 2.2, y: 2.4, zoom: 1.5 },
-  elementos: [P('a1', 'avatar-bloco-azul', ...[topo(1)[0], 3.2], { y: topo(1)[1] }), pausa('p1', 'a1')],
+  elementos: [P('a1', 'avatar-bloco-azul', ...[topo(1)[0], 3.2], { y: topo(1)[1] }), pausa('p1', 'a1'),
+    P('a5', 'avatar-bloco-verde', ...[topo(0)[0], 3.2], { y: topo(0)[1], figurante: true }), pausa('p5', 'a5'), P('a6', 'avatar-bloco-vermelho', ...[topo(3)[0], 3.2], { y: topo(3)[1], figurante: true }), pausa('p6', 'a6')],
   // pulo de verdade (agacha → sobe com os braços para cima) até o próximo pilar, CONGELADO no meio do caminho (congelar)
   acoes: [{ tipo: 'pular', alvo: 'a1', para: topo(2), altura: 1.1, inicio: 0, duracao: 0.8 }, { tipo: 'som', som: 'pulo-bloco', inicio: 0 },
     { tipo: 'congelar', alvo: 'a1', inicio: 0.34 }, { tipo: 'flash', inicio: 0.36, intensidade: 0.5 }, { tipo: 'aparecer', alvo: 'p1', inicio: 0.38, som: null },
-    { tipo: 'som', som: 'erro', inicio: 0.38 }],
+    { tipo: 'som', som: 'erro', inicio: 0.38 },
+    { tipo: 'pular', alvo: 'a5', para: topo(1), altura: 1.1, inicio: 0.05, duracao: 0.8 }, { tipo: 'congelar', alvo: 'a5', inicio: 0.36 },
+    { tipo: 'pular', alvo: 'a6', para: topo(4), altura: 1.1, inicio: 0.1, duracao: 0.8 }, { tipo: 'congelar', alvo: 'a6', inicio: 0.36 },
+    a(0.45, 'aparecer', { alvo: 'p5', som: 'erro' }), a(0.6, 'aparecer', { alvo: 'p6', som: 'erro' })],
 }));
 // 2. Exemplos rápidos: o pão parado no ar, o prefeito congelado no meio do espirro
 C.push(cena('O avatar parou no ar. O pão parou no ar. O prefeito, no meio do espirro.', {
@@ -33,7 +37,7 @@ C.push(cena('O avatar parou no ar. O pão parou no ar. O prefeito, no meio do es
 C.push(cena('Por isso, a criançada joga Roblox trancada no banheiro.', {
   cenario: 'banheiro-diorama', camera: { x: 0, y: 3 },
   elementos: [P('aluno', 'aluno', -0.6, 1.6), S('cel', 'celular-mao', 0, 0, { sobre: { id: 'aluno', dx: 0.35, dy: 0.95 } })],
-  acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.4 }), a(0.25, 'corte', { zoom: 2, y: 2.2 }), a(0.4, 'som', { som: 'porta' }), a(0.55, 'som', { som: 'porta' }), a(0.55, 'emocao', { alvo: 'aluno', icone: '!' }),
+  acoes: [a(0.05, 'pular', { alvo: 'aluno', altura: 0.4 }), a(0.12, 'andar', { alvo: 'aluno', para: 0.6, durF: 0.3 }), a(0.75, 'pular', { alvo: 'aluno', altura: 0.5, durF: 0.15 }), a(0.25, 'corte', { zoom: 2, y: 2.2 }), a(0.4, 'som', { som: 'porta' }), a(0.55, 'som', { som: 'porta' }), a(0.55, 'emocao', { alvo: 'aluno', icone: '!' }),
     a(0.7, 'tremer', { intensidade: 0.15, durF: 0.08 })],
 }));
 // 4. A mãe do Léo (a vilã boba): pausa a cidade vinte vezes por dia — anda, congela, anda, congela; a cada pausa o ícone de pausa
@@ -102,8 +106,9 @@ C.push(cena('No dia seguinte, ela criou uma conta no Roblox.', {
 // 12. Ela entra no campeonato e grita, lá de dentro: pausa! (chat em balão)
 C.push(cena('Entrou no campeonato do Léo e gritou, lá dentro: pausa!', {
   cenario: 'parkour-campeonato', camera: PK(-2.0),
-  elementos: [P('amae', 'avatar-bloco-roxo', -9.4, 2.6, { y: 1 }), P('atop', 'avatar-topete', topo(1)[0], 3.2, { y: topo(1)[1] })],
-  acoes: [a(0.05, 'pular', { alvo: 'atop', para: topo(2), altura: 1.1, durF: 0.22 }), a(0.4, 'falar', { alvo: 'amae', texto: 'PAUSA!' }), a(0.45, 'som', { som: 'chat' }),
+  elementos: [P('amae', 'avatar-bloco-roxo', -9.4, 2.6, { y: 1 }), P('atop', 'avatar-topete', topo(1)[0], 3.2, { y: topo(1)[1] }), pausa('pt', 'atop')],
+  acoes: [a(0.05, 'pular', { alvo: 'atop', para: topo(2), altura: 1.1, durF: 0.22 }), a(0.12, 'emocao', { alvo: 'amae', icone: 'raiva' }), a(0.25, 'pular', { alvo: 'amae', altura: 0.6, durF: 0.15 }),
+    a(0.45, 'pular', { alvo: 'atop', altura: 0.4, durF: 0.13 }), a(0.72, 'aparecer', { alvo: 'pt', som: 'erro' }), a(0.4, 'falar', { alvo: 'amae', texto: 'PAUSA!' }), a(0.45, 'som', { som: 'chat' }),
     a(0.7, 'flash', { intensidade: 0.5 }), a(0.7, 'tremer', { intensidade: 0.3, durF: 0.1 })],
 }));
 // 13–14. Virada (2 frases curtas): online não pausa… mas filho online, pausa. Ele fica no ar; ela ganha.
