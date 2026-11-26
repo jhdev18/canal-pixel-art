@@ -221,6 +221,9 @@ abrir com gente parada, objeto pequeno dormindo ou cenário escuro. O `npm run c
   personagens pequenos**, e no celular isso não para o polegar. Próximos vídeos: **abrir com a imagem mais forte do vídeo em close**
   (zoom 2–3: o rosto/a anomalia enchendo a tela — ex.: o brinquedo gigante segurando a criança) por ~1 s, com SFX forte no quadro 0,
   e só depois voltar ao começo da história ("Nessa cidade..."). Medir de novo pelo "continuaram"; a meta é ≥ 65%.
+  **Placar em 27/11/2026:** avatar-v2 (28 h) **1.330 vis., 54,2% continuaram, 0:29 de ~0:48, +8 inscritos** (parou de crescer no 1º dia);
+  brinquedos (5 h) **1.329 vis., 48,8% continuaram, 0:31 de ~0:50**, ainda subindo em degraus (4 grupos de teste; chegou em 5 h onde o
+  avatar levou 1 dia). Os dois sem o formato novo — o isekai/pausa/espera (abertura em close, faixa, zoom, cortes) são o próximo teste.
   **Como fazer (aplicado em isekai, pausa e espera):** uma cena de ABERTURA (~1 s) com o começo da 1ª frase ("Nesse mundo," / "E se você
   renascesse") em cima da imagem forte (zoom 2–3, SFX e movimento no quadro 0, título já no quadro 0 com `"tituloPosicao": 0.1`–`0.13`,
   acima das cabeças); a cena seguinte continua a frase com `"continuaFrase": true` (o `npm run narracao` junta as duas no mesmo parágrafo
