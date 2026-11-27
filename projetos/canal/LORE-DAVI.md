@@ -15,7 +15,7 @@ Cada episódio revela **uma peça** só; nunca explicar tudo de uma vez.
 4. **Desde então, o necromante sussurra para os humanos** (ao chefe da guilda de heróis / ao rei humano): "se um cogumelo crescer,
    ele vira um monstro e devora a vila". Os humanos acreditam que estão se protegendo — **não são vilões, foram enganados**.
 5. **Por isso os heróis derrotam os cogumelos antes que cresçam** (virada do ep. 1). **Derrotar = CAPTURAR** (definido pelo usuário):
-   o cogumelo golpeado não morre nem some — o herói o leva **vivo** (no ep. 1, erguido acima da cabeça; no ep. 2, em carroças) para a guilda.
+   o cogumelo golpeado não morre nem some — o herói o leva **vivo** (no ep. 1, na rede de corda; no ep. 2, em carroças) para a guilda.
    As **almas verdes em volta do goblin** são **almas reais de cogumelos, já extraídas** (o estoque que os encapuzados entregam a ele):
    ele as guarda para ficar mais forte. Não são "efeito" nem decoração — cada chama verde foi um cogumelo.
 6. **A profecia:** "Um dia, um cogumelo cresceria e seria o novo rei." O novo rei pode **libertar as almas** presas

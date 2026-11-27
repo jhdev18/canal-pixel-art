@@ -280,7 +280,8 @@
     "centrarEm": [
      "davi"
     ]
-   }
+   },
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.",
@@ -323,16 +324,16 @@
      "figurante": true
     },
     {
-     "id": "k-c2",
-     "personagem": "cogumelo-comum",
+     "id": "r-h1",
+     "sprite": "rede-heroi",
      "x": 0,
      "z": 0,
      "figurante": true,
-     "oculto": true,
+     "pose": "vazia",
      "sobre": {
       "id": "h1",
-      "dx": 0,
-      "dy": 1.55
+      "dx": -0.4,
+      "dy": 0.25
      }
     }
    ],
@@ -351,16 +352,25 @@
      "inicio": 2.02
     },
     {
+     "tipo": "pular",
+     "alvo": "c2",
+     "altura": 0.4,
+     "som": null,
+     "inicio": 2.1,
+     "duracao": 0.3
+    },
+    {
      "tipo": "sumir",
      "alvo": "c2",
      "som": null,
-     "inicio": 2.19
+     "inicio": 2.4
     },
     {
-     "tipo": "aparecer",
-     "alvo": "k-c2",
+     "tipo": "trocar",
+     "alvo": "r-h1",
+     "estado": "comum",
      "som": "item",
-     "inicio": 2.19
+     "inicio": 2.4
     },
     {
      "tipo": "andar",
@@ -418,7 +428,8 @@
      "davi",
      "h1"
     ]
-   }
+   },
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Por isso, todo herói novo vem treinar na floresta.",
@@ -538,7 +549,9 @@
      "h1",
      "h2"
     ]
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Até que, numa manhã, vieram seis de uma vez.",
@@ -772,20 +785,18 @@
      "y": 0.35,
      "travado": true
     }
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Um por um, os cogumelos da floresta foram sumindo.",
    "cenario": "floresta-isekai",
    "saiDeCena": [
     "c1",
-    "k-c1",
     "c2",
-    "k-c2",
     "c3",
-    "k-c3",
-    "c4",
-    "k-c4"
+    "c4"
    ],
    "camera": {
     "x": 3.4,
@@ -930,55 +941,55 @@
      "figurante": true
     },
     {
-     "id": "k-c1",
-     "personagem": "cogumelo-comum",
+     "id": "r-h1",
+     "sprite": "rede-heroi",
      "x": 0,
      "z": 0,
      "figurante": true,
-     "oculto": true,
+     "pose": "vazia",
      "sobre": {
       "id": "h1",
-      "dx": 0,
-      "dy": 1.55
+      "dx": -0.4,
+      "dy": 0.25
      }
     },
     {
-     "id": "k-c2",
-     "personagem": "cogumelo-roxo",
+     "id": "r-h2",
+     "sprite": "rede-heroi",
      "x": 0,
      "z": 0,
      "figurante": true,
-     "oculto": true,
+     "pose": "vazia",
      "sobre": {
       "id": "h2",
-      "dx": 0,
-      "dy": 1.55
+      "dx": -0.4,
+      "dy": 0.25
      }
     },
     {
-     "id": "k-c3",
-     "personagem": "cogumelo-verde",
+     "id": "r-h3",
+     "sprite": "rede-heroi",
      "x": 0,
      "z": 0,
      "figurante": true,
-     "oculto": true,
+     "pose": "vazia",
      "sobre": {
       "id": "h3",
-      "dx": 0,
-      "dy": 1.55
+      "dx": -0.4,
+      "dy": 0.25
      }
     },
     {
-     "id": "k-c4",
-     "personagem": "cogumelo-comum",
+     "id": "r-h4",
+     "sprite": "rede-heroi",
      "x": 0,
      "z": 0,
      "figurante": true,
-     "oculto": true,
+     "pose": "vazia",
      "sobre": {
       "id": "h4",
-      "dx": 0,
-      "dy": 1.55
+      "dx": -0.4,
+      "dy": 0.25
      }
     }
    ],
@@ -1032,16 +1043,25 @@
      "inicio": 0.56
     },
     {
+     "tipo": "pular",
+     "alvo": "c1",
+     "altura": 0.4,
+     "som": null,
+     "inicio": 0.63,
+     "duracao": 0.23
+    },
+    {
      "tipo": "sumir",
      "alvo": "c1",
      "som": null,
-     "inicio": 0.69
+     "inicio": 0.85
     },
     {
-     "tipo": "aparecer",
-     "alvo": "k-c1",
+     "tipo": "trocar",
+     "alvo": "r-h1",
+     "estado": "comum",
      "som": "item",
-     "inicio": 0.69
+     "inicio": 0.85
     },
     {
      "tipo": "golpe",
@@ -1050,16 +1070,25 @@
      "inicio": 1.21
     },
     {
+     "tipo": "pular",
+     "alvo": "c2",
+     "altura": 0.4,
+     "som": null,
+     "inicio": 1.28,
+     "duracao": 0.23
+    },
+    {
      "tipo": "sumir",
      "alvo": "c2",
      "som": null,
-     "inicio": 1.34
+     "inicio": 1.5
     },
     {
-     "tipo": "aparecer",
-     "alvo": "k-c2",
+     "tipo": "trocar",
+     "alvo": "r-h2",
+     "estado": "roxo",
      "som": "item",
-     "inicio": 1.34
+     "inicio": 1.5
     },
     {
      "tipo": "golpe",
@@ -1068,16 +1097,25 @@
      "inicio": 1.86
     },
     {
+     "tipo": "pular",
+     "alvo": "c3",
+     "altura": 0.4,
+     "som": null,
+     "inicio": 1.93,
+     "duracao": 0.23
+    },
+    {
      "tipo": "sumir",
      "alvo": "c3",
      "som": null,
-     "inicio": 1.99
+     "inicio": 2.15
     },
     {
-     "tipo": "aparecer",
-     "alvo": "k-c3",
+     "tipo": "trocar",
+     "alvo": "r-h3",
+     "estado": "verde",
      "som": "item",
-     "inicio": 1.99
+     "inicio": 2.15
     },
     {
      "tipo": "golpe",
@@ -1086,16 +1124,25 @@
      "inicio": 2.51
     },
     {
+     "tipo": "pular",
+     "alvo": "c4",
+     "altura": 0.4,
+     "som": null,
+     "inicio": 2.58,
+     "duracao": 0.23
+    },
+    {
      "tipo": "sumir",
      "alvo": "c4",
      "som": null,
-     "inicio": 2.64
+     "inicio": 2.8
     },
     {
-     "tipo": "aparecer",
-     "alvo": "k-c4",
+     "tipo": "trocar",
+     "alvo": "r-h4",
+     "estado": "comum",
      "som": "item",
-     "inicio": 2.64
+     "inicio": 2.8
     },
     {
      "tipo": "expressao",
@@ -1119,7 +1166,9 @@
      "y": 0.35,
      "travado": true
     }
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Só sobrou o Davi. E ele fugia a passinhos deste tamanho.",
@@ -1153,6 +1202,19 @@
       "id": "h1",
       "dx": 0.45,
       "dy": 0.8
+     }
+    },
+    {
+     "id": "r-h1",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h1",
+      "dx": -0.4,
+      "dy": 0.25
      }
     }
    ],
@@ -1223,7 +1285,9 @@
      "davi",
      "h1"
     ]
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "A espada desceu e levou o chapéu dele junto.",
@@ -1257,6 +1321,19 @@
       "id": "h1",
       "dx": 0.45,
       "dy": 0.8
+     }
+    },
+    {
+     "id": "r-h1",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h1",
+      "dx": -0.4,
+      "dy": 0.25
      }
     },
     {
@@ -1344,7 +1421,9 @@
      "davi",
      "h1"
     ]
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Então o Davi parou. Respirou fundo. E espirrou de propósito.",
@@ -1476,6 +1555,58 @@
       "dx": 0.45,
       "dy": 0.8
      }
+    },
+    {
+     "id": "r-h1",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h1",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h2",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "roxo",
+     "sobre": {
+      "id": "h2",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h3",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "verde",
+     "sobre": {
+      "id": "h3",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h4",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h4",
+      "dx": -0.4,
+      "dy": 0.25
+     }
     }
    ],
    "acoes": [
@@ -1552,7 +1683,9 @@
      "davi"
     ]
    },
-   "momento": "ataque"
+   "momento": "ataque",
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "A floresta inteira ficou azul.",
@@ -1683,6 +1816,58 @@
       "dx": 0.45,
       "dy": 0.8
      }
+    },
+    {
+     "id": "r-h1",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h1",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h2",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "roxo",
+     "sobre": {
+      "id": "h2",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h3",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "verde",
+     "sobre": {
+      "id": "h3",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h4",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h4",
+      "dx": -0.4,
+      "dy": 0.25
+     }
     }
    ],
    "acoes": [
@@ -1768,7 +1953,9 @@
      "h5"
     ]
    },
-   "momento": "ataque"
+   "momento": "ataque",
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "E os seis heróis caíram dormindo.",
@@ -1776,12 +1963,16 @@
    "saiDeCena": [
     "h1",
     "e-h1",
+    "r-h1",
     "h2",
     "e-h2",
+    "r-h2",
     "h3",
     "e-h3",
+    "r-h3",
     "h4",
     "e-h4",
+    "r-h4",
     "h5",
     "e-h5",
     "h6",
@@ -1915,6 +2106,58 @@
      }
     },
     {
+     "id": "r-h1",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h1",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h2",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "roxo",
+     "sobre": {
+      "id": "h2",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h3",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "verde",
+     "sobre": {
+      "id": "h3",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
+     "id": "r-h4",
+     "sprite": "rede-heroi",
+     "x": 0,
+     "z": 0,
+     "figurante": true,
+     "pose": "comum",
+     "sobre": {
+      "id": "h4",
+      "dx": -0.4,
+      "dy": 0.25
+     }
+    },
+    {
      "id": "dh1",
      "personagem": "heroi-aventureiro-dormindo",
      "x": 0.8,
@@ -1984,6 +2227,12 @@
      "inicio": 0.47
     },
     {
+     "tipo": "sumir",
+     "alvo": "r-h1",
+     "som": null,
+     "inicio": 0.47
+    },
+    {
      "tipo": "aparecer",
      "alvo": "dh1",
      "som": "aterrissar",
@@ -1998,6 +2247,12 @@
     {
      "tipo": "sumir",
      "alvo": "e-h2",
+     "som": null,
+     "inicio": 0.73
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "r-h2",
      "som": null,
      "inicio": 0.73
     },
@@ -2020,6 +2275,12 @@
      "inicio": 0.99
     },
     {
+     "tipo": "sumir",
+     "alvo": "r-h3",
+     "som": null,
+     "inicio": 0.99
+    },
+    {
      "tipo": "aparecer",
      "alvo": "dh3",
      "som": "aterrissar",
@@ -2034,6 +2295,12 @@
     {
      "tipo": "sumir",
      "alvo": "e-h4",
+     "som": null,
+     "inicio": 1.24
+    },
+    {
+     "tipo": "sumir",
+     "alvo": "r-h4",
      "som": null,
      "inicio": 1.24
     },
@@ -2104,7 +2371,9 @@
      "h5"
     ]
    },
-   "momento": "ataque"
+   "momento": "ataque",
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Os heróis não derrotavam os cogumelos por serem fracos.",
@@ -2238,7 +2507,9 @@
      "davi"
     ]
    },
-   "momento": "ataque"
+   "momento": "ataque",
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Derrotavam antes que eles crescessem.",
@@ -2359,7 +2630,9 @@
      "davi"
     ]
    },
-   "momento": "ataque"
+   "momento": "ataque",
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "E, escondido na moita, um goblin bruxo anotava tudo.",
@@ -2476,7 +2749,9 @@
     "centrarEm": [
      "gob"
     ]
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   },
   {
    "narracaoTexto": "Para onde o Davi vai agora? Comenta: um, floresta dos cogumelos. Dois, vila dos humanos.",
@@ -2558,7 +2833,9 @@
     "centrarEm": [
      "davi"
     ]
-   }
+   },
+   "tituloFixo": false,
+   "transicao": "corte"
   }
  ],
  "tituloFixo": "RENASCI COMO O MONSTRO MAIS FRACO"

@@ -11,9 +11,12 @@ const PERTO = (x, y = 1.8) => ({ x, z: 2.2, y, zoom: 2 });
 const F = { figurante: true };
 const ESPADA = (heroi) => S('e-' + heroi, 'espada-heroi', 0, 0, { sobre: { id: heroi, dx: 0.45, dy: 0.8 } });
 const COMUM = ['cogumelo-comum', 'cogumelo-roxo', 'cogumelo-verde', 'cogumelo-comum'];
-// Derrotar = CAPTURAR (lore): o cogumelo golpeado some do chão e aparece erguido acima da cabeça do herói, que o leva vivo (para a guilda)
-const PRESO = (id, sp, heroi) => P('k-' + id, sp, 0, 0, { ...F, oculto: true, sobre: { id: heroi, dx: 0, dy: 1.55 } });
-const CAPTURA = (id, f) => [a(f, 'sumir', { alvo: id, som: null }), a(f, 'aparecer', { alvo: 'k-' + id, som: 'item' })];
+// Derrotar = CAPTURAR (lore; pedido do usuário: "capturando e colocando em uma rede"): cada herói leva uma rede na mão (lado oposto à
+// espada); no golpe, o cogumelo dá um pulinho, some e aparece DENTRO da rede (estado com a cor dele), e o herói segue levando-o vivo.
+const EST = { 'cogumelo-comum': 'comum', 'cogumelo-roxo': 'roxo', 'cogumelo-verde': 'verde' };
+const REDE = (heroi, estado = 'vazia') => S('r-' + heroi, 'rede-heroi', 0, 0, { ...F, pose: estado, sobre: { id: heroi, dx: -0.4, dy: 0.25 } });
+const CAPTURA = (id, heroi, sp, f) => [a(f, 'pular', { alvo: id, altura: 0.4, durF: 0.07, som: null }), a(f + 0.07, 'sumir', { alvo: id, som: null }),
+  a(f + 0.07, 'trocar', { alvo: 'r-' + heroi, estado: EST[sp], som: 'item' })];
 
 // 1. Gancho: aos 0,15 s o Davi brota do chão (puf) e pula; no meio da frase, espirra uma nuvenzinha azul
 C.push(cena('como o monstro mais fraco do jogo?', {
@@ -36,9 +39,9 @@ C.push(cena('Davi acordou sem braços, de perninhas curtas e chapéu gigante.', 
 // 3. A crença como AÇÃO: ao fundo, um herói derrota um cogumelo com um golpe (puf); o Davi assiste, assustado
 C.push(cena('Nesse mundo, cogumelo é o primeiro monstro que todo herói derrota.', {
   cenario: 'floresta-isekai', camera: CAM(1.2), foco: ['davi', 'h1'],
-  elementos: [P('davi', 'cogumelo-davi', -1.4, 2.6), P('h1', 'heroi-aventureiro', 2.0, 4.0, F), ESPADA('h1'), P('c2', 'cogumelo-comum', 3.4, 4.0, F), PRESO('c2', 'cogumelo-comum', 'h1')],
-  // o herói captura o cogumelo e vai embora com ele erguido (derrotar = capturar)
-  acoes: [a(0.05, 'andar', { alvo: 'h1', para: 2.4, durF: 0.3 }), a(0.4, 'golpe', { alvo: 'h1', direcao: 'direita' }), ...CAPTURA('c2', 0.44),
+  elementos: [P('davi', 'cogumelo-davi', -1.4, 2.6), P('h1', 'heroi-aventureiro', 2.0, 4.0, F), ESPADA('h1'), P('c2', 'cogumelo-comum', 3.4, 4.0, F), REDE('h1')],
+  // o herói captura o cogumelo na rede e vai embora levando-o (derrotar = capturar)
+  acoes: [a(0.05, 'andar', { alvo: 'h1', para: 2.4, durF: 0.3 }), a(0.4, 'golpe', { alvo: 'h1', direcao: 'direita' }), ...CAPTURA('c2', 'h1', 'cogumelo-comum', 0.42),
     a(0.56, 'andar', { alvo: 'h1', para: 5.6, durF: 0.44 }),
     a(0.46, 'trocar', { alvo: 'davi', estado: 'tremendo' }), a(0.5, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' })],
 }));
@@ -53,7 +56,8 @@ C.push(cena('Por isso, todo herói novo vem treinar na floresta.', {
 const HEROIS = [['h1', 'heroi-aventureiro', 0.8, 3.0], ['h2', 'heroi-aventureira', 2.4, 3.8], ['h3', 'heroi-grandao', 3.8, 2.6],
   ['h4', 'heroi-aventureiro', 5.2, 4.2], ['h5', 'heroi-aventureira', 6.6, 3.2], ['h6', 'heroi-grandao', 8.0, 4.4]];
 const COGUMELOS = [['c1', 1.6, 1.6], ['c2', 3.2, 1.6], ['c3', 4.8, 1.6], ['c4', 6.4, 1.6]];
-const HER = (extra = {}) => HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x, z, { ...F, ...extra }), ESPADA(id)]);
+const REDES = (ids = HEROIS.slice(0, 4).map(([id]) => id)) => ids.map((id) => REDE(id, EST[COMUM[HEROIS.findIndex(([h]) => h === id)]]));   // cheias: o cogumelo que cada um pegou
+const HER = (extra = {}) => [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x, z, { ...F, ...extra }), ESPADA(id)]), ...REDES()];
 // Shorts das cenas 5 e 6: o grupo inteiro no meio, câmera fixa (os heróis entram correndo de fora, pela direita)
 const ATAQUE_SHORTS = () => ({ x: 5.6, z: 2.2, y: 2.6, travado: true });
 // 5. O evento (~30%): seis heróis entram correndo de uma vez pela direita (cada um na sua faixa); os cogumelos levam susto ("!")
@@ -65,20 +69,20 @@ C.push(cena('Até que, numa manhã, vieram seis de uma vez.', {
   acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.03, 'correr', { alvo: id, para: x, durF: 0.6 })), a(0.6, 'tremer', { intensidade: 0.25, durF: 0.1 }), a(0.6, 'som', { som: 'passo' }),
     ...COGUMELOS.map(([id], k) => a(0.72 + k * 0.04, 'emocao', { alvo: id, icone: '!' }))],
 }));
-// 6. Escalada: um por um, os cogumelos são capturados (cada herói golpeia o da frente e o ergue acima da cabeça)
+// 6. Escalada: um por um, os cogumelos são capturados (cada herói golpeia o da frente e o põe na rede)
 C.push(cena('Um por um, os cogumelos da floresta foram sumindo.', {
   cenario: 'floresta-isekai', camera: CAM(3.4), vertical: { camera: ATAQUE_SHORTS() },
   // cada herói dá um passo para a esquerda e golpeia (termina na posição da manhã do ataque)
   elementos: [...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, x + 0.6, z, F), ESPADA(id)]), ...COGUMELOS.map(([id, x, z], k) => P(id, COMUM[k], x, z, F)),
-    ...COGUMELOS.map(([id], k) => PRESO(id, COMUM[k], HEROIS[k][0]))],
+    ...COGUMELOS.map((_, k) => REDE(HEROIS[k][0]))],
   acoes: [...HEROIS.map(([id, , x], k) => a(k * 0.04, 'andar', { alvo: id, para: x, durF: 0.96 - k * 0.04 })),
-    ...COGUMELOS.flatMap(([id], k) => [a(0.08 + k * 0.2, 'golpe', { alvo: HEROIS[k][0], direcao: 'esquerda' }), ...CAPTURA(id, 0.12 + k * 0.2)])],
-  saiDeCena: COGUMELOS.flatMap(([id]) => [id, 'k-' + id]),
+    ...COGUMELOS.flatMap(([id], k) => [a(0.08 + k * 0.2, 'golpe', { alvo: HEROIS[k][0], direcao: 'esquerda' }), ...CAPTURA(id, HEROIS[k][0], COMUM[k], 0.1 + k * 0.2)])],
+  saiDeCena: COGUMELOS.map(([id]) => id),
 }));
 // 7. Só sobrou o Davi: foge a passinhos minúsculos, soltando um esporo de medo a cada passo; o herói vem atrás, sem pressa
 C.push(cena('Só sobrou o Davi. E ele fugia a passinhos deste tamanho.', {
   cenario: 'floresta-isekai', camera: CAM(-0.4), foco: ['davi', 'h1'],
-  elementos: [P('davi', 'cogumelo-davi', 0.2, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 2.8, 3.0, F), ESPADA('h1')],
+  elementos: [P('davi', 'cogumelo-davi', 0.2, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 2.8, 3.0, F), ESPADA('h1'), ...REDES(['h1'])],
   acoes: [a(0.25, 'andar', { alvo: 'davi', para: -1.0, durF: 0.75, som: null }), a(0.3, 'andar', { alvo: 'h1', para: 0.8, durF: 0.7 }),
     a(0.35, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' }), a(0.6, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' }),
     a(0.85, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' })],
@@ -86,7 +90,7 @@ C.push(cena('Só sobrou o Davi. E ele fugia a passinhos deste tamanho.', {
 // 8. A espada desce e leva o chapéu: ele fica careca e treme; o chapéu voa para a esquerda
 C.push(cena('A espada desceu e levou o chapéu dele junto.', {
   cenario: 'floresta-isekai', camera: CAM(-0.6), foco: ['davi', 'h1'],
-  elementos: [P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 2.2, 3.0, F), ESPADA('h1'), S('chapeu', 'chapeu-davi', -1.0, 3.0, { oculto: true })],
+  elementos: [P('davi', 'cogumelo-davi', -1.0, 3.0, { pose: 'assustado' }), P('h1', 'heroi-aventureiro', 2.2, 3.0, F), ESPADA('h1'), ...REDES(['h1']), S('chapeu', 'chapeu-davi', -1.0, 3.0, { oculto: true })],
   // o herói chega andando, golpeia; o Davi dá um pulinho de susto no lugar e fica com a gota de medo (pedido do usuário: mais movimento)
   acoes: [a(0, 'andar', { alvo: 'h1', para: 0.8, durF: 0.28 }), a(0.55, 'pular', { alvo: 'davi', altura: 0.35, durF: 0.12 }), a(0.75, 'emocao', { alvo: 'davi', icone: 'gota' }), a(0.3, 'golpe', { alvo: 'h1', direcao: 'esquerda' }), a(0.34, 'trocar', { alvo: 'davi', estado: 'sem-chapeu-tremendo' }), a(0.34, 'aparecer', { alvo: 'chapeu', som: null }),
     a(0.34, 'pular', { alvo: 'chapeu', para: -3.4, altura: 1.4, durF: 0.3 }), a(0.36, 'tremer', { intensidade: 0.35, durF: 0.12 }), a(0.36, 'som', { som: 'dano' })],
@@ -97,7 +101,7 @@ const CHAPEU = () => S('chapeu', 'chapeu-davi', -3.4, 3.0);
 // 9. O Davi ESCOLHE: para, respira fundo e espirra de propósito
 C.push(cena('Então o Davi parou. Respirou fundo. E espirrou de propósito.', {
   cenario: 'floresta-isekai', camera: PERTO(-0.4, 1.8), foco: 'davi',
-  elementos: [DAVI(), CHAPEU(), ...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, id === 'h1' ? 1.8 : x, z, F), ESPADA(id)])],
+  elementos: [DAVI(), CHAPEU(), ...HEROIS.flatMap(([id, sp, x, z]) => [P(id, sp, id === 'h1' ? 1.8 : x, z, F), ESPADA(id)]), ...REDES()],
   acoes: [a(0.05, 'andar', { alvo: 'h1', para: 0.8, durF: 0.9 }), a(0.3, 'trocar', { alvo: 'davi', estado: 'sem-chapeu' }), a(0.5, 'trocar', { alvo: 'davi', estado: 'sem-chapeu-inspira', som: 'espirro-inspira' }),
     a(0.86, 'trocar', { alvo: 'davi', estado: 'sem-chapeu-espirro', som: 'espirro' }), a(0.88, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'pequeno' }),
     a(0.95, 'golpe', { alvo: 'h1', direcao: 'esquerda' })],
@@ -115,10 +119,10 @@ C.push(cena('E os seis heróis caíram dormindo.', {
   cenario: 'floresta-isekai', camera: CAM(2.4), foco: ['davi', 'h5'],
   elementos: [DAVI('sem-chapeu'), CHAPEU(), ...HER(), ...DORMEM],
   acoes: [a(0, 'esporos', { alvo: 'davi', cor: 'azul', tamanho: 'flutuando' }),
-    ...HEROIS.flatMap(([id], k) => [a(0.08 + k * 0.12, 'sumir', { alvo: id, som: null }), a(0.08 + k * 0.12, 'sumir', { alvo: 'e-' + id, som: null }),
+    ...HEROIS.flatMap(([id], k) => [a(0.08 + k * 0.12, 'sumir', { alvo: id, som: null }), a(0.08 + k * 0.12, 'sumir', { alvo: 'e-' + id, som: null }), ...(k < 4 ? [a(0.08 + k * 0.12, 'sumir', { alvo: 'r-' + id, som: null })] : []),
       a(0.08 + k * 0.12, 'aparecer', { alvo: 'd' + id, som: k % 2 ? null : 'aterrissar' })]),
     a(0.85, 'emocao', { alvo: 'dh1', icone: 'zzz' })],
-  saiDeCena: HEROIS.flatMap(([id]) => [id, 'e-' + id]),
+  saiDeCena: HEROIS.flatMap(([id], k) => [id, 'e-' + id, ...(k < 4 ? ['r-' + id] : [])]),
 }));
 const DORMINDO = () => HEROIS.map(([id, sp, x, z]) => P('d' + id, sp + '-dormindo', x, z, F));
 // 12. Virada (1): ele pega o chapéu de volta (o chapéu pula até a cabeça dele) no meio dos heróis dormindo
@@ -187,6 +191,8 @@ R.tituloFixo = 'RENASCI COMO O MONSTRO MAIS FRACO';
       a(0.04, 'aparecer', { alvo: 'chapeu', som: null }), a(0.04, 'pular', { alvo: 'chapeu', para: -3.4, altura: 1.4, durF: 0.6 }), a(0.05, 'tremer', { intensidade: 0.35, durF: 0.15 }), a(0.05, 'flash', { intensidade: 0.4 })],
   })];
   alturaShorts(abre, { 1: -2 }); C.unshift(abre[0]); }
+// pedido do usuário (27/11/2026): a faixa do alto só nos ~10 primeiros segundos (abertura + 3 cenas, ~0–10 s) e cortes secos entre as cenas
+C.forEach((c, i) => { if (i >= 4) c.tituloFixo = false; c.transicao = 'corte'; });
 
 salvar('isekai-davi-01', ['ISEKAI (série do cogumelo Davi) — EPISÓDIO 1: "E se você renascesse como o monstro mais fraco do jogo?"',
   'Narração: UM único áudio do narrador (narracao/narracao-completa.mp3). Texto: npm run narracao -- isekai-davi-01',

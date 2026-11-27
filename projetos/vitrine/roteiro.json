@@ -1013,6 +1013,16 @@
       "acoes": [ { "tipo": "esporos", "alvo": "davi", "cor": "azul", "tamanho": "grande", "inicio": 0.4 },
         { "tipo": "sumir", "alvo": "h1", "inicio": 1.6, "som": null }, { "tipo": "aparecer", "alvo": "d1", "inicio": 1.6, "som": null }, { "tipo": "emocao", "alvo": "d1", "icone": "zzz", "inicio": 1.8 },
         { "tipo": "esporos", "alvo": "davi", "cor": "amarelo", "tamanho": "pequeno", "inicio": 3.0 }, { "tipo": "esporos", "alvo": "davi", "cor": "rosa", "tamanho": "pequeno", "inicio": 3.6 },
-        { "tipo": "esporos", "alvo": "davi", "cor": "azul", "tamanho": "flutuando", "inicio": 4.2 } ] }
+        { "tipo": "esporos", "alvo": "davi", "cor": "azul", "tamanho": "flutuando", "inicio": 4.2 } ] },
+    { "cenario": "floresta-isekai", "duracao": 5, "transicao": "dither", "foto": [0.5, 1.6, 3.0, 4.5], "camera": { "x": 0.6, "z": 2.2, "y": 1.8, "zoom": 2 },
+      "legenda": "85. Rede de captura (PROTÓTIPO, rede-heroi): o herói golpeia, o cogumelo pula e vai parar DENTRO da rede (vazia > comum); depois roxo e verde em outros heróis.",
+      "elementos": [ { "id": "h1", "personagem": "heroi-aventureiro", "x": -1.0, "z": 3.0 }, { "id": "e1", "sprite": "espada-heroi", "x": 0, "z": 0, "sobre": { "id": "h1", "dx": 0.45, "dy": 0.8 } },
+        { "id": "r1", "sprite": "rede-heroi", "pose": "vazia", "x": 0, "z": 0, "sobre": { "id": "h1", "dx": -0.4, "dy": 0.25 } },
+        { "id": "c1", "personagem": "cogumelo-comum", "x": 0.6, "z": 3.0 },
+        { "id": "h2", "personagem": "heroi-aventureira", "x": 2.2, "z": 3.6 }, { "id": "r2", "sprite": "rede-heroi", "pose": "roxo", "x": 0, "z": 0, "sobre": { "id": "h2", "dx": -0.4, "dy": 0.25 } },
+        { "id": "h3", "personagem": "heroi-grandao", "x": 3.6, "z": 3.0 }, { "id": "r3", "sprite": "rede-heroi", "pose": "verde", "x": 0, "z": 0, "sobre": { "id": "h3", "dx": -0.4, "dy": 0.25 } } ],
+      "acoes": [ { "tipo": "golpe", "alvo": "h1", "direcao": "direita", "inicio": 1.0 }, { "tipo": "pular", "alvo": "c1", "altura": 0.4, "inicio": 1.05, "duracao": 0.3, "som": null },
+        { "tipo": "sumir", "alvo": "c1", "inicio": 1.35, "som": null }, { "tipo": "trocar", "alvo": "r1", "estado": "comum", "inicio": 1.35, "som": "item" },
+        { "tipo": "andar", "alvo": "h1", "para": -2.4, "inicio": 2.2, "duracao": 1.6 } ] }
   ]
 }

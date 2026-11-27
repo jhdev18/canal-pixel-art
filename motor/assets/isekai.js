@@ -304,6 +304,24 @@ function espada(estado = 'parado') {
   }
   return p.contorno('#1e1a24');
 }
+// PROTÓTIPO (pedido do usuário, 27/11/2026: "capturando e colocando em uma rede"): rede de corda que o herói leva pendurada na mão
+// (com "sobre": { id: <herói>, dx: -0.4, dy: 0.25 }, do lado oposto à espada). Estados: vazia; comum/roxo/verde = com o cogumelo
+// capturado dentro (o chapéu e o rostinho aparecem pela malha). Quadro 22x24, a mão em cima (o nó da corda).
+function rede(cor = null) {
+  const W = 22, H = 24, p = new Pix(W, H), cx = 11, cy = 15, R = '#c8a868', r = '#8a6a3a';
+  if (cor != null) {                                    // o cogumelo preso, apertado dentro da rede
+    const pal = [['#e0a060', '#b8743a', '#7a4a24'], ['#c8a0e0', '#9a6ab8', '#5a3a7a'], ['#a0d080', '#6aa850', '#3a6a2a']][cor];
+    p.elipse(cx, cy + 3, 4, 4, (x, y, ex) => Pix.tom([CAULE.sombra, CAULE.base, CAULE.luz], 0.8 - ex * 0.3, x, y));
+    p.elipse(cx, cy - 1, 7, 5, (x, y, ex, ey) => (y > cy ? null : Pix.tom([pal[2], pal[1], pal[0]], 0.75 - ey * 0.55 - ex * 0.25, x, y)));
+    p.set(cx - 2, cy + 2, K); p.set(cx + 2, cy + 2, K); p.set(cx, cy + 4, '#5a2020');        // rostinho assustado
+  }
+  // malha: losangos de corda dentro do saco redondo + borda
+  p.elipse(cx, cy, 8.5, 8, (x, y) => (((x + y) % 4 === 0 || (x - y + 40) % 4 === 0) ? r : undefined));
+  for (let a = 0; a < 64; a++) { const t = (a / 64) * Math.PI * 2; p.set(cx + Math.cos(t) * 8.5, cy + Math.sin(t) * 8, R); }
+  p.ret(cx - 3, 6, 7, 2, R); p.ret(cx - 3, 7, 7, 1, r);                   // boca franzida
+  p.ret(cx - 1, 1, 2, 5, R); p.set(cx, 1, '#e0c890');                      // corda até a mão
+  return p.contorno('#3a2a18');
+}
 function chapeuSolto(grande) {   // o chapéu do Davi sozinho (voa com "mover"/"pular" e volta para a cabeça)
   const p = new Pix(32, 16);
   chapeuTico(p, 16, 13, grande, grande ? CHAPEU_GRANDE : CHAPEU);
@@ -320,10 +338,12 @@ registrarSprites({
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k, () => pessoa(p)])),
   ...Object.fromEntries(Object.entries(HEROIS).map(([k, p]) => [k + '-dormindo', () => deitado(p)])),
   'espada-heroi': () => ({ quadros: [espada(), espada('golpe-dir'), espada('golpe-esq')], anims: { parado: { q: [0] }, 'golpe-dir': { q: [1] }, 'golpe-esq': { q: [2] } }, sombra: false }),
+  'rede-heroi': () => ({ quadros: [rede(), rede(0), rede(1), rede(2)], anims: { parado: { q: [0] }, vazia: { q: [0] }, comum: { q: [1] }, roxo: { q: [2] }, verde: { q: [3] } }, sombra: false }),
   'chapeu-davi': () => ({ quadros: [chapeuSolto(false), chapeuSolto(true)], anims: { parado: { q: [0] }, grande: { q: [1] } }, sombra: true }),
 }, { grupo: 'Isekai (o cogumelo Davi)', status: 'protótipo', descricoes: {
   'cogumelo-davi': 'o cogumelo protagonista (Davi) do isekai; estados parado/andando/correndo/pulando, assustado, tremendo, sem-chapeu (+andando/tremendo/inspira/espirro), espirro-antes/espirro, feliz, grande (chapéu gigante, mesma cor) e expressões (feliz, rindo, triste, chorando, bravo, surpreso, assustado, envergonhado, pensativo, dormindo)',
   'goblin-mago': 'goblin de chapéu de mago e manto roxo estrelado, guardado para personagens futuros; mesmos estados do goblin',
   goblin: 'o goblin BRUXO DAS TREVAS, rival da série: capuz pontudo preto com o rosto na sombra, manto preto rasgado, colar de ossinhos, grimório, cajado com caveirinha e chama verde, olhos verdes que brilham; parado/anotando, feliz, rindo, alerta, conjurar, andando',
+  'rede-heroi': 'rede de corda que o herói leva na mão ("sobre" o herói, dx -0.4, dy 0.25); estados vazia e comum/roxo/verde (com o cogumelo capturado dentro)',
   'cogumelo-comum': 'os outros cogumelos da floresta (figurantes); também cogumelo-roxo e cogumelo-verde',
 } });

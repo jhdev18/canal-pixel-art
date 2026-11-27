@@ -11,7 +11,7 @@ Gerado por `npm run catalogo` (não edite à mão). ✅ = aprovado · 🧪 = pro
 
 Prioridade quando o nome se repete: projeto > biblioteca > protótipos.
 
-## Sprites (315)
+## Sprites (316)
 
 Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 
@@ -428,6 +428,7 @@ Uso: `{ "sprite": "nome" }`; estado com `"pose"` ou ação `trocar`.
 | `heroi-aventureira-dormindo` | 🧪 protótipo | parado | 44×25 |
 | `heroi-grandao-dormindo` | 🧪 protótipo | parado | 44×26 |
 | `espada-heroi` | 🧪 protótipo | parado, golpe-dir, golpe-esq | 40×20 |
+| `rede-heroi` | 🧪 protótipo | parado, vazia, comum, roxo, verde | 22×24 |
 | `chapeu-davi` | 🧪 protótipo | parado, grande | 32×16 |
 
 ## Personagens
@@ -606,6 +607,7 @@ Uso: `{ "cenario": "nome" }`
 | `consultorio-diorama` | 🧪 protótipo | diorama (cômodo consultorio) | 0 |
 | `biblioteca-diorama` | 🧪 protótipo | diorama (cômodo biblioteca) | 0 |
 | `floresta-isekai` | 🧪 protótipo | diorama | 77 |
+| `mapa-vila` | 🧪 protótipo | diorama | 43 |
 | `acampamento` | ✅ | lateral (floresta-noite) | 4 |
 | `vila` | ✅ | lateral (floresta-dia) | 4 |
 | `vila-noite` | ✅ | lateral (floresta-noite) | 3 |
@@ -642,7 +644,7 @@ Uso: `{ "cenario": "nome" }`
 
 ## Ações
 
-`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `congelar`, `sentar`, `levantar`, `espirrar`, `fogos`, `expressao`, `trocar`, `desaparecer`, `numero`, `golpe`, `esporos`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
+`andar`, `correr`, `mover`, `pular`, `virar`, `falar`, `coletar`, `aparecer`, `sumir`, `explosao`, `tremer`, `flash`, `emocao`, `piscar`, `camera`, `magia`, `som`, `congelar`, `sentar`, `levantar`, `espirrar`, `fogos`, `expressao`, `trocar`, `desaparecer`, `numero`, `golpe`, `esporos`, `crescer`, `pensar`, `destaque`, `sombra`, `contador`, `placar`, `continua` (detalhes no README).
 
 ## Sons
 
