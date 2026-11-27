@@ -2479,7 +2479,7 @@
    }
   },
   {
-   "narracaoTexto": "Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.",
+   "narracaoTexto": "Para onde o Davi vai agora? Comenta: um, floresta dos cogumelos. Dois, vila dos humanos.",
    "cenario": "floresta-isekai",
    "camera": {
     "x": 0,
@@ -2512,45 +2512,45 @@
       "#3ac860",
       "#f0a040"
      ],
-     "inicio": 0.38,
-     "duracao": 3.87
+     "inicio": 0.41,
+     "duracao": 5.49
     },
     {
      "tipo": "andar",
      "alvo": "davi",
      "para": -0.6,
-     "inicio": 0.5,
-     "duracao": 1.21
+     "inicio": 0.59,
+     "duracao": 1.72
     },
     {
      "tipo": "emocao",
      "alvo": "davi",
      "icone": "?",
-     "inicio": 1.91
+     "inicio": 2.59
     },
     {
      "tipo": "andar",
      "alvo": "davi",
      "para": 1.2,
-     "inicio": 2.8,
-     "duracao": 1.21
+     "inicio": 3.85,
+     "duracao": 1.72
     },
     {
      "tipo": "som",
      "som": "blip",
-     "inicio": 4.13
+     "inicio": 5.73
     },
     {
      "tipo": "expressao",
      "alvo": "davi",
      "rosto": "feliz",
-     "inicio": 4.05,
-     "duracao": 0.28
+     "inicio": 5.62,
+     "duracao": 0.4
     }
    ],
    "vertical": {
     "camera": {
-     "x": 2.11,
+     "x": 2.09,
      "z": 2.2,
      "y": -0.45,
      "zoom": 2

@@ -33,7 +33,7 @@
 **13.** `floresta-isekai` — Derrotavam antes que eles crescessem.
 **14.** `floresta-isekai` — E, escondido na moita, um goblin bruxo anotava tudo.  
    _Gancho da série:_ o goblin é um BRUXO DAS TREVAS (capuz preto com o rosto na sombra, olhos verdes, manto rasgado, grimório, cajado com caveirinha e chama verde); chamas verdes — almas reais de cogumelos capturados, já extraídas — flutuam em volta dele; ele ergue o cajado e ri.
-**15.** `floresta-isekai` — Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila.  
+**15.** `floresta-isekai` — Para onde o Davi vai agora? Comenta: um, floresta dos cogumelos. Dois, vila dos humanos.  
    _Final interativo:_ o Davi anda para um lado, para com "?" e volta; o placar no alto mostra "1 FLORESTA" e "2 VILA". O mais votado nos comentários decide o lugar do episódio 2 (mais fundo na floresta ou a vila dos heróis).
 
 **Texto para o ElevenLabs:** `narracao/TEXTO-COMPLETO.txt` → salve o áudio como `narracao/narracao-completa.mp3` (velocidade ~1,1).

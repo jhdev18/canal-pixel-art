@@ -25,6 +25,6 @@ São **16 falas** (uma por cena com narração):
 | 13 | Os heróis não derrotavam os cogumelos por serem fracos. |
 | 14 | Derrotavam antes que eles crescessem. |
 | 15 | E, escondido na moita, um goblin bruxo anotava tudo. |
-| 16 | Para onde o Davi vai agora? Comenta: um, floresta. Dois, vila. |
+| 16 | Para onde o Davi vai agora? Comenta: um, floresta dos cogumelos. Dois, vila dos humanos. |
 
 Depois rode `npm run rascunho -- isekai-davi-01`: o terminal mostra em quantos trechos o áudio foi cortado.
